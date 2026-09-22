@@ -450,7 +450,7 @@ button {
 
 .eq-formula {
     font-size: 1.35rem;
-    padding: 1.5rem 0;
+    padding: 1.5rem 1rem;
     color: var(--purple);
     border-bottom: 1px dashed var(--border-color);
     margin-bottom: 1rem;
@@ -458,7 +458,9 @@ button {
     overflow-y: hidden;
     white-space: nowrap;
     width: 100%;
-    text-align: center;
+    text-align: left;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
 }
 
 .eq-formula::-webkit-scrollbar {
