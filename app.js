@@ -419,8 +419,8 @@ const backToLessonsBtn = document.getElementById('back-to-lessons-btn');
 
 // --- Navigation ---
 function showView(viewElement) {
-    document.querySelectorAll('.view').forEach(el => el.classList.remove('active', 'hidden'));
-    document.querySelectorAll('.view').forEach(el => {
+    Array.from(document.querySelectorAll('.view')).forEach(el => el.classList.remove('active', 'hidden'));
+    Array.from(document.querySelectorAll('.view')).forEach(el => {
         if(el !== viewElement) el.classList.add('hidden');
     });
     viewElement.classList.add('active');
@@ -431,7 +431,7 @@ homeBtn.addEventListener('click', () => showView(viewDashboard));
 backToLessonsBtn.addEventListener('click', () => showView(viewLessons));
 
 // --- Grade Selection ---
-document.querySelectorAll('.grade-card').forEach(card => {
+Array.from(document.querySelectorAll('.grade-card')).forEach(card => {
     card.addEventListener('click', () => loadLessons(card.getAttribute('data-grade')));
 });
 
@@ -1459,10 +1459,10 @@ function loadLessonDetail(lesson) {
 }
 
 // --- Tabs Logic ---
-document.querySelectorAll('.tab-btn').forEach(btn => {
+Array.from(document.querySelectorAll('.tab-btn')).forEach(btn => {
     btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-pane').forEach(p => {
+        Array.from(document.querySelectorAll('.tab-btn')).forEach(b => b.classList.remove('active'));
+        Array.from(document.querySelectorAll('.tab-pane')).forEach(p => {
             p.classList.add('hidden');
             p.classList.remove('active');
         });
