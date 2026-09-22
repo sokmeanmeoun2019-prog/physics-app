@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIS Physics Learning Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics
+        </div>
+        <div class="nav-links">
+            <button id="home-btn" class="nav-btn"><i class="fa-solid fa-home"></i> Home</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main id="app-container">
+        <!-- Dashboard View -->
+        <section id="view-dashboard" class="view active">
+            <header class="dashboard-header">
+                <h1>Welcome to @MeanWIS Physics Learning Hub</h1>
+                <p>Select your grade to start learning</p>
+            </header>
+            <div class="grade-cards">
+                <div class="grade-card" data-grade="9">
+                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h2>Grade 9 Physics</h2>
+                    <p>Mechanics, Energy, and Waves</p>
+                    <button class="btn-primary">Go to Grade 9</button>
+                </div>
+                <div class="grade-card" data-grade="12">
+                    <div class="card-icon"><i class="fa-solid fa-magnet"></i></div>
+                    <h2>Grade 12 Physics</h2>
+                    <p>Electromagnetism, Quantum Mechanics, and More</p>
+                    <button class="btn-primary">Go to Grade 12</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lessons View -->
+        <section id="view-lessons" class="view hidden">
+            <header class="dashboard-header">
+                <h1 id="lessons-title">Grade X Physics</h1>
+                <p>Select a lesson to begin</p>
+            </header>
+            <div class="lesson-list" id="lesson-list-container">
+                <!-- Lesson cards will be populated here -->
+            </div>
+        </section>
+
+        <!-- Single Lesson View -->
+        <section id="view-lesson-detail" class="view hidden">
+            <!-- Progress Indicator -->
+            <div class="progress-container">
+                <div class="progress-bar" id="reading-progress"></div>
+            </div>
+            
+            <header class="lesson-header">
+                <button id="back-to-lessons-btn" class="btn-text"><i class="fa-solid fa-arrow-left"></i> Back to Lessons</button>
+                <h1 id="lesson-detail-title">Lesson Title</h1>
+            </header>
+
+            <!-- Navigation Tabs for Lesson -->
+            <div class="lesson-tabs">
+                <button class="tab-btn active" data-target="summary">Summary</button>
+                <button class="tab-btn" data-target="equations">Equations</button>
+                <button class="tab-btn" data-target="flashcards">Flashcards</button>
+                <button class="tab-btn" data-target="quiz">Quiz</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Summary Tab -->
+                <div id="tab-summary" class="tab-pane active">
+                    
+                    <div class="summary-section" id="lesson-animation-section" style="display: none; text-align: center;">
+                        <h2><i class="fa-solid fa-play"></i> Animated Figure</h2>
+                        <div style="margin-top: 1rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-block;">
+                            <img id="lesson-gif" src="" alt="Physics Animation" style="max-width: 100%; height: auto; display: block;">
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <h2><i class="fa-solid fa-key"></i> Key Concepts</h2>
+                        <ul id="lesson-concepts" class="concept-list">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                    
+                    <div class="summary-section">
+                        <h2><i class="fa-solid fa-book"></i> Definitions</h2>
+                        <div id="lesson-definitions" class="definitions-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="summary-section">
+                        <h2><i class="fa-solid fa-lightbulb"></i> Examples</h2>
+                        <div id="lesson-examples" class="examples-container">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equations Tab -->
+                <div id="tab-equations" class="tab-pane hidden">
+                    <div class="equations-grid" id="lesson-equations">
+                        <!-- Interactive Equation Cards Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Flashcards Tab -->
+                <div id="tab-flashcards" class="tab-pane hidden">
+                    <div class="flashcard-container">
+                        <div class="flashcard" id="active-flashcard">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <h3 id="fc-front-text">Front</h3>
+                                </div>
+                                <div class="flashcard-back">
+                                    <p id="fc-back-text">Back</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flashcard-controls">
+                            <button class="btn-icon" id="fc-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                            <span id="fc-counter">1 / 5</span>
+                            <button class="btn-icon" id="fc-next"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                        <button class="btn-secondary" id="fc-flip-btn"><i class="fa-solid fa-rotate"></i> Flip Card</button>
+                    </div>
+                </div>
+
+                <!-- Quiz Tab -->
+                <div id="tab-quiz" class="tab-pane hidden">
+                    <div class="quiz-container" id="quiz-container">
+                        <div id="quiz-question-container">
+                            <div class="quiz-progress">
+                                <span id="quiz-progress-text">Question 1 of 5</span>
+                            </div>
+                            <h3 id="quiz-question-text">Question text</h3>
+                            <div class="quiz-options" id="quiz-options">
+                                <!-- Populated by JS -->
+                            </div>
+                            <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+                            <button class="btn-primary hidden" id="quiz-next-btn">Next Question</button>
+                        </div>
+                        <div id="quiz-results-container" class="hidden">
+                            <h3>Quiz Complete!</h3>
+                            <div class="score-display">
+                                <span id="quiz-score">0</span> / <span id="quiz-total">0</span>
+                            </div>
+                            <p id="quiz-result-message"></p>
+                            <button class="btn-primary" id="quiz-retry-btn">Retry Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Tutor Widget -->
+    <div id="ai-widget-container" class="ai-widget-collapsed">
+        <button id="ai-toggle-btn" class="ai-fab">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+        <div id="ai-chat-panel" class="ai-panel">
+            <div class="ai-header">
+                <h3><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tutor</h3>
+                <button id="ai-close-btn" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="ai-messages" class="ai-messages">
+                <div class="ai-msg ai">Hi there! I'm your AI Physics Tutor. Ask me any physics question or ask me to explain a concept from this lesson!</div>
+            </div>
+            
+            <div id="ai-api-key-setup" class="ai-api-key-setup">
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Please enter your Gemini API key to chat. It is stored locally in your browser.</p>
+                <input type="password" id="ai-api-key-input" placeholder="Paste Gemini API Key here..." style="width:100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <button id="ai-save-key-btn" class="btn-primary" style="width: 100%;">Save Key</button>
+                <p style="font-size: 0.8rem; margin-top: 10px; text-align: center;"><a href="https://aistudio.google.com/app/apikey" target="_blank">Get an API key</a></p>
+            </div>
+
+            <div class="ai-input-area" id="ai-input-area" style="display: none;">
+                <input type="text" id="ai-user-input" placeholder="Ask about physics..." autocomplete="off">
+                <button id="ai-send-btn" class="btn-icon"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
