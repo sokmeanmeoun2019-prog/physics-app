@@ -250,6 +250,10 @@ button {
     box-shadow: var(--shadow-md);
 }
 
+.grade-card *, .lesson-card * {
+    pointer-events: none;
+}
+
 .lesson-card h3 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
