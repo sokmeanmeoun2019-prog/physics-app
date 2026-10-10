@@ -171,7 +171,7 @@ equations:[
 {front:"How are the focal length and radius of curvature related?", back:"\\( f = \\frac{R}{2} \\)"},
 {front:"What is the formula for magnification in terms of object and image distance?", back:"\\( M = \\frac{d_i}{d_o} \\)"}
 ],quiz:[
-{question:"According to the Law of Reflection:", options:["\\( i < r \\)","\\( i > r \\)","\\( i = r \\)","\\( i + r = 90^\\circ \\)"], correctIndex:2, feedback:"The angle of incidence is exactly equal to the angle of reflection."},
+{question:"According to the Law of Reflection:", options:["\\( i &lt; r \\)","\\( i &gt; r \\)","\\( i = r \\)","\\( i + r = 90^\\circ \\)"], correctIndex:2, feedback:"The angle of incidence is exactly equal to the angle of reflection."},
 {question:"When light travels from a less dense (vacuum) to a more dense medium, its speed:", options:["Increases","Decreases","Stays the same","Becomes zero"], correctIndex:1, feedback:"Speed of light is slower in a denser medium, which is why \\( n = c / v \\) is greater than 1."},
 {question:"The formula to calculate the critical angle is:", options:["\\( \\cos \\theta_c = \\frac{n_2}{n_1} \\)","\\( \\sin \\theta_c = \\frac{n_1}{n_2} \\)","\\( \\sin \\theta_c = \\frac{n_2}{n_1} \\)","\\( \\tan \\theta_c = \\frac{n_2}{n_1} \\)"], correctIndex:2, feedback:"The critical angle is found using the inverse sine of the ratio of the two refractive indices: \\( \\sin \\theta_c = n_2 / n_1 \\)."},
 {question:"For a spherical mirror, if the radius of curvature is 20cm, what is the focal length?", options:["40cm","10cm","20cm","5cm"], correctIndex:1, feedback:"Focal length \\( f = R/2 \\), so \\( 20 / 2 = 10 \\text{cm} \\)."},
@@ -184,7 +184,7 @@ equations:[
 ]}
 ],
 "12": [
-{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",title:"Lesson 1: Kinetic Theory of Ideal Gases",concepts:[],definitions:[],examples:[],
+{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",title:"Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Pressure",name:"Pressure in Kinetic Theory",formula:"\\( P = \\left(\\frac{2}{3}\\right)\\left(\\frac{N}{V}\\right)K_{av} \\)",symbols:[{symbol:"P",desc:"Pressure (Pa)"},{symbol:"N",desc:"Number of molecules"},{symbol:"V",desc:"Volume (m³)"},{symbol:"K_{av}",desc:"Average Kinetic Energy (J)"}]},
 {section:"Pressure",name:"Pressure exerted on container walls",formula:"\\( P = \\frac{F}{A}, F = \\frac{\\Delta p}{\\Delta t}, \\Delta p = N m_0 \\Delta v \\)",symbols:[{symbol:"F",desc:"Force (N)"},{symbol:"A",desc:"Area (m²)"},{symbol:"Δp",desc:"Change in momentum (kg·m/s)"},{symbol:"Δt",desc:"Time interval (s)"}]},
@@ -226,7 +226,7 @@ equations:[
 {question:"Which equation represents the Combined Gas Law?", options:["\\( PV = nRT \\)","\\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)","\\( P_1 T_1 = P_2 T_2 \\)","\\( V_1 / P_1 = V_2 / P_2 \\)"], correctIndex:1, feedback:"The Combined Gas Law is \\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)."},
 {question:"Total kinetic energy \\( K \\) of \\( N \\) molecules is given by:", options:["\\( \\frac{3}{2} N k_B T \\)","\\( \\frac{1}{2} N k_B T \\)","\\( N m_0 v^2 \\)","\\( P V^2 \\)"], correctIndex:0, feedback:"Total kinetic energy is the average energy per molecule multiplied by \\( N \\): \\( \\frac{3}{2} N k_B T \\)."}
 ]},
-{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",title:"Lesson 2: First Law of Thermodynamic",concepts:[],definitions:[],examples:[],
+{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",title:"Chapter 1 Lesson 2: First Law of Thermodynamic",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Work Done",name:"Isobaric Process Work",formula:"\\( W = P \\Delta V \\)",symbols:[{symbol:"W",desc:"Work Done (J)"},{symbol:"P",desc:"Pressure (Pa)"},{symbol:"ΔV",desc:"Change in Volume (m³)"}]},
 {section:"Work Done",name:"Linearly Process Work",formula:"\\( W = P_{av} \\Delta V \\)",symbols:[{symbol:"P_{av}",desc:"Average Pressure (Pa)"}]},
@@ -260,7 +260,7 @@ equations:[
 {question:"The internal energy \\( U \\) of an ideal gas is directly proportional to:", options:["Pressure","Volume","Temperature","Density"], correctIndex:2, feedback:"\\( U = \\frac{3}{2} nRT \\), making it directly proportional to absolute temperature."},
 {question:"If a gas expands such that its pressure changes linearly with volume, the work done is:", options:["\\( W = 0 \\)","\\( W = P \\Delta V \\)","\\( W = P_{av} \\Delta V \\)","\\( W = nRT \\)"], correctIndex:2, feedback:"You can use the average pressure for a linear process: \\( W = P_{av} \\Delta V \\)."}
 ]},
-{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",title:"Lesson 3: Heat Engine",concepts:[],definitions:[],examples:[],
+{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",title:"Chapter 1 Lesson 3: Heat Engine",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Heat Engine",name:"Conservation of energy (Engine)",formula:"\\( Q_h = W_M + Q_c \\)",symbols:[{symbol:"Q_h",desc:"Heat from hot reservoir (J)"},{symbol:"W_M",desc:"Mechanical Work Done (J)"},{symbol:"Q_c",desc:"Heat rejected to cold reservoir (J)"}]},
 {section:"Heat Engine",name:"Ratio",formula:"\\( \\frac{Q_c}{Q_h} = \\frac{T_c}{T_h} \\)",symbols:[{symbol:"T_c",desc:"Cold reservoir temp (K)"},{symbol:"T_h",desc:"Hot reservoir temp (K)"}]},
@@ -289,7 +289,7 @@ equations:[
 {question:"Why is a Carnot engine's efficiency always less than 100%?", options:["Because \\( T_h \\) is finite","Because \\( T_c \\) is always greater than 0 K","Because friction exists","Because \\( Q_c \\) is zero"], correctIndex:1, feedback:"Reaching 100% would require \\( T_c = 0\\text{K} \\), which violates the third law of thermodynamics."},
 {question:"If an engine absorbs 1000J of heat from the hot reservoir and does 400J of work, how much heat is rejected?", options:["400J","600J","1000J","1400J"], correctIndex:1, feedback:"Using \\( Q_h = W_M + Q_c \\), we find \\( 1000 = 400 + Q_c \\Rightarrow Q_c = 600\\text{J} \\)."}
 ]},
-{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",title:"Lesson 4: Superposition and Waves",concepts:[],definitions:[],examples:[],
+{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",title:"Chapter 2 Lesson 1: Superposition and Waves",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Sinusoidal Wave",name:"Sinusoidal Wave equation",formula:"\\( y = a \\sin(\\omega t \\pm kx) \\)",symbols:[{symbol:"y",desc:"Displacement (m)"},{symbol:"a",desc:"Amplitude (m)"},{symbol:"ω",desc:"Angular frequency (rad/s)"},{symbol:"t",desc:"Time (s)"},{symbol:"k",desc:"Wave number (rad/m)"},{symbol:"x",desc:"Position (m)"}]},
 {section:"Sinusoidal Wave",name:"Angular frequency",formula:"\\( \\omega = \\frac{2\\pi}{T}, k = \\frac{2\\pi}{\\lambda} \\)",symbols:[{symbol:"T",desc:"Period (s)"},{symbol:"λ",desc:"Wavelength (m)"}]},
@@ -320,7 +320,44 @@ equations:[
 {question:"The period \\( T \\) of a wave is related to angular frequency by:", options:["\\( T = \\frac{2\\pi}{\\omega} \\)","\\( T = 2\\pi \\omega \\)","\\( T = \\frac{\\omega}{2\\pi} \\)","\\( T = \\omega \\lambda \\)"], correctIndex:0, feedback:"By definition, \\( \\omega = 2\\pi/T \\Rightarrow T = 2\\pi/\\omega \\)."},
 {question:"A standing wave is usually formed by the superposition of:", options:["Two waves of different frequencies","Two waves of same frequency traveling in same direction","Two waves of same frequency traveling in opposite directions","A single wave reflecting internally"], correctIndex:2, feedback:"Standing waves form from identical waves moving in opposite directions."}
 ]},
-{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",title:"Lesson 5: Magnetism & Induction",concepts:[],definitions:[],examples:[],
+{id:"g12-interf",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",title:"Chapter 2 Lesson 2: Interference and Diffraction",concepts:["Interference: A phenomenon where two or more waves overlap, modifying the resulting wave pattern.","Constructive Interference: Occurs when waves are in phase, increasing amplitude.","Destructive Interference: Occurs when waves are out of phase, decreasing amplitude.","Coherent Sources: Sources producing waves of the same amplitude, frequency, and constant phase difference.","Young's Double-Slit Experiment: Demonstrates the wave nature of light through interference patterns.","Diffraction: Bending and spreading of waves when they encounter an obstacle or pass through a narrow aperture."],definitions:[],examples:[],
+equations:[
+{section:"Interference",name:"Constructive interference condition",formula:"\\( d_2 - d_1 = n\\lambda \\)",symbols:[{symbol:"d_2, d_1",desc:"Distances from sources (m)"},{symbol:"λ",desc:"Wavelength (m)"},{symbol:"n",desc:"Integer (0, 1, 2...)"}]},
+{section:"Interference",name:"Destructive interference condition",formula:"\\( d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2} \\)",symbols:[{symbol:"n",desc:"Integer (0, 1, 2...)"}]},
+{section:"Interference",name:"Wave function superposition",formula:"\\( y = A\\sin(\\omega t - kd_1) + A\\sin(\\omega t - kd_2) \\)",symbols:[{symbol:"y",desc:"Superposition wave equation"}]},
+{section:"Interference",name:"Maximum amplitude",formula:"\\( A' = 2A\\cos\\left(\\pi \\frac{d_2 - d_1}{\\lambda}\\right) \\)",symbols:[{symbol:"A'",desc:"Superposition maximum amplitude (m)"}]},
+{section:"Interference of Light Waves",name:"Path difference (Double Slit)",formula:"\\( r_2 - r_1 = d\\sin\\theta \\)",symbols:[{symbol:"d",desc:"Distance between slits (m)"},{symbol:"θ",desc:"Angle (° or rad)"}]},
+{section:"Interference of Light Waves",name:"Condition for Bright Fringes",formula:"\\( d\\sin\\theta_{bright} = m\\lambda \\)",symbols:[{symbol:"m",desc:"Integer (0, ±1, ±2...)"}]},
+{section:"Interference of Light Waves",name:"Condition for Dark Fringes",formula:"\\( d\\sin\\theta_{Dark} = \\left(m + \\frac{1}{2}\\right)\\lambda \\)",symbols:[{symbol:"m",desc:"Integer (0, ±1, ±2...)"}]},
+{section:"Interference of Light Waves",name:"Distance of fringe on screen",formula:"\\( y = L\\tan\\theta \\)",symbols:[{symbol:"y",desc:"Distance on screen (m)"},{symbol:"L",desc:"Distance to screen (m)"}]},
+{section:"Interference of Light Waves",name:"Position of Bright fringes",formula:"\\( y_{bright} = L\\frac{m\\lambda}{d} \\)",symbols:[{symbol:"y_{bright}",desc:"Position of bright fringes (m)"}]},
+{section:"Interference of Light Waves",name:"Position of Dark fringes",formula:"\\( y_{Dark} = L\\frac{(m + 1/2)\\lambda}{d} \\)",symbols:[{symbol:"y_{Dark}",desc:"Position of dark fringes (m)"}]},
+{section:"Diffraction",name:"Condition for Minima (Dark Fringes)",formula:"\\( a\\sin\\theta = m\\lambda \\)",symbols:[{symbol:"a",desc:"Width of the slit (m)"},{symbol:"m",desc:"Order of minimum fringe (±1, ±2...)"}]},
+{section:"Diffraction",name:"Position of Dark fringe",formula:"\\( y = L\\frac{m\\lambda}{a} \\)",symbols:[{symbol:"y",desc:"Position of dark fringe on screen (m)"}]}
+],flashcards:[
+{front:"What is the condition for constructive interference (path difference)?", back:"\\( d_2 - d_1 = n\\lambda \\)"},
+{front:"What is the condition for destructive interference (path difference)?", back:"\\( d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2} \\)"},
+{front:"What is the maximum amplitude of a superposition wave?", back:"\\( A' = 2A\\cos\\left(\\pi \\frac{d_2 - d_1}{\\lambda}\\right) \\)"},
+{front:"What is the path difference formula in Young's Double-Slit Experiment?", back:"\\( r_2 - r_1 = d\\sin\\theta \\)"},
+{front:"What is the condition for Bright Fringes (Constructive Interference) in a double-slit?", back:"\\( d\\sin\\theta = m\\lambda \\)"},
+{front:"What is the condition for Dark Fringes (Destructive Interference) in a double-slit?", back:"\\( d\\sin\\theta = \\left(m + \\frac{1}{2}\\right)\\lambda \\)"},
+{front:"How do you calculate the position of bright fringes on the screen?", back:"\\( y_{bright} = L\\frac{m\\lambda}{d} \\)"},
+{front:"How do you calculate the position of dark fringes on the screen?", back:"\\( y_{Dark} = L\\frac{(m + 1/2)\\lambda}{d} \\)"},
+{front:"What is the condition for Minima (Dark Fringes) in single-slit diffraction?", back:"\\( a\\sin\\theta = m\\lambda \\)"},
+{front:"How do you calculate the position of the dark fringe on the screen in diffraction?", back:"\\( y = L\\frac{m\\lambda}{a} \\)"}
+],quiz:[
+{question:"Which condition represents constructive interference in terms of path difference?", options:["\\( d_2 - d_1 = n\\lambda \\)","\\( d_2 - d_1 = (2n + 1)\\lambda/2 \\)","\\( d_2 - d_1 = \\lambda/4 \\)","\\( d_2 - d_1 = 0 \\)"], correctIndex:0, feedback:"Constructive interference occurs when the path difference is an integer multiple of the wavelength."},
+{question:"In Young's Double-Slit Experiment, what does \\( d \\) represent?", options:["Distance to the screen","Distance between the two slits","Width of a single slit","Position of the fringe"], correctIndex:1, feedback:"\\( d \\) is the distance between the two coherent sources (slits)."},
+{question:"The position of bright fringes on a screen is given by:", options:["\\( y = L\\frac{m\\lambda}{a} \\)","\\( y = L\\tan\\theta_{Dark} \\)","\\( y = L\\frac{m\\lambda}{d} \\)","\\( y = \\frac{m\\lambda}{Ld} \\)"], correctIndex:2, feedback:"For bright fringes, \\( y_{bright} = L\\frac{m\\lambda}{d} \\)."},
+{question:"What is diffraction?", options:["Waves bouncing off a surface","Waves changing speed in a new medium","Waves bending around an obstacle or spreading through an opening","Two waves canceling each other out"], correctIndex:2, feedback:"Diffraction is the bending and spreading of waves around edges or through apertures."},
+{question:"In the single-slit diffraction formula \\( a\\sin\\theta = m\\lambda \\), what does \\( a \\) stand for?", options:["Amplitude","Acceleration","Distance to screen","Width of the slit"], correctIndex:3, feedback:"In diffraction, \\( a \\) represents the width of the aperture or slit."},
+{question:"What type of sources are required for a stable interference pattern?", options:["Incoherent sources","Coherent sources","High-frequency sources","Long-wavelength sources"], correctIndex:1, feedback:"Coherent sources, which have the same amplitude, frequency, and a constant phase difference, are required."},
+{question:"The condition for Dark Fringes in Young's Double-Slit Experiment is:", options:["\\( d\\sin\\theta = m\\lambda \\)","\\( d\\sin\\theta = (m + 1/2)\\lambda \\)","\\( a\\sin\\theta = m\\lambda \\)","\\( r_2 - r_1 = n\\lambda \\)"], correctIndex:1, feedback:"Dark fringes (destructive interference) occur at half-integer multiples of the wavelength: \\( d\\sin\\theta = (m + 1/2)\\lambda \\)."},
+{question:"For small angles, which approximation is used to find the fringe position?", options:["\\( \\sin\\theta \\approx \\cos\\theta \\)","\\( \\cos\\theta \\approx \\tan\\theta \\)","\\( \\tan\\theta \\approx \\sin\\theta \\)","\\( \\sin\\theta \\approx 1 \\)"], correctIndex:2, feedback:"For small angles measured in radians, \\( \\tan\\theta \\approx \\sin\\theta \\approx \\theta \\)."},
+{question:"When \\( m = 0 \\) in \\( d\\sin\\theta = m\\lambda \\), this corresponds to:", options:["The first dark fringe","The central maximum (bright fringe)","No interference","The minimum amplitude"], correctIndex:1, feedback:"\\( m = 0 \\) gives the zero maximum fringe, or central maximum."},
+{question:"What is the maximum amplitude \\( A' \\) of the superposition of two waves with amplitude \\( A \\)?", options:["\\( A \\)","\\( A/2 \\)","\\( 2A \\)","\\( 4A \\)"], correctIndex:2, feedback:"Constructive interference doubles the amplitude, giving a maximum of \\( 2A \\)."}
+]},
+{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",title:"Chapter 3 Lesson 1: Magnetism & Induction",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Magnetic Field & Force",name:"Magnetic field (straight wire)",formula:"\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)",symbols:[{symbol:"B",desc:"Magnetic Field (T)"},{symbol:"μ_0",desc:"Permeability of free space (4π×10⁻⁷ T·m/A)"},{symbol:"I",desc:"Current (A)"},{symbol:"d",desc:"Distance from wire (m)"}]},
 {section:"Magnetic Field & Force",name:"Magnetic field (circular wire)",formula:"\\( B = \\frac{\\mu_0 NI}{2R} \\)",symbols:[{symbol:"R",desc:"Radius of coil (m)"},{symbol:"N",desc:"Number of turns"}]},
@@ -365,7 +402,7 @@ equations:[
 {question:"The resonant angular frequency of an LC circuit is:", options:["\\( \\sqrt{CL} \\)","\\( \\frac{1}{CL} \\)","\\( \\frac{1}{\\sqrt{CL}} \\)","\\( \\frac{C}{L} \\)"], correctIndex:2, feedback:"The frequency is given by \\( \\omega_0 = \\frac{1}{\\sqrt{CL}} \\)."},
 {question:"The force between two parallel current-carrying wires depends inversely on:", options:["The length of the wires","The currents \\(I_1\\) and \\(I_2\\)","The permeability \\(\\mu_0\\)","The distance between them \\(a\\)"], correctIndex:3, feedback:"\\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\), so it is inversely proportional to distance \\(a\\)."}
 ]},
-{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",title:"Lesson 6: Alternating Current",concepts:[],definitions:[],examples:[],
+{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",title:"Chapter 3 Lesson 2: Alternating Current",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"AC Basics",name:"Instantaneous current",formula:"\\( i = i_m \\sin(\\omega t + \\phi_0) \\)",symbols:[{symbol:"i",desc:"Instantaneous current (A)"},{symbol:"i_m",desc:"Peak current (A)"},{symbol:"\\phi_0",desc:"Initial phase angle (rad)"}]},
 {section:"AC Basics",name:"RMS Current",formula:"\\( I = \\frac{I_m}{\\sqrt{2}} \\)",symbols:[{symbol:"I",desc:"Root Mean Square Current (A)"}]},
@@ -399,7 +436,134 @@ equations:[
 {question:"For an ideal transformer, the turn ratio \\( K \\) equals:", options:["\\( n_1 / n_2 \\)","\\( n_2 / n_1 \\)","\\( V_1 / V_2 \\)","\\( I_2 / I_1 \\)"], correctIndex:1, feedback:"The ratio is secondary turns over primary turns, \\( n_2 / n_1 \\)."},
 {question:"At resonance in an RLC circuit (where \\( Z_L = Z_C \\)), the impedance \\( Z \\) is:", options:["Zero","Infinite","Equal to the resistance \\( R \\)","\\( R^2 \\)"], correctIndex:2, feedback:"When \\( Z_L = Z_C \\), the reactive parts cancel, leaving \\( Z = \\sqrt{R^2 + 0} = R \\)."},
 {question:"The instantaneous current is \\( i = i_m \\sin(\\omega t + \\phi_0) \\). What is \\( i_m \\)?", options:["RMS current","Average current","Peak current","Initial current"], correctIndex:2, feedback:"\\( i_m \\) is the maximum or peak amplitude of the current."}
-]}
+]},
+{
+id:"g12-ch4-l1",gifUrl:"",title:"Chapter 4 Lesson 1: Solid-State Physics",
+concepts:[
+"Semiconductor: Material with conductivity between conductor and insulator. Can be doped to form N-type (extra electrons) or P-type (extra holes).",
+"P-N Junction: Boundary between P-type and N-type semiconductors, creating a depletion region.",
+"Forward Bias: Applied voltage reduces the depletion region, allowing current to flow.",
+"Reverse Bias: Applied voltage widens the depletion region, preventing current flow (except tiny leakage).",
+"Diode: Device that allows current to flow in one direction (e.g., Rectifier, Zener, LED).",
+"Transistor: Three-terminal device (NPN or PNP) used for amplification and switching. Has Emitter, Base, and Collector."
+],
+definitions:[],examples:[],
+equations:[
+{section:"Semiconductor Properties",name:"Resistance and Resistivity",formula:"\\( R = \\rho \\frac{l}{A} \\)",symbols:[{symbol:"R",desc:"Resistance (Ω)"},{symbol:"ρ",desc:"Resistivity (Ω·m)"},{symbol:"l",desc:"Length (m)"},{symbol:"A",desc:"Cross-sectional area (m²)"}]},
+{section:"Transistor",name:"Transistor Currents",formula:"\\( I_E = I_B + I_C \\)",symbols:[{symbol:"I_E",desc:"Emitter current (A)"},{symbol:"I_B",desc:"Base current (A)"},{symbol:"I_C",desc:"Collector current (A)"}]},
+{section:"Transistor",name:"Common-emitter current gain (β)",formula:"\\( \\beta = \\frac{I_C}{I_B} \\)",symbols:[{symbol:"β",desc:"Current gain (No unit)"}]},
+{section:"Transistor",name:"Common-base current gain (α)",formula:"\\( \\alpha = \\frac{I_C}{I_E} \\)",symbols:[{symbol:"α",desc:"Current gain (No unit)"}]}
+],
+flashcards:[
+{front:"What is a P-N junction?", back:"The boundary between P-type and N-type semiconductor materials, featuring a depletion region."},
+{front:"What are the majority charge carriers in an N-type semiconductor?", back:"Electrons"},
+{front:"What are the majority charge carriers in a P-type semiconductor?", back:"Holes"},
+{front:"What happens to the depletion region during forward bias?", back:"It becomes narrower, allowing electric current to flow."},
+{front:"What is the relationship between the three currents in a transistor?", back:"\\( I_E = I_B + I_C \\)"},
+{front:"How do you calculate the common-emitter current gain (\\(\\beta\\))?", back:"\\( \\beta = \\frac{I_C}{I_B} \\)"},
+{front:"How do you calculate the common-base current gain (\\(\\alpha\\))?", back:"\\( \\alpha = \\frac{I_C}{I_E} \\)"},
+{front:"What is the primary function of a rectifier diode?", back:"To convert alternating current (AC) into direct current (DC)."},
+{front:"What does a Zener diode do?", back:"It operates in reverse-bias to maintain a constant output voltage (regulated voltage)."},
+{front:"What type of transistor has electrons as the majority charge carriers and a forward-biased base-emitter junction?", back:"NPN Transistor"}
+],
+quiz:[
+{question:"Which material is commonly used as an intrinsic semiconductor?", options:["Copper","Silicon","Glass","Gold"], correctIndex:1, feedback:"Silicon (and Germanium) are standard semiconductor materials."},
+{question:"In an N-type semiconductor, what are the donor atoms?", options:["Atoms with three valence electrons","Atoms with five valence electrons","Atoms with four valence electrons","Noble gases"], correctIndex:1, feedback:"Donor atoms (like Phosphorus or Arsenic) provide extra free electrons by having five valence electrons."},
+{question:"The depletion region of a P-N junction is characterized by:", options:["High concentration of free electrons","High concentration of holes","Almost no mobile charge carriers","High electrical conductivity"], correctIndex:2, feedback:"Electrons and holes recombine in the depletion region, leaving almost no free charge carriers."},
+{question:"During reverse bias, the P-N junction:", options:["Allows maximum current to flow","Narrows the depletion region","Widens the depletion region and blocks majority carriers","Acts as a perfect conductor"], correctIndex:2, feedback:"Reverse bias widens the potential barrier, preventing majority charge carriers from crossing."},
+{question:"The formula for calculating resistance from resistivity is:", options:["\\( R = \\rho A / l \\)","\\( R = \\rho l / A \\)","\\( R = l / \\rho A \\)","\\( R = A / \\rho l \\)"], correctIndex:1, feedback:"Resistance is directly proportional to length and inversely proportional to cross-sectional area: \\( R = \\rho l / A \\)."},
+{question:"A transistor's emitter current \\( I_E \\) is 10 mA, and its base current \\( I_B \\) is 0.1 mA. What is the collector current \\( I_C \\)?", options:["10.1 mA","9.9 mA","100 mA","0.01 mA"], correctIndex:1, feedback:"\\( I_C = I_E - I_B = 10 - 0.1 = 9.9 \\text{ mA} \\)."},
+{question:"The common-emitter current gain \\( \\beta \\) is given by the ratio of:", options:["\\( I_C / I_E \\)","\\( I_E / I_B \\)","\\( I_C / I_B \\)","\\( I_B / I_C \\)"], correctIndex:2, feedback:"\\( \\beta \\) is the ratio of collector current to base current."},
+{question:"Which diode is specifically designed to operate in the reverse-bias region to regulate voltage?", options:["Light-Emitting Diode (LED)","Rectifier Diode","Tunnel Diode","Zener Diode"], correctIndex:3, feedback:"Zener diodes are used to maintain a constant output (regulated) voltage in reverse bias."},
+{question:"What is a hole in semiconductor physics?", options:["A positive ion fixed in the lattice","A missing electron in a covalent bond acting as a positive charge carrier","An extra proton in the nucleus","A defective region in the crystal"], correctIndex:1, feedback:"A hole is a vacancy left by a missing electron, acting as a mobile positive charge."},
+{question:"In a PNP transistor, the majority charge carriers are:", options:["Electrons","Protons","Holes","Neutrons"], correctIndex:2, feedback:"In PNP transistors, holes carry the majority of the current."}
+]
+},
+{
+id:"g12-ch4-l2",gifUrl:"",title:"Chapter 4 Lesson 2: Special Theory of Relativity",
+concepts:[
+"Inertial Reference Frame: A coordinate system where Newton's laws of motion are valid, moving at constant velocity.",
+"Galilean Transformation: Classical physics coordinate and velocity transformations, valid only at low speeds (u << c).",
+"Michelson-Morley Experiment: Attempted to measure Earth's speed relative to the 'ether'. Its null result proved the speed of light is constant in all directions.",
+"Einstein's Postulates: 1. Laws of physics are the same in all inertial frames. 2. The speed of light in a vacuum is constant for all observers.",
+"Lorentz Transformation: Relativistic coordinate transformations valid for all velocities, replacing Galilean transformations near the speed of light.",
+"Lorentz Factor (γ): A scaling factor that approaches 1 at low speeds but grows infinitely large as speed approaches c."
+],
+definitions:[],examples:[],
+equations:[
+{section:"Galilean Transformation",name:"Galilean Velocity",formula:"\\( v_x' = v_x - u \\)",symbols:[{symbol:"v_x'",desc:"Velocity in frame S' (m/s)"},{symbol:"v_x",desc:"Velocity in frame S (m/s)"},{symbol:"u",desc:"Relative velocity of frames (m/s)"}]},
+{section:"Michelson-Morley",name:"Expected Fringe Shift",formula:"\\( \\Delta N = \\frac{Lv^2}{\\lambda c^2} \\)",symbols:[{symbol:"ΔN",desc:"Number of shifted fringes"}]},
+{section:"Lorentz Transformation",name:"Lorentz Factor",formula:"\\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\)",symbols:[{symbol:"γ",desc:"Lorentz Factor (No unit)"},{symbol:"c",desc:"Speed of light (3×10⁸ m/s)"}]},
+{section:"Lorentz Transformation",name:"Coordinate (x')",formula:"\\( x' = \\gamma(x - ut) \\)",symbols:[{symbol:"x'",desc:"Position in frame S' (m)"}]},
+{section:"Lorentz Transformation",name:"Time (t')",formula:"\\( t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)",symbols:[{symbol:"t'",desc:"Time in frame S' (s)"}]},
+{section:"Lorentz Transformation",name:"Relativistic Velocity",formula:"\\[ \\begin{aligned} v_x' &= \\frac{v_x - u}{1 - \\frac{u v_x}{c^2}} \\end{aligned} \\]",symbols:[{symbol:"v_x'",desc:"Velocity in frame S' (m/s)"}]}
+],
+flashcards:[
+{front:"What is an inertial reference frame?", back:"A coordinate system where Newton's laws are valid, typically moving at a constant velocity."},
+{front:"What was the result of the Michelson-Morley experiment?", back:"A 'null result', proving that there is no luminiferous ether and the speed of light is constant in all directions."},
+{front:"What are Einstein's two postulates of Special Relativity?", back:"1. The Principle of Relativity (physics laws are universal). 2. The Constancy of the Speed of Light."},
+{front:"What is the formula for the Lorentz factor \\( \\gamma \\)?", back:"\\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\)"},
+{front:"How does the Galilean velocity transformation look?", back:"\\( v_x' = v_x - u \\)"},
+{front:"What is the Lorentz velocity transformation equation?", back:"\\( v_x' = \\frac{v_x - u}{1 - \\frac{u v_x}{c^2}} \\)"},
+{front:"What happens to the Lorentz factor \\( \\gamma \\) as velocity \\( u \\) approaches the speed of light \\( c \\)?", back:"\\( \\gamma \\) becomes infinitely large (\\( \\gamma > 1 \\))."},
+{front:"What happens to the Lorentz transformation when velocity \\( u \\) is much smaller than \\( c \\)?", back:"It simplifies into the classical Galilean transformation."},
+{front:"In the Lorentz time transformation, what is the formula for \\( t' \\)?", back:"\\( t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)"},
+{front:"What does \\( c \\) represent in relativity?", back:"The speed of light in a vacuum, approximately \\( 3 \\times 10^8 \\text{ m/s} \\)."}
+],
+quiz:[
+{question:"Which experiment provided crucial evidence that the 'luminiferous ether' does not exist?", options:["Young's Double-Slit Experiment","Rutherford's Gold Foil Experiment","Michelson-Morley Experiment","Thomson's Cathode Ray Experiment"], correctIndex:2, feedback:"The Michelson-Morley experiment's null result proved there is no absolute ether rest frame."},
+{question:"According to Einstein's second postulate, the speed of light in a vacuum is:", options:["Dependent on the speed of the observer","Dependent on the speed of the source","Constant for all inertial reference frames","Infinite"], correctIndex:2, feedback:"The speed of light is exactly the same (c) for all observers, regardless of their relative motion."},
+{question:"The Lorentz factor \\( \\gamma \\) is defined as:", options:["\\( \\sqrt{1 - u^2/c^2} \\)","\\( 1 / \\sqrt{1 - u^2/c^2} \\)","\\( 1 - u^2/c^2 \\)","\\( 1 / (1 - u/c) \\)"], correctIndex:1, feedback:"\\( \\gamma = \\frac{1}{\\sqrt{1 - u^2/c^2}} \\)."},
+{question:"In a Galilean transformation, what assumption is made about time?", options:["Time dilates at high speeds","Time is the same in all reference frames (\\( t = t' \\))","Time is relative to the observer's mass","Time stops at the speed of light"], correctIndex:1, feedback:"Classical Galilean mechanics assumes an absolute, universal time for all observers."},
+{question:"What is the Lorentz relativistic velocity transformation equation?", options:["\\( v_x' = v_x - u \\)","\\( v_x' = v_x + u \\)","\\( v_x' = \\frac{v_x - u}{1 - uv_x/c^2} \\)","\\( v_x' = \\gamma(v_x - u) \\)"], correctIndex:2, feedback:"Relativistic velocities do not simply add or subtract; they must account for the changing frame of time and space."},
+{question:"A spaceship travels away from Earth at 0.5c and fires a missile at 0.5c relative to itself. According to Galilean transformation, what is the missile's speed relative to Earth?", options:["1.0c","0.5c","0.8c","0.25c"], correctIndex:0, feedback:"Classical Galilean mechanics simply adds velocities: 0.5c + 0.5c = 1.0c (though this violates relativity)."},
+{question:"For the same spaceship scenario (velocities 0.5c and 0.5c), what prevents the missile from reaching the speed of light under Lorentz transformations?", options:["The Lorentz factor denominator \\( 1 + \\frac{uv}{c^2} \\) reduces the sum","The missile runs out of fuel","Time dilation stops the missile","The ether slows it down"], correctIndex:0, feedback:"The relativistic addition formula ensures the total speed is always less than c."},
+{question:"When velocity \\( u \\) is very small compared to \\( c \\) (\\( u \\ll c \\)), the Lorentz factor \\( \\gamma \\) is approximately:", options:["0","1","Infinity","c"], correctIndex:1, feedback:"At low speeds, \\( u^2/c^2 \\) is almost 0, making \\( \\gamma \\approx 1 \\)."},
+{question:"The equation \\( x' = \\gamma(x - ut) \\) represents:", options:["Galilean coordinate transformation","Lorentz spatial transformation","Lorentz velocity transformation","Time dilation"], correctIndex:1, feedback:"This is the Lorentz transformation for the spatial x-coordinate."},
+{question:"What does the variable \\( u \\) typically represent in the Lorentz equations?", options:["Initial velocity of a particle","Constant relative velocity between two reference frames","Speed of light","Acceleration of the observer"], correctIndex:1, feedback:"\\( u \\) is the relative velocity of frame S' with respect to frame S."}
+]
+},
+{
+id:"g12-ch4-l3",gifUrl:"",title:"Chapter 4 Lesson 3: Atomic Structure",
+concepts:[
+"Cathode Rays: Streams of electrons discovered by J.J. Thomson, demonstrating that atoms have an internal structure.",
+"Charge-to-Mass Ratio (e/m): Measured by balancing electric and magnetic forces on an electron beam.",
+"Rutherford's Nuclear Model: Alpha particle scattering proved the existence of a small, dense, positively charged nucleus.",
+"Nucleons: The nucleus consists of protons (positive) and neutrons (neutral).",
+"Photoelectric Effect: Light behaves as a stream of particles (photons). Electrons are emitted only if the photon energy exceeds the work function.",
+"Bohr Atomic Model: Electrons orbit the nucleus in specific quantized energy levels. They absorb/emit photons to transition between states."
+],
+definitions:[],examples:[],
+equations:[
+{section:"Electron & Cathode Rays",name:"Charge-to-mass ratio",formula:"\\( \\frac{q}{m} = \\frac{ZE}{DlB^2} \\)",symbols:[{symbol:"q",desc:"Charge (C)"},{symbol:"m",desc:"Mass (kg)"},{symbol:"E",desc:"Electric field (V/m)"},{symbol:"B",desc:"Magnetic field (T)"}]},
+{section:"Photoelectric Effect",name:"Work Function Condition",formula:"\\( hf \\ge E_0 \\)",symbols:[{symbol:"h",desc:"Planck's constant (6.626×10⁻³⁴ J·s)"},{symbol:"f",desc:"Frequency (Hz)"},{symbol:"E_0",desc:"Work function (J)"}]},
+{section:"Photoelectric Effect",name:"Einstein's Photoelectric Equation",formula:"\\( K_{max} = \\frac{1}{2}mv^2 = hf - E_0 \\)",symbols:[{symbol:"K_{max}",desc:"Maximum kinetic energy (J)"}]}
+],
+flashcards:[
+{front:"Who discovered the electron and what experiment did they use?", back:"J.J. Thomson discovered the electron using the cathode ray tube experiment."},
+{front:"What did Rutherford's gold foil experiment prove?", back:"It proved that the atom has a small, dense, positively charged nucleus."},
+{front:"What is a nucleon?", back:"A particle found in the nucleus (either a proton or a neutron)."},
+{front:"What is the photoelectric effect?", back:"The emission of electrons from a metal surface when light of a high enough frequency shines on it."},
+{front:"What is the work function (\\( E_0 \\))?", back:"The minimum energy required to completely remove an electron from a metal surface."},
+{front:"What is Einstein's photoelectric equation?", back:"\\( K_{max} = hf - E_0 \\)"},
+{front:"What did the Bohr Atomic Model propose about electron orbits?", back:"Electrons move only in specific permitted circular orbits (stationary energy levels) without radiating energy."},
+{front:"How is a line emission spectrum produced?", back:"When an electron transitions from a higher excited energy state down to a lower energy state, emitting a photon."},
+{front:"What happens if an electron absorbs energy greater than the ionization energy?", back:"It completely escapes from the atom, causing the atom to become ionized."},
+{front:"In J.J. Thomson's experiment, what happens when the electric and magnetic forces are equal?", back:"The charged particles pass through the fields in a straight line without deflection (\\( qE = qvB \\))."}
+],
+quiz:[
+{question:"In Thomson's cathode ray experiment, the cathode ray was deflected toward the positive plate. This indicated that:", options:["The particles are positively charged","The particles carry a negative electric charge","The particles are neutral","The particles are electromagnetic waves"], correctIndex:1, feedback:"Attraction to a positive plate confirms the cathode rays (electrons) are negatively charged."},
+{question:"Rutherford's gold foil experiment showed that most alpha particles passed straight through. This means:", options:["The nucleus is very large","Atoms are mostly empty space","Electrons are massive","Alpha particles have no charge"], correctIndex:1, feedback:"Because very few deflected, Rutherford concluded the atom is mostly empty space with a tiny, dense nucleus."},
+{question:"According to Einstein's explanation of the photoelectric effect, light consists of particles called:", options:["Protons","Neutrons","Photons","Positrons"], correctIndex:2, feedback:"Einstein proposed that light consists of discrete energy quanta called photons."},
+{question:"To eject an electron from a metal, the incident photon's energy (\\(hf\\)) must be:", options:["Less than the work function","Equal to the kinetic energy","Greater than or equal to the work function (\\(E_0\\))","Independent of the material"], correctIndex:2, feedback:"The photon must have enough energy to overcome the binding energy (work function) of the metal."},
+{question:"Einstein's photoelectric equation is given by:", options:["\\( K_{max} = hf + E_0 \\)","\\( K_{max} = E_0 - hf \\)","\\( K_{max} = hf / E_0 \\)","\\( K_{max} = hf - E_0 \\)"], correctIndex:3, feedback:"The maximum kinetic energy is the leftover energy after subtracting the work function from the photon's energy."},
+{question:"Bohr's model of the atom resolved a major flaw in classical physics by proposing that:", options:["Electrons constantly radiate energy","Electrons exist in stationary orbits where they do not emit energy","The nucleus orbits the electrons","Electrons can exist at any distance from the nucleus"], correctIndex:1, feedback:"Bohr quantized the orbits, stating electrons in permitted levels do not radiate energy and spiral inward."},
+{question:"When an electron jumps from a higher energy level to a lower energy level, it:", options:["Absorbs a photon","Emits a photon","Becomes a proton","Reverses its charge"], correctIndex:1, feedback:"Transitioning to a lower state releases energy in the form of an emitted photon."},
+{question:"The lowest energy level of a hydrogen atom (\\( n = 1 \\)) is called its:", options:["Excited state","Ionization state","Ground state","Quantum state"], correctIndex:2, feedback:"The lowest and most stable energy level is the ground state."},
+{question:"What is the charge of a neutron?", options:["Positive","Negative","Neutral (Zero)","Variable"], correctIndex:2, feedback:"A neutron is an electrically neutral particle in the nucleus."},
+{question:"J.J. Thomson balanced electric and magnetic forces to determine what property of the electron?", options:["Its exact mass","Its exact charge","Its orbital radius","Its charge-to-mass ratio (e/m)"], correctIndex:3, feedback:"Thomson's experiment accurately measured the ratio \\( e/m \\), though Millikan later found the exact charge."}
+]
+}
 ]
 };
 
