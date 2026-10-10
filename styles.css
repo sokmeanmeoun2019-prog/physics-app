@@ -725,8 +725,9 @@ button {
     right: 20px;
     z-index: 1000;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse; /* Put FAB below panel */
     align-items: flex-end;
+    pointer-events: none; /* Let clicks pass through the invisible container */
 }
 
 .ai-fab {
@@ -743,6 +744,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: auto; /* Re-enable clicks for FAB */
 }
 
 .ai-fab:hover {
@@ -770,7 +772,7 @@ button {
 
 #ai-widget-container:not(.ai-widget-collapsed) .ai-panel {
     opacity: 1;
-    pointer-events: auto;
+    pointer-events: auto; /* Re-enable clicks for panel when open */
     transform: scale(1);
 }
 
