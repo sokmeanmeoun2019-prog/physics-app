@@ -142,7 +142,7 @@
                 </button>
                 <div class="lessons-grade-indicator" id="lessons-grade-indicator">
                     <i class="fa-solid fa-graduation-cap"></i>
-                    <span id="lessons-grade-pill-text">Grade 9</span>
+                    <span id="lessons-grade-pill-text">Physics</span>
                 </div>
             </div>
 
@@ -150,10 +150,10 @@
             <header class="lessons-hero-banner" id="lessons-hero-banner">
                 <div class="lessons-hero-badge" id="lessons-hero-badge">
                     <i class="fa-solid fa-atom"></i>
-                    <span id="lessons-badge-text">Grade 9 • Foundation Physics</span>
+                    <span id="lessons-badge-text">Physics Curriculum</span>
                 </div>
-                <h1 id="lessons-title" class="lessons-hero-title">Grade 9 Physics</h1>
-                <p id="lessons-subtitle" class="lessons-hero-subtitle">Torque, Simple Machines, Electricity, Magnetism, and Light</p>
+                <h1 id="lessons-title" class="lessons-hero-title">Physics Lessons</h1>
+                <p id="lessons-subtitle" class="lessons-hero-subtitle">Interactive formulas, explanations, and practice</p>
                 <div class="lessons-stats-bar" id="lessons-stats-bar">
                     <!-- Populated dynamically based on grade -->
                 </div>
@@ -321,6 +321,8 @@
 
     <script>
         // Bulletproof navigation & grade loader guarantee
+        window.pendingGradeToLoad = null;
+
         function showDashboard() {
             var vDash = document.getElementById('view-dashboard');
             var vLessons = document.getElementById('view-lessons');
@@ -356,7 +358,43 @@
         function loadLessons(grade) {
             if (!grade) return;
             var g = String(grade);
+            window.pendingGradeToLoad = g;
+
+            // Immediately set correct grade title, badge, and theme so user NEVER sees the wrong grade
+            var badgeText = document.getElementById('lessons-badge-text');
+            var titleEl = document.getElementById('lessons-title');
+            var subtitleEl = document.getElementById('lessons-subtitle');
+            var gradePillText = document.getElementById('lessons-grade-pill-text');
+            var heroBanner = document.getElementById('lessons-hero-banner');
+            var gradeIndicator = document.getElementById('lessons-grade-indicator');
+            var container = document.getElementById('lesson-list-container');
+
+            if (gradePillText) gradePillText.innerText = 'Grade ' + g;
+            if (heroBanner) {
+                heroBanner.classList.remove('hero-theme-9', 'hero-theme-12');
+                heroBanner.classList.add('hero-theme-' + g);
+            }
+            if (gradeIndicator) {
+                gradeIndicator.classList.remove('indicator-grade-9', 'indicator-grade-12');
+                gradeIndicator.classList.add('indicator-grade-' + g);
+            }
+
+            if (g === '9') {
+                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-compass-drafting"></i> Grade 9 • Fundamental Physics Curriculum';
+                if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g9">Grade 9</span> Physics';
+                if (subtitleEl) subtitleEl.innerText = 'Torque, Simple Machines, Electricity, Magnetism, and Light';
+            } else {
+                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-atom"></i> Grade 12 • Advanced & Modern Physics';
+                if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g12">Grade 12</span> Physics';
+                if (subtitleEl) subtitleEl.innerText = 'Ideal Gases, Thermodynamics, Waves, Magnetism, Self Induction, Alternating Current, and Modern Physics';
+            }
+
+            if (container && (!container.children || container.children.length === 0)) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px 20px; font-weight: 600; color: #64748b; font-size: 1.05rem;"><i class="fa-solid fa-circle-notch fa-spin" style="margin-right: 10px; color: ' + (g === '9' ? '#00bcd4' : '#7c3aed') + ';"></i> Loading Grade ' + g + ' Lessons...</div>';
+            }
+
             showLessonsView();
+
             if (typeof window.renderLessonsList === 'function') {
                 window.renderLessonsList(g);
             }
@@ -366,6 +404,6 @@
         window.showLessonsView = showLessonsView;
         window.loadLessons = loadLessons;
     </script>
-    <script src="app.js?v=27"></script>
+    <script src="app.js?v=28"></script>
 </body>
 </html>

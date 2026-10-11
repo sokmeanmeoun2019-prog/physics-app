@@ -1431,11 +1431,14 @@ function loadLessons(grade) {
     const now = Date.now();
     const gStr = String(grade);
     currentGrade = gStr;
+    window.pendingGradeToLoad = null;
     
     // Switch view immediately so the user experiences zero lag and instant response
     showView(viewLessons);
 
-    if (lastLoadedGrade === gStr && (now - lastLoadTime) < 300) {
+    const container = document.getElementById('lesson-list-container');
+    const hasCards = container && container.querySelectorAll('.lesson-card').length > 0;
+    if (lastLoadedGrade === gStr && hasCards && (now - lastLoadTime) < 300) {
         return;
     }
     lastLoadedGrade = gStr;
@@ -3155,4 +3158,9 @@ if (aiSendBtn && aiUserInput) {
             if (text) sendToGemini(text);
         }
     });
+}
+
+// If user clicked Grade 9 or Grade 12 while app.js was downloading, render immediately!
+if (window.pendingGradeToLoad) {
+    loadLessons(window.pendingGradeToLoad);
 }
