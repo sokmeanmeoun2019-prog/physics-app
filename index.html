@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=8">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -28,21 +28,81 @@
         <!-- Dashboard View -->
         <section id="view-dashboard" class="view active">
             <header class="dashboard-header">
-                <h1>Welcome to @MeanWIS Physics Learning Hub</h1>
-                <p>Select your grade to start learning</p>
+                <div class="dashboard-hero-badge">
+                    <i class="fa-solid fa-atom"></i> Interactive Physics Learning Hub
+                </div>
+                <h1>Master Physics with <span class="brand-gradient">@MeanWIS</span></h1>
+                <p class="dashboard-subtitle">A colorful, interactive formula companion with complete definitions, step-by-step worked examples, simulations, and practice worksheets.</p>
+                <div class="dashboard-stats-pills">
+                    <span class="stat-pill"><i class="fa-solid fa-book-open"></i> 15 Full Chapters</span>
+                    <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 200+ Formulas</span>
+                    <span class="stat-pill"><i class="fa-solid fa-lightbulb"></i> Step-by-Step Examples</span>
+                    <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET Simulations</span>
+                </div>
             </header>
             <div class="grade-cards">
-                <div class="grade-card" data-grade="9" onclick="void(0)">
-                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                <!-- Grade 9 Card -->
+                <div class="grade-card grade-card-9" data-grade="9" onclick="void(0)">
+                    <div class="grade-badge badge-g9">
+                        <i class="fa-solid fa-seedling"></i> Fundamental Physics
+                    </div>
+                    <div class="card-icon icon-g9">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
                     <h2>Grade 9 Physics</h2>
-                    <p>Mechanics, Energy, and Waves</p>
-                    <button class="btn-primary">Go to Grade 9</button>
+                    <p class="card-desc">Torque, Simple Machines, Electricity, Magnetism, and Light</p>
+                    
+                    <div class="topic-chips">
+                        <span class="topic-chip chip-torque"><i class="fa-solid fa-arrows-spin"></i> Torque</span>
+                        <span class="topic-chip chip-machines"><i class="fa-solid fa-gears"></i> Simple Machines</span>
+                        <span class="topic-chip chip-electricity"><i class="fa-solid fa-bolt"></i> Electricity</span>
+                        <span class="topic-chip chip-magnetism"><i class="fa-solid fa-magnet"></i> Magnetism</span>
+                        <span class="topic-chip chip-light"><i class="fa-solid fa-lightbulb"></i> Light</span>
+                    </div>
+
+                    <div class="card-footer-info">
+                        <span><i class="fa-solid fa-layer-group"></i> 5 Chapters</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-vial"></i> Simulations</span>
+                    </div>
+
+                    <button class="btn-grade btn-grade-9">
+                        <span>Explore Grade 9</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
-                <div class="grade-card" data-grade="12" onclick="void(0)">
-                    <div class="card-icon"><i class="fa-solid fa-magnet"></i></div>
+
+                <!-- Grade 12 Card -->
+                <div class="grade-card grade-card-12" data-grade="12" onclick="void(0)">
+                    <div class="grade-badge badge-g12">
+                        <i class="fa-solid fa-graduation-cap"></i> Advanced Physics
+                    </div>
+                    <div class="card-icon icon-g12">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
                     <h2>Grade 12 Physics</h2>
-                    <p>Electromagnetism, Quantum Mechanics, and More</p>
-                    <button class="btn-primary">Go to Grade 12</button>
+                    <p class="card-desc">Ideal Gases, Thermodynamics, Waves, Magnetism, Self Induction, Alternating Current, and Modern Physics</p>
+                    
+                    <div class="topic-chips">
+                        <span class="topic-chip chip-gases"><i class="fa-solid fa-wind"></i> Ideal Gases</span>
+                        <span class="topic-chip chip-thermo"><i class="fa-solid fa-fire-flame-curved"></i> Thermodynamics</span>
+                        <span class="topic-chip chip-waves"><i class="fa-solid fa-water"></i> Waves</span>
+                        <span class="topic-chip chip-magnet"><i class="fa-solid fa-compass"></i> Magnetism</span>
+                        <span class="topic-chip chip-induction"><i class="fa-solid fa-rotate"></i> Self Induction</span>
+                        <span class="topic-chip chip-ac"><i class="fa-solid fa-wave-square"></i> Alternating Current</span>
+                        <span class="topic-chip chip-modern"><i class="fa-solid fa-microchip"></i> Modern Physics</span>
+                    </div>
+
+                    <div class="card-footer-info">
+                        <span><i class="fa-solid fa-layer-group"></i> 10 Chapters</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    </div>
+
+                    <button class="btn-grade btn-grade-12">
+                        <span>Explore Grade 12</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
         </section>
@@ -213,6 +273,6 @@
         </div>
     </div>
 
-    <script src="app.js?v=15"></script>
+    <script src="app.js?v=20"></script>
 </body>
 </html>
