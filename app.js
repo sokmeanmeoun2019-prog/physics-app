@@ -1466,6 +1466,36 @@ function loadLessons(grade) {
     showView(viewLessons);
 }
 
+// High-performance, non-blocking MathJax queue targeting only specific elements
+let mathTypesetPromise = Promise.resolve();
+function typesetMath(elements) {
+    if (!window.MathJax || !window.MathJax.typesetPromise) return;
+    let targets = null;
+    if (elements) {
+        if (Array.isArray(elements)) {
+            targets = elements.filter(Boolean);
+        } else if (elements instanceof Element) {
+            targets = [elements];
+        }
+    }
+    mathTypesetPromise = mathTypesetPromise
+        .catch(() => {})
+        .then(() => {
+            return new Promise((resolve) => {
+                requestAnimationFrame(() => {
+                    if (!window.MathJax || !window.MathJax.typesetPromise) {
+                        return resolve();
+                    }
+                    const promise = (targets && targets.length > 0)
+                        ? window.MathJax.typesetPromise(targets)
+                        : window.MathJax.typesetPromise();
+                    promise.then(resolve).catch(resolve);
+                });
+            });
+        });
+    return mathTypesetPromise;
+}
+
 // Helper to ensure math formulas and expressions are recognized and rendered by MathJax
 function formatMathField(val) {
     if (!val) return '';
@@ -1543,12 +1573,13 @@ function loadLessonDetail(lesson) {
                               (lesson.examples || []).length > 0 || 
                               Boolean(lesson.gifUrl);
 
-    if(!hasSummaryContent) {
-        document.querySelector('.tab-btn[data-target="summary"]').classList.add('hidden');
-        document.querySelector('.tab-btn[data-target="equations"]').click();
-    } else {
-        document.querySelector('.tab-btn[data-target="summary"]').classList.remove('hidden');
-        document.querySelector('.tab-btn[data-target="summary"]').click();
+    const summaryTabBtn = document.querySelector('.tab-btn[data-target="summary"]');
+    if (summaryTabBtn) {
+        if(!hasSummaryContent) {
+            summaryTabBtn.classList.add('hidden');
+        } else {
+            summaryTabBtn.classList.remove('hidden');
+        }
     }
 
     const equationsGrid = document.getElementById('lesson-equations');
@@ -2500,27 +2531,42 @@ function loadLessonDetail(lesson) {
     document.querySelectorAll('.equation-card').forEach(card => {
         card.addEventListener('click', () => card.classList.toggle('expanded'));
     });
-    
-    if(window.MathJax) MathJax.typesetPromise();
 
     currentFlashcardIndex = 0;
-    if(lesson.flashcards && lesson.flashcards.length > 0) {
-        document.getElementById('tab-flashcards').classList.remove('hidden');
-        document.querySelector('.tab-btn[data-target="flashcards"]').classList.remove('hidden');
-        updateFlashcard();
-    } else {
-        document.querySelector('.tab-btn[data-target="flashcards"]').classList.add('hidden');
+    const hasFlashcards = Boolean(lesson.flashcards && lesson.flashcards.length > 0);
+    const fcTabBtn = document.querySelector('.tab-btn[data-target="flashcards"]');
+    if (fcTabBtn) {
+        if(hasFlashcards) fcTabBtn.classList.remove('hidden');
+        else fcTabBtn.classList.add('hidden');
     }
     
-    initQuiz();
-    renderWorksheet(lesson);
-    renderGame(lesson);
+    const hasQuiz = Boolean(lesson.quiz && lesson.quiz.length > 0);
+    const quizTabBtn = document.querySelector('.tab-btn[data-target="quiz"]');
+    if (quizTabBtn) {
+        if(hasQuiz) quizTabBtn.classList.remove('hidden');
+        else quizTabBtn.classList.add('hidden');
+    }
+
+    // Reset worksheet and game containers for smooth lazy loading
+    const worksheetContainer = document.getElementById('lesson-worksheet');
+    if (worksheetContainer) worksheetContainer.innerHTML = '';
+    const gameContainer = document.getElementById('lesson-game');
+    if (gameContainer) gameContainer.innerHTML = '';
+
     showView(viewLessonDetail);
-    if(window.MathJax) MathJax.typesetPromise();
+
+    // Reset cache of rendered tabs for the new lesson
+    renderedTabsInCurrentLesson.clear();
+    
+    const hasSummaryContent = (lesson.concepts || []).length > 0 || 
+                              (lesson.definitions || []).length > 0 || 
+                              (lesson.examples || []).length > 0 || 
+                              Boolean(lesson.gifUrl);
+    switchTab(hasSummaryContent ? 'summary' : 'equations');
 }
 
 // --- Worksheet Render Function ---
-async function renderWorksheet(lesson) {
+function renderWorksheet(lesson) {
     const worksheetContainer = document.getElementById('lesson-worksheet');
     if (!worksheetContainer || !lesson) return;
 
@@ -2535,56 +2581,7 @@ async function renderWorksheet(lesson) {
     }
 
     if (lesson.worksheetUrl) {
-        let finalUrl = lesson.worksheetUrl;
-        const raw = lesson.worksheetUrl;
-        
-        // Comprehensive candidate paths covering GitHub folder upload variations & Windows extension hiding
-        const candidateList = [
-            raw,
-            // Nested folder variation (e.g. worksheets/worksheets/g9-ch1-worksheet.pdf on GitHub)
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/'),
-            raw + '.pdf',
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/') + '.pdf',
-            // Root-level uploads
-            raw.replace(/^worksheets\//, ''),
-            raw.replace(/^worksheets\//, '') + '.pdf',
-            // Case variations (G9 vs g9)
-            raw.replace('g9-', 'G9-'),
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace('g9-', 'G9-'),
-            raw.replace('g9-', 'G9-') + '.pdf',
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace('g9-', 'G9-') + '.pdf',
-            // Chapter variations (e.g. ch1-worksheet.pdf instead of g9-ch1-worksheet.pdf)
-            raw.replace('g9-ch', 'ch'),
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace('g9-ch', 'ch'),
-            raw.replace('g9-ch', 'ch') + '.pdf',
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace('g9-ch', 'ch') + '.pdf',
-            // Lesson space variations (-l1 -> " l1")
-            raw.replace(/-l(\d+)/, ' l$1'),
-            raw.replace(/-l(\d+)/, ' l$1') + '.pdf',
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace(/-l(\d+)/, ' l$1'),
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace(/-l(\d+)/, ' l$1') + '.pdf',
-            // Chapter space variations (-ch1 -> " ch1")
-            raw.replace(/-ch(\d+)/, ' ch$1'),
-            raw.replace(/-ch(\d+)/, ' ch$1') + '.pdf',
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace(/-ch(\d+)/, ' ch$1'),
-            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace(/-ch(\d+)/, ' ch$1') + '.pdf'
-        ];
-        const candidates = [...new Set(candidateList)];
-
-        if (window.location.protocol.startsWith('http')) {
-            for (const testUrl of candidates) {
-                try {
-                    let res = await fetch(testUrl, { method: 'HEAD' });
-                    if (res.status === 405 || (!res.ok && res.status !== 404)) {
-                        res = await fetch(testUrl, { method: 'GET', headers: { 'Range': 'bytes=0-0' } });
-                    }
-                    if (res.ok) {
-                        finalUrl = testUrl;
-                        break;
-                    }
-                } catch (e) {}
-            }
-        }
+        const finalUrl = lesson.worksheetUrl;
 
         // Detect mobile browsers (especially iOS Safari which struggles with inline PDF iframes)
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -2728,28 +2725,69 @@ function renderGame(lesson) {
 }
 
 // --- Tabs Logic ---
-Array.from(document.querySelectorAll('.tab-btn')).forEach(btn => {
-    btn.addEventListener('click', () => {
-        Array.from(document.querySelectorAll('.tab-btn')).forEach(b => b.classList.remove('active'));
-        Array.from(document.querySelectorAll('.tab-pane')).forEach(p => {
+const renderedTabsInCurrentLesson = new Set();
+
+function switchTab(targetName) {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    
+    tabBtns.forEach(b => {
+        if (b.getAttribute('data-target') === targetName) {
+            b.classList.add('active');
+        } else {
+            b.classList.remove('active');
+        }
+    });
+
+    tabPanes.forEach(p => {
+        if (p.id === `tab-${targetName}`) {
+            p.classList.remove('hidden');
+            p.classList.add('active');
+        } else {
             p.classList.add('hidden');
             p.classList.remove('active');
-        });
-        btn.classList.add('active');
-        const target = document.getElementById(`tab-${btn.getAttribute('data-target')}`);
-        if(target) {
-            target.classList.remove('hidden');
-            target.classList.add('active');
-            if (btn.getAttribute('data-target') === 'worksheet' && currentLesson) {
-                renderWorksheet(currentLesson);
-            }
-            if (btn.getAttribute('data-target') === 'game' && currentLesson) {
-                renderGame(currentLesson);
-            }
-            if (window.MathJax) {
-                MathJax.typesetPromise();
-            }
         }
+    });
+
+    if (!currentLesson) return;
+
+    if (targetName === 'summary') {
+        if (!renderedTabsInCurrentLesson.has('summary')) {
+            renderedTabsInCurrentLesson.add('summary');
+            typesetMath([document.getElementById('tab-summary')]);
+        }
+    } else if (targetName === 'equations') {
+        if (!renderedTabsInCurrentLesson.has('equations')) {
+            renderedTabsInCurrentLesson.add('equations');
+            typesetMath([document.getElementById('lesson-equations')]);
+        }
+    } else if (targetName === 'flashcards') {
+        if (!renderedTabsInCurrentLesson.has('flashcards')) {
+            renderedTabsInCurrentLesson.add('flashcards');
+        }
+        updateFlashcard();
+    } else if (targetName === 'quiz') {
+        if (!renderedTabsInCurrentLesson.has('quiz')) {
+            renderedTabsInCurrentLesson.add('quiz');
+            initQuiz();
+        }
+    } else if (targetName === 'worksheet') {
+        if (!renderedTabsInCurrentLesson.has('worksheet')) {
+            renderedTabsInCurrentLesson.add('worksheet');
+            renderWorksheet(currentLesson);
+        }
+    } else if (targetName === 'game') {
+        if (!renderedTabsInCurrentLesson.has('game')) {
+            renderedTabsInCurrentLesson.add('game');
+            renderGame(currentLesson);
+        }
+    }
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        if (target) switchTab(target);
     });
 });
 
@@ -2762,13 +2800,11 @@ const fcCounter = document.getElementById('fc-counter');
 function updateFlashcard() {
     if (!currentLesson || !currentLesson.flashcards || !currentLesson.flashcards.length) return;
     fcCard.classList.remove('flipped');
-    setTimeout(() => {
-        const fc = currentLesson.flashcards[currentFlashcardIndex];
-        fcFrontText.innerText = fc.front;
-        fcBackText.innerHTML = fc.back;
-        fcCounter.innerText = `${currentFlashcardIndex + 1} / ${currentLesson.flashcards.length}`;
-        if(window.MathJax) MathJax.typesetPromise();
-    }, 150);
+    const fc = currentLesson.flashcards[currentFlashcardIndex];
+    fcFrontText.innerText = fc.front;
+    fcBackText.innerHTML = fc.back;
+    fcCounter.innerText = `${currentFlashcardIndex + 1} / ${currentLesson.flashcards.length}`;
+    typesetMath([fcFrontText, fcBackText]);
 }
 
 document.getElementById('fc-flip-btn').addEventListener('click', () => fcCard.classList.toggle('flipped'));
@@ -2793,7 +2829,8 @@ function initQuiz() {
 function loadQuizQuestion() {
     const q = currentLesson.quiz[currentQuizIndex];
     document.getElementById('quiz-progress-text').innerText = `Question ${currentQuizIndex + 1} of ${currentLesson.quiz.length}`;
-    document.getElementById('quiz-question-text').innerHTML = q.question;
+    const qTextEl = document.getElementById('quiz-question-text');
+    qTextEl.innerHTML = q.question;
     const optionsContainer = document.getElementById('quiz-options');
     optionsContainer.innerHTML = '';
     const feedbackEl = document.getElementById('quiz-feedback');
@@ -2808,7 +2845,7 @@ function loadQuizQuestion() {
         btn.addEventListener('click', () => handleQuizAnswer(idx, btn));
         optionsContainer.appendChild(btn);
     });
-    if(window.MathJax) MathJax.typesetPromise();
+    typesetMath([qTextEl, optionsContainer]);
 }
 
 function handleQuizAnswer(selectedIndex, btnElement) {
@@ -2829,7 +2866,7 @@ function handleQuizAnswer(selectedIndex, btnElement) {
         feedbackEl.classList.add('wrong-feedback');
     }
     document.getElementById('quiz-next-btn').classList.remove('hidden');
-    if(window.MathJax) MathJax.typesetPromise();
+    typesetMath([feedbackEl]);
 }
 
 document.getElementById('quiz-next-btn').addEventListener('click', () => {
@@ -2971,7 +3008,7 @@ async function sendToGemini(message) {
         aiUserInput.disabled = false;
         aiSendBtn.disabled = false;
         aiUserInput.focus();
-        if (window.MathJax) MathJax.typesetPromise();
+        typesetMath([aiMessages]);
     }
 }
 
