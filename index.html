@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=37">
+    <link rel="stylesheet" href="styles.css?v=38">
     <style>
         .view.active {
             display: block !important;
@@ -374,38 +374,50 @@
         }
 
         window.openLessonDetail = function(lessonId) {
-            // Restore any buttons showing spinner
+            window.currentSelectedLessonId = lessonId;
+
+            // 1. Instantly transition to view-lesson-detail (0ms response)
+            var vDash = document.getElementById('view-dashboard');
+            var vLessons = document.getElementById('view-lessons');
+            var vDetail = document.getElementById('view-lesson-detail');
+            if (vDash) { vDash.style.display = 'none'; vDash.classList.add('hidden'); vDash.classList.remove('active'); }
+            if (vLessons) { vLessons.style.display = 'none'; vLessons.classList.add('hidden'); vLessons.classList.remove('active'); }
+            if (vDetail) {
+                vDetail.style.display = 'block';
+                vDetail.classList.remove('hidden');
+                vDetail.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+
+            // 2. Set title instantly from catalog
+            var foundItem = null;
+            ['9', '12'].forEach(function(g) {
+                (LESSON_CATALOG[g] || []).forEach(function(item) {
+                    if (item.id === lessonId) foundItem = item;
+                });
+            });
+            if (foundItem) {
+                var titleEl = document.getElementById('lesson-detail-title');
+                if (titleEl) titleEl.innerText = foundItem.title;
+            }
+
+            // 3. Reset all start button labels
             document.querySelectorAll('.btn-start-label').forEach(function(el) {
                 el.innerHTML = '<i class="fa-solid fa-circle-play"></i> Start Lesson';
             });
 
+            // 4. Load full lesson content
             if (typeof window.loadLessonDetail === 'function') {
                 window.loadLessonDetail(lessonId);
             } else {
                 window.pendingLessonId = lessonId;
-                const card = document.querySelector(`.lesson-card[data-lesson-id="${lessonId}"]`);
-                if (card) {
-                    const label = card.querySelector('.btn-start-label');
-                    if (label) label.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening...';
-                }
-
-                // Poller to open immediately as soon as app.js finishes loading
-                var attempts = 0;
                 var poll = setInterval(function() {
-                    attempts++;
                     if (typeof window.loadLessonDetail === 'function') {
                         clearInterval(poll);
                         window.pendingLessonId = null;
                         window.loadLessonDetail(lessonId);
-                    } else if (attempts > 60) {
-                        clearInterval(poll);
-                        const c = document.querySelector(`.lesson-card[data-lesson-id="${lessonId}"]`);
-                        if (c) {
-                            const l = c.querySelector('.btn-start-label');
-                            if (l) l.innerHTML = '<i class="fa-solid fa-circle-play"></i> Start Lesson';
-                        }
                     }
-                }, 50);
+                }, 40);
             }
         };
 
@@ -790,6 +802,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=37"></script>
+    <script src="app.js?v=38"></script>
 </body>
 </html>

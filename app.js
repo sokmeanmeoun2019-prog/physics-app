@@ -1629,6 +1629,7 @@ function loadLessonDetail(lessonOrId) {
         return;
     }
     currentLesson = lesson;
+    showView(viewLessonDetail);
     document.getElementById('lesson-detail-title').innerText = lesson.title;
     
     const conceptsList = document.getElementById('lesson-concepts');
@@ -1639,7 +1640,7 @@ function loadLessonDetail(lessonOrId) {
         const descText = d.definition || d.desc || '';
         const metaItems = [];
         if (d.symbol) metaItems.push(`<div class="meta-item"><span class="meta-label">Symbol:</span> <span class="meta-val">${formatMathField(d.symbol)}</span></div>`);
-        if (d.unit) metaItems.push(`<div class="meta-item"><span class="meta-label">SI Unit:</span> <span class="meta-val">${d.unit.includes('\\') ? formatMathField(d.unit) : d.unit}</span></div>`);
+        if (d.unit) metaItems.push(`<div class="meta-item"><span class="meta-label">SI Unit:</span> <span class="meta-val">${String(d.unit).includes('\\') ? formatMathField(d.unit) : d.unit}</span></div>`);
         if (d.equation) metaItems.push(`<div class="meta-item meta-equation"><span class="meta-label">Related Equation:</span> <div class="meta-val">${formatMathField(d.equation)}</div></div>`);
         
         return `
@@ -2608,8 +2609,8 @@ function loadLessonDetail(lessonOrId) {
                 <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">${eq.symbols && eq.symbols.length > 0 ? "Symbols breakdown & SI Units:" : ""}</p>
                 <ul>
                     ${(eq.symbols || []).map(s => {
-                        let desc = s.desc;
-                        let match = desc.match(/ \(([^)]+)\)$/);
+                        let desc = (s && s.desc) ? String(s.desc) : (typeof s === 'string' ? s : '');
+                        let match = desc ? desc.match(/ \(([^)]+)\)$/) : null;
                         if (match) {
                             let unitStr = match[1];
                             if (unitStr !== "No unit") {
@@ -2624,7 +2625,8 @@ function loadLessonDetail(lessonOrId) {
                         }
                         // Also ensure symbol has MathJax formatting
                         // Replace some greek letters if they were written as unicode
-                        let sym = s.symbol.replace(/μ_0/g, '\\mu_0')
+                        let rawSym = (s && s.symbol) ? String(s.symbol) : '';
+                        let sym = rawSym.replace(/μ_0/g, '\\mu_0')
                                           .replace(/θ_c/g, '\\theta_c')
                                           .replace(/θ/g, '\\theta')
                                           .replace(/α/g, '\\alpha')
@@ -2855,9 +2857,11 @@ function switchTab(targetName) {
         if (p.id === `tab-${targetName}`) {
             p.classList.remove('hidden');
             p.classList.add('active');
+            p.style.display = 'block';
         } else {
             p.classList.add('hidden');
             p.classList.remove('active');
+            p.style.display = 'none';
         }
     });
 
