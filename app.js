@@ -1630,21 +1630,40 @@ function loadLessonDetail(lesson) {
 }
 
 // --- Worksheet Render Function ---
-function renderWorksheet(lesson) {
+async function renderWorksheet(lesson) {
     const worksheetContainer = document.getElementById('lesson-worksheet');
     if (!worksheetContainer || !lesson) return;
     if (lesson.worksheetUrl) {
+        let finalUrl = lesson.worksheetUrl;
+        
+        // Auto-detect if file was uploaded with double extension or space
+        const candidates = [
+            lesson.worksheetUrl,
+            lesson.worksheetUrl + '.pdf',
+            lesson.worksheetUrl.replace(/-l(\d+)/, ' l$1') + '.pdf',
+            lesson.worksheetUrl.replace(/-l(\d+)/, ' l$1')
+        ];
+        for (const testUrl of candidates) {
+            try {
+                const res = await fetch(testUrl, { method: 'HEAD' });
+                if (res.ok) {
+                    finalUrl = testUrl;
+                    break;
+                }
+            } catch (e) {}
+        }
+
         worksheetContainer.innerHTML = `
             <div class="worksheet-header">
                 <h2><i class="fa-solid fa-file-pdf"></i> ${lesson.title} - Practice Worksheet</h2>
                 <p>You can solve the problems below, open in full screen, or download and print the worksheet.</p>
             </div>
             <div class="worksheet-actions">
-                <a href="${lesson.worksheetUrl}" target="_blank" class="worksheet-btn primary">
+                <a href="${finalUrl}" target="_blank" class="worksheet-btn primary">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i> Open / Download PDF
                 </a>
             </div>
-            <iframe src="${lesson.worksheetUrl}" class="worksheet-preview" title="Worksheet Preview"></iframe>
+            <iframe src="${finalUrl}" class="worksheet-preview" title="Worksheet Preview"></iframe>
         `;
     } else {
         worksheetContainer.innerHTML = `
