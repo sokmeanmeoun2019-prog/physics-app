@@ -1,7 +1,7 @@
 // --- Data Structure ---
 const data = {
 "9": [
-{id:"g9-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Torque_animation.gif",worksheetUrl:"worksheets/g9-ch1-worksheet.pdf",title:"Chapter 1: Turning Effect of Force",concepts:["Resultant Force: Calculated depending on the direction of the acting forces.","Trigonometry Basics: Using right triangles to relate angles to side lengths (sine, cosine, tangent).","Resolving Force: A force can be broken down into horizontal and vertical components.","Moment of a force: The turning effect produced by a force.","Principle of moment: For equilibrium, Anti-clockwise moment = Clockwise moment \\( M_{ACW} = M_{CW} \\)."],definitions:[],examples:[],
+{id:"g9-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Torque_animation.gif",worksheetUrl:"worksheets/g9-ch1-worksheet.pdf",games:[{topic:"Turning Effect",url:"https://g.co/gemini/share/da86f09d1c05"}],title:"Chapter 1: Turning Effect of Force",concepts:["Resultant Force: Calculated depending on the direction of the acting forces.","Trigonometry Basics: Using right triangles to relate angles to side lengths (sine, cosine, tangent).","Resolving Force: A force can be broken down into horizontal and vertical components.","Moment of a force: The turning effect produced by a force.","Principle of moment: For equilibrium, Anti-clockwise moment = Clockwise moment \\( M_{ACW} = M_{CW} \\)."],definitions:[],examples:[],
 equations:[
 {section:"Resultant Force",name:"Resultant: Opposite direction",formula:"\\( R = |a - b| \\)",symbols:[{symbol:"R",desc:"Resultant Force (N)"},{symbol:"a, b",desc:"Component Forces (N)"}]},
 {section:"Resultant Force",name:"Resultant: Same direction",formula:"\\( R = a + b \\)",symbols:[{symbol:"R",desc:"Resultant Force (N)"},{symbol:"a, b",desc:"Component Forces (N)"}]},
@@ -43,7 +43,7 @@ equations:[
 {question:"Which expression gives the direction angle \\(\\theta\\) of a resultant force?", options:["\\( \\sin^{-1}(b/a) \\)","\\( \\cos^{-1}(b/a) \\)","\\( \\tan^{-1}(b/a) \\)","\\( \\tan^{-1}(a/b) \\)"], correctIndex:2, feedback:"The angle is found using the inverse tangent of the opposite over adjacent components: \\( \\tan^{-1}(b/a) \\)."},
 {question:"For reaction forces on a beam supported at A and B with a load F, what is the force \\( F_A \\)?", options:["\\( F_A = F \\times \\frac{OA}{AB} \\)","\\( F_A = F \\times \\frac{OB}{AB} \\)","\\( F_A = F + OB \\)","\\( F_A = \\frac{AB}{F} \\)"], correctIndex:1, feedback:"By taking moments about B, \\( F_A \\times AB = F \\times OB \\), so \\( F_A = F \\times \\frac{OB}{AB} \\)."}
 ]},
-{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",worksheetUrl:"worksheets/g9-ch2-worksheet.pdf",title:"Chapter 2: Simple Machines",concepts:[],definitions:[],examples:[],
+{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",worksheetUrl:"worksheets/g9-ch2-worksheet.pdf",games:[{topic:"Levers",url:"https://g.co/gemini/share/0b9242977d1a"},{topic:"Inclined Plane",url:"https://g.co/gemini/share/a0f83fb13666"},{topic:"Gear and Belt System",url:"https://gemini.google.com/share/a559ad0916ce"},{topic:"Wheel and Axle",url:"https://gemini.google.com/share/8a5c6aeecc08"}],title:"Chapter 2: Simple Machines",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Lever",name:"Lever Mechanical advantage",formula:"\\( MA = \\frac{F_R}{F_E} = \\frac{d_E}{d_R} \\)",symbols:[{symbol:"MA",desc:"Mechanical Advantage (No unit)"},{symbol:"F_R",desc:"Load Force (N)"},{symbol:"F_E",desc:"Effort Force (N)"},{symbol:"d_E",desc:"Effort Arm (m)"},{symbol:"d_R",desc:"Load Arm (m)"}]},
 {section:"Lever",name:"Lever Efficiency",formula:"\\( eff = \\frac{F_R \\times d_R}{F_E \\times d_E} \\times 100\\% = \\frac{MA}{VR} \\times 100\\% \\)",symbols:[{symbol:"eff",desc:"Efficiency (%)"},{symbol:"VR",desc:"Velocity Ratio (No unit)"}]},
@@ -83,7 +83,7 @@ equations:[
 {question:"Which of the following is the correct formula for Velocity Ratio (VR) of a wheel and axle?", options:["\\( \\frac{r}{R} \\)","\\( R \\times r \\)","\\( \\frac{R}{r} \\)","\\( \\frac{F_R}{F_E} \\)"], correctIndex:2, feedback:"The velocity ratio is the ratio of the radius of the wheel to the radius of the axle \\( (R/r) \\)."},
 {question:"The moment of the effort force in a wheel and axle is given by:", options:["\\( F_E / R \\)","\\( F_E \\times r \\)","\\( F_E \\times R \\)","\\( F_R \\times R \\)"], correctIndex:2, feedback:"The effort force acts on the wheel (radius \\(R\\)), so its moment is \\( F_E \\times R \\)."}
 ]},
-{id:"g9-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",worksheetUrl:"worksheets/g9-ch3-worksheet.pdf",title:"Chapter 3: Electricity",concepts:[],definitions:[],examples:[],
+{id:"g9-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",worksheetUrl:"worksheets/g9-ch3-worksheet.pdf",games:[{topic:"Electricity",url:"https://gemini.google.com/share/e1def1ea44ff"},{topic:"Household Wiring System",url:"https://gemini.google.com/share/b1b0af13b130"}],title:"Chapter 3: Electricity",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Electrical Power",name:"Definition of power",formula:"\\( P = \\frac{W}{t} = \\frac{E}{t} \\)",symbols:[{symbol:"P",desc:"Power (W)"},{symbol:"W",desc:"Work (J)"},{symbol:"E",desc:"Energy (J)"},{symbol:"t",desc:"Time (s)"}]},
 {section:"Electrical Power",name:"Power of current",formula:"\\( P = VI = RI^2 = \\frac{V^2}{R} \\)",symbols:[{symbol:"P",desc:"Power (W)"},{symbol:"V",desc:"Voltage (V)"},{symbol:"I",desc:"Current (A)"},{symbol:"R",desc:"Resistance (Ω)"}]},
@@ -116,7 +116,7 @@ equations:[
 {question:"If 20% of electrical energy is converted to light, how is the light energy found?", options:["\\( E_L = E / 0.20 \\)","\\( E_L = E \\times 0.20 \\)","\\( E_L = E + 20 \\)","\\( E_L = E - 20 \\)"], correctIndex:1, feedback:"Multiply the total energy by the efficiency percentage (0.20)."},
 {question:"What is the formula for Power using Voltage and Resistance?", options:["\\( P = V^2 / R \\)","\\( P = V / R^2 \\)","\\( P = V^2 R \\)","\\( P = R / V^2 \\)"], correctIndex:0, feedback:"Substituting \\( I = V/R \\) into \\( P = VI \\) gives \\( P = V^2 / R \\)."}
 ]},
-{id:"g9-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/VFPt_solenoid-field-animation.gif",worksheetUrl:"worksheets/g9-ch4-worksheet.pdf",title:"Chapter 4: Magnetic Field",concepts:[],definitions:[],examples:[],
+{id:"g9-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/VFPt_solenoid-field-animation.gif",worksheetUrl:"worksheets/g9-ch4-worksheet.pdf",games:[{topic:"Magnetic Field due to a straight wire",url:"https://gemini.google.com/share/4e08057d8f02"},{topic:"Magnetic due to a circular loop",url:"https://gemini.google.com/share/d3ff81a78225"},{topic:"Magnetic due to a Solenoid",url:"https://gemini.google.com/share/97335be64f77"},{topic:"Magnetic Force",url:"https://gemini.google.com/share/e58537b64df4"},{topic:"Transformers",url:"https://gemini.google.com/share/4436f3b52926"}],title:"Chapter 4: Magnetic Field",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Magnetic Field & Force",name:"Due to a straight wire",formula:"\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)",symbols:[{symbol:"B",desc:"Magnetic Field (T)"},{symbol:"μ_0",desc:"Permeability of free space (4π×10⁻⁷ T·m/A)"},{symbol:"I",desc:"Current (A)"},{symbol:"d",desc:"Distance from wire (m)"}]},
 {section:"Magnetic Field & Force",name:"Due to a solenoid",formula:"\\( B = \\frac{\\mu_0 NI}{l} \\)",symbols:[{symbol:"N",desc:"Number of turns"},{symbol:"l",desc:"Length of solenoid (m)"}]},
@@ -146,7 +146,7 @@ equations:[
 {question:"What does \\( \\mu_0 \\) represent?", options:["Permittivity","Permeability of free space","Refractive index","Resistivity"], correctIndex:1, feedback:"\\( \\mu_0 \\) is the permeability of free space (vacuum permeability)."},
 {question:"The output power of a transformer is given by:", options:["\\( V_P I_P \\)","\\( V_S I_S \\)","\\( V_P I_S \\)","\\( V_S I_P \\)"], correctIndex:1, feedback:"Output power (Secondary side) is \\( P_{e2} = V_S I_S \\)."}
 ]},
-{id:"g9-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Refraction_animation.gif",worksheetUrl:"worksheets/g9-ch5-worksheet.pdf",title:"Chapter 5: Light",concepts:[],definitions:[],examples:[],
+{id:"g9-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Refraction_animation.gif",worksheetUrl:"worksheets/g9-ch5-worksheet.pdf",games:[{topic:"Light Rays",url:"https://gemini.google.com/share/2ac63456c976"},{topic:"Reflection of light",url:"https://gemini.google.com/share/01abdd9ea9aa"},{topic:"Plane Mirrors",url:"https://gemini.google.com/share/7e4ee437394b"},{topic:"Concave Mirrors",url:"https://gemini.google.com/share/7e4ee437394b"},{topic:"Convex Mirrors",url:"https://gemini.google.com/share/7e4ee437394b"},{topic:"Refraction of light",url:"https://gemini.google.com/share/307ba374b958"},{topic:"Lenses",url:"https://gemini.google.com/share/1d57559d8cb4"}],title:"Chapter 5: Light",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Reflection of light",name:"Law of Reflection",formula:"\\( i = r \\)",symbols:[{symbol:"i",desc:"Angle of incidence (°)"},{symbol:"r",desc:"Angle of reflection (°)"}]},
 {section:"Pinhole Camera",name:"Pinhole Camera",formula:"\\( m = \\frac{h_i}{h_o} = \\frac{d_i}{d_o} \\)",symbols:[{symbol:"m",desc:"Magnification (No unit)"},{symbol:"h_i, h_o",desc:"Image/Object height (m)"},{symbol:"d_i, d_o",desc:"Image/Object distance (m)"}]},
@@ -184,7 +184,7 @@ equations:[
 ]}
 ],
 "12": [
-{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",worksheetUrl:"worksheets/ch1-l1-worksheet.pdf",title:"Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",concepts:[],definitions:[],examples:[],
+{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",worksheetUrl:"worksheets/ch1-l1-worksheet.pdf",games:[{topic:"Kinetic Theory of Ideal Gases",url:"https://gemini.google.com/share/acfae742b2c0"}],title:"Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Pressure",name:"Pressure in Kinetic Theory<br><img src='images/ch1-l1-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( P = \\left(\\frac{2}{3}\\right)\\left(\\frac{N}{V}\\right)K_{av} \\)",symbols:[{symbol:"P",desc:"Pressure (Pa)"},{symbol:"N",desc:"Number of molecules (No unit)"},{symbol:"V",desc:"Volume (m³)"},{symbol:"K_{av}",desc:"Average Kinetic Energy (J)"}]},
 {section:"Pressure",name:"Pressure exerted on container walls<br><img src='images/ch1-l1-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( P = \\frac{F}{A}, F = \\frac{\\Delta p}{\\Delta t}, \\Delta p = N m_0 \\Delta v \\)",symbols:[{symbol:"P",desc:"Pressure (Pa)"},{symbol:"F",desc:"Force (N)"},{symbol:"A",desc:"Area (m²)"},{symbol:"\\Delta p",desc:"Change in momentum (kg·m/s)"},{symbol:"\\Delta t",desc:"Time interval (s)"},{symbol:"N",desc:"Number of molecules (No unit)"},{symbol:"m_0",desc:"Mass of one molecule (kg)"},{symbol:"\\Delta v",desc:"Change in velocity (m/s)"}]},
@@ -226,7 +226,7 @@ equations:[
 {question:"Which equation represents the Combined Gas Law?", options:["\\( PV = nRT \\)","\\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)","\\( P_1 T_1 = P_2 T_2 \\)","\\( V_1 / P_1 = V_2 / P_2 \\)"], correctIndex:1, feedback:"The Combined Gas Law is \\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)."},
 {question:"Total kinetic energy \\( K \\) of \\( N \\) molecules is given by:", options:["\\( \\frac{3}{2} N k_B T \\)","\\( \\frac{1}{2} N k_B T \\)","\\( N m_0 v^2 \\)","\\( P V^2 \\)"], correctIndex:0, feedback:"Total kinetic energy is the average energy per molecule multiplied by \\( N \\): \\( \\frac{3}{2} N k_B T \\)."}
 ]},
-{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",worksheetUrl:"worksheets/ch1-l2-worksheet.pdf",title:"Chapter 1 Lesson 2: First Law of Thermodynamic",concepts:[],definitions:[],examples:[],
+{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",worksheetUrl:"worksheets/ch1-l2-worksheet.pdf",games:[{topic:"First Law of Thermodynamics",url:"https://gemini.google.com/share/9e34579d87cd"}],title:"Chapter 1 Lesson 2: First Law of Thermodynamic",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Heat Transfer",name:"First law of thermodynamics<br><img src='images/ch1-l2-eq7.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = W + \\Delta U \\)",symbols:[{symbol:"Q",desc:"Heat added to system (J)"},{symbol:"W",desc:"Work done by system (J)"},{symbol:"\\Delta U",desc:"Change in Internal Energy (J)"}]},
 {section:"Heat Transfer",name:"Heat absorb<br><img src='images/ch1-l2-eq8.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = mc\\Delta T \\)",symbols:[{symbol:"Q",desc:"Heat transferred (J)"},{symbol:"m",desc:"Mass (kg)"},{symbol:"c",desc:"Specific heat capacity (J/kg·K)"},{symbol:"\\Delta T",desc:"Change in Temperature (K)"}]},
@@ -266,7 +266,7 @@ equations:[
 {question:"The internal energy \\( U \\) of an ideal gas is directly proportional to:", options:["Pressure","Volume","Temperature","Density"], correctIndex:2, feedback:"\\( U = \\frac{3}{2} nRT \\), making it directly proportional to absolute temperature."},
 {question:"If a gas expands such that its pressure changes linearly with volume, the work done is:", options:["\\( W = 0 \\)","\\( W = P \\Delta V \\)","\\( W = P_{av} \\Delta V \\)","\\( W = nRT \\)"], correctIndex:2, feedback:"You can use the average pressure for a linear process: \\( W = P_{av} \\Delta V \\)."}
 ]},
-{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",worksheetUrl:"worksheets/ch1-l3-worksheet.pdf",title:"Chapter 1 Lesson 3: Heat Engine",concepts:[],definitions:[],examples:[],
+{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",worksheetUrl:"worksheets/ch1-l3-worksheet.pdf",games:[{topic:"Heat Engine",url:"https://gemini.google.com/share/a6cfadc258e4"}],title:"Chapter 1 Lesson 3: Heat Engine",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Heat Engine",name:"Conservation of energy (Engine)<br><img src='images/ch1-l3-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q_h = W_M + Q_c \\)",symbols:[{symbol:"Q_h",desc:"Heat from hot reservoir (J)"},{symbol:"W_M",desc:"Mechanical Work Done (J)"},{symbol:"Q_c",desc:"Heat rejected to cold reservoir (J)"}]},
 {section:"Heat Engine",name:"Ratio<br><img src='images/ch1-l3-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\frac{Q_c}{Q_h} = \\frac{T_c}{T_h} \\)",symbols:[{symbol:"Q_c",desc:"Heat rejected to cold reservoir (J)"},{symbol:"Q_h",desc:"Heat from hot reservoir (J)"},{symbol:"T_c",desc:"Cold reservoir temp (K)"},{symbol:"T_h",desc:"Hot reservoir temp (K)"}]},
@@ -295,7 +295,7 @@ equations:[
 {question:"Why is a Carnot engine's efficiency always less than 100%?", options:["Because \\( T_h \\) is finite","Because \\( T_c \\) is always greater than 0 K","Because friction exists","Because \\( Q_c \\) is zero"], correctIndex:1, feedback:"Reaching 100% would require \\( T_c = 0\\text{K} \\), which violates the third law of thermodynamics."},
 {question:"If an engine absorbs 1000J of heat from the hot reservoir and does 400J of work, how much heat is rejected?", options:["400J","600J","1000J","1400J"], correctIndex:1, feedback:"Using \\( Q_h = W_M + Q_c \\), we find \\( 1000 = 400 + Q_c \\Rightarrow Q_c = 600\\text{J} \\)."}
 ]},
-{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",worksheetUrl:"worksheets/ch2-l1-worksheet.pdf",title:"Chapter 2 Lesson 1: Superposition and Waves",concepts:[],definitions:[],examples:[],
+{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",worksheetUrl:"worksheets/ch2-l1-worksheet.pdf",games:[{topic:"Superposition and Waves",url:"https://gemini.google.com/share/2e83761df9b7"}],title:"Chapter 2 Lesson 1: Superposition and Waves",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Sinusoidal Wave",name:"Sinusoidal Wave equation<br><img src='images/ch2-l1-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( y = a \\sin(\\omega t \\pm kx) \\)",symbols:[{symbol:"y",desc:"Displacement (m)"},{symbol:"a",desc:"Amplitude (m)"},{symbol:"\\omega",desc:"Angular frequency (rad/s)"},{symbol:"t",desc:"Time (s)"},{symbol:"k",desc:"Wave number (rad/m)"},{symbol:"x",desc:"Position (m)"}]},
 {section:"Sinusoidal Wave",name:"Angular frequency<br><img src='images/ch2-l1-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\omega = \\frac{2\\pi}{T}, k = \\frac{2\\pi}{\\lambda} \\)",symbols:[{symbol:"\\omega",desc:"Angular frequency (rad/s)"},{symbol:"T",desc:"Period (s)"},{symbol:"k",desc:"Wave number (rad/m)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
@@ -326,7 +326,7 @@ equations:[
 {question:"The period \\( T \\) of a wave is related to angular frequency by:", options:["\\( T = \\frac{2\\pi}{\\omega} \\)","\\( T = 2\\pi \\omega \\)","\\( T = \\frac{\\omega}{2\\pi} \\)","\\( T = \\omega \\lambda \\)"], correctIndex:0, feedback:"By definition, \\( \\omega = 2\\pi/T \\Rightarrow T = 2\\pi/\\omega \\)."},
 {question:"A standing wave is usually formed by the superposition of:", options:["Two waves of different frequencies","Two waves of same frequency traveling in same direction","Two waves of same frequency traveling in opposite directions","A single wave reflecting internally"], correctIndex:2, feedback:"Standing waves form from identical waves moving in opposite directions."}
 ]},
-{id:"g12-interf",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",worksheetUrl:"worksheets/ch2-l2-worksheet.pdf",title:"Chapter 2 Lesson 2: Interference and Diffraction",concepts:["Interference: A phenomenon where two or more waves overlap, modifying the resulting wave pattern.","Constructive Interference: Occurs when waves are in phase, increasing amplitude.","Destructive Interference: Occurs when waves are out of phase, decreasing amplitude.","Coherent Sources: Sources producing waves of the same amplitude, frequency, and constant phase difference.","Young's Double-Slit Experiment: Demonstrates the wave nature of light through interference patterns.","Diffraction: Bending and spreading of waves when they encounter an obstacle or pass through a narrow aperture."],definitions:[],examples:[],
+{id:"g12-interf",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",worksheetUrl:"worksheets/ch2-l2-worksheet.pdf",games:[{topic:"Interference and Diffraction",url:"https://gemini.google.com/share/14c6c1b23c4d"}],title:"Chapter 2 Lesson 2: Interference and Diffraction",concepts:["Interference: A phenomenon where two or more waves overlap, modifying the resulting wave pattern.","Constructive Interference: Occurs when waves are in phase, increasing amplitude.","Destructive Interference: Occurs when waves are out of phase, decreasing amplitude.","Coherent Sources: Sources producing waves of the same amplitude, frequency, and constant phase difference.","Young's Double-Slit Experiment: Demonstrates the wave nature of light through interference patterns.","Diffraction: Bending and spreading of waves when they encounter an obstacle or pass through a narrow aperture."],definitions:[],examples:[],
 equations:[
 {section:"Interference",name:"Constructive interference condition<br><img src='images/ch2-l2-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( d_2 - d_1 = n\\lambda \\)",symbols:[{symbol:"d_2, d_1",desc:"Distances from sources (m)"},{symbol:"n",desc:"Integer (0, 1, 2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
 {section:"Interference",name:"Destructive interference condition<br><img src='images/ch2-l2-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2} \\)",symbols:[{symbol:"d_2, d_1",desc:"Distances from sources (m)"},{symbol:"n",desc:"Integer (0, 1, 2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
@@ -363,7 +363,7 @@ equations:[
 {question:"When \\( m = 0 \\) in \\( d\\sin\\theta = m\\lambda \\), this corresponds to:", options:["The first dark fringe","The central maximum (bright fringe)","No interference","The minimum amplitude"], correctIndex:1, feedback:"\\( m = 0 \\) gives the zero maximum fringe, or central maximum."},
 {question:"What is the maximum amplitude \\( A' \\) of the superposition of two waves with amplitude \\( A \\)?", options:["\\( A \\)","\\( A/2 \\)","\\( 2A \\)","\\( 4A \\)"], correctIndex:2, feedback:"Constructive interference doubles the amplitude, giving a maximum of \\( 2A \\)."}
 ]},
-{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",worksheetUrl:"worksheets/ch3-l1-worksheet.pdf",title:"Chapter 3 Lesson 1: Magnetism & Induction",concepts:[],definitions:[],examples:[],
+{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",worksheetUrl:"worksheets/ch3-l1-worksheet.pdf",games:[{topic:"Magnetic Field",url:"https://gemini.google.com/share/8a653df6b614"},{topic:"Faraday’s Law",url:"https://gemini.google.com/share/a36b992c1d6d"},{topic:"Self Induction",url:"https://gemini.google.com/share/ae9787424975"}],title:"Chapter 3 Lesson 1: Magnetism & Induction",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Magnetic Field & Force",name:"Magnetic field (straight wire)<br><img src='images/ch3-l1-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)",symbols:[{symbol:"B",desc:"Magnetic Field (T)"},{symbol:"\\mu_0",desc:"Permeability of free space (4π×10⁻⁷ T·m/A)"},{symbol:"I",desc:"Current (A)"},{symbol:"d",desc:"Distance from wire (m)"}]},
 {section:"Magnetic Field & Force",name:"Magnetic field (circular wire)<br><img src='images/ch3-l1-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( B = \\frac{\\mu_0 NI}{2R} \\)",symbols:[{symbol:"B",desc:"Magnetic Field (T)"},{symbol:"\\mu_0",desc:"Permeability of free space (4π×10⁻⁷ T·m/A)"},{symbol:"N",desc:"Number of turns (No unit)"},{symbol:"I",desc:"Current (A)"},{symbol:"R",desc:"Radius of coil (m)"}]},
@@ -408,7 +408,7 @@ equations:[
 {question:"The resonant angular frequency of an LC circuit is:", options:["\\( \\sqrt{CL} \\)","\\( \\frac{1}{CL} \\)","\\( \\frac{1}{\\sqrt{CL}} \\)","\\( \\frac{C}{L} \\)"], correctIndex:2, feedback:"The frequency is given by \\( \\omega_0 = \\frac{1}{\\sqrt{CL}} \\)."},
 {question:"The force between two parallel current-carrying wires depends inversely on:", options:["The length of the wires","The currents \\(I_1\\) and \\(I_2\\)","The permeability \\(\\mu_0\\)","The distance between them \\(a\\)"], correctIndex:3, feedback:"\\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\), so it is inversely proportional to distance \\(a\\)."}
 ]},
-{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",worksheetUrl:"worksheets/ch3-l2-worksheet.pdf",title:"Chapter 3 Lesson 2: Alternating Current",concepts:["RLC Series Circuit Diagram<br><img src='images/ch3-l2-rlc-circuit.png' style='width:100%; border-radius:8px; margin-top:10px;'>"],definitions:[],examples:[],
+{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",worksheetUrl:"worksheets/ch3-l2-worksheet.pdf",games:[{topic:"Alternating Current",url:"https://gemini.google.com/share/0c850ab5a53b"}],title:"Chapter 3 Lesson 2: Alternating Current",concepts:["RLC Series Circuit Diagram<br><img src='images/ch3-l2-rlc-circuit.png' style='width:100%; border-radius:8px; margin-top:10px;'>"],definitions:[],examples:[],
 equations:[
 {section:"AC Basics",name:"Instantaneous current<br><img src='images/ch3-l2-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( i = i_m \\sin(\\omega t + \\phi_0) \\)",symbols:[{symbol:"i",desc:"Instantaneous current (A)"},{symbol:"i_m",desc:"Peak current (A)"},{symbol:"\\omega",desc:"Angular frequency (rad/s)"},{symbol:"t",desc:"Time (s)"},{symbol:"\\phi_0",desc:"Initial phase angle (rad)"}]},
 {section:"AC Basics",name:"RMS Current<br><img src='images/ch3-l2-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( I = \\frac{I_m}{\\sqrt{2}} \\)",symbols:[{symbol:"I",desc:"Root Mean Square Current (A)"},{symbol:"I_m",desc:"Peak current (A)"}]},
@@ -444,7 +444,7 @@ equations:[
 {question:"The instantaneous current is \\( i = i_m \\sin(\\omega t + \\phi_0) \\). What is \\( i_m \\)?", options:["RMS current","Average current","Peak current","Initial current"], correctIndex:2, feedback:"\\( i_m \\) is the maximum or peak amplitude of the current."}
 ]},
 {
-id:"g12-ch4-l1",gifUrl:"",worksheetUrl:"worksheets/ch4-l1-worksheet.pdf",title:"Chapter 4 Lesson 1: Solid-State Physics",
+id:"g12-ch4-l1",gifUrl:"",worksheetUrl:"worksheets/ch4-l1-worksheet.pdf",games:[],title:"Chapter 4 Lesson 1: Solid-State Physics",
 concepts:[
 "Semiconductor: Material with conductivity between conductor and insulator. Can be doped to form N-type (extra electrons) or P-type (extra holes).",
 "P-N Junction: Boundary between P-type and N-type semiconductors, creating a depletion region.",
@@ -486,7 +486,7 @@ quiz:[
 ]
 },
 {
-id:"g12-ch4-l2",gifUrl:"",worksheetUrl:"worksheets/ch4-l2-worksheet.pdf",title:"Chapter 4 Lesson 2: Special Theory of Relativity",
+id:"g12-ch4-l2",gifUrl:"",worksheetUrl:"worksheets/ch4-l2-worksheet.pdf",games:[],title:"Chapter 4 Lesson 2: Special Theory of Relativity",
 concepts:[
 "Inertial Reference Frame: A coordinate system where Newton's laws of motion are valid, moving at constant velocity.",
 "Galilean Transformation: Classical physics coordinate and velocity transformations, valid only at low speeds (u << c).",
@@ -530,7 +530,7 @@ quiz:[
 ]
 },
 {
-id:"g12-ch4-l3",gifUrl:"",worksheetUrl:"worksheets/ch4-l3-worksheet.pdf",title:"Chapter 4 Lesson 3: Atomic Structure",
+id:"g12-ch4-l3",gifUrl:"",worksheetUrl:"worksheets/ch4-l3-worksheet.pdf",games:[],title:"Chapter 4 Lesson 3: Atomic Structure",
 concepts:[
 "Cathode Rays: Streams of electrons discovered by J.J. Thomson, demonstrating that atoms have an internal structure.",
 "Charge-to-Mass Ratio (e/m): Measured by balancing electric and magnetic forces on an electron beam.",
@@ -572,6 +572,111 @@ quiz:[
 }
 ]
 };
+
+// --- Dynamic Games & Links Loader (Auto-refreshes from games.json without browser cache) ---
+let externalGamesCache = null;
+
+function normalizeGamesList(raw) {
+    if (!raw) return [];
+    if (typeof raw === 'string') {
+        const trimmed = raw.trim();
+        return trimmed ? [{ topic: "Interactive Simulation", url: trimmed }] : [];
+    }
+    if (Array.isArray(raw)) {
+        return raw.map((item, idx) => {
+            if (typeof item === 'string') {
+                return { topic: `Simulation ${idx + 1}`, url: item };
+            }
+            if (item && typeof item === 'object') {
+                return {
+                    topic: item.topic || item.name || item.title || `Simulation ${idx + 1}`,
+                    url: item.url || item.link || ""
+                };
+            }
+            return null;
+        }).filter(g => g && g.url);
+    }
+    if (typeof raw === 'object') {
+        return Object.entries(raw).map(([topic, val]) => {
+            if (typeof val === 'string') return { topic, url: val };
+            if (val && typeof val === 'object' && val.url) return { topic: val.topic || topic, url: val.url };
+            return null;
+        }).filter(g => g && g.url);
+    }
+    return [];
+}
+
+function findLessonEntryInConfig(config, lessonId) {
+    if (!config || typeof config !== 'object') return null;
+    if (config[lessonId]) return config[lessonId];
+    for (const key of Object.keys(config)) {
+        const val = config[key];
+        if (val && typeof val === 'object' && val[lessonId]) {
+            return val[lessonId];
+        }
+    }
+    return null;
+}
+
+function applyExternalGames(config) {
+    if (!config) return;
+    ['9', '12'].forEach(gradeKey => {
+        const list = data[gradeKey];
+        if (!list) return;
+        list.forEach(lesson => {
+            const entry = findLessonEntryInConfig(config, lesson.id);
+            if (entry) {
+                if (entry.games) {
+                    lesson.games = normalizeGamesList(entry.games);
+                } else if (Array.isArray(entry) || typeof entry === 'string') {
+                    lesson.games = normalizeGamesList(entry);
+                } else if (typeof entry === 'object') {
+                    lesson.games = normalizeGamesList(entry);
+                }
+            }
+        });
+    });
+}
+
+async function loadExternalGamesConfig() {
+    try {
+        const res = await fetch('games.json?t=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) return;
+        let text = await res.text();
+        text = text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+        text = text.replace(/,\s*([\]\}])/g, '$1');
+        
+        let parsed;
+        try {
+            parsed = JSON.parse(text);
+        } catch (e) {
+            try {
+                parsed = (new Function('return ' + text))();
+            } catch (err) {
+                console.warn('Could not parse games.json:', err);
+                return;
+            }
+        }
+        
+        if (parsed) {
+            externalGamesCache = parsed;
+            applyExternalGames(parsed);
+            if (typeof currentLesson !== 'undefined' && currentLesson) {
+                const updated = (data[currentGrade] || []).find(l => l.id === currentLesson.id);
+                if (updated) currentLesson = updated;
+                const gameTab = document.getElementById('tab-game');
+                if (gameTab && !gameTab.classList.contains('hidden')) {
+                    renderGame(currentLesson);
+                }
+            }
+        }
+    } catch (e) {
+        console.log('Using default in-code games data.');
+    }
+}
+
+// Fetch games.json immediately in background
+loadExternalGamesConfig();
 
 // --- App State ---
 let currentGrade = null;
@@ -1626,6 +1731,7 @@ function loadLessonDetail(lesson) {
     
     initQuiz();
     renderWorksheet(lesson);
+    renderGame(lesson);
     showView(viewLessonDetail);
 }
 
@@ -1676,6 +1782,91 @@ async function renderWorksheet(lesson) {
     }
 }
 
+// --- Game Render Function ---
+function renderGame(lesson) {
+    const gameContainer = document.getElementById('lesson-game');
+    if (!gameContainer || !lesson) return;
+
+    if (externalGamesCache) {
+        const ext = findLessonEntryInConfig(externalGamesCache, lesson.id);
+        if (ext) {
+            if (ext.games) lesson.games = normalizeGamesList(ext.games);
+            else if (Array.isArray(ext) || typeof ext === 'string' || typeof ext === 'object') {
+                lesson.games = normalizeGamesList(ext);
+            }
+        }
+    }
+
+    let gamesList = lesson.games || [];
+    if (!gamesList.length && lesson.gameUrl) {
+        gamesList = [{ topic: "Interactive Simulation", url: lesson.gameUrl }];
+    }
+
+    if (!gamesList.length) {
+        gameContainer.innerHTML = `
+            <div class="game-empty">
+                <i class="fa-solid fa-gamepad"></i>
+                <h3>Interactive Game Coming Soon</h3>
+                <p>An interactive simulation or game for this lesson will be available soon.</p>
+            </div>
+        `;
+        return;
+    }
+
+    function buildGameUI(selectedIndex) {
+        const currentGame = gamesList[selectedIndex];
+        
+        let topicsSelectorHtml = '';
+        if (gamesList.length > 1) {
+            topicsSelectorHtml = `
+                <div class="game-topic-selector">
+                    <span class="game-topic-label"><i class="fa-solid fa-list-check"></i> Select Topic:</span>
+                    <div class="game-topic-pills">
+                        ${gamesList.map((g, idx) => `
+                            <button class="game-topic-pill ${idx === selectedIndex ? 'active' : ''}" data-index="${idx}">
+                                <i class="fa-solid fa-gamepad"></i> ${g.topic}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        gameContainer.innerHTML = `
+            <div class="game-header">
+                <h2><i class="fa-solid fa-gamepad"></i> ${lesson.title}</h2>
+                <div class="game-current-topic"><i class="fa-solid fa-puzzle-piece"></i> Topic: <span>${currentGame.topic}</span></div>
+                <p>Play the interactive game or simulation below to practice and test your understanding!</p>
+            </div>
+
+            ${topicsSelectorHtml}
+
+            <div class="game-actions">
+                <a href="${currentGame.url}" target="_blank" rel="noopener noreferrer" class="game-btn primary">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open "${currentGame.topic}" in New Tab / Fullscreen
+                </a>
+            </div>
+
+            <div class="game-embed-wrapper">
+                <iframe src="${currentGame.url}" class="game-preview" allowfullscreen title="${currentGame.topic} Game"></iframe>
+                <div class="game-embed-notice">
+                    <i class="fa-solid fa-circle-info"></i> If the preview does not load directly inside your browser window, click the purple <strong>"Open in New Tab"</strong> button above to play!
+                </div>
+            </div>
+        `;
+
+        const pills = gameContainer.querySelectorAll('.game-topic-pill');
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                const idx = parseInt(pill.getAttribute('data-index'), 10);
+                buildGameUI(idx);
+            });
+        });
+    }
+
+    buildGameUI(0);
+}
+
 // --- Tabs Logic ---
 Array.from(document.querySelectorAll('.tab-btn')).forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1691,6 +1882,9 @@ Array.from(document.querySelectorAll('.tab-btn')).forEach(btn => {
             target.classList.add('active');
             if (btn.getAttribute('data-target') === 'worksheet' && currentLesson) {
                 renderWorksheet(currentLesson);
+            }
+            if (btn.getAttribute('data-target') === 'game' && currentLesson) {
+                renderGame(currentLesson);
             }
         }
     });
