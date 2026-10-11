@@ -1164,34 +1164,305 @@ function showView(viewElement) {
 
 homeBtn.addEventListener('click', () => showView(viewDashboard));
 backToLessonsBtn.addEventListener('click', () => showView(viewLessons));
+const backToDashboardBtn = document.getElementById('back-to-dashboard-btn');
+if (backToDashboardBtn) {
+    backToDashboardBtn.addEventListener('click', () => showView(viewDashboard));
+}
 
 // --- Grade Selection ---
 Array.from(document.querySelectorAll('.grade-card')).forEach(card => {
     card.addEventListener('click', () => loadLessons(card.getAttribute('data-grade')));
 });
 
+const CHAPTER_THEMES = {
+    // Grade 9
+    "g9-l1": {
+        color: "#0288d1",
+        gradient: "linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)",
+        bgLight: "#e0f7fa",
+        borderLight: "#b2ebf2",
+        shadow: "rgba(2, 136, 209, 0.22)",
+        icon: "fa-scale-balanced",
+        subtitle: "Moments, Parallel Forces, Couple & Equilibrium",
+        chips: ["Moments", "Couples", "Equilibrium"]
+    },
+    "g9-l2": {
+        color: "#d97706",
+        gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+        bgLight: "#fef3c7",
+        borderLight: "#fde68a",
+        shadow: "rgba(217, 119, 6, 0.22)",
+        icon: "fa-gears",
+        subtitle: "Levers, Pulleys, Inclined Plane, Gears & Wheel and Axle",
+        chips: ["Levers", "Pulleys", "Incline Plane", "Gears", "Wheel & Axle"]
+    },
+    "g9-l3": {
+        color: "#4f46e5",
+        gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+        bgLight: "#e0e7ff",
+        borderLight: "#c7d2fe",
+        shadow: "rgba(79, 70, 229, 0.22)",
+        icon: "fa-bolt-lightning",
+        subtitle: "Current, Voltage, Resistance, Ohm's Law & Electric Power",
+        chips: ["Ohm's Law", "Power Formulas", "Domestic Wiring"]
+    },
+    "g9-l4": {
+        color: "#e11d48",
+        gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)",
+        bgLight: "#ffe4e6",
+        borderLight: "#fecdd3",
+        shadow: "rgba(225, 29, 72, 0.22)",
+        icon: "fa-magnet",
+        subtitle: "Magnetic Field Lines, Solenoids & Wire Deflection",
+        chips: ["B-Field", "Solenoid Coil", "Wire in Field"]
+    },
+    "g9-l5": {
+        color: "#059669",
+        gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+        bgLight: "#d1fae5",
+        borderLight: "#a7f3d0",
+        shadow: "rgba(5, 150, 105, 0.22)",
+        icon: "fa-lightbulb",
+        subtitle: "Reflection, Pinhole Camera, Refraction, Snell's Law & Mirrors",
+        chips: ["Reflection", "Snell's Law", "Lenses & Mirrors"]
+    },
+    // Grade 12
+    "g12-l1": {
+        color: "#0d9488",
+        gradient: "linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)",
+        bgLight: "#ccfbf1",
+        borderLight: "#99f6e4",
+        shadow: "rgba(13, 148, 136, 0.22)",
+        icon: "fa-wind",
+        subtitle: "Gas Laws, Pressure, Molecular Kinetic Energy & RMS Speed",
+        chips: ["Ideal Gas Laws", "Molecular Speed", "Pressure"]
+    },
+    "g12-l2": {
+        color: "#ea580c",
+        gradient: "linear-gradient(135deg, #f97316 0%, #c2410c 100%)",
+        bgLight: "#ffedd5",
+        borderLight: "#fed7aa",
+        shadow: "rgba(234, 88, 12, 0.22)",
+        icon: "fa-fire-flame-curved",
+        subtitle: "First Law of Thermodynamics, Work Done & Thermodynamic Processes",
+        chips: ["First Law", "Work Done", "Heat Capacity"]
+    },
+    "g12-l3": {
+        color: "#dc2626",
+        gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
+        bgLight: "#fee2e2",
+        borderLight: "#fecaca",
+        shadow: "rgba(220, 38, 38, 0.22)",
+        icon: "fa-gauge-high",
+        subtitle: "Carnot Engine, Thermal Efficiency & Heat Reservoirs",
+        chips: ["Carnot Cycle", "Efficiency", "Heat Transfer"]
+    },
+    "g12-waves": {
+        color: "#0284c7",
+        gradient: "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)",
+        bgLight: "#e0f2fe",
+        borderLight: "#bae6fd",
+        shadow: "rgba(2, 132, 199, 0.22)",
+        icon: "fa-water",
+        subtitle: "Mechanical Waves, Wave Speed, Frequency & Sound Velocity",
+        chips: ["Wave Equation", "Transverse Waves", "Sound Velocity"]
+    },
+    "g12-interf": {
+        color: "#7c3aed",
+        gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
+        bgLight: "#ede9fe",
+        borderLight: "#ddd6fe",
+        shadow: "rgba(124, 58, 237, 0.22)",
+        icon: "fa-braille",
+        subtitle: "Wave Superposition, Young's Double-Slit & Single-Slit Diffraction",
+        chips: ["Double Slit", "Fringe Spacing", "Diffraction"]
+    },
+    "g12-standing": {
+        color: "#4f46e5",
+        gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+        bgLight: "#e0e7ff",
+        borderLight: "#c7d2fe",
+        shadow: "rgba(79, 70, 229, 0.22)",
+        icon: "fa-wave-square",
+        subtitle: "Nodes, Antinodes & Resonance in Strings and Pipes",
+        chips: ["Standing Waves", "Harmonics", "Resonance"]
+    },
+    "g12-mag": {
+        color: "#be123c",
+        gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
+        bgLight: "#ffe4e6",
+        borderLight: "#fecdd3",
+        shadow: "rgba(190, 18, 60, 0.22)",
+        icon: "fa-compass",
+        subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
+        chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"]
+    },
+    "g12-ch4-l1": {
+        color: "#059669",
+        gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+        bgLight: "#d1fae5",
+        borderLight: "#a7f3d0",
+        shadow: "rgba(5, 150, 105, 0.22)",
+        icon: "fa-microchip",
+        subtitle: "Semiconductor Doping, P-N Junction & Transistor Amplification",
+        chips: ["P-N Junction", "Transistors", "Current Gain"]
+    },
+    "g12-ch4-l2": {
+        color: "#9333ea",
+        gradient: "linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)",
+        bgLight: "#f3e8ff",
+        borderLight: "#e9d5ff",
+        shadow: "rgba(147, 51, 234, 0.22)",
+        icon: "fa-clock-rotate-left",
+        subtitle: "Michelson-Morley, Lorentz Transformation & Special Relativity",
+        chips: ["Lorentz Factor", "Relativity", "Speed of Light"]
+    },
+    "g12-ch4-l3": {
+        color: "#2563eb",
+        gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+        bgLight: "#dbeafe",
+        borderLight: "#bfdbfe",
+        shadow: "rgba(37, 99, 235, 0.22)",
+        icon: "fa-atom",
+        subtitle: "Cathode Rays, Thomson e/m, Photoelectric Effect & Bohr Model",
+        chips: ["Thomson e/m", "Photoelectric", "Bohr Atom"]
+    }
+};
+
+const DEFAULT_PALETTES = [
+    { color: "#0288d1", gradient: "linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)", bgLight: "#e0f7fa", borderLight: "#b2ebf2", shadow: "rgba(2, 136, 209, 0.2)", icon: "fa-atom" },
+    { color: "#d97706", gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)", bgLight: "#fef3c7", borderLight: "#fde68a", shadow: "rgba(217, 119, 6, 0.2)", icon: "fa-bolt" },
+    { color: "#7c3aed", gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)", bgLight: "#ede9fe", borderLight: "#ddd6fe", shadow: "rgba(124, 58, 237, 0.2)", icon: "fa-dna" },
+    { color: "#059669", gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)", bgLight: "#d1fae5", borderLight: "#a7f3d0", shadow: "rgba(5, 150, 105, 0.2)", icon: "fa-flask" },
+    { color: "#e11d48", gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)", bgLight: "#ffe4e6", borderLight: "#fecdd3", shadow: "rgba(225, 29, 72, 0.2)", icon: "fa-compass" }
+];
+
 function loadLessons(grade) {
     currentGrade = grade;
-    document.getElementById('lessons-title').innerText = `Grade ${grade} Physics`;
+    
+    // Update Hero Banner & Grade Indicator
+    const heroBanner = document.getElementById('lessons-hero-banner');
+    const badgeText = document.getElementById('lessons-badge-text');
+    const titleEl = document.getElementById('lessons-title');
+    const subtitleEl = document.getElementById('lessons-subtitle');
+    const statsBar = document.getElementById('lessons-stats-bar');
+    const gradeIndicator = document.getElementById('lessons-grade-indicator');
+    const gradePillText = document.getElementById('lessons-grade-pill-text');
+
+    if (heroBanner) {
+        heroBanner.classList.remove('hero-theme-9', 'hero-theme-12');
+        heroBanner.classList.add(`hero-theme-${grade}`);
+    }
+    if (gradeIndicator) {
+        gradeIndicator.classList.remove('indicator-grade-9', 'indicator-grade-12');
+        gradeIndicator.classList.add(`indicator-grade-${grade}`);
+    }
+    if (gradePillText) {
+        gradePillText.innerText = `Grade ${grade}`;
+    }
+
+    const lessonsList = data[grade] || [];
+    const totalChapters = lessonsList.length;
+    let totalFormulas = 0;
+    let totalSimulations = 0;
+    lessonsList.forEach(l => {
+        totalFormulas += (l.equations || []).length;
+        if (l.games && l.games.length > 0) totalSimulations += l.games.length;
+    });
+
+    if (grade === '9') {
+        if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-compass-drafting"></i> Grade 9 • Fundamental Physics Curriculum';
+        if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g9">Grade 9</span> Physics';
+        if (subtitleEl) subtitleEl.innerText = 'Torque, Simple Machines, Electricity, Magnetism, and Light';
+        if (statsBar) {
+            statsBar.innerHTML = `
+                <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
+                <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
+                <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 7} Simulations</span>
+                <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+            `;
+        }
+    } else {
+        if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-atom"></i> Grade 12 • Advanced & Modern Physics';
+        if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g12">Grade 12</span> Physics';
+        if (subtitleEl) subtitleEl.innerText = 'Ideal Gases, Thermodynamics, Waves, Magnetism, Self Induction, Alternating Current, and Modern Physics';
+        if (statsBar) {
+            statsBar.innerHTML = `
+                <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
+                <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
+                <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>
+                <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+            `;
+        }
+    }
+
     const container = document.getElementById('lesson-list-container');
     container.innerHTML = '';
     
-    if (data[grade]) {
-        data[grade].forEach(lesson => {
-            const card = document.createElement('div');
-            card.className = 'lesson-card';
-            card.innerHTML = `
-                <h3>${lesson.title}</h3>
-                <p>${lesson.equations.length} Equations</p>
-                <div class="card-footer">
-                    <span>Start Lesson</span>
-                    <i class="fa-solid fa-arrow-right"></i>
+    lessonsList.forEach((lesson, index) => {
+        const theme = CHAPTER_THEMES[lesson.id] || DEFAULT_PALETTES[index % DEFAULT_PALETTES.length];
+        
+        let chapterNum = `Chapter ${index + 1}`;
+        let chapterName = lesson.title;
+        if (lesson.title.includes(':')) {
+            const parts = lesson.title.split(':');
+            chapterNum = parts[0].trim();
+            chapterName = parts.slice(1).join(':').trim();
+        }
+
+        const chips = theme.chips || [];
+        const chipsHtml = chips.map(c => `<span class="topic-tag">${c}</span>`).join('');
+
+        const card = document.createElement('div');
+        card.className = 'lesson-card';
+        card.setAttribute('data-lesson-id', lesson.id);
+        card.style.setProperty('--chapter-accent', theme.color);
+        card.style.setProperty('--chapter-gradient', theme.gradient);
+        card.style.setProperty('--chapter-shadow', theme.shadow);
+        card.style.setProperty('--chapter-bg-light', theme.bgLight);
+        card.style.setProperty('--chapter-border-light', theme.borderLight);
+
+        const gamesCount = (lesson.games || []).length;
+        const definitionsCount = (lesson.definitions || []).length;
+        const examplesCount = (lesson.examples || []).length;
+        const hasWorksheet = Boolean(lesson.worksheetUrl);
+        const hasQuiz = Boolean(lesson.quiz && lesson.quiz.length > 0);
+
+        card.innerHTML = `
+            <div class="lesson-card-top">
+                <span class="lesson-number-pill"><i class="fa-solid fa-bookmark"></i> ${chapterNum}</span>
+                <div class="lesson-icon-circle">
+                    <i class="fa-solid ${theme.icon}"></i>
                 </div>
-            `;
-            card.addEventListener('click', () => loadLessonDetail(lesson));
-            container.appendChild(card);
-        });
-    }
+            </div>
+
+            <h3 class="lesson-card-heading">${chapterName}</h3>
+            
+            <p class="lesson-card-desc">${theme.subtitle || 'Complete formulas, clear explanations, definitions, and worked examples.'}</p>
+
+            ${chipsHtml ? `<div class="lesson-topic-tags">${chipsHtml}</div>` : ''}
+
+            <div class="lesson-features-row">
+                <span class="feat-pill"><i class="fa-solid fa-square-root-variable"></i> ${lesson.equations.length} Formulas</span>
+                ${definitionsCount > 0 ? `<span class="feat-pill"><i class="fa-solid fa-book"></i> ${definitionsCount} Terms</span>` : ''}
+                ${examplesCount > 0 ? `<span class="feat-pill"><i class="fa-solid fa-lightbulb"></i> ${examplesCount} Examples</span>` : ''}
+                ${gamesCount > 0 ? `<span class="feat-pill feat-sim"><i class="fa-solid fa-gamepad"></i> ${gamesCount} Sim${gamesCount > 1 ? 's' : ''}</span>` : ''}
+                ${hasWorksheet ? `<span class="feat-pill feat-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</span>` : ''}
+                ${hasQuiz ? `<span class="feat-pill feat-quiz"><i class="fa-solid fa-brain"></i> Quiz</span>` : ''}
+            </div>
+
+            <div class="lesson-card-footer">
+                <span class="btn-start-label"><i class="fa-solid fa-circle-play"></i> Start Lesson</span>
+                <span class="btn-start-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+        `;
+
+        card.addEventListener('click', () => loadLessonDetail(lesson));
+        container.appendChild(card);
+    });
+
     showView(viewLessons);
 }
 

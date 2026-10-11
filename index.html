@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=8">
+    <link rel="stylesheet" href="styles.css?v=9">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -109,10 +109,31 @@
 
         <!-- Lessons View -->
         <section id="view-lessons" class="view hidden">
-            <header class="dashboard-header">
-                <h1 id="lessons-title">Grade X Physics</h1>
-                <p>Select a lesson to begin</p>
+            <!-- Modern Breadcrumb & Quick Nav Bar -->
+            <div class="lessons-nav-bar">
+                <button id="back-to-dashboard-btn" class="nav-back-pill" title="Back to Grade Selection">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>All Grades</span>
+                </button>
+                <div class="lessons-grade-indicator" id="lessons-grade-indicator">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span id="lessons-grade-pill-text">Grade 9</span>
+                </div>
+            </div>
+
+            <!-- Grade Hero Banner -->
+            <header class="lessons-hero-banner" id="lessons-hero-banner">
+                <div class="lessons-hero-badge" id="lessons-hero-badge">
+                    <i class="fa-solid fa-atom"></i>
+                    <span id="lessons-badge-text">Grade 9 • Foundation Physics</span>
+                </div>
+                <h1 id="lessons-title" class="lessons-hero-title">Grade 9 Physics</h1>
+                <p id="lessons-subtitle" class="lessons-hero-subtitle">Torque, Simple Machines, Electricity, Magnetism, and Light</p>
+                <div class="lessons-stats-bar" id="lessons-stats-bar">
+                    <!-- Populated dynamically based on grade -->
+                </div>
             </header>
+
             <div class="lesson-list" id="lesson-list-container">
                 <!-- Lesson cards will be populated here -->
             </div>
@@ -273,6 +294,6 @@
         </div>
     </div>
 
-    <script src="app.js?v=22"></script>
+    <script src="app.js?v=23"></script>
 </body>
 </html>
