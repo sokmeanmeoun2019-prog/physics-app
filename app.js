@@ -72,7 +72,7 @@ equations:[
 {question:"Which expression gives the direction angle \\(\\theta\\) of a resultant force?", options:["\\( \\sin^{-1}(b/a) \\)","\\( \\cos^{-1}(b/a) \\)","\\( \\tan^{-1}(b/a) \\)","\\( \\tan^{-1}(a/b) \\)"], correctIndex:2, feedback:"The angle is found using the inverse tangent of the opposite over adjacent components: \\( \\tan^{-1}(b/a) \\)."},
 {question:"For reaction forces on a beam supported at A and B with a load F, what is the force \\( F_A \\)?", options:["\\( F_A = F \\times \\frac{OA}{AB} \\)","\\( F_A = F \\times \\frac{OB}{AB} \\)","\\( F_A = F + OB \\)","\\( F_A = \\frac{AB}{F} \\)"], correctIndex:1, feedback:"By taking moments about B, \\( F_A \\times AB = F \\times OB \\), so \\( F_A = F \\times \\frac{OB}{AB} \\)."}
 ]},
-{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",worksheetUrl:"worksheets/g9-ch2-worksheet.pdf",games:[{topic:"Levers",url:"https://g.co/gemini/share/0b9242977d1a"},{topic:"Inclined Plane",url:"https://g.co/gemini/share/a0f83fb13666"},{topic:"Gear and Belt System",url:"https://gemini.google.com/share/a559ad0916ce"},{topic:"Wheel and Axle",url:"https://gemini.google.com/share/8a5c6aeecc08"}],title:"Chapter 2: Simple Machines",concepts:[],definitions:[
+{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",worksheetUrl:"worksheets/g9-ch2-worksheet.pdf",games:[{topic:"Levers",url:"https://g.co/gemini/share/0b9242977d1a"},{topic:"Inclined Plane",url:"https://g.co/gemini/share/a0f83fb13666"},{topic:"Pulley",url:"https://share.gemini.google/ikZlefCPf3VG"},{topic:"Gear and Belt System",url:"https://gemini.google.com/share/a559ad0916ce"},{topic:"Wheel and Axle",url:"https://gemini.google.com/share/8a5c6aeecc08"}],title:"Chapter 2: Simple Machines",concepts:[],definitions:[
 {term:"Simple Machine",definition:"A basic mechanical device that changes the magnitude, direction, or distance of an applied force to make physical work easier.",symbol:"\\text{Machine}",unit:"\\text{No unit}",equation:"MA = \\frac{F_R}{F_E}"},
 {term:"Effort Force",definition:"The external force applied by a person or motor to operate a machine.",symbol:"F_E",unit:"\\mathrm{N}",equation:"F_E = \\frac{F_R}{MA}"},
 {term:"Resistance / Load Force",definition:"The resistive force or weight of the object that the machine overcomes or lifts.",symbol:"F_R",unit:"\\mathrm{N}",equation:"F_R = MA \\times F_E"},
@@ -1073,6 +1073,70 @@ async function loadExternalGamesConfig() {
 
 // Fetch games.json immediately in background
 loadExternalGamesConfig();
+
+let externalWorksheetsCache = null;
+
+function applyExternalWorksheets(config) {
+    if (!config) return;
+    ['9', '12'].forEach(gradeKey => {
+        const list = data[gradeKey];
+        if (!list) return;
+        list.forEach(lesson => {
+            const entry = findLessonEntryInConfig(config, lesson.id);
+            if (entry) {
+                if (typeof entry === 'string') {
+                    lesson.worksheetUrl = entry.trim();
+                } else if (entry.worksheet) {
+                    lesson.worksheetUrl = entry.worksheet.trim();
+                } else if (entry.worksheetUrl) {
+                    lesson.worksheetUrl = entry.worksheetUrl.trim();
+                } else if (entry.url) {
+                    lesson.worksheetUrl = entry.url.trim();
+                }
+            }
+        });
+    });
+}
+
+async function loadExternalWorksheetsConfig() {
+    try {
+        const res = await fetch('worksheets.json?t=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) return;
+        let text = await res.text();
+        text = text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+        text = text.replace(/,\s*([\]\}])/g, '$1');
+        
+        let parsed;
+        try {
+            parsed = JSON.parse(text);
+        } catch (e) {
+            try {
+                parsed = (new Function('return ' + text))();
+            } catch (err) {
+                console.warn('Could not parse worksheets.json:', err);
+                return;
+            }
+        }
+        
+        if (parsed) {
+            externalWorksheetsCache = parsed;
+            applyExternalWorksheets(parsed);
+            if (typeof currentLesson !== 'undefined' && currentLesson) {
+                const updated = (data[currentGrade] || []).find(l => l.id === currentLesson.id);
+                if (updated) currentLesson = updated;
+                const wsTab = document.getElementById('tab-worksheet');
+                if (wsTab && !wsTab.classList.contains('hidden')) {
+                    renderWorksheet(currentLesson);
+                }
+            }
+        }
+    } catch (e) {
+        console.log('Using default in-code worksheets data.');
+    }
+}
+
+// Fetch worksheets.json immediately in background
+loadExternalWorksheetsConfig();
 
 // --- App State ---
 let currentGrade = null;
@@ -2188,6 +2252,17 @@ function loadLessonDetail(lesson) {
 async function renderWorksheet(lesson) {
     const worksheetContainer = document.getElementById('lesson-worksheet');
     if (!worksheetContainer || !lesson) return;
+
+    if (externalWorksheetsCache) {
+        const ext = findLessonEntryInConfig(externalWorksheetsCache, lesson.id);
+        if (ext) {
+            if (typeof ext === 'string') lesson.worksheetUrl = ext.trim();
+            else if (ext.worksheet) lesson.worksheetUrl = ext.worksheet.trim();
+            else if (ext.worksheetUrl) lesson.worksheetUrl = ext.worksheetUrl.trim();
+            else if (ext.url) lesson.worksheetUrl = ext.url.trim();
+        }
+    }
+
     if (lesson.worksheetUrl) {
         let finalUrl = lesson.worksheetUrl;
         const raw = lesson.worksheetUrl;
