@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=29">
+    <link rel="stylesheet" href="styles.css?v=30">
     <style>
         .view.active {
             display: block !important;
@@ -36,6 +36,61 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        // Instant navigation guarantee (runs in 0ms before external scripts)
+        window.loadLessons = function(grade) {
+            window.pendingGrade = String(grade);
+            var vDash = document.getElementById('view-dashboard');
+            var vLessons = document.getElementById('view-lessons');
+            var vDetail = document.getElementById('view-lesson-detail');
+            if (vDash) { vDash.style.display = 'none'; vDash.classList.add('hidden'); vDash.classList.remove('active'); }
+            if (vDetail) { vDetail.style.display = 'none'; vDetail.classList.add('hidden'); vDetail.classList.remove('active'); }
+            if (vLessons) {
+                vLessons.style.display = 'block';
+                vLessons.classList.remove('hidden');
+                vLessons.classList.add('active');
+            }
+            var titleEl = document.getElementById('lessons-title');
+            if (titleEl) titleEl.innerHTML = (grade === '9' ? '<span class="title-highlight-g9">Grade 9</span>' : '<span class="title-highlight-g12">Grade 12</span>') + ' Physics';
+            var pill = document.getElementById('lessons-grade-pill-text');
+            if (pill) pill.innerText = 'Grade ' + grade;
+            var heroBanner = document.getElementById('lessons-hero-banner');
+            if (heroBanner) {
+                heroBanner.classList.remove('hero-theme-9', 'hero-theme-12');
+                heroBanner.classList.add('hero-theme-' + grade);
+            }
+            window.scrollTo(0, 0);
+            if (typeof window.executeLessonRender === 'function') {
+                window.executeLessonRender(grade);
+            }
+        };
+        window.showDashboard = function() {
+            var vDash = document.getElementById('view-dashboard');
+            var vLessons = document.getElementById('view-lessons');
+            var vDetail = document.getElementById('view-lesson-detail');
+            if (vLessons) { vLessons.style.display = 'none'; vLessons.classList.add('hidden'); vLessons.classList.remove('active'); }
+            if (vDetail) { vDetail.style.display = 'none'; vDetail.classList.add('hidden'); vDetail.classList.remove('active'); }
+            if (vDash) {
+                vDash.style.display = 'block';
+                vDash.classList.remove('hidden');
+                vDash.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        };
+        window.showLessonsView = function() {
+            var vDash = document.getElementById('view-dashboard');
+            var vLessons = document.getElementById('view-lessons');
+            var vDetail = document.getElementById('view-lesson-detail');
+            if (vDash) { vDash.style.display = 'none'; vDash.classList.add('hidden'); vDash.classList.remove('active'); }
+            if (vDetail) { vDetail.style.display = 'none'; vDetail.classList.add('hidden'); vDetail.classList.remove('active'); }
+            if (vLessons) {
+                vLessons.style.display = 'block';
+                vLessons.classList.remove('hidden');
+                vLessons.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        };
+    </script>
 </head>
 <body>
     <!-- Navbar -->
@@ -44,7 +99,7 @@
             <i class="fa-solid fa-atom"></i> @MeanWIS Physics
         </div>
         <div class="nav-links">
-            <button id="home-btn" class="nav-btn"><i class="fa-solid fa-home"></i> Home</button>
+            <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
         </div>
     </nav>
 
@@ -67,7 +122,7 @@
             </header>
             <div class="grade-cards">
                 <!-- Grade 9 Card -->
-                <div class="grade-card grade-card-9" data-grade="9">
+                <div class="grade-card grade-card-9" data-grade="9" onclick="loadLessons('9')">
                     <div class="grade-badge badge-g9">
                         <i class="fa-solid fa-seedling"></i> Fundamental Physics
                     </div>
@@ -91,14 +146,14 @@
                         <span><i class="fa-solid fa-vial"></i> Simulations</span>
                     </div>
 
-                    <button class="btn-grade btn-grade-9" type="button" data-grade="9">
+                    <button class="btn-grade btn-grade-9" type="button" data-grade="9" onclick="event.stopPropagation(); loadLessons('9');">
                         <span>Explore Grade 9</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
                 <!-- Grade 12 Card -->
-                <div class="grade-card grade-card-12" data-grade="12">
+                <div class="grade-card grade-card-12" data-grade="12" onclick="loadLessons('12')">
                     <div class="grade-badge badge-g12">
                         <i class="fa-solid fa-graduation-cap"></i> Advanced Physics
                     </div>
@@ -124,7 +179,7 @@
                         <span><i class="fa-solid fa-brain"></i> Quizzes</span>
                     </div>
 
-                    <button class="btn-grade btn-grade-12" type="button" data-grade="12">
+                    <button class="btn-grade btn-grade-12" type="button" data-grade="12" onclick="event.stopPropagation(); loadLessons('12');">
                         <span>Explore Grade 12</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
@@ -136,7 +191,7 @@
         <section id="view-lessons" class="view hidden">
             <!-- Modern Breadcrumb & Quick Nav Bar -->
             <div class="lessons-nav-bar">
-                <button id="back-to-dashboard-btn" class="nav-back-pill" title="Back to Grade Selection">
+                <button id="back-to-dashboard-btn" class="nav-back-pill" onclick="showDashboard()" title="Back to Grade Selection">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>All Grades</span>
                 </button>
@@ -172,7 +227,7 @@
             </div>
             
             <header class="lesson-header">
-                <button id="back-to-lessons-btn" class="btn-text"><i class="fa-solid fa-arrow-left"></i> Back to Lessons</button>
+                <button id="back-to-lessons-btn" class="btn-text" onclick="showLessonsView()"><i class="fa-solid fa-arrow-left"></i> Back to Lessons</button>
                 <h1 id="lesson-detail-title">Lesson Title</h1>
             </header>
 
@@ -318,6 +373,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=29"></script>
+    <script src="app.js?v=30"></script>
 </body>
 </html>

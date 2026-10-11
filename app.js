@@ -1155,6 +1155,9 @@ const backToDashboardBtn = document.getElementById('back-to-dashboard-btn');
 
 // --- Navigation ---
 function showView(viewElement) {
+    if (typeof viewElement === 'string') {
+        viewElement = document.getElementById(viewElement);
+    }
     if (!viewElement) return;
     const views = document.querySelectorAll('.view');
     views.forEach(el => {
@@ -1541,6 +1544,17 @@ function loadLessons(grade) {
     } catch (err) {
         console.error('Error loading lessons:', err);
     }
+}
+
+window.executeLessonRender = loadLessons;
+window.loadLessons = loadLessons;
+window.renderLessonsList = loadLessons;
+
+// If user clicked a grade while app.js was downloading, render immediately!
+if (window.pendingGrade) {
+    const pg = window.pendingGrade;
+    window.pendingGrade = null;
+    loadLessons(pg);
 }
 
 // High-performance, non-blocking MathJax queue targeting only specific elements
