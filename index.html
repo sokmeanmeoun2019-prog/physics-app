@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=50">
+    <link rel="stylesheet" href="styles.css?v=60">
     <style>
         .view.active {
             display: block !important;
@@ -36,6 +36,122 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.pendingGrade = null;
+        window.pendingLessonId = null;
+
+        function showDashboard() {
+            var d = document.getElementById('view-dashboard');
+            var l = document.getElementById('view-lessons');
+            var dt = document.getElementById('view-lesson-detail');
+            if (l) { l.style.display = 'none'; l.classList.remove('active'); l.classList.add('hidden'); }
+            if (dt) { dt.style.display = 'none'; dt.classList.remove('active'); dt.classList.add('hidden'); }
+            if (d) { d.style.display = 'block'; d.classList.remove('hidden'); d.classList.add('active'); }
+            window.scrollTo(0, 0);
+            if (typeof window.appShowDashboard === 'function') {
+                try { window.appShowDashboard(); } catch (e) {}
+            }
+        }
+
+        function showLessonsView() {
+            var d = document.getElementById('view-dashboard');
+            var l = document.getElementById('view-lessons');
+            var dt = document.getElementById('view-lesson-detail');
+            if (d) { d.style.display = 'none'; d.classList.remove('active'); d.classList.add('hidden'); }
+            if (dt) { dt.style.display = 'none'; dt.classList.remove('active'); dt.classList.add('hidden'); }
+            if (l) { l.style.display = 'block'; l.classList.remove('hidden'); l.classList.add('active'); }
+            window.scrollTo(0, 0);
+            if (typeof window.appShowLessonsView === 'function') {
+                try { window.appShowLessonsView(); } catch (e) {}
+            }
+        }
+
+        function loadLessons(grade) {
+            if (!grade) return;
+            var g = String(grade);
+            window.pendingGrade = g;
+
+            // 1. Immediately switch view on screen with zero latency
+            showLessonsView();
+
+            // 2. If app.js is ready, render immediately
+            if (typeof window.appLoadLessons === 'function') {
+                try {
+                    window.appLoadLessons(g);
+                    return;
+                } catch (e) {
+                    console.error('Error in appLoadLessons:', e);
+                }
+            } else if (typeof window.renderLessonsList === 'function') {
+                try {
+                    window.renderLessonsList(g);
+                    return;
+                } catch (e) {
+                    console.error('Error in renderLessonsList:', e);
+                }
+            }
+
+            // 3. Fallback poller: automatically render the moment app.js finishes downloading & parsing
+            var tries = 0;
+            var timer = setInterval(function() {
+                tries++;
+                if (typeof window.appLoadLessons === 'function') {
+                    clearInterval(timer);
+                    try { window.appLoadLessons(g); } catch (err) { console.error(err); }
+                } else if (typeof window.renderLessonsList === 'function') {
+                    clearInterval(timer);
+                    try { window.renderLessonsList(g); } catch (err) { console.error(err); }
+                } else if (tries > 150) {
+                    clearInterval(timer);
+                }
+            }, 25);
+        }
+
+        function loadLessonDetail(lessonOrId) {
+            if (!lessonOrId) return;
+            window.pendingLessonId = (typeof lessonOrId === 'object' && lessonOrId.id) ? lessonOrId.id : lessonOrId;
+            if (typeof window.appLoadLessonDetail === 'function') {
+                try { window.appLoadLessonDetail(lessonOrId); } catch (e) {}
+            } else if (typeof window.openLessonDetail === 'function') {
+                try { window.openLessonDetail(lessonOrId); } catch (e) {}
+            }
+        }
+
+        function openLessonDetail(lessonOrId) {
+            loadLessonDetail(lessonOrId);
+        }
+
+        function switchTab(targetName) {
+            if (!targetName) return;
+            var tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(function(b) {
+                if (b.getAttribute('data-target') === targetName) b.classList.add('active');
+                else b.classList.remove('active');
+            });
+            var tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(function(p) {
+                if (p.id === 'tab-' + targetName) {
+                    p.classList.remove('hidden');
+                    p.classList.add('active');
+                    p.style.display = 'block';
+                } else {
+                    p.classList.add('hidden');
+                    p.classList.remove('active');
+                    p.style.display = 'none';
+                }
+            });
+            if (typeof window.appSwitchTab === 'function') {
+                try { window.appSwitchTab(targetName); } catch (e) {}
+            }
+        }
+
+        window.showDashboard = showDashboard;
+        window.showLessonsView = showLessonsView;
+        window.loadLessons = loadLessons;
+        window.loadLessonDetail = loadLessonDetail;
+        window.openLessonDetail = openLessonDetail;
+        window.switchTab = switchTab;
+    </script>
 </head>
 <body>
     <!-- Navbar -->
@@ -318,6 +434,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=50"></script>
+    <script src="app.js?v=60"></script>
 </body>
 </html>

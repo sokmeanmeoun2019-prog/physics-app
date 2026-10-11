@@ -1227,6 +1227,25 @@ function bindGradeSelection() {
 }
 bindGradeSelection();
 
+// Document-level fallback delegation to guarantee clicks on grade cards always fire
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.btn-grade');
+    if (btn) {
+        const grade = btn.getAttribute('data-grade') || (btn.classList.contains('btn-grade-9') ? '9' : '12');
+        if (grade) {
+            loadLessons(grade);
+            return;
+        }
+    }
+    const card = e.target.closest('.grade-card');
+    if (card) {
+        const grade = card.getAttribute('data-grade') || (card.classList.contains('grade-card-9') ? '9' : '12');
+        if (grade) {
+            loadLessons(grade);
+        }
+    }
+});
+
 
 
 const CHAPTER_THEMES = {
