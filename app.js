@@ -969,6 +969,13 @@ quiz:[
 ]
 };
 
+// --- App State ---
+let currentGrade = null;
+let currentLesson = null;
+let currentFlashcardIndex = 0;
+let currentQuizIndex = 0;
+let quizScore = 0;
+
 // --- Dynamic Games & Links Loader (Auto-refreshes from games.json without browser cache) ---
 let externalGamesCache = null;
 
@@ -1138,36 +1145,50 @@ async function loadExternalWorksheetsConfig() {
 // Fetch worksheets.json immediately in background
 loadExternalWorksheetsConfig();
 
-// --- App State ---
-let currentGrade = null;
-let currentLesson = null;
-let currentFlashcardIndex = 0;
-let currentQuizIndex = 0;
-let quizScore = 0;
-
 // --- DOM Elements ---
 const viewDashboard = document.getElementById('view-dashboard');
 const viewLessons = document.getElementById('view-lessons');
 const viewLessonDetail = document.getElementById('view-lesson-detail');
 const homeBtn = document.getElementById('home-btn');
 const backToLessonsBtn = document.getElementById('back-to-lessons-btn');
+const backToDashboardBtn = document.getElementById('back-to-dashboard-btn');
 
 // --- Navigation ---
 function showView(viewElement) {
-    Array.from(document.querySelectorAll('.view')).forEach(el => el.classList.remove('active', 'hidden'));
-    Array.from(document.querySelectorAll('.view')).forEach(el => {
-        if(el !== viewElement) el.classList.add('hidden');
+    if (!viewElement) return;
+    const views = document.querySelectorAll('.view');
+    views.forEach(el => {
+        el.classList.remove('active');
+        el.classList.add('hidden');
+        el.style.display = 'none';
     });
+    viewElement.classList.remove('hidden');
     viewElement.classList.add('active');
+    viewElement.style.display = 'block';
+    viewElement.style.opacity = '1';
+    viewElement.style.visibility = 'visible';
     window.scrollTo(0, 0);
 }
 
-homeBtn.addEventListener('click', () => showView(viewDashboard));
-backToLessonsBtn.addEventListener('click', () => showView(viewLessons));
-const backToDashboardBtn = document.getElementById('back-to-dashboard-btn');
-if (backToDashboardBtn) {
-    backToDashboardBtn.addEventListener('click', () => showView(viewDashboard));
+function showDashboard() {
+    showView(viewDashboard);
 }
+
+function showLessonsView() {
+    showView(viewLessons);
+}
+
+window.showView = showView;
+window.showDashboard = showDashboard;
+window.showLessonsView = showLessonsView;
+
+if (homeBtn) homeBtn.addEventListener('click', showDashboard);
+if (backToLessonsBtn) backToLessonsBtn.addEventListener('click', showLessonsView);
+if (backToDashboardBtn) backToDashboardBtn.addEventListener('click', showDashboard);
+
+// Expose globally for inline onclick fallbacks
+window.loadLessons = loadLessons;
+window.renderLessonsList = loadLessons;
 
 // --- Grade Selection ---
 function bindGradeSelection() {
@@ -1191,19 +1212,22 @@ bindGradeSelection();
 
 // Global click delegation fallback for instantaneous, foolproof interaction
 document.addEventListener('click', (e) => {
-    const gradeTarget = e.target.closest('.grade-card, .btn-grade');
-    if (gradeTarget) {
-        const grade = gradeTarget.getAttribute('data-grade') || 
-                      (gradeTarget.classList.contains('grade-card-9') || gradeTarget.classList.contains('btn-grade-9') ? '9' : 
-                       gradeTarget.classList.contains('grade-card-12') || gradeTarget.classList.contains('btn-grade-12') ? '12' : null);
+    const btn = e.target.closest('.btn-grade');
+    if (btn) {
+        const grade = btn.getAttribute('data-grade') || (btn.classList.contains('btn-grade-9') ? '9' : '12');
+        if (grade) {
+            loadLessons(grade);
+            return;
+        }
+    }
+    const card = e.target.closest('.grade-card');
+    if (card) {
+        const grade = card.getAttribute('data-grade') || (card.classList.contains('grade-card-9') ? '9' : '12');
         if (grade) {
             loadLessons(grade);
         }
     }
 });
-
-// Expose globally for inline onclick fallbacks
-window.loadLessons = loadLessons;
 
 
 const CHAPTER_THEMES = {
@@ -1399,12 +1423,23 @@ const DEFAULT_PALETTES = [
     { color: "#e11d48", gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)", bgLight: "#ffe4e6", borderLight: "#fecdd3", shadow: "rgba(225, 29, 72, 0.2)", icon: "fa-compass" }
 ];
 
+let lastLoadedGrade = null;
+let lastLoadTime = 0;
+
 function loadLessons(grade) {
     if (!grade) return;
-    currentGrade = String(grade);
+    const now = Date.now();
+    const gStr = String(grade);
+    currentGrade = gStr;
     
     // Switch view immediately so the user experiences zero lag and instant response
     showView(viewLessons);
+
+    if (lastLoadedGrade === gStr && (now - lastLoadTime) < 300) {
+        return;
+    }
+    lastLoadedGrade = gStr;
+    lastLoadTime = now;
 
     try {
         // Update Hero Banner & Grade Indicator
@@ -2996,31 +3031,42 @@ const aiInputArea = document.getElementById('ai-input-area');
 const aiUserInput = document.getElementById('ai-user-input');
 const aiSendBtn = document.getElementById('ai-send-btn');
 
-let geminiApiKey = localStorage.getItem('gemini_api_key') || '';
+let geminiApiKey = '';
+try {
+    geminiApiKey = localStorage.getItem('gemini_api_key') || '';
+} catch (e) {}
 
-if (geminiApiKey) {
+if (geminiApiKey && aiKeySetup && aiInputArea) {
     aiKeySetup.style.display = 'none';
     aiInputArea.style.display = 'flex';
 }
 
-aiToggleBtn.addEventListener('click', () => {
-    aiWidget.classList.remove('ai-widget-collapsed');
-});
+if (aiToggleBtn && aiWidget) {
+    aiToggleBtn.addEventListener('click', () => {
+        aiWidget.classList.remove('ai-widget-collapsed');
+    });
+}
 
-aiCloseBtn.addEventListener('click', () => {
-    aiWidget.classList.add('ai-widget-collapsed');
-});
+if (aiCloseBtn && aiWidget) {
+    aiCloseBtn.addEventListener('click', () => {
+        aiWidget.classList.add('ai-widget-collapsed');
+    });
+}
 
-aiSaveKeyBtn.addEventListener('click', () => {
-    const key = aiApiKeyInput.value.trim();
-    if (key) {
-        geminiApiKey = key;
-        localStorage.setItem('gemini_api_key', key);
-        aiKeySetup.style.display = 'none';
-        aiInputArea.style.display = 'flex';
-        aiApiKeyInput.value = '';
-    }
-});
+if (aiSaveKeyBtn && aiApiKeyInput) {
+    aiSaveKeyBtn.addEventListener('click', () => {
+        const key = aiApiKeyInput.value.trim();
+        if (key) {
+            geminiApiKey = key;
+            try {
+                localStorage.setItem('gemini_api_key', key);
+            } catch (e) {}
+            if (aiKeySetup) aiKeySetup.style.display = 'none';
+            if (aiInputArea) aiInputArea.style.display = 'flex';
+            aiApiKeyInput.value = '';
+        }
+    });
+}
 
 function addAiMessage(text, isUser = false) {
     const msgDiv = document.createElement('div');
@@ -3097,14 +3143,16 @@ async function sendToGemini(message) {
     }
 }
 
-aiSendBtn.addEventListener('click', () => {
-    const text = aiUserInput.value.trim();
-    if (text) sendToGemini(text);
-});
-
-aiUserInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
+if (aiSendBtn && aiUserInput) {
+    aiSendBtn.addEventListener('click', () => {
         const text = aiUserInput.value.trim();
         if (text) sendToGemini(text);
-    }
-});
+    });
+
+    aiUserInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const text = aiUserInput.value.trim();
+            if (text) sendToGemini(text);
+        }
+    });
+}

@@ -7,7 +7,17 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=26">
+    <link rel="stylesheet" href="styles.css?v=27">
+    <style>
+        .view.active {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -34,7 +44,7 @@
             <i class="fa-solid fa-atom"></i> @MeanWIS Physics
         </div>
         <div class="nav-links">
-            <button id="home-btn" class="nav-btn"><i class="fa-solid fa-home"></i> Home</button>
+            <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
         </div>
     </nav>
 
@@ -81,7 +91,7 @@
                         <span><i class="fa-solid fa-vial"></i> Simulations</span>
                     </div>
 
-                    <button class="btn-grade btn-grade-9" type="button" data-grade="9" onclick="loadLessons('9')">
+                    <button class="btn-grade btn-grade-9" type="button" data-grade="9" onclick="event.stopPropagation(); loadLessons('9');">
                         <span>Explore Grade 9</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
@@ -114,7 +124,7 @@
                         <span><i class="fa-solid fa-brain"></i> Quizzes</span>
                     </div>
 
-                    <button class="btn-grade btn-grade-12" type="button" data-grade="12" onclick="loadLessons('12')">
+                    <button class="btn-grade btn-grade-12" type="button" data-grade="12" onclick="event.stopPropagation(); loadLessons('12');">
                         <span>Explore Grade 12</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
@@ -126,7 +136,7 @@
         <section id="view-lessons" class="view hidden">
             <!-- Modern Breadcrumb & Quick Nav Bar -->
             <div class="lessons-nav-bar">
-                <button id="back-to-dashboard-btn" class="nav-back-pill" title="Back to Grade Selection">
+                <button id="back-to-dashboard-btn" class="nav-back-pill" title="Back to Grade Selection" onclick="showDashboard()">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>All Grades</span>
                 </button>
@@ -162,7 +172,7 @@
             </div>
             
             <header class="lesson-header">
-                <button id="back-to-lessons-btn" class="btn-text"><i class="fa-solid fa-arrow-left"></i> Back to Lessons</button>
+                <button id="back-to-lessons-btn" class="btn-text" onclick="showLessonsView()"><i class="fa-solid fa-arrow-left"></i> Back to Lessons</button>
                 <h1 id="lesson-detail-title">Lesson Title</h1>
             </header>
 
@@ -309,6 +319,53 @@
         </div>
     </div>
 
-    <script src="app.js?v=26"></script>
+    <script>
+        // Bulletproof navigation & grade loader guarantee
+        function showDashboard() {
+            var vDash = document.getElementById('view-dashboard');
+            var vLessons = document.getElementById('view-lessons');
+            var vDetail = document.getElementById('view-lesson-detail');
+            if (vLessons) { vLessons.style.display = 'none'; vLessons.classList.add('hidden'); vLessons.classList.remove('active'); }
+            if (vDetail) { vDetail.style.display = 'none'; vDetail.classList.add('hidden'); vDetail.classList.remove('active'); }
+            if (vDash) {
+                vDash.style.display = 'block';
+                vDash.style.opacity = '1';
+                vDash.style.visibility = 'visible';
+                vDash.classList.remove('hidden');
+                vDash.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function showLessonsView() {
+            var vDash = document.getElementById('view-dashboard');
+            var vLessons = document.getElementById('view-lessons');
+            var vDetail = document.getElementById('view-lesson-detail');
+            if (vDash) { vDash.style.display = 'none'; vDash.classList.add('hidden'); vDash.classList.remove('active'); }
+            if (vDetail) { vDetail.style.display = 'none'; vDetail.classList.add('hidden'); vDetail.classList.remove('active'); }
+            if (vLessons) {
+                vLessons.style.display = 'block';
+                vLessons.style.opacity = '1';
+                vLessons.style.visibility = 'visible';
+                vLessons.classList.remove('hidden');
+                vLessons.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function loadLessons(grade) {
+            if (!grade) return;
+            var g = String(grade);
+            showLessonsView();
+            if (typeof window.renderLessonsList === 'function') {
+                window.renderLessonsList(g);
+            }
+        }
+
+        window.showDashboard = showDashboard;
+        window.showLessonsView = showLessonsView;
+        window.loadLessons = loadLessons;
+    </script>
+    <script src="app.js?v=27"></script>
 </body>
 </html>
