@@ -1,0 +1,67 @@
+{
+  "_NOTE": "Change or update your worksheet PDF links here! Next time you want to change worksheets, simply edit this file on GitHub or upload new PDF files to the worksheets folder.",
+  "Grade 9": {
+    "g9-l1": {
+      "chapter": "Chapter 1: Turning Effect of Force",
+      "worksheet": "worksheets/g9-ch1-worksheet.pdf"
+    },
+    "g9-l2": {
+      "chapter": "Chapter 2: Simple Machines",
+      "worksheet": "worksheets/g9-ch2-worksheet.pdf"
+    },
+    "g9-l3": {
+      "chapter": "Chapter 3: Electricity",
+      "worksheet": "worksheets/g9-ch3-worksheet.pdf"
+    },
+    "g9-l4": {
+      "chapter": "Chapter 4: Magnetic Field",
+      "worksheet": "worksheets/g9-ch4-worksheet.pdf"
+    },
+    "g9-l5": {
+      "chapter": "Chapter 5: Light",
+      "worksheet": "worksheets/g9-ch5-worksheet.pdf"
+    }
+  },
+  "Grade 12": {
+    "g12-l1": {
+      "chapter": "Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",
+      "worksheet": "worksheets/ch1-l1-worksheet.pdf"
+    },
+    "g12-l2": {
+      "chapter": "Chapter 1 Lesson 2: First Law of Thermodynamic",
+      "worksheet": "worksheets/ch1-l2-worksheet.pdf"
+    },
+    "g12-l3": {
+      "chapter": "Chapter 1 Lesson 3: Heat Engine",
+      "worksheet": "worksheets/ch1-l3-worksheet.pdf"
+    },
+    "g12-l4": {
+      "chapter": "Chapter 2 Lesson 1: Superposition and Waves",
+      "worksheet": "worksheets/ch2-l1-worksheet.pdf"
+    },
+    "g12-interf": {
+      "chapter": "Chapter 2 Lesson 2: Interference and Diffraction",
+      "worksheet": "worksheets/ch2-l2-worksheet.pdf"
+    },
+    "g12-l5": {
+      "chapter": "Chapter 3 Lesson 1: Magnetism & Induction",
+      "worksheet": "worksheets/ch3-l1-worksheet.pdf"
+    },
+    "g12-l6": {
+      "chapter": "Chapter 3 Lesson 2: Alternating Current",
+      "worksheet": "worksheets/ch3-l2-worksheet.pdf"
+    },
+    "g12-ch4-l1": {
+      "chapter": "Chapter 4 Lesson 1: Solid-State Physics",
+      "worksheet": "worksheets/ch4-l1-worksheet.pdf"
+    },
+    "g12-ch4-l2": {
+      "chapter": "Chapter 4 Lesson 2: Special Theory of Relativity",
+      "worksheet": "worksheets/ch4-l2-worksheet.pdf"
+    },
+    "g12-ch4-l3": {
+      "chapter": "Chapter 4 Lesson 3: Atomic Structure",
+      "worksheet": "worksheets/ch4-l3-worksheet.pdf"
+    }
+  }
+}

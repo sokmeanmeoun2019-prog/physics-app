@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=39">
+    <link rel="stylesheet" href="styles.css?v=42">
     <style>
         .view.active {
             display: block !important;
@@ -37,519 +37,45 @@
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
-        // Instant Lesson Catalogue (Pre-loaded for 0ms zero-lag instant rendering)
-        const LESSON_CATALOG = {
-            "9": [
-                {
-                    id: "g9-l1",
-                    chapterNum: "Chapter 1",
-                    title: "Turning Effect of Force",
-                    subtitle: "Moments, Parallel Forces, Couple & Equilibrium",
-                    icon: "fa-scale-balanced",
-                    accent: "#0288d1",
-                    gradient: "linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)",
-                    shadow: "rgba(2, 136, 209, 0.22)",
-                    bgLight: "#e0f7fa",
-                    borderLight: "#b2ebf2",
-                    chips: ["Moments", "Couples", "Equilibrium"],
-                    formulas: 17,
-                    terms: 14,
-                    examples: 12,
-                    sims: 1,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g9-l2",
-                    chapterNum: "Chapter 2",
-                    title: "Simple Machines",
-                    subtitle: "Levers, Pulleys, Inclined Plane, Gears & Wheel and Axle",
-                    icon: "fa-gears",
-                    accent: "#d97706",
-                    gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
-                    shadow: "rgba(217, 119, 6, 0.22)",
-                    bgLight: "#fef3c7",
-                    borderLight: "#fde68a",
-                    chips: ["Levers", "Pulleys", "Incline Plane", "Gears", "Wheel & Axle"],
-                    formulas: 17,
-                    terms: 17,
-                    examples: 11,
-                    sims: 5,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g9-l3",
-                    chapterNum: "Chapter 3",
-                    title: "Electricity",
-                    subtitle: "Current, Voltage, Resistance, Ohm's Law & Electric Power",
-                    icon: "fa-bolt-lightning",
-                    accent: "#4f46e5",
-                    gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
-                    shadow: "rgba(79, 70, 229, 0.22)",
-                    bgLight: "#e0e7ff",
-                    borderLight: "#c7d2fe",
-                    chips: ["Ohm's Law", "Power Formulas", "Domestic Wiring"],
-                    formulas: 11,
-                    terms: 15,
-                    examples: 10,
-                    sims: 2,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g9-l4",
-                    chapterNum: "Chapter 4",
-                    title: "Magnetic Field",
-                    subtitle: "Straight Wires, Circular Loops, Solenoids & Transformers",
-                    icon: "fa-magnet",
-                    accent: "#dc2626",
-                    gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
-                    shadow: "rgba(220, 38, 38, 0.22)",
-                    bgLight: "#fee2e2",
-                    borderLight: "#fecaca",
-                    chips: ["B-Fields", "Laplace Force", "Transformers"],
-                    formulas: 9,
-                    terms: 14,
-                    examples: 11,
-                    sims: 5,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g9-l5",
-                    chapterNum: "Chapter 5",
-                    title: "Light",
-                    subtitle: "Reflection, Refraction, Snell's Law, Mirrors & Lenses",
-                    icon: "fa-lightbulb",
-                    accent: "#ca8a04",
-                    gradient: "linear-gradient(135deg, #eab308 0%, #a16207 100%)",
-                    shadow: "rgba(202, 138, 4, 0.22)",
-                    bgLight: "#fef9c3",
-                    borderLight: "#fef08a",
-                    chips: ["Refraction", "Snell's Law", "Lenses", "Mirrors"],
-                    formulas: 11,
-                    terms: 15,
-                    examples: 10,
-                    sims: 7,
-                    hasPdf: true,
-                    hasQuiz: true
-                }
-            ],
-            "12": [
-                {
-                    id: "g12-l1",
-                    chapterNum: "Chapter 1 Lesson 1",
-                    title: "Kinetic Theory of Ideal Gases",
-                    subtitle: "Microscopic Collisions, Pressure, rms Velocity & Gas Laws",
-                    icon: "fa-wind",
-                    accent: "#0d9488",
-                    gradient: "linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)",
-                    shadow: "rgba(13, 148, 136, 0.22)",
-                    bgLight: "#ccfbf1",
-                    borderLight: "#99f6e4",
-                    chips: ["Ideal Gas", "rms Speed", "PV=nRT", "Kinetic Energy"],
-                    formulas: 12,
-                    terms: 15,
-                    examples: 11,
-                    sims: 1,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g12-l2",
-                    chapterNum: "Chapter 1 Lesson 2",
-                    title: "First Law of Thermodynamics",
-                    subtitle: "Work in Gas Processes, Internal Energy & Heat Capacities",
-                    icon: "fa-fire-flame-curved",
-                    accent: "#ea580c",
-                    gradient: "linear-gradient(135deg, #f97316 0%, #c2410c 100%)",
-                    shadow: "rgba(234, 88, 12, 0.22)",
-                    bgLight: "#ffedd5",
-                    borderLight: "#fed7aa",
-                    chips: ["First Law", "Isobaric", "Isochoric", "Isothermal"],
-                    formulas: 10,
-                    terms: 14,
-                    examples: 10,
-                    sims: 1,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g12-l3",
-                    chapterNum: "Chapter 1 Lesson 3",
-                    title: "Heat Engine",
-                    subtitle: "Carnot Cycle, Thermal Efficiency, Useful Work & Friction",
-                    icon: "fa-gauge-high",
-                    accent: "#b45309",
-                    gradient: "linear-gradient(135deg, #d97706 0%, #92400e 100%)",
-                    shadow: "rgba(180, 83, 9, 0.22)",
-                    bgLight: "#fef3c7",
-                    borderLight: "#fde68a",
-                    chips: ["Carnot Cycle", "Efficiency", "Heat Engines"],
-                    formulas: 4,
-                    terms: 9,
-                    examples: 4,
-                    sims: 1,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g12-l4",
-                    chapterNum: "Chapter 2 Lesson 1",
-                    title: "Superposition and Waves",
-                    subtitle: "Sinusoidal Waves, Wave Speed, Standing Waves, Nodes & Antinodes",
-                    icon: "fa-water",
-                    accent: "#0284c7",
-                    gradient: "linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)",
-                    shadow: "rgba(2, 132, 199, 0.22)",
-                    bgLight: "#e0f2fe",
-                    borderLight: "#bae6fd",
-                    chips: ["Wave Equation", "Standing Waves", "Nodes", "Antinodes"],
-                    formulas: 6,
-                    terms: 12,
-                    examples: 6,
-                    sims: 1,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g12-interf",
-                    chapterNum: "Chapter 2 Lesson 2",
-                    title: "Interference and Diffraction",
-                    subtitle: "Young's Double-Slit, Path Difference, Fringe Width & Single-Slit",
-                    icon: "fa-braille",
-                    accent: "#7c3aed",
-                    gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
-                    shadow: "rgba(124, 58, 237, 0.22)",
-                    bgLight: "#ede9fe",
-                    borderLight: "#ddd6fe",
-                    chips: ["Double-Slit", "Diffraction", "Fringe Spacing"],
-                    formulas: 11,
-                    terms: 18,
-                    examples: 12,
-                    sims: 1,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g12-l5",
-                    chapterNum: "Chapter 3 Lesson 1",
-                    title: "Magnetism & Induction",
-                    subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
-                    icon: "fa-compass",
-                    accent: "#be123c",
-                    gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
-                    shadow: "rgba(190, 18, 60, 0.22)",
-                    bgLight: "#ffe4e6",
-                    borderLight: "#fecdd3",
-                    chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"],
-                    formulas: 20,
-                    terms: 23,
-                    examples: 20,
-                    sims: 3,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g12-l6",
-                    chapterNum: "Chapter 3 Lesson 2",
-                    title: "Alternating Current",
-                    subtitle: "AC Waveforms, RMS Values, RLC Series Impedance & Transformers",
-                    icon: "fa-wave-square",
-                    accent: "#2563eb",
-                    gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
-                    shadow: "rgba(37, 99, 235, 0.22)",
-                    bgLight: "#eff6ff",
-                    borderLight: "#bfdbfe",
-                    chips: ["AC Current", "RLC Circuit", "Impedance", "Transformers"],
-                    formulas: 17,
-                    terms: 13,
-                    examples: 11,
-                    sims: 1,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g12-ch4-l1",
-                    chapterNum: "Chapter 4 Lesson 1",
-                    title: "Solid-State Physics",
-                    subtitle: "Semiconductor Doping, P-N Junction & Transistor Amplification",
-                    icon: "fa-microchip",
-                    accent: "#059669",
-                    gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
-                    shadow: "rgba(5, 150, 105, 0.22)",
-                    bgLight: "#d1fae5",
-                    borderLight: "#a7f3d0",
-                    chips: ["P-N Junction", "Transistors", "Current Gain"],
-                    formulas: 3,
-                    terms: 13,
-                    examples: 4,
-                    sims: 0,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g12-ch4-l2",
-                    chapterNum: "Chapter 4 Lesson 2",
-                    title: "Special Theory of Relativity",
-                    subtitle: "Michelson-Morley, Lorentz Transformation & Special Relativity",
-                    icon: "fa-clock-rotate-left",
-                    accent: "#9333ea",
-                    gradient: "linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)",
-                    shadow: "rgba(147, 51, 234, 0.22)",
-                    bgLight: "#f3e8ff",
-                    borderLight: "#e9d5ff",
-                    chips: ["Lorentz Factor", "Relativity", "Speed of Light"],
-                    formulas: 6,
-                    terms: 13,
-                    examples: 6,
-                    sims: 0,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g12-ch4-l3",
-                    chapterNum: "Chapter 4 Lesson 3",
-                    title: "Atomic Structure",
-                    subtitle: "Cathode Rays, Thomson e/m, Photoelectric Effect & Bohr Model",
-                    icon: "fa-atom",
-                    accent: "#2563eb",
-                    gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
-                    shadow: "rgba(37, 99, 235, 0.22)",
-                    bgLight: "#dbeafe",
-                    borderLight: "#bfdbfe",
-                    chips: ["Thomson e/m", "Photoelectric", "Bohr Atom"],
-                    formulas: 3,
-                    terms: 14,
-                    examples: 5,
-                    sims: 0,
-                    hasPdf: true,
-                    hasQuiz: true
-                }
-            ]
-        };
-
-        function renderInstantLessonCards(grade) {
-            const list = LESSON_CATALOG[grade] || [];
-            const container = document.getElementById('lesson-list-container');
-            if (!container) return;
-
-            let html = '';
-            list.forEach(item => {
-                const chipsHtml = (item.chips || []).map(c => `<span class="topic-tag">${c}</span>`).join('');
-                const simBadge = item.sims > 0 ? `<span class="feat-pill feat-sim"><i class="fa-solid fa-gamepad"></i> ${item.sims} Sim${item.sims > 1 ? 's' : ''}</span>` : '';
-                const pdfBadge = item.hasPdf ? `<span class="feat-pill feat-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</span>` : '';
-                const quizBadge = item.hasQuiz ? `<span class="feat-pill feat-quiz"><i class="fa-solid fa-brain"></i> Quiz</span>` : '';
-
-                html += `
-                <div class="lesson-card" data-lesson-id="${item.id}"
-                     style="--chapter-accent:${item.accent};--chapter-gradient:${item.gradient};--chapter-shadow:${item.shadow};--chapter-bg-light:${item.bgLight};--chapter-border-light:${item.borderLight};"
-                     onclick="openLessonDetail('${item.id}')">
-                    <div class="lesson-card-top">
-                        <span class="lesson-number-pill"><i class="fa-solid fa-bookmark"></i> ${item.chapterNum}</span>
-                        <div class="lesson-icon-circle">
-                            <i class="fa-solid ${item.icon}"></i>
-                        </div>
-                    </div>
-                    <h3 class="lesson-card-heading">${item.title}</h3>
-                    <p class="lesson-card-desc">${item.subtitle}</p>
-                    ${chipsHtml ? `<div class="lesson-topic-tags">${chipsHtml}</div>` : ''}
-                    <div class="lesson-features-row">
-                        <span class="feat-pill"><i class="fa-solid fa-square-root-variable"></i> ${item.formulas} Formulas</span>
-                        <span class="feat-pill"><i class="fa-solid fa-book"></i> ${item.terms} Terms</span>
-                        <span class="feat-pill"><i class="fa-solid fa-lightbulb"></i> ${item.examples} Examples</span>
-                        ${simBadge}
-                        ${pdfBadge}
-                        ${quizBadge}
-                    </div>
-                    <div class="lesson-card-footer">
-                        <span class="btn-start-label"><i class="fa-solid fa-circle-play"></i> Start Lesson</span>
-                        <span class="btn-start-arrow"><i class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-                </div>
-                `;
-            });
-            container.innerHTML = html;
+        function showDashboard() {
+            if (typeof window.appShowDashboard === 'function') {
+                window.appShowDashboard();
+            } else if (typeof window.showDashboard === 'function') {
+                window.showDashboard();
+            }
         }
-
-        window.openLessonDetail = function(lessonId) {
-            window.currentSelectedLessonId = lessonId;
-
-            // 1. Instantly transition to view-lesson-detail (0ms response)
-            var vDash = document.getElementById('view-dashboard');
-            var vLessons = document.getElementById('view-lessons');
-            var vDetail = document.getElementById('view-lesson-detail');
-            if (vDash) { vDash.style.display = 'none'; vDash.classList.add('hidden'); vDash.classList.remove('active'); }
-            if (vLessons) { vLessons.style.display = 'none'; vLessons.classList.add('hidden'); vLessons.classList.remove('active'); }
-            if (vDetail) {
-                vDetail.style.display = 'block';
-                vDetail.classList.remove('hidden');
-                vDetail.classList.add('active');
+        function showLessonsView() {
+            if (typeof window.appShowLessonsView === 'function') {
+                window.appShowLessonsView();
+            } else if (typeof window.showLessonsView === 'function') {
+                window.showLessonsView();
             }
-            window.scrollTo(0, 0);
-
-            // 2. Set title instantly from catalog
-            var foundItem = null;
-            ['9', '12'].forEach(function(g) {
-                (LESSON_CATALOG[g] || []).forEach(function(item) {
-                    if (item.id === lessonId) foundItem = item;
-                });
-            });
-            if (foundItem) {
-                var titleEl = document.getElementById('lesson-detail-title');
-                if (titleEl) titleEl.innerText = foundItem.title;
+        }
+        function loadLessons(grade) {
+            if (typeof window.appLoadLessons === 'function') {
+                window.appLoadLessons(grade);
+            } else if (typeof window.loadLessons === 'function') {
+                window.loadLessons(grade);
+            } else {
+                window.pendingGrade = grade;
             }
-
-            // 3. Reset all start button labels
-            document.querySelectorAll('.btn-start-label').forEach(function(el) {
-                el.innerHTML = '<i class="fa-solid fa-circle-play"></i> Start Lesson';
-            });
-
-            // 4. Load full lesson content
-            if (typeof window.loadLessonDetail === 'function') {
+        }
+        function openLessonDetail(lessonId) {
+            if (typeof window.appLoadLessonDetail === 'function') {
+                window.appLoadLessonDetail(lessonId);
+            } else if (typeof window.loadLessonDetail === 'function') {
                 window.loadLessonDetail(lessonId);
             } else {
                 window.pendingLessonId = lessonId;
-                var poll = setInterval(function() {
-                    if (typeof window.loadLessonDetail === 'function') {
-                        clearInterval(poll);
-                        window.pendingLessonId = null;
-                        window.loadLessonDetail(lessonId);
-                    }
-                }, 40);
             }
-        };
-
-        // Instant navigation guarantee (runs in 0ms before external scripts)
-        window.loadLessons = function(grade) {
-            grade = String(grade);
-            window.pendingGrade = grade;
-            window.currentSelectedGrade = grade;
-
-            var vDash = document.getElementById('view-dashboard');
-            var vLessons = document.getElementById('view-lessons');
-            var vDetail = document.getElementById('view-lesson-detail');
-            if (vDash) { vDash.style.display = 'none'; vDash.classList.add('hidden'); vDash.classList.remove('active'); }
-            if (vDetail) { vDetail.style.display = 'none'; vDetail.classList.add('hidden'); vDetail.classList.remove('active'); }
-            if (vLessons) {
-                vLessons.style.display = 'block';
-                vLessons.classList.remove('hidden');
-                vLessons.classList.add('active');
-            }
-
-            var titleEl = document.getElementById('lessons-title');
-            if (titleEl) titleEl.innerHTML = (grade === '9' ? '<span class="title-highlight-g9">Grade 9</span>' : '<span class="title-highlight-g12">Grade 12</span>') + ' Physics';
-
-            var pill = document.getElementById('lessons-grade-pill-text');
-            if (pill) pill.innerText = 'Grade ' + grade;
-
-            var heroBanner = document.getElementById('lessons-hero-banner');
-            if (heroBanner) {
-                heroBanner.classList.remove('hero-theme-9', 'hero-theme-12');
-                heroBanner.classList.add('hero-theme-' + grade);
-            }
-
-            var badgeText = document.getElementById('lessons-badge-text');
-            var subtitleEl = document.getElementById('lessons-subtitle');
-            var statsBar = document.getElementById('lessons-stats-bar');
-
-            if (grade === '9') {
-                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-compass-drafting"></i> Grade 9 • Fundamental Physics Curriculum';
-                if (subtitleEl) subtitleEl.innerText = 'Torque, Simple Machines, Electricity, Magnetism, and Light';
-                if (statsBar) {
-                    statsBar.innerHTML = `
-                        <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 5 Chapters</span>
-                        <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 65 Formulas</span>
-                        <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 20 Simulations</span>
-                        <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
-                        <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
-                    `;
-                }
-            } else {
-                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-atom"></i> Grade 12 • Advanced & Modern Physics';
-                if (subtitleEl) subtitleEl.innerText = 'Ideal Gases, Thermodynamics, Waves, Magnetism, Self Induction, Alternating Current, and Modern Physics';
-                if (statsBar) {
-                    statsBar.innerHTML = `
-                        <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 10 Chapters</span>
-                        <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 92 Formulas</span>
-                        <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>
-                        <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
-                        <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
-                    `;
-                }
-            }
-
-            // Immediately render the complete list of lesson cards at 0ms!
-            renderInstantLessonCards(grade);
-            window.scrollTo(0, 0);
-
-            if (typeof window.executeLessonRender === 'function') {
-                window.executeLessonRender(grade);
-            }
-        };
-
-        window.showDashboard = function() {
-            var vDash = document.getElementById('view-dashboard');
-            var vLessons = document.getElementById('view-lessons');
-            var vDetail = document.getElementById('view-lesson-detail');
-            if (vLessons) { vLessons.style.display = 'none'; vLessons.classList.add('hidden'); vLessons.classList.remove('active'); }
-            if (vDetail) { vDetail.style.display = 'none'; vDetail.classList.add('hidden'); vDetail.classList.remove('active'); }
-            if (vDash) {
-                vDash.style.display = 'block';
-                vDash.classList.remove('hidden');
-                vDash.classList.add('active');
-            }
-            window.scrollTo(0, 0);
-        };
-
-        window.showLessonsView = function() {
-            var vDash = document.getElementById('view-dashboard');
-            var vLessons = document.getElementById('view-lessons');
-            var vDetail = document.getElementById('view-lesson-detail');
-            if (vDash) { vDash.style.display = 'none'; vDash.classList.add('hidden'); vDash.classList.remove('active'); }
-            if (vDetail) { vDetail.style.display = 'none'; vDetail.classList.add('hidden'); vDetail.classList.remove('active'); }
-            if (vLessons) {
-                vLessons.style.display = 'block';
-                vLessons.classList.remove('hidden');
-                vLessons.classList.add('active');
-            }
-            document.querySelectorAll('.btn-start-label').forEach(function(l) {
-                l.innerHTML = '<i class="fa-solid fa-circle-play"></i> Start Lesson';
-            });
-            window.scrollTo(0, 0);
-        };
-
-        window.switchTab = function(targetName) {
-            // 1. Instantly update tab buttons
-            var tabBtns = document.querySelectorAll('.tab-btn');
-            tabBtns.forEach(function(b) {
-                if (b.getAttribute('data-target') === targetName) {
-                    b.classList.add('active');
-                } else {
-                    b.classList.remove('active');
-                }
-            });
-
-            // 2. Instantly update tab panes (0ms latency)
-            var tabPanes = document.querySelectorAll('.tab-pane');
-            tabPanes.forEach(function(p) {
-                if (p.id === 'tab-' + targetName) {
-                    p.classList.remove('hidden');
-                    p.classList.add('active');
-                    p.style.display = 'block';
-                } else {
-                    p.classList.add('hidden');
-                    p.classList.remove('active');
-                    p.style.display = 'none';
-                }
-            });
-
-            // 3. Forward to appSwitchTab if app.js is ready
+        }
+        function switchTab(targetName) {
             if (typeof window.appSwitchTab === 'function') {
                 window.appSwitchTab(targetName);
+            } else if (typeof window.switchTab === 'function') {
+                window.switchTab(targetName);
             }
-        };
+        }
     </script>
 </head>
 <body>
@@ -833,6 +359,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=39"></script>
+    <script src="app.js?v=42"></script>
 </body>
 </html>

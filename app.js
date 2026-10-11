@@ -72,7 +72,7 @@ equations:[
 {question:"Which expression gives the direction angle \\(\\theta\\) of a resultant force?", options:["\\( \\sin^{-1}(b/a) \\)","\\( \\cos^{-1}(b/a) \\)","\\( \\tan^{-1}(b/a) \\)","\\( \\tan^{-1}(a/b) \\)"], correctIndex:2, feedback:"The angle is found using the inverse tangent of the opposite over adjacent components: \\( \\tan^{-1}(b/a) \\)."},
 {question:"For reaction forces on a beam supported at A and B with a load F, what is the force \\( F_A \\)?", options:["\\( F_A = F \\times \\frac{OA}{AB} \\)","\\( F_A = F \\times \\frac{OB}{AB} \\)","\\( F_A = F + OB \\)","\\( F_A = \\frac{AB}{F} \\)"], correctIndex:1, feedback:"By taking moments about B, \\( F_A \\times AB = F \\times OB \\), so \\( F_A = F \\times \\frac{OB}{AB} \\)."}
 ]},
-{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",worksheetUrl:"worksheets/g9-ch2-worksheet.pdf",games:[{topic:"Levers",url:"https://g.co/gemini/share/0b9242977d1a"},{topic:"Inclined Plane",url:"https://g.co/gemini/share/a0f83fb13666"},{topic:"Pulley",url:"https://share.gemini.google/ikZlefCPf3VG"},{topic:"Gear and Belt System",url:"https://gemini.google.com/share/a559ad0916ce"},{topic:"Wheel and Axle",url:"https://gemini.google.com/share/8a5c6aeecc08"}],title:"Chapter 2: Simple Machines",concepts:[],definitions:[
+{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",worksheetUrl:"worksheets/g9-ch2-worksheet.pdf",games:[{topic:"Levers",url:"https://g.co/gemini/share/0b9242977d1a"},{topic:"Inclined Plane",url:"https://g.co/gemini/share/a0f83fb13666"},{topic:"Pulley",url:"https://share.gemini.google/ikZlefCPf3VG"},{topic:"Gear and Belt System",url:"https://gemini.google.com/share/a559ad0916ce"},{topic:"Wheel and Axle",url:"https://gemini.google.com/share/8a5c6aeecc08"}],title:"Chapter 2: Simple Machines",concepts:["Simple Machines: Devices that change the magnitude, direction, or distance of force to make physical work easier.","Mechanical Advantage (MA): The factor by which a machine multiplies applied effort force, \\( MA = \\frac{F_R}{F_E} \\).","Velocity Ratio (VR): The ratio of distance moved by effort to distance moved by load, \\( VR = \\frac{d_E}{d_R} \\).","Efficiency (eff): The percentage of input work transformed into useful output work, \\( \\text{eff} = \\frac{MA}{VR} \\times 100\\% \\).","Key Machines: Levers (1st, 2nd, 3rd class), Inclined Planes (\\( MA = L/h \\)), Pulleys, Gears, and Wheel & Axle (\\( MA = R/r \\))."],definitions:[
 {term:"Simple Machine",definition:"A basic mechanical device that changes the magnitude, direction, or distance of an applied force to make physical work easier.",symbol:"\\text{Machine}",unit:"\\text{No unit}",equation:"MA = \\frac{F_R}{F_E}"},
 {term:"Effort Force",definition:"The external force applied by a person or motor to operate a machine.",symbol:"F_E",unit:"\\mathrm{N}",equation:"F_E = \\frac{F_R}{MA}"},
 {term:"Resistance / Load Force",definition:"The resistive force or weight of the object that the machine overcomes or lifts.",symbol:"F_R",unit:"\\mathrm{N}",equation:"F_R = MA \\times F_E"},
@@ -142,7 +142,7 @@ equations:[
 {question:"Which of the following is the correct formula for Velocity Ratio (VR) of a wheel and axle?", options:["\\( \\frac{r}{R} \\)","\\( R \\times r \\)","\\( \\frac{R}{r} \\)","\\( \\frac{F_R}{F_E} \\)"], correctIndex:2, feedback:"The velocity ratio is the ratio of the radius of the wheel to the radius of the axle \\( (R/r) \\)."},
 {question:"The moment of the effort force in a wheel and axle is given by:", options:["\\( F_E / R \\)","\\( F_E \\times r \\)","\\( F_E \\times R \\)","\\( F_R \\times R \\)"], correctIndex:2, feedback:"The effort force acts on the wheel (radius \\(R\\)), so its moment is \\( F_E \\times R \\)."}
 ]},
-{id:"g9-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",worksheetUrl:"worksheets/g9-ch3-worksheet.pdf",games:[{topic:"Electricity",url:"https://gemini.google.com/share/e1def1ea44ff"},{topic:"Household Wiring System",url:"https://gemini.google.com/share/b1b0af13b130"}],title:"Chapter 3: Electricity",concepts:[],definitions:[
+{id:"g9-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",worksheetUrl:"worksheets/g9-ch3-worksheet.pdf",games:[{topic:"Electricity",url:"https://gemini.google.com/share/e1def1ea44ff"},{topic:"Household Wiring System",url:"https://gemini.google.com/share/b1b0af13b130"}],title:"Chapter 3: Electricity",concepts:["Ohm's Law: Relates voltage, current, and resistance: \\( V = IR \\).","Electrical Power: The rate of electrical energy consumption: \\( P = VI = I^2 R = V^2 / R \\).","Energy Transfer & Cost: Electrical energy \\( E = Pt = VIt \\), billed by power companies in kilowatt-hours (kWh).","Joule's Law & Heat: Electrical energy converted into heat: \\( Q = mc\\Delta T = RI^2 t \\)."],definitions:[
 {term:"Electrical Power",definition:"The rate at which electrical energy is converted into another form of energy (such as heat, light, or mechanical motion) per unit time.",symbol:"P",unit:"\\mathrm{W} \\;(\\mathrm{J/s})",equation:"P = \\frac{E}{t} = VI = RI^2 = \\frac{V^2}{R}"},
 {term:"Electrical Energy",definition:"The total work done by an electric field in moving charge carriers through an electrical component over time.",symbol:"E",unit:"\\mathrm{J}",equation:"E = VIt = RI^2 t = \\frac{V^2}{R}t"},
 {term:"Electric Potential Difference (Voltage)",definition:"The energy transferred or work done per unit of electric charge moving between two points in a circuit.",symbol:"V",unit:"\\mathrm{V} \\;(\\mathrm{J/C})",equation:"V = \\frac{E}{Q} = IR"},
@@ -198,7 +198,7 @@ equations:[
 {question:"If 20% of electrical energy is converted to light, how is the light energy found?", options:["\\( E_L = E / 0.20 \\)","\\( E_L = E \\times 0.20 \\)","\\( E_L = E + 20 \\)","\\( E_L = E - 20 \\)"], correctIndex:1, feedback:"Multiply the total energy by the efficiency percentage (0.20)."},
 {question:"What is the formula for Power using Voltage and Resistance?", options:["\\( P = V^2 / R \\)","\\( P = V / R^2 \\)","\\( P = V^2 R \\)","\\( P = R / V^2 \\)"], correctIndex:0, feedback:"Substituting \\( I = V/R \\) into \\( P = VI \\) gives \\( P = V^2 / R \\)."}
 ]},
-{id:"g9-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/VFPt_solenoid-field-animation.gif",worksheetUrl:"worksheets/g9-ch4-worksheet.pdf",games:[{topic:"Magnetic Field due to a straight wire",url:"https://gemini.google.com/share/4e08057d8f02"},{topic:"Magnetic due to a circular loop",url:"https://gemini.google.com/share/d3ff81a78225"},{topic:"Magnetic due to a Solenoid",url:"https://gemini.google.com/share/97335be64f77"},{topic:"Magnetic Force",url:"https://gemini.google.com/share/e58537b64df4"},{topic:"Transformers",url:"https://gemini.google.com/share/4436f3b52926"}],title:"Chapter 4: Magnetic Field",concepts:[],definitions:[
+{id:"g9-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/VFPt_solenoid-field-animation.gif",worksheetUrl:"worksheets/g9-ch4-worksheet.pdf",games:[{topic:"Magnetic Field due to a straight wire",url:"https://gemini.google.com/share/4e08057d8f02"},{topic:"Magnetic due to a circular loop",url:"https://gemini.google.com/share/d3ff81a78225"},{topic:"Magnetic due to a Solenoid",url:"https://gemini.google.com/share/97335be64f77"},{topic:"Magnetic Force",url:"https://gemini.google.com/share/e58537b64df4"},{topic:"Transformers",url:"https://gemini.google.com/share/4436f3b52926"}],title:"Chapter 4: Magnetic Field",concepts:["Magnetic Field (\\( B \\)): A vector field region produced by moving charges or currents, measured in Tesla (T).","Biot-Savart Law (Straight Wire): Field lines form concentric circles around the wire, \\( B = \\frac{\\mu_0 I}{2\\pi d} \\).","Solenoid Field: Cylindrical wire coil producing a strong, uniform magnetic field in its core, \\( B = \\frac{\\mu_0 NI}{l} \\).","Magnetic Force on a Wire: Current-carrying wire in an external field experiences deflecting force \\( F = IlB\\sin\\theta \\).","Transformers: Transfers AC electrical energy between primary and secondary coils, \\( \\frac{V_S}{V_P} = \\frac{N_S}{N_P} = \\frac{I_P}{I_S} \\)."],definitions:[
 {term:"Magnetic Field",definition:"A vector field region surrounding a magnet or electric current within which magnetic forces are exerted on other moving charges or magnetic materials.",symbol:"B",unit:"\\mathrm{T} \\;(\\mathrm{Tesla})",equation:"B = \\frac{\\mu_0 I}{2\\pi d} \\quad (\\text{straight wire})"},
 {term:"Permeability of Free Space",definition:"The fundamental physical constant representing the capability of a vacuum to support magnetic flux lines.",symbol:"\\mu_0",unit:"\\mathrm{T\\cdot m/A}",equation:"\\mu_0 = 4\\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A} \\approx 1.257\\times 10^{-6}\\,\\mathrm{T\\cdot m/A}"},
 {term:"Solenoid",definition:"A tightly wound cylindrical coil of insulated wire that creates a strong, uniform magnetic field in its core when energized by electric current.",symbol:"\\text{Solenoid}",unit:"\\text{No unit}",equation:"B = \\frac{\\mu_0 NI}{l}"},
@@ -246,7 +246,7 @@ equations:[
 {question:"What does \\( \\mu_0 \\) represent?", options:["Permittivity","Permeability of free space","Refractive index","Resistivity"], correctIndex:1, feedback:"\\( \\mu_0 \\) is the permeability of free space (vacuum permeability)."},
 {question:"The output power of a transformer is given by:", options:["\\( V_P I_P \\)","\\( V_S I_S \\)","\\( V_P I_S \\)","\\( V_S I_P \\)"], correctIndex:1, feedback:"Output power (Secondary side) is \\( P_{e2} = V_S I_S \\)."}
 ]},
-{id:"g9-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Refraction_animation.gif",worksheetUrl:"worksheets/g9-ch5-worksheet.pdf",games:[{topic:"Light Rays",url:"https://gemini.google.com/share/2ac63456c976"},{topic:"Reflection of light",url:"https://gemini.google.com/share/01abdd9ea9aa"},{topic:"Plane Mirrors",url:"https://gemini.google.com/share/7e4ee437394b"},{topic:"Concave Mirrors",url:"https://gemini.google.com/share/7e4ee437394b"},{topic:"Convex Mirrors",url:"https://gemini.google.com/share/7e4ee437394b"},{topic:"Refraction of light",url:"https://gemini.google.com/share/307ba374b958"},{topic:"Lenses",url:"https://gemini.google.com/share/1d57559d8cb4"}],title:"Chapter 5: Light",concepts:[],definitions:[
+{id:"g9-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Refraction_animation.gif",worksheetUrl:"worksheets/g9-ch5-worksheet.pdf",games:[{topic:"Light Rays",url:"https://gemini.google.com/share/2ac63456c976"},{topic:"Reflection of light",url:"https://gemini.google.com/share/01abdd9ea9aa"},{topic:"Plane Mirrors",url:"https://gemini.google.com/share/7e4ee437394b"},{topic:"Concave Mirrors",url:"https://gemini.google.com/share/7e4ee437394b"},{topic:"Convex Mirrors",url:"https://gemini.google.com/share/7e4ee437394b"},{topic:"Refraction of light",url:"https://gemini.google.com/share/307ba374b958"},{topic:"Lenses",url:"https://gemini.google.com/share/1d57559d8cb4"}],title:"Chapter 5: Light",concepts:["Law of Reflection: Incident ray, reflected ray, and normal lie in the same plane; angle of incidence equals angle of reflection (\\( i = r \\)).","Pinhole Camera: Projects an inverted real image with magnification \\( m = \\frac{h_i}{h_o} = \\frac{d_i}{d_o} \\).","Refraction & Snell's Law: Bending of light across media boundaries, \\( n = \\frac{c}{v} \\) and \\( n_1 \\sin i = n_2 \\sin r \\).","Total Internal Reflection: Light in denser medium striking boundary beyond critical angle \\( \\theta_c \\) (\\( \\sin\\theta_c = \\frac{n_2}{n_1} \\)) reflects completely.","Mirror & Lens Equation: Relates object distance, image distance, and focal length, \\( \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i} \\) with \\( f = \\frac{R}{2} \\)."],definitions:[
 {term:"Law of Reflection",definition:"The principle that the angle of incidence equals the angle of reflection (\\(i = r\\)), and both the incident ray, reflected ray, and normal lie in the identical geometric plane.",symbol:"i = r",unit:"{^\\circ} \\text{ or rad}",equation:"i = r"},
 {term:"Angle of Incidence",definition:"The angle formed between the incident incoming light ray and the perpendicular normal line to the surface at the point of incidence.",symbol:"i",unit:"{^\\circ}",equation:"i = r"},
 {term:"Angle of Reflection",definition:"The angle formed between the reflected outgoing light ray and the normal line at the point of incidence.",symbol:"r",unit:"{^\\circ}",equation:"r = i"},
@@ -312,7 +312,7 @@ equations:[
 ]}
 ],
 "12": [
-{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",worksheetUrl:"worksheets/ch1-l1-worksheet.pdf",games:[{topic:"Kinetic Theory of Ideal Gases",url:"https://gemini.google.com/share/acfae742b2c0"}],title:"Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",concepts:[],definitions:[
+{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",worksheetUrl:"worksheets/ch1-l1-worksheet.pdf",games:[{topic:"Kinetic Theory of Ideal Gases",url:"https://gemini.google.com/share/acfae742b2c0"}],title:"Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",concepts:["Ideal Gas Model: Molecules are treated as point masses in continuous random motion undergoing perfectly elastic collisions.","Microscopic Pressure: Arises from momentum transfer during wall collisions, \\( P = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av} \\).","Ideal Gas Law: Combines Boyle's, Charles's, and Gay-Lussac's laws into \\( PV = nRT = Nk_B T \\).","Average Kinetic Energy: Depends solely on absolute temperature \\( T \\), with \\( K_{av} = \\frac{3}{2}k_B T \\) per molecule.","Root-Mean-Square Speed: Statistical measure of particle speed, \\( v_{rms} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3k_B T}{m_0}} \\)."],definitions:[
 {term:"Ideal Gas",definition:"A theoretical model of gas consisting of identical, randomly moving point-like molecules with negligible volume that exert no forces on each other except during perfectly elastic collisions.",symbol:"\\text{Ideal Gas}",unit:"\\text{No unit}",equation:"PV = nRT = N k_B T"},
 {term:"Gas Pressure",definition:"The macroscopic normal force exerted per unit area on the container walls resulting from countless microscopic collisions of gas molecules.",symbol:"P",unit:"\\mathrm{Pa} \\;(\\mathrm{N/m^2})",equation:"P = \\frac{F}{A} = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av}"},
 {term:"Elastic Collision with Container Wall",definition:"A rebound collision where total mechanical kinetic energy is conserved; a molecule of mass \\(m_0\\) strikes perpendicularly at velocity \\(v\\) and rebounds at \\(-v\\), transferring momentum \\(\\Delta p = 2m_0 v\\).",symbol:"\\Delta p = 2m_0 v",unit:"\\mathrm{kg\\cdot m/s}",equation:"P = \\frac{2 N m_0 v}{A \\Delta t}"},
@@ -386,7 +386,7 @@ equations:[
 {question:"Which equation represents the Combined Gas Law?", options:["\\( PV = nRT \\)","\\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)","\\( P_1 T_1 = P_2 T_2 \\)","\\( V_1 / P_1 = V_2 / P_2 \\)"], correctIndex:1, feedback:"The Combined Gas Law is \\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)."},
 {question:"Total kinetic energy \\( K \\) of \\( N \\) molecules is given by:", options:["\\( \\frac{3}{2} N k_B T \\)","\\( \\frac{1}{2} N k_B T \\)","\\( N m_0 v^2 \\)","\\( P V^2 \\)"], correctIndex:0, feedback:"Total kinetic energy is the average energy per molecule multiplied by \\( N \\): \\( \\frac{3}{2} N k_B T \\)."}
 ]},
-{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",worksheetUrl:"worksheets/ch1-l2-worksheet.pdf",games:[{topic:"First Law of Thermodynamics",url:"https://gemini.google.com/share/9e34579d87cd"}],title:"Chapter 1 Lesson 2: First Law of Thermodynamic",concepts:[],definitions:[
+{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",worksheetUrl:"worksheets/ch1-l2-worksheet.pdf",games:[{topic:"First Law of Thermodynamics",url:"https://gemini.google.com/share/9e34579d87cd"}],title:"Chapter 1 Lesson 2: First Law of Thermodynamic",concepts:["First Law of Thermodynamics: Conservation of energy in thermodynamic systems, \\( Q = W + \\Delta U \\).","Internal Energy (\\( U \\)): Depends solely on temperature for an ideal gas, \\( \\Delta U = \\frac{3}{2}nR\\Delta T \\).","Thermodynamic Work (\\( W \\)): Work done by expanding gas against external pressure, \\( W = P\\Delta V \\) (isobaric).","Special Processes: Isobaric (constant \\( P \\)), Isochoric (constant \\( V, W = 0 \\)), Isothermal (constant \\( T, \\Delta U = 0 \\)), and Adiabatic (\\( Q = 0 \\))."],definitions:[
 {term:"First Law of Thermodynamics",definition:"The principle of conservation of energy applied to thermodynamic systems, stating that the heat added to a system equals the work done by the system plus the increase in its internal energy.",symbol:"Q = W + \\Delta U",unit:"\\mathrm{J}",equation:"Q = W + \\Delta U"},
 {term:"Internal Energy",definition:"The total microscopic kinetic and potential energy associated with the random thermal motions and bonds of all molecules within the system.",symbol:"U",unit:"\\mathrm{J}",equation:"U = \\frac{3}{2}nRT \\quad (\\text{monatomic ideal gas})"},
 {term:"Change in Internal Energy",definition:"The net increase or decrease of the system's thermal energy store between initial and final thermodynamic states, depending solely on temperature change.",symbol:"\\Delta U",unit:"\\mathrm{J}",equation:"\\Delta U = U_f - U_i = \\frac{3}{2}nR\\Delta T"},
@@ -451,7 +451,7 @@ equations:[
 {question:"The internal energy \\( U \\) of an ideal gas is directly proportional to:", options:["Pressure","Volume","Temperature","Density"], correctIndex:2, feedback:"\\( U = \\frac{3}{2} nRT \\), making it directly proportional to absolute temperature."},
 {question:"If a gas expands such that its pressure changes linearly with volume, the work done is:", options:["\\( W = 0 \\)","\\( W = P \\Delta V \\)","\\( W = P_{av} \\Delta V \\)","\\( W = nRT \\)"], correctIndex:2, feedback:"You can use the average pressure for a linear process: \\( W = P_{av} \\Delta V \\)."}
 ]},
-{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",worksheetUrl:"worksheets/ch1-l3-worksheet.pdf",games:[{topic:"Heat Engine",url:"https://gemini.google.com/share/a6cfadc258e4"}],title:"Chapter 1 Lesson 3: Heat Engine",concepts:[],definitions:[
+{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",worksheetUrl:"worksheets/ch1-l3-worksheet.pdf",games:[{topic:"Heat Engine",url:"https://gemini.google.com/share/a6cfadc258e4"}],title:"Chapter 1 Lesson 3: Heat Engine",concepts:["Heat Engine: Converts thermal energy absorbed from a hot reservoir into mechanical work, releasing waste heat to a cold reservoir.","Energy Conservation: Heat absorbed equals mechanical work plus rejected heat: \\( Q_h = W_M + Q_c \\).","Carnot Cycle: An idealized reversible cycle giving the maximum theoretical efficiency: \\( e_c = 1 - \\frac{T_c}{T_h} \\).","Overall Efficiency: Combines Carnot efficiency and mechanical efficiency: \\( e = e_c \\times e_M = \\frac{W_U}{Q_h} \\)."],definitions:[
 {term:"Heat Engine",definition:"A thermodynamic system that operates continuously in a repeating thermodynamic cycle, absorbing heat from a high-temperature reservoir, converting part into mechanical work, and rejecting waste heat to a low-temperature sink.",symbol:"\\text{Engine}",unit:"\\text{No unit}",equation:"Q_h = W_M + Q_c"},
 {term:"Hot Reservoir (Source)",definition:"A thermal energy reservoir at constant elevated temperature \\(T_h\\) from which the working substance extracts heat energy \\(Q_h\\).",symbol:"Q_h, T_h",unit:"\\mathrm{J}, \\; \\mathrm{K}",equation:"Q_h = W_M + Q_c"},
 {term:"Cold Reservoir (Sink)",definition:"A low-temperature environment or coolant at temperature \\(T_c\\) that absorbs waste heat \\(Q_c\\) discharged by the engine.",symbol:"Q_c, T_c",unit:"\\mathrm{J}, \\; \\mathrm{K}",equation:"Q_c = Q_h - W_M"},
@@ -496,7 +496,7 @@ equations:[
 {question:"Why is a Carnot engine's efficiency always less than 100%?", options:["Because \\( T_h \\) is finite","Because \\( T_c \\) is always greater than 0 K","Because friction exists","Because \\( Q_c \\) is zero"], correctIndex:1, feedback:"Reaching 100% would require \\( T_c = 0\\text{K} \\), which violates the third law of thermodynamics."},
 {question:"If an engine absorbs 1000J of heat from the hot reservoir and does 400J of work, how much heat is rejected?", options:["400J","600J","1000J","1400J"], correctIndex:1, feedback:"Using \\( Q_h = W_M + Q_c \\), we find \\( 1000 = 400 + Q_c \\Rightarrow Q_c = 600\\text{J} \\)."}
 ]},
-{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",worksheetUrl:"worksheets/ch2-l1-worksheet.pdf",games:[{topic:"Superposition and Waves",url:"https://gemini.google.com/share/2e83761df9b7"}],title:"Chapter 2 Lesson 1: Superposition and Waves",concepts:[],definitions:[
+{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",worksheetUrl:"worksheets/ch2-l1-worksheet.pdf",games:[{topic:"Superposition and Waves",url:"https://gemini.google.com/share/2e83761df9b7"}],title:"Chapter 2 Lesson 1: Superposition and Waves",concepts:["Sinusoidal Wave: Propagates disturbances through space described by \\( y = a \\sin(\\omega t \\pm kx) \\).","Wave Characteristics: Wavelength (\\( \\lambda \\)), Period (\\( T \\)), Angular Frequency (\\( \\omega = 2\\pi/T \\)), and Wave Number (\\( k = 2\\pi/\\lambda \\)).","Wave Speed: Linear rate of propagation, \\( v = f\\lambda = \\frac{\\omega}{k} \\).","Superposition Principle: Net displacement equals the algebraic sum of individual wave displacements.","Standing Waves: Interference of identical opposite-traveling waves producing nodes (zero motion) and antinodes (maximum amplitude)."],definitions:[
 {term:"Sinusoidal Wave",definition:"A smooth periodic travelling disturbance that propagates through space described by a sinusoidal function of space and time.",symbol:"y(x, t)",unit:"\\mathrm{m}",equation:"y = a \\sin(\\omega t \\pm kx)"},
 {term:"Displacement",definition:"The instantaneous position offset of a medium particle from its undisturbed central equilibrium position.",symbol:"y",unit:"\\mathrm{m}",equation:"y = a \\sin(\\omega t \\pm kx)"},
 {term:"Wave Amplitude",definition:"The maximum absolute displacement of a wave oscillation measured from the center line of equilibrium.",symbol:"a",unit:"\\mathrm{m}",equation:"y_{max} = a"},
@@ -717,7 +717,7 @@ equations:[
 {question:"The resonant angular frequency of an LC circuit is:", options:["\\( \\sqrt{CL} \\)","\\( \\frac{1}{CL} \\)","\\( \\frac{1}{\\sqrt{CL}} \\)","\\( \\frac{C}{L} \\)"], correctIndex:2, feedback:"The frequency is given by \\( \\omega_0 = \\frac{1}{\\sqrt{CL}} \\)."},
 {question:"The force between two parallel current-carrying wires depends inversely on:", options:["The length of the wires","The currents \\(I_1\\) and \\(I_2\\)","The permeability \\(\\mu_0\\)","The distance between them \\(a\\)"], correctIndex:3, feedback:"\\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\), so it is inversely proportional to distance \\(a\\)."}
 ]},
-{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",worksheetUrl:"worksheets/ch3-l2-worksheet.pdf",games:[{topic:"Alternating Current",url:"https://gemini.google.com/share/0c850ab5a53b"}],title:"Chapter 3 Lesson 2: Alternating Current",concepts:["RLC Series Circuit Diagram<br><img src='images/ch3-l2-rlc-circuit.png' style='width:100%; border-radius:8px; margin-top:10px;'>"],definitions:[
+{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",worksheetUrl:"worksheets/ch3-l2-worksheet.pdf",games:[{topic:"Alternating Current",url:"https://gemini.google.com/share/0c850ab5a53b"}],title:"Chapter 3 Lesson 2: Alternating Current",concepts:["Alternating Current & Voltage: Sinusoidal waveforms characterized by peak and RMS values: \\( I = \\frac{I_m}{\\sqrt{2}} \\), \\( V = \\frac{V_m}{\\sqrt{2}} \\).","Reactance in AC Circuits: Inductors resist AC via inductive reactance \\( Z_L = L\\omega \\); capacitors resist via capacitive reactance \\( Z_C = \\frac{1}{C\\omega} \\).","RLC Series Impedance: Total opposition to current given by \\( Z = \\sqrt{R^2 + (Z_L - Z_C)^2} \\), with Ohm's law \\( I = \\frac{V}{Z} \\).","Phase Angle & Power Factor: Phase difference \\( \\tan\\phi = \\frac{Z_L - Z_C}{R} \\), with true average power \\( P = VI\\cos\\phi \\).","RLC Series Circuit Diagram<br><img src='images/ch3-l2-rlc-circuit.png' style='width:100%; border-radius:8px; margin-top:10px;'>"],definitions:[
 {term:"Alternating Current (AC)",definition:"Electric current that periodically reverses its direction and continuously fluctuates in magnitude sinusoidally with time.",symbol:"i(t)",unit:"\\mathrm{A}",equation:"i = i_m \\sin(\\omega t + \\phi_0)"},
 {term:"Peak Current (Current Amplitude)",definition:"The maximum instantaneous current magnitude reached in either half-cycle of an AC waveform.",symbol:"i_m \\text{ or } I_m",unit:"\\mathrm{A}",equation:"I_m = \\sqrt{2} \\times I"},
 {term:"Root Mean Square Current (RMS Current)",definition:"The effective DC-equivalent value of alternating current that produces the identical heating power in a given resistor.",symbol:"I",unit:"\\mathrm{A}",equation:"I = \\frac{I_m}{\\sqrt{2}} \\approx 0.7071 \\, I_m"},
@@ -1509,7 +1509,6 @@ function loadLessons(grade) {
                 const card = document.createElement('div');
                 card.className = 'lesson-card';
                 card.setAttribute('data-lesson-id', lesson.id);
-                card.setAttribute('onclick', `openLessonDetail('${lesson.id}')`);
                 card.style.setProperty('--chapter-accent', theme.color || '#0288d1');
                 card.style.setProperty('--chapter-gradient', theme.gradient || 'linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)');
                 card.style.setProperty('--chapter-shadow', theme.shadow || 'rgba(2, 136, 209, 0.2)');
@@ -1632,6 +1631,7 @@ function loadLessonDetail(lessonOrId) {
         return;
     }
     currentLesson = lesson;
+    window.currentSelectedLessonId = lesson.id;
     showView(viewLessonDetail);
     document.getElementById('lesson-detail-title').innerText = lesson.title;
     
@@ -2678,7 +2678,7 @@ function loadLessonDetail(lessonOrId) {
 
     showView(viewLessonDetail);
 
-    // Pre-populate and hydrate all tabs immediately for instant 0ms access without blank screens
+    // Pre-populate and hydrate all tabs immediately
     currentFlashcardIndex = 0;
     if (typeof updateFlashcard === 'function') updateFlashcard();
     if (typeof initQuiz === 'function') initQuiz();
@@ -2697,8 +2697,6 @@ function loadLessonDetail(lessonOrId) {
                               Boolean(lesson.gifUrl);
     switchTab(hasSummaryContent ? 'summary' : 'equations');
 }
-
-window.loadLessonDetail = loadLessonDetail;
 
 // --- Worksheet Render Function ---
 function renderWorksheet(lesson) {
@@ -2862,6 +2860,8 @@ function renderGame(lesson) {
 // --- Tabs Logic ---
 
 function switchTab(targetName) {
+    if (!targetName) return;
+
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
     
@@ -2900,24 +2900,17 @@ function switchTab(targetName) {
     } else if (targetName === 'quiz') {
         const qContainer = document.getElementById('quiz-question-container');
         const rContainer = document.getElementById('quiz-results-container');
-        if (qContainer && rContainer && qContainer.classList.contains('hidden') && rContainer.classList.contains('hidden')) {
+        const isQuizActive = (qContainer && !qContainer.classList.contains('hidden')) || 
+                             (rContainer && !rContainer.classList.contains('hidden'));
+        if (!isQuizActive) {
             initQuiz();
         }
     } else if (targetName === 'worksheet') {
-        const wsEl = document.getElementById('lesson-worksheet');
-        if (wsEl && !wsEl.hasChildNodes()) {
-            renderWorksheet(currentLesson);
-        }
+        renderWorksheet(currentLesson);
     } else if (targetName === 'game') {
-        const gameEl = document.getElementById('lesson-game');
-        if (gameEl && !gameEl.hasChildNodes()) {
-            renderGame(currentLesson);
-        }
+        renderGame(currentLesson);
     }
 }
-
-window.switchTab = switchTab;
-window.appSwitchTab = switchTab;
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2927,110 +2920,177 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 
 // --- Flashcards Logic ---
-const fcCard = document.getElementById('active-flashcard');
-const fcFrontText = document.getElementById('fc-front-text');
-const fcBackText = document.getElementById('fc-back-text');
-const fcCounter = document.getElementById('fc-counter');
-
 function updateFlashcard() {
     if (!currentLesson || !currentLesson.flashcards || !currentLesson.flashcards.length) return;
-    fcCard.classList.remove('flipped');
+    const card = document.getElementById('active-flashcard');
+    const front = document.getElementById('fc-front-text');
+    const back = document.getElementById('fc-back-text');
+    const counter = document.getElementById('fc-counter');
+    if (!card || !front || !back || !counter) return;
+
+    card.classList.remove('flipped');
     const fc = currentLesson.flashcards[currentFlashcardIndex];
-    fcFrontText.innerText = fc.front;
-    fcBackText.innerHTML = fc.back;
-    fcCounter.innerText = `${currentFlashcardIndex + 1} / ${currentLesson.flashcards.length}`;
-    typesetMath([fcFrontText, fcBackText]);
+    if (!fc) return;
+    front.innerText = fc.front || '';
+    back.innerHTML = fc.back || '';
+    counter.innerText = `${currentFlashcardIndex + 1} / ${currentLesson.flashcards.length}`;
+    typesetMath([front, back]);
 }
 
-document.getElementById('fc-flip-btn').addEventListener('click', () => fcCard.classList.toggle('flipped'));
-fcCard.addEventListener('click', () => fcCard.classList.toggle('flipped'));
-document.getElementById('fc-prev').addEventListener('click', () => { if (currentFlashcardIndex > 0) { currentFlashcardIndex--; updateFlashcard(); }});
-document.getElementById('fc-next').addEventListener('click', () => { if (currentFlashcardIndex < currentLesson.flashcards.length - 1) { currentFlashcardIndex++; updateFlashcard(); }});
+const fcFlipBtn = document.getElementById('fc-flip-btn');
+if (fcFlipBtn) {
+    fcFlipBtn.addEventListener('click', () => {
+        const card = document.getElementById('active-flashcard');
+        if (card) card.classList.toggle('flipped');
+    });
+}
+const activeFcCard = document.getElementById('active-flashcard');
+if (activeFcCard) {
+    activeFcCard.addEventListener('click', () => {
+        activeFcCard.classList.toggle('flipped');
+    });
+}
+const fcPrevBtn = document.getElementById('fc-prev');
+if (fcPrevBtn) {
+    fcPrevBtn.addEventListener('click', () => {
+        if (currentFlashcardIndex > 0) {
+            currentFlashcardIndex--;
+            updateFlashcard();
+        }
+    });
+}
+const fcNextBtn = document.getElementById('fc-next');
+if (fcNextBtn) {
+    fcNextBtn.addEventListener('click', () => {
+        if (currentLesson && currentLesson.flashcards && currentFlashcardIndex < currentLesson.flashcards.length - 1) {
+            currentFlashcardIndex++;
+            updateFlashcard();
+        }
+    });
+}
 
 // --- Quiz Logic ---
 function initQuiz() {
     currentQuizIndex = 0;
     quizScore = 0;
-    if(!currentLesson.quiz || currentLesson.quiz.length === 0) {
-        document.querySelector('.tab-btn[data-target="quiz"]').classList.add('hidden');
+    const quizTabBtn = document.querySelector('.tab-btn[data-target="quiz"]');
+    if (!currentLesson || !currentLesson.quiz || currentLesson.quiz.length === 0) {
+        if (quizTabBtn) quizTabBtn.classList.add('hidden');
         return;
     }
-    document.querySelector('.tab-btn[data-target="quiz"]').classList.remove('hidden');
-    document.getElementById('quiz-question-container').classList.remove('hidden');
-    document.getElementById('quiz-results-container').classList.add('hidden');
+    if (quizTabBtn) quizTabBtn.classList.remove('hidden');
+    const qContainer = document.getElementById('quiz-question-container');
+    const rContainer = document.getElementById('quiz-results-container');
+    if (qContainer) qContainer.classList.remove('hidden');
+    if (rContainer) rContainer.classList.add('hidden');
     loadQuizQuestion();
 }
 
 function loadQuizQuestion() {
+    if (!currentLesson || !currentLesson.quiz || !currentLesson.quiz[currentQuizIndex]) return;
     const q = currentLesson.quiz[currentQuizIndex];
-    document.getElementById('quiz-progress-text').innerText = `Question ${currentQuizIndex + 1} of ${currentLesson.quiz.length}`;
-    const qTextEl = document.getElementById('quiz-question-text');
-    qTextEl.innerHTML = q.question;
-    const optionsContainer = document.getElementById('quiz-options');
-    optionsContainer.innerHTML = '';
-    const feedbackEl = document.getElementById('quiz-feedback');
-    feedbackEl.classList.add('hidden');
-    feedbackEl.className = 'quiz-feedback hidden';
-    document.getElementById('quiz-next-btn').classList.add('hidden');
+    const progressEl = document.getElementById('quiz-progress-text');
+    if (progressEl) progressEl.innerText = `Question ${currentQuizIndex + 1} of ${currentLesson.quiz.length}`;
     
-    q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'quiz-option';
-        btn.innerHTML = opt;
-        btn.addEventListener('click', () => handleQuizAnswer(idx, btn));
-        optionsContainer.appendChild(btn);
-    });
+    const qTextEl = document.getElementById('quiz-question-text');
+    if (qTextEl) qTextEl.innerHTML = q.question || '';
+    
+    const optionsContainer = document.getElementById('quiz-options');
+    if (optionsContainer) {
+        optionsContainer.innerHTML = '';
+        (q.options || []).forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-option';
+            btn.innerHTML = opt;
+            btn.addEventListener('click', () => handleQuizAnswer(idx, btn));
+            optionsContainer.appendChild(btn);
+        });
+    }
+    
+    const feedbackEl = document.getElementById('quiz-feedback');
+    if (feedbackEl) {
+        feedbackEl.classList.add('hidden');
+        feedbackEl.className = 'quiz-feedback hidden';
+    }
+    
+    const nextBtn = document.getElementById('quiz-next-btn');
+    if (nextBtn) nextBtn.classList.add('hidden');
+    
     typesetMath([qTextEl, optionsContainer]);
 }
 
 function handleQuizAnswer(selectedIndex, btnElement) {
+    if (!currentLesson || !currentLesson.quiz || !currentLesson.quiz[currentQuizIndex]) return;
     const q = currentLesson.quiz[currentQuizIndex];
     const optionsContainer = document.getElementById('quiz-options');
-    Array.from(optionsContainer.children).forEach((child, idx) => {
-        child.disabled = true;
-        if (idx === q.correctIndex) child.classList.add('correct');
-        else if (idx === selectedIndex) child.classList.add('wrong');
-    });
-    const feedbackEl = document.getElementById('quiz-feedback');
-    feedbackEl.classList.remove('hidden');
-    feedbackEl.innerHTML = q.feedback;
-    if (selectedIndex === q.correctIndex) {
-        quizScore++;
-        feedbackEl.classList.add('correct-feedback');
-    } else {
-        feedbackEl.classList.add('wrong-feedback');
+    if (optionsContainer) {
+        Array.from(optionsContainer.children).forEach((child, idx) => {
+            child.disabled = true;
+            if (idx === q.correctIndex) child.classList.add('correct');
+            else if (idx === selectedIndex) child.classList.add('wrong');
+        });
     }
-    document.getElementById('quiz-next-btn').classList.remove('hidden');
-    typesetMath([feedbackEl]);
+    const feedbackEl = document.getElementById('quiz-feedback');
+    if (feedbackEl) {
+        feedbackEl.classList.remove('hidden');
+        feedbackEl.innerHTML = q.feedback || '';
+        if (selectedIndex === q.correctIndex) {
+            quizScore++;
+            feedbackEl.classList.add('correct-feedback');
+        } else {
+            feedbackEl.classList.add('wrong-feedback');
+        }
+        typesetMath([feedbackEl]);
+    }
+    const nextBtn = document.getElementById('quiz-next-btn');
+    if (nextBtn) nextBtn.classList.remove('hidden');
 }
-
-document.getElementById('quiz-next-btn').addEventListener('click', () => {
-    currentQuizIndex++;
-    if (currentQuizIndex < currentLesson.quiz.length) loadQuizQuestion();
-    else showQuizResults();
-});
 
 function showQuizResults() {
-    document.getElementById('quiz-question-container').classList.add('hidden');
-    const resultsContainer = document.getElementById('quiz-results-container');
-    resultsContainer.classList.remove('hidden');
-    document.getElementById('quiz-score').innerText = quizScore;
-    document.getElementById('quiz-total').innerText = currentLesson.quiz.length;
-    const percentage = (quizScore / currentLesson.quiz.length) * 100;
+    const qContainer = document.getElementById('quiz-question-container');
+    const rContainer = document.getElementById('quiz-results-container');
+    if (qContainer) qContainer.classList.add('hidden');
+    if (rContainer) rContainer.classList.remove('hidden');
+    
+    const scoreEl = document.getElementById('quiz-score');
+    const totalEl = document.getElementById('quiz-total');
+    if (scoreEl) scoreEl.innerText = quizScore;
+    if (totalEl) totalEl.innerText = (currentLesson && currentLesson.quiz) ? currentLesson.quiz.length : 0;
+    
+    const total = (currentLesson && currentLesson.quiz) ? currentLesson.quiz.length : 1;
+    const percentage = (quizScore / total) * 100;
     const msgEl = document.getElementById('quiz-result-message');
-    if (percentage === 100) msgEl.innerText = "Excellent! You mastered this topic.";
-    else if (percentage >= 50) msgEl.innerText = "Good job! Keep practicing to get a perfect score.";
-    else msgEl.innerText = "You might want to review the summary and flashcards before trying again.";
+    if (msgEl) {
+        if (percentage === 100) msgEl.innerText = "Excellent! You mastered this topic.";
+        else if (percentage >= 50) msgEl.innerText = "Good job! Keep practicing to get a perfect score.";
+        else msgEl.innerText = "You might want to review the summary and flashcards before trying again.";
+    }
 }
 
-document.getElementById('quiz-retry-btn').addEventListener('click', initQuiz);
+const quizNextBtn = document.getElementById('quiz-next-btn');
+if (quizNextBtn) {
+    quizNextBtn.addEventListener('click', () => {
+        currentQuizIndex++;
+        if (currentLesson && currentLesson.quiz && currentQuizIndex < currentLesson.quiz.length) {
+            loadQuizQuestion();
+        } else {
+            showQuizResults();
+        }
+    });
+}
+
+const quizRetryBtn = document.getElementById('quiz-retry-btn');
+if (quizRetryBtn) {
+    quizRetryBtn.addEventListener('click', initQuiz);
+}
 
 window.addEventListener('scroll', () => {
-    if (viewLessonDetail.classList.contains('active')) {
+    if (viewLessonDetail && viewLessonDetail.classList.contains('active')) {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
-        document.getElementById('reading-progress').style.width = height <= 0 ? "100%" : scrolled + "%";
+        const prog = document.getElementById('reading-progress');
+        if (prog) prog.style.width = height <= 0 ? "100%" : scrolled + "%";
     }
 });
 
@@ -3172,25 +3232,31 @@ if (aiSendBtn && aiUserInput) {
     });
 }
 
-// --- Global Exports & Pending Actions Resolution ---
+// --- Global Exports ---
+window.loadLessons = loadLessons;
+window.appLoadLessons = loadLessons;
+window.renderLessonsList = loadLessons;
+window.executeLessonRender = loadLessons;
+
 window.loadLessonDetail = loadLessonDetail;
+window.appLoadLessonDetail = loadLessonDetail;
+window.openLessonDetail = loadLessonDetail;
+
 window.switchTab = switchTab;
 window.appSwitchTab = switchTab;
+
+window.showDashboard = showDashboard;
+window.appShowDashboard = showDashboard;
+
+window.showLessonsView = showLessonsView;
+window.appShowLessonsView = showLessonsView;
+
 window.updateFlashcard = updateFlashcard;
 window.initQuiz = initQuiz;
 window.renderWorksheet = renderWorksheet;
 window.renderGame = renderGame;
 window.physicsData = data;
 window.appData = data;
-
-const originalOpenLessonDetail = window.openLessonDetail;
-window.openLessonDetail = function(lessonOrId) {
-    if (typeof lessonOrId === 'string' && typeof originalOpenLessonDetail === 'function') {
-        originalOpenLessonDetail(lessonOrId);
-    } else {
-        loadLessonDetail(lessonOrId);
-    }
-};
 
 // Resolve any actions clicked before script finished evaluating
 if (window.pendingLessonId) {
