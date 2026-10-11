@@ -974,6 +974,201 @@ quiz:[
 window.physicsData = data;
 window.appData = data;
 
+const CHAPTER_THEMES = {
+    // Grade 9
+    "g9-l1": {
+        color: "#0288d1",
+        gradient: "linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)",
+        bgLight: "#e0f7fa",
+        borderLight: "#b2ebf2",
+        shadow: "rgba(2, 136, 209, 0.22)",
+        icon: "fa-scale-balanced",
+        subtitle: "Moments, Parallel Forces, Couple & Equilibrium",
+        chips: ["Moments", "Couples", "Equilibrium"]
+    },
+    "g9-l2": {
+        color: "#d97706",
+        gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+        bgLight: "#fef3c7",
+        borderLight: "#fde68a",
+        shadow: "rgba(217, 119, 6, 0.22)",
+        icon: "fa-gears",
+        subtitle: "Levers, Pulleys, Inclined Plane, Gears & Wheel and Axle",
+        chips: ["Levers", "Pulleys", "Incline Plane", "Gears", "Wheel & Axle"]
+    },
+    "g9-l3": {
+        color: "#4f46e5",
+        gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+        bgLight: "#e0e7ff",
+        borderLight: "#c7d2fe",
+        shadow: "rgba(79, 70, 229, 0.22)",
+        icon: "fa-bolt-lightning",
+        subtitle: "Current, Voltage, Resistance, Ohm's Law & Electric Power",
+        chips: ["Ohm's Law", "Power Formulas", "Domestic Wiring"]
+    },
+    "g9-l4": {
+        color: "#e11d48",
+        gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)",
+        bgLight: "#ffe4e6",
+        borderLight: "#fecdd3",
+        shadow: "rgba(225, 29, 72, 0.22)",
+        icon: "fa-magnet",
+        subtitle: "Magnetic Field Lines, Solenoids & Wire Deflection",
+        chips: ["B-Field", "Solenoid Coil", "Wire in Field"]
+    },
+    "g9-l5": {
+        color: "#059669",
+        gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+        bgLight: "#d1fae5",
+        borderLight: "#a7f3d0",
+        shadow: "rgba(5, 150, 105, 0.22)",
+        icon: "fa-lightbulb",
+        subtitle: "Reflection, Pinhole Camera, Refraction, Snell's Law & Mirrors",
+        chips: ["Reflection", "Snell's Law", "Lenses & Mirrors"]
+    },
+    // Grade 12
+    "g12-l1": {
+        color: "#0d9488",
+        gradient: "linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)",
+        bgLight: "#ccfbf1",
+        borderLight: "#99f6e4",
+        shadow: "rgba(13, 148, 136, 0.22)",
+        icon: "fa-wind",
+        subtitle: "Gas Laws, Pressure, Molecular Kinetic Energy & RMS Speed",
+        chips: ["Ideal Gas Laws", "Molecular Speed", "Pressure"]
+    },
+    "g12-l2": {
+        color: "#ea580c",
+        gradient: "linear-gradient(135deg, #f97316 0%, #c2410c 100%)",
+        bgLight: "#ffedd5",
+        borderLight: "#fed7aa",
+        shadow: "rgba(234, 88, 12, 0.22)",
+        icon: "fa-fire-flame-curved",
+        subtitle: "First Law of Thermodynamics, Work Done & Thermodynamic Processes",
+        chips: ["First Law", "Work Done", "Heat Capacity"]
+    },
+    "g12-l3": {
+        color: "#dc2626",
+        gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
+        bgLight: "#fee2e2",
+        borderLight: "#fecaca",
+        shadow: "rgba(220, 38, 38, 0.22)",
+        icon: "fa-gauge-high",
+        subtitle: "Carnot Engine, Thermal Efficiency & Heat Reservoirs",
+        chips: ["Carnot Cycle", "Efficiency", "Heat Transfer"]
+    },
+    "g12-l4": {
+        color: "#0284c7",
+        gradient: "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)",
+        bgLight: "#e0f2fe",
+        borderLight: "#bae6fd",
+        shadow: "rgba(2, 132, 199, 0.22)",
+        icon: "fa-water",
+        subtitle: "Mechanical Waves, Wave Speed, Frequency & Sound Velocity",
+        chips: ["Wave Equation", "Transverse Waves", "Sound Velocity"]
+    },
+    "g12-waves": {
+        color: "#0284c7",
+        gradient: "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)",
+        bgLight: "#e0f2fe",
+        borderLight: "#bae6fd",
+        shadow: "rgba(2, 132, 199, 0.22)",
+        icon: "fa-water",
+        subtitle: "Mechanical Waves, Wave Speed, Frequency & Sound Velocity",
+        chips: ["Wave Equation", "Transverse Waves", "Sound Velocity"]
+    },
+    "g12-interf": {
+        color: "#7c3aed",
+        gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
+        bgLight: "#ede9fe",
+        borderLight: "#ddd6fe",
+        shadow: "rgba(124, 58, 237, 0.22)",
+        icon: "fa-braille",
+        subtitle: "Wave Superposition, Young's Double-Slit & Single-Slit Diffraction",
+        chips: ["Double Slit", "Fringe Spacing", "Diffraction"]
+    },
+    "g12-standing": {
+        color: "#4f46e5",
+        gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+        bgLight: "#e0e7ff",
+        borderLight: "#c7d2fe",
+        shadow: "rgba(79, 70, 229, 0.22)",
+        icon: "fa-wave-square",
+        subtitle: "Nodes, Antinodes & Resonance in Strings and Pipes",
+        chips: ["Standing Waves", "Harmonics", "Resonance"]
+    },
+    "g12-l5": {
+        color: "#be123c",
+        gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
+        bgLight: "#ffe4e6",
+        borderLight: "#fecdd3",
+        shadow: "rgba(190, 18, 60, 0.22)",
+        icon: "fa-compass",
+        subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
+        chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"]
+    },
+    "g12-mag": {
+        color: "#be123c",
+        gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
+        bgLight: "#ffe4e6",
+        borderLight: "#fecdd3",
+        shadow: "rgba(190, 18, 60, 0.22)",
+        icon: "fa-compass",
+        subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
+        chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"]
+    },
+    "g12-l6": {
+        color: "#2563eb",
+        gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+        bgLight: "#eff6ff",
+        borderLight: "#bfdbfe",
+        shadow: "rgba(37, 99, 235, 0.22)",
+        icon: "fa-wave-square",
+        subtitle: "AC Waveforms, RMS Values, RLC Series Impedance & Transformers",
+        chips: ["AC Current", "RLC Circuit", "Impedance", "Transformers"]
+    },
+    "g12-ch4-l1": {
+        color: "#059669",
+        gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+        bgLight: "#d1fae5",
+        borderLight: "#a7f3d0",
+        shadow: "rgba(5, 150, 105, 0.22)",
+        icon: "fa-microchip",
+        subtitle: "Semiconductor Doping, P-N Junction & Transistor Amplification",
+        chips: ["P-N Junction", "Transistors", "Current Gain"]
+    },
+    "g12-ch4-l2": {
+        color: "#9333ea",
+        gradient: "linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)",
+        bgLight: "#f3e8ff",
+        borderLight: "#e9d5ff",
+        shadow: "rgba(147, 51, 234, 0.22)",
+        icon: "fa-clock-rotate-left",
+        subtitle: "Michelson-Morley, Lorentz Transformation & Special Relativity",
+        chips: ["Lorentz Factor", "Relativity", "Speed of Light"]
+    },
+    "g12-ch4-l3": {
+        color: "#2563eb",
+        gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+        bgLight: "#dbeafe",
+        borderLight: "#bfdbfe",
+        shadow: "rgba(37, 99, 235, 0.22)",
+        icon: "fa-atom",
+        subtitle: "Cathode Rays, Thomson e/m, Photoelectric Effect & Bohr Model",
+        chips: ["Thomson e/m", "Photoelectric", "Bohr Atom"]
+    }
+};
+window.CHAPTER_THEMES = CHAPTER_THEMES;
+
+const DEFAULT_PALETTES = [
+    { color: "#0288d1", gradient: "linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)", bgLight: "#e0f7fa", borderLight: "#b2ebf2", shadow: "rgba(2, 136, 209, 0.2)", icon: "fa-atom" },
+    { color: "#d97706", gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)", bgLight: "#fef3c7", borderLight: "#fde68a", shadow: "rgba(217, 119, 6, 0.2)", icon: "fa-bolt" },
+    { color: "#7c3aed", gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)", bgLight: "#ede9fe", borderLight: "#ddd6fe", shadow: "rgba(124, 58, 237, 0.2)", icon: "fa-dna" },
+    { color: "#059669", gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)", bgLight: "#d1fae5", borderLight: "#a7f3d0", shadow: "rgba(5, 150, 105, 0.2)", icon: "fa-flask" },
+    { color: "#e11d48", gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)", bgLight: "#ffe4e6", borderLight: "#fecdd3", shadow: "rgba(225, 29, 72, 0.2)", icon: "fa-compass" }
+];
+window.DEFAULT_PALETTES = DEFAULT_PALETTES;
+
 // --- App State ---
 let currentGrade = null;
 let currentLesson = null;
@@ -1179,12 +1374,25 @@ function showView(viewElement) {
     window.scrollTo(0, 0);
 }
 
-function showDashboard() {
+function showDashboard(pushRoute = true) {
+    if (pushRoute && window.location.hash !== '' && window.location.hash !== '#') {
+        try {
+            history.pushState({ view: 'dashboard' }, '', window.location.pathname + window.location.search);
+        } catch (e) {
+            window.location.hash = '';
+        }
+    }
     showView(viewDashboard);
 }
 
-function showLessonsView() {
-    showView(viewLessons);
+function showLessonsView(pushRoute = true) {
+    if (currentGrade) {
+        loadLessons(currentGrade, pushRoute);
+    } else if (window.pendingGrade) {
+        loadLessons(window.pendingGrade, pushRoute);
+    } else {
+        loadLessons('9', pushRoute);
+    }
 }
 
 window.showView = showView;
@@ -1193,9 +1401,9 @@ window.appShowDashboard = showDashboard;
 window.showLessonsView = showLessonsView;
 window.appShowLessonsView = showLessonsView;
 
-if (homeBtn) homeBtn.addEventListener('click', showDashboard);
-if (backToLessonsBtn) backToLessonsBtn.addEventListener('click', showLessonsView);
-if (backToDashboardBtn) backToDashboardBtn.addEventListener('click', showDashboard);
+if (homeBtn) homeBtn.addEventListener('click', () => showDashboard(true));
+if (backToLessonsBtn) backToLessonsBtn.addEventListener('click', () => showLessonsView(true));
+if (backToDashboardBtn) backToDashboardBtn.addEventListener('click', () => showDashboard(true));
 
 // Expose globally early
 window.loadLessons = loadLessons;
@@ -1246,217 +1454,24 @@ document.addEventListener('click', function(e) {
     }
 });
 
-
-
-const CHAPTER_THEMES = {
-    // Grade 9
-    "g9-l1": {
-        color: "#0288d1",
-        gradient: "linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)",
-        bgLight: "#e0f7fa",
-        borderLight: "#b2ebf2",
-        shadow: "rgba(2, 136, 209, 0.22)",
-        icon: "fa-scale-balanced",
-        subtitle: "Moments, Parallel Forces, Couple & Equilibrium",
-        chips: ["Moments", "Couples", "Equilibrium"]
-    },
-    "g9-l2": {
-        color: "#d97706",
-        gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
-        bgLight: "#fef3c7",
-        borderLight: "#fde68a",
-        shadow: "rgba(217, 119, 6, 0.22)",
-        icon: "fa-gears",
-        subtitle: "Levers, Pulleys, Inclined Plane, Gears & Wheel and Axle",
-        chips: ["Levers", "Pulleys", "Incline Plane", "Gears", "Wheel & Axle"]
-    },
-    "g9-l3": {
-        color: "#4f46e5",
-        gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
-        bgLight: "#e0e7ff",
-        borderLight: "#c7d2fe",
-        shadow: "rgba(79, 70, 229, 0.22)",
-        icon: "fa-bolt-lightning",
-        subtitle: "Current, Voltage, Resistance, Ohm's Law & Electric Power",
-        chips: ["Ohm's Law", "Power Formulas", "Domestic Wiring"]
-    },
-    "g9-l4": {
-        color: "#e11d48",
-        gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)",
-        bgLight: "#ffe4e6",
-        borderLight: "#fecdd3",
-        shadow: "rgba(225, 29, 72, 0.22)",
-        icon: "fa-magnet",
-        subtitle: "Magnetic Field Lines, Solenoids & Wire Deflection",
-        chips: ["B-Field", "Solenoid Coil", "Wire in Field"]
-    },
-    "g9-l5": {
-        color: "#059669",
-        gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
-        bgLight: "#d1fae5",
-        borderLight: "#a7f3d0",
-        shadow: "rgba(5, 150, 105, 0.22)",
-        icon: "fa-lightbulb",
-        subtitle: "Reflection, Pinhole Camera, Refraction, Snell's Law & Mirrors",
-        chips: ["Reflection", "Snell's Law", "Lenses & Mirrors"]
-    },
-    // Grade 12
-    "g12-l1": {
-        color: "#0d9488",
-        gradient: "linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)",
-        bgLight: "#ccfbf1",
-        borderLight: "#99f6e4",
-        shadow: "rgba(13, 148, 136, 0.22)",
-        icon: "fa-wind",
-        subtitle: "Gas Laws, Pressure, Molecular Kinetic Energy & RMS Speed",
-        chips: ["Ideal Gas Laws", "Molecular Speed", "Pressure"]
-    },
-    "g12-l2": {
-        color: "#ea580c",
-        gradient: "linear-gradient(135deg, #f97316 0%, #c2410c 100%)",
-        bgLight: "#ffedd5",
-        borderLight: "#fed7aa",
-        shadow: "rgba(234, 88, 12, 0.22)",
-        icon: "fa-fire-flame-curved",
-        subtitle: "First Law of Thermodynamics, Work Done & Thermodynamic Processes",
-        chips: ["First Law", "Work Done", "Heat Capacity"]
-    },
-    "g12-l3": {
-        color: "#dc2626",
-        gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
-        bgLight: "#fee2e2",
-        borderLight: "#fecaca",
-        shadow: "rgba(220, 38, 38, 0.22)",
-        icon: "fa-gauge-high",
-        subtitle: "Carnot Engine, Thermal Efficiency & Heat Reservoirs",
-        chips: ["Carnot Cycle", "Efficiency", "Heat Transfer"]
-    },
-    "g12-l4": {
-        color: "#0284c7",
-        gradient: "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)",
-        bgLight: "#e0f2fe",
-        borderLight: "#bae6fd",
-        shadow: "rgba(2, 132, 199, 0.22)",
-        icon: "fa-water",
-        subtitle: "Mechanical Waves, Wave Speed, Frequency & Sound Velocity",
-        chips: ["Wave Equation", "Transverse Waves", "Sound Velocity"]
-    },
-    "g12-waves": {
-        color: "#0284c7",
-        gradient: "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)",
-        bgLight: "#e0f2fe",
-        borderLight: "#bae6fd",
-        shadow: "rgba(2, 132, 199, 0.22)",
-        icon: "fa-water",
-        subtitle: "Mechanical Waves, Wave Speed, Frequency & Sound Velocity",
-        chips: ["Wave Equation", "Transverse Waves", "Sound Velocity"]
-    },
-    "g12-interf": {
-        color: "#7c3aed",
-        gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
-        bgLight: "#ede9fe",
-        borderLight: "#ddd6fe",
-        shadow: "rgba(124, 58, 237, 0.22)",
-        icon: "fa-braille",
-        subtitle: "Wave Superposition, Young's Double-Slit & Single-Slit Diffraction",
-        chips: ["Double Slit", "Fringe Spacing", "Diffraction"]
-    },
-    "g12-standing": {
-        color: "#4f46e5",
-        gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
-        bgLight: "#e0e7ff",
-        borderLight: "#c7d2fe",
-        shadow: "rgba(79, 70, 229, 0.22)",
-        icon: "fa-wave-square",
-        subtitle: "Nodes, Antinodes & Resonance in Strings and Pipes",
-        chips: ["Standing Waves", "Harmonics", "Resonance"]
-    },
-    "g12-l5": {
-        color: "#be123c",
-        gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
-        bgLight: "#ffe4e6",
-        borderLight: "#fecdd3",
-        shadow: "rgba(190, 18, 60, 0.22)",
-        icon: "fa-compass",
-        subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
-        chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"]
-    },
-    "g12-mag": {
-        color: "#be123c",
-        gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
-        bgLight: "#ffe4e6",
-        borderLight: "#fecdd3",
-        shadow: "rgba(190, 18, 60, 0.22)",
-        icon: "fa-compass",
-        subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
-        chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"]
-    },
-    "g12-l5": {
-        color: "#be123c",
-        gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
-        bgLight: "#ffe4e6",
-        borderLight: "#fecdd3",
-        shadow: "rgba(190, 18, 60, 0.22)",
-        icon: "fa-compass",
-        subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
-        chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"]
-    },
-    "g12-l6": {
-        color: "#2563eb",
-        gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
-        bgLight: "#eff6ff",
-        borderLight: "#bfdbfe",
-        shadow: "rgba(37, 99, 235, 0.22)",
-        icon: "fa-wave-square",
-        subtitle: "AC Waveforms, RMS Values, RLC Series Impedance & Transformers",
-        chips: ["AC Current", "RLC Circuit", "Impedance", "Transformers"]
-    },
-    "g12-ch4-l1": {
-        color: "#059669",
-        gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
-        bgLight: "#d1fae5",
-        borderLight: "#a7f3d0",
-        shadow: "rgba(5, 150, 105, 0.22)",
-        icon: "fa-microchip",
-        subtitle: "Semiconductor Doping, P-N Junction & Transistor Amplification",
-        chips: ["P-N Junction", "Transistors", "Current Gain"]
-    },
-    "g12-ch4-l2": {
-        color: "#9333ea",
-        gradient: "linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)",
-        bgLight: "#f3e8ff",
-        borderLight: "#e9d5ff",
-        shadow: "rgba(147, 51, 234, 0.22)",
-        icon: "fa-clock-rotate-left",
-        subtitle: "Michelson-Morley, Lorentz Transformation & Special Relativity",
-        chips: ["Lorentz Factor", "Relativity", "Speed of Light"]
-    },
-    "g12-ch4-l3": {
-        color: "#2563eb",
-        gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
-        bgLight: "#dbeafe",
-        borderLight: "#bfdbfe",
-        shadow: "rgba(37, 99, 235, 0.22)",
-        icon: "fa-atom",
-        subtitle: "Cathode Rays, Thomson e/m, Photoelectric Effect & Bohr Model",
-        chips: ["Thomson e/m", "Photoelectric", "Bohr Atom"]
-    }
-};
-
-const DEFAULT_PALETTES = [
-    { color: "#0288d1", gradient: "linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)", bgLight: "#e0f7fa", borderLight: "#b2ebf2", shadow: "rgba(2, 136, 209, 0.2)", icon: "fa-atom" },
-    { color: "#d97706", gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)", bgLight: "#fef3c7", borderLight: "#fde68a", shadow: "rgba(217, 119, 6, 0.2)", icon: "fa-bolt" },
-    { color: "#7c3aed", gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)", bgLight: "#ede9fe", borderLight: "#ddd6fe", shadow: "rgba(124, 58, 237, 0.2)", icon: "fa-dna" },
-    { color: "#059669", gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)", bgLight: "#d1fae5", borderLight: "#a7f3d0", shadow: "rgba(5, 150, 105, 0.2)", icon: "fa-flask" },
-    { color: "#e11d48", gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)", bgLight: "#ffe4e6", borderLight: "#fecdd3", shadow: "rgba(225, 29, 72, 0.2)", icon: "fa-compass" }
-];
-
-function loadLessons(grade) {
+function loadLessons(grade, pushRoute = true) {
     if (!grade) return;
     currentGrade = String(grade);
+    window.currentGrade = currentGrade;
     
     // Switch view immediately so the user experiences zero lag and instant response
     showView(viewLessons);
+
+    if (pushRoute) {
+        const targetHash = `#grade-${currentGrade}`;
+        if (window.location.hash !== targetHash) {
+            try {
+                history.pushState({ grade: currentGrade }, '', targetHash);
+            } catch (e) {
+                window.location.hash = targetHash;
+            }
+        }
+    }
 
     try {
         // Update Hero Banner & Grade Indicator
@@ -1521,8 +1536,11 @@ function loadLessons(grade) {
         if (container) {
             container.innerHTML = '';
             
+            const themes = (typeof CHAPTER_THEMES !== 'undefined' && CHAPTER_THEMES) ? CHAPTER_THEMES : (window.CHAPTER_THEMES || {});
+            const palettes = (typeof DEFAULT_PALETTES !== 'undefined' && DEFAULT_PALETTES) ? DEFAULT_PALETTES : (window.DEFAULT_PALETTES || []);
+
             lessonsList.forEach((lesson, index) => {
-                const theme = CHAPTER_THEMES[lesson.id] || DEFAULT_PALETTES[index % DEFAULT_PALETTES.length];
+                const theme = themes[lesson.id] || (palettes.length ? palettes[index % palettes.length] : { color: "#0288d1", gradient: "linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)", icon: "fa-atom" });
                 
                 let chapterNum = `Chapter ${index + 1}`;
                 let chapterName = lesson.title || 'Lesson';
@@ -1580,7 +1598,7 @@ function loadLessons(grade) {
                     </div>
                 `;
 
-                card.addEventListener('click', () => loadLessonDetail(lesson));
+                card.addEventListener('click', () => loadLessonDetail(lesson, true));
                 container.appendChild(card);
             });
         }
@@ -1644,7 +1662,7 @@ function formatMathField(val) {
 
 // --- Lesson Detail ---
 
-function loadLessonDetail(lessonOrId) {
+function loadLessonDetail(lessonOrId, pushRoute = true) {
     // Reset all Start Lesson button labels back from "Opening..." spinner
     document.querySelectorAll('.btn-start-label').forEach(label => {
         label.innerHTML = '<i class="fa-solid fa-circle-play"></i> Start Lesson';
@@ -1661,6 +1679,26 @@ function loadLessonDetail(lessonOrId) {
     }
     currentLesson = lesson;
     window.currentSelectedLessonId = lesson.id;
+
+    // Detect and maintain currentGrade
+    if (data['9'] && data['9'].some(l => l.id === lesson.id)) {
+        currentGrade = '9';
+    } else if (data['12'] && data['12'].some(l => l.id === lesson.id)) {
+        currentGrade = '12';
+    }
+    window.currentGrade = currentGrade;
+
+    if (pushRoute) {
+        const targetHash = `#lesson/${lesson.id}`;
+        if (window.location.hash !== targetHash) {
+            try {
+                history.pushState({ lesson: lesson.id }, '', targetHash);
+            } catch (e) {
+                window.location.hash = targetHash;
+            }
+        }
+    }
+
     showView(viewLessonDetail);
     document.getElementById('lesson-detail-title').innerText = lesson.title;
     
@@ -3288,16 +3326,65 @@ window.physicsData = data;
 window.appData = data;
 window.__appLoaded = true;
 
-// Resolve any actions clicked before script finished evaluating
+// --- Client-Side Routing & Deep Linking ---
+function handleRoute() {
+    const rawHash = (window.location.hash || '').trim();
+    const hash = rawHash.replace(/^#\/?/, '').toLowerCase();
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryGrade = urlParams.get('grade');
+    const queryLesson = urlParams.get('lesson');
+
+    // 1. Direct lesson route: #lesson/:id or ?lesson=:id
+    if (hash.startsWith('lesson/') || queryLesson) {
+        const lessonId = hash.startsWith('lesson/') ? hash.replace(/^lesson\//, '').trim() : queryLesson;
+        if (lessonId) {
+            loadLessonDetail(lessonId, false);
+            return;
+        }
+    }
+
+    // 2. Grade 9 route: #grade-9, #grade9, #g9, or ?grade=9
+    if (hash === 'grade-9' || hash === 'grade9' || hash === 'g9' || queryGrade === '9') {
+        loadLessons('9', false);
+        return;
+    }
+
+    // 3. Grade 12 route: #grade-12, #grade12, #g12, or ?grade=12
+    if (hash === 'grade-12' || hash === 'grade12' || hash === 'g12' || queryGrade === '12') {
+        loadLessons('12', false);
+        return;
+    }
+
+    // 4. Direct lesson ID hash matching (e.g. #g9-l1, #g12-l3, #g12-waves)
+    if (hash && hash !== 'home' && hash !== 'dashboard') {
+        const allLessons = [...(data['9'] || []), ...(data['12'] || [])];
+        const match = allLessons.find(l => l.id.toLowerCase() === hash);
+        if (match) {
+            loadLessonDetail(match.id, false);
+            return;
+        }
+    }
+
+    // 5. Default Dashboard route
+    showDashboard(false);
+}
+
+window.handleRoute = handleRoute;
+window.addEventListener('popstate', handleRoute);
+window.addEventListener('hashchange', handleRoute);
+
+// Resolve pending user action or active route on startup
 if (window.pendingLessonId) {
     const pid = window.pendingLessonId;
     window.pendingLessonId = null;
     window.pendingGrade = null;
-    loadLessonDetail(pid);
+    loadLessonDetail(pid, true);
 } else if (window.pendingGrade) {
     const pg = window.pendingGrade;
     window.pendingGrade = null;
-    loadLessons(pg);
+    loadLessons(pg, true);
+} else if (window.location.hash || window.location.search.includes('grade=') || window.location.search.includes('lesson=')) {
+    handleRoute();
 }
 
 

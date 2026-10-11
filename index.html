@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=60">
+    <link rel="stylesheet" href="styles.css?v=75">
     <style>
         .view.active {
             display: block !important;
@@ -41,6 +41,10 @@
         window.pendingLessonId = null;
 
         function showDashboard() {
+            if (typeof window.appShowDashboard === 'function') {
+                try { window.appShowDashboard(true); return; } catch (e) {}
+            }
+            try { history.pushState({ view: 'dashboard' }, '', window.location.pathname + window.location.search); } catch (e) { window.location.hash = ''; }
             var d = document.getElementById('view-dashboard');
             var l = document.getElementById('view-lessons');
             var dt = document.getElementById('view-lesson-detail');
@@ -48,12 +52,12 @@
             if (dt) { dt.style.display = 'none'; dt.classList.remove('active'); dt.classList.add('hidden'); }
             if (d) { d.style.display = 'block'; d.classList.remove('hidden'); d.classList.add('active'); }
             window.scrollTo(0, 0);
-            if (typeof window.appShowDashboard === 'function') {
-                try { window.appShowDashboard(); } catch (e) {}
-            }
         }
 
         function showLessonsView() {
+            if (typeof window.appShowLessonsView === 'function') {
+                try { window.appShowLessonsView(true); return; } catch (e) {}
+            }
             var d = document.getElementById('view-dashboard');
             var l = document.getElementById('view-lessons');
             var dt = document.getElementById('view-lesson-detail');
@@ -61,9 +65,6 @@
             if (dt) { dt.style.display = 'none'; dt.classList.remove('active'); dt.classList.add('hidden'); }
             if (l) { l.style.display = 'block'; l.classList.remove('hidden'); l.classList.add('active'); }
             window.scrollTo(0, 0);
-            if (typeof window.appShowLessonsView === 'function') {
-                try { window.appShowLessonsView(); } catch (e) {}
-            }
         }
 
         function loadLessons(grade) {
@@ -71,37 +72,52 @@
             var g = String(grade);
             window.pendingGrade = g;
 
-            // 1. Immediately switch view on screen with zero latency
-            showLessonsView();
+            // Update URL hash
+            try {
+                if (window.location.hash !== '#grade-' + g) {
+                    history.pushState({ grade: g }, '', '#grade-' + g);
+                }
+            } catch (e) {
+                window.location.hash = '#grade-' + g;
+            }
 
-            // 2. If app.js is ready, render immediately
+            // Immediately switch view on screen with zero latency
+            var _d = document.getElementById('view-dashboard');
+            var _l = document.getElementById('view-lessons');
+            var _dt = document.getElementById('view-lesson-detail');
+            if (_d) { _d.style.display = 'none'; _d.classList.remove('active'); _d.classList.add('hidden'); }
+            if (_dt) { _dt.style.display = 'none'; _dt.classList.remove('active'); _dt.classList.add('hidden'); }
+            if (_l) { _l.style.display = 'block'; _l.classList.remove('hidden'); _l.classList.add('active'); }
+            window.scrollTo(0, 0);
+
+            // If app.js is ready, render immediately
             if (typeof window.appLoadLessons === 'function') {
                 try {
-                    window.appLoadLessons(g);
+                    window.appLoadLessons(g, false);
                     return;
                 } catch (e) {
                     console.error('Error in appLoadLessons:', e);
                 }
             } else if (typeof window.renderLessonsList === 'function') {
                 try {
-                    window.renderLessonsList(g);
+                    window.renderLessonsList(g, false);
                     return;
                 } catch (e) {
                     console.error('Error in renderLessonsList:', e);
                 }
             }
 
-            // 3. Fallback poller: automatically render the moment app.js finishes downloading & parsing
+            // Fallback poller
             var tries = 0;
             var timer = setInterval(function() {
                 tries++;
                 if (typeof window.appLoadLessons === 'function') {
                     clearInterval(timer);
-                    try { window.appLoadLessons(g); } catch (err) { console.error(err); }
+                    try { window.appLoadLessons(g, false); } catch (err) { console.error(err); }
                 } else if (typeof window.renderLessonsList === 'function') {
                     clearInterval(timer);
-                    try { window.renderLessonsList(g); } catch (err) { console.error(err); }
-                } else if (tries > 150) {
+                    try { window.renderLessonsList(g, false); } catch (err) { console.error(err); }
+                } else if (tries > 200) {
                     clearInterval(timer);
                 }
             }, 25);
@@ -109,11 +125,19 @@
 
         function loadLessonDetail(lessonOrId) {
             if (!lessonOrId) return;
-            window.pendingLessonId = (typeof lessonOrId === 'object' && lessonOrId.id) ? lessonOrId.id : lessonOrId;
+            var id = (typeof lessonOrId === 'object' && lessonOrId.id) ? lessonOrId.id : lessonOrId;
+            window.pendingLessonId = id;
+            try {
+                if (window.location.hash !== '#lesson/' + id) {
+                    history.pushState({ lesson: id }, '', '#lesson/' + id);
+                }
+            } catch (e) {
+                window.location.hash = '#lesson/' + id;
+            }
             if (typeof window.appLoadLessonDetail === 'function') {
-                try { window.appLoadLessonDetail(lessonOrId); } catch (e) {}
+                try { window.appLoadLessonDetail(lessonOrId, false); } catch (e) {}
             } else if (typeof window.openLessonDetail === 'function') {
-                try { window.openLessonDetail(lessonOrId); } catch (e) {}
+                try { window.openLessonDetail(lessonOrId, false); } catch (e) {}
             }
         }
 
@@ -144,6 +168,29 @@
                 try { window.appSwitchTab(targetName); } catch (e) {}
             }
         }
+
+        // On DOM ready, reflect active hash immediately to prevent flash of wrong screen
+        document.addEventListener('DOMContentLoaded', function() {
+            var hash = (window.location.hash || '').toLowerCase().replace(/^#\/?/, '');
+            var params = new URLSearchParams(window.location.search);
+            var qGrade = params.get('grade');
+            var qLesson = params.get('lesson');
+
+            var d = document.getElementById('view-dashboard');
+            var l = document.getElementById('view-lessons');
+            var dt = document.getElementById('view-lesson-detail');
+
+            if (hash.startsWith('lesson/') || qLesson) {
+                if (d) { d.style.display = 'none'; d.classList.remove('active'); d.classList.add('hidden'); }
+                if (l) { l.style.display = 'none'; l.classList.remove('active'); l.classList.add('hidden'); }
+                if (dt) { dt.style.display = 'block'; dt.classList.remove('hidden'); dt.classList.add('active'); }
+            } else if (hash === 'grade-9' || hash === 'grade9' || hash === 'g9' || qGrade === '9' ||
+                       hash === 'grade-12' || hash === 'grade12' || hash === 'g12' || qGrade === '12') {
+                if (d) { d.style.display = 'none'; d.classList.remove('active'); d.classList.add('hidden'); }
+                if (dt) { dt.style.display = 'none'; dt.classList.remove('active'); dt.classList.add('hidden'); }
+                if (l) { l.style.display = 'block'; l.classList.remove('hidden'); l.classList.add('active'); }
+            }
+        });
 
         window.showDashboard = showDashboard;
         window.showLessonsView = showLessonsView;
@@ -434,6 +481,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=60"></script>
+    <script src="app.js?v=75"></script>
 </body>
 </html>
