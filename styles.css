@@ -948,6 +948,18 @@ button {
     box-shadow: var(--shadow-md);
 }
 
+.worksheet-btn.secondary {
+    background: var(--white);
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+}
+
+.worksheet-btn.secondary:hover {
+    background: #e8f0fe;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
 .worksheet-preview {
     width: 100%;
     height: 750px;
@@ -955,6 +967,26 @@ button {
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
     background: #525659;
+}
+
+@media (max-width: 768px) {
+    .worksheet-preview {
+        height: 520px;
+    }
+}
+
+.worksheet-notice {
+    margin-top: 0.85rem;
+    font-size: 0.88rem;
+    color: #495057;
+    text-align: center;
+    background: #e9ecef;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .worksheet-empty {
@@ -975,4 +1007,190 @@ button {
     color: var(--text-main);
     margin-bottom: 0.5rem;
 }
+
+/* --- Interactive Game Tab Styles --- */
+.game-container {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-top: 1rem;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.game-header h2 {
+    color: var(--purple);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.game-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.game-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.game-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.game-btn.primary {
+    background: var(--purple);
+    color: var(--white);
+}
+
+.game-btn.primary:hover {
+    background: #512da8;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.game-preview {
+    width: 100%;
+    height: 700px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    background: #ffffff;
+}
+
+.game-empty {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    color: var(--text-muted);
+}
+
+.game-empty i {
+    font-size: 3.5rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.game-empty h3 {
+    font-size: 1.3rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.game-current-topic {
+    font-size: 1.15rem;
+    color: var(--primary-blue);
+    margin-top: 0.35rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.game-current-topic span {
+    color: var(--purple);
+}
+
+.game-topic-selector {
+    background: #f8faff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.game-topic-label {
+    font-weight: 700;
+    color: var(--primary-blue);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.game-topic-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.game-topic-pill {
+    background: var(--white);
+    border: 1.5px solid var(--border-color);
+    border-radius: 20px;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: var(--transition);
+}
+
+.game-topic-pill i {
+    color: var(--purple);
+}
+
+.game-topic-pill:hover {
+    border-color: var(--purple);
+    color: var(--purple);
+    background: #f3eefd;
+    transform: translateY(-1px);
+}
+
+.game-topic-pill.active {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: var(--white);
+    box-shadow: 0 3px 8px rgba(108, 92, 231, 0.35);
+}
+
+.game-topic-pill.active i {
+    color: var(--white);
+}
+
+.game-embed-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.game-embed-notice {
+    margin-top: 0.85rem;
+    font-size: 0.9rem;
+    color: #856404;
+    text-align: center;
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+
 

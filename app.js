@@ -1741,23 +1741,65 @@ async function renderWorksheet(lesson) {
     if (!worksheetContainer || !lesson) return;
     if (lesson.worksheetUrl) {
         let finalUrl = lesson.worksheetUrl;
+        const raw = lesson.worksheetUrl;
         
-        // Auto-detect if file was uploaded with double extension or space
-        const candidates = [
-            lesson.worksheetUrl,
-            lesson.worksheetUrl + '.pdf',
-            lesson.worksheetUrl.replace(/-l(\d+)/, ' l$1') + '.pdf',
-            lesson.worksheetUrl.replace(/-l(\d+)/, ' l$1')
+        // Comprehensive candidate paths covering GitHub folder upload variations & Windows extension hiding
+        const candidateList = [
+            raw,
+            // Nested folder variation (e.g. worksheets/worksheets/g9-ch1-worksheet.pdf on GitHub)
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/'),
+            raw + '.pdf',
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/') + '.pdf',
+            // Root-level uploads
+            raw.replace(/^worksheets\//, ''),
+            raw.replace(/^worksheets\//, '') + '.pdf',
+            // Case variations (G9 vs g9)
+            raw.replace('g9-', 'G9-'),
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace('g9-', 'G9-'),
+            raw.replace('g9-', 'G9-') + '.pdf',
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace('g9-', 'G9-') + '.pdf',
+            // Chapter variations (e.g. ch1-worksheet.pdf instead of g9-ch1-worksheet.pdf)
+            raw.replace('g9-ch', 'ch'),
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace('g9-ch', 'ch'),
+            raw.replace('g9-ch', 'ch') + '.pdf',
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace('g9-ch', 'ch') + '.pdf',
+            // Lesson space variations (-l1 -> " l1")
+            raw.replace(/-l(\d+)/, ' l$1'),
+            raw.replace(/-l(\d+)/, ' l$1') + '.pdf',
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace(/-l(\d+)/, ' l$1'),
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace(/-l(\d+)/, ' l$1') + '.pdf',
+            // Chapter space variations (-ch1 -> " ch1")
+            raw.replace(/-ch(\d+)/, ' ch$1'),
+            raw.replace(/-ch(\d+)/, ' ch$1') + '.pdf',
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace(/-ch(\d+)/, ' ch$1'),
+            raw.replace(/^worksheets\//, 'worksheets/worksheets/').replace(/-ch(\d+)/, ' ch$1') + '.pdf'
         ];
-        for (const testUrl of candidates) {
-            try {
-                const res = await fetch(testUrl, { method: 'HEAD' });
-                if (res.ok) {
-                    finalUrl = testUrl;
-                    break;
-                }
-            } catch (e) {}
+        const candidates = [...new Set(candidateList)];
+
+        if (window.location.protocol.startsWith('http')) {
+            for (const testUrl of candidates) {
+                try {
+                    let res = await fetch(testUrl, { method: 'HEAD' });
+                    if (res.status === 405 || (!res.ok && res.status !== 404)) {
+                        res = await fetch(testUrl, { method: 'GET', headers: { 'Range': 'bytes=0-0' } });
+                    }
+                    if (res.ok) {
+                        finalUrl = testUrl;
+                        break;
+                    }
+                } catch (e) {}
+            }
         }
+
+        // Detect mobile browsers (especially iOS Safari which struggles with inline PDF iframes)
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isOnline = window.location.protocol.startsWith('http');
+        const absolutePdfUrl = new URL(finalUrl, window.location.href).href;
+
+        // On mobile and hosted online, Google Docs Viewer provides smooth touch scrolling & full multi-page preview
+        const googleDocsViewerUrl = `https://docs.google.com/viewer?embedded=true&url=${encodeURIComponent(absolutePdfUrl)}`;
+        let currentViewerSrc = (isMobile && isOnline) ? googleDocsViewerUrl : finalUrl;
+        let isUsingGoogleViewer = (isMobile && isOnline);
 
         worksheetContainer.innerHTML = `
             <div class="worksheet-header">
@@ -1765,12 +1807,35 @@ async function renderWorksheet(lesson) {
                 <p>You can solve the problems below, open in full screen, or download and print the worksheet.</p>
             </div>
             <div class="worksheet-actions">
-                <a href="${finalUrl}" target="_blank" class="worksheet-btn primary">
+                <a href="${finalUrl}" target="_blank" class="worksheet-btn primary" id="open-worksheet-btn">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i> Open / Download PDF
                 </a>
+                ${isOnline ? `
+                <button type="button" class="worksheet-btn secondary" id="switch-viewer-btn">
+                    <i class="fa-solid fa-arrows-rotate"></i> Switch Viewer Mode
+                </button>
+                ` : ''}
             </div>
-            <iframe src="${finalUrl}" class="worksheet-preview" title="Worksheet Preview"></iframe>
+            <iframe src="${currentViewerSrc}" class="worksheet-preview" id="worksheet-iframe" title="Worksheet Preview"></iframe>
+            <div class="worksheet-notice">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Tip: Tap <strong>Open / Download PDF</strong> above to view in your phone's native full-screen viewer.</span>
+            </div>
         `;
+
+        if (isOnline) {
+            const switchBtn = document.getElementById('switch-viewer-btn');
+            const iframe = document.getElementById('worksheet-iframe');
+            if (switchBtn && iframe) {
+                switchBtn.addEventListener('click', () => {
+                    isUsingGoogleViewer = !isUsingGoogleViewer;
+                    iframe.src = isUsingGoogleViewer ? googleDocsViewerUrl : finalUrl;
+                    switchBtn.innerHTML = isUsingGoogleViewer 
+                        ? `<i class="fa-solid fa-arrows-rotate"></i> Switch to Direct PDF`
+                        : `<i class="fa-solid fa-arrows-rotate"></i> Switch to Google Viewer`;
+                });
+            }
+        }
     } else {
         worksheetContainer.innerHTML = `
             <div class="worksheet-empty">
