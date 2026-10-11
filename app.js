@@ -1,7 +1,7 @@
 // --- Data Structure ---
 const data = {
 "9": [
-{id:"g9-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Torque_animation.gif",title:"Chapter 1: Turning Effect of Force",concepts:["Resultant Force: Calculated depending on the direction of the acting forces.","Trigonometry Basics: Using right triangles to relate angles to side lengths (sine, cosine, tangent).","Resolving Force: A force can be broken down into horizontal and vertical components.","Moment of a force: The turning effect produced by a force.","Principle of moment: For equilibrium, Anti-clockwise moment = Clockwise moment \\( M_{ACW} = M_{CW} \\)."],definitions:[],examples:[],
+{id:"g9-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Torque_animation.gif",worksheetUrl:"worksheets/g9-ch1-worksheet.pdf",title:"Chapter 1: Turning Effect of Force",concepts:["Resultant Force: Calculated depending on the direction of the acting forces.","Trigonometry Basics: Using right triangles to relate angles to side lengths (sine, cosine, tangent).","Resolving Force: A force can be broken down into horizontal and vertical components.","Moment of a force: The turning effect produced by a force.","Principle of moment: For equilibrium, Anti-clockwise moment = Clockwise moment \\( M_{ACW} = M_{CW} \\)."],definitions:[],examples:[],
 equations:[
 {section:"Resultant Force",name:"Resultant: Opposite direction<br><img src='images/ch1-l1-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( R = |a - b| \\)",symbols:[{symbol:"R",desc:"Resultant Force (N)"},{symbol:"a, b",desc:"Component Forces (N)"}]},
 {section:"Resultant Force",name:"Resultant: Same direction",formula:"\\( R = a + b \\)",symbols:[{symbol:"R",desc:"Resultant Force (N)"},{symbol:"a, b",desc:"Component Forces (N)"}]},
@@ -43,7 +43,7 @@ equations:[
 {question:"Which expression gives the direction angle \\(\\theta\\) of a resultant force?", options:["\\( \\sin^{-1}(b/a) \\)","\\( \\cos^{-1}(b/a) \\)","\\( \\tan^{-1}(b/a) \\)","\\( \\tan^{-1}(a/b) \\)"], correctIndex:2, feedback:"The angle is found using the inverse tangent of the opposite over adjacent components: \\( \\tan^{-1}(b/a) \\)."},
 {question:"For reaction forces on a beam supported at A and B with a load F, what is the force \\( F_A \\)?", options:["\\( F_A = F \\times \\frac{OA}{AB} \\)","\\( F_A = F \\times \\frac{OB}{AB} \\)","\\( F_A = F + OB \\)","\\( F_A = \\frac{AB}{F} \\)"], correctIndex:1, feedback:"By taking moments about B, \\( F_A \\times AB = F \\times OB \\), so \\( F_A = F \\times \\frac{OB}{AB} \\)."}
 ]},
-{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",title:"Chapter 2: Simple Machines",concepts:[],definitions:[],examples:[],
+{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",worksheetUrl:"worksheets/g9-ch2-worksheet.pdf",title:"Chapter 2: Simple Machines",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Lever",name:"Lever Mechanical advantage",formula:"\\( MA = \\frac{F_R}{F_E} = \\frac{d_E}{d_R} \\)",symbols:[{symbol:"MA",desc:"Mechanical Advantage (No unit)"},{symbol:"F_R",desc:"Load Force (N)"},{symbol:"F_E",desc:"Effort Force (N)"},{symbol:"d_E",desc:"Effort Arm (m)"},{symbol:"d_R",desc:"Load Arm (m)"}]},
 {section:"Lever",name:"Lever Efficiency",formula:"\\( eff = \\frac{F_R \\times d_R}{F_E \\times d_E} \\times 100\\% = \\frac{MA}{VR} \\times 100\\% \\)",symbols:[{symbol:"eff",desc:"Efficiency (%)"},{symbol:"VR",desc:"Velocity Ratio (No unit)"}]},
@@ -83,7 +83,7 @@ equations:[
 {question:"Which of the following is the correct formula for Velocity Ratio (VR) of a wheel and axle?", options:["\\( \\frac{r}{R} \\)","\\( R \\times r \\)","\\( \\frac{R}{r} \\)","\\( \\frac{F_R}{F_E} \\)"], correctIndex:2, feedback:"The velocity ratio is the ratio of the radius of the wheel to the radius of the axle \\( (R/r) \\)."},
 {question:"The moment of the effort force in a wheel and axle is given by:", options:["\\( F_E / R \\)","\\( F_E \\times r \\)","\\( F_E \\times R \\)","\\( F_R \\times R \\)"], correctIndex:2, feedback:"The effort force acts on the wheel (radius \\(R\\)), so its moment is \\( F_E \\times R \\)."}
 ]},
-{id:"g9-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",title:"Chapter 3: Electricity",concepts:[],definitions:[],examples:[],
+{id:"g9-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",worksheetUrl:"worksheets/g9-ch3-worksheet.pdf",title:"Chapter 3: Electricity",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Electrical Power",name:"Definition of power",formula:"\\( P = \\frac{W}{t} = \\frac{E}{t} \\)",symbols:[{symbol:"P",desc:"Power (W)"},{symbol:"W",desc:"Work (J)"},{symbol:"E",desc:"Energy (J)"},{symbol:"t",desc:"Time (s)"}]},
 {section:"Electrical Power",name:"Power of current",formula:"\\( P = VI = RI^2 = \\frac{V^2}{R} \\)",symbols:[{symbol:"P",desc:"Power (W)"},{symbol:"V",desc:"Voltage (V)"},{symbol:"I",desc:"Current (A)"},{symbol:"R",desc:"Resistance (Ω)"}]},
@@ -116,7 +116,7 @@ equations:[
 {question:"If 20% of electrical energy is converted to light, how is the light energy found?", options:["\\( E_L = E / 0.20 \\)","\\( E_L = E \\times 0.20 \\)","\\( E_L = E + 20 \\)","\\( E_L = E - 20 \\)"], correctIndex:1, feedback:"Multiply the total energy by the efficiency percentage (0.20)."},
 {question:"What is the formula for Power using Voltage and Resistance?", options:["\\( P = V^2 / R \\)","\\( P = V / R^2 \\)","\\( P = V^2 R \\)","\\( P = R / V^2 \\)"], correctIndex:0, feedback:"Substituting \\( I = V/R \\) into \\( P = VI \\) gives \\( P = V^2 / R \\)."}
 ]},
-{id:"g9-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/VFPt_solenoid-field-animation.gif",title:"Chapter 4: Magnetic Field",concepts:[],definitions:[],examples:[],
+{id:"g9-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/VFPt_solenoid-field-animation.gif",worksheetUrl:"worksheets/g9-ch4-worksheet.pdf",title:"Chapter 4: Magnetic Field",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Magnetic Field & Force",name:"Due to a straight wire",formula:"\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)",symbols:[{symbol:"B",desc:"Magnetic Field (T)"},{symbol:"μ_0",desc:"Permeability of free space (4π×10⁻⁷ T·m/A)"},{symbol:"I",desc:"Current (A)"},{symbol:"d",desc:"Distance from wire (m)"}]},
 {section:"Magnetic Field & Force",name:"Due to a solenoid",formula:"\\( B = \\frac{\\mu_0 NI}{l} \\)",symbols:[{symbol:"N",desc:"Number of turns"},{symbol:"l",desc:"Length of solenoid (m)"}]},
@@ -146,7 +146,7 @@ equations:[
 {question:"What does \\( \\mu_0 \\) represent?", options:["Permittivity","Permeability of free space","Refractive index","Resistivity"], correctIndex:1, feedback:"\\( \\mu_0 \\) is the permeability of free space (vacuum permeability)."},
 {question:"The output power of a transformer is given by:", options:["\\( V_P I_P \\)","\\( V_S I_S \\)","\\( V_P I_S \\)","\\( V_S I_P \\)"], correctIndex:1, feedback:"Output power (Secondary side) is \\( P_{e2} = V_S I_S \\)."}
 ]},
-{id:"g9-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Refraction_animation.gif",title:"Chapter 5: Light",concepts:[],definitions:[],examples:[],
+{id:"g9-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Refraction_animation.gif",worksheetUrl:"worksheets/g9-ch5-worksheet.pdf",title:"Chapter 5: Light",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Reflection of light",name:"Law of Reflection",formula:"\\( i = r \\)",symbols:[{symbol:"i",desc:"Angle of incidence (°)"},{symbol:"r",desc:"Angle of reflection (°)"}]},
 {section:"Pinhole Camera",name:"Pinhole Camera",formula:"\\( m = \\frac{h_i}{h_o} = \\frac{d_i}{d_o} \\)",symbols:[{symbol:"m",desc:"Magnification (No unit)"},{symbol:"h_i, h_o",desc:"Image/Object height (m)"},{symbol:"d_i, d_o",desc:"Image/Object distance (m)"}]},
@@ -184,7 +184,7 @@ equations:[
 ]}
 ],
 "12": [
-{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",title:"Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",concepts:[],definitions:[],examples:[],
+{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",worksheetUrl:"worksheets/ch1-l1-worksheet.pdf",title:"Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Pressure",name:"Pressure in Kinetic Theory<br><img src='images/ch1-l1-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( P = \\left(\\frac{2}{3}\\right)\\left(\\frac{N}{V}\\right)K_{av} \\)",symbols:[{symbol:"P",desc:"Pressure (Pa)"},{symbol:"N",desc:"Number of molecules (No unit)"},{symbol:"V",desc:"Volume (m³)"},{symbol:"K_{av}",desc:"Average Kinetic Energy (J)"}]},
 {section:"Pressure",name:"Pressure exerted on container walls<br><img src='images/ch1-l1-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( P = \\frac{F}{A}, F = \\frac{\\Delta p}{\\Delta t}, \\Delta p = N m_0 \\Delta v \\)",symbols:[{symbol:"P",desc:"Pressure (Pa)"},{symbol:"F",desc:"Force (N)"},{symbol:"A",desc:"Area (m²)"},{symbol:"\\Delta p",desc:"Change in momentum (kg·m/s)"},{symbol:"\\Delta t",desc:"Time interval (s)"},{symbol:"N",desc:"Number of molecules (No unit)"},{symbol:"m_0",desc:"Mass of one molecule (kg)"},{symbol:"\\Delta v",desc:"Change in velocity (m/s)"}]},
@@ -226,22 +226,23 @@ equations:[
 {question:"Which equation represents the Combined Gas Law?", options:["\\( PV = nRT \\)","\\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)","\\( P_1 T_1 = P_2 T_2 \\)","\\( V_1 / P_1 = V_2 / P_2 \\)"], correctIndex:1, feedback:"The Combined Gas Law is \\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)."},
 {question:"Total kinetic energy \\( K \\) of \\( N \\) molecules is given by:", options:["\\( \\frac{3}{2} N k_B T \\)","\\( \\frac{1}{2} N k_B T \\)","\\( N m_0 v^2 \\)","\\( P V^2 \\)"], correctIndex:0, feedback:"Total kinetic energy is the average energy per molecule multiplied by \\( N \\): \\( \\frac{3}{2} N k_B T \\)."}
 ]},
-{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",title:"Chapter 1 Lesson 2: First Law of Thermodynamic",concepts:[],definitions:[],examples:[],
+{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",worksheetUrl:"worksheets/ch1-l2-worksheet.pdf",title:"Chapter 1 Lesson 2: First Law of Thermodynamic",concepts:[],definitions:[],examples:[],
 equations:[
-{section:"Heat Transfer",name:"First law of thermodynamics<br><img src='images/ch1-l2-eq7.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = W + \\Delta U \\)",symbols:[{symbol:"Q",desc:"Heat added to system (J)"}]},
-{section:"Heat Transfer",name:"Heat absorb<br><img src='images/ch1-l2-eq8.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = mc\\Delta T \\)",symbols:[{symbol:"m",desc:"Mass (kg)"},{symbol:"c",desc:"Specific heat capacity (J/kg·K)"}]},
-{section:"Heat Transfer",name:"Latent Heat<br><img src='images/ch1-l2-eq9.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = mL \\)",symbols:[{symbol:"L",desc:"Specific latent heat (J/kg)"}]},
-{section:"Internal Energy",name:"Internal energy<br><img src='images/ch1-l2-eq5.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( U = \\frac{3}{2} nRT \\)",symbols:[{symbol:"U",desc:"Internal Energy (J)"}]},
-{section:"Internal Energy",name:"Changing internal energy<br><img src='images/ch1-l2-eq6.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\Delta U = U_f - U_i = \\frac{3}{2} nR\\Delta T \\)",symbols:[{symbol:"ΔU",desc:"Change in Internal Energy (J)"},{symbol:"ΔT",desc:"Change in Temperature (K)"}]},
-{section:"Isobaric Process",name:"Work Done<br><img src='images/ch1-l2-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( W = P \\Delta V \\)",symbols:[{symbol:"W",desc:"Work Done (J)"},{symbol:"P",desc:"Pressure (Pa)"},{symbol:"ΔV",desc:"Change in Volume (m³)"}]},
-{section:"Isobaric Process",name:"Heat Supplied<br><img src='images/ch1-l2-eq11.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q_p = nC_p\\Delta T = \\frac{5}{2} nR\\Delta T \\)",symbols:[{symbol:"Q_p",desc:"Heat Supplied at constant pressure"}]},
+{section:"Heat Transfer",name:"First law of thermodynamics<br><img src='images/ch1-l2-eq7.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = W + \\Delta U \\)",symbols:[{symbol:"Q",desc:"Heat added to system (J)"},{symbol:"W",desc:"Work done by system (J)"},{symbol:"\\Delta U",desc:"Change in Internal Energy (J)"}]},
+{section:"Heat Transfer",name:"Heat absorb<br><img src='images/ch1-l2-eq8.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = mc\\Delta T \\)",symbols:[{symbol:"Q",desc:"Heat transferred (J)"},{symbol:"m",desc:"Mass (kg)"},{symbol:"c",desc:"Specific heat capacity (J/kg·K)"},{symbol:"\\Delta T",desc:"Change in Temperature (K)"}]},
+{section:"Heat Transfer",name:"Latent Heat<br><img src='images/ch1-l2-eq9.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = mL \\)",symbols:[{symbol:"Q",desc:"Heat transferred (J)"},{symbol:"m",desc:"Mass (kg)"},{symbol:"L",desc:"Specific latent heat (J/kg)"}]},
+{section:"Internal Energy",name:"Internal energy<br><img src='images/ch1-l2-eq5.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( U = \\frac{3}{2} nRT \\)",symbols:[{symbol:"U",desc:"Internal Energy (J)"},{symbol:"n",desc:"Number of moles (mol)"},{symbol:"R",desc:"Universal Gas Constant (8.31 J/mol·K)"},{symbol:"T",desc:"Temperature (K)"}]},
+{section:"Internal Energy",name:"Changing internal energy<br><img src='images/ch1-l2-eq6.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\Delta U = U_f - U_i = \\frac{3}{2} nR\\Delta T \\)",symbols:[{symbol:"\\Delta U",desc:"Change in Internal Energy (J)"},{symbol:"U_f, U_i",desc:"Final/Initial Internal Energy (J)"},{symbol:"n",desc:"Number of moles (mol)"},{symbol:"R",desc:"Universal Gas Constant (8.31 J/mol·K)"},{symbol:"\\Delta T",desc:"Change in Temperature (K)"}]},
+{section:"Isobaric Process",name:"Work Done<br><img src='images/ch1-l2-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( W = P \\Delta V \\)",symbols:[{symbol:"W",desc:"Work Done (J)"},{symbol:"P",desc:"Pressure (Pa)"},{symbol:"\\Delta V",desc:"Change in Volume (m³)"}]},
+{section:"Isobaric Process",name:"Heat Supplied<br><img src='images/ch1-l2-eq11.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q_p = nC_p\\Delta T = \\frac{5}{2} nR\\Delta T \\)",symbols:[{symbol:"Q_p",desc:"Heat Supplied at constant pressure (J)"},{symbol:"n",desc:"Number of moles (mol)"},{symbol:"C_p",desc:"Molar heat capacity at constant pressure (J/mol·K)"},{symbol:"\\Delta T",desc:"Change in Temperature (K)"},{symbol:"R",desc:"Universal Gas Constant (8.31 J/mol·K)"}]},
 {section:"Isochoric Process",name:"Work Done<br><img src='images/ch1-l2-eq4.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( W = 0 \\)",symbols:[{symbol:"W",desc:"Work Done (J)"}]},
-{section:"Isochoric Process",name:"Heat Supplied<br><img src='images/ch1-l2-eq13.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q_v = nC_v\\Delta T = \\frac{3}{2} nR\\Delta T \\)",symbols:[{symbol:"Q_v",desc:"Heat Supplied at constant volume"}]},
-{section:"Linear Process",name:"Work Done<br><img src='images/ch1-l2-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( W = P_{av} \\Delta V \\)",symbols:[{symbol:"P_{av}",desc:"Average Pressure (Pa)"}]},
-{section:"Linear Process",name:"Heat Supplied<br><img src='images/ch1-l2-eq14.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = \\frac{3}{2} nR\\Delta T + P_{av} \\Delta V \\)",symbols:[{symbol:"Q",desc:"Total Heat Supplied (J)"}]},
-{section:"Isothermal Process",name:"Work Done and Heat Supplied<br><img src='images/ch1-l2-eq3.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = W = nRT \\ln\\left(\\frac{V_2}{V_1}\\right) \\)",symbols:[{symbol:"V_2, V_1",desc:"Final/Initial Volume (m³)"}]},
-{section:"Adiabatic Process",name:"Work done by an ideal gas<br><img src='images/ch1-l2-eq10.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( W = n\\left(\\frac{R}{\\gamma - 1}\\right)(T_1 - T_2) = \\frac{1}{\\gamma - 1}(P_1V_1 - P_2V_2) \\)",symbols:[{symbol:"γ",desc:"Heat capacity ratio (Cp/Cv)"},{symbol:"R",desc:"Universal Gas Constant"},{symbol:"T",desc:"Temperature (K)"}]},
-{section:"Adiabatic Process",name:"Adiabatic Process Relations (Q = 0)<br><img src='images/ch1-l2-eq12.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( P_1 V_1^\\gamma = P_2 V_2^\\gamma, \\quad T_1 V_1^{\\gamma-1} = T_2 V_2^{\\gamma-1}, \\quad T_1^\\gamma P_1^{1-\\gamma} = T_2^\\gamma P_2^{1-\\gamma} \\)",symbols:[{symbol:"γ",desc:"5/3 (monatomic) | 7/5 (diatomic)"}]}
+{section:"Isochoric Process",name:"Heat Supplied<br><img src='images/ch1-l2-eq13.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q_v = nC_v\\Delta T = \\frac{3}{2} nR\\Delta T \\)",symbols:[{symbol:"Q_v",desc:"Heat Supplied at constant volume (J)"},{symbol:"n",desc:"Number of moles (mol)"},{symbol:"C_v",desc:"Molar heat capacity at constant volume (J/mol·K)"},{symbol:"\\Delta T",desc:"Change in Temperature (K)"},{symbol:"R",desc:"Universal Gas Constant (8.31 J/mol·K)"}]},
+{section:"Linear Process",name:"Work Done<br><img src='images/ch1-l2-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( W = P_{av} \\Delta V \\)",symbols:[{symbol:"W",desc:"Work Done (J)"},{symbol:"P_{av}",desc:"Average Pressure (Pa)"},{symbol:"\\Delta V",desc:"Change in Volume (m³)"}]},
+{section:"Linear Process",name:"Heat Supplied<br><img src='images/ch1-l2-eq14.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = \\frac{3}{2} nR\\Delta T + P_{av} \\Delta V \\)",symbols:[{symbol:"Q",desc:"Total Heat Supplied (J)"},{symbol:"n",desc:"Number of moles (mol)"},{symbol:"R",desc:"Universal Gas Constant (8.31 J/mol·K)"},{symbol:"\\Delta T",desc:"Change in Temperature (K)"},{symbol:"P_{av}",desc:"Average Pressure (Pa)"},{symbol:"\\Delta V",desc:"Change in Volume (m³)"}]},
+{section:"Isothermal Process",name:"Work Done and Heat Supplied<br><img src='images/ch1-l2-eq3.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q = W = nRT \\ln\\left(\\frac{V_2}{V_1}\\right) \\)",symbols:[{symbol:"Q",desc:"Heat Supplied (J)"},{symbol:"W",desc:"Work Done (J)"},{symbol:"n",desc:"Number of moles (mol)"},{symbol:"R",desc:"Universal Gas Constant (8.31 J/mol·K)"},{symbol:"T",desc:"Constant Temperature (K)"},{symbol:"V_2, V_1",desc:"Final/Initial Volume (m³)"}]},
+{section:"Adiabatic Process",name:"Work done by an ideal gas<br><img src='images/ch1-l2-eq10.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( W = n\\left(\\frac{R}{\\gamma - 1}\\right)(T_1 - T_2) = \\frac{1}{\\gamma - 1}(P_1V_1 - P_2V_2) \\)",symbols:[{symbol:"W",desc:"Work Done (J)"},{symbol:"n",desc:"Number of moles (mol)"},{symbol:"R",desc:"Universal Gas Constant (8.31 J/mol·K)"},{symbol:"\\gamma",desc:"Heat capacity ratio (Cp/Cv)"},{symbol:"T_1, T_2",desc:"Initial/Final Temperature (K)"},{symbol:"P_1, P_2",desc:"Initial/Final Pressure (Pa)"},{symbol:"V_1, V_2",desc:"Initial/Final Volume (m³)"}]},
+{section:"Adiabatic Process",name:"Adiabatic Process Relations (Q = 0)<br><img src='images/ch1-l2-eq12.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( P_1 V_1^\\gamma = P_2 V_2^\\gamma, \\quad T_1 V_1^{\\gamma-1} = T_2 V_2^{\\gamma-1}, \\quad T_1^\\gamma P_1^{1-\\gamma} = T_2^\\gamma P_2^{1-\\gamma} \\)",symbols:[{symbol:"P_1, P_2",desc:"Initial/Final Pressure (Pa)"},{symbol:"V_1, V_2",desc:"Initial/Final Volume (m³)"},{symbol:"T_1, T_2",desc:"Initial/Final Temperature (K)"},{symbol:"\\gamma",desc:"5/3 (monatomic) | 7/5 (diatomic)"}]}
+
 ],flashcards:[
 {front:"What is the work done in an isobaric process?", back:"\\( W = P \\Delta V \\)"},
 {front:"What is the work done in a process where pressure changes linearly?", back:"\\( W = P_{av} \\Delta V \\)"},
@@ -265,7 +266,7 @@ equations:[
 {question:"The internal energy \\( U \\) of an ideal gas is directly proportional to:", options:["Pressure","Volume","Temperature","Density"], correctIndex:2, feedback:"\\( U = \\frac{3}{2} nRT \\), making it directly proportional to absolute temperature."},
 {question:"If a gas expands such that its pressure changes linearly with volume, the work done is:", options:["\\( W = 0 \\)","\\( W = P \\Delta V \\)","\\( W = P_{av} \\Delta V \\)","\\( W = nRT \\)"], correctIndex:2, feedback:"You can use the average pressure for a linear process: \\( W = P_{av} \\Delta V \\)."}
 ]},
-{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",title:"Chapter 1 Lesson 3: Heat Engine",concepts:[],definitions:[],examples:[],
+{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",worksheetUrl:"worksheets/ch1-l3-worksheet.pdf",title:"Chapter 1 Lesson 3: Heat Engine",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Heat Engine",name:"Conservation of energy (Engine)<br><img src='images/ch1-l3-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( Q_h = W_M + Q_c \\)",symbols:[{symbol:"Q_h",desc:"Heat from hot reservoir (J)"},{symbol:"W_M",desc:"Mechanical Work Done (J)"},{symbol:"Q_c",desc:"Heat rejected to cold reservoir (J)"}]},
 {section:"Heat Engine",name:"Ratio<br><img src='images/ch1-l3-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\frac{Q_c}{Q_h} = \\frac{T_c}{T_h} \\)",symbols:[{symbol:"Q_c",desc:"Heat rejected to cold reservoir (J)"},{symbol:"Q_h",desc:"Heat from hot reservoir (J)"},{symbol:"T_c",desc:"Cold reservoir temp (K)"},{symbol:"T_h",desc:"Hot reservoir temp (K)"}]},
@@ -294,7 +295,7 @@ equations:[
 {question:"Why is a Carnot engine's efficiency always less than 100%?", options:["Because \\( T_h \\) is finite","Because \\( T_c \\) is always greater than 0 K","Because friction exists","Because \\( Q_c \\) is zero"], correctIndex:1, feedback:"Reaching 100% would require \\( T_c = 0\\text{K} \\), which violates the third law of thermodynamics."},
 {question:"If an engine absorbs 1000J of heat from the hot reservoir and does 400J of work, how much heat is rejected?", options:["400J","600J","1000J","1400J"], correctIndex:1, feedback:"Using \\( Q_h = W_M + Q_c \\), we find \\( 1000 = 400 + Q_c \\Rightarrow Q_c = 600\\text{J} \\)."}
 ]},
-{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",title:"Chapter 2 Lesson 1: Superposition and Waves",concepts:[],definitions:[],examples:[],
+{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",worksheetUrl:"worksheets/ch2-l1-worksheet.pdf",title:"Chapter 2 Lesson 1: Superposition and Waves",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Sinusoidal Wave",name:"Sinusoidal Wave equation<br><img src='images/ch2-l1-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( y = a \\sin(\\omega t \\pm kx) \\)",symbols:[{symbol:"y",desc:"Displacement (m)"},{symbol:"a",desc:"Amplitude (m)"},{symbol:"\\omega",desc:"Angular frequency (rad/s)"},{symbol:"t",desc:"Time (s)"},{symbol:"k",desc:"Wave number (rad/m)"},{symbol:"x",desc:"Position (m)"}]},
 {section:"Sinusoidal Wave",name:"Angular frequency<br><img src='images/ch2-l1-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\omega = \\frac{2\\pi}{T}, k = \\frac{2\\pi}{\\lambda} \\)",symbols:[{symbol:"\\omega",desc:"Angular frequency (rad/s)"},{symbol:"T",desc:"Period (s)"},{symbol:"k",desc:"Wave number (rad/m)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
@@ -325,7 +326,7 @@ equations:[
 {question:"The period \\( T \\) of a wave is related to angular frequency by:", options:["\\( T = \\frac{2\\pi}{\\omega} \\)","\\( T = 2\\pi \\omega \\)","\\( T = \\frac{\\omega}{2\\pi} \\)","\\( T = \\omega \\lambda \\)"], correctIndex:0, feedback:"By definition, \\( \\omega = 2\\pi/T \\Rightarrow T = 2\\pi/\\omega \\)."},
 {question:"A standing wave is usually formed by the superposition of:", options:["Two waves of different frequencies","Two waves of same frequency traveling in same direction","Two waves of same frequency traveling in opposite directions","A single wave reflecting internally"], correctIndex:2, feedback:"Standing waves form from identical waves moving in opposite directions."}
 ]},
-{id:"g12-interf",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",title:"Chapter 2 Lesson 2: Interference and Diffraction",concepts:["Interference: A phenomenon where two or more waves overlap, modifying the resulting wave pattern.","Constructive Interference: Occurs when waves are in phase, increasing amplitude.","Destructive Interference: Occurs when waves are out of phase, decreasing amplitude.","Coherent Sources: Sources producing waves of the same amplitude, frequency, and constant phase difference.","Young's Double-Slit Experiment: Demonstrates the wave nature of light through interference patterns.","Diffraction: Bending and spreading of waves when they encounter an obstacle or pass through a narrow aperture."],definitions:[],examples:[],
+{id:"g12-interf",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",worksheetUrl:"worksheets/ch2-l2-worksheet.pdf",title:"Chapter 2 Lesson 2: Interference and Diffraction",concepts:["Interference: A phenomenon where two or more waves overlap, modifying the resulting wave pattern.","Constructive Interference: Occurs when waves are in phase, increasing amplitude.","Destructive Interference: Occurs when waves are out of phase, decreasing amplitude.","Coherent Sources: Sources producing waves of the same amplitude, frequency, and constant phase difference.","Young's Double-Slit Experiment: Demonstrates the wave nature of light through interference patterns.","Diffraction: Bending and spreading of waves when they encounter an obstacle or pass through a narrow aperture."],definitions:[],examples:[],
 equations:[
 {section:"Interference",name:"Constructive interference condition<br><img src='images/ch2-l2-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( d_2 - d_1 = n\\lambda \\)",symbols:[{symbol:"d_2, d_1",desc:"Distances from sources (m)"},{symbol:"n",desc:"Integer (0, 1, 2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
 {section:"Interference",name:"Destructive interference condition<br><img src='images/ch2-l2-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2} \\)",symbols:[{symbol:"d_2, d_1",desc:"Distances from sources (m)"},{symbol:"n",desc:"Integer (0, 1, 2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
@@ -362,7 +363,7 @@ equations:[
 {question:"When \\( m = 0 \\) in \\( d\\sin\\theta = m\\lambda \\), this corresponds to:", options:["The first dark fringe","The central maximum (bright fringe)","No interference","The minimum amplitude"], correctIndex:1, feedback:"\\( m = 0 \\) gives the zero maximum fringe, or central maximum."},
 {question:"What is the maximum amplitude \\( A' \\) of the superposition of two waves with amplitude \\( A \\)?", options:["\\( A \\)","\\( A/2 \\)","\\( 2A \\)","\\( 4A \\)"], correctIndex:2, feedback:"Constructive interference doubles the amplitude, giving a maximum of \\( 2A \\)."}
 ]},
-{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",title:"Chapter 3 Lesson 1: Magnetism & Induction",concepts:[],definitions:[],examples:[],
+{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",worksheetUrl:"worksheets/ch3-l1-worksheet.pdf",title:"Chapter 3 Lesson 1: Magnetism & Induction",concepts:[],definitions:[],examples:[],
 equations:[
 {section:"Magnetic Field & Force",name:"Magnetic field (straight wire)<br><img src='images/ch3-l1-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)",symbols:[{symbol:"B",desc:"Magnetic Field (T)"},{symbol:"\\mu_0",desc:"Permeability of free space (4π×10⁻⁷ T·m/A)"},{symbol:"I",desc:"Current (A)"},{symbol:"d",desc:"Distance from wire (m)"}]},
 {section:"Magnetic Field & Force",name:"Magnetic field (circular wire)<br><img src='images/ch3-l1-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( B = \\frac{\\mu_0 NI}{2R} \\)",symbols:[{symbol:"B",desc:"Magnetic Field (T)"},{symbol:"\\mu_0",desc:"Permeability of free space (4π×10⁻⁷ T·m/A)"},{symbol:"N",desc:"Number of turns (No unit)"},{symbol:"I",desc:"Current (A)"},{symbol:"R",desc:"Radius of coil (m)"}]},
@@ -407,7 +408,7 @@ equations:[
 {question:"The resonant angular frequency of an LC circuit is:", options:["\\( \\sqrt{CL} \\)","\\( \\frac{1}{CL} \\)","\\( \\frac{1}{\\sqrt{CL}} \\)","\\( \\frac{C}{L} \\)"], correctIndex:2, feedback:"The frequency is given by \\( \\omega_0 = \\frac{1}{\\sqrt{CL}} \\)."},
 {question:"The force between two parallel current-carrying wires depends inversely on:", options:["The length of the wires","The currents \\(I_1\\) and \\(I_2\\)","The permeability \\(\\mu_0\\)","The distance between them \\(a\\)"], correctIndex:3, feedback:"\\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\), so it is inversely proportional to distance \\(a\\)."}
 ]},
-{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",title:"Chapter 3 Lesson 2: Alternating Current",concepts:[],definitions:[],examples:[],
+{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",worksheetUrl:"worksheets/ch3-l2-worksheet.pdf",title:"Chapter 3 Lesson 2: Alternating Current",concepts:["RLC Series Circuit Diagram<br><img src='images/ch3-l2-rlc-circuit.png' style='width:100%; border-radius:8px; margin-top:10px;'>"],definitions:[],examples:[],
 equations:[
 {section:"AC Basics",name:"Instantaneous current<br><img src='images/ch3-l2-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( i = i_m \\sin(\\omega t + \\phi_0) \\)",symbols:[{symbol:"i",desc:"Instantaneous current (A)"},{symbol:"i_m",desc:"Peak current (A)"},{symbol:"\\omega",desc:"Angular frequency (rad/s)"},{symbol:"t",desc:"Time (s)"},{symbol:"\\phi_0",desc:"Initial phase angle (rad)"}]},
 {section:"AC Basics",name:"RMS Current<br><img src='images/ch3-l2-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( I = \\frac{I_m}{\\sqrt{2}} \\)",symbols:[{symbol:"I",desc:"Root Mean Square Current (A)"},{symbol:"I_m",desc:"Peak current (A)"}]},
@@ -443,7 +444,7 @@ equations:[
 {question:"The instantaneous current is \\( i = i_m \\sin(\\omega t + \\phi_0) \\). What is \\( i_m \\)?", options:["RMS current","Average current","Peak current","Initial current"], correctIndex:2, feedback:"\\( i_m \\) is the maximum or peak amplitude of the current."}
 ]},
 {
-id:"g12-ch4-l1",gifUrl:"",title:"Chapter 4 Lesson 1: Solid-State Physics",
+id:"g12-ch4-l1",gifUrl:"",worksheetUrl:"worksheets/ch4-l1-worksheet.pdf",title:"Chapter 4 Lesson 1: Solid-State Physics",
 concepts:[
 "Semiconductor: Material with conductivity between conductor and insulator. Can be doped to form N-type (extra electrons) or P-type (extra holes).",
 "P-N Junction: Boundary between P-type and N-type semiconductors, creating a depletion region.",
@@ -485,7 +486,7 @@ quiz:[
 ]
 },
 {
-id:"g12-ch4-l2",gifUrl:"",title:"Chapter 4 Lesson 2: Special Theory of Relativity",
+id:"g12-ch4-l2",gifUrl:"",worksheetUrl:"worksheets/ch4-l2-worksheet.pdf",title:"Chapter 4 Lesson 2: Special Theory of Relativity",
 concepts:[
 "Inertial Reference Frame: A coordinate system where Newton's laws of motion are valid, moving at constant velocity.",
 "Galilean Transformation: Classical physics coordinate and velocity transformations, valid only at low speeds (u << c).",
@@ -529,7 +530,7 @@ quiz:[
 ]
 },
 {
-id:"g12-ch4-l3",gifUrl:"",title:"Chapter 4 Lesson 3: Atomic Structure",
+id:"g12-ch4-l3",gifUrl:"",worksheetUrl:"worksheets/ch4-l3-worksheet.pdf",title:"Chapter 4 Lesson 3: Atomic Structure",
 concepts:[
 "Cathode Rays: Streams of electrons discovered by J.J. Thomson, demonstrating that atoms have an internal structure.",
 "Charge-to-Mass Ratio (e/m): Measured by balancing electric and magnetic forces on an electron beam.",
@@ -1624,6 +1625,34 @@ function loadLessonDetail(lesson) {
     }
     
     initQuiz();
+
+    // --- Worksheet Logic ---
+    const worksheetContainer = document.getElementById('lesson-worksheet');
+    if (worksheetContainer) {
+        if (lesson.worksheetUrl) {
+            worksheetContainer.innerHTML = `
+                <div class="worksheet-header">
+                    <h2><i class="fa-solid fa-file-pdf"></i> ${lesson.title} - Practice Worksheet</h2>
+                    <p>You can solve the problems below, open in full screen, or download and print the worksheet.</p>
+                </div>
+                <div class="worksheet-actions">
+                    <a href="${lesson.worksheetUrl}" target="_blank" class="worksheet-btn primary">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open / Download PDF
+                    </a>
+                </div>
+                <iframe src="${lesson.worksheetUrl}" class="worksheet-preview" title="Worksheet Preview"></iframe>
+            `;
+        } else {
+            worksheetContainer.innerHTML = `
+                <div class="worksheet-empty">
+                    <i class="fa-solid fa-file-circle-question"></i>
+                    <h3>Worksheet Coming Soon</h3>
+                    <p>Practice exercises for this lesson have not been uploaded yet.</p>
+                </div>
+            `;
+        }
+    }
+
     showView(viewLessonDetail);
 }
 

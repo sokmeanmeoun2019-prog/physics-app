@@ -886,3 +886,93 @@ button {
 .ai-msg.ai p { margin-bottom: 8px; }
 .ai-msg.ai p:last-child { margin-bottom: 0; }
 .ai-msg.ai code { background: rgba(0,0,0,0.05); padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+
+/* --- Worksheet Tab Styles --- */
+.worksheet-container {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-top: 1rem;
+}
+
+.worksheet-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.worksheet-header h2 {
+    color: var(--primary-blue);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.worksheet-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.worksheet-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.worksheet-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.worksheet-btn.primary {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+.worksheet-btn.primary:hover {
+    background: var(--primary-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.worksheet-preview {
+    width: 100%;
+    height: 750px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    background: #525659;
+}
+
+.worksheet-empty {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    color: var(--text-muted);
+}
+
+.worksheet-empty i {
+    font-size: 3.5rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.worksheet-empty h3 {
+    font-size: 1.3rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
