@@ -1358,6 +1358,16 @@ const CHAPTER_THEMES = {
         subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
         chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"]
     },
+    "g12-l5": {
+        color: "#be123c",
+        gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
+        bgLight: "#ffe4e6",
+        borderLight: "#fecdd3",
+        shadow: "rgba(190, 18, 60, 0.22)",
+        icon: "fa-compass",
+        subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
+        chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"]
+    },
     "g12-l6": {
         color: "#2563eb",
         gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
@@ -1495,6 +1505,7 @@ function loadLessons(grade) {
                 const card = document.createElement('div');
                 card.className = 'lesson-card';
                 card.setAttribute('data-lesson-id', lesson.id);
+                card.setAttribute('onclick', `openLessonDetail('${lesson.id}')`);
                 card.style.setProperty('--chapter-accent', theme.color || '#0288d1');
                 card.style.setProperty('--chapter-gradient', theme.gradient || 'linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)');
                 card.style.setProperty('--chapter-shadow', theme.shadow || 'rgba(2, 136, 209, 0.2)');
@@ -1549,6 +1560,14 @@ function loadLessons(grade) {
 window.executeLessonRender = loadLessons;
 window.loadLessons = loadLessons;
 window.renderLessonsList = loadLessons;
+window.loadLessonDetail = loadLessonDetail;
+window.openLessonDetail = loadLessonDetail;
+
+if (window.pendingLessonId) {
+    const pid = window.pendingLessonId;
+    window.pendingLessonId = null;
+    loadLessonDetail(pid);
+}
 
 // If user clicked a grade while app.js was downloading, render immediately!
 if (window.pendingGrade) {
@@ -1607,7 +1626,15 @@ function formatMathField(val) {
 }
 
 // --- Lesson Detail ---
-function loadLessonDetail(lesson) {
+const renderedTabsInCurrentLesson = new Set();
+
+function loadLessonDetail(lessonOrId) {
+    let lesson = lessonOrId;
+    if (typeof lessonOrId === 'string') {
+        const allLessons = [...(data['9'] || []), ...(data['12'] || [])];
+        lesson = allLessons.find(l => l.id === lessonOrId) || null;
+    }
+    if (!lesson) return;
     currentLesson = lesson;
     document.getElementById('lesson-detail-title').innerText = lesson.title;
     
@@ -2818,7 +2845,6 @@ function renderGame(lesson) {
 }
 
 // --- Tabs Logic ---
-const renderedTabsInCurrentLesson = new Set();
 
 function switchTab(targetName) {
     const tabBtns = document.querySelectorAll('.tab-btn');
