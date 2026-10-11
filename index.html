@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=38">
+    <link rel="stylesheet" href="styles.css?v=39">
     <style>
         .view.active {
             display: block !important;
@@ -519,6 +519,37 @@
             });
             window.scrollTo(0, 0);
         };
+
+        window.switchTab = function(targetName) {
+            // 1. Instantly update tab buttons
+            var tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(function(b) {
+                if (b.getAttribute('data-target') === targetName) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+
+            // 2. Instantly update tab panes (0ms latency)
+            var tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(function(p) {
+                if (p.id === 'tab-' + targetName) {
+                    p.classList.remove('hidden');
+                    p.classList.add('active');
+                    p.style.display = 'block';
+                } else {
+                    p.classList.add('hidden');
+                    p.classList.remove('active');
+                    p.style.display = 'none';
+                }
+            });
+
+            // 3. Forward to appSwitchTab if app.js is ready
+            if (typeof window.appSwitchTab === 'function') {
+                window.appSwitchTab(targetName);
+            }
+        };
     </script>
 </head>
 <body>
@@ -662,12 +693,12 @@
 
             <!-- Navigation Tabs for Lesson -->
             <div class="lesson-tabs">
-                <button class="tab-btn active" data-target="summary">Summary</button>
-                <button class="tab-btn" data-target="equations">Equations</button>
-                <button class="tab-btn" data-target="flashcards">Flashcards</button>
-                <button class="tab-btn" data-target="quiz">Quiz</button>
-                <button class="tab-btn" data-target="worksheet">Worksheet</button>
-                <button class="tab-btn" data-target="game">Game</button>
+                <button class="tab-btn active" data-target="summary" onclick="switchTab('summary')">Summary</button>
+                <button class="tab-btn" data-target="equations" onclick="switchTab('equations')">Equations</button>
+                <button class="tab-btn" data-target="flashcards" onclick="switchTab('flashcards')">Flashcards</button>
+                <button class="tab-btn" data-target="quiz" onclick="switchTab('quiz')">Quiz</button>
+                <button class="tab-btn" data-target="worksheet" onclick="switchTab('worksheet')">Worksheet</button>
+                <button class="tab-btn" data-target="game" onclick="switchTab('game')">Game</button>
             </div>
 
             <!-- Tab Content -->
@@ -682,21 +713,21 @@
                         </div>
                     </div>
 
-                    <div class="summary-section">
+                    <div class="summary-section" id="lesson-concepts-section">
                         <h2><i class="fa-solid fa-key"></i> Key Concepts</h2>
                         <ul id="lesson-concepts" class="concept-list">
                             <!-- Populated by JS -->
                         </ul>
                     </div>
                     
-                    <div class="summary-section">
+                    <div class="summary-section" id="lesson-definitions-section">
                         <h2><i class="fa-solid fa-book"></i> Definitions</h2>
                         <div id="lesson-definitions" class="definitions-grid">
                             <!-- Populated by JS -->
                         </div>
                     </div>
                     
-                    <div class="summary-section">
+                    <div class="summary-section" id="lesson-examples-section">
                         <h2><i class="fa-solid fa-lightbulb"></i> Examples</h2>
                         <div id="lesson-examples" class="examples-container">
                             <!-- Populated by JS -->
@@ -802,6 +833,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=38"></script>
+    <script src="app.js?v=39"></script>
 </body>
 </html>

@@ -969,6 +969,9 @@ quiz:[
 ]
 };
 
+window.physicsData = data;
+window.appData = data;
+
 // --- App State ---
 let currentGrade = null;
 let currentLesson = null;
@@ -1632,6 +1635,19 @@ function loadLessonDetail(lessonOrId) {
     showView(viewLessonDetail);
     document.getElementById('lesson-detail-title').innerText = lesson.title;
     
+    const conceptsSection = document.getElementById('lesson-concepts-section');
+    if (conceptsSection) {
+        conceptsSection.style.display = (lesson.concepts && lesson.concepts.length > 0) ? 'block' : 'none';
+    }
+    const defsSection = document.getElementById('lesson-definitions-section');
+    if (defsSection) {
+        defsSection.style.display = (lesson.definitions && lesson.definitions.length > 0) ? 'block' : 'none';
+    }
+    const examplesSection = document.getElementById('lesson-examples-section');
+    if (examplesSection) {
+        examplesSection.style.display = (lesson.examples && lesson.examples.length > 0) ? 'block' : 'none';
+    }
+
     const conceptsList = document.getElementById('lesson-concepts');
     conceptsList.innerHTML = (lesson.concepts || []).map(c => `<li>${c}</li>`).join('');
     
@@ -2660,16 +2676,20 @@ function loadLessonDetail(lessonOrId) {
         else quizTabBtn.classList.add('hidden');
     }
 
-    // Reset worksheet and game containers for smooth lazy loading
-    const worksheetContainer = document.getElementById('lesson-worksheet');
-    if (worksheetContainer) worksheetContainer.innerHTML = '';
-    const gameContainer = document.getElementById('lesson-game');
-    if (gameContainer) gameContainer.innerHTML = '';
-
     showView(viewLessonDetail);
 
-    // Reset cache of rendered tabs for the new lesson
+    // Pre-populate and hydrate all tabs immediately for instant 0ms access without blank screens
+    currentFlashcardIndex = 0;
+    if (typeof updateFlashcard === 'function') updateFlashcard();
+    if (typeof initQuiz === 'function') initQuiz();
+    if (typeof renderWorksheet === 'function') renderWorksheet(lesson);
+    if (typeof renderGame === 'function') renderGame(lesson);
+
     renderedTabsInCurrentLesson.clear();
+    renderedTabsInCurrentLesson.add('flashcards');
+    renderedTabsInCurrentLesson.add('quiz');
+    renderedTabsInCurrentLesson.add('worksheet');
+    renderedTabsInCurrentLesson.add('game');
     
     const hasSummaryContent = (lesson.concepts || []).length > 0 || 
                               (lesson.definitions || []).length > 0 || 
@@ -2865,40 +2885,39 @@ function switchTab(targetName) {
         }
     });
 
+    if (!currentLesson && window.currentSelectedLessonId) {
+        const allLessons = [...(data['9'] || []), ...(data['12'] || [])];
+        currentLesson = allLessons.find(l => l.id === window.currentSelectedLessonId) || null;
+    }
     if (!currentLesson) return;
 
     if (targetName === 'summary') {
-        if (!renderedTabsInCurrentLesson.has('summary')) {
-            renderedTabsInCurrentLesson.add('summary');
-            typesetMath([document.getElementById('tab-summary')]);
-        }
+        typesetMath([document.getElementById('tab-summary')]);
     } else if (targetName === 'equations') {
-        if (!renderedTabsInCurrentLesson.has('equations')) {
-            renderedTabsInCurrentLesson.add('equations');
-            typesetMath([document.getElementById('lesson-equations')]);
-        }
+        typesetMath([document.getElementById('lesson-equations')]);
     } else if (targetName === 'flashcards') {
-        if (!renderedTabsInCurrentLesson.has('flashcards')) {
-            renderedTabsInCurrentLesson.add('flashcards');
-        }
         updateFlashcard();
     } else if (targetName === 'quiz') {
-        if (!renderedTabsInCurrentLesson.has('quiz')) {
-            renderedTabsInCurrentLesson.add('quiz');
+        const qContainer = document.getElementById('quiz-question-container');
+        const rContainer = document.getElementById('quiz-results-container');
+        if (qContainer && rContainer && qContainer.classList.contains('hidden') && rContainer.classList.contains('hidden')) {
             initQuiz();
         }
     } else if (targetName === 'worksheet') {
-        if (!renderedTabsInCurrentLesson.has('worksheet')) {
-            renderedTabsInCurrentLesson.add('worksheet');
+        const wsEl = document.getElementById('lesson-worksheet');
+        if (wsEl && !wsEl.hasChildNodes()) {
             renderWorksheet(currentLesson);
         }
     } else if (targetName === 'game') {
-        if (!renderedTabsInCurrentLesson.has('game')) {
-            renderedTabsInCurrentLesson.add('game');
+        const gameEl = document.getElementById('lesson-game');
+        if (gameEl && !gameEl.hasChildNodes()) {
             renderGame(currentLesson);
         }
     }
 }
+
+window.switchTab = switchTab;
+window.appSwitchTab = switchTab;
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -3155,7 +3174,23 @@ if (aiSendBtn && aiUserInput) {
 
 // --- Global Exports & Pending Actions Resolution ---
 window.loadLessonDetail = loadLessonDetail;
-window.openLessonDetail = loadLessonDetail;
+window.switchTab = switchTab;
+window.appSwitchTab = switchTab;
+window.updateFlashcard = updateFlashcard;
+window.initQuiz = initQuiz;
+window.renderWorksheet = renderWorksheet;
+window.renderGame = renderGame;
+window.physicsData = data;
+window.appData = data;
+
+const originalOpenLessonDetail = window.openLessonDetail;
+window.openLessonDetail = function(lessonOrId) {
+    if (typeof lessonOrId === 'string' && typeof originalOpenLessonDetail === 'function') {
+        originalOpenLessonDetail(lessonOrId);
+    } else {
+        loadLessonDetail(lessonOrId);
+    }
+};
 
 // Resolve any actions clicked before script finished evaluating
 if (window.pendingLessonId) {
