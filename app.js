@@ -1625,35 +1625,36 @@ function loadLessonDetail(lesson) {
     }
     
     initQuiz();
-
-    // --- Worksheet Logic ---
-    const worksheetContainer = document.getElementById('lesson-worksheet');
-    if (worksheetContainer) {
-        if (lesson.worksheetUrl) {
-            worksheetContainer.innerHTML = `
-                <div class="worksheet-header">
-                    <h2><i class="fa-solid fa-file-pdf"></i> ${lesson.title} - Practice Worksheet</h2>
-                    <p>You can solve the problems below, open in full screen, or download and print the worksheet.</p>
-                </div>
-                <div class="worksheet-actions">
-                    <a href="${lesson.worksheetUrl}" target="_blank" class="worksheet-btn primary">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open / Download PDF
-                    </a>
-                </div>
-                <iframe src="${lesson.worksheetUrl}" class="worksheet-preview" title="Worksheet Preview"></iframe>
-            `;
-        } else {
-            worksheetContainer.innerHTML = `
-                <div class="worksheet-empty">
-                    <i class="fa-solid fa-file-circle-question"></i>
-                    <h3>Worksheet Coming Soon</h3>
-                    <p>Practice exercises for this lesson have not been uploaded yet.</p>
-                </div>
-            `;
-        }
-    }
-
+    renderWorksheet(lesson);
     showView(viewLessonDetail);
+}
+
+// --- Worksheet Render Function ---
+function renderWorksheet(lesson) {
+    const worksheetContainer = document.getElementById('lesson-worksheet');
+    if (!worksheetContainer || !lesson) return;
+    if (lesson.worksheetUrl) {
+        worksheetContainer.innerHTML = `
+            <div class="worksheet-header">
+                <h2><i class="fa-solid fa-file-pdf"></i> ${lesson.title} - Practice Worksheet</h2>
+                <p>You can solve the problems below, open in full screen, or download and print the worksheet.</p>
+            </div>
+            <div class="worksheet-actions">
+                <a href="${lesson.worksheetUrl}" target="_blank" class="worksheet-btn primary">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open / Download PDF
+                </a>
+            </div>
+            <iframe src="${lesson.worksheetUrl}" class="worksheet-preview" title="Worksheet Preview"></iframe>
+        `;
+    } else {
+        worksheetContainer.innerHTML = `
+            <div class="worksheet-empty">
+                <i class="fa-solid fa-file-circle-question"></i>
+                <h3>Worksheet Coming Soon</h3>
+                <p>Practice exercises for this lesson have not been uploaded yet.</p>
+            </div>
+        `;
+    }
 }
 
 // --- Tabs Logic ---
@@ -1669,6 +1670,9 @@ Array.from(document.querySelectorAll('.tab-btn')).forEach(btn => {
         if(target) {
             target.classList.remove('hidden');
             target.classList.add('active');
+            if (btn.getAttribute('data-target') === 'worksheet' && currentLesson) {
+                renderWorksheet(currentLesson);
+            }
         }
     });
 });
