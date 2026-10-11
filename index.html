@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=35">
+    <link rel="stylesheet" href="styles.css?v=37">
     <style>
         .view.active {
             display: block !important;
@@ -374,6 +374,11 @@
         }
 
         window.openLessonDetail = function(lessonId) {
+            // Restore any buttons showing spinner
+            document.querySelectorAll('.btn-start-label').forEach(function(el) {
+                el.innerHTML = '<i class="fa-solid fa-circle-play"></i> Start Lesson';
+            });
+
             if (typeof window.loadLessonDetail === 'function') {
                 window.loadLessonDetail(lessonId);
             } else {
@@ -383,6 +388,24 @@
                     const label = card.querySelector('.btn-start-label');
                     if (label) label.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening...';
                 }
+
+                // Poller to open immediately as soon as app.js finishes loading
+                var attempts = 0;
+                var poll = setInterval(function() {
+                    attempts++;
+                    if (typeof window.loadLessonDetail === 'function') {
+                        clearInterval(poll);
+                        window.pendingLessonId = null;
+                        window.loadLessonDetail(lessonId);
+                    } else if (attempts > 60) {
+                        clearInterval(poll);
+                        const c = document.querySelector(`.lesson-card[data-lesson-id="${lessonId}"]`);
+                        if (c) {
+                            const l = c.querySelector('.btn-start-label');
+                            if (l) l.innerHTML = '<i class="fa-solid fa-circle-play"></i> Start Lesson';
+                        }
+                    }
+                }, 50);
             }
         };
 
@@ -479,6 +502,9 @@
                 vLessons.classList.remove('hidden');
                 vLessons.classList.add('active');
             }
+            document.querySelectorAll('.btn-start-label').forEach(function(l) {
+                l.innerHTML = '<i class="fa-solid fa-circle-play"></i> Start Lesson';
+            });
             window.scrollTo(0, 0);
         };
     </script>
@@ -764,6 +790,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=35"></script>
+    <script src="app.js?v=37"></script>
 </body>
 </html>

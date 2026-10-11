@@ -975,6 +975,7 @@ let currentLesson = null;
 let currentFlashcardIndex = 0;
 let currentQuizIndex = 0;
 let quizScore = 0;
+const renderedTabsInCurrentLesson = new Set();
 
 // --- Dynamic Games & Links Loader (Auto-refreshes from games.json without browser cache) ---
 let externalGamesCache = null;
@@ -1560,21 +1561,6 @@ function loadLessons(grade) {
 window.executeLessonRender = loadLessons;
 window.loadLessons = loadLessons;
 window.renderLessonsList = loadLessons;
-window.loadLessonDetail = loadLessonDetail;
-window.openLessonDetail = loadLessonDetail;
-
-if (window.pendingLessonId) {
-    const pid = window.pendingLessonId;
-    window.pendingLessonId = null;
-    loadLessonDetail(pid);
-}
-
-// If user clicked a grade while app.js was downloading, render immediately!
-if (window.pendingGrade) {
-    const pg = window.pendingGrade;
-    window.pendingGrade = null;
-    loadLessons(pg);
-}
 
 // High-performance, non-blocking MathJax queue targeting only specific elements
 let mathTypesetPromise = Promise.resolve();
@@ -1626,15 +1612,22 @@ function formatMathField(val) {
 }
 
 // --- Lesson Detail ---
-const renderedTabsInCurrentLesson = new Set();
 
 function loadLessonDetail(lessonOrId) {
+    // Reset all Start Lesson button labels back from "Opening..." spinner
+    document.querySelectorAll('.btn-start-label').forEach(label => {
+        label.innerHTML = '<i class="fa-solid fa-circle-play"></i> Start Lesson';
+    });
+
     let lesson = lessonOrId;
     if (typeof lessonOrId === 'string') {
         const allLessons = [...(data['9'] || []), ...(data['12'] || [])];
         lesson = allLessons.find(l => l.id === lessonOrId) || null;
     }
-    if (!lesson) return;
+    if (!lesson) {
+        console.warn('Lesson not found:', lessonOrId);
+        return;
+    }
     currentLesson = lesson;
     document.getElementById('lesson-detail-title').innerText = lesson.title;
     
@@ -3155,3 +3148,20 @@ if (aiSendBtn && aiUserInput) {
         }
     });
 }
+
+// --- Global Exports & Pending Actions Resolution ---
+window.loadLessonDetail = loadLessonDetail;
+window.openLessonDetail = loadLessonDetail;
+
+// Resolve any actions clicked before script finished evaluating
+if (window.pendingLessonId) {
+    const pid = window.pendingLessonId;
+    window.pendingLessonId = null;
+    window.pendingGrade = null;
+    loadLessonDetail(pid);
+} else if (window.pendingGrade) {
+    const pg = window.pendingGrade;
+    window.pendingGrade = null;
+    loadLessons(pg);
+}
+
