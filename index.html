@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=42">
+    <link rel="stylesheet" href="styles.css?v=43">
     <style>
         .view.active {
             display: block !important;
@@ -40,22 +40,16 @@
         function showDashboard() {
             if (typeof window.appShowDashboard === 'function') {
                 window.appShowDashboard();
-            } else if (typeof window.showDashboard === 'function') {
-                window.showDashboard();
             }
         }
         function showLessonsView() {
             if (typeof window.appShowLessonsView === 'function') {
                 window.appShowLessonsView();
-            } else if (typeof window.showLessonsView === 'function') {
-                window.showLessonsView();
             }
         }
         function loadLessons(grade) {
             if (typeof window.appLoadLessons === 'function') {
                 window.appLoadLessons(grade);
-            } else if (typeof window.loadLessons === 'function') {
-                window.loadLessons(grade);
             } else {
                 window.pendingGrade = grade;
             }
@@ -63,8 +57,6 @@
         function openLessonDetail(lessonId) {
             if (typeof window.appLoadLessonDetail === 'function') {
                 window.appLoadLessonDetail(lessonId);
-            } else if (typeof window.loadLessonDetail === 'function') {
-                window.loadLessonDetail(lessonId);
             } else {
                 window.pendingLessonId = lessonId;
             }
@@ -72,8 +64,6 @@
         function switchTab(targetName) {
             if (typeof window.appSwitchTab === 'function') {
                 window.appSwitchTab(targetName);
-            } else if (typeof window.switchTab === 'function') {
-                window.switchTab(targetName);
             }
         }
     </script>
@@ -359,6 +349,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=42"></script>
+    <script src="app.js?v=43"></script>
 </body>
 </html>

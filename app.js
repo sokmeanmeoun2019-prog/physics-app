@@ -1187,15 +1187,23 @@ function showLessonsView() {
 
 window.showView = showView;
 window.showDashboard = showDashboard;
+window.appShowDashboard = showDashboard;
 window.showLessonsView = showLessonsView;
+window.appShowLessonsView = showLessonsView;
 
 if (homeBtn) homeBtn.addEventListener('click', showDashboard);
 if (backToLessonsBtn) backToLessonsBtn.addEventListener('click', showLessonsView);
 if (backToDashboardBtn) backToDashboardBtn.addEventListener('click', showDashboard);
 
-// Expose globally
+// Expose globally early
 window.loadLessons = loadLessons;
+window.appLoadLessons = loadLessons;
 window.renderLessonsList = loadLessons;
+window.loadLessonDetail = loadLessonDetail;
+window.appLoadLessonDetail = loadLessonDetail;
+window.openLessonDetail = loadLessonDetail;
+window.switchTab = switchTab;
+window.appSwitchTab = switchTab;
 
 // --- Grade Selection ---
 function bindGradeSelection() {
@@ -3257,6 +3265,7 @@ window.renderWorksheet = renderWorksheet;
 window.renderGame = renderGame;
 window.physicsData = data;
 window.appData = data;
+window.__appLoaded = true;
 
 // Resolve any actions clicked before script finished evaluating
 if (window.pendingLessonId) {
@@ -3269,4 +3278,5 @@ if (window.pendingLessonId) {
     window.pendingGrade = null;
     loadLessons(pg);
 }
+
 
