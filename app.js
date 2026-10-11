@@ -1186,14 +1186,14 @@ if (homeBtn) homeBtn.addEventListener('click', showDashboard);
 if (backToLessonsBtn) backToLessonsBtn.addEventListener('click', showLessonsView);
 if (backToDashboardBtn) backToDashboardBtn.addEventListener('click', showDashboard);
 
-// Expose globally for inline onclick fallbacks
+// Expose globally
 window.loadLessons = loadLessons;
 window.renderLessonsList = loadLessons;
 
 // --- Grade Selection ---
 function bindGradeSelection() {
     Array.from(document.querySelectorAll('.grade-card')).forEach(card => {
-        card.addEventListener('click', (e) => {
+        card.addEventListener('click', () => {
             const grade = card.getAttribute('data-grade');
             if (grade) loadLessons(grade);
         });
@@ -1210,24 +1210,6 @@ function bindGradeSelection() {
 }
 bindGradeSelection();
 
-// Global click delegation fallback for instantaneous, foolproof interaction
-document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.btn-grade');
-    if (btn) {
-        const grade = btn.getAttribute('data-grade') || (btn.classList.contains('btn-grade-9') ? '9' : '12');
-        if (grade) {
-            loadLessons(grade);
-            return;
-        }
-    }
-    const card = e.target.closest('.grade-card');
-    if (card) {
-        const grade = card.getAttribute('data-grade') || (card.classList.contains('grade-card-9') ? '9' : '12');
-        if (grade) {
-            loadLessons(grade);
-        }
-    }
-});
 
 
 const CHAPTER_THEMES = {
@@ -1423,26 +1405,12 @@ const DEFAULT_PALETTES = [
     { color: "#e11d48", gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)", bgLight: "#ffe4e6", borderLight: "#fecdd3", shadow: "rgba(225, 29, 72, 0.2)", icon: "fa-compass" }
 ];
 
-let lastLoadedGrade = null;
-let lastLoadTime = 0;
-
 function loadLessons(grade) {
     if (!grade) return;
-    const now = Date.now();
-    const gStr = String(grade);
-    currentGrade = gStr;
-    window.pendingGradeToLoad = null;
+    currentGrade = String(grade);
     
     // Switch view immediately so the user experiences zero lag and instant response
     showView(viewLessons);
-
-    const container = document.getElementById('lesson-list-container');
-    const hasCards = container && container.querySelectorAll('.lesson-card').length > 0;
-    if (lastLoadedGrade === gStr && hasCards && (now - lastLoadTime) < 300) {
-        return;
-    }
-    lastLoadedGrade = gStr;
-    lastLoadTime = now;
 
     try {
         // Update Hero Banner & Grade Indicator
@@ -2674,18 +2642,6 @@ function loadLessonDetail(lesson) {
     switchTab(hasSummaryContent ? 'summary' : 'equations');
 }
 
-// Global click delegation fallback for lesson cards
-document.addEventListener('click', (e) => {
-    const lessonCard = e.target.closest('.lesson-card');
-    if (lessonCard && !e.target.closest('a')) {
-        const lessonId = lessonCard.getAttribute('data-lesson-id');
-        if (lessonId && currentGrade && data[currentGrade]) {
-            const lesson = data[currentGrade].find(l => l.id === lessonId);
-            if (lesson) loadLessonDetail(lesson);
-        }
-    }
-});
-
 window.loadLessonDetail = loadLessonDetail;
 
 // --- Worksheet Render Function ---
@@ -3158,9 +3114,4 @@ if (aiSendBtn && aiUserInput) {
             if (text) sendToGemini(text);
         }
     });
-}
-
-// If user clicked Grade 9 or Grade 12 while app.js was downloading, render immediately!
-if (window.pendingGradeToLoad) {
-    loadLessons(window.pendingGradeToLoad);
 }
