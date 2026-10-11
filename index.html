@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=11">
+    <link rel="stylesheet" href="styles.css?v=26">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -57,7 +57,7 @@
             </header>
             <div class="grade-cards">
                 <!-- Grade 9 Card -->
-                <div class="grade-card grade-card-9" data-grade="9" onclick="void(0)">
+                <div class="grade-card grade-card-9" data-grade="9" onclick="loadLessons('9')">
                     <div class="grade-badge badge-g9">
                         <i class="fa-solid fa-seedling"></i> Fundamental Physics
                     </div>
@@ -81,14 +81,14 @@
                         <span><i class="fa-solid fa-vial"></i> Simulations</span>
                     </div>
 
-                    <button class="btn-grade btn-grade-9">
+                    <button class="btn-grade btn-grade-9" type="button" data-grade="9" onclick="loadLessons('9')">
                         <span>Explore Grade 9</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
                 <!-- Grade 12 Card -->
-                <div class="grade-card grade-card-12" data-grade="12" onclick="void(0)">
+                <div class="grade-card grade-card-12" data-grade="12" onclick="loadLessons('12')">
                     <div class="grade-badge badge-g12">
                         <i class="fa-solid fa-graduation-cap"></i> Advanced Physics
                     </div>
@@ -114,7 +114,7 @@
                         <span><i class="fa-solid fa-brain"></i> Quizzes</span>
                     </div>
 
-                    <button class="btn-grade btn-grade-12">
+                    <button class="btn-grade btn-grade-12" type="button" data-grade="12" onclick="loadLessons('12')">
                         <span>Explore Grade 12</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
@@ -309,6 +309,6 @@
         </div>
     </div>
 
-    <script src="app.js?v=25"></script>
+    <script src="app.js?v=26"></script>
 </body>
 </html>

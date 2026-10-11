@@ -694,8 +694,15 @@ button:active, .nav-btn:active, .btn-grade:active, .nav-back-pill:active, .works
     height: 7px;
 }
 
-.grade-card *, .lesson-card * {
-    pointer-events: none;
+/* Card interactive styling */
+.grade-card, .lesson-card {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.grade-card .btn-grade, .lesson-card .btn-start-label, .lesson-card .btn-start-arrow {
+    pointer-events: auto;
 }
 
 /* Lesson Card Top Bar */
