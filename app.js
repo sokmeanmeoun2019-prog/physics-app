@@ -550,76 +550,97 @@ equations:[
 {question:"The period \\( T \\) of a wave is related to angular frequency by:", options:["\\( T = \\frac{2\\pi}{\\omega} \\)","\\( T = 2\\pi \\omega \\)","\\( T = \\frac{\\omega}{2\\pi} \\)","\\( T = \\omega \\lambda \\)"], correctIndex:0, feedback:"By definition, \\( \\omega = 2\\pi/T \\Rightarrow T = 2\\pi/\\omega \\)."},
 {question:"A standing wave is usually formed by the superposition of:", options:["Two waves of different frequencies","Two waves of same frequency traveling in same direction","Two waves of same frequency traveling in opposite directions","A single wave reflecting internally"], correctIndex:2, feedback:"Standing waves form from identical waves moving in opposite directions."}
 ]},
-{id:"g12-interf",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",worksheetUrl:"worksheets/ch2-l2-worksheet.pdf",games:[{topic:"Interference and Diffraction",url:"https://gemini.google.com/share/14c6c1b23c4d"}],title:"Chapter 2 Lesson 2: Interference and Diffraction",concepts:["Interference: A phenomenon where two or more waves overlap, modifying the resulting wave pattern.","Constructive Interference: Occurs when waves are in phase, increasing amplitude.","Destructive Interference: Occurs when waves are out of phase, decreasing amplitude.","Coherent Sources: Sources producing waves of the same amplitude, frequency, and constant phase difference.","Young's Double-Slit Experiment: Demonstrates the wave nature of light through interference patterns.","Diffraction: Bending and spreading of waves when they encounter an obstacle or pass through a narrow aperture."],definitions:[
-{term:"Interference of Waves",definition:"The phenomenon that occurs when two or more coherent waves superpose while traversing the same medium, forming a resultant wave of modified amplitude and intensity.",symbol:"\\text{Interference}",unit:"\\text{No unit}",equation:"y = y_1 + y_2"},
-{term:"Coherent Sources",definition:"Two or more wave sources that emit continuous waves having the identical frequency, wavelength, and maintaining a constant phase difference over time.",symbol:"S_1, S_2",unit:"\\text{No unit}",equation:"\\Delta\\phi = \\text{constant}"},
-{term:"Path Difference",definition:"The difference in the physical distance travelled by two waves from their respective coherent sources to a given point in space.",symbol:"\\Delta d \\text{ or } (d_2 - d_1)",unit:"\\mathrm{m}",equation:"\\Delta d = d_2 - d_1 = d\\sin\\theta"},
-{term:"Constructive Interference",definition:"The reinforcement that occurs when waves arrive at a point in phase (crest meets crest), producing maximum resultant amplitude and intensity.",symbol:"\\text{Max}",unit:"\\mathrm{m}",equation:"d_2 - d_1 = n\\lambda \\quad (n = 0, 1, 2, \\dots)"},
-{term:"Destructive Interference",definition:"The cancellation that occurs when waves arrive exactly out of phase by half a cycle (crest meets trough), producing minimum or zero amplitude.",symbol:"\\text{Min}",unit:"\\mathrm{m}",equation:"d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2} \\quad (n = 0, 1, 2, \\dots)"},
-{term:"Superposition Wave Displacement",definition:"The net instantaneous displacement of the medium at a point resulting from the direct vector addition of two coherent wave oscillations.",symbol:"y",unit:"\\mathrm{m}",equation:"y = A\\sin(\\omega t - kd_1) + A\\sin(\\omega t - kd_2)"},
-{term:"Resultant Amplitude (Interference)",definition:"The combined maximum amplitude of two interfering waves of individual amplitude A, determined by the path difference.",symbol:"A'",unit:"\\mathrm{m}",equation:"A' = 2A\\cos\\left(\\pi \\frac{d_2 - d_1}{\\lambda}\\right)"},
-{term:"Young's Double Slit Experiment",definition:"A historic optical experiment proving the wave theory of light by passing light through two closely spaced parallel slits to generate an interference pattern.",symbol:"\\text{YDSE}",unit:"\\text{No unit}",equation:"d\\sin\\theta = m\\lambda"},
-{term:"Slit Separation",definition:"The center-to-center distance separating the two parallel slits in an interference setup.",symbol:"d",unit:"\\mathrm{m}",equation:"d = \\frac{m\\lambda}{\\sin\\theta}"},
-{term:"Diffraction Angle",definition:"The angle between the straight-through central line of propagation and the direction to a specific interference fringe or diffraction minimum.",symbol:"\\theta",unit:"{^\\circ} \\text{ or rad}",equation:"\\sin\\theta \\approx \\tan\\theta = \\frac{y}{L}"},
-{term:"Bright Fringe (Interference Maximum)",definition:"A bright optical band on the viewing screen where light waves from the two slits interfere constructively.",symbol:"y_{bright}",unit:"\\mathrm{m}",equation:"y_{bright} = \\frac{m L \\lambda}{d} \\quad (m = 0, \\pm 1, \\pm 2, \\dots)"},
-{term:"Dark Fringe (Interference Minimum)",definition:"A dark band on the viewing screen where light waves from the two slits interfere destructively.",symbol:"y_{Dark}",unit:"\\mathrm{m}",equation:"y_{Dark} = \\frac{(m + 1/2) L \\lambda}{d} \\quad (m = 0, \\pm 1, \\pm 2, \\dots)"},
-{term:"Screen Distance",definition:"The perpendicular distance from the plane of the slits to the viewing screen on which the interference or diffraction pattern is displayed.",symbol:"L",unit:"\\mathrm{m}",equation:"L = \\frac{y}{\\tan\\theta} \\approx \\frac{y d}{m\\lambda}"},
-{term:"Fringe Width (Fringe Spacing)",definition:"The constant spatial separation between two consecutive bright fringes or two consecutive dark fringes on the screen.",symbol:"\\Delta y",unit:"\\mathrm{m}",equation:"\\Delta y = \\frac{L\\lambda}{d}"},
-{term:"Diffraction of Light",definition:"The bending and spreading of light waves as they encounter an obstacle or pass through a narrow slit comparable in size to the wavelength.",symbol:"\\text{Diffraction}",unit:"\\text{No unit}",equation:"a\\sin\\theta = m\\lambda"},
-{term:"Single-Slit Diffraction Minima",definition:"The angular directions at which light passing through a single aperture of width a completely cancels out, creating dark diffraction bands.",symbol:"\\theta_{min}",unit:"{^\\circ} \\text{ or rad}",equation:"a\\sin\\theta = m\\lambda \\quad (m = \\pm 1, \\pm 2, \\dots)"},
-{term:"Single-Slit Width",definition:"The linear physical aperture dimension across the opening through which light propagates and diffracts.",symbol:"a",unit:"\\mathrm{m}",equation:"a = \\frac{m\\lambda}{\\sin\\theta}"},
-{term:"Diffraction Dark Fringe Position",definition:"The linear distance measured on the screen from the central maximum to the m-th dark diffraction fringe.",symbol:"y",unit:"\\mathrm{m}",equation:"y = \\frac{m L \\lambda}{a}"}
+{
+id: "g12-interf",
+gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",
+worksheetUrl: "worksheets/ch2-l2-worksheet.pdf",
+games: [{ topic: "Interference and Diffraction", url: "https://gemini.google.com/share/14c6c1b23c4d" }],
+title: "Chapter 2 Lesson 2: Interference and Diffraction",
+concepts: [
+    "Conditions for Interference: Constructive interference (maximum amplitude) occurs when path difference \\( d_2 - d_1 = n\\lambda \\) (for \\( n = 0, 1, 2, 3, \\dots \\)). Destructive interference (minimum amplitude) occurs when \\( d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\) (for \\( n = 0, 1, 2, 3, \\dots \\)).",
+    "Superposition Wave Amplitude: Two identical waves of amplitude \\( A \\) superpose to yield resultant amplitude \\( A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right| \\). Maximum amplitude \\( A'_{\\max} = 2A \\) occurs when \\( \\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right) = \\pm 1 \\implies d_2 - d_1 = n\\lambda \\). Minimum amplitude \\( A'_{\\min} = 0 \\) occurs when \\( \\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right) = 0 \\implies d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\).",
+    "Young's Double-Slit Path Difference: At observation point P on a distant screen, path difference is \\( \\Delta d = d_2 - d_1 = d\\sin\\theta \\), where \\( d \\) is slit separation and \\( \\theta \\) is angle from central axis.",
+    "Fringe Conditions in Young's Experiment: Bright fringes occur at \\( d\\sin\\theta_{\\text{bright}} = m\\lambda \\) (with central maximum at \\( m = 0 \\Rightarrow \\theta = 0 \\) and first-order fringes at \\( m = \\pm 1 \\)). Dark fringes occur at \\( d\\sin\\theta_{\\text{dark}} = \\left(m + \\frac{1}{2}\\right)\\lambda \\), where \\( m = 0, \\pm 1, \\pm 2, \\dots \\).",
+    "Fringe Positions on Screen: Using small-angle approximation (\\( \\tan\\theta \\approx \\sin\\theta \\approx \\frac{y}{L} \\)), bright fringe positions are \\( y_{\\text{bright}} = \\frac{m\\lambda L}{d} \\) and dark fringe positions are \\( y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d} \\). Adjacent fringes are separated by constant fringe width \\( \\Delta y = \\frac{\\lambda L}{d} \\).",
+    "Light Diffraction: Bending and spreading of light around obstacle edges or through a narrow aperture of width \\( a \\), noticeable when \\( a \\sim \\lambda \\). Single-slit dark minima occur at \\( a\\sin\\theta = m\\lambda \\) for \\( m = \\pm 1, \\pm 2, \\pm 3, \\dots \\) (\\( m = 0 \\) is excluded as it corresponds to the central maximum).",
+    "Diffraction Fringe Positions & Central Maximum: Dark fringes appear at \\( y_{\\text{dark}} = \\frac{m\\lambda L}{a} \\), with first minima at \\( y = \\pm \\frac{\\lambda L}{a} \\). The broad central maximum has width \\( W = \\frac{2\\lambda L}{a} \\), which is twice the distance from the center to the first minimum."
 ],
-examples:[
-{title:"Path Difference for Constructive Interference",given:"Two in-phase speakers emit sound of wavelength \\( \\lambda = 0.40\\,\\mathrm{m} \\). Point P is located at distances \\( d_1 = 3.20\\,\\mathrm{m} \\) and \\( d_2 = 4.40\\,\\mathrm{m} \\) from the speakers.",find:"Path difference \\( (d_2 - d_1) \\) and order of constructive interference (\\( n \\)).",equation:"d_2 - d_1 = n\\lambda \\implies n = \\frac{d_2 - d_1}{\\lambda}",solution:"1. Calculate the path difference:<br>\\( d_2 - d_1 = 4.40\\,\\mathrm{m} - 3.20\\,\\mathrm{m} = 1.20\\,\\mathrm{m} \\).<br>2. Determine the order \\( n \\):<br>\\( n = \\frac{1.20\\,\\mathrm{m}}{0.40\\,\\mathrm{m}} = 3 \\).",finalAnswer:"\\Delta d = 1.20\\,\\mathrm{m}, \\quad n = 3 \\text{ (3rd constructive maximum)}",explanation:"Because the path difference is an integer multiple of the wavelength (\\( 3\\lambda \\)), the sound waves arrive in phase, resulting in maximum loud constructive interference."},
-{title:"Path Difference for Destructive Interference",given:"Two coherent wave sources emit waves of wavelength \\( \\lambda = 0.50\\,\\mathrm{m} \\). A receiver detects destructive interference at a point where \\( d_1 = 2.75\\,\\mathrm{m} \\) and \\( d_2 = 3.50\\,\\mathrm{m} \\).",find:"Path difference and verify the destructive order (\\( n \\)).",equation:"d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2}",solution:"1. Calculate the path difference:<br>\\( d_2 - d_1 = 3.50\\,\\mathrm{m} - 2.75\\,\\mathrm{m} = 0.75\\,\\mathrm{m} \\).<br>2. Solve for \\( n \\):<br>\\( 0.75 = (2n + 1)\\frac{0.50}{2} = (2n + 1)(0.25) \\)<br>\\( 2n + 1 = 3 \\implies 2n = 2 \\implies n = 1 \\).",finalAnswer:"\\Delta d = 0.75\\,\\mathrm{m} = 1.5\\lambda \\quad (n = 1 \\text{ destructive minimum})",explanation:"A path difference equal to an odd half-integer multiple of the wavelength causes crests to align exactly with troughs, completely extinguishing the wave oscillation."},
-{title:"Resultant Maximum Amplitude from Superposition",given:"Two coherent waves each have amplitude \\( A = 4.0\\,\\mathrm{mm} \\) and wavelength \\( \\lambda = 0.60\\,\\mathrm{m} \\). At a given point, the path difference is \\( d_2 - d_1 = 0.10\\,\\mathrm{m} \\).",find:"Resultant amplitude (\\( A' \\)).",equation:"A' = 2A\\cos\\left(\\pi \\frac{d_2 - d_1}{\\lambda}\\right)",solution:"1. Compute the argument of the cosine:<br>\\( \\theta = \\pi \\frac{0.10\\,\\mathrm{m}}{0.60\\,\\mathrm{m}} = \\frac{\\pi}{6}\\,\\mathrm{rad} = 30^\\circ \\).<br>2. Evaluate the cosine:<br>\\( \\cos(30^\\circ) = \\frac{\\sqrt{3}}{2} \\approx 0.866 \\).<br>3. Compute \\( A' \\):<br>\\( A' = 2(4.0\\,\\mathrm{mm}) \\times 0.866 = 8.0 \\times 0.866 = 6.93\\,\\mathrm{mm} \\).",finalAnswer:"A' \\approx 6.93\\,\\mathrm{mm}",explanation:"The resulting amplitude depends continuously on the phase difference; because the waves are partially in phase, the amplitude is greater than 4 mm but less than the full 8 mm maximum."},
-{title:"Superposition Wave Instantaneous Displacement",given:"Two waves of amplitude \\( A = 3.0\\,\\mathrm{mm} \\), \\( \\omega = 100\\pi\\,\\mathrm{rad/s} \\), and \\( k = 2\\pi\\,\\mathrm{rad/m} \\) arrive at a point where \\( d_1 = 1.0\\,\\mathrm{m} \\) and \\( d_2 = 1.5\\,\\mathrm{m} \\) at time \\( t = 0.01\\,\\mathrm{s} \\).",find:"Net displacement \\( y \\).",equation:"y = A\\sin(\\omega t - kd_1) + A\\sin(\\omega t - kd_2)",solution:"1. Phase 1: \\( \\omega t - kd_1 = 100\\pi(0.01) - 2\\pi(1.0) = \\pi - 2\\pi = -\\pi \\implies \\sin(-\\pi) = 0 \\).<br>2. Phase 2: \\( \\omega t - kd_2 = \\pi - 2\\pi(1.5) = \\pi - 3\\pi = -2\\pi \\implies \\sin(-2\\pi) = 0 \\).<br>3. Total displacement: \\( y = 3(0) + 3(0) = 0\\,\\mathrm{mm} \\).",finalAnswer:"y = 0\\,\\mathrm{mm}",explanation:"At this instant, both wave disturbances pass through their equilibrium baseline, resulting in zero net instantaneous displacement."},
-{title:"Path Difference in Young's Double-Slit Experiment",given:"Slits are separated by \\( d = 0.25\\,\\mathrm{mm} = 2.5 \\times 10^{-4}\\,\\mathrm{m} \\). Light diffracts toward a fringe at an angle \\( \\theta = 0.30^\\circ \\).",find:"Path difference \\( (r_2 - r_1) \\).",equation:"r_2 - r_1 = d\\sin\\theta",solution:"1. Convert \\( \\theta \\) to radians or evaluate directly:<br>\\( \\sin(0.30^\\circ) \\approx 5.236 \\times 10^{-3} \\).<br>2. Compute path difference:<br>\\( r_2 - r_1 = (2.5 \\times 10^{-4}\\,\\mathrm{m}) \\times (5.236 \\times 10^{-3}) \\approx 1.309 \\times 10^{-6}\\,\\mathrm{m} = 1309\\,\\mathrm{nm} \\).",finalAnswer:"r_2 - r_1 \\approx 1.31 \\times 10^{-6}\\,\\mathrm{m} \\; (1310\\,\\mathrm{nm})",explanation:"The extra travel distance for the lower ray is determined by the slit spacing projected onto the diffraction angle."},
-{title:"Condition for Bright Fringes (Double-Slit Angular Position)",given:"Monochromatic laser light with wavelength \\( \\lambda = 632.8\\,\\mathrm{nm} = 6.328 \\times 10^{-7}\\,\\mathrm{m} \\) illuminates slits separated by \\( d = 0.20\\,\\mathrm{mm} = 2.0 \\times 10^{-4}\\,\\mathrm{m} \\).",find:"Angle \\( \\theta_{bright} \\) of the 2nd-order bright fringe (\\( m = 2 \\)).",equation:"d\\sin\\theta_{bright} = m\\lambda \\implies \\sin\\theta_{bright} = \\frac{m\\lambda}{d}",solution:"1. Calculate \\( \\sin\\theta \\):<br>\\( \\sin\\theta_{bright} = \\frac{2 \\times 6.328 \\times 10^{-7}\\,\\mathrm{m}}{2.0 \\times 10^{-4}\\,\\mathrm{m}} = 6.328 \\times 10^{-3} \\).<br>2. Compute angle in degrees:<br>\\( \\theta_{bright} = \\sin^{-1}(6.328 \\times 10^{-3}) \\approx 0.3626^\\circ \\).",finalAnswer:"\\theta_{bright} \\approx 0.363^\\circ \\quad (6.33 \\times 10^{-3}\\,\\mathrm{rad})",explanation:"Constructive interference occurs at precise angular directions where the path difference matches whole multiples of the laser wavelength."},
-{title:"Condition for Dark Fringes (Double-Slit Angular Position)",given:"Using the same double-slit setup (\\( d = 2.0 \\times 10^{-4}\\,\\mathrm{m} \\), \\( \\lambda = 6.328 \\times 10^{-7}\\,\\mathrm{m} \\)).",find:"Angle \\( \\theta_{Dark} \\) to the first dark fringe (\\( m = 0 \\)).",equation:"d\\sin\\theta_{Dark} = \\left(m + \\frac{1}{2}\\right)\\lambda \\implies \\sin\\theta_{Dark} = \\frac{0.5\\lambda}{d}",solution:"1. Substitute \\( m = 0 \\):<br>\\( \\sin\\theta_{Dark} = \\frac{0.5 \\times 6.328 \\times 10^{-7}\\,\\mathrm{m}}{2.0 \\times 10^{-4}\\,\\mathrm{m}} = 1.582 \\times 10^{-3} \\).<br>2. Compute angle:<br>\\( \\theta_{Dark} = \\sin^{-1}(1.582 \\times 10^{-3}) \\approx 0.0906^\\circ \\).",finalAnswer:"\\theta_{Dark} \\approx 0.091^\\circ \\quad (1.58 \\times 10^{-3}\\,\\mathrm{rad})",explanation:"The first dark band borders the central maximum where the two rays arrive precisely one half-wavelength out of step."},
-{title:"Screen Distance and Fringe Angle Relation",given:"A screen is placed at distance \\( L = 1.50\\,\\mathrm{m} \\) behind the slits. The 3rd bright fringe is formed at an angle \\( \\theta = 0.40^\\circ \\).",find:"Distance of the fringe from the central line on the screen (\\( y \\)).",equation:"y = L\\tan\\theta",solution:"1. Compute \\( \\tan(0.40^\\circ) \\):<br>\\( \\tan(0.40^\\circ) \\approx 6.981 \\times 10^{-3} \\).<br>2. Multiply by screen distance \\( L \\):<br>\\( y = 1.50\\,\\mathrm{m} \\times 6.981 \\times 10^{-3} = 1.047 \\times 10^{-2}\\,\\mathrm{m} \\approx 10.47\\,\\mathrm{mm} \\).",finalAnswer:"y \\approx 10.5\\,\\mathrm{mm}",explanation:"Right-triangle trigonometry links the angular direction of the interference beam to its physical position on the observation screen."},
-{title:"Linear Position of Bright Fringes on Screen",given:"Slit separation \\( d = 0.30\\,\\mathrm{mm} = 3.0 \\times 10^{-4}\\,\\mathrm{m} \\), screen distance \\( L = 2.0\\,\\mathrm{m} \\), wavelength \\( \\lambda = 600\\,\\mathrm{nm} = 6.0 \\times 10^{-7}\\,\\mathrm{m} \\).",find:"Position of the 3rd bright fringe (\\( y_{bright} \\) for \\( m = 3 \\)) and the fringe width (\\( \\Delta y \\)).",equation:"y_{bright} = \\frac{m L \\lambda}{d}, \\quad \\Delta y = \\frac{L\\lambda}{d}",solution:"1. Calculate fringe width \\( \\Delta y \\):<br>\\( \\Delta y = \\frac{2.0 \\times 6.0 \\times 10^{-7}}{3.0 \\times 10^{-4}} = \\frac{1.2 \\times 10^{-6}}{3.0 \\times 10^{-4}} = 4.0 \\times 10^{-3}\\,\\mathrm{m} = 4.0\\,\\mathrm{mm} \\).<br>2. Calculate position of 3rd bright fringe (\\( m = 3 \\)):<br>\\( y_{bright} = 3 \\times 4.0\\,\\mathrm{mm} = 12.0\\,\\mathrm{mm} \\).",finalAnswer:"y_{bright} = 12.0\\,\\mathrm{mm}, \\quad \\Delta y = 4.0\\,\\mathrm{mm}",explanation:"In Young's experiment, bright fringes are equally spaced across the screen, separated by \\( \\Delta y = 4.0\\,\\mathrm{mm} \\)."},
-{title:"Linear Position of Dark Fringes on Screen",given:"Using the same setup (\\( d = 3.0 \\times 10^{-4}\\,\\mathrm{m} \\), \\( L = 2.0\\,\\mathrm{m} \\), \\( \\lambda = 6.0 \\times 10^{-7}\\,\\mathrm{m} \\)).",find:"Position of the 2nd dark fringe (\\( m = 1 \\)) from the central maximum.",equation:"y_{Dark} = L\\frac{(m + 1/2)\\lambda}{d}",solution:"1. Substitute \\( m = 1 \\):<br>\\( y_{Dark} = 2.0\\,\\mathrm{m} \\times \\frac{(1 + 0.5) \\times 6.0 \\times 10^{-7}\\,\\mathrm{m}}{3.0 \\times 10^{-4}\\,\\mathrm{m}} \\)<br>\\( y_{Dark} = 2.0 \\times \\frac{1.5 \\times 6.0 \\times 10^{-7}}{3.0 \\times 10^{-4}} = 2.0 \\times 3.0 \\times 10^{-3}\\,\\mathrm{m} = 6.0 \\times 10^{-3}\\,\\mathrm{m} = 6.0\\,\\mathrm{mm} \\).",finalAnswer:"y_{Dark} = 6.0\\,\\mathrm{mm}",explanation:"Dark fringes fall exactly halfway between adjacent bright fringes; the 2nd dark fringe lies at \\( 1.5\\Delta y = 6.0\\,\\mathrm{mm} \\)."},
-{title:"Condition for Minima in Single-Slit Diffraction",given:"A single slit of width \\( a = 0.12\\,\\mathrm{mm} = 1.2 \\times 10^{-4}\\,\\mathrm{m} \\) is illuminated by light with wavelength \\( \\lambda = 540\\,\\mathrm{nm} = 5.4 \\times 10^{-7}\\,\\mathrm{m} \\).",find:"Diffraction angle \\( \\theta \\) of the 1st diffraction minimum (\\( m = 1 \\)).",equation:"a\\sin\\theta = m\\lambda \\implies \\sin\\theta = \\frac{m\\lambda}{a}",solution:"1. Compute \\( \\sin\\theta \\):<br>\\( \\sin\\theta = \\frac{1 \\times 5.4 \\times 10^{-7}\\,\\mathrm{m}}{1.2 \\times 10^{-4}\\,\\mathrm{m}} = 4.5 \\times 10^{-3} \\).<br>2. Calculate angle:<br>\\( \\theta = \\sin^{-1}(4.5 \\times 10^{-3}) \\approx 0.2578^\\circ \\).",finalAnswer:"\\theta \\approx 0.258^\\circ \\quad (4.50 \\times 10^{-3}\\,\\mathrm{rad})",explanation:"At this angle, wavelets from the top half of the slit destructively interfere with corresponding wavelets from the bottom half, creating complete darkness."},
-{title:"Position of Dark Fringe and Width of Central Maximum in Diffraction",given:"A single slit of width \\( a = 0.08\\,\\mathrm{mm} = 8.0 \\times 10^{-5}\\,\\mathrm{m} \\) is placed \\( L = 1.60\\,\\mathrm{m} \\) from a screen. Light wavelength is \\( \\lambda = 500\\,\\mathrm{nm} = 5.0 \\times 10^{-7}\\,\\mathrm{m} \\).",find:"Distance to 1st dark fringe (\\( y_1 \\)) and the total linear width of the central bright maximum (\\( W = 2y_1 \\)).",equation:"y = L\\frac{m\\lambda}{a}, \\quad W = 2y_1",solution:"1. Calculate position of the first minimum (\\( m = 1 \\)):<br>\\( y_1 = 1.60\\,\\mathrm{m} \\times \\frac{1 \\times 5.0 \\times 10^{-7}\\,\\mathrm{m}}{8.0 \\times 10^{-5}\\,\\mathrm{m}} = 1.60 \\times 6.25 \\times 10^{-3}\\,\\mathrm{m} = 0.010\\,\\mathrm{m} = 10.0\\,\\mathrm{mm} \\).<br>2. Central bright maximum extends from \\( -y_1 \\) to \\( +y_1 \\):<br>\\( W = 2 \\times 10.0\\,\\mathrm{mm} = 20.0\\,\\mathrm{mm} \\).",finalAnswer:"y_1 = 10.0\\,\\mathrm{mm}, \\quad W = 20.0\\,\\mathrm{mm}",explanation:"The central maximum of a single-slit diffraction pattern is twice as wide as any subsequent secondary bright fringe."}
+definitions: [
+    { term: "Constructive Interference", definition: "Superposition of two in-phase coherent waves where wave crests coincide, resulting in maximum resultant amplitude A' = 2A.", symbol: "d_2 - d_1 = n\\lambda", unit: "\\mathrm{m}", equation: "d_2 - d_1 = n\\lambda \\quad (n = 0, 1, 2, \\dots)" },
+    { term: "Destructive Interference", definition: "Superposition of two coherent waves out of phase by half a cycle where crests meet troughs, resulting in minimum (zero) amplitude A' = 0.", symbol: "d_2 - d_1 = \\frac{(2n+1)\\lambda}{2}", unit: "\\mathrm{m}", equation: "d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\quad (n = 0, 1, 2, \\dots)" },
+    { term: "Resultant Superposition Amplitude", definition: "Net amplitude A' of the combined wave formed by the interference of two identical waves of amplitude A, dependent on path difference.", symbol: "A'", unit: "\\mathrm{m}", equation: "A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right|" },
+    { term: "Maximum Amplitude Condition", definition: "Condition yielding peak resultant amplitude A'_max = 2A when cosine factor equals ±1.", symbol: "A'_{\\max} = 2A", unit: "\\mathrm{m}", equation: "d_2 - d_1 = n\\lambda \\implies A'_{\\max} = 2A" },
+    { term: "Minimum Amplitude Condition", definition: "Condition yielding zero resultant amplitude A'_min = 0 when cosine factor equals 0.", symbol: "A'_{\\min} = 0", unit: "\\mathrm{m}", equation: "d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\implies A'_{\\min} = 0" },
+    { term: "Double-Slit Path Difference", definition: "Geometric difference in distance traveled by light from two slits separated by distance d to an observation point on the screen.", symbol: "\\Delta d", unit: "\\mathrm{m}", equation: "\\Delta d = d_2 - d_1 = d\\sin\\theta" },
+    { term: "Slit Separation (Interference)", definition: "Center-to-center distance separating the two parallel slits in Young's double-slit experiment.", symbol: "d", unit: "\\mathrm{m}", equation: "d\\sin\\theta = m\\lambda" },
+    { term: "Screen Distance", definition: "Perpendicular distance from the plane of the slits or slit to the viewing screen.", symbol: "L", unit: "\\mathrm{m}", equation: "\\tan\\theta = \\frac{y}{L}" },
+    { term: "Bright Fringe Position", definition: "Perpendicular distance on the observation screen from the central axis to the m-th constructive bright fringe.", symbol: "y_{\\text{bright}}", unit: "\\mathrm{m}", equation: "y_{\\text{bright}} = \\frac{m\\lambda L}{d} \\quad (m = 0, \\pm 1, \\pm 2, \\dots)" },
+    { term: "Dark Fringe Position (Interference)", definition: "Perpendicular distance on the observation screen from the central axis to the m-th destructive dark fringe.", symbol: "y_{\\text{dark}}", unit: "\\mathrm{m}", equation: "y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d} \\quad (m = 0, \\pm 1, \\dots)" },
+    { term: "Fringe Spacing (Fringe Width)", definition: "Constant distance between two consecutive bright fringes or two consecutive dark fringes on the screen in Young's experiment.", symbol: "\\Delta y", unit: "\\mathrm{m}", equation: "\\Delta y = \\frac{\\lambda L}{d}" },
+    { term: "Light Diffraction", definition: "The bending and spreading of light waves when encountering an obstacle or passing through a narrow aperture comparable to wavelength.", symbol: "\\text{Diffraction}", unit: "No SI unit", equation: "a\\sin\\theta = m\\lambda" },
+    { term: "Slit Width (Diffraction)", definition: "Width of the single aperture through which light diffracts and spreads.", symbol: "a", unit: "\\mathrm{m}", equation: "a\\sin\\theta = m\\lambda" },
+    { term: "Diffraction Minima (Dark Fringes)", definition: "Angular directions where wavelets from across a slit of width a destructively cancel, creating dark bands.", symbol: "\\theta_{\\text{dark}}", unit: "\\mathrm{rad}", equation: "a\\sin\\theta = m\\lambda \\quad (m = \\pm 1, \\pm 2, \\dots)" },
+    { term: "Central Maximum Width (Diffraction)", definition: "Total linear width of the central bright diffraction band on the screen between the first dark minima (m = ±1).", symbol: "W", unit: "\\mathrm{m}", equation: "W = \\frac{2\\lambda L}{a}" }
 ],
-equations:[
-{section:"Interference",name:"Constructive interference condition<br><img src='images/ch2-l2-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( d_2 - d_1 = n\\lambda \\)",symbols:[{symbol:"d_2, d_1",desc:"Distances from sources (m)"},{symbol:"n",desc:"Integer (0, 1, 2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
-{section:"Interference",name:"Destructive interference condition<br><img src='images/ch2-l2-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2} \\)",symbols:[{symbol:"d_2, d_1",desc:"Distances from sources (m)"},{symbol:"n",desc:"Integer (0, 1, 2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
-{section:"Interference",name:"Wave function superposition<br><img src='images/ch2-l2-eq3.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( y = A\\sin(\\omega t - kd_1) + A\\sin(\\omega t - kd_2) \\)",symbols:[{symbol:"y",desc:"Superposition displacement (m)"},{symbol:"A",desc:"Amplitude of individual waves (m)"},{symbol:"\\omega",desc:"Angular frequency (rad/s)"},{symbol:"t",desc:"Time (s)"},{symbol:"k",desc:"Wave number (rad/m)"},{symbol:"d_1, d_2",desc:"Distances from sources (m)"}]},
-{section:"Interference",name:"Maximum amplitude<br><img src='images/ch2-l2-eq4.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( A' = 2A\\cos\\left(\\pi \\frac{d_2 - d_1}{\\lambda}\\right) \\)",symbols:[{symbol:"A'",desc:"Superposition maximum amplitude (m)"},{symbol:"A",desc:"Amplitude of individual waves (m)"},{symbol:"d_2, d_1",desc:"Distances from sources (m)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
-{section:"Interference of Light Waves",name:"Path difference (Double Slit)<br><img src='images/ch2-l2-eq5.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( r_2 - r_1 = d\\sin\\theta \\)",symbols:[{symbol:"r_2, r_1",desc:"Distances from slits (m)"},{symbol:"d",desc:"Distance between slits (m)"},{symbol:"\\theta",desc:"Angle of diffraction (° or rad)"}]},
-{section:"Interference of Light Waves",name:"Condition for Bright Fringes<br><img src='images/ch2-l2-eq6.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( d\\sin\\theta_{bright} = m\\lambda \\)",symbols:[{symbol:"d",desc:"Distance between slits (m)"},{symbol:"\\theta_{bright}",desc:"Angle to bright fringe (° or rad)"},{symbol:"m",desc:"Integer (0, \\pm1, \\pm2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
-{section:"Interference of Light Waves",name:"Condition for Dark Fringes<br><img src='images/ch2-l2-eq7.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( d\\sin\\theta_{Dark} = \\left(m + \\frac{1}{2}\\right)\\lambda \\)",symbols:[{symbol:"d",desc:"Distance between slits (m)"},{symbol:"\\theta_{Dark}",desc:"Angle to dark fringe (° or rad)"},{symbol:"m",desc:"Integer (0, \\pm1, \\pm2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
-{section:"Interference of Light Waves",name:"Distance of fringe on screen<br><img src='images/ch2-l2-eq8.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( y = L\\tan\\theta \\)",symbols:[{symbol:"y",desc:"Distance of fringe on screen (m)"},{symbol:"L",desc:"Distance from slits to screen (m)"},{symbol:"\\theta",desc:"Angle of fringe (° or rad)"}]},
-{section:"Interference of Light Waves",name:"Position of Bright fringes<br><img src='images/ch2-l2-eq9.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( y_{bright} = L\\frac{m\\lambda}{d} \\)",symbols:[{symbol:"y_{bright}",desc:"Position of bright fringe (m)"},{symbol:"L",desc:"Distance from slits to screen (m)"},{symbol:"m",desc:"Integer (0, \\pm1, \\pm2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"},{symbol:"d",desc:"Distance between slits (m)"}]},
-{section:"Interference of Light Waves",name:"Position of Dark fringes<br><img src='images/ch2-l2-eq10.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( y_{Dark} = L\\frac{(m + 1/2)\\lambda}{d} \\)",symbols:[{symbol:"y_{Dark}",desc:"Position of dark fringe (m)"},{symbol:"L",desc:"Distance from slits to screen (m)"},{symbol:"m",desc:"Integer (0, \\pm1, \\pm2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"},{symbol:"d",desc:"Distance between slits (m)"}]},
-{section:"Diffraction",name:"Condition for Minima (Dark Fringes)<br><img src='images/ch2-l2-eq11.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( a\\sin\\theta = m\\lambda \\)",symbols:[{symbol:"a",desc:"Width of the single slit (m)"},{symbol:"\\theta",desc:"Angle to minimum (° or rad)"},{symbol:"m",desc:"Order of minimum fringe (\\pm1, \\pm2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
-{section:"Diffraction",name:"Position of Dark fringe<br><img src='images/ch2-l2-eq12.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( y = L\\frac{m\\lambda}{a} \\)",symbols:[{symbol:"y",desc:"Position of dark fringe on screen (m)"},{symbol:"L",desc:"Distance from slit to screen (m)"},{symbol:"m",desc:"Order of minimum fringe (\\pm1, \\pm2...)"},{symbol:"\\lambda",desc:"Wavelength (m)"},{symbol:"a",desc:"Width of the single slit (m)"}]}
-],flashcards:[
-{front:"What is the condition for constructive interference (path difference)?", back:"\\( d_2 - d_1 = n\\lambda \\)"},
-{front:"What is the condition for destructive interference (path difference)?", back:"\\( d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2} \\)"},
-{front:"What is the maximum amplitude of a superposition wave?", back:"\\( A' = 2A\\cos\\left(\\pi \\frac{d_2 - d_1}{\\lambda}\\right) \\)"},
-{front:"What is the path difference formula in Young's Double-Slit Experiment?", back:"\\( r_2 - r_1 = d\\sin\\theta \\)"},
-{front:"What is the condition for Bright Fringes (Constructive Interference) in a double-slit?", back:"\\( d\\sin\\theta = m\\lambda \\)"},
-{front:"What is the condition for Dark Fringes (Destructive Interference) in a double-slit?", back:"\\( d\\sin\\theta = \\left(m + \\frac{1}{2}\\right)\\lambda \\)"},
-{front:"How do you calculate the position of bright fringes on the screen?", back:"\\( y_{bright} = L\\frac{m\\lambda}{d} \\)"},
-{front:"How do you calculate the position of dark fringes on the screen?", back:"\\( y_{Dark} = L\\frac{(m + 1/2)\\lambda}{d} \\)"},
-{front:"What is the condition for Minima (Dark Fringes) in single-slit diffraction?", back:"\\( a\\sin\\theta = m\\lambda \\)"},
-{front:"How do you calculate the position of the dark fringe on the screen in diffraction?", back:"\\( y = L\\frac{m\\lambda}{a} \\)"}
-],quiz:[
-{question:"Which condition represents constructive interference in terms of path difference?", options:["\\( d_2 - d_1 = n\\lambda \\)","\\( d_2 - d_1 = (2n + 1)\\lambda/2 \\)","\\( d_2 - d_1 = \\lambda/4 \\)","\\( d_2 - d_1 = 0 \\)"], correctIndex:0, feedback:"Constructive interference occurs when the path difference is an integer multiple of the wavelength."},
-{question:"In Young's Double-Slit Experiment, what does \\( d \\) represent?", options:["Distance to the screen","Distance between the two slits","Width of a single slit","Position of the fringe"], correctIndex:1, feedback:"\\( d \\) is the distance between the two coherent sources (slits)."},
-{question:"The position of bright fringes on a screen is given by:", options:["\\( y = L\\frac{m\\lambda}{a} \\)","\\( y = L\\tan\\theta_{Dark} \\)","\\( y = L\\frac{m\\lambda}{d} \\)","\\( y = \\frac{m\\lambda}{Ld} \\)"], correctIndex:2, feedback:"For bright fringes, \\( y_{bright} = L\\frac{m\\lambda}{d} \\)."},
-{question:"What is diffraction?", options:["Waves bouncing off a surface","Waves changing speed in a new medium","Waves bending around an obstacle or spreading through an opening","Two waves canceling each other out"], correctIndex:2, feedback:"Diffraction is the bending and spreading of waves around edges or through apertures."},
-{question:"In the single-slit diffraction formula \\( a\\sin\\theta = m\\lambda \\), what does \\( a \\) stand for?", options:["Amplitude","Acceleration","Distance to screen","Width of the slit"], correctIndex:3, feedback:"In diffraction, \\( a \\) represents the width of the aperture or slit."},
-{question:"What type of sources are required for a stable interference pattern?", options:["Incoherent sources","Coherent sources","High-frequency sources","Long-wavelength sources"], correctIndex:1, feedback:"Coherent sources, which have the same amplitude, frequency, and a constant phase difference, are required."},
-{question:"The condition for Dark Fringes in Young's Double-Slit Experiment is:", options:["\\( d\\sin\\theta = m\\lambda \\)","\\( d\\sin\\theta = (m + 1/2)\\lambda \\)","\\( a\\sin\\theta = m\\lambda \\)","\\( r_2 - r_1 = n\\lambda \\)"], correctIndex:1, feedback:"Dark fringes (destructive interference) occur at half-integer multiples of the wavelength: \\( d\\sin\\theta = (m + 1/2)\\lambda \\)."},
-{question:"For small angles, which approximation is used to find the fringe position?", options:["\\( \\sin\\theta \\approx \\cos\\theta \\)","\\( \\cos\\theta \\approx \\tan\\theta \\)","\\( \\tan\\theta \\approx \\sin\\theta \\)","\\( \\sin\\theta \\approx 1 \\)"], correctIndex:2, feedback:"For small angles measured in radians, \\( \\tan\\theta \\approx \\sin\\theta \\approx \\theta \\)."},
-{question:"When \\( m = 0 \\) in \\( d\\sin\\theta = m\\lambda \\), this corresponds to:", options:["The first dark fringe","The central maximum (bright fringe)","No interference","The minimum amplitude"], correctIndex:1, feedback:"\\( m = 0 \\) gives the zero maximum fringe, or central maximum."},
-{question:"What is the maximum amplitude \\( A' \\) of the superposition of two waves with amplitude \\( A \\)?", options:["\\( A \\)","\\( A/2 \\)","\\( 2A \\)","\\( 4A \\)"], correctIndex:2, feedback:"Constructive interference doubles the amplitude, giving a maximum of \\( 2A \\)."}
-]},
+examples: [
+    {
+        title: "Resultant Amplitude from Wave Superposition",
+        given: "Two identical in-phase sound waves each have amplitude \\( A = 3.0\\,\\mathrm{mm} = 3.0 \\times 10^{-3}\\,\\mathrm{m} \\) and wavelength \\( \\lambda = 0.40\\,\\mathrm{m} \\). At observation point P, the distances from the sources are \\( d_1 = 2.10\\,\\mathrm{m} \\) and \\( d_2 = 2.50\\,\\mathrm{m} \\).",
+        find: "1. Path difference \\( d_2 - d_1 \\).<br>2. Resultant amplitude \\( A' \\) at point P.",
+        equation: "A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right|",
+        solution: "1. <strong>Path difference:</strong><br>\\[ d_2 - d_1 = 2.50\\,\\mathrm{m} - 2.10\\,\\mathrm{m} = 0.40\\,\\mathrm{m} = 1\\lambda \\]<br>Since \\( d_2 - d_1 = 1\\lambda \\), \\( n = 1 \\), satisfying constructive interference.<br>2. <strong>Resultant amplitude:</strong><br>\\[ A' = 2(3.0\\,\\mathrm{mm})\\left|\\cos\\left(\\frac{\\pi(0.40\\,\\mathrm{m})}{0.40\\,\\mathrm{m}}\\right)\\right| = 6.0\\,\\mathrm{mm} \\times |\\cos(\\pi)| = 6.0\\,\\mathrm{mm} \\times |-1| = 6.0\\,\\mathrm{mm} \\]",
+        finalAnswer: "d_2 - d_1 = 0.40\\,\\mathrm{m}, \\quad A' = A'_{\\max} = 6.0\\,\\mathrm{mm} \\; (6.0 \\times 10^{-3}\\,\\mathrm{m})",
+        explanation: "When the path difference is an integer multiple of the wavelength, the waves arrive in phase, resulting in maximum constructive amplitude equal to twice the individual amplitude (2A)."
+    },
+    {
+        title: "Young's Double-Slit Bright and Dark Fringe Positions",
+        given: "Slit separation \\( d = 0.25\\,\\mathrm{mm} = 2.5 \\times 10^{-4}\\,\\mathrm{m} \\), Screen distance \\( L = 1.20\\,\\mathrm{m} \\), Light wavelength \\( \\lambda = 500\\,\\mathrm{nm} = 5.0 \\times 10^{-7}\\,\\mathrm{m} \\).",
+        find: "1. Position of the 3rd bright fringe (\\( y_{\\text{bright}} \\) for \\( m = 3 \\)).<br>2. Position of the 2nd dark fringe (\\( y_{\\text{dark}} \\) for \\( m = 1 \\)).<br>3. Fringe spacing (\\( \\Delta y \\)).",
+        equation: "y_{\\text{bright}} = \\frac{m\\lambda L}{d}, \\quad y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d}, \\quad \\Delta y = \\frac{\\lambda L}{d}",
+        solution: "1. <strong>Fringe spacing:</strong><br>\\[ \\Delta y = \\frac{\\lambda L}{d} = \\frac{(5.0 \\times 10^{-7}\\,\\mathrm{m})(1.20\\,\\mathrm{m})}{2.5 \\times 10^{-4}\\,\\mathrm{m}} = 2.4 \\times 10^{-3}\\,\\mathrm{m} = 2.4\\,\\mathrm{mm} \\]<br>2. <strong>3rd Bright Fringe (\\( m = 3 \\)):</strong><br>\\[ y_{\\text{bright}, 3} = \\frac{3\\lambda L}{d} = 3(2.4\\,\\mathrm{mm}) = 7.2\\,\\mathrm{mm} \\]<br>3. <strong>2nd Dark Fringe (\\( m = 1 \\Rightarrow m + 1/2 = 1.5 \\)):</strong><br>\\[ y_{\\text{dark}, 1} = \\frac{(1 + 0.5)\\lambda L}{d} = 1.5(2.4\\,\\mathrm{mm}) = 3.6\\,\\mathrm{mm} \\]",
+        finalAnswer: "y_{\\text{bright}, 3} = 7.2\\,\\mathrm{mm}, \\quad y_{\\text{dark}, 1} = 3.6\\,\\mathrm{mm}, \\quad \\Delta y = 2.4\\,\\mathrm{mm}",
+        explanation: "In Young's experiment, bright fringes are equally spaced across the screen, and dark fringes occur exactly halfway between adjacent bright fringes."
+    },
+    {
+        title: "Single-Slit Diffraction Minima and Central Maximum Width",
+        given: "Slit width \\( a = 0.10\\,\\mathrm{mm} = 1.0 \\times 10^{-4}\\,\\mathrm{m} \\), Screen distance \\( L = 2.00\\,\\mathrm{m} \\), Light wavelength \\( \\lambda = 632.8\\,\\mathrm{nm} = 6.328 \\times 10^{-7}\\,\\mathrm{m} \\).",
+        find: "1. Position of the first diffraction dark minimum (\\( y_{\\text{dark}, 1} \\) for \\( m = 1 \\)).<br>2. Width of the central diffraction maximum (\\( W \\)).",
+        equation: "y_{\\text{dark}} = \\frac{m\\lambda L}{a}, \\quad W = \\frac{2\\lambda L}{a} = 2y_1",
+        solution: "1. <strong>Position of 1st minimum (\\( m = 1 \\)):</strong><br>\\[ y_{\\text{dark}, 1} = \\frac{(1)(6.328 \\times 10^{-7}\\,\\mathrm{m})(2.00\\,\\mathrm{m})}{1.0 \\times 10^{-4}\\,\\mathrm{m}} = 1.2656 \\times 10^{-2}\\,\\mathrm{m} \\approx 12.66\\,\\mathrm{mm} \\]<br>2. <strong>Width of central maximum:</strong><br>\\[ W = \\frac{2\\lambda L}{a} = 2(12.656\\,\\mathrm{mm}) \\approx 25.31\\,\\mathrm{mm} \\]",
+        finalAnswer: "y_{\\text{dark}, 1} \\approx 12.7\\,\\mathrm{mm}, \\quad W \\approx 25.3\\,\\mathrm{mm}",
+        explanation: "The central diffraction maximum extends between the first minima at y = -12.7 mm and y = +12.7 mm, making it twice as wide as the distance from the center to the first minimum."
+    }
+],
+equations: [
+    { section: "Conditions for Constructive and Destructive Interference", name: "Path-Difference Conditions for Interference", formula: "\\[ d_2 - d_1 = n\\lambda \\quad (\\text{Constructive Maxima}) \\]\\[ d_2 - d_1 = \\frac{(2n + 1)\\lambda}{2} \\quad (\\text{Destructive Minima}) \\]", symbols: [{ symbol: "d_2 - d_1", desc: "Path difference (m)" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "n", desc: "Order index (0, 1, 2, ...)" }] },
+    { section: "Maximum and Minimum Amplitude of the Superposition Wave", name: "Resultant Amplitude of Superposition Wave", formula: "\\[ A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right| \\]", symbols: [{ symbol: "A'", desc: "Resultant amplitude (m)" }, { symbol: "A", desc: "Component amplitude (m)" }, { symbol: "d_2 - d_1", desc: "Path difference (m)" }, { symbol: "λ", desc: "Wavelength (m)" }] },
+    { section: "Maximum and Minimum Amplitude of the Superposition Wave", name: "Maximum and Minimum Amplitude Conditions", formula: "\\[ A'_{\\max} = 2A \\iff d_2 - d_1 = n\\lambda \\]\\[ A'_{\\min} = 0 \\iff d_2 - d_1 = \\frac{(2n + 1)\\lambda}{2} \\]", symbols: [{ symbol: "A'_max", desc: "Maximum amplitude = 2A (m)" }, { symbol: "A'_min", desc: "Minimum amplitude = 0 (m)" }, { symbol: "n", desc: "Integer (0, 1, 2, ...)" }] },
+    { section: "Path Difference in Young's Double-Slit Experiment", name: "Path Difference at Observation Point P", formula: "\\[ \\Delta d = d_2 - d_1 = d\\sin\\theta \\]", symbols: [{ symbol: "Δd", desc: "Path difference (m)" }, { symbol: "d", desc: "Slit separation (m)" }, { symbol: "θ", desc: "Angle from axis (rad)" }] },
+    { section: "Path Difference in Young's Double-Slit Experiment", name: "Conditions for Bright and Dark Fringes", formula: "\\[ d\\sin\\theta_{\\text{bright}} = m\\lambda \\quad (m = 0, \\pm 1, \\pm 2, \\dots) \\]\\[ d\\sin\\theta_{\\text{dark}} = \\left(m + \\frac{1}{2}\\right)\\lambda \\quad (m = 0, \\pm 1, \\pm 2, \\dots) \\]", symbols: [{ symbol: "d", desc: "Slit separation (m)" }, { symbol: "θ", desc: "Fringe angle (rad)" }, { symbol: "m", desc: "Fringe order" }, { symbol: "λ", desc: "Wavelength (m)" }] },
+    { section: "Bright and Dark Fringes in Interference Patterns", name: "Position of Bright Fringes on the Screen", formula: "\\[ \\tan\\theta_{\\text{bright}} = \\frac{y_{\\text{bright}}}{L} \\approx \\sin\\theta_{\\text{bright}} = \\frac{m\\lambda}{d} \\implies y_{\\text{bright}} = \\frac{m\\lambda L}{d} \\quad (m = 0, \\pm 1, \\dots) \\]", symbols: [{ symbol: "y_bright", desc: "Bright fringe distance (m)" }, { symbol: "m", desc: "Fringe order" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "d", desc: "Slit separation (m)" }] },
+    { section: "Bright and Dark Fringes in Interference Patterns", name: "Position of Dark Fringes on the Screen", formula: "\\[ \\tan\\theta_{\\text{dark}} = \\frac{y_{\\text{dark}}}{L} \\approx \\sin\\theta_{\\text{dark}} = \\frac{(m + 1/2)\\lambda}{d} \\implies y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d} \\quad (m = 0, \\pm 1, \\dots) \\]", symbols: [{ symbol: "y_dark", desc: "Dark fringe distance (m)" }, { symbol: "m", desc: "Dark fringe order" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "d", desc: "Slit separation (m)" }] },
+    { section: "Bright and Dark Fringes in Interference Patterns", name: "Fringe Spacing / Fringe Width (Δy)", formula: "\\[ \\Delta y = y_{m+1} - y_m = \\frac{\\lambda L}{d} \\]", symbols: [{ symbol: "Δy", desc: "Fringe spacing (m)" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "d", desc: "Slit separation (m)" }] },
+    { section: "Light Diffraction", name: "Condition for Minima (Dark Fringes) in Single-Slit Diffraction", formula: "\\[ a\\sin\\theta = m\\lambda \\quad (m = \\pm 1, \\pm 2, \\pm 3, \\dots) \\]", symbols: [{ symbol: "a", desc: "Slit width (m)" }, { symbol: "θ", desc: "Diffraction angle (rad)" }, { symbol: "m", desc: "Order of minimum (non-zero)" }, { symbol: "λ", desc: "Wavelength (m)" }] },
+    { section: "Light Diffraction", name: "Position of Dark Fringes on the Screen", formula: "\\[ \\tan\\theta = \\frac{y}{L} \\approx \\sin\\theta = \\frac{m\\lambda}{a} \\implies y_{\\text{dark}} = \\frac{m\\lambda L}{a} \\quad (m = \\pm 1, \\pm 2, \\dots) \\]\\[ y_{\\text{first dark}} = \\pm\\frac{\\lambda L}{a} \\quad (m = \\pm 1) \\]", symbols: [{ symbol: "y_dark", desc: "Dark fringe position (m)" }, { symbol: "m", desc: "Minimum order" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "a", desc: "Slit width (m)" }] },
+    { section: "Light Diffraction", name: "Width of the Central Diffraction Maximum", formula: "\\[ W = 2y_1 = \\frac{2\\lambda L}{a} \\]", symbols: [{ symbol: "W", desc: "Width of central maximum (m)" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "a", desc: "Slit width (m)" }, { symbol: "y_1", desc: "Distance to first minimum (m)" }] }
+],
+flashcards: [
+    { front: "What is the condition for constructive interference in terms of path difference?", back: "\\( d_2 - d_1 = n\\lambda \\quad (n = 0, 1, 2, 3, \\dots) \\), producing maximum amplitude \\( A'_{\\max} = 2A \\)." },
+    { front: "What is the condition for destructive interference in terms of path difference?", back: "\\( d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\quad (n = 0, 1, 2, 3, \\dots) \\), producing minimum amplitude \\( A'_{\\min} = 0 \\)." },
+    { front: "What is the resultant amplitude equation for two identical interfering waves of amplitude A?", back: "\\( A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right| \\)" },
+    { front: "In Young's double-slit experiment, what is the path difference formula at angle θ?", back: "\\( \\Delta d = d_2 - d_1 = d\\sin\\theta \\)" },
+    { front: "Where are bright fringes located on the screen in Young's experiment?", back: "\\( y_{\\text{bright}} = \\frac{m\\lambda L}{d} \\quad (m = 0, \\pm 1, \\pm 2, \\dots) \\)" },
+    { front: "Where are dark fringes located on the screen in Young's experiment?", back: "\\( y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d} \\quad (m = 0, \\pm 1, \\dots) \\)" },
+    { front: "What is the condition for dark minima in single-slit diffraction?", back: "\\( a\\sin\\theta = m\\lambda \\implies y_{\\text{dark}} = \\frac{m\\lambda L}{a} \\quad (m = \\pm 1, \\pm 2, \\dots) \\) (m = 0 is excluded)." },
+    { front: "What is the width of the central diffraction maximum?", back: "\\( W = \\frac{2\\lambda L}{a} \\) (twice the distance from the center to the first minimum)." }
+],
+quiz: [
+    { question: "Two identical waves of amplitude A interfere. When the path difference is d₂ - d₁ = (2n + 1)λ / 2, the resultant amplitude is:", options: ["2A", "A", "0", "4A"], correctIndex: 2, feedback: "An odd multiple of half-wavelengths causes complete crest-to-trough cancellation, resulting in zero amplitude: A' = 0." },
+    { question: "In Young's double-slit experiment, if the slit separation d is doubled, the bright fringe spacing on the screen will:", options: ["Double", "Halve", "Quadruple", "Remain unchanged"], correctIndex: 1, feedback: "Fringe spacing is inversely proportional to slit separation (Δy = λL / d), so doubling d halves the spacing." },
+    { question: "Why is m = 0 excluded from the single-slit diffraction dark minima condition a sin θ = mλ?", options: ["Because m = 0 is an imaginary number", "Because θ = 0 corresponds to the central maximum, not a minimum", "Because the slit width becomes zero", "Because light does not pass through the center"], correctIndex: 1, feedback: "At m = 0 (θ = 0), all wavelets across the aperture arrive in phase to produce the bright central maximum, not a minimum." },
+    { question: "For a single slit of width a = 0.10 mm with light of wavelength λ = 500 nm on a screen L = 2.0 m away, what is the width of the central diffraction maximum?", options: ["10 mm", "20 mm", "5 mm", "40 mm"], correctIndex: 1, feedback: "W = 2λL / a = 2(5.0 × 10⁻⁷ m)(2.0 m) / (1.0 × 10⁻⁴ m) = 2.0 × 10⁻² m = 20 mm." }
+]
+},
 {id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",worksheetUrl:"worksheets/ch3-l1-worksheet.pdf",games:[{topic:"Magnetic Field",url:"https://gemini.google.com/share/8a653df6b614"},{topic:"Faraday’s Law",url:"https://gemini.google.com/share/a36b992c1d6d"},{topic:"Self Induction",url:"https://gemini.google.com/share/ae9787424975"}],title:"Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",concepts:[
 "Magnetic Fields: Generated by moving electric charges, long straight wires, circular coils, and solenoids.",
 "Lorentz & Laplace Forces: Magnetic forces exerted on individual moving charges (\\( F = |q|vB\\sin\\theta \\)) and straight conductors (\\( F = IBl\\sin\\theta \\)).",
@@ -782,129 +803,206 @@ equations:[
 {question:"The instantaneous current is \\( i = i_m \\sin(\\omega t + \\phi_0) \\). What is \\( i_m \\)?", options:["RMS current","Average current","Peak current","Initial current"], correctIndex:2, feedback:"\\( i_m \\) is the maximum or peak amplitude of the current."}
 ]},
 {
-id:"g12-ch4-l1",gifUrl:"",worksheetUrl:"worksheets/ch4-l1-worksheet.pdf",games:[],title:"Chapter 4 Lesson 1: Semiconductors & Transistors",
+id:"g12-ch4-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/PnJunction-LED-animation.gif",worksheetUrl:"worksheets/ch4-l1-worksheet.pdf",games:[{topic:"Semiconductors & Transistors",url:"https://gemini.google.com/share/9c33959ceba4"}],title:"Chapter 4 Lesson 1: Semiconductors & Transistors",
 concepts:[
-"Semiconductor: Material with conductivity between conductor and insulator. Can be doped to form N-type (extra electrons) or P-type (extra holes).",
-"P-N Junction: Boundary between P-type and N-type semiconductors, creating a depletion region.",
-"Forward Bias: Applied voltage reduces the depletion region, allowing current to flow.",
-"Reverse Bias: Applied voltage widens the depletion region, preventing current flow (except tiny leakage).",
-"Diode: Device that allows current to flow in one direction (e.g., Rectifier, Zener, LED).",
-"Transistor: Three-terminal device (NPN or PNP) used for amplification and switching. Has Emitter, Base, and Collector."
+"Electrical Resistance and Resistivity: A conductor's resistance depends on its geometry and material: \\( R = \\rho\\frac{l}{A} \\), where \\( \\rho = \\frac{RA}{l} \\) is the electrical resistivity (in \\( \\Omega\\cdot\\mathrm{m} \\)), \\( l \\) is length (in \\( \\mathrm{m} \\)), and \\( A \\) is cross-sectional area (in \\( \\mathrm{m}^2 \\)).",
+"Intrinsic vs. Extrinsic Semiconductors: Pure semiconductors (Silicon and Germanium) are tetravalent (4 valence electrons forming covalent bonds in a crystal lattice). Thermal energy creates electron-hole pairs (intrinsic concentration \\( n_i \\)). Doping adds tiny amounts of impurities to drastically boost conductivity.",
+"N-Type and P-Type Semiconductors: Doping with pentavalent donor atoms (Phosphorus, Arsenic, Antimony with 5 valence electrons) produces an N-type semiconductor where free electrons are majority charge carriers and holes are minority carriers. Doping with trivalent acceptor atoms (Boron, Gallium, Indium with 3 valence electrons) produces a P-type semiconductor where holes (electron vacancies) are majority carriers and electrons are minority carriers.",
+"P–N Junction and Depletion Layer: Joining P-type and N-type regions causes mobile electrons and holes to diffuse across the junction and recombine. This leaves behind uncovered ionized donor atoms (+Q) on the N-side and acceptor atoms (-Q) on the P-side, creating a narrow depletion region devoid of free mobile charge carriers.",
+"Potential Barrier and Biasing: The internal electric field establishes a contact potential barrier (\\( V_{\\text{Ge}} \\approx 0.3\\,\\mathrm{V} \\) for Germanium, \\( V_{\\text{Si}} \\approx 0.7\\,\\mathrm{V} \\) for Silicon). Forward bias (+ to P, - to N) opposes the internal field and narrows the depletion region, allowing heavy current flow once the barrier is overcome. Reverse bias (+ to N, - to P) reinforces the internal field and widens the depletion region, blocking majority carriers and permitting only a tiny minority-carrier leakage current.",
+"Diode Types and Applications: Includes Rectifier Diodes (converting AC to DC), Zener Diodes (maintaining stable voltage in reverse breakdown), Light-Emitting Diodes/LEDs (emitting light via radiative electron-hole recombination), Photodiodes (generating reverse photocurrent under light illumination), Optocouplers (providing optical electrical isolation), Varactor Diodes (acting as voltage-variable capacitors in RF tuning), and Tunnel Diodes (exhibiting quantum tunneling and negative differential resistance).",
+"Transistor Structures and Current Relationships: A Bipolar Junction Transistor (BJT) consists of two back-to-back P-N junctions in NPN or PNP configurations with three terminals: heavily doped Emitter (E), very thin and lightly doped Base (B), and large Collector (C). By Kirchhoff's current law, \\( I_E = I_B + I_C \\).",
+"Current Amplification Factors (α and β): Common-emitter current gain \\( \\beta = \\frac{I_C}{I_B} \\) (typically 20 to 500+) quantifies the amplification of tiny base currents into large collector currents. Common-base current gain \\( \\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1} < 1 \\) (typically 0.95 to 0.998) measures collector carrier collection efficiency. Transistors operate in active mode (amplification), saturation (fully on switch), and cutoff (fully off switch). Field-effect devices include JFETs and MOSFETs (such as enhancement-type MOSFETs, which conduct when gate voltage exceeds threshold \\( V_{GS} > V_{th} \\)).",
+"Integrated Circuits (ICs): Monolithic miniaturized electronic circuits fabricated on a single microscopic semiconductor die (usually silicon). ICs combine thousands to billions of transistors, diodes, resistors, and capacitors interconnected via photolithography, diffusion, ion implantation, and metallization to power microprocessors, memory chips, and control systems."
 ],
 definitions:[
-{term:"Semiconductor",definition:"A solid material whose electrical conductivity is intermediate between that of conductors and insulators, controllable via temperature and doping.",symbol:"\\text{Semiconductor}",unit:"\\text{No unit}",equation:"R = \\rho \\frac{l}{A}"},
-{term:"Electrical Resistance",definition:"The opposition that a material or semiconductor bar offers to the passage of electric current.",symbol:"R",unit:"\\Omega \\; (\\text{Ohm})",equation:"R = \\rho \\frac{l}{A}"},
-{term:"Electrical Resistivity",definition:"An intrinsic property of a material measuring how strongly it opposes electric current flow per unit length and cross-sectional area.",symbol:"\\rho",unit:"\\Omega\\cdot\\mathrm{m}",equation:"\\rho = R \\frac{A}{l}"},
-{term:"Doping (Semiconductors)",definition:"The controlled addition of pentavalent or trivalent impurity atoms into an intrinsic semiconductor to drastically increase conductivity.",symbol:"\\text{Doping}",unit:"\\text{No unit}",equation:"n_e \\gg n_h \\; (\\text{N-type}) \\quad\\text{or}\\quad n_h \\gg n_e \\; (\\text{P-type})"},
-{term:"N-Type Semiconductor",definition:"An extrinsic semiconductor doped with donor atoms where conduction is predominantly carried by negative free electrons.",symbol:"\\text{N-type}",unit:"\\text{No unit}",equation:"n_e \\approx N_D"},
-{term:"P-Type Semiconductor",definition:"An extrinsic semiconductor doped with acceptor atoms where conduction is predominantly carried by positive electron vacancies (holes).",symbol:"\\text{P-type}",unit:"\\text{No unit}",equation:"n_h \\approx N_A"},
-{term:"P-N Junction & Depletion Layer",definition:"The contact region between P-type and N-type semiconductor crystal zones where mobile carriers recombine, establishing a contact potential.",symbol:"\\text{P-N Junction}",unit:"\\text{No unit}",equation:"V_0 \\approx 0.7\\,\\mathrm{V} \\; (\\text{Si})"},
-{term:"Transistor Currents",definition:"The fundamental current relationship governing a bipolar junction transistor where the emitter current equals the sum of base and collector currents.",symbol:"I_E",unit:"\\mathrm{A}",equation:"I_E = I_B + I_C"},
-{term:"Emitter Current",definition:"The total majority carrier current injected from the heavily doped emitter region into the base.",symbol:"I_E",unit:"\\mathrm{A}",equation:"I_E = I_B + I_C"},
-{term:"Base Current",definition:"The very small recombination current flowing through the narrow and lightly doped base terminal.",symbol:"I_B",unit:"\\mathrm{A}",equation:"I_B = I_E - I_C = \\frac{I_C}{\\beta}"},
-{term:"Collector Current",definition:"The amplified output current collected across the reverse-biased collector-base junction.",symbol:"I_C",unit:"\\mathrm{A}",equation:"I_C = \\beta I_B = \\alpha I_E"},
-{term:"Common-Emitter Current Gain",definition:"The ratio of collector current to base current in a transistor, representing the direct current amplification factor.",symbol:"\\beta \\text{ or } h_{FE}",unit:"\\text{No unit}",equation:"\\beta = \\frac{I_C}{I_B}"},
-{term:"Common-Base Current Gain",definition:"The ratio of collector current to emitter current in a transistor, representing the transmission efficiency of injected carriers across the base (nearly 1).",symbol:"\\alpha",unit:"\\text{No unit}",equation:"\\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1}"}
+{term:"Electrical Resistance",definition:"The opposition that a substance or conductor presents to the flow of electric current.",symbol:"R",unit:"\\Omega",equation:"R = \\rho\\frac{l}{A}"},
+{term:"Electrical Resistivity",definition:"An intrinsic property of a material measuring its fundamental opposition to electric current per unit length and cross-sectional area.",symbol:"\\rho",unit:"\\Omega\\cdot\\mathrm{m}",equation:"\\rho = \\frac{RA}{l}"},
+{term:"Intrinsic Semiconductor",definition:"A pure, undoped crystalline semiconductor (such as pure Si or Ge) where electrical conduction arises solely from thermally generated electron-hole pairs.",symbol:"n_i",unit:"\\mathrm{m^{-3}}",equation:"n_e = n_h = n_i"},
+{term:"Doping",definition:"The controlled addition of pentavalent or trivalent impurity atoms into an intrinsic semiconductor crystal to greatly increase conductivity.",symbol:"\\text{Doping}",unit:"No SI unit",equation:"n_e \\approx N_D \\quad\\text{or}\\quad n_h \\approx N_A"},
+{term:"N-Type Semiconductor",definition:"An extrinsic semiconductor doped with pentavalent donor impurities where conduction is dominated by negative free electrons (majority carriers).",symbol:"\\text{N-type}",unit:"No SI unit",equation:"n_e \\gg n_h"},
+{term:"P-Type Semiconductor",definition:"An extrinsic semiconductor doped with trivalent acceptor impurities where conduction is dominated by positive holes (majority carriers).",symbol:"\\text{P-type}",unit:"No SI unit",equation:"n_h \\gg n_e"},
+{term:"P–N Junction",definition:"The metallurgical boundary interface formed between adjacent P-type and N-type regions within a single semiconductor crystal.",symbol:"\\text{P-N}",unit:"No SI unit",equation:"V_0 \\approx 0.7\\,\\mathrm{V} \\; (\\text{Si})"},
+{term:"Depletion Region",definition:"The narrow zone adjacent to a P-N junction that is depleted of mobile charge carriers, containing only fixed ionized donor and acceptor atoms.",symbol:"W_{\\text{dep}}",unit:"\\mathrm{m}",equation:"\\text{Width: } W_{\\text{dep}}"},
+{term:"Potential Barrier (Contact Potential)",definition:"The internal electrostatic potential difference established across a P-N junction depletion region that resists further majority-carrier diffusion.",symbol:"V_0",unit:"\\mathrm{V}",equation:"V_{\\text{Ge}} \\approx 0.3\\,\\mathrm{V}, \\quad V_{\\text{Si}} \\approx 0.7\\,\\mathrm{V}"},
+{term:"Forward Bias",definition:"Applying external voltage with positive terminal to P-type and negative to N-type, which opposes the internal barrier, narrows the depletion layer, and enables heavy conduction.",symbol:"V_F",unit:"\\mathrm{V}",equation:"V_{\\text{net}} = V_0 - V_F"},
+{term:"Reverse Bias",definition:"Applying external voltage with positive terminal to N-type and negative to P-type, which reinforces the internal barrier, widens the depletion layer, and blocks majority current.",symbol:"V_R",unit:"\\mathrm{V}",equation:"V_{\\text{net}} = V_0 + V_R"},
+{term:"Bipolar Junction Transistor (BJT)",definition:"A three-terminal semiconductor device consisting of three doped regions (Emitter, Base, Collector) that amplifies or switches electrical signals.",symbol:"\\text{BJT}",unit:"No SI unit",equation:"I_E = I_B + I_C"},
+{term:"Emitter Current",definition:"The total majority-carrier current injected from the heavily doped emitter into the base region.",symbol:"I_E",unit:"\\mathrm{A}",equation:"I_E = I_B + I_C"},
+{term:"Base Current",definition:"The tiny recombination current flowing through the very thin, lightly doped base terminal that controls the overall transistor output.",symbol:"I_B",unit:"\\mathrm{A}",equation:"I_B = I_E - I_C = \\frac{I_C}{\\beta}"},
+{term:"Collector Current",definition:"The output current collected at the collector terminal across the reverse-biased collector-base junction.",symbol:"I_C",unit:"\\mathrm{A}",equation:"I_C = \\beta I_B = \\alpha I_E"},
+{term:"Common-Emitter Current Gain (β)",definition:"The dimensionless ratio of collector current to base current, representing the current amplification factor in common-emitter configuration.",symbol:"\\beta",unit:"No SI unit",equation:"\\beta = \\frac{I_C}{I_B}"},
+{term:"Common-Base Current Gain (α)", definition:"The dimensionless ratio of collector current to emitter current, representing the transmission efficiency of injected carriers reaching the collector (always < 1).",symbol:"\\alpha",unit:"No SI unit",equation:"\\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1}"},
+{term:"Integrated Circuit (IC)",definition:"A complete electronic circuit with thousands to billions of transistors, diodes, and passive elements fabricated onto a single miniature semiconductor die.",symbol:"\\text{IC}",unit:"No SI unit",equation:"\\text{Monolithic die}"}
 ],
 examples:[
-{title:"Resistance and Resistivity of a Silicon Cylinder",given:"Length of silicon rod \\( l = 2.0\\,\\mathrm{cm} = 0.020\\,\\mathrm{m} \\), cross-sectional area \\( A = 4.0 \\times 10^{-6}\\,\\mathrm{m}^2 \\), resistivity of doped silicon \\( \\rho = 2.5 \\times 10^{-3}\\,\\Omega\\cdot\\mathrm{m} \\).",find:"Resistance of the silicon rod (\\( R \\)).",equation:"R = \\rho \\frac{l}{A}",solution:"Substitute the values:<br>\\( R = (2.5 \\times 10^{-3}\\,\\Omega\\cdot\\mathrm{m}) \\times \\frac{0.020\\,\\mathrm{m}}{4.0 \\times 10^{-6}\\,\\mathrm{m}^2} = \\frac{5.0 \\times 10^{-5}}{4.0 \\times 10^{-6}} = 12.5\\,\\Omega \\).",finalAnswer:"R = 12.5\\,\\Omega",explanation:"The resistance of a semiconductor sample is directly proportional to its length and inversely proportional to its cross-sectional area."},
-{title:"Determining Resistivity from Sample Resistance",given:"A rectangular germanium bar of length \\( l = 5.0\\,\\mathrm{cm} = 0.050\\,\\mathrm{m} \\) with width \\( 2.0\\,\\mathrm{mm} \\) and thickness \\( 1.0\\,\\mathrm{mm} \\) (\\( A = 2.0 \\times 10^{-3} \\times 1.0 \\times 10^{-3} = 2.0 \\times 10^{-6}\\,\\mathrm{m}^2 \\)) exhibits a resistance \\( R = 11.5\\,\\Omega \\).",find:"Resistivity of the germanium sample (\\( \\rho \\)).",equation:"\\rho = R \\frac{A}{l}",solution:"Substitute the measured values:<br>\\( \\rho = 11.5\\,\\Omega \\times \\frac{2.0 \\times 10^{-6}\\,\\mathrm{m}^2}{0.050\\,\\mathrm{m}} = \\frac{2.3 \\times 10^{-5}}{0.050} = 4.60 \\times 10^{-4}\\,\\Omega\\cdot\\mathrm{m} \\).",finalAnswer:"\\rho = 4.60 \\times 10^{-4}\\,\\Omega\\cdot\\mathrm{m}",explanation:"Measuring resistance and physical dimensions allows determination of intrinsic or extrinsic material resistivity."},
-{title:"Conservation of Transistor Currents",given:"In an NPN transistor, the base current is \\( I_B = 50\\,\\mu\\mathrm{A} = 0.050\\,\\mathrm{mA} \\) and the collector current is \\( I_C = 4.95\\,\\mathrm{mA} \\).",find:"Emitter current (\\( I_E \\)).",equation:"I_E = I_B + I_C",solution:"Sum the two currents:<br>\\( I_E = 0.050\\,\\mathrm{mA} + 4.95\\,\\mathrm{mA} = 5.00\\,\\mathrm{mA} \\).",finalAnswer:"I_E = 5.00\\,\\mathrm{mA}",explanation:"Charge conservation dictates that the total current leaving the emitter equals the tiny control current escaping the base plus the collected current."},
-{title:"Common-Emitter Current Gain Calculation (β)",given:"Base current \\( I_B = 40\\,\\mu\\mathrm{A} = 4.0 \\times 10^{-5}\\,\\mathrm{A} \\), collector current \\( I_C = 4.0\\,\\mathrm{mA} = 4.0 \\times 10^{-3}\\,\\mathrm{A} \\).",find:"Common-emitter current gain (\\( \\beta \\)).",equation:"\\beta = \\frac{I_C}{I_B}",solution:"Divide collector current by base current:<br>\\( \\beta = \\frac{4.0 \\times 10^{-3}\\,\\mathrm{A}}{4.0 \\times 10^{-5}\\,\\mathrm{A}} = 100 \\).",finalAnswer:"\\beta = 100 \\quad (\\text{dimensionless})",explanation:"A current gain of 100 indicates that every 1 microampere of base control current controls 100 microamperes of collector load current."},
-{title:"Common-Base Current Gain Calculation (α)",given:"Collector current \\( I_C = 4.90\\,\\mathrm{mA} \\), emitter current \\( I_E = 5.00\\,\\mathrm{mA} \\).",find:"Common-base current gain (\\( \\alpha \\)).",equation:"\\alpha = \\frac{I_C}{I_E}",solution:"Compute the ratio:<br>\\( \\alpha = \\frac{4.90\\,\\mathrm{mA}}{5.00\\,\\mathrm{mA}} = 0.980 \\).",finalAnswer:"\\alpha = 0.980",explanation:"The common-base current gain is always slightly less than 1 because a small fraction of injected carriers recombine in the base."},
-{title:"Gain Interconversion Between β and α",given:"A transistor has common-emitter gain \\( \\beta = 150 \\).",find:"Common-base current gain (\\( \\alpha \\)).",equation:"\\alpha = \\frac{\\beta}{\\beta + 1}",solution:"Substitute \\( \\beta = 150 \\):<br>\\( \\alpha = \\frac{150}{150 + 1} = \\frac{150}{151} \\approx 0.9934 \\).",finalAnswer:"\\alpha \\approx 0.993",explanation:"High \\( \\beta \\) values translate to an \\( \\alpha \\) value extremely close to unity, reflecting negligible base recombination."}
+{
+title:"Electrical Resistivity of a Metallic Wire",
+given:"A conductor wire has cross-sectional area \\( A = 5.06 \\times 10^{-7}\\,\\mathrm{m}^2 \\), length \\( l = 20\\,\\mathrm{m} \\), and measured electrical resistance \\( R = 0.68\\,\\Omega \\).",
+find:"Electrical resistivity (\\( \\rho \\)) of the wire material in \\( \\Omega\\cdot\\mathrm{m} \\).",
+equation:"\\rho = \\frac{RA}{l}",
+solution:"Substitute the given values into the resistivity formula:<br>\\[ \\rho = \\frac{(0.68\\,\\Omega)(5.06 \\times 10^{-7}\\,\\mathrm{m}^2)}{20\\,\\mathrm{m}} = \\frac{3.4408 \\times 10^{-7}}{20} = 1.7204 \\times 10^{-8}\\,\\Omega\\cdot\\mathrm{m} \\approx 1.72 \\times 10^{-8}\\,\\Omega\\cdot\\mathrm{m} \\]",
+finalAnswer:"\\rho \\approx 1.72 \\times 10^{-8}\\,\\Omega\\cdot\\mathrm{m}",
+explanation:"This calculated resistivity matches standard annealed copper wire (1.72 × 10⁻⁸ Ω·m). Resistivity depends exclusively on material composition and temperature, not conductor dimensions."
+},
+{
+title:"Transistor Common-Emitter Current Gain and Emitter Current",
+given:"In an active NPN transistor circuit, base current \\( I_B = 50\\,\\mu\\mathrm{A} = 50 \\times 10^{-6}\\,\\mathrm{A} = 0.050\\,\\mathrm{mA} \\), and collector current \\( I_C = 4.95\\,\\mathrm{mA} = 4.95 \\times 10^{-3}\\,\\mathrm{A} \\).",
+find:"1. Common-emitter current gain (\\( \\beta \\)).<br>2. Total emitter current (\\( I_E \\)) in \\( \\mathrm{mA} \\).",
+equation:"\\beta = \\frac{I_C}{I_B}, \\quad I_E = I_B + I_C",
+solution:"1. <strong>Common-emitter current gain (\\( \\beta \\)):</strong><br>\\[ \\beta = \\frac{I_C}{I_B} = \\frac{4.95 \\times 10^{-3}\\,\\mathrm{A}}{50 \\times 10^{-6}\\,\\mathrm{A}} = \\frac{4.95\\,\\mathrm{mA}}{0.050\\,\\mathrm{mA}} = 99 \\]<br>2. <strong>Emitter current (\\( I_E \\)):</strong><br>\\[ I_E = I_B + I_C = 0.050\\,\\mathrm{mA} + 4.95\\,\\mathrm{mA} = 5.00\\,\\mathrm{mA} = 5.00 \\times 10^{-3}\\,\\mathrm{A} \\]",
+finalAnswer:"\\beta = 99 \\; (\\text{dimensionless}), \\quad I_E = 5.00\\,\\mathrm{mA}",
+explanation:"A tiny base control current of 50 µA steers nearly 5 mA of collector current, demonstrating the current amplification capability of the transistor."
+},
+{
+title:"Transistor Common-Base Current Gain and Gain Interconversion",
+given:"A transistor operates with emitter current \\( I_E = 10.0\\,\\mathrm{mA} \\) and collector current \\( I_C = 9.80\\,\\mathrm{mA} \\).",
+find:"1. Base current (\\( I_B \\)).<br>2. Common-base current gain (\\( \\alpha \\)).<br>3. Common-emitter current gain (\\( \\beta \\)) calculated from \\( \\alpha \\).",
+equation:"I_B = I_E - I_C, \\quad \\alpha = \\frac{I_C}{I_E}, \\quad \\beta = \\frac{\\alpha}{1 - \\alpha}",
+solution:"1. <strong>Base current:</strong><br>\\[ I_B = I_E - I_C = 10.0\\,\\mathrm{mA} - 9.80\\,\\mathrm{mA} = 0.20\\,\\mathrm{mA} = 200\\,\\mu\\mathrm{A} \\]<br>2. <strong>Common-base current gain (\\( \\alpha \\)):</strong><br>\\[ \\alpha = \\frac{I_C}{I_E} = \\frac{9.80\\,\\mathrm{mA}}{10.0\\,\\mathrm{mA}} = 0.980 \\]<br>3. <strong>Common-emitter current gain (\\( \\beta \\)):</strong><br>\\[ \\beta = \\frac{\\alpha}{1 - \\alpha} = \\frac{0.980}{1 - 0.980} = \\frac{0.980}{0.020} = 49 \\]<br><em>Verification:</em> \\( \\beta = \\frac{I_C}{I_B} = \\frac{9.80\\,\\mathrm{mA}}{0.20\\,\\mathrm{mA}} = 49 \\).",
+finalAnswer:"I_B = 0.20\\,\\mathrm{mA} \\; (200\\,\\mu\\mathrm{A}), \\quad \\alpha = 0.980, \\quad \\beta = 49",
+explanation:"Because only a small fraction of injected carriers recombine in the base (2%), \\( \\alpha \\) is very close to 1 (0.980), yielding a high current amplification factor \\( \\beta = 49 \\)."
+}
 ],
 equations:[
-{section:"Semiconductor Properties",name:"Resistance and Resistivity<br><img src='images/ch4-l1-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( R = \\rho \\frac{l}{A} \\)",symbols:[{symbol:"R",desc:"Resistance (Ω)"},{symbol:"\\rho",desc:"Resistivity (Ω·m)"},{symbol:"l",desc:"Length (m)"},{symbol:"A",desc:"Cross-sectional area (m²)"}]},
-{section:"Transistor",name:"Transistor Currents<br><img src='images/ch4-l1-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( I_E = I_B + I_C \\)",symbols:[{symbol:"I_E",desc:"Emitter current (A)"},{symbol:"I_B",desc:"Base current (A)"},{symbol:"I_C",desc:"Collector current (A)"}]},
-{section:"Transistor",name:"Common-emitter current gain (β)<br><img src='images/ch4-l1-eq3.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\beta = \\frac{I_C}{I_B} \\)",symbols:[{symbol:"\\beta",desc:"Current gain (No unit)"},{symbol:"I_C",desc:"Collector current (A)"},{symbol:"I_B",desc:"Base current (A)"}]},
-{section:"Transistor",name:"Common-base current gain (α)<br><img src='images/ch4-l1-eq4.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\alpha = \\frac{I_C}{I_E} \\)",symbols:[{symbol:"\\alpha",desc:"Current gain (No unit)"},{symbol:"I_C",desc:"Collector current (A)"},{symbol:"I_E",desc:"Emitter current (A)"}]}
+{section:"Electrical Resistance and Resistivity",name:"Electrical Resistance of a Conductor",formula:"\\[ R = \\rho\\frac{l}{A} \\]",symbols:[{symbol:"R",desc:"Resistance (Ω)"},{symbol:"\\rho",desc:"Resistivity (Ω·m)"},{symbol:"l",desc:"Length (m)"},{symbol:"A",desc:"Cross-sectional area (m²)"}]},
+{section:"Electrical Resistance and Resistivity",name:"Electrical Resistivity Definition",formula:"\\[ \\rho = \\frac{RA}{l} \\]",symbols:[{symbol:"\\rho",desc:"Resistivity (Ω·m)"},{symbol:"R",desc:"Resistance (Ω)"},{symbol:"A",desc:"Area (m²)"},{symbol:"l",desc:"Length (m)"}]},
+{section:"Intrinsic and Extrinsic Semiconductors",name:"Carrier Concentrations in Doped Semiconductors",formula:"\\[ n_e n_h = n_i^2, \\quad \\text{N-type: } n_e \\approx N_D \\gg n_h, \\quad \\text{P-type: } n_h \\approx N_A \\gg n_e \\]",symbols:[{symbol:"n_e, n_h",desc:"Electron and hole concentrations (m⁻³)"},{symbol:"n_i",desc:"Intrinsic carrier concentration (m⁻³)"}]},
+{section:"P–N Junction and Diodes",name:"P–N Junction Contact Potential Barrier",formula:"\\[ V_{\\text{Ge}} \\approx 0.3\\,\\mathrm{V}, \\quad V_{\\text{Si}} \\approx 0.7\\,\\mathrm{V} \\]",symbols:[{symbol:"V_{Ge}",desc:"Barrier in Germanium (~0.3 V)"},{symbol:"V_{Si}",desc:"Barrier in Silicon (~0.7 V)"}]},
+{section:"P–N Junction and Diodes",name:"Small-Signal Dynamic Diode Resistance",formula:"\\[ r_d = \\frac{\\Delta V_D}{\\Delta I_D} \\]",symbols:[{symbol:"r_d",desc:"Dynamic resistance (Ω)"},{symbol:"\\Delta V_D",desc:"Incremental voltage (V)"},{symbol:"\\Delta I_D",desc:"Incremental current (A)"}]},
+{section:"Transistors and Current Relationships",name:"Transistor Terminal Current Conservation",formula:"\\[ I_E = I_B + I_C \\]",symbols:[{symbol:"I_E",desc:"Emitter current (A)"},{symbol:"I_B",desc:"Base current (A)"},{symbol:"I_C",desc:"Collector current (A)"}]},
+{section:"Transistors and Current Relationships",name:"Common-Emitter Current Gain (β)",formula:"\\[ \\beta = \\frac{I_C}{I_B} \\]",symbols:[{symbol:"\\beta",desc:"Common-emitter gain (No unit)"},{symbol:"I_C",desc:"Collector current (A)"},{symbol:"I_B",desc:"Base current (A)"}]},
+{section:"Transistors and Current Relationships",name:"Common-Base Current Gain (α)",formula:"\\[ \\alpha = \\frac{I_C}{I_E} \\]",symbols:[{symbol:"\\alpha",desc:"Common-base gain (No unit)"},{symbol:"I_C",desc:"Collector current (A)"},{symbol:"I_E",desc:"Emitter current (A)"}]},
+{section:"Transistors and Current Relationships",name:"Current Gain Interconversion Formula",formula:"\\[ \\alpha = \\frac{\\beta}{\\beta + 1} \\iff \\beta = \\frac{\\alpha}{1 - \\alpha} \\]",symbols:[{symbol:"\\alpha, \\beta",desc:"Current gains"}]},
+{section:"Integrated Circuits (ICs)",name:"Integrated Circuit Scale & Microelectronic Architecture",formula:"\\[ \\text{Monolithic Die Integration: } N_{\\text{components}} \\sim 10^3 \\text{ to } 10^{10+} \\text{ transistors, diodes, resistors on a silicon chip} \\]",symbols:[{symbol:"N",desc:"Integrated component count"}]}
 ],
 flashcards:[
-{front:"What is a P-N junction?", back:"The boundary between P-type and N-type semiconductor materials, featuring a depletion region."},
-{front:"What are the majority charge carriers in an N-type semiconductor?", back:"Electrons"},
-{front:"What are the majority charge carriers in a P-type semiconductor?", back:"Holes"},
-{front:"What happens to the depletion region during forward bias?", back:"It becomes narrower, allowing electric current to flow."},
-{front:"What is the relationship between the three currents in a transistor?", back:"\\( I_E = I_B + I_C \\)"},
-{front:"How do you calculate the common-emitter current gain (\\(\\beta\\))?", back:"\\( \\beta = \\frac{I_C}{I_B} \\)"},
-{front:"How do you calculate the common-base current gain (\\(\\alpha\\))?", back:"\\( \\alpha = \\frac{I_C}{I_E} \\)"},
-{front:"What is the primary function of a rectifier diode?", back:"To convert alternating current (AC) into direct current (DC)."},
-{front:"What does a Zener diode do?", back:"It operates in reverse-bias to maintain a constant output voltage (regulated voltage)."},
-{front:"What type of transistor has electrons as the majority charge carriers and a forward-biased base-emitter junction?", back:"NPN Transistor"}
+{front:"What is the formula relating resistance, resistivity, length, and area?", back:"\\( R = \\rho\\frac{l}{A} \\iff \\rho = \\frac{RA}{l} \\)"},
+{front:"What are the majority and minority charge carriers in N-type and P-type semiconductors?", back:"N-type: majority = electrons, minority = holes.<br>P-type: majority = holes, minority = electrons."},
+{front:"What are the approximate potential barrier voltages for Ge and Si diodes?", back:"\\( V_{\\text{Ge}} \\approx 0.3\\,\\mathrm{V}, \\quad V_{\\text{Si}} \\approx 0.7\\,\\mathrm{V} \\)"},
+{front:"What happens to the depletion region under forward and reverse bias?", back:"Forward bias: narrows the depletion region.<br>Reverse bias: widens the depletion region."},
+{front:"What is the fundamental current equation for a bipolar junction transistor?", back:"\\( I_E = I_B + I_C \\)"},
+{front:"What is the definition of common-emitter current gain \\( \\beta \\)?", back:"\\( \\beta = \\frac{I_C}{I_B} \\)"},
+{front:"What is the definition of common-base current gain \\( \\alpha \\)?", back:"\\( \\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1} < 1 \\)"},
+{front:"What are the primary advantages of Integrated Circuits (ICs)?", back:"Miniaturization, extreme component density, low power consumption, and high operational reliability."}
 ],
 quiz:[
-{question:"Which material is commonly used as an intrinsic semiconductor?", options:["Copper","Silicon","Glass","Gold"], correctIndex:1, feedback:"Silicon (and Germanium) are standard semiconductor materials."},
-{question:"In an N-type semiconductor, what are the donor atoms?", options:["Atoms with three valence electrons","Atoms with five valence electrons","Atoms with four valence electrons","Noble gases"], correctIndex:1, feedback:"Donor atoms (like Phosphorus or Arsenic) provide extra free electrons by having five valence electrons."},
-{question:"The depletion region of a P-N junction is characterized by:", options:["High concentration of free electrons","High concentration of holes","Almost no mobile charge carriers","High electrical conductivity"], correctIndex:2, feedback:"Electrons and holes recombine in the depletion region, leaving almost no free charge carriers."},
-{question:"During reverse bias, the P-N junction:", options:["Allows maximum current to flow","Narrows the depletion region","Widens the depletion region and blocks majority carriers","Acts as a perfect conductor"], correctIndex:2, feedback:"Reverse bias widens the potential barrier, preventing majority charge carriers from crossing."},
-{question:"The formula for calculating resistance from resistivity is:", options:["\\( R = \\rho A / l \\)","\\( R = \\rho l / A \\)","\\( R = l / \\rho A \\)","\\( R = A / \\rho l \\)"], correctIndex:1, feedback:"Resistance is directly proportional to length and inversely proportional to cross-sectional area: \\( R = \\rho l / A \\)."},
-{question:"A transistor's emitter current \\( I_E \\) is 10 mA, and its base current \\( I_B \\) is 0.1 mA. What is the collector current \\( I_C \\)?", options:["10.1 mA","9.9 mA","100 mA","0.01 mA"], correctIndex:1, feedback:"\\( I_C = I_E - I_B = 10 - 0.1 = 9.9 \\text{ mA} \\)."},
-{question:"The common-emitter current gain \\( \\beta \\) is given by the ratio of:", options:["\\( I_C / I_E \\)","\\( I_E / I_B \\)","\\( I_C / I_B \\)","\\( I_B / I_C \\)"], correctIndex:2, feedback:"\\( \\beta \\) is the ratio of collector current to base current."},
-{question:"Which diode is specifically designed to operate in the reverse-bias region to regulate voltage?", options:["Light-Emitting Diode (LED)","Rectifier Diode","Tunnel Diode","Zener Diode"], correctIndex:3, feedback:"Zener diodes are used to maintain a constant output (regulated) voltage in reverse bias."},
-{question:"What is a hole in semiconductor physics?", options:["A positive ion fixed in the lattice","A missing electron in a covalent bond acting as a positive charge carrier","An extra proton in the nucleus","A defective region in the crystal"], correctIndex:1, feedback:"A hole is a vacancy left by a missing electron, acting as a mobile positive charge."},
-{question:"In a PNP transistor, the majority charge carriers are:", options:["Electrons","Protons","Holes","Neutrons"], correctIndex:2, feedback:"In PNP transistors, holes carry the majority of the current."}
+{question:"A wire with A = 5.06 × 10⁻⁷ m² and length l = 20 m has resistance R = 0.68 Ω. What is its resistivity?", options:["1.72 × 10⁻⁸ Ω·m","3.44 × 10⁻⁷ Ω·m","1.72 × 10⁻⁶ Ω·m","8.55 × 10⁻⁹ Ω·m"], correctIndex:0, feedback:"ρ = RA / l = (0.68 × 5.06 × 10⁻⁷) / 20 = 1.72 × 10⁻⁸ Ω·m (copper wire)."},
+{question:"In a Silicon P-N junction diode, the contact potential barrier at room temperature is approximately:", options:["0.1 V","0.3 V","0.7 V","1.5 V"], correctIndex:2, feedback:"V_Si ≈ 0.7 V, while for Germanium V_Ge ≈ 0.3 V."},
+{question:"In an active BJT with base current I_B = 50 µA and collector current I_C = 4.95 mA, the current gain β and emitter current I_E are:", options:["β = 50, I_E = 5.00 mA","β = 99, I_E = 5.00 mA","β = 100, I_E = 4.90 mA","β = 99, I_E = 4.95 mA"], correctIndex:1, feedback:"β = 4.95 mA / 0.05 mA = 99; I_E = 0.05 mA + 4.95 mA = 5.00 mA."},
+{question:"What happens to the depletion region of a P-N junction under reverse bias?", options:["It disappears completely","It narrows significantly","It widens, blocking majority carriers","It oscillates with AC frequency"], correctIndex:2, feedback:"Reverse bias reinforces the internal electric field, widening the depletion region and blocking majority carriers."}
 ]
 },
 {
-id:"g12-ch4-l2",gifUrl:"",worksheetUrl:"worksheets/ch4-l2-worksheet.pdf",games:[],title:"Chapter 4 Lesson 2: Special Theory of Relativity",
+id:"g12-ch4-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Michelson-morley_experiment_animation.gif",worksheetUrl:"worksheets/ch4-l2-worksheet.pdf",games:[{topic:"Special Relativity",url:"https://gemini.google.com/share/3565e381b1ba"}],title:"Chapter 4 Lesson 2: Special Theory of Relativity",
 concepts:[
-"Inertial Reference Frame: A coordinate system where Newton's laws of motion are valid, moving at constant velocity.",
-"Galilean Transformation: Classical physics coordinate and velocity transformations, valid only at low speeds (u << c).",
-"Michelson-Morley Experiment: Attempted to measure Earth's speed relative to the 'ether'. Its null result proved the speed of light is constant in all directions.",
-"Einstein's Postulates: 1. Laws of physics are the same in all inertial frames. 2. The speed of light in a vacuum is constant for all observers.",
-"Lorentz Transformation: Relativistic coordinate transformations valid for all velocities, replacing Galilean transformations near the speed of light.",
-"Lorentz Factor (γ): A scaling factor that approaches 1 at low speeds but grows infinitely large as speed approaches c."
+"Reference Frames and Galilean Transformation: An inertial reference frame is one with zero acceleration where Newton's laws hold true. Classical mechanics assumes absolute, universal space and time (\\( t' = t \\)). For frame S' moving at constant velocity \\( u \\) along the +x axis relative to frame S, coordinates transform as \\( x' = x - ut \\), \\( y' = y \\), \\( z' = z \\), \\( t' = t \\); velocities as \\( v'_x = v_x - u \\), \\( v'_y = v_y \\), \\( v'_z = v_z \\); and accelerations as \\( a'_x = a_x \\), \\( a'_y = a_y \\), \\( a'_z = a_z \\). Valid only when \\( u \\ll c \\).",
+"Speed of Light and the Michelson–Morley Experiment: Designed to detect Earth's motion through the hypothetical luminiferous ether. Light splits into two perpendicular arms of length \\( L \\). Expected travel times are \\( t_1 = \\frac{2Lc}{c^2 - v^2} \\) (parallel) and \\( t_2 = \\frac{2L}{\\sqrt{c^2 - v^2}} \\) (perpendicular). Time difference is \\( \\Delta t \\approx \\frac{Lv^2}{c^3} \\), path difference \\( \\Delta x = c\\Delta t \\approx \\frac{Lv^2}{c^2} \\), and expected fringe shift \\( \\Delta N = \\frac{\\Delta x}{\\lambda} = \\frac{Lv^2}{c^2\\lambda} \\). The experiment yielded a null result, disproving the existence of the ether and demonstrating that the speed of light is isotropic in all directions.",
+"Einstein's Two Postulates of Special Relativity: 1. The laws of physics are identical in all inertial reference frames. 2. The speed of light in vacuum is constant and invariant in all inertial reference frames, independent of the motion of the source or observer: \\( c = 299\\,792\\,458\\,\\mathrm{m/s} \\approx 3.0 \\times 10^8\\,\\mathrm{m/s} \\). Maxwell's electromagnetic relation confirms \\( c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}} \\), where \\( \\varepsilon_0 \\) is vacuum permittivity and \\( \\mu_0 \\) is vacuum permeability.",
+"Lorentz Transformation: Galilean transformations break down near light speed because they predict light speed varies with observer motion. The relativistic Lorentz factor is \\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\ge 1 \\). Forward transformations (S to S'): \\( x' = \\gamma(x - ut) \\), \\( y' = y \\), \\( z' = z \\), \\( t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\). Reverse transformations (S' to S): \\( x = \\gamma(x' + ut'), \\quad y = y', \\quad z = z', \\quad t = \\gamma\\left(t' + \\frac{ux'}{c^2}\\right) \\). When \\( u \\ll c \\), \\( \\gamma \\approx 1 \\), recovering Galilean mechanics.",
+"Relativistic Velocity Transformation: Velocity addition must account for spacetime transformations: forward transformations are \\( v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}} \\), \\( v'_y = \\frac{v_y}{\\gamma(1 - uv_x/c^2)} \\), \\( v'_z = \\frac{v_z}{\\gamma(1 - uv_x/c^2)} \\); reverse transformations are \\( v_x = \\frac{v'_x + u}{1 + \\frac{uv'_x}{c^2}} \\), \\( v_y = \\frac{v'_y}{\\gamma(1 + uv'_x/c^2)} \\), \\( v_z = \\frac{v'_z}{\\gamma(1 + uv'_x/c^2)} \\). For motion along a straight line, \\( v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}} \\). This guarantees that the relative speed of massive objects strictly remains below \\( c \\), and light always travels at \\( c \\) for all observers."
 ],
 definitions:[
-{term:"Inertial Reference Frame",definition:"A coordinate frame of reference in which an object experiences zero net force remains at rest or moves at constant velocity in a straight line.",symbol:"S, S'",unit:"\\text{No unit}",equation:"\\vec{a} = 0 \\quad (\\Sigma\\vec{F} = 0)"},
-{term:"Galilean Transformation",definition:"The classical Newtonian equations relating coordinates and velocities between inertial frames in relative uniform motion, valid only when speeds are much less than light.",symbol:"\\text{Galileo}",unit:"\\text{No unit}",equation:"x' = x - ut, \\quad v_x' = v_x - u, \\quad t' = t"},
-{term:"Michelson-Morley Experiment",definition:"A historic precision optical interferometry experiment that sought to measure Earth's orbital velocity through the luminiferous ether, yielding a famous null result.",symbol:"\\text{MM Experiment}",unit:"\\text{No unit}",equation:"\\Delta N = \\frac{L v^2}{\\lambda c^2} \\approx 0"},
-{term:"Expected Fringe Shift",definition:"The theoretical number of interference fringe shifts expected in the Michelson-Morley interferometer if light speed varied with Earth's ether wind.",symbol:"\\Delta N",unit:"\\text{No unit}",equation:"\\Delta N = \\frac{L v^2}{\\lambda c^2}"},
-{term:"Speed of Light in Vacuum",definition:"The universal invariant physical speed limit of all electromagnetic radiation and massless particles in free space.",symbol:"c",unit:"\\mathrm{m/s}",equation:"c \\approx 3.0 \\times 10^8\\,\\mathrm{m/s}"},
-{term:"Lorentz Factor",definition:"The fundamental relativistic scaling factor that quantifies time dilation, length contraction, and relativistic mass-energy as relative speed approaches c.",symbol:"\\gamma",unit:"\\text{No unit} \\; (\\gamma \\ge 1)",equation:"\\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}}"},
-{term:"Lorentz Transformation (Space)",definition:"The relativistic coordinate transformation equation relating spatial positions between two reference frames moving at constant relative velocity u.",symbol:"x'",unit:"\\mathrm{m}",equation:"x' = \\gamma(x - ut)"},
-{term:"Lorentz Transformation (Time)",definition:"The relativistic transformation equation showing that time intervals and simultaneity depend directly on the relative velocity and spatial position of observers.",symbol:"t'",unit:"\\mathrm{s}",equation:"t' = \\gamma\\left(t - \\frac{u x}{c^2}\\right)"},
-{term:"Relativistic Velocity Transformation",definition:"The formula relating particle velocities between two inertial frames in relative motion, ensuring that no physical object can ever exceed the speed of light.",symbol:"v_x'",unit:"\\mathrm{m/s}",equation:"v_x' = \\frac{v_x - u}{1 - \\frac{u v_x}{c^2}}"}
+{term:"Inertial Reference Frame",definition:"A coordinate reference frame in which a body subject to zero net external force remains at rest or moves with uniform velocity in a straight line.",symbol:"S, S'",unit:"No SI unit",equation:"\\sum\\vec{F} = 0 \\implies \\vec{a} = 0"},
+{term:"Galilean Transformation",definition:"Classical equations relating coordinates, velocities, and accelerations between inertial frames, valid only at low speeds (u ≪ c) under the assumption of absolute time.",symbol:"\\text{Galileo}",unit:"No SI unit",equation:"x' = x - ut, \\quad v'_x = v_x - u, \\quad t' = t"},
+{term:"Michelson Interferometer",definition:"An optical instrument splitting light into two perpendicular arms of length L to detect path and travel-time differences via interference fringe shifts.",symbol:"L",unit:"\\mathrm{m}",equation:"\\Delta N = \\frac{\\Delta x}{\\lambda}"},
+{term:"Expected Fringe Shift",definition:"Theoretical shift in interference fringes expected in the Michelson-Morley interferometer if an ether wind were present.",symbol:"\\Delta N",unit:"No SI unit",equation:"\\Delta N = \\frac{Lv^2}{c^2\\lambda}"},
+{term:"First Postulate (Principle of Relativity)",definition:"The fundamental postulate stating that the laws of physics are the same in all inertial reference frames.",symbol:"\\text{Postulate 1}",unit:"No SI unit",equation:"\\text{Laws invariant in all inertial frames}"},
+{term:"Second Postulate (Constancy of Light Speed)",definition:"The postulate stating that the speed of light in vacuum is constant in all inertial reference frames, independent of the motion of the source or observer.",symbol:"c",unit:"\\mathrm{m/s}",equation:"c = 299\\,792\\,458\\,\\mathrm{m/s} \\approx 3.0 \\times 10^8\\,\\mathrm{m/s}"},
+{term:"Vacuum Permittivity",definition:"The physical constant representing the capability of vacuum to permit electric field lines.",symbol:"\\varepsilon_0",unit:"\\mathrm{F/m}",equation:"\\varepsilon_0 \\approx 8.854 \\times 10^{-12}\\,\\mathrm{F/m}"},
+{term:"Vacuum Permeability",definition:"The physical constant representing the capability of vacuum to permit magnetic field lines.",symbol:"\\mu_0",unit:"\\mathrm{T\\cdot m/A}",equation:"\\mu_0 = 4\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A}"},
+{term:"Electromagnetic Light Speed Relation",definition:"Maxwell's exact relationship connecting the speed of light to the vacuum permittivity and permeability.",symbol:"c",unit:"\\mathrm{m/s}",equation:"c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}}"},
+{term:"Lorentz Factor (γ)",definition:"The fundamental relativistic scaling factor that quantifies time dilation, length contraction, and coordinate transformations, always ≥ 1.",symbol:"\\gamma",unit:"No SI unit",equation:"\\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}}"},
+{term:"Lorentz Coordinate Transformation",definition:"Relativistic coordinate equations transforming spatial position between inertial reference frames moving at relative velocity u.",symbol:"x'",unit:"\\mathrm{m}",equation:"x' = \\gamma(x - ut)"},
+{term:"Lorentz Time Transformation",definition:"Relativistic time transformation showing that elapsed time and simultaneity depend directly on relative velocity and spatial position.",symbol:"t'",unit:"\\mathrm{s}",equation:"t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right)"},
+{term:"Reverse Lorentz Transformation",definition:"Relativistic equations transforming space and time from moving frame S' back to rest frame S.",symbol:"x, t",unit:"\\mathrm{m, s}",equation:"x = \\gamma(x' + ut'), \\quad t = \\gamma\\left(t' + \\frac{ux'}{c^2}\\right)"},
+{term:"Relativistic Velocity Transformation",definition:"Formulas relating particle velocity components between two reference frames, ensuring resultant speeds never exceed c.",symbol:"v'_x",unit:"\\mathrm{m/s}",equation:"v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}}"},
+{term:"Relativistic Velocity Addition",definition:"Collinear formula for combining relative velocities along the same straight line.",symbol:"v",unit:"\\mathrm{m/s}",equation:"v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}}"}
 ],
 examples:[
-{title:"Classical Galilean Velocity Transformation",given:"A passenger train travels along a straight track at speed \\( u = 25\\,\\mathrm{m/s} \\) relative to ground (frame S). A runner inside runs forward at \\( v_x' = 5.0\\,\\mathrm{m/s} \\) relative to the train (frame S').",find:"Velocity of the runner relative to the ground observer (\\( v_x \\)).",equation:"v_x' = v_x - u \\implies v_x = v_x' + u",solution:"Sum the two velocities using Galilean addition:<br>\\( v_x = 5.0\\,\\mathrm{m/s} + 25.0\\,\\mathrm{m/s} = 30.0\\,\\mathrm{m/s} \\).",finalAnswer:"v_x = 30.0\\,\\mathrm{m/s}",explanation:"At classical daily speeds (\\( u \\ll c \\)), relative velocities add or subtract linearly with negligible relativistic error."},
-{title:"Michelson-Morley Expected Fringe Shift Calculation",given:"Interferometer arm effective length \\( L = 11.0\\,\\mathrm{m} \\), Earth's orbital speed \\( v = 3.0 \\times 10^4\\,\\mathrm{m/s} \\), light wavelength \\( \\lambda = 5.5 \\times 10^{-7}\\,\\mathrm{m} \\), \\( c = 3.0 \\times 10^8\\,\\mathrm{m/s} \\).",find:"Theoretical expected fringe shift (\\( \\Delta N \\)).",equation:"\\Delta N = \\frac{L v^2}{\\lambda c^2}",solution:"1. Compute \\( v^2 / c^2 \\):<br>\\( \\frac{v^2}{c^2} = \\left(\\frac{3.0 \\times 10^4}{3.0 \\times 10^8}\\right)^2 = (1.0 \\times 10^{-4})^2 = 1.0 \\times 10^{-8} \\).<br>2. Compute fringe shift:<br>\\( \\Delta N = \\frac{11.0\\,\\mathrm{m} \\times 1.0 \\times 10^{-8}}{5.5 \\times 10^{-7}\\,\\mathrm{m}} = \\frac{1.1 \\times 10^{-7}}{5.5 \\times 10^{-7}} = 0.20 \\).",finalAnswer:"\\Delta N = 0.20 \\text{ fringes}",explanation:"The apparatus could detect shifts as small as 0.01 fringes, so observing zero shift firmly disproved the stationary ether hypothesis."},
-{title:"Calculating the Lorentz Factor (γ)",given:"An electron in an accelerator travels at speed \\( u = 0.80c \\) relative to the laboratory.",find:"Lorentz factor (\\( \\gamma \\)).",equation:"\\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}}",solution:"1. Compute \\( \\frac{u^2}{c^2} \\): \\( (0.80)^2 = 0.64 \\).<br>2. Compute \\( 1 - 0.64 = 0.36 \\).<br>3. Compute \\( \\sqrt{0.36} = 0.60 \\).<br>4. Evaluate \\( \\gamma \\):<br>\\( \\gamma = \\frac{1}{0.60} = \\frac{5}{3} \\approx 1.667 \\).",finalAnswer:"\\gamma \\approx 1.67",explanation:"At 80% the speed of light, relativistic effects expand time and contract space by a factor of 1.67."},
-{title:"Lorentz Spatial Coordinate Transformation",given:"An event occurs in frame S at position \\( x = 9.0 \\times 10^8\\,\\mathrm{m} \\) at time \\( t = 2.0\\,\\mathrm{s} \\). Frame S' moves at \\( u = 0.60c = 1.8 \\times 10^8\\,\\mathrm{m/s} \\) along the +x axis (for which \\( \\gamma = \\frac{1}{\\sqrt{1 - 0.36}} = 1.25 \\)).",find:"Spatial position coordinate of the event in frame S' (\\( x' \\)).",equation:"x' = \\gamma(x - ut)",solution:"1. Calculate \\( u t \\):<br>\\( u t = (1.8 \\times 10^8\\,\\mathrm{m/s}) \\times 2.0\\,\\mathrm{s} = 3.6 \\times 10^8\\,\\mathrm{m} \\).<br>2. Subtract from x:<br>\\( x - ut = 9.0 \\times 10^8 - 3.6 \\times 10^8 = 5.4 \\times 10^8\\,\\mathrm{m} \\).<br>3. Multiply by \\( \\gamma = 1.25 \\):<br>\\( x' = 1.25 \\times (5.4 \\times 10^8\\,\\mathrm{m}) = 6.75 \\times 10^8\\,\\mathrm{m} \\).",finalAnswer:"x' = 6.75 \\times 10^8\\,\\mathrm{m}",explanation:"The spatial coordinate incorporates relativistic length contraction and the frame displacement."},
-{title:"Lorentz Time Transformation and Simultaneity",given:"For the same event (\\( x = 9.0 \\times 10^8\\,\\mathrm{m} \\), \\( t = 2.0\\,\\mathrm{s} \\), \\( u = 1.8 \\times 10^8\\,\\mathrm{m/s} \\), \\( \\gamma = 1.25 \\), \\( c = 3.0 \\times 10^8\\,\\mathrm{m/s} \\)).",find:"Time coordinate of the event in frame S' (\\( t' \\)).",equation:"t' = \\gamma\\left(t - \\frac{u x}{c^2}\\right)",solution:"1. Calculate the spatial-time offset term \\( \\frac{ux}{c^2} \\):<br>\\( \\frac{u x}{c^2} = \\frac{(1.8 \\times 10^8) \\times (9.0 \\times 10^8)}{(3.0 \\times 10^8)^2} = \\frac{1.62 \\times 10^{17}}{9.0 \\times 10^{16}} = 1.80\\,\\mathrm{s} \\).<br>2. Evaluate the bracketed term:<br>\\( t - \\frac{ux}{c^2} = 2.00 - 1.80 = 0.20\\,\\mathrm{s} \\).<br>3. Multiply by \\( \\gamma \\):<br>\\( t' = 1.25 \\times 0.20\\,\\mathrm{s} = 0.25\\,\\mathrm{s} \\).",finalAnswer:"t' = 0.25\\,\\mathrm{s}",explanation:"Time measurements in relativity are relative; observers in relative motion do not agree on the time at which distant events occur."},
-{title:"Relativistic Velocity Addition",given:"A spacecraft moves past Earth (frame S) at speed \\( u = 0.70c \\). The spacecraft fires a research probe forward along its direction of motion at speed \\( v_x' = 0.60c \\) relative to itself.",find:"Speed of the probe relative to the Earth observer (\\( v_x \\)).",equation:"v_x = \\frac{v_x' + u}{1 + \\frac{u v_x'}{c^2}}",solution:"1. Classical sum in numerator: \\( v_x' + u = 0.60c + 0.70c = 1.30c \\).<br>2. Relativistic denominator: \\( 1 + \\frac{u v_x'}{c^2} = 1 + (0.70)(0.60) = 1 + 0.42 = 1.42 \\).<br>3. Compute \\( v_x \\):<br>\\( v_x = \\frac{1.30c}{1.42} \\approx 0.9155c \\).",finalAnswer:"v_x \\approx 0.915c \\quad (2.75 \\times 10^8\\,\\mathrm{m/s})",explanation:"Classical Galilean addition predicts an impossible 1.30c, but Einstein's relativistic velocity formula prevents any physical entity from exceeding c."}
+{
+title:"Classical Galilean Relative Velocity of Two Moving Cars",
+given:"Car A travels East at \\( v_A = 60\\,\\mathrm{km/h} \\) relative to the road (frame S). Car B travels at \\( v_B = 40\\,\\mathrm{km/h} \\).",
+find:"1. Relative velocity of Car A with respect to Car B when both travel in the same direction (East).<br>2. Relative velocity when Car B travels in the opposite direction (West).",
+equation:"v' = v - u",
+solution:"1. <strong>Same direction:</strong> Frame S' moves with Car B (\\( u = +40\\,\\mathrm{km/h} \\)):<br>\\[ v' = v_A - u = 60\\,\\mathrm{km/h} - 40\\,\\mathrm{km/h} = +20\\,\\mathrm{km/h} \\]<br>2. <strong>Opposite directions:</strong> Car B moves West (\\( u = -40\\,\\mathrm{km/h} \\)):<br>\\[ v' = v_A - u = 60\\,\\mathrm{km/h} - (-40\\,\\mathrm{km/h}) = 60 + 40 = +100\\,\\mathrm{km/h} \\]",
+finalAnswer:"v'_{\\text{same}} = +20\\,\\mathrm{km/h}, \\quad v'_{\\text{opposite}} = +100\\,\\mathrm{km/h}",
+explanation:"Under Galilean relativity, relative velocities add or subtract linearly because time and space are assumed absolute across all reference frames."
+},
+{
+title:"Michelson–Morley Expected Fringe Shift Calculation",
+given:"Effective arm length \\( L = 11.0\\,\\mathrm{m} \\), Earth's orbital speed \\( v = 3.0 \\times 10^4\\,\\mathrm{m/s} \\), light wavelength \\( \\lambda = 5.5 \\times 10^{-7}\\,\\mathrm{m} \\), speed of light \\( c = 3.0 \\times 10^8\\,\\mathrm{m/s} \\).",
+find:"1. Ratio \\( \\frac{v^2}{c^2} \\).<br>2. Theoretical expected fringe shift (\\( \\Delta N \\)).",
+equation:"\\Delta N = \\frac{Lv^2}{c^2\\lambda}",
+solution:"1. <strong>Compute ratio \\( \\frac{v^2}{c^2} \\):</strong><br>\\[ \\frac{v^2}{c^2} = \\left(\\frac{3.0 \\times 10^4\\,\\mathrm{m/s}}{3.0 \\times 10^8\\,\\mathrm{m/s}}\\right)^2 = (1.0 \\times 10^{-4})^2 = 1.0 \\times 10^{-8} \\]<br>2. <strong>Expected fringe shift:</strong><br>\\[ \\Delta N = \\frac{L}{\\lambda}\\left(\\frac{v^2}{c^2}\\right) = \\frac{(11.0\\,\\mathrm{m})(1.0 \\times 10^{-8})}{5.5 \\times 10^{-7}\\,\\mathrm{m}} = \\frac{1.10 \\times 10^{-7}}{5.5 \\times 10^{-7}} = 0.20 \\text{ fringes} \\]",
+finalAnswer:"\\Delta N = 0.20 \\text{ fringes} \\; (0.40 \\text{ upon } 90^\\circ \\text{ rotation})",
+explanation:"The apparatus was capable of detecting fringe shifts as small as 0.01 fringe. Observing a zero shift (null result) proved that the luminiferous ether does not exist."
+},
+{
+title:"Relativistic Velocity Addition: Spaceship at 0.80c Firing Missile at 0.60c",
+given:"A spaceship moves past a space station at speed \\( u = 0.80c \\). The spaceship launches a missile forward at speed \\( v' = 0.60c \\) relative to itself.",
+find:"Speed of the missile (\\( v \\)) as measured by an observer on the space station.",
+equation:"v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}}",
+solution:"1. <strong>Numerator (classical sum):</strong><br>\\[ v' + u = 0.60c + 0.80c = 1.40c \\]<br>2. <strong>Denominator (relativistic correction):</strong><br>\\[ 1 + \\frac{uv'}{c^2} = 1 + \\frac{(0.80c)(0.60c)}{c^2} = 1 + 0.48 = 1.48 \\]<br>3. <strong>Resultant velocity:</strong><br>\\[ v = \\frac{1.40c}{1.48} = \\frac{140}{148}c = \\frac{35}{37}c \\approx 0.9459c \\approx 0.946c \\]",
+finalAnswer:"v \\approx 0.946c \\quad (2.84 \\times 10^8\\,\\mathrm{m/s})",
+explanation:"Classical Galilean addition predicts an impossible 1.40c (exceeding the speed of light). Relativistic addition ensures the resulting speed is 0.946c, strictly less than c."
+},
+{
+title:"Relativistic Velocity Addition: Spaceship at 0.50c Firing Missile at 0.70c",
+given:"A spacecraft travels away from Earth at speed \\( u = 0.50c \\) and fires a probe forward at speed \\( v' = 0.70c \\) relative to the spacecraft.",
+find:"Speed of the probe (\\( v \\)) as measured by observers on Earth.",
+equation:"v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}}",
+solution:"1. <strong>Numerator:</strong><br>\\[ v' + u = 0.70c + 0.50c = 1.20c \\]<br>2. <strong>Denominator:</strong><br>\\[ 1 + \\frac{uv'}{c^2} = 1 + \\frac{(0.50c)(0.70c)}{c^2} = 1 + 0.35 = 1.35 \\]<br>3. <strong>Resultant velocity:</strong><br>\\[ v = \\frac{1.20c}{1.35} = \\frac{120}{135}c = \\frac{8}{9}c \\approx 0.8889c \\approx 0.889c \\]",
+finalAnswer:"v \\approx 0.889c \\quad (2.67 \\times 10^8\\,\\mathrm{m/s})",
+explanation:"Despite the classical sum being 1.20c, relativistic velocity addition ensures the speed measured from Earth is only 0.889c."
+},
+{
+title:"Relative Speed of Two Electrons Moving in Opposite Directions at 0.50c",
+given:"In the laboratory reference frame S, Electron 1 travels to the right at \\( u = +0.50c \\) and Electron 2 travels to the left at \\( v_x = -0.50c \\).",
+find:"Relative velocity of Electron 2 as measured in the rest frame S' of Electron 1 (\\( v'_x \\)).",
+equation:"v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}}",
+solution:"Frame S' is attached to Electron 1 moving at \\( u = +0.50c \\). Electron 2 has velocity \\( v_x = -0.50c \\) in frame S.<br>1. <strong>Numerator:</strong><br>\\[ v_x - u = -0.50c - 0.50c = -1.00c \\]<br>2. <strong>Denominator:</strong><br>\\[ 1 - \\frac{uv_x}{c^2} = 1 - \\frac{(0.50c)(-0.50c)}{c^2} = 1 - (-0.25) = 1 + 0.25 = 1.25 \\]<br>3. <strong>Resultant relative velocity:</strong><br>\\[ v'_x = \\frac{-1.00c}{1.25} = -0.80c \\]",
+finalAnswer:"v'_x = -0.80c \\quad (\\text{Relative approaching speed is } 0.80c)",
+explanation:"Classical Galilean addition incorrectly predicts a relative speed of 1.00c. In special relativity, an observer riding on Electron 1 measures Electron 2 approaching at 0.80c."
+},
+{
+title:"Relative Speed of Two Spacecraft Moving in Opposite Directions at 0.750c and 0.850c",
+given:"Relative to Earth (frame S), Spacecraft A travels East at \\( u = +0.750c \\) and Spacecraft B travels West at \\( v_x = -0.850c \\).",
+find:"Relative velocity of Spacecraft B as measured by an astronaut aboard Spacecraft A (\\( v'_x \\)).",
+equation:"v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}}",
+solution:"Attach frame S' to Spacecraft A (\\( u = +0.750c \\)). In frame S, Spacecraft B has \\( v_x = -0.850c \\).<br>1. <strong>Numerator:</strong><br>\\[ v_x - u = -0.850c - 0.750c = -1.600c \\]<br>2. <strong>Denominator:</strong><br>\\[ 1 - \\frac{(0.750c)(-0.850c)}{c^2} = 1 - (-0.6375) = 1 + 0.6375 = 1.6375 \\]<br>3. <strong>Compute relative velocity:</strong><br>\\[ v'_x = \\frac{-1.600c}{1.6375} \\approx -0.9771c \\approx -0.977c \\]",
+finalAnswer:"v'_x \\approx -0.977c \\quad (\\text{Relative speed is } 0.977c)",
+explanation:"Galilean addition yields an impossible closing speed of 1.600c. In reality, astronauts on Spacecraft A measure Spacecraft B passing by at 0.977c, safely below the speed of light."
+}
 ],
 equations:[
-{section:"Galilean Transformation",name:"Galilean Velocity<br><img src='images/ch4-l2-eq1.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( v_x' = v_x - u \\)",symbols:[{symbol:"v_x'",desc:"Velocity in frame S' (m/s)"},{symbol:"v_x",desc:"Velocity in frame S (m/s)"},{symbol:"u",desc:"Relative velocity of frames (m/s)"}]},
-{section:"Michelson-Morley",name:"Expected Fringe Shift<br><img src='images/ch4-l2-eq2.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\Delta N = \\frac{Lv^2}{\\lambda c^2} \\)",symbols:[{symbol:"\\Delta N",desc:"Number of shifted fringes (No unit)"},{symbol:"L",desc:"Length of arm (m)"},{symbol:"v",desc:"Velocity of Earth (m/s)"},{symbol:"\\lambda",desc:"Wavelength (m)"},{symbol:"c",desc:"Speed of light (3×10⁸ m/s)"}]},
-{section:"Lorentz Transformation",name:"Lorentz Factor<br><img src='images/ch4-l2-eq3.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\)",symbols:[{symbol:"\\gamma",desc:"Lorentz Factor (No unit)"},{symbol:"u",desc:"Relative velocity of frames (m/s)"},{symbol:"c",desc:"Speed of light (3×10⁸ m/s)"}]},
-{section:"Lorentz Transformation",name:"Coordinate (x')<br><img src='images/ch4-l2-eq4.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( x' = \\gamma(x - ut) \\)",symbols:[{symbol:"x'",desc:"Position in frame S' (m)"},{symbol:"\\gamma",desc:"Lorentz Factor (No unit)"},{symbol:"x",desc:"Position in frame S (m)"},{symbol:"u",desc:"Relative velocity of frames (m/s)"},{symbol:"t",desc:"Time in frame S (s)"}]},
-{section:"Lorentz Transformation",name:"Time (t')<br><img src='images/ch4-l2-eq5.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\( t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)",symbols:[{symbol:"t'",desc:"Time in frame S' (s)"},{symbol:"\\gamma",desc:"Lorentz Factor (No unit)"},{symbol:"t",desc:"Time in frame S (s)"},{symbol:"u",desc:"Relative velocity of frames (m/s)"},{symbol:"x",desc:"Position in frame S (m)"},{symbol:"c",desc:"Speed of light (3×10⁸ m/s)"}]},
-{section:"Lorentz Transformation",name:"Relativistic Velocity<br><img src='images/ch4-l2-eq6.png' style='width:100%; border-radius:8px; margin-top:10px;'>",formula:"\\[ \\begin{aligned} v_x' &= \\frac{v_x - u}{1 - \\frac{u v_x}{c^2}} \\end{aligned} \\]",symbols:[{symbol:"v_x'",desc:"Velocity in frame S' (m/s)"},{symbol:"v_x",desc:"Velocity in frame S (m/s)"},{symbol:"u",desc:"Relative velocity of frames (m/s)"},{symbol:"c",desc:"Speed of light (3×10⁸ m/s)"}]}
+{section:"Reference Frames and Galilean Transformation",name:"Galilean Coordinate Transformation",formula:"\\[ x' = x - ut, \\quad y' = y, \\quad z' = z, \\quad t' = t \\]",symbols:[{symbol:"x', y', z'",desc:"Coordinates in S' (m)"},{symbol:"x, y, z",desc:"Coordinates in S (m)"},{symbol:"u",desc:"Velocity (m/s)"},{symbol:"t",desc:"Time (s)"}]},
+{section:"Reference Frames and Galilean Transformation",name:"Galilean Velocity and Acceleration Transformations",formula:"\\[ v'_x = v_x - u, \\quad a'_x = a_x \\]",symbols:[{symbol:"v'_x",desc:"Velocity in S' (m/s)"},{symbol:"v_x",desc:"Velocity in S (m/s)"},{symbol:"u",desc:"Relative velocity (m/s)"},{symbol:"a'_x, a_x",desc:"Accelerations (m/s²)"}]},
+{section:"Speed of Light and the Michelson–Morley Experiment",name:"Michelson Interferometer Light Travel Times",formula:"\\[ t_1 = \\frac{2Lc}{c^2 - v^2}, \\quad t_2 = \\frac{2L}{\\sqrt{c^2 - v^2}} \\]",symbols:[{symbol:"t_1, t_2",desc:"Travel times (s)"},{symbol:"L",desc:"Arm length (m)"},{symbol:"c",desc:"Speed of light (m/s)"},{symbol:"v",desc:"Ether wind speed (m/s)"}]},
+{section:"Speed of Light and the Michelson–Morley Experiment",name:"Time Difference, Path Difference and Expected Fringe Shift",formula:"\\[ \\Delta t \\approx \\frac{Lv^2}{c^3}, \\quad \\Delta x = c\\Delta t \\approx \\frac{Lv^2}{c^2}, \\quad \\Delta N = \\frac{\\Delta x}{\\lambda} = \\frac{Lv^2}{c^2\\lambda} \\]",symbols:[{symbol:"\\Delta t",desc:"Time difference (s)"},{symbol:"\\Delta x",desc:"Path difference (m)"},{symbol:"\\Delta N",desc:"Fringe shift (No unit)"},{symbol:"\\lambda",desc:"Wavelength (m)"}]},
+{section:"Einstein's Two Postulates",name:"Universal Constancy of the Speed of Light",formula:"\\[ c = 299\\,792\\,458\\,\\mathrm{m/s} \\approx 3.0 \\times 10^8\\,\\mathrm{m/s} \\]",symbols:[{symbol:"c",desc:"Light speed in vacuum (m/s)"}]},
+{section:"Einstein's Two Postulates",name:"Electromagnetic Speed of Light Relation",formula:"\\[ c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}} \\]",symbols:[{symbol:"c",desc:"Speed of light (m/s)"},{symbol:"\\varepsilon_0",desc:"Vacuum permittivity (F/m)"},{symbol:"\\mu_0",desc:"Vacuum permeability (T·m/A)"}]},
+{section:"Lorentz Transformation",name:"Lorentz Factor (γ)",formula:"\\[ \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\]",symbols:[{symbol:"\\gamma",desc:"Lorentz Factor (No unit)"},{symbol:"u",desc:"Relative velocity (m/s)"},{symbol:"c",desc:"Speed of light (m/s)"}]},
+{section:"Lorentz Transformation",name:"Forward Lorentz Spacetime Transformations (S → S')",formula:"\\[ x' = \\gamma(x - ut), \\quad y' = y, \\quad z' = z, \\quad t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\]",symbols:[{symbol:"x', t'",desc:"Coordinates in S'"},{symbol:"x, t",desc:"Coordinates in S"},{symbol:"\\gamma",desc:"Lorentz factor"}]},
+{section:"Lorentz Transformation",name:"Reverse Lorentz Spacetime Transformations (S' → S)",formula:"\\[ x = \\gamma(x' + ut'), \\quad y = y', \\quad z = z', \\quad t = \\gamma\\left(t' + \\frac{ux'}{c^2}\\right) \\]",symbols:[{symbol:"x, t",desc:"Coordinates in S"},{symbol:"x', t'",desc:"Coordinates in S'"},{symbol:"\\gamma",desc:"Lorentz factor"}]},
+{section:"Relativistic Velocity Transformation",name:"Forward and Reverse Relativistic Velocity Transformations",formula:"\\[ v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}}, \\quad v_x = \\frac{v'_x + u}{1 + \\frac{uv'_x}{c^2}} \\]",symbols:[{symbol:"v'_x",desc:"Velocity in S' (m/s)"},{symbol:"v_x",desc:"Velocity in S (m/s)"},{symbol:"u",desc:"Frame speed (m/s)"}]},
+{section:"Relativistic Velocity Transformation",name:"Collinear Relativistic Velocity-Addition Formula",formula:"\\[ v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}} \\]",symbols:[{symbol:"v",desc:"Resultant velocity (m/s)"},{symbol:"v'",desc:"Velocity in S' (m/s)"},{symbol:"u",desc:"Relative velocity (m/s)"}]}
 ],
 flashcards:[
-{front:"What is an inertial reference frame?", back:"A coordinate system where Newton's laws are valid, typically moving at a constant velocity."},
-{front:"What was the result of the Michelson-Morley experiment?", back:"A 'null result', proving that there is no luminiferous ether and the speed of light is constant in all directions."},
-{front:"What are Einstein's two postulates of Special Relativity?", back:"1. The Principle of Relativity (physics laws are universal). 2. The Constancy of the Speed of Light."},
+{front:"What are the Galilean coordinate transformations?", back:"\\( x' = x - ut, \\quad y' = y, \\quad z' = z, \\quad t' = t \\) (valid only for \\( u \\ll c \\))."},
+{front:"What was the significance of the Michelson–Morley experiment's null result?", back:"It disproved the existence of the luminiferous ether and confirmed the speed of light is constant in all directions."},
+{front:"What are Einstein's two postulates of special relativity?", back:"1. Laws of physics are the same in all inertial frames.<br>2. Speed of light in vacuum is constant for all observers (\\( c \\approx 3.0 \\times 10^8\\,\\mathrm{m/s} \\))."},
 {front:"What is the formula for the Lorentz factor \\( \\gamma \\)?", back:"\\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\)"},
-{front:"How does the Galilean velocity transformation look?", back:"\\( v_x' = v_x - u \\)"},
-{front:"What is the Lorentz velocity transformation equation?", back:"\\( v_x' = \\frac{v_x - u}{1 - \\frac{u v_x}{c^2}} \\)"},
-{front:"What happens to the Lorentz factor \\( \\gamma \\) as velocity \\( u \\) approaches the speed of light \\( c \\)?", back:"\\( \\gamma \\) becomes infinitely large (\\( \\gamma > 1 \\))."},
-{front:"What happens to the Lorentz transformation when velocity \\( u \\) is much smaller than \\( c \\)?", back:"It simplifies into the classical Galilean transformation."},
-{front:"In the Lorentz time transformation, what is the formula for \\( t' \\)?", back:"\\( t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)"},
-{front:"What does \\( c \\) represent in relativity?", back:"The speed of light in a vacuum, approximately \\( 3 \\times 10^8 \\text{ m/s} \\)."}
+{front:"What are the forward Lorentz coordinate and time transformations?", back:"\\( x' = \\gamma(x - ut), \\quad t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)"},
+{front:"What is the relativistic velocity-addition formula for motion along a straight line?", back:"\\( v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}} \\)"},
+{front:"What is the formula for light speed in terms of \\( \\varepsilon_0 \\) and \\( \\mu_0 \\)?", back:"\\( c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}} \\)"},
+{front:"Why can't massive particles exceed the speed of light?", back:"Because the denominator \\( 1 + \\frac{uv'}{c^2} \\) prevents the sum from reaching or exceeding \\( c \\), and \\( \\gamma \\to \\infty \\) as \\( u \\to c \\)."}
 ],
 quiz:[
-{question:"Which experiment provided crucial evidence that the 'luminiferous ether' does not exist?", options:["Young's Double-Slit Experiment","Rutherford's Gold Foil Experiment","Michelson-Morley Experiment","Thomson's Cathode Ray Experiment"], correctIndex:2, feedback:"The Michelson-Morley experiment's null result proved there is no absolute ether rest frame."},
-{question:"According to Einstein's second postulate, the speed of light in a vacuum is:", options:["Dependent on the speed of the observer","Dependent on the speed of the source","Constant for all inertial reference frames","Infinite"], correctIndex:2, feedback:"The speed of light is exactly the same (c) for all observers, regardless of their relative motion."},
-{question:"The Lorentz factor \\( \\gamma \\) is defined as:", options:["\\( \\sqrt{1 - u^2/c^2} \\)","\\( 1 / \\sqrt{1 - u^2/c^2} \\)","\\( 1 - u^2/c^2 \\)","\\( 1 / (1 - u/c) \\)"], correctIndex:1, feedback:"\\( \\gamma = \\frac{1}{\\sqrt{1 - u^2/c^2}} \\)."},
-{question:"In a Galilean transformation, what assumption is made about time?", options:["Time dilates at high speeds","Time is the same in all reference frames (\\( t = t' \\))","Time is relative to the observer's mass","Time stops at the speed of light"], correctIndex:1, feedback:"Classical Galilean mechanics assumes an absolute, universal time for all observers."},
-{question:"What is the Lorentz relativistic velocity transformation equation?", options:["\\( v_x' = v_x - u \\)","\\( v_x' = v_x + u \\)","\\( v_x' = \\frac{v_x - u}{1 - uv_x/c^2} \\)","\\( v_x' = \\gamma(v_x - u) \\)"], correctIndex:2, feedback:"Relativistic velocities do not simply add or subtract; they must account for the changing frame of time and space."},
-{question:"A spaceship travels away from Earth at 0.5c and fires a missile at 0.5c relative to itself. According to Galilean transformation, what is the missile's speed relative to Earth?", options:["1.0c","0.5c","0.8c","0.25c"], correctIndex:0, feedback:"Classical Galilean mechanics simply adds velocities: 0.5c + 0.5c = 1.0c (though this violates relativity)."},
-{question:"For the same spaceship scenario (velocities 0.5c and 0.5c), what prevents the missile from reaching the speed of light under Lorentz transformations?", options:["The Lorentz factor denominator \\( 1 + \\frac{uv}{c^2} \\) reduces the sum","The missile runs out of fuel","Time dilation stops the missile","The ether slows it down"], correctIndex:0, feedback:"The relativistic addition formula ensures the total speed is always less than c."},
-{question:"When velocity \\( u \\) is very small compared to \\( c \\) (\\( u \\ll c \\)), the Lorentz factor \\( \\gamma \\) is approximately:", options:["0","1","Infinity","c"], correctIndex:1, feedback:"At low speeds, \\( u^2/c^2 \\) is almost 0, making \\( \\gamma \\approx 1 \\)."},
-{question:"The equation \\( x' = \\gamma(x - ut) \\) represents:", options:["Galilean coordinate transformation","Lorentz spatial transformation","Lorentz velocity transformation","Time dilation"], correctIndex:1, feedback:"This is the Lorentz transformation for the spatial x-coordinate."},
-{question:"What does the variable \\( u \\) typically represent in the Lorentz equations?", options:["Initial velocity of a particle","Constant relative velocity between two reference frames","Speed of light","Acceleration of the observer"], correctIndex:1, feedback:"\\( u \\) is the relative velocity of frame S' with respect to frame S."}
+{question:"A spaceship moving at 0.80c fires a missile forward at 0.60c relative to itself. What is the missile's speed relative to an outside observer?", options:["1.40c","0.946c","0.80c","0.70c"], correctIndex:1, feedback:"v = (0.60c + 0.80c) / [1 + (0.80)(0.60)] = 1.40c / 1.48 ≈ 0.946c."},
+{question:"Two electrons in a lab move in opposite directions, each at 0.50c. What is the speed of one electron relative to the other?", options:["1.00c","0.50c","0.80c","0.25c"], correctIndex:2, feedback:"v' = (-0.50c - 0.50c) / [1 - (0.50)(-0.50)] = -1.00c / 1.25 = -0.80c (relative speed 0.80c)."},
+{question:"Which equation links the speed of light to the vacuum permittivity and permeability?", options:["c = ε₀ / μ₀","c = 1 / √(ε₀μ₀)","c = √(ε₀ / μ₀)","c = 1 / (ε₀μ₀)"], correctIndex:1, feedback:"c = 1 / √(ε₀μ₀), derived from Maxwell's electromagnetic equations."},
+{question:"When relative velocity u is much smaller than c (u ≪ c), the Lorentz factor γ approaches:", options:["0","1","Infinity","c"], correctIndex:1, feedback:"For u ≪ c, u²/c² ≈ 0, so γ = 1 / √(1 - 0) = 1, restoring classical Galilean mechanics."}
 ]
 },
 {
@@ -1627,7 +1725,6 @@ window.renderLessonsList = loadLessons;
 // High-performance, non-blocking MathJax queue targeting only specific elements
 let mathTypesetPromise = Promise.resolve();
 function typesetMath(elements) {
-    if (!window.MathJax || !window.MathJax.typesetPromise) return;
     let targets = null;
     if (elements) {
         if (Array.isArray(elements)) {
@@ -1636,6 +1733,21 @@ function typesetMath(elements) {
             targets = [elements];
         }
     }
+
+    if (!window.MathJax || !window.MathJax.typesetPromise) {
+        let retries = 0;
+        const timer = setInterval(() => {
+            retries++;
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                clearInterval(timer);
+                typesetMath(targets);
+            } else if (retries >= 50) {
+                clearInterval(timer);
+            }
+        }, 120);
+        return;
+    }
+
     mathTypesetPromise = mathTypesetPromise
         .catch(() => {})
         .then(() => {
@@ -1671,6 +1783,43 @@ function formatMathField(val) {
         return trimmed;
     }
     return `\\(${trimmed}\\)`;
+}
+
+// Helper to ensure all LaTeX strings in Summary worked examples & fields are rendered properly
+function formatSummaryMath(val) {
+    if (val === null || val === undefined) return '';
+    let str = String(val).trim();
+    if (!str) return '';
+
+    // If string already contains explicit LaTeX delimiters
+    if (str.includes('\\(') || str.includes('\\[') || str.includes('$$')) {
+        if (!/<(div|p|table|ul|ol|li)[^>]*>/i.test(str)) {
+            str = str.replace(/\r?\n/g, '<br>');
+        }
+        return str;
+    }
+
+    // If string is a raw un-delimited LaTeX formula or equation with LaTeX macros
+    if (/\\(times|text|frac|sqrt|mu|alpha|beta|gamma|theta|phi|Delta|cdot|approx|le|ge|pm|mathrm|Omega|pi|sigma|lambda|left|right|quad)/.test(str)) {
+        if (str.includes('=') || str.includes('\\times') || str.includes('\\frac')) {
+            return `\\[ ${str} \\]`;
+        }
+        return `\\(${str}\\)`;
+    }
+
+    // Check for mathematical expressions like v_rms = ... or P = ... containing math operators
+    if (/^[A-Za-z_0-9\(\)\{\}\\]+\s*=\s*/.test(str) && (/[_^\+\-\*\/]/.test(str) || /sqrt|approx|times|pi/i.test(str) || /[\u00D7\u2248\u03C0\u03BC\u03A9]/.test(str))) {
+        let mathStr = str.replace(/×/g, '\\times ')
+                         .replace(/≈/g, '\\approx ')
+                         .replace(/π/g, '\\pi ')
+                         .replace(/μ/g, '\\mu ')
+                         .replace(/Ω/g, '\\Omega ')
+                         .replace(/sqrt\(/g, '\\sqrt{')
+                         .replace(/\)/g, '}');
+        return `\\[ ${mathStr} \\]`;
+    }
+
+    return str.replace(/\r?\n/g, '<br>');
 }
 
 // --- Lesson Detail ---
@@ -1777,12 +1926,14 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
                     <h4><i class="fa-solid fa-pen-ruler"></i> ${e.title}</h4>
                 </div>
                 <div class="example-body">
-                    ${e.given ? `<div class="example-row"><span class="example-label">Given:</span> <div class="example-val">${e.given}</div></div>` : ''}
-                    ${e.find ? `<div class="example-row"><span class="example-label">Find:</span> <div class="example-val">${e.find}</div></div>` : ''}
-                    ${e.equation ? `<div class="example-row"><span class="example-label">Equation:</span> <div class="example-val">${formatMathField(e.equation)}</div></div>` : ''}
-                    ${e.solution ? `<div class="example-row"><span class="example-label">Solution:</span> <div class="example-val">${e.solution}</div></div>` : ''}
+                    ${e.question ? `<div class="example-row example-question"><span class="example-label"><i class="fa-solid fa-circle-question" style="margin-right: 4px;"></i> Question:</span> <div class="example-val">${formatSummaryMath(e.question)}</div></div>` : ''}
+                    ${e.given ? `<div class="example-row"><span class="example-label">Given:</span> <div class="example-val">${formatSummaryMath(e.given)}</div></div>` : ''}
+                    ${e.find ? `<div class="example-row"><span class="example-label">Find:</span> <div class="example-val">${formatSummaryMath(e.find)}</div></div>` : ''}
+                    ${e.equation ? `<div class="example-row"><span class="example-label">Formula:</span> <div class="example-val">${formatMathField(e.equation)}</div></div>` : ''}
+                    ${e.rearrangement ? `<div class="example-row"><span class="example-label">Rearrangement:</span> <div class="example-val">${formatMathField(e.rearrangement)}</div></div>` : ''}
+                    ${e.solution ? `<div class="example-row"><span class="example-label">Solution:</span> <div class="example-val">${formatSummaryMath(e.solution)}</div></div>` : ''}
                     ${e.finalAnswer ? `<div class="example-row final-answer"><span class="example-label">Final Answer:</span> <div class="example-val"><strong>${formatMathField(e.finalAnswer)}</strong></div></div>` : ''}
-                    ${e.explanation ? `<div class="example-row explanation"><span class="example-label">Explanation:</span> <div class="example-val">${e.explanation}</div></div>` : ''}
+                    ${e.explanation ? `<div class="example-row explanation"><span class="example-label">Explanation:</span> <div class="example-val">${formatSummaryMath(e.explanation)}</div></div>` : ''}
                     ${(e.desc || e.content) ? `<p>${e.desc || e.content}</p>` : ''}
                 </div>
             </div>
@@ -2714,53 +2865,620 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
         <line x1="50" y1="412" x2="950" y2="412" stroke="#ecf0f1" stroke-width="4"/>
     </svg>
 </div>`;
+            } else if (currentSection === "First Law of Thermodynamics") {
+                sectionGraphic = `<div class="first-law-panel" style="background: linear-gradient(135deg, #0b192c 0%, #0d1e36 100%); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 14px; padding: 22px; margin: 18px 0 25px 0; color: #f8fafc; box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.25); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 1.1rem;"><i class="fa-solid fa-scale-balanced"></i></span>
+                            <h3 style="margin: 0; color: #00f2fe; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;">First Law of Thermodynamics: Conservation of Energy</h3>
+                        </div>
+                        <span style="background: rgba(0, 242, 254, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-atom" style="margin-right: 4px;"></i> Energy Balance • \\[Q = W + \\Delta U\\]</span>
+                    </div>
+
+                    <p style="margin: 0 0 14px 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.6;">
+                        The First Law of Thermodynamics establishes that energy cannot be created or destroyed, only transferred or transformed. The net heat \\(Q\\) supplied to the system equals the mechanical work \\(W\\) performed by the system plus the increase in internal energy \\(\\Delta U\\):
+                    </p>
+
+                    <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 8px; padding: 14px; text-align: center; color: #f0f9ff; margin-bottom: 18px;">
+                        \\[ Q = W + \\Delta U \\quad \\iff \\quad \\Delta U = Q - W \\]
+                    </div>
+
+                    <!-- 3-Pillar Visual Breakdown for Q, W, and ΔU -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                        <!-- Pillar 1: Heat Added (Q) -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <h4 style="margin: 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;"><i class="fa-solid fa-fire" style="margin-right: 6px; color: #f87171;"></i> Heat Transfer \\(Q\\)</h4>
+                                <span style="font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 999px;">Joule (J)</span>
+                            </div>
+                            <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.84rem; line-height: 1.45;">Thermal energy exchanged across system boundaries:</p>
+                            <ul style="margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 0.83rem; line-height: 1.5;">
+                                <li><strong style="color: #4ade80;">\\(Q > 0\\)</strong>: Heat <em>absorbed</em> by system (inflow)</li>
+                                <li><strong style="color: #f87171;">\\(Q < 0\\)</strong>: Heat <em>released</em> to surroundings (outflow)</li>
+                                <li><strong style="color: #38bdf8;">\\(Q = 0\\)</strong>: Adiabatic (thermally insulated)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Pillar 2: Work Done (W) -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <h4 style="margin: 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;"><i class="fa-solid fa-arrows-left-right-to-line" style="margin-right: 6px; color: #fbbf24;"></i> Work Done \\(W\\)</h4>
+                                <span style="font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 999px;">Joule (J)</span>
+                            </div>
+                            <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.84rem; line-height: 1.45;">Mechanical boundary work (\\(W = P_{\\mathrm{av}}\\Delta V\\)):</p>
+                            <ul style="margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 0.83rem; line-height: 1.5;">
+                                <li><strong style="color: #4ade80;">\\(W > 0\\)</strong>: Work done <em>by</em> gas (expansion, \\(\\Delta V > 0\\))</li>
+                                <li><strong style="color: #f87171;">\\(W < 0\\)</strong>: Work done <em>on</em> gas (compression, \\(\\Delta V < 0\\))</li>
+                                <li><strong style="color: #38bdf8;">\\(W = 0\\)</strong>: Isochoric process (\\(\\Delta V = 0\\))</li>
+                            </ul>
+                        </div>
+
+                        <!-- Pillar 3: Internal Energy Change (ΔU) -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <h4 style="margin: 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;"><i class="fa-solid fa-temperature-half" style="margin-right: 6px; color: #a78bfa;"></i> Internal Energy \\(\\Delta U\\)</h4>
+                                <span style="font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 999px;">Joule (J)</span>
+                            </div>
+                            <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.84rem; line-height: 1.45;">Molecular thermal kinetic energy (\\(\\Delta U = \\frac{3}{2}nR\\Delta T\\)):</p>
+                            <ul style="margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 0.83rem; line-height: 1.5;">
+                                <li><strong style="color: #4ade80;">\\(\\Delta U > 0\\)</strong>: System temperature increases (\\(T_f > T_i\\))</li>
+                                <li><strong style="color: #f87171;">\\(\\Delta U < 0\\)</strong>: System temperature decreases (\\(T_f < T_i\\))</li>
+                                <li><strong style="color: #38bdf8;">\\(\\Delta U = 0\\)</strong>: Isothermal process (\\(\\Delta T = 0\\))</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (currentSection === "Work Done in Thermodynamic Processes") {
+                sectionGraphic = `<div class="thermo-processes-panel" style="background: linear-gradient(135deg, #0b192c 0%, #0d1e36 100%); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 14px; padding: 22px; margin: 18px 0 25px 0; color: #f8fafc; box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.25); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 1.1rem;"><i class="fa-solid fa-fire-burner"></i></span>
+                            <h3 style="margin: 0; color: #00f2fe; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;">Thermodynamic Processes: Work Done & Heat Transfer</h3>
+                        </div>
+                        <span style="background: rgba(0, 242, 254, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-layer-group" style="margin-right: 4px;"></i> First Law Overview • \\(Q = \\Delta U + W\\)</span>
+                    </div>
+
+                    <!-- 4-Card Grid for Processes 1 - 4 -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                        <!-- 1. Isobaric Process -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                    <h4 style="margin: 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;">1. Work Done in Isobaric Process</h4>
+                                    <span style="font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 4px;">\\(P = \\text{const}\\)</span>
+                                </div>
+                                <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.84rem; line-height: 1.4;">Constant pressure where \\(P_{\\mathrm{av}} = P\\) and \\(W = P_{\\mathrm{av}}\\Delta V\\):</p>
+                                <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                    \\[ W = P_{\\mathrm{av}}\\Delta V = P(V_f - V_i) \\]
+                                    \\[ Q_p = \\Delta U + W = \\frac{3}{2}nR\\Delta T + P_{\\mathrm{av}}\\Delta V = \\frac{5}{2}nR\\Delta T = nC_p\\Delta T \\]
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px;">
+                                <i class="fa-solid fa-circle-check" style="color: #38bdf8; margin-right: 4px;"></i> Boundary work \\(W = P_{\\mathrm{av}}\\Delta V\\); heat transferred governed by molar heat capacity \\(C_p = \\frac{5}{2}R\\).
+                            </div>
+                        </div>
+
+                        <!-- 2. Linear P-V Process -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                    <h4 style="margin: 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;">2. Work Done in Linear P–V Process</h4>
+                                    <span style="font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 4px;">Linear Path</span>
+                                </div>
+                                <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.84rem; line-height: 1.4;">Trapezoidal area under straight line on P-V plane:</p>
+                                <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                    \\[ W = P_{\\mathrm{av}}\\Delta V = \\left(\\frac{P_i + P_f}{2}\\right)(V_f - V_i) \\]
+                                    \\[ Q = \\Delta U + W = \\frac{3}{2}nR\\Delta T + P_{\\mathrm{av}}\\Delta V \\]
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px;">
+                                <i class="fa-solid fa-circle-check" style="color: #38bdf8; margin-right: 4px;"></i> General First Law equation: work is evaluated with average pressure \\(P_{\\mathrm{av}} = \\frac{P_i+P_f}{2}\\).
+                            </div>
+                        </div>
+
+                        <!-- 3. Isothermal Process -->
+                        <div style="background: #0d223a; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                    <h4 style="margin: 0; color: #00f2fe; font-size: 1.02rem; font-weight: 700;">3. Work Done in Isothermal Process</h4>
+                                    <span style="font-size: 0.75rem; background: rgba(0, 242, 254, 0.15); color: #00f2fe; padding: 2px 8px; border-radius: 4px;">\\(\\Delta T = 0\\)</span>
+                                </div>
+                                <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.84rem; line-height: 1.4;">Constant temperature (ideal gas has \\(\\Delta U = 0\\), so \\(Q = W\\)):</p>
+                                <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                    \\[ Q = W = nRT\\ln\\left(\\frac{V_2}{V_1}\\right) = nRT\\ln\\left(\\frac{P_1}{P_2}\\right) \\]
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px;">
+                                <i class="fa-solid fa-circle-check" style="color: #00f2fe; margin-right: 4px;"></i> With \\(\\Delta U = 0\\), all heat added is completely transformed into mechanical work (\\(Q = W\\)).
+                            </div>
+                        </div>
+
+                        <!-- 4. Isochoric Process (Immediately before Adiabatic) -->
+                        <div style="background: #0d223a; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                    <h4 style="margin: 0; color: #00f2fe; font-size: 1.02rem; font-weight: 700;">4. Work Done in Isochoric Process</h4>
+                                    <span style="font-size: 0.75rem; background: rgba(0, 242, 254, 0.15); color: #00f2fe; padding: 2px 8px; border-radius: 4px;">\\(\\Delta V = 0\\)</span>
+                                </div>
+                                <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.84rem; line-height: 1.4;">Constant volume in rigid container; no boundary displacement (\\(W = 0\\)):</p>
+                                <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                    \\[ W = 0 \\quad (\\Delta V = 0) \\]
+                                    \\[ Q_v = \\Delta U + W = \\frac{3}{2}nR\\Delta T = nC_v\\Delta T \\]
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px;">
+                                <i class="fa-solid fa-circle-check" style="color: #00f2fe; margin-right: 4px;"></i> Since volume is constant, \\(W = 0\\); all heat transferred directly changes internal energy (\\(Q_v = \\Delta U\\)).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Adiabatic Process & Poisson's Laws (Featured Panel) -->
+                    <div style="background: #0d223a; border: 1px solid rgba(0, 242, 254, 0.35); border-radius: 10px; padding: 18px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="width: 8px; height: 8px; border-radius: 50%; background: #00f2fe;"></span>
+                                <h4 style="margin: 0; color: #00f2fe; font-size: 1.05rem; font-weight: 700;">5. Work Done in Adiabatic Process</h4>
+                            </div>
+                            <span style="font-size: 0.8rem; background: rgba(0, 242, 254, 0.15); color: #00f2fe; padding: 3px 10px; border-radius: 999px; font-weight: 600;">\\(Q = 0 \\implies W = -\\Delta U\\)</span>
+                        </div>
+                        <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.85rem; line-height: 1.4;">Zero heat exchange with surroundings; work done by gas is powered strictly by internal thermal energy (expansion cools the gas, compression heats it):</p>
+                        <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 8px; padding: 12px; text-align: center; color: #f0f9ff; margin-bottom: 14px;">
+                            \\[ Q = 0, \\quad W = -\\Delta U = \\frac{nR}{\\gamma - 1}(T_1 - T_2) = \\frac{P_1V_1 - P_2V_2}{\\gamma - 1} \\]
+                        </div>
+
+                        <div style="border-top: 1px solid rgba(0, 242, 254, 0.2); padding-top: 12px;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                <i class="fa-solid fa-atom" style="color: #38bdf8;"></i>
+                                <h5 style="margin: 0; color: #38bdf8; font-size: 0.95rem; font-weight: 700;">Adiabatic State Relationships (Poisson's Laws)</h5>
+                            </div>
+                            <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.83rem;">Connecting state variables 1 and 2 with heat capacity ratio \\(\\gamma = \\frac{C_p}{C_v}\\):</p>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px;">
+                                <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 8px; padding: 10px; text-align: center;">
+                                    \\[ PV^\\gamma = \\text{constant} \\]
+                                </div>
+                                <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 8px; padding: 10px; text-align: center;">
+                                    \\[ P_1V_1^\\gamma = P_2V_2^\\gamma \\]
+                                </div>
+                                <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 8px; padding: 10px; text-align: center;">
+                                    \\[ T_1V_1^{\\gamma-1} = T_2V_2^{\\gamma-1} \\]
+                                </div>
+                                <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 8px; padding: 10px; text-align: center;">
+                                    \\[ T_1^\\gamma P_1^{1-\\gamma} = T_2^\\gamma P_2^{1-\\gamma} \\]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (currentSection === "Conditions for Constructive and Destructive Interference") {
+                sectionGraphic = `<div class="interference-panel" style="background: linear-gradient(135deg, #0b192c 0%, #0d1e36 100%); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 14px; padding: 22px; margin: 18px 0 25px 0; color: #f8fafc; box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.25); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 1.1rem;"><i class="fa-solid fa-water"></i></span>
+                            <h3 style="margin: 0; color: #00f2fe; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;">Wave Interference: Superposition & Path Difference</h3>
+                        </div>
+                        <span style="background: rgba(0, 242, 254, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-wave-square" style="margin-right: 4px;"></i> Coherent Superposition • \\[A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2-d_1)}{\\lambda}\\right)\\right|\\]</span>
+                    </div>
+
+                    <p style="margin: 0 0 14px 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.6;">
+                        When two coherent waves of identical frequency and equal amplitude \\(A\\) traverse distances \\(d_1\\) and \\(d_2\\) to superpose, the resultant amplitude depends on the path difference \\(\\Delta d = d_2 - d_1\\):
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                        <!-- Constructive Interference -->
+                        <div style="background: #0d223a; border: 1px solid rgba(74, 222, 128, 0.35); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                    <h4 style="margin: 0; color: #4ade80; font-size: 1.05rem; font-weight: 700;"><i class="fa-solid fa-circle-plus" style="margin-right: 6px;"></i> Constructive Interference</h4>
+                                    <span style="font-size: 0.75rem; background: rgba(74, 222, 128, 0.15); color: #4ade80; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Max Amplitude</span>
+                                </div>
+                                <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.84rem; line-height: 1.45;">Waves arrive in phase (crest meets crest); displacements reinforce:</p>
+                                <div style="background: #060d17; border: 1px solid rgba(74, 222, 128, 0.45); border-radius: 8px; padding: 12px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                    \\[ d_2 - d_1 = n\\lambda \\quad (n = 0, 1, 2, 3, \\dots) \\]
+                                    \\[ A'_{\\max} = 2A \\quad \\left(\\cos = \\pm 1\\right) \\]
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px;">
+                                <i class="fa-solid fa-circle-check" style="color: #4ade80; margin-right: 4px;"></i> Maximum constructive amplitude \\(A'_{\\max} = 2A\\); \\(n = 0\\) is the zero path difference central locus.
+                            </div>
+                        </div>
+
+                        <!-- Destructive Interference -->
+                        <div style="background: #0d223a; border: 1px solid rgba(248, 113, 113, 0.35); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                    <h4 style="margin: 0; color: #f87171; font-size: 1.05rem; font-weight: 700;"><i class="fa-solid fa-circle-minus" style="margin-right: 6px;"></i> Destructive Interference</h4>
+                                    <span style="font-size: 0.75rem; background: rgba(248, 113, 113, 0.15); color: #f87171; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Min Amplitude</span>
+                                </div>
+                                <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 0.84rem; line-height: 1.45;">Waves arrive out of phase by half a cycle (crest meets trough); displacements cancel:</p>
+                                <div style="background: #060d17; border: 1px solid rgba(248, 113, 113, 0.45); border-radius: 8px; padding: 12px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                    \\[ d_2 - d_1 = \\frac{(2n + 1)\\lambda}{2} \\quad (n = 0, 1, 2, 3, \\dots) \\]
+                                    \\[ A'_{\\min} = 0 \\quad \\left(\\cos = 0\\right) \\]
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px;">
+                                <i class="fa-solid fa-circle-check" style="color: #f87171; margin-right: 4px;"></i> Odd half-wavelength path differences produce complete cancellation (zero resultant amplitude).
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (currentSection === "Path Difference in Young's Double-Slit Experiment" || currentSection === "Bright and Dark Fringes in Interference Patterns") {
+                sectionGraphic = `<div class="ydse-panel" style="background: linear-gradient(135deg, #0b192c 0%, #0d1e36 100%); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 14px; padding: 22px; margin: 18px 0 25px 0; color: #f8fafc; box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.25); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 1.1rem;"><i class="fa-solid fa-braille"></i></span>
+                            <h3 style="margin: 0; color: #00f2fe; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;">Young's Double-Slit Experiment: Fringe Positions & Spacing</h3>
+                        </div>
+                        <span style="background: rgba(0, 242, 254, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-ruler-horizontal" style="margin-right: 4px;"></i> Slits \\(d\\) • Screen \\(L\\) • Small Angles \\(\\tan\\theta \\approx \\sin\\theta \\approx \\frac{y}{L}\\)</span>
+                    </div>
+
+                    <p style="margin: 0 0 14px 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.6;">
+                        Light rays from two slits separated by \\(d\\) travel to distance \\(L\\). With path difference \\(\\Delta d = d\\sin\\theta\\) and small-angle geometry (\\(\\tan\\theta = \\frac{y}{L} \\approx \\sin\\theta\\)), fringe locations on the screen are given by:
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                        <!-- Bright Fringes -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <h4 style="margin: 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;">Bright Fringes (Constructive)</h4>
+                                <span style="font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 4px;">\\(d\\sin\\theta = m\\lambda\\)</span>
+                            </div>
+                            <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                \\[ y_{\\text{bright}} = \\frac{m\\lambda L}{d} \\quad (m = 0, \\pm 1, \\pm 2, \\dots) \\]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                \\(m = 0\\) represents the central bright fringe (\\(y = 0\\)); \\(m = \\pm 1\\) are first-order bright fringes on opposite sides.
+                            </p>
+                        </div>
+
+                        <!-- Dark Fringes -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <h4 style="margin: 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;">Dark Fringes (Destructive)</h4>
+                                <span style="font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 4px;">\\(d\\sin\\theta = (m + \\frac{1}{2})\\lambda\\)</span>
+                            </div>
+                            <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                \\[ y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d} \\quad (m = 0, \\pm 1, \\pm 2, \\dots) \\]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                In the ideal Young's interference pattern, dark fringes occur exactly halfway between adjacent bright fringes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Constant Fringe Spacing Banner -->
+                    <div style="background: #0d223a; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                        <div>
+                            <strong style="color: #00f2fe; font-size: 0.95rem;">Constant Fringe Spacing (Fringe Width \\(\\Delta y\\)):</strong>
+                            <span style="color: #94a3b8; font-size: 0.85rem; margin-left: 8px;">Distance between two consecutive bright or dark fringes:</span>
+                        </div>
+                        <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 6px; padding: 6px 14px; color: #f0f9ff; font-weight: 700;">
+                            \\[ \\Delta y = y_{m+1} - y_m = \\frac{\\lambda L}{d} \\]
+                        </div>
+                    </div>
+                </div>`;
+            } else if (currentSection === "Light Diffraction") {
+                sectionGraphic = `<div class="diffraction-panel" style="background: linear-gradient(135deg, #0b192c 0%, #0d1e36 100%); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 14px; padding: 22px; margin: 18px 0 25px 0; color: #f8fafc; box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.25); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 1.1rem;"><i class="fa-solid fa-expand"></i></span>
+                            <h3 style="margin: 0; color: #00f2fe; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;">Light Diffraction: Single Slit Minima & Central Maximum</h3>
+                        </div>
+                        <span style="background: rgba(0, 242, 254, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-arrows-split-up-and-left" style="margin-right: 4px;"></i> Slit Width \\(a\\) • Minima \\(a\\sin\\theta = m\\lambda\\) (\\(m \\neq 0\\))</span>
+                    </div>
+
+                    <p style="margin: 0 0 14px 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.6;">
+                        Light diffraction is the bending and spreading of light waves when encountering an obstacle or passing through a narrow aperture of width \\(a\\). It is most noticeable when the aperture width or obstacle dimensions are comparable to the wavelength (\\(a \\sim \\lambda\\)).
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                        <!-- Single-Slit Dark Minima -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <h4 style="margin: 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;">Condition for Dark Minima</h4>
+                                <span style="font-size: 0.75rem; background: rgba(239, 68, 68, 0.15); color: #f87171; padding: 2px 8px; border-radius: 4px; font-weight: 600;">\\(m = 0\\) Excluded</span>
+                            </div>
+                            <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                \\[ a\\sin\\theta = m\\lambda \\implies y_{\\text{dark}} = \\frac{m\\lambda L}{a} \\quad (m = \\pm 1, \\pm 2, \\pm 3, \\dots) \\]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                \\(m = 0\\) is excluded because \\(\\theta = 0\\) corresponds to the central maximum, not a minimum. First dark fringes occur at \\(y = \\pm \\frac{\\lambda L}{a}\\).
+                            </p>
+                        </div>
+
+                        <!-- Central Maximum Width -->
+                        <div style="background: #0d223a; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 10px; padding: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <h4 style="margin: 0; color: #00f2fe; font-size: 1.02rem; font-weight: 700;">Central Maximum Width (\\(W\\))</h4>
+                                <span style="font-size: 0.75rem; background: rgba(0, 242, 254, 0.15); color: #00f2fe; padding: 2px 8px; border-radius: 4px; font-weight: 600;">\\(W = 2y_1\\)</span>
+                            </div>
+                            <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                \\[ W = 2y_1 = \\frac{2\\lambda L}{a} \\]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                The central diffraction maximum extends between first minima (\\(m = \\pm 1\\)), making it twice as wide as the distance from center to first minimum.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Notation Distinction Note -->
+                    <div style="background: #0d223a; border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 10px; padding: 12px 16px; font-size: 0.85rem; color: #cbd5e1; line-height: 1.5;">
+                        <strong style="color: #fbbf24;"><i class="fa-solid fa-triangle-exclamation" style="margin-right: 6px;"></i> High-School Physics Notation Distinction:</strong>
+                        In <strong>Interference</strong> (Young's Experiment), \(d\) represents the <em>separation between two slits</em>. In <strong>Diffraction</strong>, \(a\) represents the <em>width of a single slit</em>.
+                    </div>
+                </div>`;
+            } else if (currentSection === "Electrical Resistance and Resistivity") {
+                sectionGraphic = `<div class="semiconductor-panel" style="background: linear-gradient(135deg, #0b192c 0%, #0d1e36 100%); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 14px; padding: 22px; margin: 18px 0 25px 0; color: #f8fafc; box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.25); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 1.1rem;"><i class="fa-solid fa-bolt"></i></span>
+                            <h3 style="margin: 0; color: #00f2fe; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;">Conductor Dimensions & Resistivity</h3>
+                        </div>
+                        <span style="background: rgba(0, 242, 254, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-ruler-combined" style="margin-right: 4px;"></i> Resistance \(R = \rho\frac{l}{A}\) • Resistivity \(\rho = \frac{RA}{l}\)</span>
+                    </div>
+
+                    <p style="margin: 0 0 14px 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.6;">
+                        The electrical resistance of a uniform conductor is directly proportional to its length \(l\) and inversely proportional to its cross-sectional area \(A\). The constant of proportionality is the material's electrical resistivity \(\rho\):
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 14px;">
+                        <!-- Resistance Formula -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <h4 style="margin: 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;">Resistance Law</h4>
+                                <span style="font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 4px;">Ohms (\(\Omega\))</span>
+                            </div>
+                            <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                \[ R = \rho\frac{l}{A} \]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                Doubling the length doubles resistance; doubling the cross-sectional area halves resistance.
+                            </p>
+                        </div>
+
+                        <!-- Resistivity Formula -->
+                        <div style="background: #0d223a; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 10px; padding: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <h4 style="margin: 0; color: #00f2fe; font-size: 1.02rem; font-weight: 700;">Material Resistivity</h4>
+                                <span style="font-size: 0.75rem; background: rgba(0, 242, 254, 0.15); color: #00f2fe; padding: 2px 8px; border-radius: 4px;">\(\Omega\cdot\text{m}\)</span>
+                            </div>
+                            <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                \[ \rho = \frac{RA}{l} \]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                Intrinsic property of the conductor material dependent on atomic structure and temperature.
+                            </p>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (currentSection === "Transistors and Current Relationships" || currentSection === "P–N Junction and Diodes") {
+                sectionGraphic = `<div class="semiconductor-panel" style="background: linear-gradient(135deg, #0b192c 0%, #0d1e36 100%); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 14px; padding: 22px; margin: 18px 0 25px 0; color: #f8fafc; box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.25); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 1.1rem;"><i class="fa-solid fa-microchip"></i></span>
+                            <h3 style="margin: 0; color: #00f2fe; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;">P–N Junction Barriers & Bipolar Transistor Currents</h3>
+                        </div>
+                        <span style="background: rgba(0, 242, 254, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-diagram-project" style="margin-right: 4px;"></i> \(I_E = I_B + I_C\) • \(\beta = \frac{I_C}{I_B}\) • \(\alpha = \frac{I_C}{I_E}\)</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 14px;">
+                        <!-- P-N Junction Barrier -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <h4 style="margin: 0 0 10px 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;">Contact Potential Barriers</h4>
+                            <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                \[ V_{\text{Ge}} \approx 0.3\,\text{V} \qquad V_{\text{Si}} \approx 0.7\,\text{V} \]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                Forward bias narrows the depletion region causing rapid turn-on; reverse bias widens the barrier preventing current.
+                            </p>
+                        </div>
+
+                        <!-- Current Relation & Gains -->
+                        <div style="background: #0d223a; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 10px; padding: 16px;">
+                            <h4 style="margin: 0 0 10px 0; color: #00f2fe; font-size: 1.02rem; font-weight: 700;">Transistor Current Law & Gains</h4>
+                            <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 10px;">
+                                \[ I_E = I_B + I_C \quad \left(\beta = \frac{I_C}{I_B}, \; \alpha = \frac{I_C}{I_E} = \frac{\beta}{\beta+1}\right) \]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                Because base is very thin and lightly doped, \(I_B \ll I_C\), producing high current gain (\(\beta = 20\text{--}500\)) while \(\alpha < 1\).
+                            </p>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (currentSection === "Speed of Light and Michelson–Morley Experiment" || currentSection === "Reference Frames and Galilean Transformation") {
+                sectionGraphic = `<div class="relativity-panel" style="background: linear-gradient(135deg, #0b192c 0%, #0d1e36 100%); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 14px; padding: 22px; margin: 18px 0 25px 0; color: #f8fafc; box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.25); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 1.1rem;"><i class="fa-solid fa-compass"></i></span>
+                            <h3 style="margin: 0; color: #00f2fe; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;">Michelson–Morley Interferometry & Constancy of Light</h3>
+                        </div>
+                        <span style="background: rgba(0, 242, 254, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-atom" style="margin-right: 4px;"></i> Null Result • \(\Delta N = \frac{Lv^2}{c^2\lambda}\) • Ether Disproved</span>
+                    </div>
+
+                    <p style="margin: 0 0 14px 0; color: #cbd5e1; font-size: 0.92rem; line-height: 1.6;">
+                        The Michelson–Morley experiment compared round-trip light travel times along orthogonal arms of equal length \(L\) through the hypothesized luminiferous ether. The predicted fringe shift upon 90° rotation was:
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 14px;">
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <h4 style="margin: 0 0 8px 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;">Theoretical Round-Trip Times</h4>
+                            <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 8px;">
+                                \[ t_1 = \frac{2Lc}{c^2 - v^2}, \quad t_2 = \frac{2L}{\sqrt{c^2 - v^2}} \]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                Difference in transit time yields path difference \(\Delta x = c\Delta t \approx \frac{Lv^2}{c^2}\).
+                            </p>
+                        </div>
+
+                        <div style="background: #0d223a; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 10px; padding: 16px;">
+                            <h4 style="margin: 0 0 8px 0; color: #00f2fe; font-size: 1.02rem; font-weight: 700;">Expected Fringe Shift & Null Outcome</h4>
+                            <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 8px;">
+                                \[ \Delta N = \frac{Lv^2}{c^2\lambda} \quad (\text{Predicted } \approx 0.20 \implies \text{Observed } \approx 0) \]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                No fringe displacement was observed, proving no ether wind exists and light speed \(c\) is identical in all inertial frames.
+                            </p>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (currentSection === "Lorentz Transformation" || currentSection === "Relativistic Velocity Transformation" || currentSection === "Einstein's Postulates of Special Relativity") {
+                sectionGraphic = `<div class="relativity-panel" style="background: linear-gradient(135deg, #0b192c 0%, #0d1e36 100%); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 14px; padding: 22px; margin: 18px 0 25px 0; color: #f8fafc; box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.25); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(0, 242, 254, 0.15); color: #00f2fe; font-size: 1.1rem;"><i class="fa-solid fa-clock-rotate-left"></i></span>
+                            <h3 style="margin: 0; color: #00f2fe; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;">Lorentz Spacetime & Relativistic Velocity Addition</h3>
+                        </div>
+                        <span style="background: rgba(0, 242, 254, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-gauge-high" style="margin-right: 4px;"></i> \(\gamma = \frac{1}{\sqrt{1-u^2/c^2}}\) • Collinear \(v = \frac{v' + u}{1 + uv'/c^2}\)</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                        <!-- Lorentz Transformation -->
+                        <div style="background: #0d223a; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 16px;">
+                            <h4 style="margin: 0 0 8px 0; color: #38bdf8; font-size: 1.02rem; font-weight: 700;">Lorentz Spacetime Equations</h4>
+                            <div style="background: #060d17; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 8px;">
+                                \[ x' = \gamma(x - ut), \qquad t' = \gamma\left(t - \frac{ux}{c^2}\right) \]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                As frame velocity \(u \to c\), \(\gamma \to \infty\). When \(u \ll c\), \(\gamma \approx 1\) and classical Galilean mechanics is recovered.
+                            </p>
+                        </div>
+
+                        <!-- Velocity Addition -->
+                        <div style="background: #0d223a; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 10px; padding: 16px;">
+                            <h4 style="margin: 0 0 8px 0; color: #00f2fe; font-size: 1.02rem; font-weight: 700;">Relativistic Velocity Composition</h4>
+                            <div style="background: #060d17; border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 8px; padding: 10px; text-align: center; color: #f0f9ff; margin-bottom: 8px;">
+                                \[ v = \frac{v' + u}{1 + \frac{uv'}{c^2}} \qquad v'_x = \frac{v_x - u}{1 - \frac{uv_x}{c^2}} \]
+                            </div>
+                            <p style="margin: 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.4;">
+                                Even when two objects approach each other at near-light speeds, their relative speed strictly satisfies \(v < c\). If \(v'=c\), then \(v=c\).
+                            </p>
+                        </div>
+                    </div>
+                </div>`;
             }
             eqHTML += `<div class="equation-section-title" style="grid-column: 1 / -1; margin-top: 2rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--cyan); padding-bottom: 0.5rem;"><h2 style="color: var(--primary-blue); font-size: 1.5rem;"><i class="fa-solid fa-layer-group"></i> ${currentSection}</h2>${sectionGraphic}</div>`;
         }
         
+        let tableRows = '';
+        let rawSearchTokens = [eq.name || '', eq.section || '', eq.explanation || ''];
+
+        if (eq.variables && eq.variables.length > 0) {
+            eq.variables.forEach(v => {
+                const sSym = v.symbol || '';
+                const sRep = v.rep || '';
+                const sUnit = v.unit || '';
+                const sUSym = v.unitSym || '';
+                rawSearchTokens.push(sSym, sRep, sUnit, sUSym);
+
+                const uSymDisplay = (sUSym === 'No SI unit' || sUSym === 'No unit' || !sUSym)
+                    ? '<span class="unit-none">No SI unit</span>'
+                    : ((sUSym.startsWith('\\(') && sUSym.endsWith('\\)')) || (sUSym.startsWith('\\[') && sUSym.endsWith('\\]')))
+                    ? sUSym
+                    : `\\(${sUSym.startsWith('\\') ? sUSym : '\\mathrm{' + sUSym + '}'}\\)`;
+
+                const symDisplay = ((sSym.startsWith('\\(') && sSym.endsWith('\\)')) || (sSym.startsWith('\\[') && sSym.endsWith('\\]')))
+                    ? sSym
+                    : `\\(${sSym}\\)`;
+
+                tableRows += `<tr>
+                    <td class="col-sym">${symDisplay}</td>
+                    <td class="col-rep">${sRep}</td>
+                    <td class="col-unit">${sUnit}</td>
+                    <td class="col-usym">${uSymDisplay}</td>
+                </tr>`;
+            });
+        } else if (eq.symbols && eq.symbols.length > 0) {
+            eq.symbols.forEach(s => {
+                let desc = (s && s.desc) ? String(s.desc) : (typeof s === 'string' ? s : '');
+                let rawSym = (s && s.symbol) ? String(s.symbol) : '';
+                rawSearchTokens.push(rawSym, desc);
+                let match = desc ? desc.match(/ \(([^)]+)\)$/) : null;
+                let unitName = match ? match[1] : 'No SI unit';
+                let cleanDesc = match ? desc.substring(0, match.index).trim() : desc;
+
+                let sym = rawSym.replace(/μ_0/g, '\\mu_0')
+                                .replace(/θ_c/g, '\\theta_c')
+                                .replace(/θ/g, '\\theta')
+                                .replace(/α/g, '\\alpha')
+                                .replace(/β/g, '\\beta')
+                                .replace(/γ/g, '\\gamma')
+                                .replace(/λ/g, '\\lambda')
+                                .replace(/ω/g, '\\omega')
+                                .replace(/φ_0/g, '\\phi_0')
+                                .replace(/φ/g, '\\phi');
+
+                let unitDisplay = unitName;
+                if (unitName !== "No SI unit" && unitName !== "No unit") {
+                    let formattedUnit = unitName.replace(/m³/g, 'm^3')
+                                                .replace(/m²/g, 'm^2')
+                                                .replace(/⁻⁷/g, '^{-7}')
+                                                .replace(/⁻¹/g, '^{-1}')
+                                                .replace(/·/g, '\\cdot ')
+                                                .replace(/π/g, '\\pi ')
+                                                .replace(/×/g, '\\times ');
+                    unitDisplay = `\\(\\mathrm{${formattedUnit}}\\)`;
+                } else {
+                    unitDisplay = '<span class="unit-none">No SI unit</span>';
+                }
+
+                tableRows += `<tr>
+                    <td class="col-sym">\\(${sym}\\)</td>
+                    <td class="col-rep">${cleanDesc}</td>
+                    <td class="col-unit">${unitName}</td>
+                    <td class="col-usym">${unitDisplay}</td>
+                </tr>`;
+            });
+        }
+
+        const tableHtml = tableRows ? `
+        <div class="eq-table-wrapper">
+            <table class="eq-vars-table">
+                <thead>
+                    <tr>
+                        <th style="width: 14%;">Symbol</th>
+                        <th style="width: 44%;">Representation</th>
+                        <th style="width: 24%;">SI Unit</th>
+                        <th style="width: 18%;">SI Unit Symbol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRows}
+                </tbody>
+            </table>
+        </div>` : '';
+
+        const pageBadge = eq.pdfPage 
+            ? `<span class="eq-page-pill"><i class="fa-solid fa-file-pdf"></i> PDF Page ${eq.pdfPage}</span>`
+            : '';
+
+        const safeFormulaAttr = (eq.formula || '').replace(/"/g, '&quot;').replace(/\\/g, '\\\\');
+        const searchFilterText = rawSearchTokens.join(' ').toLowerCase().replace(/"/g, '&quot;');
+
         eqHTML += `
-        <div class="equation-card">
-            <div class="eq-name">${eq.name}</div>
-            <div class="eq-formula">${eq.formula}</div>
-            <div class="eq-symbols">
-                <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">${eq.symbols && eq.symbols.length > 0 ? "Symbols breakdown & SI Units:" : ""}</p>
-                <ul>
-                    ${(eq.symbols || []).map(s => {
-                        let desc = (s && s.desc) ? String(s.desc) : (typeof s === 'string' ? s : '');
-                        let match = desc ? desc.match(/ \(([^)]+)\)$/) : null;
-                        if (match) {
-                            let unitStr = match[1];
-                            if (unitStr !== "No unit") {
-                                unitStr = unitStr.replace(/m³/g, 'm^3')
-                                                 .replace(/m²/g, 'm^2')
-                                                 .replace(/⁻⁷/g, '^{-7}')
-                                                 .replace(/·/g, '\\cdot ')
-                                                 .replace(/π/g, '\\pi ')
-                                                 .replace(/×/g, '\\times ');
-                                desc = desc.substring(0, match.index) + ` (\\(\\mathrm{${unitStr}}\\))`;
-                            }
-                        }
-                        // Also ensure symbol has MathJax formatting
-                        // Replace some greek letters if they were written as unicode
-                        let rawSym = (s && s.symbol) ? String(s.symbol) : '';
-                        let sym = rawSym.replace(/μ_0/g, '\\mu_0')
-                                          .replace(/θ_c/g, '\\theta_c')
-                                          .replace(/θ/g, '\\theta')
-                                          .replace(/α/g, '\\alpha')
-                                          .replace(/φ_0/g, '\\phi_0')
-                                          .replace(/φ/g, '\\phi');
-                        return `<li><strong>\\( ${sym} \\)</strong> : ${desc}</li>`;
-                    }).join('')}
-                </ul>
+        <div class="equation-card" data-eq-search="${searchFilterText}">
+            <div class="eq-card-header">
+                <div class="eq-name">${eq.name || 'Formula'}</div>
+                <div class="eq-header-actions">
+                    ${pageBadge}
+                    <button class="eq-copy-btn" type="button" onclick="copyEqLatex(this, '${safeFormulaAttr}')" title="Copy LaTeX formula">
+                        <i class="fa-regular fa-copy"></i> <span>Copy LaTeX</span>
+                    </button>
+                </div>
             </div>
+            <div class="eq-formula">${formatMathField(eq.formula || '')}</div>
+            ${eq.explanation ? `<div class="eq-explanation"><i class="fa-solid fa-circle-info"></i> <div><strong>Explanation:</strong> ${eq.explanation}</div></div>` : ''}
+            ${eq.conditions ? `<div class="eq-conditions"><i class="fa-solid fa-triangle-exclamation"></i> <div><strong>Conditions & Assumptions:</strong> ${eq.conditions}</div></div>` : ''}
+            ${tableHtml}
         </div>
         `;
     });
     equationsGrid.innerHTML = eqHTML;
-    
-    document.querySelectorAll('.equation-card').forEach(card => {
-        card.addEventListener('click', () => card.classList.toggle('expanded'));
-    });
+
+    const statsBadge = document.getElementById('eq-stats-count');
+    if (statsBadge) {
+        statsBadge.innerText = (lesson.equations ? lesson.equations.length : 0) + ' Formulas';
+    }
+    const searchInput = document.getElementById('eq-search-input');
+    if (searchInput) searchInput.value = '';
 
     currentFlashcardIndex = 0;
     const hasFlashcards = Boolean(lesson.flashcards && lesson.flashcards.length > 0);
@@ -3356,9 +4074,66 @@ window.updateFlashcard = updateFlashcard;
 window.initQuiz = initQuiz;
 window.renderWorksheet = renderWorksheet;
 window.renderGame = renderGame;
-window.physicsData = data;
-window.appData = data;
+window.physicsData = (typeof window !== 'undefined' && window.physicsData && window.physicsData["12"] && window.physicsData["12"].length >= 10) ? window.physicsData : data;
+window.appData = window.physicsData;
 window.__appLoaded = true;
+
+window.copyEqLatex = window.copyEqLatex || function(btn, latex) {
+    if (!latex) return;
+    var cleanLatex = latex.replace(/^\\\(\s*/, '').replace(/\s*\\\)$/, '').replace(/^\\\[\s*/, '').replace(/\s*\\\]$/, '');
+    var notifySuccess = function() {
+        var origHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Copied!</span>';
+        btn.classList.add('copied');
+        setTimeout(function() {
+            btn.innerHTML = origHtml;
+            btn.classList.remove('copied');
+        }, 2000);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cleanLatex).then(notifySuccess).catch(function() {
+            fallbackCopy(cleanLatex, notifySuccess);
+        });
+    } else {
+        fallbackCopy(cleanLatex, notifySuccess);
+    }
+};
+
+window.filterLessonEquations = window.filterLessonEquations || function(query) {
+    var q = (query || '').trim().toLowerCase();
+    var cards = document.querySelectorAll('#lesson-equations .equation-card');
+    var sectionTitles = document.querySelectorAll('#lesson-equations .equation-section-title');
+    var visibleCount = 0;
+
+    cards.forEach(function(card) {
+        var text = card.getAttribute('data-eq-search') || card.textContent.toLowerCase();
+        if (!q || text.indexOf(q) !== -1) {
+            card.style.display = '';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    sectionTitles.forEach(function(title) {
+        var next = title.nextElementSibling;
+        var hasVisibleCards = false;
+        while (next && !next.classList.contains('equation-section-title')) {
+            if (next.classList.contains('equation-card') && next.style.display !== 'none') {
+                hasVisibleCards = true;
+                break;
+            }
+            next = next.nextElementSibling;
+        }
+        title.style.display = hasVisibleCards ? '' : 'none';
+    });
+
+    var statsBadge = document.getElementById('eq-stats-count');
+    if (statsBadge) {
+        statsBadge.innerText = visibleCount + (q ? ' Found' : ' Formulas');
+    }
+};
 
 // --- Client-Side Routing & Deep Linking ---
 function handleRoute() {

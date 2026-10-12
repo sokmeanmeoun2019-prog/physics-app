@@ -101,7 +101,15 @@
                     { term: "Wheel and Axle MA", definition: "Ratio of wheel radius R to axle radius r.", symbol: "MA", unit: "\\text{No unit}", equation: "MA = \\frac{R}{r}" }
                 ],
                 examples: [
-                    { title: "Mechanical Advantage of a Lever", given: "Load \\( F_R = 600\\,\\mathrm{N} \\), Effort \\( F_E = 150\\,\\mathrm{N} \\).", find: "Mechanical Advantage (\\( MA \\)).", equation: "MA = F_R / F_E", solution: "\\( MA = 600 / 150 = 4.0 \\).", finalAnswer: "MA = 4.0", explanation: "Effort force is multiplied by 4." }
+                    {
+                        title: "Mechanical Advantage and Required Effort Arm of a Lever",
+                        given: "Load force \\( F_R = 600\\,\\mathrm{N} \\), Effort force applied \\( F_E = 150\\,\\mathrm{N} \\), Load arm \\( d_R = 0.40\\,\\mathrm{m} \\).",
+                        find: "Mechanical advantage (\\( MA \\)) and required effort arm (\\( d_E \\)) in \\( \\mathrm{m} \\).",
+                        equation: "MA = \\frac{F_R}{F_E} = \\frac{d_E}{d_R}",
+                        solution: "1. <strong>Mechanical Advantage:</strong><br>\\[ MA = \\frac{F_R}{F_E} = \\frac{600\\,\\mathrm{N}}{150\\,\\mathrm{N}} = 4.0 \\]<br>2. <strong>Effort Arm Length:</strong><br>\\[ d_E = MA \\times d_R = (4.0)(0.40\\,\\mathrm{m}) = 1.60\\,\\mathrm{m} \\]",
+                        finalAnswer: "MA = 4.0 \\; (\\text{dimensionless}), \\quad d_E = 1.60\\,\\mathrm{m}",
+                        explanation: "A mechanical advantage of 4 quadruples the applied force, requiring an effort arm 4 times longer than the load arm."
+                    }
                 ],
                 equations: [
                     { section: "Lever", name: "Mechanical Advantage", formula: "\\( MA = \\frac{F_R}{F_E} = \\frac{d_E}{d_R} \\)", symbols: [{ symbol: "MA", desc: "Mechanical Advantage" }, { symbol: "F_R, F_E", desc: "Load and Effort Forces (N)" }] },
@@ -136,7 +144,15 @@
                     { term: "Ohm's Law", definition: "Current is directly proportional to voltage across resistance.", symbol: "V = IR", unit: "\\mathrm{V}", equation: "V = IR" }
                 ],
                 examples: [
-                    { title: "Power of an Appliance", given: "Voltage \\( V = 220\\,\\mathrm{V} \\), Current \\( I = 2.5\\,\\mathrm{A} \\).", find: "Power \\( P \\).", equation: "P = VI", solution: "\\( P = 220 \\times 2.5 = 550\\,\\mathrm{W} \\).", finalAnswer: "P = 550\\,\\mathrm{W}", explanation: "Consumes 550 Joules of energy per second." }
+                    {
+                        title: "Electrical Power and Energy Consumption",
+                        given: "Voltage \\( V = 220\\,\\mathrm{V} \\), Current \\( I = 2.5\\,\\mathrm{A} \\), Operating duration \\( t = 60\\,\\mathrm{s} \\).",
+                        find: "Electric power (\\( P \\)) in \\( \\mathrm{W} \\) and total energy consumed (\\( E \\)) in \\( \\mathrm{J} \\) and \\( \\mathrm{kJ} \\).",
+                        equation: "P = VI, \\quad E = Pt",
+                        solution: "1. <strong>Electric Power:</strong><br>\\[ P = VI = (220\\,\\mathrm{V})(2.5\\,\\mathrm{A}) = 550\\,\\mathrm{W} \\]<br>2. <strong>Energy Consumed:</strong><br>\\[ E = Pt = (550\\,\\mathrm{W})(60\\,\\mathrm{s}) = 33{,}000\\,\\mathrm{J} = 33\\,\\mathrm{kJ} \\]",
+                        finalAnswer: "P = 550\\,\\mathrm{W}, \\quad E = 33\\,\\mathrm{kJ} \\; (33{,}000\\,\\mathrm{J})",
+                        explanation: "Electric power is the instantaneous rate of electrical energy transfer, while total energy consumed is the product of power and elapsed operating time."
+                    }
                 ],
                 equations: [
                     { section: "Electrical Power", name: "Power Formulas", formula: "\\( P = VI = RI^2 = \\frac{V^2}{R} \\)", symbols: [{ symbol: "P", desc: "Power (W)" }, { symbol: "V", desc: "Voltage (V)" }, { symbol: "I", desc: "Current (A)" }, { symbol: "R", desc: "Resistance (Ω)" }] },
@@ -169,7 +185,15 @@
                     { term: "Transformer Ratios", definition: "Voltage and turns transformation ratio.", symbol: "\\frac{V_S}{V_P}", unit: "\\text{No unit}", equation: "\\frac{V_S}{V_P} = \\frac{N_S}{N_P} = \\frac{I_P}{I_S}" }
                 ],
                 examples: [
-                    { title: "Magnetic Field of Straight Wire", given: "Current \\( I = 5.0\\,\\mathrm{A} \\), distance \\( d = 0.10\\,\\mathrm{m} \\).", find: "Field \\( B \\).", equation: "B = \\frac{\\mu_0 I}{2\\pi d}", solution: "\\( B = \\frac{4\\pi\\times 10^{-7} \\times 5.0}{2\\pi \\times 0.10} = 1.0\\times 10^{-5}\\,\\mathrm{T} \\).", finalAnswer: "B = 10\\,\\mu\\mathrm{T}", explanation: "Field drops inversely with distance." }
+                    {
+                        title: "Transformer Voltage Ratio Calculation",
+                        given: "Primary coil voltage \\( V_P = 240\\,\\mathrm{V} \\), Primary turns \\( N_P = 1200 \\), Secondary turns \\( N_S = 60 \\).",
+                        find: "Secondary coil voltage (\\( V_S \\)) in \\( \\mathrm{V} \\).",
+                        equation: "\\frac{V_S}{V_P} = \\frac{N_S}{N_P} \\implies V_S = V_P \\left(\\frac{N_S}{N_P}\\right)",
+                        solution: "\\[ V_S = 240\\,\\mathrm{V} \\times \\left(\\frac{60}{1200}\\right) = 240\\,\\mathrm{V} \\times 0.05 = 12\\,\\mathrm{V} \\]",
+                        finalAnswer: "V_S = 12\\,\\mathrm{V}",
+                        explanation: "A step-down transformer reduces AC voltage proportionally according to its secondary-to-primary turns ratio."
+                    }
                 ],
                 equations: [
                     { section: "Magnetic Field", name: "Straight Wire Field", formula: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)", symbols: [{ symbol: "B", desc: "Field (T)" }, { symbol: "I", desc: "Current (A)" }, { symbol: "d", desc: "Distance (m)" }] },
@@ -204,7 +228,15 @@
                     { term: "Mirror/Lens Equation", definition: "Relates focal length to distances.", symbol: "f", unit: "\\mathrm{m}", equation: "\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}" }
                 ],
                 examples: [
-                    { title: "Refractive Index Calculation", given: "Light speed in vacuum \\( c = 3.0\\times 10^8\\,\\mathrm{m/s} \\), speed in glass \\( v = 2.0\\times 10^8\\,\\mathrm{m/s} \\).", find: "Refractive index \\( n \\).", equation: "n = c / v", solution: "\\( n = (3.0\\times 10^8) / (2.0\\times 10^8) = 1.50 \\).", finalAnswer: "n = 1.50", explanation: "Light travels 1.5 times slower in glass." }
+                    {
+                        title: "Critical Angle for Total Internal Reflection",
+                        given: "Refractive index of glass \\( n_1 = 1.50 \\), Refractive index of air \\( n_2 = 1.00 \\).",
+                        find: "Critical angle (\\( \\theta_c \\)) in degrees.",
+                        equation: "\\sin\\theta_c = \\frac{n_2}{n_1}",
+                        solution: "\\[ \\sin\\theta_c = \\frac{n_2}{n_1} = \\frac{1.00}{1.50} \\approx 0.6667 \\implies \\theta_c = \\sin^{-1}(0.6667) \\approx 41.8^\\circ \\]",
+                        finalAnswer: "\\theta_c \\approx 41.8^\\circ",
+                        explanation: "When light rays travel from glass into air at an incident angle exceeding 41.8°, they undergo total internal reflection."
+                    }
                 ],
                 equations: [
                     { section: "Reflection & Refraction", name: "Snell's Law", formula: "\\( n_1 \\sin i = n_2 \\sin r \\)", symbols: [{ symbol: "n_1, n_2", desc: "Indices" }, { symbol: "i, r", desc: "Angles" }] },
@@ -246,9 +278,24 @@
                     { term: "Root-Mean-Square Speed (v_rms)", definition: "Statistical particle speed in a gas.", symbol: "v_{rms}", unit: "\\mathrm{m/s}", equation: "v_{rms} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3k_B T}{m_0}}" }
                 ],
                 examples: [
-                    { title: "Microscopic Pressure from Average Kinetic Energy", given: "Volume \\( V = 0.05\\,\\mathrm{m^3} \\), Molecules \\( N = 1.0\\times 10^{24} \\), \\( K_{av} = 6.0\\times 10^{-21}\\,\\mathrm{J} \\).", find: "Pressure \\( P \\).", equation: "P = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av}", solution: "\\( P = \\frac{2}{3} \\times \\left(\\frac{1.0\\times 10^{24}}{0.05}\\right) \\times (6.0\\times 10^{-21}) = 80{,}000\\,\\mathrm{Pa} \\).", finalAnswer: "P = 8.0\\times 10^4\\,\\mathrm{Pa} \\; (80\\,\\mathrm{kPa})", explanation: "Gas pressure originates directly from kinetic energy density." },
-                    { title: "Ideal Gas State Calculation", given: "Moles \\( n = 2.0\\,\\mathrm{mol} \\), \\( T = 300\\,\\mathrm{K} \\), \\( V = 0.025\\,\\mathrm{m^3} \\), \\( R = 8.31\\,\\mathrm{J/(mol\\cdot K)} \\).", find: "Pressure \\( P \\).", equation: "P = \\frac{nRT}{V}", solution: "\\( P = \\frac{2.0 \\times 8.31 \\times 300}{0.025} = 199{,}440\\,\\mathrm{Pa} \\).", finalAnswer: "P \\approx 199.4\\,\\mathrm{kPa}", explanation: "The ideal gas equation interrelates P, V, n, and T." },
-                    { title: "Root-Mean-Square Speed of Oxygen", given: "Temperature \\( T = 300\\,\\mathrm{K} \\), Molar mass \\( M = 0.032\\,\\mathrm{kg/mol} \\), \\( R = 8.31\\,\\mathrm{J/(mol\\cdot K)} \\).", find: "RMS speed \\( v_{rms} \\).", equation: "v_{rms} = \\sqrt{\\frac{3RT}{M}}", solution: "\\( v_{rms} = \\sqrt{\\frac{3 \\times 8.31 \\times 300}{0.032}} \\approx 483.4\\,\\mathrm{m/s} \\).", finalAnswer: "v_{rms} \\approx 483\\,\\mathrm{m/s}", explanation: "At room temperature, oxygen molecules move at an average speed of 483 m/s." }
+                    {
+                        title: "Kinetic Theory Pressure Calculation",
+                        given: "Gas volume \\( V = 0.050\\,\\mathrm{m^3} \\), Number of molecules \\( N = 1.0 \\times 10^{24} \\), Average molecular kinetic energy \\( K_{av} = 6.0 \\times 10^{-21}\\,\\mathrm{J} \\).",
+                        find: "Gas Pressure (\\( P \\)) in \\( \\mathrm{Pa} \\) and \\( \\mathrm{kPa} \\).",
+                        equation: "P = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av}",
+                        solution: "\\[ P = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av} = \\frac{2}{3}\\left(\\frac{1.0 \\times 10^{24}}{0.050\\,\\mathrm{m^3}}\\right)(6.0 \\times 10^{-21}\\,\\mathrm{J}) = 80{,}000\\,\\mathrm{Pa} = 80\\,\\mathrm{kPa} \\]",
+                        finalAnswer: "P = 80\\,\\mathrm{kPa} \\; (80{,}000\\,\\mathrm{Pa})",
+                        explanation: "Macroscopic pressure equals two-thirds of the molecular translational kinetic energy density."
+                    },
+                    {
+                        title: "RMS Speed of Nitrogen at Room Temperature",
+                        given: "Absolute temperature \\( T = 300\\,\\mathrm{K} \\), Molar mass of nitrogen \\( M = 0.028\\,\\mathrm{kg/mol} \\), Universal gas constant \\( R = 8.314\\,\\mathrm{J/(mol\\cdot K)} \\).",
+                        find: "Root-mean-square speed (\\( v_{rms} \\)) in \\( \\mathrm{m/s} \\).",
+                        equation: "v_{rms} = \\sqrt{\\frac{3RT}{M}}",
+                        solution: "\\[ v_{rms} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3 \\times 8.314\\,\\mathrm{J/(mol\\cdot K)} \\times 300\\,\\mathrm{K}}{0.028\\,\\mathrm{kg/mol}}} = \\sqrt{267{,}246.4\\,\\mathrm{m^2/s^2}} \\approx 516.9\\,\\mathrm{m/s} \\]",
+                        finalAnswer: "v_{rms} \\approx 516.9\\,\\mathrm{m/s} \\; (\\approx 517\\,\\mathrm{m/s})",
+                        explanation: "At 300 K, nitrogen molecules travel at an effective thermal root-mean-square speed of over 500 m/s."
+                    }
                 ],
                 equations: [
                     { section: "Ideal Gas Law", name: "Equation of State", formula: "\\( PV = nRT = N k_B T \\)", symbols: [{ symbol: "P", desc: "Pressure (Pa)" }, { symbol: "V", desc: "Volume (m³)" }, { symbol: "n", desc: "Moles" }, { symbol: "R", desc: "Gas constant" }, { symbol: "T", desc: "Temp (K)" }] },
@@ -278,30 +325,54 @@
                 games: [{ topic: "First Law of Thermodynamics", url: "https://gemini.google.com/share/9e34579d87cd" }],
                 title: "Chapter 1 Lesson 2: First Law of Thermodynamics",
                 concepts: [
-                    "First Law of Thermodynamics: Conservation of energy in thermodynamic systems, \\( Q = W + \\Delta U \\).",
-                    "Internal Energy (\\( U \\)): Depends solely on temperature for ideal gases, \\( \\Delta U = \\frac{3}{2}nR\\Delta T \\).",
-                    "Thermodynamic Work (\\( W \\)): Work done by expanding gas, \\( W = P\\Delta V \\) (isobaric).",
-                    "Special Processes: Isobaric (constant P), Isochoric (constant V, W = 0), Isothermal (constant T, ΔU = 0), and Adiabatic (Q = 0)."
+                    "First Law of Thermodynamics: Conservation of energy in thermodynamic systems: \\( Q = W + \\Delta U \\iff \\Delta U = Q - W \\).",
+                    "Sign Conventions: Q > 0 absorbed, Q < 0 expelled; W > 0 work done by system, W < 0 work received by system; ΔU > 0 internal energy increase.",
+                    "1. Isobaric Process (\\(P = \\text{const}\\)): \\( W = P_{\\mathrm{av}}\\Delta V = P(V_f - V_i) \\), and heat added is \\( Q_p = \\Delta U + W = \\frac{3}{2}nR\\Delta T + P_{\\mathrm{av}}\\Delta V = \\frac{5}{2}nR\\Delta T = nC_p\\Delta T \\).",
+                    "2. Linear P–V Process: \\( W = P_{\\mathrm{av}}\\Delta V = \\left(\\frac{P_i + P_f}{2}\\right)(V_f - V_i) \\), and heat added is \\( Q = \\Delta U + W = \\frac{3}{2}nR\\Delta T + P_{\\mathrm{av}}\\Delta V \\).",
+                    "3. Isothermal Process (\\(\\Delta T = 0\\)): For an ideal gas \\(\\Delta U = 0\\), so \\( Q = W = nRT\\ln\\left(\\frac{V_2}{V_1}\\right) = nRT\\ln\\left(\\frac{P_1}{P_2}\\right) \\).",
+                    "4. Isochoric Process (\\(V = \\text{const}\\)): Volume is constant (\\(\\Delta V = 0\\)), so \\( W = 0 \\), and heat added is \\( Q_v = \\Delta U + W = \\frac{3}{2}nR\\Delta T = nC_v\\Delta T \\).",
+                    "5. Adiabatic Process (\\(Q = 0\\)): Zero heat exchange; work done is \\( W = -\\Delta U = \\frac{nR}{\\gamma-1}(T_1-T_2) = \\frac{P_1V_1-P_2V_2}{\\gamma-1} \\).",
+                    "Adiabatic Relationships (Poisson's Laws): \\( PV^\\gamma = \\text{constant} \\), \\( P_1V_1^\\gamma = P_2V_2^\\gamma \\), \\( T_1V_1^{\\gamma-1} = T_2V_2^{\\gamma-1} \\), \\( T_1^\\gamma P_1^{1-\\gamma} = T_2^\\gamma P_2^{1-\\gamma} \\)."
                 ],
                 definitions: [
                     { term: "First Law of Thermodynamics", definition: "Conservation of energy: heat added equals work done plus internal energy increase.", symbol: "Q = W + \\Delta U", unit: "\\mathrm{J}", equation: "Q = W + \\Delta U" },
                     { term: "Internal Energy", definition: "Total microscopic thermal kinetic energy of all gas molecules.", symbol: "U", unit: "\\mathrm{J}", equation: "U = \\frac{3}{2}nRT" },
-                    { term: "Thermodynamic Work", definition: "Mechanical energy transferred during gas expansion.", symbol: "W", unit: "\\mathrm{J}", equation: "W = P\\Delta V" },
-                    { term: "Isobaric Process", definition: "State change occurring under constant pressure.", symbol: "P = \\text{const}", unit: "\\text{No unit}", equation: "W = P\\Delta V, \\; Q_p = \\frac{5}{2}nR\\Delta T" },
-                    { term: "Isochoric Process", definition: "State change inside rigid container (constant volume, W = 0).", symbol: "V = \\text{const}", unit: "\\text{No unit}", equation: "W = 0, \\; Q_v = \\Delta U = \\frac{3}{2}nR\\Delta T" },
-                    { term: "Isothermal Process", definition: "State change occurring at constant temperature (ΔU = 0).", symbol: "T = \\text{const}", unit: "\\text{No unit}", equation: "Q = W = nRT\\ln\\left(\\frac{V_2}{V_1}\\right)" },
-                    { term: "Adiabatic Process", definition: "Process occurring with zero heat exchange (Q = 0).", symbol: "Q = 0", unit: "\\text{No unit}", equation: "W = -\\Delta U" }
+                    { term: "Isobaric Process", definition: "State change occurring under constant pressure (P_av = P).", symbol: "P = \\text{const}", unit: "\\text{No unit}", equation: "W = P_{\\mathrm{av}}\\Delta V, \\; Q_p = \\Delta U + W = \\frac{5}{2}nR\\Delta T = nC_p\\Delta T" },
+                    { term: "Linear P–V Process", definition: "State change where pressure varies linearly with volume across the P-V plane.", symbol: "P(V) = mV + c", unit: "\\text{No unit}", equation: "W = P_{\\mathrm{av}}\\Delta V, \\; Q = \\Delta U + W = \\frac{3}{2}nR\\Delta T + P_{\\mathrm{av}}\\Delta V" },
+                    { term: "Isothermal Process", definition: "State change occurring at constant temperature (ΔT = 0, ΔU = 0, so Q = W).", symbol: "T = \\text{const}", unit: "\\text{No unit}", equation: "Q = W = nRT\\ln\\left(\\frac{V_2}{V_1}\\right) = nRT\\ln\\left(\\frac{P_1}{P_2}\\right)" },
+                    { term: "Isochoric Process", definition: "State change inside rigid container (constant volume ΔV = 0, so W = 0 and Q_v = ΔU).", symbol: "V = \\text{const}", unit: "\\text{No unit}", equation: "W = 0, \\; Q_v = \\Delta U + W = \\frac{3}{2}nR\\Delta T = nC_v\\Delta T" },
+                    { term: "Adiabatic Process", definition: "Process occurring with zero heat exchange (Q = 0, W = -ΔU).", symbol: "Q = 0", unit: "\\text{No unit}", equation: "W = -\\Delta U = \\frac{nR}{\\gamma-1}(T_1-T_2) = \\frac{P_1V_1-P_2V_2}{\\gamma-1}" },
+                    { term: "Adiabatic Relationships", definition: "Poisson relations connecting state variables for reversible adiabatic process.", symbol: "PV^\\gamma = \\text{const}", unit: "\\text{No unit}", equation: "PV^\\gamma = \\text{const}, \\; P_1V_1^\\gamma = P_2V_2^\\gamma" }
                 ],
                 examples: [
-                    { title: "First Law Energy Balance", given: "Gas absorbs \\( Q = 800\\,\\mathrm{J} \\) and does \\( W = 350\\,\\mathrm{J} \\) of work.", find: "Internal energy change \\( \\Delta U \\).", equation: "\\Delta U = Q - W", solution: "\\( \\Delta U = 800\\,\\mathrm{J} - 350\\,\\mathrm{J} = 450\\,\\mathrm{J} \\).", finalAnswer: "\\Delta U = +450\\,\\mathrm{J}", explanation: "Surplus absorbed heat increases the internal thermal energy of the gas." },
-                    { title: "Work in Isobaric Expansion", given: "Pressure \\( P = 2.0\\times 10^5\\,\\mathrm{Pa} \\), volume expands from \\( 0.010\\,\\mathrm{m^3} \\) to \\( 0.025\\,\\mathrm{m^3} \\).", find: "Work done \\( W \\).", equation: "W = P(V_2 - V_1)", solution: "\\( W = 2.0\\times 10^5 \\times 0.015 = 3000\\,\\mathrm{J} = 3.0\\,\\mathrm{kJ} \\).", finalAnswer: "W = 3.0\\,\\mathrm{kJ}", explanation: "Constant pressure expansion work is the product of pressure and volume change." }
+                    {
+                        title: "First Law of Thermodynamics Energy Balance",
+                        given: "Heat absorbed by gas \\( Q = 800\\,\\mathrm{J} \\), Mechanical work done by gas \\( W = 350\\,\\mathrm{J} \\).",
+                        find: "Change in internal energy (\\( \\Delta U \\)) in \\( \\mathrm{J} \\).",
+                        equation: "\\Delta U = Q - W",
+                        solution: "\\[ \\Delta U = Q - W = 800\\,\\mathrm{J} - 350\\,\\mathrm{J} = +450\\,\\mathrm{J} \\]",
+                        finalAnswer: "\\Delta U = +450\\,\\mathrm{J}",
+                        explanation: "Because the heat added exceeds the mechanical work done on the environment, the surplus 450 J increases internal energy."
+                    },
+                    {
+                        title: "Work Done in an Isobaric Gas Expansion",
+                        given: "Constant gas pressure \\( P = 2.0 \\times 10^5\\,\\mathrm{Pa} \\), Initial volume \\( V_i = 0.010\\,\\mathrm{m^3} \\), Final volume \\( V_f = 0.025\\,\\mathrm{m^3} \\).",
+                        find: "Work done by expanding gas (\\( W \\)) in \\( \\mathrm{J} \\) and \\( \\mathrm{kJ} \\).",
+                        equation: "W = P\\Delta V = P(V_f - V_i)",
+                        solution: "\\[ W = P(V_f - V_i) = (2.0 \\times 10^5\\,\\mathrm{Pa})(0.025\\,\\mathrm{m^3} - 0.010\\,\\mathrm{m^3}) = 3000\\,\\mathrm{J} = 3.0\\,\\mathrm{kJ} \\]",
+                        finalAnswer: "W = 3000\\,\\mathrm{J} \\; (3.0\\,\\mathrm{kJ})",
+                        explanation: "When expanding under constant pressure, the gas pushes outward, performing positive work equal to pressure times change in volume."
+                    }
                 ],
                 equations: [
-                    { section: "First Law", name: "First Law of Thermodynamics", formula: "\\( Q = W + \\Delta U \\)", symbols: [{ symbol: "Q", desc: "Heat added (J)" }, { symbol: "W", desc: "Work done (J)" }, { symbol: "ΔU", desc: "Internal energy change (J)" }] },
-                    { section: "Internal Energy", name: "Internal energy change", formula: "\\( \\Delta U = \\frac{3}{2} nR\\Delta T \\)", symbols: [{ symbol: "n", desc: "Moles" }, { symbol: "R", desc: "Gas constant" }, { symbol: "ΔT", desc: "Temp change (K)" }] },
-                    { section: "Processes", name: "Isobaric Work", formula: "\\( W = P \\Delta V \\)", symbols: [{ symbol: "P", desc: "Pressure (Pa)" }, { symbol: "ΔV", desc: "Volume change (m³)" }] },
-                    { section: "Processes", name: "Isothermal Work & Heat", formula: "\\( Q = W = nRT \\ln\\left(\\frac{V_2}{V_1}\\right) \\)", symbols: [{ symbol: "V2/V1", desc: "Expansion ratio" }] },
-                    { section: "Processes", name: "Adiabatic Work", formula: "\\( W = \\frac{P_1 V_1 - P_2 V_2}{\\gamma - 1} \\)", symbols: [{ symbol: "γ", desc: "Adiabatic index" }] }
+                    { section: "First Law of Thermodynamics", name: "First Law of Thermodynamics & Sign Convention", formula: "\\[ Q = W + \\Delta U \\iff \\Delta U = Q - W \\]", symbols: [{ symbol: "Q", desc: "Net heat added (J)" }, { symbol: "W", desc: "Work done by gas (J)" }, { symbol: "ΔU", desc: "Internal energy change (J)" }] },
+                    { section: "Work Done in Thermodynamic Processes", name: "Work Done in Isobaric Process", formula: "\\[ W = P_{\\mathrm{av}}\\Delta V = P(V_f - V_i) \\]\\[ Q_p = \\Delta U + W = \\frac{3}{2}nR\\Delta T + P_{\\mathrm{av}}\\Delta V = \\frac{5}{2}nR\\Delta T = nC_p\\Delta T \\]", symbols: [{ symbol: "W", desc: "Work done by expanding gas (J)" }, { symbol: "Q_p", desc: "Heat added at constant pressure (J)" }, { symbol: "P_av, P", desc: "Pressure (Pa)" }, { symbol: "ΔV", desc: "Volume change (m³)" }, { symbol: "C_p", desc: "Molar heat capacity (J/(mol·K))" }] },
+                    { section: "Work Done in Thermodynamic Processes", name: "Work Done in Linear P-V Process", formula: "\\[ W = P_{\\mathrm{av}}\\Delta V = \\left(\\frac{P_i + P_f}{2}\\right)(V_f - V_i) \\]\\[ Q = \\Delta U + W = \\frac{3}{2}nR\\Delta T + P_{\\mathrm{av}}\\Delta V \\]", symbols: [{ symbol: "W", desc: "Work done (J)" }, { symbol: "Q", desc: "Heat added (J)" }, { symbol: "P_av", desc: "Average pressure (Pa)" }, { symbol: "ΔV", desc: "Volume change (m³)" }] },
+                    { section: "Work Done in Thermodynamic Processes", name: "Work Done in Isothermal Process", formula: "\\[ Q = W = nRT \\ln\\left(\\frac{V_2}{V_1}\\right) = nRT \\ln\\left(\\frac{P_1}{P_2}\\right) \\]", symbols: [{ symbol: "W", desc: "Work done (J)" }, { symbol: "Q", desc: "Heat added (J)" }, { symbol: "T", desc: "Temperature (K)" }, { symbol: "V_2/V_1", desc: "Volume ratio" }, { symbol: "P_1/P_2", desc: "Pressure ratio" }] },
+                    { section: "Work Done in Thermodynamic Processes", name: "Work Done in Isochoric Process", formula: "\\[ W = 0 \\quad (\\Delta V = 0) \\]\\[ Q_v = \\Delta U + W = \\frac{3}{2}nR\\Delta T = nC_v\\Delta T \\]", symbols: [{ symbol: "W", desc: "Work done (0 J)" }, { symbol: "Q_v", desc: "Heat added at constant volume (J)" }, { symbol: "C_v", desc: "Molar heat capacity (J/(mol·K))" }] },
+                    { section: "Work Done in Thermodynamic Processes", name: "Work Done in Adiabatic Process", formula: "\\[ Q = 0, \\quad W = -\\Delta U = \\frac{nR}{\\gamma - 1}(T_1 - T_2) = \\frac{P_1 V_1 - P_2 V_2}{\\gamma - 1} \\]", symbols: [{ symbol: "W", desc: "Work done (J)" }, { symbol: "γ", desc: "Adiabatic index (No unit)" }, { symbol: "P, V, T", desc: "State variables" }] },
+                    { section: "Work Done in Thermodynamic Processes", name: "Adiabatic Relationships (Poisson's Laws)", formula: "\\[ PV^\\gamma = \\text{const}, \\; P_1V_1^\\gamma = P_2V_2^\\gamma, \\; T_1V_1^{\\gamma-1} = T_2V_2^{\\gamma-1}, \\; T_1^\\gamma P_1^{1-\\gamma} = T_2^\\gamma P_2^{1-\\gamma} \\]", symbols: [{ symbol: "γ", desc: "Adiabatic index (No unit)" }] },
+                    { section: "Internal Energy & Heat", name: "Internal energy change", formula: "\\( \\Delta U = \\frac{3}{2} nR\\Delta T \\)", symbols: [{ symbol: "n", desc: "Moles" }, { symbol: "R", desc: "Gas constant" }, { symbol: "ΔT", desc: "Temp change (K)" }] }
                 ],
                 flashcards: [
                     { front: "What is the First Law of Thermodynamics?", back: "\\( Q = W + \\Delta U \\)" },
@@ -333,8 +404,24 @@
                     { term: "Carnot Efficiency", definition: "Upper theoretical limit of efficiency operating between temperatures Th and Tc.", symbol: "\\eta_{Carnot}", unit: "\\%", equation: "\\eta_{Carnot} = 1 - \\frac{T_c}{T_h}" }
                 ],
                 examples: [
-                    { title: "Heat Engine Efficiency Calculation", given: "Heat absorbed \\( Q_h = 5000\\,\\mathrm{J} \\), Waste heat rejected \\( Q_c = 3000\\,\\mathrm{J} \\).", find: "Work output (\\( W_M \\)) and Efficiency (\\( \\eta \\)).", equation: "W_M = Q_h - Q_c, \\; \\eta = \\frac{W_M}{Q_h}", solution: "1. \\( W_M = 5000 - 3000 = 2000\\,\\mathrm{J} \\).<br>2. \\( \\eta = 2000 / 5000 = 0.40 = 40\\% \\).", finalAnswer: "W_M = 2000\\,\\mathrm{J}, \\quad \\eta = 40\\%", explanation: "40% of heat input is successfully converted to mechanical work." },
-                    { title: "Carnot Maximum Efficiency", given: "Hot reservoir \\( T_h = 500^\\circ\\mathrm{C} = 773.15\\,\\mathrm{K} \\), Cold reservoir \\( T_c = 25^\\circ\\mathrm{C} = 298.15\\,\\mathrm{K} \\).", find: "Maximum theoretical efficiency (\\( \\eta_{Carnot} \\)).", equation: "\\eta_{Carnot} = 1 - \\frac{T_c}{T_h}", solution: "\\( \\eta = 1 - \\frac{298.15}{773.15} = 1 - 0.3856 = 0.6144 = 61.4\\% \\).", finalAnswer: "\\eta_{Carnot} \\approx 61.4\\%", explanation: "Kelvin temperatures determine maximum possible thermal efficiency." }
+                    {
+                        title: "Heat Engine Efficiency Calculation",
+                        given: "Heat absorbed \\( Q_h = 5000\\,\\mathrm{J} \\), Waste heat rejected \\( Q_c = 3000\\,\\mathrm{J} \\).",
+                        find: "Work output (\\( W_M \\)) and Efficiency (\\( \\eta \\)).",
+                        equation: "W_M = Q_h - Q_c, \\quad \\eta = \\frac{W_M}{Q_h}",
+                        solution: "1. <strong>Work Output:</strong><br>\\[ W_M = Q_h - Q_c = 5000\\,\\mathrm{J} - 3000\\,\\mathrm{J} = 2000\\,\\mathrm{J} \\]<br>2. <strong>Thermal Efficiency:</strong><br>\\[ \\eta = \\frac{W_M}{Q_h} = \\frac{2000\\,\\mathrm{J}}{5000\\,\\mathrm{J}} = 0.40 = 40\\% \\]",
+                        finalAnswer: "W_M = 2000\\,\\mathrm{J}, \\quad \\eta = 40\\%",
+                        explanation: "40% of heat input is successfully converted to mechanical work."
+                    },
+                    {
+                        title: "Carnot Maximum Efficiency",
+                        given: "Hot reservoir \\( T_h = 500^\\circ\\mathrm{C} = 773.15\\,\\mathrm{K} \\), Cold reservoir \\( T_c = 25^\\circ\\mathrm{C} = 298.15\\,\\mathrm{K} \\).",
+                        find: "Maximum theoretical efficiency (\\( \\eta_{Carnot} \\)).",
+                        equation: "\\eta_{Carnot} = 1 - \\frac{T_c}{T_h}",
+                        solution: "\\[ \\eta_{Carnot} = 1 - \\frac{T_c}{T_h} = 1 - \\frac{298.15\\,\\mathrm{K}}{773.15\\,\\mathrm{K}} = 1 - 0.3856 = 0.6144 = 61.4\\% \\]",
+                        finalAnswer: "\\eta_{Carnot} \\approx 61.4\\%",
+                        explanation: "Kelvin temperatures determine maximum possible thermal efficiency."
+                    }
                 ],
                 equations: [
                     { section: "Heat Engine", name: "Work Output", formula: "\\( W_M = Q_h - Q_c \\)", symbols: [{ symbol: "W_M", desc: "Work output (J)" }, { symbol: "Q_h, Q_c", desc: "Heat input & rejected (J)" }] },
@@ -381,9 +468,24 @@
                     { term: "Harmonic Frequencies", definition: "Integer multiples of the fundamental frequency produced in resonant standing wave cavities.", symbol: "f_n", unit: "\\mathrm{Hz}", equation: "f_n = n f_1 = n \\frac{v}{2L}" }
                 ],
                 examples: [
-                    { title: "Extracting Characteristics from Wave Equation", given: "Wave equation \\( y = 0.05\\sin(40\\pi t - 2\\pi x) \\) in SI units.", find: "Amplitude \\( a \\), Angular frequency \\( \\omega \\), Wave number \\( k \\), and Speed \\( v \\).", equation: "y = a\\sin(\\omega t - kx), \\quad v = \\frac{\\omega}{k}", solution: "1. \\( a = 0.05\\,\\mathrm{m} \\).<br>2. \\( \\omega = 40\\pi\\,\\mathrm{rad/s} \\).<br>3. \\( k = 2\\pi\\,\\mathrm{rad/m} \\).<br>4. \\( v = \\frac{40\\pi}{2\\pi} = 20\\,\\mathrm{m/s} \\).", finalAnswer: "a = 0.05\\,\\mathrm{m}, \\; \\omega = 40\\pi\\,\\mathrm{rad/s}, \\; k = 2\\pi\\,\\mathrm{rad/m}, \\; v = 20\\,\\mathrm{m/s}", explanation: "Comparing with standard form directly yields all wave constants." },
-                    { title: "Positions of Nodes on a Vibrating String", given: "Standing wave with wavelength \\( \\lambda = 0.60\\,\\mathrm{m} \\).", find: "Positions of first four nodes starting from \\( x = 0 \\).", equation: "x_n = n \\frac{\\lambda}{2}", solution: "\\( \\lambda/2 = 0.30\\,\\mathrm{m} \\).<br>For \\( n = 0, 1, 2, 3 \\): \\( x = 0\\,\\mathrm{m}, 0.30\\,\\mathrm{m}, 0.60\\,\\mathrm{m}, 0.90\\,\\mathrm{m} \\).", finalAnswer: "x = 0, \\; 0.30\\,\\mathrm{m}, \\; 0.60\\,\\mathrm{m}, \\; 0.90\\,\\mathrm{m}", explanation: "Adjacent nodes are spaced precisely by half a wavelength along the string." },
-                    { title: "Fundamental Resonant Frequency of a String", given: "String length \\( L = 0.80\\,\\mathrm{m} \\), wave speed \\( v = 240\\,\\mathrm{m/s} \\).", find: "Fundamental frequency \\( f_1 \\) and 3rd harmonic \\( f_3 \\).", equation: "f_n = n \\frac{v}{2L}", solution: "1. \\( f_1 = \\frac{240}{2(0.80)} = \\frac{240}{1.60} = 150\\,\\mathrm{Hz} \\).<br>2. \\( f_3 = 3 \\times 150\\,\\mathrm{Hz} = 450\\,\\mathrm{Hz} \\).", finalAnswer: "f_1 = 150\\,\\mathrm{Hz}, \\quad f_3 = 450\\,\\mathrm{Hz}", explanation: "The 3rd harmonic vibrates at three times the fundamental frequency." }
+                    {
+                        title: "Wave Parameters from Traveling Wave Equation",
+                        given: "Wave equation \\( y(x, t) = 0.04\\sin(50\\pi t - 2\\pi x) \\) with displacement \\( y \\) and position \\( x \\) in meters (\\( \\mathrm{m} \\)) and time \\( t \\) in seconds (\\( \\mathrm{s} \\)).",
+                        find: "Amplitude (\\( a \\)), frequency (\\( f \\)), wavelength (\\( \\lambda \\)), and wave speed (\\( v \\)).",
+                        equation: "y = a\\sin(\\omega t - kx), \\quad v = \\frac{\\omega}{k} = \\lambda f",
+                        solution: "1. <strong>Amplitude:</strong> \\( a = 0.04\\,\\mathrm{m} \\).<br>2. <strong>Frequency:</strong> \\( \\omega = 50\\pi\\,\\mathrm{rad/s} \\implies f = \\frac{\\omega}{2\\pi} = \\frac{50\\pi}{2\\pi} = 25\\,\\mathrm{Hz} \\).<br>3. <strong>Wavelength:</strong> \\( k = 2\\pi\\,\\mathrm{rad/m} \\implies \\lambda = \\frac{2\\pi}{k} = \\frac{2\\pi}{2\\pi} = 1.0\\,\\mathrm{m} \\).<br>4. <strong>Wave Speed:</strong> \\( v = \\frac{\\omega}{k} = \\frac{50\\pi\\,\\mathrm{rad/s}}{2\\pi\\,\\mathrm{rad/m}} = 25\\,\\mathrm{m/s} \\).",
+                        finalAnswer: "a = 0.04\\,\\mathrm{m}, \\; f = 25\\,\\mathrm{Hz}, \\; \\lambda = 1.0\\,\\mathrm{m}, \\; v = 25\\,\\mathrm{m/s}",
+                        explanation: "Comparing directly with standard harmonic wave parameters yields all kinematic characteristics."
+                    },
+                    {
+                        title: "Locations of Nodes on a Vibrating Standing Wave",
+                        given: "Wavelength \\( \\lambda = 0.40\\,\\mathrm{m} \\), fixed node at origin \\( x = 0\\,\\mathrm{m} \\).",
+                        find: "Positions of the first three nodes (\\( x_0, x_1, x_2 \\)) in \\( \\mathrm{m} \\).",
+                        equation: "x_n = n\\frac{\\lambda}{2} \\quad (n = 0, 1, 2, \\dots)",
+                        solution: "With node spacing \\( \\frac{\\lambda}{2} = \\frac{0.40\\,\\mathrm{m}}{2} = 0.20\\,\\mathrm{m} \\):<br>\\[ x_0 = 0\\,\\mathrm{m}, \\quad x_1 = 0.20\\,\\mathrm{m}, \\quad x_2 = 0.40\\,\\mathrm{m} \\]",
+                        finalAnswer: "x_0 = 0\\,\\mathrm{m}, \\; x_1 = 0.20\\,\\mathrm{m}, \\; x_2 = 0.40\\,\\mathrm{m}",
+                        explanation: "Consecutive stationary nodes on a vibrating standing wave are separated by exactly half a wavelength."
+                    }
                 ],
                 equations: [
                     { section: "Sinusoidal Wave", name: "Wave Equation", formula: "\\( y = a \\sin(\\omega t \\pm kx) \\)", symbols: [{ symbol: "y", desc: "Displacement (m)" }, { symbol: "a", desc: "Amplitude (m)" }, { symbol: "ω", desc: "Angular frequency (rad/s)" }, { symbol: "k", desc: "Wave number (rad/m)" }] },
@@ -414,38 +516,88 @@
                 games: [{ topic: "Interference and Diffraction", url: "https://gemini.google.com/share/14c6c1b23c4d" }],
                 title: "Chapter 2 Lesson 2: Interference and Diffraction",
                 concepts: [
-                    "Interference: Overlapping of two coherent waves altering resultant amplitude.",
-                    "Constructive Interference: In-phase superposition producing maximum intensity when path difference \\( \\Delta d = n\\lambda \\).",
-                    "Destructive Interference: Out-of-phase superposition cancelling amplitude when \\( \\Delta d = (2n+1)\\frac{\\lambda}{2} \\).",
-                    "Young's Double-Slit: Produces bright fringes at \\( d\\sin\\theta = m\\lambda \\) and fringe spacing \\( \\Delta y = \\frac{L\\lambda}{d} \\).",
-                    "Diffraction: Spreading of light through a slit of width a with dark minima at \\( a\\sin\\theta = m\\lambda \\)."
+                    "Conditions for Interference: Constructive interference (maximum amplitude) occurs when path difference \\( d_2 - d_1 = n\\lambda \\) (for \\( n = 0, 1, 2, 3, \\dots \\)). Destructive interference (minimum amplitude) occurs when \\( d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\) (for \\( n = 0, 1, 2, 3, \\dots \\)).",
+                    "Superposition Wave Amplitude: Two identical waves of amplitude \\( A \\) superpose to yield resultant amplitude \\( A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right| \\). Maximum amplitude \\( A'_{\\max} = 2A \\) occurs when \\( \\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right) = \\pm 1 \\implies d_2 - d_1 = n\\lambda \\). Minimum amplitude \\( A'_{\\min} = 0 \\) occurs when \\( \\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right) = 0 \\implies d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\).",
+                    "Young's Double-Slit Path Difference: At observation point P on a distant screen, path difference is \\( \\Delta d = d_2 - d_1 = d\\sin\\theta \\), where \\( d \\) is slit separation and \\( \\theta \\) is angle from central axis.",
+                    "Fringe Conditions in Young's Experiment: Bright fringes occur at \\( d\\sin\\theta_{\\text{bright}} = m\\lambda \\) (with central maximum at \\( m = 0 \\Rightarrow \\theta = 0 \\) and first-order fringes at \\( m = \\pm 1 \\)). Dark fringes occur at \\( d\\sin\\theta_{\\text{dark}} = \\left(m + \\frac{1}{2}\\right)\\lambda \\), where \\( m = 0, \\pm 1, \\pm 2, \\dots \\).",
+                    "Fringe Positions on Screen: Using small-angle approximation (\\( \\tan\\theta \\approx \\sin\\theta \\approx \\frac{y}{L} \\)), bright fringe positions are \\( y_{\\text{bright}} = \\frac{m\\lambda L}{d} \\) and dark fringe positions are \\( y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d} \\). Adjacent fringes are separated by constant fringe width \\( \\Delta y = \\frac{\\lambda L}{d} \\).",
+                    "Light Diffraction: Bending and spreading of light around obstacle edges or through a narrow aperture of width \\( a \\), noticeable when \\( a \\sim \\lambda \\). Single-slit dark minima occur at \\( a\\sin\\theta = m\\lambda \\) for \\( m = \\pm 1, \\pm 2, \\pm 3, \\dots \\) (\\( m = 0 \\) is excluded as it corresponds to the central maximum).",
+                    "Diffraction Fringe Positions & Central Maximum: Dark fringes appear at \\( y_{\\text{dark}} = \\frac{m\\lambda L}{a} \\), with first minima at \\( y = \\pm \\frac{\\lambda L}{a} \\). The broad central maximum has width \\( W = \\frac{2\\lambda L}{a} \\), which is twice the distance from the center to the first minimum."
                 ],
                 definitions: [
-                    { term: "Interference of Waves", definition: "Phenomenon occurring when coherent waves superpose to form modified resultant amplitude.", symbol: "\\text{Interference}", unit: "\\text{No unit}", equation: "y = y_1 + y_2" },
-                    { term: "Coherent Sources", definition: "Wave sources maintaining identical frequency, wavelength, and constant phase difference.", symbol: "\\Delta\\phi = \\text{const}", unit: "\\text{No unit}", equation: "\\Delta\\phi = \\text{constant}" },
-                    { term: "Path Difference", definition: "Difference in distance traveled by waves from their respective sources to a given point.", symbol: "\\Delta d", unit: "\\mathrm{m}", equation: "\\Delta d = d\\sin\\theta" },
-                    { term: "Constructive Interference", definition: "Reinforcement occurring when waves arrive in phase.", symbol: "\\text{Max}", unit: "\\mathrm{m}", equation: "d_2 - d_1 = n\\lambda" },
-                    { term: "Destructive Interference", definition: "Cancellation occurring when waves arrive half a cycle out of phase.", symbol: "\\text{Min}", unit: "\\mathrm{m}", equation: "d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2}" },
-                    { term: "Fringe Spacing", definition: "Constant distance between two consecutive bright or dark fringes on a screen.", symbol: "\\Delta y", unit: "\\mathrm{m}", equation: "\\Delta y = \\frac{L\\lambda}{d}" },
-                    { term: "Single-Slit Diffraction Minima", definition: "Angular positions of dark bands in diffraction through slit of width a.", symbol: "\\theta_{min}", unit: "{^\\circ}", equation: "a\\sin\\theta = m\\lambda" }
+                    { term: "Constructive Interference", definition: "Superposition of two in-phase coherent waves where wave crests coincide, resulting in maximum resultant amplitude A' = 2A.", symbol: "d_2 - d_1 = n\\lambda", unit: "\\mathrm{m}", equation: "d_2 - d_1 = n\\lambda \\quad (n = 0, 1, 2, \\dots)" },
+                    { term: "Destructive Interference", definition: "Superposition of two coherent waves out of phase by half a cycle where crests meet troughs, resulting in minimum (zero) amplitude A' = 0.", symbol: "d_2 - d_1 = \\frac{(2n+1)\\lambda}{2}", unit: "\\mathrm{m}", equation: "d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\quad (n = 0, 1, 2, \\dots)" },
+                    { term: "Resultant Superposition Amplitude", definition: "Net amplitude A' of the combined wave formed by the interference of two identical waves of amplitude A, dependent on path difference.", symbol: "A'", unit: "\\mathrm{m}", equation: "A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right|" },
+                    { term: "Maximum Amplitude Condition", definition: "Condition yielding peak resultant amplitude A'_max = 2A when cosine factor equals ±1.", symbol: "A'_{\\max} = 2A", unit: "\\mathrm{m}", equation: "d_2 - d_1 = n\\lambda \\implies A'_{\\max} = 2A" },
+                    { term: "Minimum Amplitude Condition", definition: "Condition yielding zero resultant amplitude A'_min = 0 when cosine factor equals 0.", symbol: "A'_{\\min} = 0", unit: "\\mathrm{m}", equation: "d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\implies A'_{\\min} = 0" },
+                    { term: "Double-Slit Path Difference", definition: "Geometric difference in distance traveled by light from two slits separated by distance d to an observation point on the screen.", symbol: "\\Delta d", unit: "\\mathrm{m}", equation: "\\Delta d = d_2 - d_1 = d\\sin\\theta" },
+                    { term: "Slit Separation (Interference)", definition: "Center-to-center distance separating the two parallel slits in Young's double-slit experiment.", symbol: "d", unit: "\\mathrm{m}", equation: "d\\sin\\theta = m\\lambda" },
+                    { term: "Screen Distance", definition: "Perpendicular distance from the plane of the slits or slit to the viewing screen.", symbol: "L", unit: "\\mathrm{m}", equation: "\\tan\\theta = \\frac{y}{L}" },
+                    { term: "Bright Fringe Position", definition: "Perpendicular distance on the observation screen from the central axis to the m-th constructive bright fringe.", symbol: "y_{\\text{bright}}", unit: "\\mathrm{m}", equation: "y_{\\text{bright}} = \\frac{m\\lambda L}{d} \\quad (m = 0, \\pm 1, \\pm 2, \\dots)" },
+                    { term: "Dark Fringe Position (Interference)", definition: "Perpendicular distance on the observation screen from the central axis to the m-th destructive dark fringe.", symbol: "y_{\\text{dark}}", unit: "\\mathrm{m}", equation: "y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d} \\quad (m = 0, \\pm 1, \\dots)" },
+                    { term: "Fringe Spacing (Fringe Width)", definition: "Constant distance between two consecutive bright fringes or two consecutive dark fringes on the screen in Young's experiment.", symbol: "\\Delta y", unit: "\\mathrm{m}", equation: "\\Delta y = \\frac{\\lambda L}{d}" },
+                    { term: "Light Diffraction", definition: "The bending and spreading of light waves when encountering an obstacle or passing through a narrow aperture comparable to wavelength.", symbol: "\\text{Diffraction}", unit: "No SI unit", equation: "a\\sin\\theta = m\\lambda" },
+                    { term: "Slit Width (Diffraction)", definition: "Width of the single aperture through which light diffracts and spreads.", symbol: "a", unit: "\\mathrm{m}", equation: "a\\sin\\theta = m\\lambda" },
+                    { term: "Diffraction Minima (Dark Fringes)", definition: "Angular directions where wavelets from across a slit of width a destructively cancel, creating dark bands.", symbol: "\\theta_{\\text{dark}}", unit: "\\mathrm{rad}", equation: "a\\sin\\theta = m\\lambda \\quad (m = \\pm 1, \\pm 2, \\dots)" },
+                    { term: "Central Maximum Width (Diffraction)", definition: "Total linear width of the central bright diffraction band on the screen between the first dark minima (m = ±1).", symbol: "W", unit: "\\mathrm{m}", equation: "W = \\frac{2\\lambda L}{a}" }
                 ],
                 examples: [
-                    { title: "Young's Double-Slit Fringe Width", given: "Wavelength \\( \\lambda = 600\\,\\mathrm{nm} = 6.0\\times 10^{-7}\\,\\mathrm{m} \\), slit spacing \\( d = 0.20\\,\\mathrm{mm} = 2.0\\times 10^{-4}\\,\\mathrm{m} \\), screen distance \\( L = 1.5\\,\\mathrm{m} \\).", find: "Fringe width \\( \\Delta y \\).", equation: "\\Delta y = \\frac{L\\lambda}{d}", solution: "\\( \\Delta y = \\frac{1.5 \\times 6.0\\times 10^{-7}}{2.0\\times 10^{-4}} = 4.5\\times 10^{-3}\\,\\mathrm{m} = 4.5\\,\\mathrm{mm} \\).", finalAnswer: "\\Delta y = 4.5\\,\\mathrm{mm}", explanation: "Fringes are evenly spaced across screen." }
+                    {
+                        title: "Resultant Amplitude from Wave Superposition",
+                        given: "Two identical in-phase sound waves each have amplitude \\( A = 3.0\\,\\mathrm{mm} = 3.0 \\times 10^{-3}\\,\\mathrm{m} \\) and wavelength \\( \\lambda = 0.40\\,\\mathrm{m} \\). At observation point P, the distances from the sources are \\( d_1 = 2.10\\,\\mathrm{m} \\) and \\( d_2 = 2.50\\,\\mathrm{m} \\).",
+                        find: "1. Path difference \\( d_2 - d_1 \\).<br>2. Resultant amplitude \\( A' \\) at point P.",
+                        equation: "A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right|",
+                        solution: "1. <strong>Path difference:</strong><br>\\[ d_2 - d_1 = 2.50\\,\\mathrm{m} - 2.10\\,\\mathrm{m} = 0.40\\,\\mathrm{m} = 1\\lambda \\]<br>Since \\( d_2 - d_1 = 1\\lambda \\), \\( n = 1 \\), satisfying constructive interference.<br>2. <strong>Resultant amplitude:</strong><br>\\[ A' = 2(3.0\\,\\mathrm{mm})\\left|\\cos\\left(\\frac{\\pi(0.40\\,\\mathrm{m})}{0.40\\,\\mathrm{m}}\\right)\\right| = 6.0\\,\\mathrm{mm} \\times |\\cos(\\pi)| = 6.0\\,\\mathrm{mm} \\times |-1| = 6.0\\,\\mathrm{mm} \\]",
+                        finalAnswer: "d_2 - d_1 = 0.40\\,\\mathrm{m}, \\quad A' = A'_{\\max} = 6.0\\,\\mathrm{mm} \\; (6.0 \\times 10^{-3}\\,\\mathrm{m})",
+                        explanation: "When the path difference is an integer multiple of the wavelength, the waves arrive in phase, resulting in maximum constructive amplitude equal to twice the individual amplitude (2A)."
+                    },
+                    {
+                        title: "Young's Double-Slit Bright and Dark Fringe Positions",
+                        given: "Slit separation \\( d = 0.25\\,\\mathrm{mm} = 2.5 \\times 10^{-4}\\,\\mathrm{m} \\), Screen distance \\( L = 1.20\\,\\mathrm{m} \\), Light wavelength \\( \\lambda = 500\\,\\mathrm{nm} = 5.0 \\times 10^{-7}\\,\\mathrm{m} \\).",
+                        find: "1. Position of the 3rd bright fringe (\\( y_{\\text{bright}} \\) for \\( m = 3 \\)).<br>2. Position of the 2nd dark fringe (\\( y_{\\text{dark}} \\) for \\( m = 1 \\)).<br>3. Fringe spacing (\\( \\Delta y \\)).",
+                        equation: "y_{\\text{bright}} = \\frac{m\\lambda L}{d}, \\quad y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d}, \\quad \\Delta y = \\frac{\\lambda L}{d}",
+                        solution: "1. <strong>Fringe spacing:</strong><br>\\[ \\Delta y = \\frac{\\lambda L}{d} = \\frac{(5.0 \\times 10^{-7}\\,\\mathrm{m})(1.20\\,\\mathrm{m})}{2.5 \\times 10^{-4}\\,\\mathrm{m}} = 2.4 \\times 10^{-3}\\,\\mathrm{m} = 2.4\\,\\mathrm{mm} \\]<br>2. <strong>3rd Bright Fringe (\\( m = 3 \\)):</strong><br>\\[ y_{\\text{bright}, 3} = \\frac{3\\lambda L}{d} = 3(2.4\\,\\mathrm{mm}) = 7.2\\,\\mathrm{mm} \\]<br>3. <strong>2nd Dark Fringe (\\( m = 1 \\Rightarrow m + 1/2 = 1.5 \\)):</strong><br>\\[ y_{\\text{dark}, 1} = \\frac{(1 + 0.5)\\lambda L}{d} = 1.5(2.4\\,\\mathrm{mm}) = 3.6\\,\\mathrm{mm} \\]",
+                        finalAnswer: "y_{\\text{bright}, 3} = 7.2\\,\\mathrm{mm}, \\quad y_{\\text{dark}, 1} = 3.6\\,\\mathrm{mm}, \\quad \\Delta y = 2.4\\,\\mathrm{mm}",
+                        explanation: "In Young's experiment, bright fringes are equally spaced across the screen, and dark fringes occur exactly halfway between adjacent bright fringes."
+                    },
+                    {
+                        title: "Single-Slit Diffraction Minima and Central Maximum Width",
+                        given: "Slit width \\( a = 0.10\\,\\mathrm{mm} = 1.0 \\times 10^{-4}\\,\\mathrm{m} \\), Screen distance \\( L = 2.00\\,\\mathrm{m} \\), Light wavelength \\( \\lambda = 632.8\\,\\mathrm{nm} = 6.328 \\times 10^{-7}\\,\\mathrm{m} \\).",
+                        find: "1. Position of the first diffraction dark minimum (\\( y_{\\text{dark}, 1} \\) for \\( m = 1 \\)).<br>2. Width of the central diffraction maximum (\\( W \\)).",
+                        equation: "y_{\\text{dark}} = \\frac{m\\lambda L}{a}, \\quad W = \\frac{2\\lambda L}{a} = 2y_1",
+                        solution: "1. <strong>Position of 1st minimum (\\( m = 1 \\)):</strong><br>\\[ y_{\\text{dark}, 1} = \\frac{(1)(6.328 \\times 10^{-7}\\,\\mathrm{m})(2.00\\,\\mathrm{m})}{1.0 \\times 10^{-4}\\,\\mathrm{m}} = 1.2656 \\times 10^{-2}\\,\\mathrm{m} \\approx 12.66\\,\\mathrm{mm} \\]<br>2. <strong>Width of central maximum:</strong><br>\\[ W = \\frac{2\\lambda L}{a} = 2(12.656\\,\\mathrm{mm}) \\approx 25.31\\,\\mathrm{mm} \\]",
+                        finalAnswer: "y_{\\text{dark}, 1} \\approx 12.7\\,\\mathrm{mm}, \\quad W \\approx 25.3\\,\\mathrm{mm}",
+                        explanation: "The central diffraction maximum extends between the first minima at y = -12.7 mm and y = +12.7 mm, making it twice as wide as the distance from the center to the first minimum."
+                    }
                 ],
                 equations: [
-                    { section: "Interference Conditions", name: "Constructive Interference", formula: "\\( \\Delta d = d_2 - d_1 = n\\lambda \\quad (n = 0, 1, 2, \\dots) \\)", symbols: [{ symbol: "Δd", desc: "Path difference (m)" }] },
-                    { section: "Interference Conditions", name: "Destructive Interference", formula: "\\( \\Delta d = (2n + 1)\\frac{\\lambda}{2} \\quad (n = 0, 1, 2, \\dots) \\)", symbols: [{ symbol: "Δd", desc: "Path difference (m)" }] },
-                    { section: "Young's Double-Slit", name: "Fringe Width & Maxima", formula: "\\( \\Delta y = \\frac{L\\lambda}{d}, \\quad d\\sin\\theta = m\\lambda \\)", symbols: [{ symbol: "Δy", desc: "Fringe width (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "d", desc: "Slit separation (m)" }] },
-                    { section: "Diffraction", name: "Single-Slit Diffraction Minima", formula: "\\( a\\sin\\theta = m\\lambda \\quad (m = 1, 2, 3, \\dots) \\)", symbols: [{ symbol: "a", desc: "Slit width (m)" }] }
+                    { section: "Conditions for Constructive and Destructive Interference", name: "Path-Difference Conditions for Interference", formula: "\\[ d_2 - d_1 = n\\lambda \\quad (\\text{Constructive Maxima}) \\]\\[ d_2 - d_1 = \\frac{(2n + 1)\\lambda}{2} \\quad (\\text{Destructive Minima}) \\]", symbols: [{ symbol: "d_2 - d_1", desc: "Path difference (m)" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "n", desc: "Order index (0, 1, 2, ...)" }] },
+                    { section: "Maximum and Minimum Amplitude of the Superposition Wave", name: "Resultant Amplitude of Superposition Wave", formula: "\\[ A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right| \\]", symbols: [{ symbol: "A'", desc: "Resultant amplitude (m)" }, { symbol: "A", desc: "Component amplitude (m)" }, { symbol: "d_2 - d_1", desc: "Path difference (m)" }, { symbol: "λ", desc: "Wavelength (m)" }] },
+                    { section: "Maximum and Minimum Amplitude of the Superposition Wave", name: "Maximum and Minimum Amplitude Conditions", formula: "\\[ A'_{\\max} = 2A \\iff d_2 - d_1 = n\\lambda \\]\\[ A'_{\\min} = 0 \\iff d_2 - d_1 = \\frac{(2n + 1)\\lambda}{2} \\]", symbols: [{ symbol: "A'_max", desc: "Maximum amplitude = 2A (m)" }, { symbol: "A'_min", desc: "Minimum amplitude = 0 (m)" }, { symbol: "n", desc: "Integer (0, 1, 2, ...)" }] },
+                    { section: "Path Difference in Young's Double-Slit Experiment", name: "Path Difference at Observation Point P", formula: "\\[ \\Delta d = d_2 - d_1 = d\\sin\\theta \\]", symbols: [{ symbol: "Δd", desc: "Path difference (m)" }, { symbol: "d", desc: "Slit separation (m)" }, { symbol: "θ", desc: "Angle from axis (rad)" }] },
+                    { section: "Path Difference in Young's Double-Slit Experiment", name: "Conditions for Bright and Dark Fringes", formula: "\\[ d\\sin\\theta_{\\text{bright}} = m\\lambda \\quad (m = 0, \\pm 1, \\pm 2, \\dots) \\]\\[ d\\sin\\theta_{\\text{dark}} = \\left(m + \\frac{1}{2}\\right)\\lambda \\quad (m = 0, \\pm 1, \\pm 2, \\dots) \\]", symbols: [{ symbol: "d", desc: "Slit separation (m)" }, { symbol: "θ", desc: "Fringe angle (rad)" }, { symbol: "m", desc: "Fringe order" }, { symbol: "λ", desc: "Wavelength (m)" }] },
+                    { section: "Bright and Dark Fringes in Interference Patterns", name: "Position of Bright Fringes on the Screen", formula: "\\[ \\tan\\theta_{\\text{bright}} = \\frac{y_{\\text{bright}}}{L} \\approx \\sin\\theta_{\\text{bright}} = \\frac{m\\lambda}{d} \\implies y_{\\text{bright}} = \\frac{m\\lambda L}{d} \\quad (m = 0, \\pm 1, \\dots) \\]", symbols: [{ symbol: "y_bright", desc: "Bright fringe distance (m)" }, { symbol: "m", desc: "Fringe order" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "d", desc: "Slit separation (m)" }] },
+                    { section: "Bright and Dark Fringes in Interference Patterns", name: "Position of Dark Fringes on the Screen", formula: "\\[ \\tan\\theta_{\\text{dark}} = \\frac{y_{\\text{dark}}}{L} \\approx \\sin\\theta_{\\text{dark}} = \\frac{(m + 1/2)\\lambda}{d} \\implies y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d} \\quad (m = 0, \\pm 1, \\dots) \\]", symbols: [{ symbol: "y_dark", desc: "Dark fringe distance (m)" }, { symbol: "m", desc: "Dark fringe order" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "d", desc: "Slit separation (m)" }] },
+                    { section: "Bright and Dark Fringes in Interference Patterns", name: "Fringe Spacing / Fringe Width (Δy)", formula: "\\[ \\Delta y = y_{m+1} - y_m = \\frac{\\lambda L}{d} \\]", symbols: [{ symbol: "Δy", desc: "Fringe spacing (m)" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "d", desc: "Slit separation (m)" }] },
+                    { section: "Light Diffraction", name: "Condition for Minima (Dark Fringes) in Single-Slit Diffraction", formula: "\\[ a\\sin\\theta = m\\lambda \\quad (m = \\pm 1, \\pm 2, \\pm 3, \\dots) \\]", symbols: [{ symbol: "a", desc: "Slit width (m)" }, { symbol: "θ", desc: "Diffraction angle (rad)" }, { symbol: "m", desc: "Order of minimum (non-zero)" }, { symbol: "λ", desc: "Wavelength (m)" }] },
+                    { section: "Light Diffraction", name: "Position of Dark Fringes on the Screen", formula: "\\[ \\tan\\theta = \\frac{y}{L} \\approx \\sin\\theta = \\frac{m\\lambda}{a} \\implies y_{\\text{dark}} = \\frac{m\\lambda L}{a} \\quad (m = \\pm 1, \\pm 2, \\dots) \\]\\[ y_{\\text{first dark}} = \\pm\\frac{\\lambda L}{a} \\quad (m = \\pm 1) \\]", symbols: [{ symbol: "y_dark", desc: "Dark fringe position (m)" }, { symbol: "m", desc: "Minimum order" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "a", desc: "Slit width (m)" }] },
+                    { section: "Light Diffraction", name: "Width of the Central Diffraction Maximum", formula: "\\[ W = 2y_1 = \\frac{2\\lambda L}{a} \\]", symbols: [{ symbol: "W", desc: "Width of central maximum (m)" }, { symbol: "λ", desc: "Wavelength (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "a", desc: "Slit width (m)" }, { symbol: "y_1", desc: "Distance to first minimum (m)" }] }
                 ],
                 flashcards: [
-                    { front: "What is the condition for constructive interference?", back: "\\( \\Delta d = n\\lambda \\)" },
-                    { front: "What is the condition for destructive interference?", back: "\\( \\Delta d = (2n+1)\\frac{\\lambda}{2} \\)" },
-                    { front: "What is the formula for fringe width in Young's experiment?", back: "\\( \\Delta y = \\frac{L\\lambda}{d} \\)" }
+                    { front: "What is the condition for constructive interference in terms of path difference?", back: "\\( d_2 - d_1 = n\\lambda \\quad (n = 0, 1, 2, 3, \\dots) \\), producing maximum amplitude \\( A'_{\\max} = 2A \\)." },
+                    { front: "What is the condition for destructive interference in terms of path difference?", back: "\\( d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\quad (n = 0, 1, 2, 3, \\dots) \\), producing minimum amplitude \\( A'_{\\min} = 0 \\)." },
+                    { front: "What is the resultant amplitude equation for two identical interfering waves of amplitude A?", back: "\\( A' = 2A\\left|\\cos\\left(\\frac{\\pi(d_2 - d_1)}{\\lambda}\\right)\\right| \\)" },
+                    { front: "In Young's double-slit experiment, what is the path difference formula at angle θ?", back: "\\( \\Delta d = d_2 - d_1 = d\\sin\\theta \\)" },
+                    { front: "Where are bright fringes located on the screen in Young's experiment?", back: "\\( y_{\\text{bright}} = \\frac{m\\lambda L}{d} \\quad (m = 0, \\pm 1, \\pm 2, \\dots) \\)" },
+                    { front: "Where are dark fringes located on the screen in Young's experiment?", back: "\\( y_{\\text{dark}} = \\frac{(m + 1/2)\\lambda L}{d} \\quad (m = 0, \\pm 1, \\pm 2, \\dots) \\)" },
+                    { front: "What is the condition for dark minima in single-slit diffraction?", back: "\\( a\\sin\\theta = m\\lambda \\implies y_{\\text{dark}} = \\frac{m\\lambda L}{a} \\quad (m = \\pm 1, \\pm 2, \\dots) \\) (m = 0 is excluded)." },
+                    { front: "What is the width of the central diffraction maximum?", back: "\\( W = \\frac{2\\lambda L}{a} \\) (twice the distance from the center to the first minimum)." }
                 ],
                 quiz: [
-                    { question: "In Young's experiment, increasing screen distance L causes fringe width Δy to:", options: ["Increase", "Decrease", "Remain unchanged", "Drop to zero"], correctIndex: 0, feedback: "Δy = Lλ / d, so fringe width is directly proportional to L." },
-                    { question: "Destructive interference occurs when the path difference between two waves is:", options: ["An integer multiple of λ", "An odd multiple of λ/2", "Zero", "2λ"], correctIndex: 1, feedback: "Odd multiples of half wavelength cause complete crest-to-trough cancellation." }
+                    { question: "Two identical waves of amplitude A interfere. When the path difference is d₂ - d₁ = (2n + 1)λ / 2, the resultant amplitude is:", options: ["2A", "A", "0", "4A"], correctIndex: 2, feedback: "An odd multiple of half-wavelengths causes complete crest-to-trough cancellation, resulting in zero amplitude: A' = 0." },
+                    { question: "In Young's double-slit experiment, if the slit separation d is doubled, the bright fringe spacing on the screen will:", options: ["Double", "Halve", "Quadruple", "Remain unchanged"], correctIndex: 1, feedback: "Fringe spacing is inversely proportional to slit separation (Δy = λL / d), so doubling d halves the spacing." },
+                    { question: "Why is m = 0 excluded from the single-slit diffraction dark minima condition a sin θ = mλ?", options: ["Because m = 0 is an imaginary number", "Because θ = 0 corresponds to the central maximum, not a minimum", "Because the slit width becomes zero", "Because light does not pass through the center"], correctIndex: 1, feedback: "At m = 0 (θ = 0), all wavelets across the aperture arrive in phase to produce the bright central maximum, not a minimum." },
+                    { question: "For a single slit of width a = 0.10 mm with light of wavelength λ = 500 nm on a screen L = 2.0 m away, what is the width of the central diffraction maximum?", options: ["10 mm", "20 mm", "5 mm", "40 mm"], correctIndex: 1, feedback: "W = 2λL / a = 2(5.0 × 10⁻⁷ m)(2.0 m) / (1.0 × 10⁻⁴ m) = 2.0 × 10⁻² m = 20 mm." }
                 ]
             },
             // Chapter 3 Lesson 1
@@ -474,8 +626,8 @@
                     { term: "RL Time Constant", definition: "Time for current to build to 63.2% or decay to 36.8%.", symbol: "\\tau", unit: "\\mathrm{s}", equation: "\\tau = \\frac{L}{R}" }
                 ],
                 examples: [
-                    { title: "Lorentz Force on a Proton", given: "Charge \\( q = 1.6\\times 10^{-19}\\,\\mathrm{C} \\), velocity \\( v = 2.5\\times 10^6\\,\\mathrm{m/s} \\), field \\( B = 0.80\\,\\mathrm{T} \\), \\( \\theta = 30^\\circ \\).", find: "Force \\( F \\).", equation: "F = qvB\\sin\\theta", solution: "\\( F = (1.6\\times 10^{-19}) \\times (2.5\\times 10^6) \\times 0.80 \\times 0.5 = 1.6\\times 10^{-13}\\,\\mathrm{N} \\).", finalAnswer: "F = 1.6\\times 10^{-13}\\,\\mathrm{N}", explanation: "The magnetic force acts perpendicular to the velocity and magnetic field vectors." },
-                    { title: "RL Circuit Time Constant", given: "Battery \\( V = 24\\,\\mathrm{V} \\), \\( R = 12\\,\\Omega \\), \\( L = 0.060\\,\\mathrm{H} \\).", find: "Time constant \\( \\tau \\).", equation: "\\tau = \\frac{L}{R}", solution: "\\( \\tau = \\frac{0.060}{12} = 0.0050\\,\\mathrm{s} = 5.0\\,\\mathrm{ms} \\).", finalAnswer: "\\tau = 5.0\\,\\mathrm{ms}", explanation: "The inductor opposes immediate current surge, reaching 63.2% after 5 ms." }
+                    { title: "Lorentz Force on a Proton", given: "Charge \\( q = 1.6\\times 10^{-19}\\,\\mathrm{C} \\), velocity \\( v = 2.5\\times 10^6\\,\\mathrm{m/s} \\), field \\( B = 0.80\\,\\mathrm{T} \\), \\( \\theta = 30^\\circ \\).", find: "Deflecting magnetic force (\\( F \\)) in \\( \\mathrm{N} \\).", equation: "F = qvB\\sin\\theta", solution: "\\[ F = qvB\\sin\\theta = (1.6\\times 10^{-19}\\,\\mathrm{C})(2.5\\times 10^6\\,\\mathrm{m/s})(0.80\\,\\mathrm{T})\\sin(30^\\circ) = 1.6\\times 10^{-13}\\,\\mathrm{N} \\]", finalAnswer: "F = 1.6\\times 10^{-13}\\,\\mathrm{N}", explanation: "The magnetic force acts perpendicular to both velocity and magnetic field vectors." },
+                    { title: "RL Circuit Time Constant", given: "Battery \\( V = 24\\,\\mathrm{V} \\), Resistance \\( R = 12\\,\\Omega \\), Inductance \\( L = 0.060\\,\\mathrm{H} \\).", find: "Time constant (\\( \\tau \\)) in \\( \\mathrm{ms} \\).", equation: "\\tau = \\frac{L}{R}", solution: "\\[ \\tau = \\frac{L}{R} = \\frac{0.060\\,\\mathrm{H}}{12\\,\\Omega} = 0.0050\\,\\mathrm{s} = 5.0\\,\\mathrm{ms} \\]", finalAnswer: "\\tau = 5.0\\,\\mathrm{ms}", explanation: "The inductor opposes immediate current change, allowing current to reach 63.2% after one time constant of 5 ms." }
                 ],
                 equations: [
                     { section: "Magnetic Fields", name: "Biot-Savart Straight Wire", formula: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)", symbols: [{ symbol: "B", desc: "Field (T)" }, { symbol: "I", desc: "Current (A)" }, { symbol: "d", desc: "Distance (m)" }] },
@@ -515,8 +667,15 @@
                     { term: "Power Factor", definition: "Cosine of phase angle indicating active power fraction.", symbol: "\\cos\\phi", unit: "\\text{No unit}", equation: "\\cos\\phi = \\frac{R}{Z}" }
                 ],
                 examples: [
-                    { title: "RMS to Peak Voltage Conversion", given: "Rated mains voltage \\( V = 230\\,\\mathrm{V} \\).", find: "Peak voltage \\( V_m \\).", equation: "V_m = V\\sqrt{2}", solution: "\\( V_m = 230 \\times 1.4142 \\approx 325\\,\\mathrm{V} \\).", finalAnswer: "V_m \\approx 325\\,\\mathrm{V}", explanation: "A nominal 230 V RMS AC supply oscillates between +325 V and -325 V peak." },
-                    { title: "RLC Series Circuit Impedance", given: "Resistance \\( R = 40\\,\\Omega \\), \\( Z_L = 100\\,\\Omega \\), \\( Z_C = 70\\,\\Omega \\).", find: "Impedance \\( Z \\).", equation: "Z = \\sqrt{R^2 + (Z_L - Z_C)^2}", solution: "\\( Z = \\sqrt{40^2 + (100 - 70)^2} = \\sqrt{1600 + 900} = 50\\,\\Omega \\).", finalAnswer: "Z = 50\\,\\Omega", explanation: "Pythagorean combination of resistance and net reactance." }
+                    {
+                        title: "Impedance of a Series RLC Alternating Current Circuit",
+                        given: "Resistance \\( R = 40\\,\\Omega \\), Inductance \\( L = 0.20\\,\\mathrm{H} \\), Capacitance \\( C = 50\\,\\mu\\mathrm{F} = 50 \\times 10^{-6}\\,\\mathrm{F} \\), AC frequency \\( f = 50\\,\\mathrm{Hz} \\).",
+                        find: "Inductive reactance (\\( Z_L \\)), Capacitive reactance (\\( Z_C \\)), and Total circuit impedance (\\( Z \\)) in \\( \\Omega \\).",
+                        equation: "Z_L = 2\\pi f L, \\quad Z_C = \\frac{1}{2\\pi f C}, \\quad Z = \\sqrt{R^2 + (Z_L - Z_C)^2}",
+                        solution: "1. <strong>Angular frequency:</strong> \\( \\omega = 2\\pi(50\\,\\mathrm{Hz}) = 314.16\\,\\mathrm{rad/s} \\).<br>2. <strong>Inductive reactance:</strong><br>\\[ Z_L = \\omega L = (314.16\\,\\mathrm{rad/s})(0.20\\,\\mathrm{H}) = 62.83\\,\\Omega \\]<br>3. <strong>Capacitive reactance:</strong><br>\\[ Z_C = \\frac{1}{\\omega C} = \\frac{1}{(314.16\\,\\mathrm{rad/s})(50 \\times 10^{-6}\\,\\mathrm{F})} \\approx 63.66\\,\\Omega \\]<br>4. <strong>Net reactance:</strong><br>\\[ Z_L - Z_C = 62.83\\,\\Omega - 63.66\\,\\Omega = -0.83\\,\\Omega \\]<br>5. <strong>Circuit impedance:</strong><br>\\[ Z = \\sqrt{R^2 + (Z_L - Z_C)^2} = \\sqrt{(40\\,\\Omega)^2 + (-0.83\\,\\Omega)^2} = \\sqrt{1600 + 0.69} \\approx 40.01\\,\\Omega \\]",
+                        finalAnswer: "Z_L \\approx 62.83\\,\\Omega, \\quad Z_C \\approx 63.66\\,\\Omega, \\quad Z \\approx 40.0\\,\\Omega",
+                        explanation: "Because inductive and capacitive reactances nearly cancel out (ZL ≈ ZC), the circuit operates very close to series resonance with impedance approximately equal to resistance R."
+                    }
                 ],
                 equations: [
                     { section: "AC Fundamentals", name: "RMS Relations & Ohm's Law", formula: "\\( I = \\frac{I_m}{\\sqrt{2}}, \\quad V = \\frac{V_m}{\\sqrt{2}}, \\quad I = \\frac{V}{Z} \\)", symbols: [{ symbol: "I, V", desc: "RMS values" }, { symbol: "Z", desc: "Impedance (Ω)" }] },
@@ -537,79 +696,483 @@
             // Chapter 4 Lesson 1
             {
                 id: "g12-ch4-l1",
-                gifUrl: "",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/PnJunction-LED-animation.gif",
                 worksheetUrl: "worksheets/ch4-l1-worksheet.pdf",
-                games: [],
+                games: [{ topic: "Semiconductors & Transistors", url: "https://gemini.google.com/share/9c33959ceba4" }],
                 title: "Chapter 4 Lesson 1: Semiconductors & Transistors",
                 concepts: [
-                    "Semiconductors: Material whose conductivity lies between conductors and insulators (doped N-type with electrons, P-type with holes).",
-                    "P-N Junction: Forward bias reduces depletion zone allowing current; reverse bias widens barrier blocking current.",
-                    "Transistors: Three-terminal devices (Emitter, Base, Collector) satisfying \\( I_E = I_B + I_C \\).",
-                    "Current Amplification: Common-emitter gain \\( \\beta = \\frac{I_C}{I_B} \\) and common-base gain \\( \\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1} \\)."
+                    "Electrical Resistance and Resistivity: A conductor's resistance depends on its geometry and material: \\( R = \\rho\\frac{l}{A} \\), where \\( \\rho = \\frac{RA}{l} \\) is the electrical resistivity (in \\( \\Omega\\cdot\\mathrm{m} \\)), \\( l \\) is length (in \\( \\mathrm{m} \\)), and \\( A \\) is cross-sectional area (in \\( \\mathrm{m}^2 \\)).",
+                    "Intrinsic vs. Extrinsic Semiconductors: Pure semiconductors (Silicon and Germanium) are tetravalent (4 valence electrons forming covalent bonds in a crystal lattice). Thermal energy creates electron-hole pairs (intrinsic concentration \\( n_i \\)). Doping adds tiny amounts of impurities to drastically boost conductivity.",
+                    "N-Type and P-Type Semiconductors: Doping with pentavalent donor atoms (Phosphorus, Arsenic, Antimony with 5 valence electrons) produces an N-type semiconductor where free electrons are majority charge carriers and holes are minority carriers. Doping with trivalent acceptor atoms (Boron, Gallium, Indium with 3 valence electrons) produces a P-type semiconductor where holes (electron vacancies) are majority carriers and electrons are minority carriers.",
+                    "P–N Junction and Depletion Layer: Joining P-type and N-type regions causes mobile electrons and holes to diffuse across the junction and recombine. This leaves behind uncovered ionized donor atoms (+Q) on the N-side and acceptor atoms (-Q) on the P-side, creating a narrow depletion region devoid of free mobile charge carriers.",
+                    "Potential Barrier and Biasing: The internal electric field establishes a contact potential barrier (\\( V_{\\text{Ge}} \\approx 0.3\\,\\mathrm{V} \\) for Germanium, \\( V_{\\text{Si}} \\approx 0.7\\,\\mathrm{V} \\) for Silicon). Forward bias (+ to P, - to N) opposes the internal field and narrows the depletion region, allowing heavy current flow once the barrier is overcome. Reverse bias (+ to N, - to P) reinforces the internal field and widens the depletion region, blocking majority carriers and permitting only a tiny minority-carrier leakage current.",
+                    "Diode Types and Applications: Includes Rectifier Diodes (converting AC to DC), Zener Diodes (maintaining stable voltage in reverse breakdown), Light-Emitting Diodes/LEDs (emitting light via radiative electron-hole recombination), Photodiodes (generating reverse photocurrent under light illumination), Optocouplers (providing optical electrical isolation), Varactor Diodes (acting as voltage-variable capacitors in RF tuning), and Tunnel Diodes (exhibiting quantum tunneling and negative differential resistance).",
+                    "Transistor Structures and Current Relationships: A Bipolar Junction Transistor (BJT) consists of two back-to-back P-N junctions in NPN or PNP configurations with three terminals: heavily doped Emitter (E), very thin and lightly doped Base (B), and large Collector (C). By Kirchhoff's current law, \\( I_E = I_B + I_C \\).",
+                    "Current Amplification Factors (α and β): Common-emitter current gain \\( \\beta = \\frac{I_C}{I_B} \\) (typically 20 to 500+) quantifies the amplification of tiny base currents into large collector currents. Common-base current gain \\( \\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1} < 1 \\) (typically 0.95 to 0.998) measures collector carrier collection efficiency. Transistors operate in active mode (amplification), saturation (fully on switch), and cutoff (fully off switch). Field-effect devices include JFETs and MOSFETs (such as enhancement-type MOSFETs, which conduct when gate voltage exceeds threshold \\( V_{GS} > V_{th} \\)).",
+                    "Integrated Circuits (ICs): Monolithic miniaturized electronic circuits fabricated on a single microscopic semiconductor die (usually silicon). ICs combine thousands to billions of transistors, diodes, resistors, and capacitors interconnected via photolithography, diffusion, ion implantation, and metallization to power microprocessors, memory chips, and control systems."
                 ],
                 definitions: [
-                    { term: "Semiconductor", definition: "Material whose electrical conductivity can be controlled via doping.", symbol: "\\text{Semiconductor}", unit: "\\text{No unit}", equation: "R = \\rho \\frac{l}{A}" },
-                    { term: "Transistor Current Conservation", definition: "Total emitter current equals sum of base and collector currents.", symbol: "I_E", unit: "\\mathrm{A}", equation: "I_E = I_B + I_C" },
-                    { term: "Common-Emitter Current Gain", definition: "Ratio of output collector current to input base current.", symbol: "\\beta", unit: "\\text{No unit}", equation: "\\beta = \\frac{I_C}{I_B}" },
-                    { term: "Common-Base Current Gain", definition: "Ratio of collector current to emitter current.", symbol: "\\alpha", unit: "\\text{No unit}", equation: "\\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1}" }
+                    { term: "Electrical Resistance", definition: "The opposition that a substance or conductor presents to the flow of electric current.", symbol: "R", unit: "\\Omega", equation: "R = \\rho\\frac{l}{A}" },
+                    { term: "Electrical Resistivity", definition: "An intrinsic property of a material measuring its fundamental opposition to electric current per unit length and cross-sectional area.", symbol: "\\rho", unit: "\\Omega\\cdot\\mathrm{m}", equation: "\\rho = \\frac{RA}{l}" },
+                    { term: "Intrinsic Semiconductor", definition: "A pure, undoped crystalline semiconductor (such as pure Si or Ge) where electrical conduction arises solely from thermally generated electron-hole pairs.", symbol: "n_i", unit: "\\mathrm{m^{-3}}", equation: "n_e = n_h = n_i" },
+                    { term: "Doping", definition: "The controlled addition of pentavalent or trivalent impurity atoms into an intrinsic semiconductor crystal to greatly increase conductivity.", symbol: "\\text{Doping}", unit: "No SI unit", equation: "n_e \\approx N_D \\quad\\text{or}\\quad n_h \\approx N_A" },
+                    { term: "N-Type Semiconductor", definition: "An extrinsic semiconductor doped with pentavalent donor impurities where conduction is dominated by negative free electrons (majority carriers).", symbol: "\\text{N-type}", unit: "No SI unit", equation: "n_e \\gg n_h" },
+                    { term: "P-Type Semiconductor", definition: "An extrinsic semiconductor doped with trivalent acceptor impurities where conduction is dominated by positive holes (majority carriers).", symbol: "\\text{P-type}", unit: "No SI unit", equation: "n_h \\gg n_e" },
+                    { term: "P–N Junction", definition: "The metallurgical boundary interface formed between adjacent P-type and N-type regions within a single semiconductor crystal.", symbol: "\\text{P-N}", unit: "No SI unit", equation: "V_0 \\approx 0.7\\,\\mathrm{V} \\; (\\text{Si})" },
+                    { term: "Depletion Region", definition: "The narrow zone adjacent to a P-N junction that is depleted of mobile charge carriers, containing only fixed ionized donor and acceptor atoms.", symbol: "W_{\\text{dep}}", unit: "\\mathrm{m}", equation: "\\text{Width: } W_{\\text{dep}}" },
+                    { term: "Potential Barrier (Contact Potential)", definition: "The internal electrostatic potential difference established across a P-N junction depletion region that resists further majority-carrier diffusion.", symbol: "V_0", unit: "\\mathrm{V}", equation: "V_{\\text{Ge}} \\approx 0.3\\,\\mathrm{V}, \\quad V_{\\text{Si}} \\approx 0.7\\,\\mathrm{V}" },
+                    { term: "Forward Bias", definition: "Applying external voltage with positive terminal to P-type and negative to N-type, which opposes the internal barrier, narrows the depletion layer, and enables heavy conduction.", symbol: "V_F", unit: "\\mathrm{V}", equation: "V_{\\text{net}} = V_0 - V_F" },
+                    { term: "Reverse Bias", definition: "Applying external voltage with positive terminal to N-type and negative to P-type, which reinforces the internal barrier, widens the depletion layer, and blocks majority current.", symbol: "V_R", unit: "\\mathrm{V}", equation: "V_{\\text{net}} = V_0 + V_R" },
+                    { term: "Bipolar Junction Transistor (BJT)", definition: "A three-terminal semiconductor device consisting of three doped regions (Emitter, Base, Collector) that amplifies or switches electrical signals.", symbol: "\\text{BJT}", unit: "No SI unit", equation: "I_E = I_B + I_C" },
+                    { term: "Emitter Current", definition: "The total majority-carrier current injected from the heavily doped emitter into the base region.", symbol: "I_E", unit: "\\mathrm{A}", equation: "I_E = I_B + I_C" },
+                    { term: "Base Current", definition: "The tiny recombination current flowing through the very thin, lightly doped base terminal that controls the overall transistor output.", symbol: "I_B", unit: "\\mathrm{A}", equation: "I_B = I_E - I_C = \\frac{I_C}{\\beta}" },
+                    { term: "Collector Current", definition: "The output current collected at the collector terminal across the reverse-biased collector-base junction.", symbol: "I_C", unit: "\\mathrm{A}", equation: "I_C = \\beta I_B = \\alpha I_E" },
+                    { term: "Common-Emitter Current Gain (β)", definition: "The dimensionless ratio of collector current to base current, representing the current amplification factor in common-emitter configuration.", symbol: "\\beta", unit: "No SI unit", equation: "\\beta = \\frac{I_C}{I_B}" },
+                    { term: "Common-Base Current Gain (α)", definition: "The dimensionless ratio of collector current to emitter current, representing the transmission efficiency of injected carriers reaching the collector (always < 1).", symbol: "\\alpha", unit: "No SI unit", equation: "\\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1}" },
+                    { term: "Integrated Circuit (IC)", definition: "A complete electronic circuit with thousands to billions of transistors, diodes, and passive elements fabricated onto a single miniature semiconductor die.", symbol: "\\text{IC}", unit: "No SI unit", equation: "\\text{Monolithic die}" }
                 ],
                 examples: [
-                    { title: "Transistor Current Conservation", given: "Base current \\( I_B = 0.050\\,\\mathrm{mA} \\), collector current \\( I_C = 4.95\\,\\mathrm{mA} \\).", find: "Emitter current \\( I_E \\).", equation: "I_E = I_B + I_C", solution: "\\( I_E = 0.050 + 4.95 = 5.00\\,\\mathrm{mA} \\).", finalAnswer: "I_E = 5.00\\,\\mathrm{mA}", explanation: "Current conservation requires emitter current to equal base plus collector current." },
-                    { title: "Common-Emitter Gain Calculation", given: "Base current \\( I_B = 40\\,\\mu\\mathrm{A} \\), collector current \\( I_C = 4.0\\,\\mathrm{mA} \\).", find: "Gain \\( \\beta \\).", equation: "\\beta = \\frac{I_C}{I_B}", solution: "\\( \\beta = \\frac{4.0\\times 10^{-3}}{40\\times 10^{-6}} = 100 \\).", finalAnswer: "\\beta = 100", explanation: "A gain of 100 multiplies the small control base current into large collector current." }
+                    {
+                        title: "Electrical Resistivity of a Metallic Wire",
+                        given: "A conductor wire has cross-sectional area \\( A = 5.06 \\times 10^{-7}\\,\\mathrm{m}^2 \\), length \\( l = 20\\,\\mathrm{m} \\), and measured electrical resistance \\( R = 0.68\\,\\Omega \\).",
+                        find: "Electrical resistivity (\\( \\rho \\)) of the wire material in \\( \\Omega\\cdot\\mathrm{m} \\).",
+                        equation: "\\rho = \\frac{RA}{l}",
+                        solution: "Substitute the given values into the resistivity formula:<br>\\[ \\rho = \\frac{(0.68\\,\\Omega)(5.06 \\times 10^{-7}\\,\\mathrm{m}^2)}{20\\,\\mathrm{m}} = \\frac{3.4408 \\times 10^{-7}}{20} = 1.7204 \\times 10^{-8}\\,\\Omega\\cdot\\mathrm{m} \\approx 1.72 \\times 10^{-8}\\,\\Omega\\cdot\\mathrm{m} \\]",
+                        finalAnswer: "\\rho \\approx 1.72 \\times 10^{-8}\\,\\Omega\\cdot\\mathrm{m}",
+                        explanation: "This calculated resistivity matches standard annealed copper wire (1.72 × 10⁻⁸ Ω·m). Resistivity depends exclusively on material composition and temperature, not conductor dimensions."
+                    },
+                    {
+                        title: "Transistor Common-Emitter Current Gain and Emitter Current",
+                        given: "In an active NPN transistor circuit, base current \\( I_B = 50\\,\\mu\\mathrm{A} = 50 \\times 10^{-6}\\,\\mathrm{A} = 0.050\\,\\mathrm{mA} \\), and collector current \\( I_C = 4.95\\,\\mathrm{mA} = 4.95 \\times 10^{-3}\\,\\mathrm{A} \\).",
+                        find: "1. Common-emitter current gain (\\( \\beta \\)).<br>2. Total emitter current (\\( I_E \\)) in \\( \\mathrm{mA} \\).",
+                        equation: "\\beta = \\frac{I_C}{I_B}, \\quad I_E = I_B + I_C",
+                        solution: "1. <strong>Common-emitter current gain (\\( \\beta \\)):</strong><br>\\[ \\beta = \\frac{I_C}{I_B} = \\frac{4.95 \\times 10^{-3}\\,\\mathrm{A}}{50 \\times 10^{-6}\\,\\mathrm{A}} = \\frac{4.95\\,\\mathrm{mA}}{0.050\\,\\mathrm{mA}} = 99 \\]<br>2. <strong>Emitter current (\\( I_E \\)):</strong><br>\\[ I_E = I_B + I_C = 0.050\\,\\mathrm{mA} + 4.95\\,\\mathrm{mA} = 5.00\\,\\mathrm{mA} = 5.00 \\times 10^{-3}\\,\\mathrm{A} \\]",
+                        finalAnswer: "\\beta = 99 \\; (\\text{dimensionless}), \\quad I_E = 5.00\\,\\mathrm{mA}",
+                        explanation: "A tiny base control current of 50 µA steers nearly 5 mA of collector current, demonstrating the current amplification capability of the transistor."
+                    },
+                    {
+                        title: "Transistor Common-Base Current Gain and Gain Interconversion",
+                        given: "A transistor operates with emitter current \\( I_E = 10.0\\,\\mathrm{mA} \\) and collector current \\( I_C = 9.80\\,\\mathrm{mA} \\).",
+                        find: "1. Base current (\\( I_B \\)).<br>2. Common-base current gain (\\( \\alpha \\)).<br>3. Common-emitter current gain (\\( \\beta \\)) calculated from \\( \\alpha \\).",
+                        equation: "I_B = I_E - I_C, \\quad \\alpha = \\frac{I_C}{I_E}, \\quad \\beta = \\frac{\\alpha}{1 - \\alpha}",
+                        solution: "1. <strong>Base current:</strong><br>\\[ I_B = I_E - I_C = 10.0\\,\\mathrm{mA} - 9.80\\,\\mathrm{mA} = 0.20\\,\\mathrm{mA} = 200\\,\\mu\\mathrm{A} \\]<br>2. <strong>Common-base current gain (\\( \\alpha \\)):</strong><br>\\[ \\alpha = \\frac{I_C}{I_E} = \\frac{9.80\\,\\mathrm{mA}}{10.0\\,\\mathrm{mA}} = 0.980 \\]<br>3. <strong>Common-emitter current gain (\\( \\beta \\)):</strong><br>\\[ \\beta = \\frac{\\alpha}{1 - \\alpha} = \\frac{0.980}{1 - 0.980} = \\frac{0.980}{0.020} = 49 \\]<br><em>Verification:</em> \\( \\beta = \\frac{I_C}{I_B} = \\frac{9.80\\,\\mathrm{mA}}{0.20\\,\\mathrm{mA}} = 49 \\).",
+                        finalAnswer: "I_B = 0.20\\,\\mathrm{mA} \\; (200\\,\\mu\\mathrm{A}), \\quad \\alpha = 0.980, \\quad \\beta = 49",
+                        explanation: "Because only a small fraction of injected carriers recombine in the base (2%), \\( \\alpha \\) is very close to 1 (0.980), yielding a high current amplification factor \\( \\beta = 49 \\)."
+                    }
                 ],
                 equations: [
-                    { section: "Semiconductor", name: "Resistance and Resistivity", formula: "\\( R = \\rho \\frac{l}{A} \\)", symbols: [{ symbol: "ρ", desc: "Resistivity (Ω·m)" }] },
-                    { section: "Transistor", name: "Current Conservation", formula: "\\( I_E = I_B + I_C \\)", symbols: [{ symbol: "I_E, I_B, I_C", desc: "Transistor currents (A)" }] },
-                    { section: "Transistor Gains", name: "Current Gain Ratios", formula: "\\( \\beta = \\frac{I_C}{I_B}, \\quad \\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1} \\)", symbols: [{ symbol: "β, α", desc: "Current gains" }] }
+                    {
+                        section: "Electrical Resistance and Resistivity",
+                        name: "Electrical Resistance of a Conductor",
+                        formula: "\\[ R = \\rho\\frac{l}{A} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "The electrical resistance R of a uniform conductor is directly proportional to its length l and inversely proportional to its cross-sectional area A, scaled by the material resistivity ρ.",
+                        conditions: "Uniform conductor cross-section and constant temperature.",
+                        variables: [
+                            { symbol: "R", rep: "Electrical resistance of conductor", unit: "Ohm", unitSym: "\\Omega" },
+                            { symbol: "\\rho", rep: "Electrical resistivity of the material", unit: "Ohm meter", unitSym: "\\Omega\\cdot\\mathrm{m}" },
+                            { symbol: "l", rep: "Length of the conductor", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "A", rep: "Cross-sectional area of the conductor", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                        ]
+                    },
+                    {
+                        section: "Electrical Resistance and Resistivity",
+                        name: "Electrical Resistivity Definition",
+                        formula: "\\[ \\rho = \\frac{RA}{l} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Resistivity ρ is an intrinsic physical property measuring how strongly a material opposes electric current, independent of conductor size.",
+                        conditions: "Isotropic conducting material at steady temperature.",
+                        variables: [
+                            { symbol: "\\rho", rep: "Electrical resistivity", unit: "Ohm meter", unitSym: "\\Omega\\cdot\\mathrm{m}" },
+                            { symbol: "R", rep: "Measured electrical resistance", unit: "Ohm", unitSym: "\\Omega" },
+                            { symbol: "A", rep: "Cross-sectional area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                            { symbol: "l", rep: "Conductor length", unit: "Meter", unitSym: "\\mathrm{m}" }
+                        ]
+                    },
+                    {
+                        section: "Intrinsic and Extrinsic Semiconductors",
+                        name: "Carrier Concentrations in Doped Semiconductors",
+                        formula: "\\[ n_e n_h = n_i^2, \\quad \\text{N-type: } n_e \\approx N_D \\gg n_h, \\quad \\text{P-type: } n_h \\approx N_A \\gg n_e \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "In thermal equilibrium, the product of electron and hole concentrations equals the square of intrinsic carrier concentration n_i. Doping with donor atoms (N_D) makes electrons the majority carriers; doping with acceptor atoms (N_A) makes holes the majority carriers.",
+                        conditions: "Thermal equilibrium in non-degenerately doped semiconductors.",
+                        variables: [
+                            { symbol: "n_e", rep: "Free electron concentration", unit: "Per cubic meter", unitSym: "\\mathrm{m^{-3}}" },
+                            { symbol: "n_h", rep: "Hole concentration", unit: "Per cubic meter", unitSym: "\\mathrm{m^{-3}}" },
+                            { symbol: "n_i", rep: "Intrinsic carrier concentration", unit: "Per cubic meter", unitSym: "\\mathrm{m^{-3}}" },
+                            { symbol: "N_D", rep: "Donor impurity atom concentration (pentavalent)", unit: "Per cubic meter", unitSym: "\\mathrm{m^{-3}}" },
+                            { symbol: "N_A", rep: "Acceptor impurity atom concentration (trivalent)", unit: "Per cubic meter", unitSym: "\\mathrm{m^{-3}}" }
+                        ]
+                    },
+                    {
+                        section: "P–N Junction and Diodes",
+                        name: "P–N Junction Contact Potential Barrier",
+                        formula: "\\[ V_{\\text{Ge}} \\approx 0.3\\,\\mathrm{V}, \\quad V_{\\text{Si}} \\approx 0.7\\,\\mathrm{V} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "When a P-N junction forms, carrier diffusion creates a depletion region with an internal contact potential barrier of approximately 0.3 V in Germanium and 0.7 V in Silicon at room temperature (300 K).",
+                        conditions: "Unbiased equilibrium junction at room temperature.",
+                        variables: [
+                            { symbol: "V_{\\text{Ge}}", rep: "Potential barrier for Germanium diode (~0.3 V)", unit: "Volt", unitSym: "\\mathrm{V}" },
+                            { symbol: "V_{\\text{Si}}", rep: "Potential barrier for Silicon diode (~0.7 V)", unit: "Volt", unitSym: "\\mathrm{V}" }
+                        ]
+                    },
+                    {
+                        section: "P–N Junction and Diodes",
+                        name: "Small-Signal Dynamic Diode Resistance",
+                        formula: "\\[ r_d = \\frac{\\Delta V_D}{\\Delta I_D} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "The AC dynamic resistance of a forward-biased diode equals the reciprocal slope of its forward I-V characteristic curve around the operating point.",
+                        conditions: "Forward-bias operating region above the knee voltage.",
+                        variables: [
+                            { symbol: "r_d", rep: "Dynamic forward junction resistance", unit: "Ohm", unitSym: "\\Omega" },
+                            { symbol: "\\Delta V_D", rep: "Small variation in diode forward voltage", unit: "Volt", unitSym: "\\mathrm{V}" },
+                            { symbol: "\\Delta I_D", rep: "Resulting incremental change in diode current", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                        ]
+                    },
+                    {
+                        section: "Transistors and Current Relationships",
+                        name: "Transistor Terminal Current Conservation",
+                        formula: "\\[ I_E = I_B + I_C \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Kirchhoff's current law applied to a BJT: total emitter current equals the sum of the small base control current and the collector output current.",
+                        conditions: "Normal active or saturated operating modes for NPN and PNP BJTs.",
+                        variables: [
+                            { symbol: "I_E", rep: "Emitter terminal current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                            { symbol: "I_B", rep: "Base terminal current (controls conduction)", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                            { symbol: "I_C", rep: "Collector terminal current (output)", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                        ]
+                    },
+                    {
+                        section: "Transistors and Current Relationships",
+                        name: "Common-Emitter Current Gain (β)",
+                        formula: "\\[ \\beta = \\frac{I_C}{I_B} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Common-emitter DC current amplification factor (also denoted h_FE). Because base current is tiny, β is typically between 20 and 500+.",
+                        conditions: "Active amplification region.",
+                        variables: [
+                            { symbol: "\\beta", rep: "Common-emitter DC current gain (dimensionless)", unit: "Dimensionless ratio", unitSym: "\\text{No SI unit}" },
+                            { symbol: "I_C", rep: "Collector current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                            { symbol: "I_B", rep: "Base current", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                        ]
+                    },
+                    {
+                        section: "Transistors and Current Relationships",
+                        name: "Common-Base Current Gain (α)",
+                        formula: "\\[ \\alpha = \\frac{I_C}{I_E} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Common-base current gain measuring the fraction of majority carriers injected by the emitter that successfully traverse the base into the collector. Because a small percentage recombines in the base, α is always slightly less than 1 (0.95 to 0.998).",
+                        conditions: "Active amplification region.",
+                        variables: [
+                            { symbol: "\\alpha", rep: "Common-base DC current gain (dimensionless)", unit: "Dimensionless ratio", unitSym: "\\text{No SI unit}" },
+                            { symbol: "I_C", rep: "Collector current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                            { symbol: "I_E", rep: "Emitter current", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                        ]
+                    },
+                    {
+                        section: "Transistors and Current Relationships",
+                        name: "Current Gain Interconversion Formula",
+                        formula: "\\[ \\alpha = \\frac{\\beta}{\\beta + 1} \\iff \\beta = \\frac{\\alpha}{1 - \\alpha} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Exact mathematical interconversion between common-base gain α and common-emitter gain β derived from I_E = I_B + I_C.",
+                        conditions: "Linear active region.",
+                        variables: [
+                            { symbol: "\\alpha", rep: "Common-base current gain", unit: "Dimensionless ratio", unitSym: "\\text{No SI unit}" },
+                            { symbol: "\\beta", rep: "Common-emitter current gain", unit: "Dimensionless ratio", unitSym: "\\text{No SI unit}" }
+                        ]
+                    },
+                    {
+                        section: "Integrated Circuits (ICs)",
+                        name: "Integrated Circuit Scale & Microelectronic Architecture",
+                        formula: "\\[ \\text{Monolithic Die Integration: } N_{\\text{components}} \\sim 10^3 \\text{ to } 10^{10+} \\text{ transistors, diodes, resistors on a silicon chip} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Integrated circuits combine complete microscopic circuits onto a single semiconductor substrate, eliminating discrete wiring and achieving high speed, miniaturization, and low power consumption.",
+                        conditions: "Semiconductor microfabrication planar technology.",
+                        variables: [
+                            { symbol: "N_{\\text{components}}", rep: "Number of integrated electronic components per chip", unit: "Component count", unitSym: "\\text{No SI unit}" }
+                        ]
+                    }
                 ],
                 flashcards: [
-                    { front: "What is the relationship between transistor currents?", back: "\\( I_E = I_B + I_C \\)" },
-                    { front: "What is common-emitter current gain β?", back: "\\( \\beta = \\frac{I_C}{I_B} \\)" },
-                    { front: "What are majority carriers in N-type semiconductors?", back: "Electrons" }
+                    { front: "What is the formula relating resistance, resistivity, length, and area?", back: "\\( R = \\rho\\frac{l}{A} \\iff \\rho = \\frac{RA}{l} \\)" },
+                    { front: "What are the majority and minority charge carriers in N-type and P-type semiconductors?", back: "N-type: majority = electrons, minority = holes.<br>P-type: majority = holes, minority = electrons." },
+                    { front: "What are the approximate potential barrier voltages for Ge and Si diodes?", back: "\\( V_{\\text{Ge}} \\approx 0.3\\,\\mathrm{V}, \\quad V_{\\text{Si}} \\approx 0.7\\,\\mathrm{V} \\)" },
+                    { front: "What happens to the depletion region under forward and reverse bias?", back: "Forward bias: narrows the depletion region.<br>Reverse bias: widens the depletion region." },
+                    { front: "What is the fundamental current equation for a bipolar junction transistor?", back: "\\( I_E = I_B + I_C \\)" },
+                    { front: "What is the definition of common-emitter current gain \\( \\beta \\)?", back: "\\( \\beta = \\frac{I_C}{I_B} \\)" },
+                    { front: "What is the definition of common-base current gain \\( \\alpha \\)?", back: "\\( \\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1} < 1 \\)" },
+                    { front: "What are the primary advantages of Integrated Circuits (ICs)?", back: "Miniaturization, extreme component density, low power consumption, and high operational reliability." }
                 ],
                 quiz: [
-                    { question: "If I_E = 10 mA and I_B = 0.1 mA, what is the collector current I_C?", options: ["10.1 mA", "9.9 mA", "100 mA", "0.01 mA"], correctIndex: 1, feedback: "I_C = I_E - I_B = 10 - 0.1 = 9.9 mA." },
-                    { question: "The common-emitter current gain β is defined as:", options: ["I_C / I_E", "I_E / I_B", "I_C / I_B", "I_B / I_C"], correctIndex: 2, feedback: "β is the ratio of collector current to base current." }
+                    { question: "A wire with A = 5.06 × 10⁻⁷ m² and length l = 20 m has resistance R = 0.68 Ω. What is its resistivity?", options: ["1.72 × 10⁻⁸ Ω·m", "3.44 × 10⁻⁷ Ω·m", "1.72 × 10⁻⁶ Ω·m", "8.55 × 10⁻⁹ Ω·m"], correctIndex: 0, feedback: "ρ = RA / l = (0.68 × 5.06 × 10⁻⁷) / 20 = 1.72 × 10⁻⁸ Ω·m (copper wire)." },
+                    { question: "In a Silicon P-N junction diode, the contact potential barrier at room temperature is approximately:", options: ["0.1 V", "0.3 V", "0.7 V", "1.5 V"], correctIndex: 2, feedback: "V_Si ≈ 0.7 V, while for Germanium V_Ge ≈ 0.3 V." },
+                    { question: "In an active BJT with base current I_B = 50 µA and collector current I_C = 4.95 mA, the current gain β and emitter current I_E are:", options: ["β = 50, I_E = 5.00 mA", "β = 99, I_E = 5.00 mA", "β = 100, I_E = 4.90 mA", "β = 99, I_E = 4.95 mA"], correctIndex: 1, feedback: "β = 4.95 mA / 0.05 mA = 99; I_E = 0.05 mA + 4.95 mA = 5.00 mA." },
+                    { question: "What happens to the depletion region of a P-N junction under reverse bias?", options: ["It disappears completely", "It narrows significantly", "It widens, blocking majority carriers", "It oscillates with AC frequency"], correctIndex: 2, feedback: "Reverse bias reinforces the internal electric field, widening the depletion region and blocking majority carriers." }
                 ]
             },
             // Chapter 4 Lesson 2
             {
                 id: "g12-ch4-l2",
-                gifUrl: "",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Michelson-morley_experiment_animation.gif",
                 worksheetUrl: "worksheets/ch4-l2-worksheet.pdf",
-                games: [],
+                games: [{ topic: "Special Relativity", url: "https://gemini.google.com/share/3565e381b1ba" }],
                 title: "Chapter 4 Lesson 2: Special Theory of Relativity",
                 concepts: [
-                    "Inertial Frames: Frames moving at constant velocity where Newton's laws are valid.",
-                    "Michelson-Morley Experiment: Null result proved the speed of light is invariant in all directions without ether.",
-                    "Einstein's Postulates: 1. Physics laws are universal in all inertial frames. 2. Speed of light c is constant for all observers.",
-                    "Lorentz Factor: \\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\ge 1 \\).",
-                    "Relativistic Transformations: Spacetime transforms via \\( x' = \\gamma(x - ut) \\), \\( t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)."
+                    "Reference Frames and Galilean Transformation: An inertial reference frame is one with zero acceleration where Newton's laws hold true. Classical mechanics assumes absolute, universal space and time (\\( t' = t \\)). For frame S' moving at constant velocity \\( u \\) along the +x axis relative to frame S, coordinates transform as \\( x' = x - ut \\), \\( y' = y \\), \\( z' = z \\), \\( t' = t \\); velocities as \\( v'_x = v_x - u \\), \\( v'_y = v_y \\), \\( v'_z = v_z \\); and accelerations as \\( a'_x = a_x \\), \\( a'_y = a_y \\), \\( a'_z = a_z \\). Valid only when \\( u \\ll c \\).",
+                    "Speed of Light and the Michelson–Morley Experiment: Designed to detect Earth's motion through the hypothetical luminiferous ether. Light splits into two perpendicular arms of length \\( L \\). Expected travel times are \\( t_1 = \\frac{2Lc}{c^2 - v^2} \\) (parallel) and \\( t_2 = \\frac{2L}{\\sqrt{c^2 - v^2}} \\) (perpendicular). Time difference is \\( \\Delta t \\approx \\frac{Lv^2}{c^3} \\), path difference \\( \\Delta x = c\\Delta t \\approx \\frac{Lv^2}{c^2} \\), and expected fringe shift \\( \\Delta N = \\frac{\\Delta x}{\\lambda} = \\frac{Lv^2}{c^2\\lambda} \\). The experiment yielded a null result, disproving the existence of the ether and demonstrating that the speed of light is isotropic in all directions.",
+                    "Einstein's Two Postulates of Special Relativity: 1. The laws of physics are identical in all inertial reference frames. 2. The speed of light in vacuum is constant and invariant in all inertial reference frames, independent of the motion of the source or observer: \\( c = 299\\,792\\,458\\,\\mathrm{m/s} \\approx 3.0 \\times 10^8\\,\\mathrm{m/s} \\). Maxwell's electromagnetic relation confirms \\( c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}} \\), where \\( \\varepsilon_0 \\) is vacuum permittivity and \\( \\mu_0 \\) is vacuum permeability.",
+                    "Lorentz Transformation: Galilean transformations break down near light speed because they predict light speed varies with observer motion. The relativistic Lorentz factor is \\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\ge 1 \\). Forward transformations (S to S'): \\( x' = \\gamma(x - ut) \\), \\( y' = y \\), \\( z' = z \\), \\( t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\). Reverse transformations (S' to S): \\( x = \\gamma(x' + ut'), \\quad y = y', \\quad z = z', \\quad t = \\gamma\\left(t' + \\frac{ux'}{c^2}\\right) \\). When \\( u \\ll c \\), \\( \\gamma \\approx 1 \\), recovering Galilean mechanics.",
+                    "Relativistic Velocity Transformation: Velocity addition must account for spacetime transformations: forward transformations are \\( v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}} \\), \\( v'_y = \\frac{v_y}{\\gamma(1 - uv_x/c^2)} \\), \\( v'_z = \\frac{v_z}{\\gamma(1 - uv_x/c^2)} \\); reverse transformations are \\( v_x = \\frac{v'_x + u}{1 + \\frac{uv'_x}{c^2}} \\), \\( v_y = \\frac{v'_y}{\\gamma(1 + uv'_x/c^2)} \\), \\( v_z = \\frac{v'_z}{\\gamma(1 + uv'_x/c^2)} \\). For motion along a straight line, \\( v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}} \\). This guarantees that the relative speed of massive objects strictly remains below \\( c \\), and light always travels at \\( c \\) for all observers."
                 ],
                 definitions: [
-                    { term: "Speed of Light in Vacuum", definition: "Universal physical invariant speed limit.", symbol: "c", unit: "\\mathrm{m/s}", equation: "c \\approx 3.0\\times 10^8\\,\\mathrm{m/s}" },
-                    { term: "Lorentz Factor", definition: "Relativistic scaling factor for time dilation and length contraction.", symbol: "\\gamma", unit: "\\text{No unit}", equation: "\\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}}" },
-                    { term: "Lorentz Spatial Coordinate", definition: "Relativistic position transformation between moving frames.", symbol: "x'", unit: "\\mathrm{m}", equation: "x' = \\gamma(x - ut)" },
-                    { term: "Lorentz Time Coordinate", definition: "Relativistic time transformation showing relativity of simultaneity.", symbol: "t'", unit: "\\mathrm{s}", equation: "t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right)" },
-                    { term: "Relativistic Velocity Addition", definition: "Velocity combination ensuring no physical object exceeds c.", symbol: "v_x'", unit: "\\mathrm{m/s}", equation: "v_x' = \\frac{v_x - u}{1 - \\frac{u v_x}{c^2}}" }
+                    { term: "Inertial Reference Frame", definition: "A coordinate reference frame in which a body subject to zero net external force remains at rest or moves with uniform velocity in a straight line.", symbol: "S, S'", unit: "No SI unit", equation: "\\sum\\vec{F} = 0 \\implies \\vec{a} = 0" },
+                    { term: "Galilean Transformation", definition: "Classical equations relating coordinates, velocities, and accelerations between inertial frames, valid only at low speeds (u ≪ c) under the assumption of absolute time.", symbol: "\\text{Galileo}", unit: "No SI unit", equation: "x' = x - ut, \\quad v'_x = v_x - u, \\quad t' = t" },
+                    { term: "Michelson Interferometer", definition: "An optical instrument splitting light into two perpendicular arms of length L to detect path and travel-time differences via interference fringe shifts.", symbol: "L", unit: "\\mathrm{m}", equation: "\\Delta N = \\frac{\\Delta x}{\\lambda}" },
+                    { term: "Expected Fringe Shift", definition: "Theoretical shift in interference fringes expected in the Michelson-Morley interferometer if an ether wind were present.", symbol: "\\Delta N", unit: "No SI unit", equation: "\\Delta N = \\frac{Lv^2}{c^2\\lambda}" },
+                    { term: "First Postulate (Principle of Relativity)", definition: "The fundamental postulate stating that the laws of physics are the same in all inertial reference frames.", symbol: "\\text{Postulate 1}", unit: "No SI unit", equation: "\\text{Laws invariant in all inertial frames}" },
+                    { term: "Second Postulate (Constancy of Light Speed)", definition: "The postulate stating that the speed of light in vacuum is constant in all inertial reference frames, independent of the motion of the source or observer.", symbol: "c", unit: "\\mathrm{m/s}", equation: "c = 299\\,792\\,458\\,\\mathrm{m/s} \\approx 3.0 \\times 10^8\\,\\mathrm{m/s}" },
+                    { term: "Vacuum Permittivity", definition: "The physical constant representing the capability of vacuum to permit electric field lines.", symbol: "\\varepsilon_0", unit: "\\mathrm{F/m}", equation: "\\varepsilon_0 \\approx 8.854 \\times 10^{-12}\\,\\mathrm{F/m}" },
+                    { term: "Vacuum Permeability", definition: "The physical constant representing the capability of vacuum to permit magnetic field lines.", symbol: "\\mu_0", unit: "\\mathrm{T\\cdot m/A}", equation: "\\mu_0 = 4\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A}" },
+                    { term: "Electromagnetic Light Speed Relation", definition: "Maxwell's exact relationship connecting the speed of light to the vacuum permittivity and permeability.", symbol: "c", unit: "\\mathrm{m/s}", equation: "c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}}" },
+                    { term: "Lorentz Factor (γ)", definition: "The fundamental relativistic scaling factor that quantifies time dilation, length contraction, and coordinate transformations, always ≥ 1.", symbol: "\\gamma", unit: "No SI unit", equation: "\\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}}" },
+                    { term: "Lorentz Coordinate Transformation", definition: "Relativistic coordinate equations transforming spatial position between inertial reference frames moving at relative velocity u.", symbol: "x'", unit: "\\mathrm{m}", equation: "x' = \\gamma(x - ut)" },
+                    { term: "Lorentz Time Transformation", definition: "Relativistic time transformation showing that elapsed time and simultaneity depend directly on relative velocity and spatial position.", symbol: "t'", unit: "\\mathrm{s}", equation: "t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right)" },
+                    { term: "Reverse Lorentz Transformation", definition: "Relativistic equations transforming space and time from moving frame S' back to rest frame S.", symbol: "x, t", unit: "\\mathrm{m, s}", equation: "x = \\gamma(x' + ut'), \\quad t = \\gamma\\left(t' + \\frac{ux'}{c^2}\\right)" },
+                    { term: "Relativistic Velocity Transformation", definition: "Formulas relating particle velocity components between two reference frames, ensuring resultant speeds never exceed c.", symbol: "v'_x", unit: "\\mathrm{m/s}", equation: "v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}}" },
+                    { term: "Relativistic Velocity Addition", definition: "Collinear formula for combining relative velocities along the same straight line.", symbol: "v", unit: "\\mathrm{m/s}", equation: "v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}}" }
                 ],
                 examples: [
-                    { title: "Lorentz Factor Calculation", given: "Particle travels at \\( u = 0.80c \\).", find: "Lorentz factor \\( \\gamma \\).", equation: "\\gamma = \\frac{1}{\\sqrt{1 - u^2/c^2}}", solution: "\\( \\sqrt{1 - (0.80)^2} = \\sqrt{1 - 0.64} = 0.60 \\implies \\gamma = \\frac{1}{0.60} = 1.667 \\).", finalAnswer: "\\gamma \\approx 1.67", explanation: "At 80% light speed, time dilates and space contracts by factor 1.67." },
-                    { title: "Relativistic Velocity Addition", given: "Spaceship moves at \\( u = 0.70c \\) and fires a probe forward at \\( v_x' = 0.60c \\).", find: "Probe speed relative to Earth \\( v_x \\).", equation: "v_x = \\frac{v_x' + u}{1 + \\frac{u v_x'}{c^2}}", solution: "\\( v_x = \\frac{0.60c + 0.70c}{1 + (0.70)(0.60)} = \\frac{1.30c}{1.42} \\approx 0.915c \\).", finalAnswer: "v_x \\approx 0.915c", explanation: "Relativistic addition ensures total velocity remains below c." }
+                    {
+                        title: "Classical Galilean Relative Velocity of Two Moving Cars",
+                        given: "Car A travels East at \\( v_A = 60\\,\\mathrm{km/h} \\) relative to the road (frame S). Car B travels at \\( v_B = 40\\,\\mathrm{km/h} \\).",
+                        find: "1. Relative velocity of Car A with respect to Car B when both travel in the same direction (East).<br>2. Relative velocity when Car B travels in the opposite direction (West).",
+                        equation: "v' = v - u",
+                        solution: "1. <strong>Same direction:</strong> Frame S' moves with Car B (\\( u = +40\\,\\mathrm{km/h} \\)):<br>\\[ v' = v_A - u = 60\\,\\mathrm{km/h} - 40\\,\\mathrm{km/h} = +20\\,\\mathrm{km/h} \\]<br>2. <strong>Opposite directions:</strong> Car B moves West (\\( u = -40\\,\\mathrm{km/h} \\)):<br>\\[ v' = v_A - u = 60\\,\\mathrm{km/h} - (-40\\,\\mathrm{km/h}) = 60 + 40 = +100\\,\\mathrm{km/h} \\]",
+                        finalAnswer: "v'_{\\text{same}} = +20\\,\\mathrm{km/h}, \\quad v'_{\\text{opposite}} = +100\\,\\mathrm{km/h}",
+                        explanation: "Under Galilean relativity, relative velocities add or subtract linearly because time and space are assumed absolute across all reference frames."
+                    },
+                    {
+                        title: "Michelson–Morley Expected Fringe Shift Calculation",
+                        given: "Effective arm length \\( L = 11.0\\,\\mathrm{m} \\), Earth's orbital speed \\( v = 3.0 \\times 10^4\\,\\mathrm{m/s} \\), light wavelength \\( \\lambda = 5.5 \\times 10^{-7}\\,\\mathrm{m} \\), speed of light \\( c = 3.0 \\times 10^8\\,\\mathrm{m/s} \\).",
+                        find: "1. Ratio \\( \\frac{v^2}{c^2} \\).<br>2. Theoretical expected fringe shift (\\( \\Delta N \\)).",
+                        equation: "\\Delta N = \\frac{Lv^2}{c^2\\lambda}",
+                        solution: "1. <strong>Compute ratio \\( \\frac{v^2}{c^2} \\):</strong><br>\\[ \\frac{v^2}{c^2} = \\left(\\frac{3.0 \\times 10^4\\,\\mathrm{m/s}}{3.0 \\times 10^8\\,\\mathrm{m/s}}\\right)^2 = (1.0 \\times 10^{-4})^2 = 1.0 \\times 10^{-8} \\]<br>2. <strong>Expected fringe shift:</strong><br>\\[ \\Delta N = \\frac{L}{\\lambda}\\left(\\frac{v^2}{c^2}\\right) = \\frac{(11.0\\,\\mathrm{m})(1.0 \\times 10^{-8})}{5.5 \\times 10^{-7}\\,\\mathrm{m}} = \\frac{1.10 \\times 10^{-7}}{5.5 \\times 10^{-7}} = 0.20 \\text{ fringes} \\]",
+                        finalAnswer: "\\Delta N = 0.20 \\text{ fringes} \\; (0.40 \\text{ upon } 90^\\circ \\text{ rotation})",
+                        explanation: "The apparatus was capable of detecting fringe shifts as small as 0.01 fringe. Observing a zero shift (null result) proved that the luminiferous ether does not exist."
+                    },
+                    {
+                        title: "Relativistic Velocity Addition: Spaceship at 0.80c Firing Missile at 0.60c",
+                        given: "A spaceship moves past a space station at speed \\( u = 0.80c \\). The spaceship launches a missile forward at speed \\( v' = 0.60c \\) relative to itself.",
+                        find: "Speed of the missile (\\( v \\)) as measured by an observer on the space station.",
+                        equation: "v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}}",
+                        solution: "1. <strong>Numerator (classical sum):</strong><br>\\[ v' + u = 0.60c + 0.80c = 1.40c \\]<br>2. <strong>Denominator (relativistic correction):</strong><br>\\[ 1 + \\frac{uv'}{c^2} = 1 + \\frac{(0.80c)(0.60c)}{c^2} = 1 + 0.48 = 1.48 \\]<br>3. <strong>Resultant velocity:</strong><br>\\[ v = \\frac{1.40c}{1.48} = \\frac{140}{148}c = \\frac{35}{37}c \\approx 0.9459c \\approx 0.946c \\]",
+                        finalAnswer: "v \\approx 0.946c \\quad (2.84 \\times 10^8\\,\\mathrm{m/s})",
+                        explanation: "Classical Galilean addition predicts an impossible 1.40c (exceeding the speed of light). Relativistic addition ensures the resulting speed is 0.946c, strictly less than c."
+                    },
+                    {
+                        title: "Relativistic Velocity Addition: Spaceship at 0.50c Firing Missile at 0.70c",
+                        given: "A spacecraft travels away from Earth at speed \\( u = 0.50c \\) and fires a probe forward at speed \\( v' = 0.70c \\) relative to the spacecraft.",
+                        find: "Speed of the probe (\\( v \\)) as measured by observers on Earth.",
+                        equation: "v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}}",
+                        solution: "1. <strong>Numerator:</strong><br>\\[ v' + u = 0.70c + 0.50c = 1.20c \\]<br>2. <strong>Denominator:</strong><br>\\[ 1 + \\frac{uv'}{c^2} = 1 + \\frac{(0.50c)(0.70c)}{c^2} = 1 + 0.35 = 1.35 \\]<br>3. <strong>Resultant velocity:</strong><br>\\[ v = \\frac{1.20c}{1.35} = \\frac{120}{135}c = \\frac{8}{9}c \\approx 0.8889c \\approx 0.889c \\]",
+                        finalAnswer: "v \\approx 0.889c \\quad (2.67 \\times 10^8\\,\\mathrm{m/s})",
+                        explanation: "Despite the classical sum being 1.20c, relativistic velocity addition ensures the speed measured from Earth is only 0.889c."
+                    },
+                    {
+                        title: "Relative Speed of Two Electrons Moving in Opposite Directions at 0.50c",
+                        given: "In the laboratory reference frame S, Electron 1 travels to the right at \\( u = +0.50c \\) and Electron 2 travels to the left at \\( v_x = -0.50c \\).",
+                        find: "Relative velocity of Electron 2 as measured in the rest frame S' of Electron 1 (\\( v'_x \\)).",
+                        equation: "v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}}",
+                        solution: "Frame S' is attached to Electron 1 moving at \\( u = +0.50c \\). Electron 2 has velocity \\( v_x = -0.50c \\) in frame S.<br>1. <strong>Numerator:</strong><br>\\[ v_x - u = -0.50c - 0.50c = -1.00c \\]<br>2. <strong>Denominator:</strong><br>\\[ 1 - \\frac{uv_x}{c^2} = 1 - \\frac{(0.50c)(-0.50c)}{c^2} = 1 - (-0.25) = 1 + 0.25 = 1.25 \\]<br>3. <strong>Resultant relative velocity:</strong><br>\\[ v'_x = \\frac{-1.00c}{1.25} = -0.80c \\]",
+                        finalAnswer: "v'_x = -0.80c \\quad (\\text{Relative approaching speed is } 0.80c)",
+                        explanation: "Classical Galilean addition incorrectly predicts a relative speed of 1.00c. In special relativity, an observer riding on Electron 1 measures Electron 2 approaching at 0.80c."
+                    },
+                    {
+                        title: "Relative Speed of Two Spacecraft Moving in Opposite Directions at 0.750c and 0.850c",
+                        given: "Relative to Earth (frame S), Spacecraft A travels East at \\( u = +0.750c \\) and Spacecraft B travels West at \\( v_x = -0.850c \\).",
+                        find: "Relative velocity of Spacecraft B as measured by an astronaut aboard Spacecraft A (\\( v'_x \\)).",
+                        equation: "v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}}",
+                        solution: "Attach frame S' to Spacecraft A (\\( u = +0.750c \\)). In frame S, Spacecraft B has \\( v_x = -0.850c \\).<br>1. <strong>Numerator:</strong><br>\\[ v_x - u = -0.850c - 0.750c = -1.600c \\]<br>2. <strong>Denominator:</strong><br>\\[ 1 - \\frac{(0.750c)(-0.850c)}{c^2} = 1 - (-0.6375) = 1 + 0.6375 = 1.6375 \\]<br>3. <strong>Compute relative velocity:</strong><br>\\[ v'_x = \\frac{-1.600c}{1.6375} \\approx -0.9771c \\approx -0.977c \\]",
+                        finalAnswer: "v'_x \\approx -0.977c \\quad (\\text{Relative speed is } 0.977c)",
+                        explanation: "Galilean addition yields an impossible closing speed of 1.600c. In reality, astronauts on Spacecraft A measure Spacecraft B passing by at 0.977c, safely below the speed of light."
+                    }
                 ],
                 equations: [
-                    { section: "Lorentz Transformation", name: "Lorentz Factor", formula: "\\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\)", symbols: [{ symbol: "γ", desc: "Lorentz Factor" }, { symbol: "u", desc: "Frame velocity (m/s)" }] },
-                    { section: "Lorentz Transformation", name: "Space & Time Transformations", formula: "\\( x' = \\gamma(x - ut), \\quad t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)", symbols: [{ symbol: "x', t'", desc: "Transformed coordinates" }] },
-                    { section: "Velocity Addition", name: "Relativistic Velocity", formula: "\\( v_x' = \\frac{v_x - u}{1 - \\frac{u v_x}{c^2}} \\)", symbols: [{ symbol: "v_x'", desc: "Velocity in S'" }] }
+                    {
+                        section: "Reference Frames and Galilean Transformation",
+                        name: "Galilean Coordinate Transformation",
+                        formula: "\\[ x' = x - ut, \\quad y' = y, \\quad z' = z, \\quad t' = t \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Classical coordinate transformation between inertial reference frame S and frame S' moving at constant velocity u along the +x axis, assuming absolute universal time (t' = t).",
+                        conditions: "Classical limit where relative velocity is much smaller than light speed (u ≪ c).",
+                        variables: [
+                            { symbol: "x', y', z'", rep: "Spatial coordinates of event in moving frame S'", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "x, y, z", rep: "Spatial coordinates of event in rest frame S", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "u", rep: "Constant relative velocity of frame S' along +x axis", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "t, t'", rep: "Time coordinates (identical in classical mechanics)", unit: "Second", unitSym: "\\mathrm{s}" }
+                        ]
+                    },
+                    {
+                        section: "Reference Frames and Galilean Transformation",
+                        name: "Galilean Velocity and Acceleration Transformations",
+                        formula: "\\[ v'_x = v_x - u, \\quad v'_y = v_y, \\quad v'_z = v_z \\implies a'_x = a_x, \\quad a'_y = a_y, \\quad a'_z = a_z \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Differentiating Galilean coordinates shows that velocities add or subtract linearly, while accelerations are completely invariant across all inertial frames (a' = a), ensuring Newton's second law F = ma holds equally in both frames.",
+                        conditions: "Inertial reference frames with constant relative velocity u (du/dt = 0).",
+                        variables: [
+                            { symbol: "v'_x, v'_y, v'_z", rep: "Velocity components measured in frame S'", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "v_x, v_y, v_z", rep: "Velocity components measured in frame S", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "u", rep: "Relative frame velocity along x-axis", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "a'_x, a_x", rep: "Acceleration components (identical: a' = a)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                        ]
+                    },
+                    {
+                        section: "Speed of Light and the Michelson–Morley Experiment",
+                        name: "Michelson Interferometer Light Travel Times",
+                        formula: "\\[ t_1 = \\frac{2Lc}{c^2 - v^2} = \\frac{2L}{c\\left(1 - \\frac{v^2}{c^2}\\right)}, \\quad t_2 = \\frac{2L}{\\sqrt{c^2 - v^2}} = \\frac{2L}{c\\sqrt{1 - \\frac{v^2}{c^2}}} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Theoretical round-trip travel times for light beams in a Michelson interferometer: t₁ for the arm parallel to Earth's velocity v through the hypothetical ether, and t₂ for the arm perpendicular to the ether wind.",
+                        conditions: "Two equal arms of length L moving through ether at speed v.",
+                        variables: [
+                            { symbol: "t_1", rep: "Round-trip travel time along parallel arm (in ether wind)", unit: "Second", unitSym: "\\mathrm{s}" },
+                            { symbol: "t_2", rep: "Round-trip travel time along perpendicular arm", unit: "Second", unitSym: "\\mathrm{s}" },
+                            { symbol: "L", rep: "Length of each interferometer arm", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "c", rep: "Speed of light in vacuum", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "v", rep: "Orbital speed of Earth relative to ether (~30 km/s)", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                        ]
+                    },
+                    {
+                        section: "Speed of Light and the Michelson–Morley Experiment",
+                        name: "Time Difference, Path Difference and Expected Fringe Shift",
+                        formula: "\\[ \\Delta t \\approx \\frac{Lv^2}{c^3}, \\quad \\Delta x = c\\Delta t \\approx \\frac{Lv^2}{c^2}, \\quad \\Delta N = \\frac{\\Delta x}{\\lambda} = \\frac{Lv^2}{c^2\\lambda} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Using binomial approximations, the time difference between arms is Δt ≈ Lv²/c³, yielding optical path difference Δx = cΔt and expected fringe shift ΔN = Lv²/(c²λ). The observed null result (ΔN = 0) proved the absence of the luminiferous ether.",
+                        conditions: "Binomial expansion approximation for v ≪ c.",
+                        variables: [
+                            { symbol: "\\Delta t", rep: "Travel time difference between the two light paths", unit: "Second", unitSym: "\\mathrm{s}" },
+                            { symbol: "\\Delta x", rep: "Optical path difference (cΔt)", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "\\Delta N", rep: "Expected number of shifted interference fringes", unit: "Dimensionless fringe count", unitSym: "\\text{No SI unit}" },
+                            { symbol: "L", rep: "Effective arm length of the interferometer", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "v", rep: "Speed of Earth in orbit around the Sun", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "c", rep: "Speed of light in vacuum", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "\\lambda", rep: "Wavelength of the light source", unit: "Meter", unitSym: "\\mathrm{m}" }
+                        ]
+                    },
+                    {
+                        section: "Einstein's Two Postulates",
+                        name: "Universal Constancy of the Speed of Light",
+                        formula: "\\[ c = 299\\,792\\,458\\,\\mathrm{m/s} \\approx 3.0 \\times 10^8\\,\\mathrm{m/s} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Einstein's second postulate establishes that the speed of light in vacuum has the exact invariant value 299,792,458 m/s for all observers in all inertial frames, independent of the motion of source or observer.",
+                        conditions: "Vacuum in any inertial reference frame.",
+                        variables: [
+                            { symbol: "c", rep: "Speed of light in vacuum (universal constant)", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                        ]
+                    },
+                    {
+                        section: "Einstein's Two Postulates",
+                        name: "Electromagnetic Speed of Light Relation",
+                        formula: "\\[ c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Derived from Maxwell's electromagnetic equations, proving that the speed of light is directly linked to the fundamental electric permittivity ε₀ and magnetic permeability μ₀ of free space.",
+                        conditions: "Free space (vacuum).",
+                        variables: [
+                            { symbol: "c", rep: "Speed of electromagnetic waves in vacuum", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "\\varepsilon_0", rep: "Permittivity of free space (~8.854 × 10⁻¹² F/m)", unit: "Farad per meter", unitSym: "\\mathrm{F/m}" },
+                            { symbol: "\\mu_0", rep: "Permeability of free space (4π × 10⁻⁷ T·m/A)", unit: "Tesla meter per ampere", unitSym: "\\mathrm{T\\cdot m/A}" }
+                        ]
+                    },
+                    {
+                        section: "Lorentz Transformation",
+                        name: "Lorentz Factor (γ)",
+                        formula: "\\[ \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Relativistic scaling factor γ. When u ≪ c, u²/c² ≈ 0 and γ ≈ 1 (recovering Newtonian mechanics). As u approaches c, u²/c² → 1 and γ approaches infinity.",
+                        conditions: "Relative velocity u < c between inertial frames.",
+                        variables: [
+                            { symbol: "\\gamma", rep: "Lorentz factor (dimensionless, γ ≥ 1)", unit: "Dimensionless ratio", unitSym: "\\text{No SI unit}" },
+                            { symbol: "u", rep: "Relative speed between reference frames", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "c", rep: "Speed of light in vacuum", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                        ]
+                    },
+                    {
+                        section: "Lorentz Transformation",
+                        name: "Forward Lorentz Spacetime Transformations (S → S')",
+                        formula: "\\[ x' = \\gamma(x - ut), \\quad y' = y, \\quad z' = z, \\quad t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Transforms spacetime coordinates from rest frame S to moving frame S'. Demonstrates that space and time are fundamentally interlinked (spacetime), and simultaneity is relative.",
+                        conditions: "Frame S' moving at uniform velocity u along +x direction relative to frame S.",
+                        variables: [
+                            { symbol: "x', y', z'", rep: "Spatial coordinates in moving frame S'", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "t'", rep: "Time coordinate in moving frame S'", unit: "Second", unitSym: "\\mathrm{s}" },
+                            { symbol: "x, y, z", rep: "Spatial coordinates in rest frame S", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "t", rep: "Time coordinate in rest frame S", unit: "Second", unitSym: "\\mathrm{s}" },
+                            { symbol: "\\gamma", rep: "Lorentz factor", unit: "Dimensionless ratio", unitSym: "\\text{No SI unit}" },
+                            { symbol: "u", rep: "Relative frame velocity along x-axis", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "c", rep: "Speed of light in vacuum", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                        ]
+                    },
+                    {
+                        section: "Lorentz Transformation",
+                        name: "Reverse Lorentz Spacetime Transformations (S' → S)",
+                        formula: "\\[ x = \\gamma(x' + ut'), \\quad y = y', \\quad z = z', \\quad t = \\gamma\\left(t' + \\frac{ux'}{c^2}\\right) \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Inverse transformations converting coordinates from moving frame S' back to rest frame S, obtained by substituting -u for u by the principle of relativity.",
+                        conditions: "Valid for all inertial reference frames.",
+                        variables: [
+                            { symbol: "x, y, z", rep: "Spatial coordinates in rest frame S", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "t", rep: "Time coordinate in rest frame S", unit: "Second", unitSym: "\\mathrm{s}" },
+                            { symbol: "x', y', z'", rep: "Coordinates in moving frame S'", unit: "Meter", unitSym: "\\mathrm{m}" },
+                            { symbol: "t'", rep: "Time coordinate in moving frame S'", unit: "Second", unitSym: "\\mathrm{s}" },
+                            { symbol: "\\gamma", rep: "Lorentz factor", unit: "Dimensionless ratio", unitSym: "\\text{No SI unit}" },
+                            { symbol: "u", rep: "Relative speed between frames", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "c", rep: "Speed of light in vacuum", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                        ]
+                    },
+                    {
+                        section: "Relativistic Velocity Transformation",
+                        name: "Forward and Reverse Relativistic Velocity Transformations",
+                        formula: "\\[ v'_x = \\frac{v_x - u}{1 - \\frac{uv_x}{c^2}}, \\quad v'_y = \\frac{v_y}{\\gamma\\left(1 - \\frac{uv_x}{c^2}\\right)}, \\quad v'_z = \\frac{v_z}{\\gamma\\left(1 - \\frac{uv_x}{c^2}\\right)} \\]\\[ v_x = \\frac{v'_x + u}{1 + \\frac{uv'_x}{c^2}}, \\quad v_y = \\frac{v'_y}{\\gamma\\left(1 + \\frac{uv'_x}{c^2}\\right)}, \\quad v_z = \\frac{v'_z}{\\gamma\\left(1 + \\frac{uv'_x}{c^2}\\right)} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Full three-dimensional relativistic velocity transformation laws between inertial frames S and S'. Longitudinal velocities follow the modified addition formula, while transverse velocities are scaled by γ and the denominator.",
+                        conditions: "Frame S' moving along x-axis with relative velocity u.",
+                        variables: [
+                            { symbol: "v'_x, v'_y, v'_z", rep: "Velocity components measured in frame S'", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "v_x, v_y, v_z", rep: "Velocity components measured in frame S", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "u", rep: "Relative speed of frame S' along x-axis", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "\\gamma", rep: "Lorentz factor", unit: "Dimensionless ratio", unitSym: "\\text{No SI unit}" },
+                            { symbol: "c", rep: "Speed of light in vacuum", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                        ]
+                    },
+                    {
+                        section: "Relativistic Velocity Transformation",
+                        name: "Collinear Relativistic Velocity-Addition Formula",
+                        formula: "\\[ v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}} \\]",
+                        pdfPage: "Textbook Standards",
+                        explanation: "Einstein's relativistic velocity-addition law for collinear motion along the same straight line. Proves that adding any two sub-light velocities (u < c, v' < c) always yields an observed velocity v strictly less than c, ensuring c is the ultimate cosmic speed limit.",
+                        conditions: "Collinear motion along the same line of travel.",
+                        variables: [
+                            { symbol: "v", rep: "Combined velocity measured in observer frame S", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "v'", rep: "Velocity of object relative to moving frame S'", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "u", rep: "Relative velocity of moving frame S' with respect to frame S", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                            { symbol: "c", rep: "Speed of light in vacuum", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                        ]
+                    }
                 ],
                 flashcards: [
-                    { front: "What is the formula for the Lorentz factor γ?", back: "\\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\)" },
-                    { front: "What was the result of the Michelson-Morley experiment?", back: "Null result — proving light speed is constant with no ether." },
-                    { front: "What happens to γ as velocity approaches light speed c?", back: "γ approaches infinity." }
+                    { front: "What are the Galilean coordinate transformations?", back: "\\( x' = x - ut, \\quad y' = y, \\quad z' = z, \\quad t' = t \\) (valid only for \\( u \\ll c \\))." },
+                    { front: "What was the significance of the Michelson–Morley experiment's null result?", back: "It disproved the existence of the luminiferous ether and confirmed the speed of light is constant in all directions." },
+                    { front: "What are Einstein's two postulates of special relativity?", back: "1. Laws of physics are the same in all inertial frames.<br>2. Speed of light in vacuum is constant for all observers (\\( c \\approx 3.0 \\times 10^8\\,\\mathrm{m/s} \\))." },
+                    { front: "What is the formula for the Lorentz factor \\( \\gamma \\)?", back: "\\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\)" },
+                    { front: "What are the forward Lorentz coordinate and time transformations?", back: "\\( x' = \\gamma(x - ut), \\quad t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)" },
+                    { front: "What is the relativistic velocity-addition formula for motion along a straight line?", back: "\\( v = \\frac{v' + u}{1 + \\frac{uv'}{c^2}} \\)" },
+                    { front: "What is the formula for light speed in terms of \\( \\varepsilon_0 \\) and \\( \\mu_0 \\)?", back: "\\( c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}} \\)" },
+                    { front: "Why can't massive particles exceed the speed of light?", back: "Because the denominator \\( 1 + \\frac{uv'}{c^2} \\) prevents the sum from reaching or exceeding \\( c \\), and \\( \\gamma \\to \\infty \\) as \\( u \\to c \\)." }
                 ],
                 quiz: [
-                    { question: "According to Einstein's second postulate, the speed of light in vacuum is:", options: ["Dependent on source speed", "Dependent on observer speed", "Constant for all inertial observers", "Infinite"], correctIndex: 2, feedback: "Light speed c is invariant for all observers." },
-                    { question: "When u << c, the Lorentz factor γ approaches:", options: ["0", "1", "Infinity", "c"], correctIndex: 1, feedback: "At low speeds, γ approaches 1, reverting to Newtonian mechanics." }
+                    { question: "A spaceship moving at 0.80c fires a missile forward at 0.60c relative to itself. What is the missile's speed relative to an outside observer?", options: ["1.40c", "0.946c", "0.80c", "0.70c"], correctIndex: 1, feedback: "v = (0.60c + 0.80c) / [1 + (0.80)(0.60)] = 1.40c / 1.48 ≈ 0.946c." },
+                    { question: "Two electrons in a lab move in opposite directions, each at 0.50c. What is the speed of one electron relative to the other?", options: ["1.00c", "0.50c", "0.80c", "0.25c"], correctIndex: 2, feedback: "v' = (-0.50c - 0.50c) / [1 - (0.50)(-0.50)] = -1.00c / 1.25 = -0.80c (relative speed 0.80c)." },
+                    { question: "Which equation links the speed of light to the vacuum permittivity and permeability?", options: ["c = ε₀ / μ₀", "c = 1 / √(ε₀μ₀)", "c = √(ε₀ / μ₀)", "c = 1 / (ε₀μ₀)"], correctIndex: 1, feedback: "c = 1 / √(ε₀μ₀), derived from Maxwell's electromagnetic equations." },
+                    { question: "When relative velocity u is much smaller than c (u ≪ c), the Lorentz factor γ approaches:", options: ["0", "1", "Infinity", "c"], correctIndex: 1, feedback: "For u ≪ c, u²/c² ≈ 0, so γ = 1 / √(1 - 0) = 1, restoring classical Galilean mechanics." }
                 ]
             },
             // Chapter 4 Lesson 3
@@ -634,8 +1197,15 @@
                     { term: "Stopping Potential", definition: "Retarding potential required to reduce photocurrent to zero.", symbol: "V_s", unit: "\\mathrm{V}", equation: "K_{max} = eV_s" }
                 ],
                 examples: [
-                    { title: "Photoelectric Kinetic Energy", given: "UV light frequency \\( f = 1.0\\times 10^{15}\\,\\mathrm{Hz} \\), work function \\( E_0 = 2.30\\,\\mathrm{eV} = 3.685\\times 10^{-19}\\,\\mathrm{J} \\), \\( h = 6.626\\times 10^{-34}\\,\\mathrm{J\\cdot s} \\).", find: "Max kinetic energy \\( K_{max} \\).", equation: "K_{max} = hf - E_0", solution: "1. \\( hf = 6.626\\times 10^{-19}\\,\\mathrm{J} = 4.14\\,\\mathrm{eV} \\).<br>2. \\( K_{max} = 4.14 - 2.30 = 1.84\\,\\mathrm{eV} \\).", finalAnswer: "K_{max} = 1.84\\,\\mathrm{eV} \\; (2.94\\times 10^{-19}\\,\\mathrm{J})", explanation: "Conservation of energy on a single photon-electron collision basis." },
-                    { title: "Stopping Potential Calculation", given: "Max photoelectron energy \\( K_{max} = 1.84\\,\\mathrm{eV} \\).", find: "Stopping potential \\( V_s \\).", equation: "K_{max} = eV_s \\implies V_s = \\frac{K_{max}}{e}", solution: "\\( V_s = 1.84\\,\\mathrm{V} \\).", finalAnswer: "V_s = 1.84\\,\\mathrm{V}", explanation: "A retarding voltage of 1.84 V performs sufficient negative work to stop the electrons." }
+                    {
+                        title: "Maximum Kinetic Energy of Photoelectrons",
+                        given: "Incident radiation frequency \\( f = 1.0 \\times 10^{15}\\,\\mathrm{Hz} \\), Metal work function \\( E_0 = 2.30\\,\\mathrm{eV} = 3.685 \\times 10^{-19}\\,\\mathrm{J} \\), Planck constant \\( h = 6.626 \\times 10^{-34}\\,\\mathrm{J\\cdot s} \\).",
+                        find: "Photon energy (\\( E \\)) and maximum kinetic energy (\\( K_{max} \\)) in \\( \\mathrm{eV} \\) and \\( \\mathrm{J} \\).",
+                        equation: "E = hf, \\quad K_{max} = hf - E_0",
+                        solution: "1. <strong>Photon Energy:</strong><br>\\[ E = hf = (6.626 \\times 10^{-34}\\,\\mathrm{J\\cdot s})(1.0 \\times 10^{15}\\,\\mathrm{s^{-1}}) = 6.626 \\times 10^{-19}\\,\\mathrm{J} \\]\\[ E = \\frac{6.626 \\times 10^{-19}\\,\\mathrm{J}}{1.602 \\times 10^{-19}\\,\\mathrm{J/eV}} \\approx 4.14\\,\\mathrm{eV} \\]<br>2. <strong>Maximum Kinetic Energy:</strong><br>\\[ K_{max} = hf - E_0 = 4.14\\,\\mathrm{eV} - 2.30\\,\\mathrm{eV} = 1.84\\,\\mathrm{eV} \\]\\[ K_{max} = (1.84\\,\\mathrm{eV})(1.602 \\times 10^{-19}\\,\\mathrm{J/eV}) \\approx 2.95 \\times 10^{-19}\\,\\mathrm{J} \\]",
+                        finalAnswer: "K_{max} = 1.84\\,\\mathrm{eV} \\; (2.95 \\times 10^{-19}\\,\\mathrm{J})",
+                        explanation: "Energy conservation on a single photon-electron basis confirms that surplus photon energy above the work function is converted into photoelectron kinetic energy."
+                    }
                 ],
                 equations: [
                     { section: "Cathode Rays", name: "Thomson e/m Ratio", formula: "\\( \\frac{q}{m} = \\frac{ZE}{DlB^2} \\)", symbols: [{ symbol: "q/m", desc: "Charge to mass (C/kg)" }] },
@@ -659,14 +1229,27 @@
         window.MathJax = {
             tex: {
                 inlineMath: [['\\(', '\\)']],
-                displayMath: [['\\[', '\\]'], ['$$', '$$']]
+                displayMath: [['\\[', '\\]'], ['$$', '$$']],
+                processEscapes: true
+            },
+            chtml: {
+                scale: 0.92,
+                minScale: 0.75,
+                matchFontHeight: false
             },
             options: {
                 skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'iframe'],
                 enableMenu: false
             },
             startup: {
-                typeset: false
+                typeset: false,
+                ready: function() {
+                    MathJax.startup.defaultReady();
+                    var activeTab = document.querySelector('.tab-pane.active') || document.getElementById('tab-summary');
+                    if (activeTab && window.MathJax && window.MathJax.typesetPromise) {
+                        try { window.MathJax.typesetPromise([activeTab]); } catch(e) {}
+                    }
+                }
             }
         };
     </script>
@@ -690,9 +1273,9 @@
                     borderLight: "#b2ebf2",
                     shadow: "rgba(2, 136, 209, 0.22)",
                     chips: ["Moments", "Couples", "Equilibrium"],
-                    formulas: 14,
+                    formulas: 11,
                     terms: 14,
-                    examples: 12,
+                    examples: 11,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -709,9 +1292,9 @@
                     borderLight: "#fde68a",
                     shadow: "rgba(217, 119, 6, 0.22)",
                     chips: ["Levers", "Pulleys", "Incline Plane", "Gears", "Wheel & Axle"],
-                    formulas: 15,
+                    formulas: 8,
                     terms: 18,
-                    examples: 10,
+                    examples: 8,
                     sims: 5,
                     hasPdf: true,
                     hasQuiz: true
@@ -728,9 +1311,9 @@
                     borderLight: "#c7d2fe",
                     shadow: "rgba(79, 70, 229, 0.22)",
                     chips: ["Ohm's Law", "Power Formulas", "Domestic Wiring"],
-                    formulas: 18,
+                    formulas: 8,
                     terms: 15,
-                    examples: 10,
+                    examples: 8,
                     sims: 2,
                     hasPdf: true,
                     hasQuiz: true
@@ -747,9 +1330,9 @@
                     borderLight: "#fecdd3",
                     shadow: "rgba(225, 29, 72, 0.22)",
                     chips: ["B-Field", "Solenoid Coil", "Wire in Field"],
-                    formulas: 12,
+                    formulas: 6,
                     terms: 10,
-                    examples: 8,
+                    examples: 6,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -766,9 +1349,9 @@
                     borderLight: "#a7f3d0",
                     shadow: "rgba(5, 150, 105, 0.22)",
                     chips: ["Reflection", "Snell's Law", "Lenses & Mirrors"],
-                    formulas: 16,
+                    formulas: 6,
                     terms: 15,
-                    examples: 10,
+                    examples: 6,
                     sims: 7,
                     hasPdf: true,
                     hasQuiz: true
@@ -789,7 +1372,7 @@
                     chips: ["Ideal Gas Laws", "Molecular Speed", "Pressure"],
                     formulas: 16,
                     terms: 17,
-                    examples: 8,
+                    examples: 16,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -808,7 +1391,7 @@
                     chips: ["First Law", "Work Done", "Heat Capacity"],
                     formulas: 12,
                     terms: 14,
-                    examples: 6,
+                    examples: 12,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -825,9 +1408,9 @@
                     borderLight: "#fecaca",
                     shadow: "rgba(220, 38, 38, 0.22)",
                     chips: ["Carnot Cycle", "Efficiency", "Heat Transfer"],
-                    formulas: 10,
+                    formulas: 6,
                     terms: 10,
-                    examples: 5,
+                    examples: 6,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -844,9 +1427,9 @@
                     borderLight: "#bae6fd",
                     shadow: "rgba(2, 132, 199, 0.22)",
                     chips: ["Superposition", "Standing Waves", "Nodes & Antinodes"],
-                    formulas: 14,
+                    formulas: 8,
                     terms: 12,
-                    examples: 6,
+                    examples: 8,
                     sims: 2,
                     hasPdf: true,
                     hasQuiz: true
@@ -863,9 +1446,9 @@
                     borderLight: "#ddd6fe",
                     shadow: "rgba(124, 58, 237, 0.22)",
                     chips: ["Double Slit", "Interference", "Diffraction"],
-                    formulas: 10,
-                    terms: 8,
-                    examples: 5,
+                    formulas: 12,
+                    terms: 15,
+                    examples: 12,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -882,9 +1465,9 @@
                     borderLight: "#fecdd3",
                     shadow: "rgba(190, 18, 60, 0.22)",
                     chips: ["B-Fields", "Lorentz Force", "Induction", "RL Circuit"],
-                    formulas: 18,
+                    formulas: 20,
                     terms: 16,
-                    examples: 7,
+                    examples: 20,
                     sims: 3,
                     hasPdf: true,
                     hasQuiz: true
@@ -901,9 +1484,9 @@
                     borderLight: "#bfdbfe",
                     shadow: "rgba(37, 99, 235, 0.22)",
                     chips: ["AC Waveforms", "RMS Values", "RLC Impedance", "Power Factor"],
-                    formulas: 16,
+                    formulas: 14,
                     terms: 14,
-                    examples: 6,
+                    examples: 14,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -912,17 +1495,17 @@
                     id: "g12-ch4-l1",
                     chapterNum: "Chapter 4 • Lesson 1",
                     chapterName: "Semiconductors & Transistors",
-                    subtitle: "Semiconductor Doping, P-N Junction & Transistor Amplification",
+                    subtitle: "Resistance & Resistivity, Doping, P-N Junction, Transistors & ICs",
                     icon: "fa-microchip",
                     color: "#059669",
                     gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
                     bgLight: "#d1fae5",
                     borderLight: "#a7f3d0",
                     shadow: "rgba(5, 150, 105, 0.22)",
-                    chips: ["P-N Junction", "Transistors", "Current Gain"],
-                    formulas: 8,
-                    terms: 10,
-                    examples: 4,
+                    chips: ["Resistivity", "P-N Junction", "Transistors", "ICs"],
+                    formulas: 10,
+                    terms: 18,
+                    examples: 10,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -931,17 +1514,17 @@
                     id: "g12-ch4-l2",
                     chapterNum: "Chapter 4 • Lesson 2",
                     chapterName: "Special Theory of Relativity",
-                    subtitle: "Michelson-Morley, Lorentz Transformation & Special Relativity",
+                    subtitle: "Galilean Transformation, Michelson-Morley, Lorentz & Relativistic Velocity",
                     icon: "fa-clock-rotate-left",
                     color: "#9333ea",
                     gradient: "linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)",
                     bgLight: "#f3e8ff",
                     borderLight: "#e9d5ff",
                     shadow: "rgba(147, 51, 234, 0.22)",
-                    chips: ["Lorentz Factor", "Relativity", "Speed of Light"],
-                    formulas: 6,
-                    terms: 12,
-                    examples: 6,
+                    chips: ["Galilean", "Michelson-Morley", "Lorentz", "Velocity Addition"],
+                    formulas: 11,
+                    terms: 15,
+                    examples: 11,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -958,9 +1541,9 @@
                     borderLight: "#bfdbfe",
                     shadow: "rgba(37, 99, 235, 0.22)",
                     chips: ["Thomson e/m", "Photoelectric", "Bohr Atom"],
-                    formulas: 10,
+                    formulas: 6,
                     terms: 12,
-                    examples: 5,
+                    examples: 6,
                     sims: 1,
                     hasPdf: true,
                     hasQuiz: true
@@ -1015,7 +1598,7 @@
                 if (subtitleEl) subtitleEl.innerText = 'Torque, Simple Machines, Electricity, Magnetism, and Light';
                 if (statsBar) {
                     statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 5 Chapters</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 75 Formulas</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 39 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 7 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
@@ -1026,7 +1609,7 @@
                 if (subtitleEl) subtitleEl.innerText = '4 Comprehensive Chapters • 10 Core Lessons: Ideal Gases, Waves, Magnetism & AC, and Modern Physics';
                 if (statsBar) {
                     statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters (10 Lessons)</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 110+ Formulas</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 115 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
@@ -1144,7 +1727,7 @@
             else if (canonicalId === 'g12-ch1-l2') canonicalId = 'g12-l2';
             else if (canonicalId === 'g12-ch1-l3') canonicalId = 'g12-l3';
             else if (canonicalId === 'g12-ch2-l2') canonicalId = 'g12-interf';
-            else if (canonicalId === 'g12-ch3-l2') canonicalId = 'g12-l6';
+            else if (canonicalId === 'g12-ac' || canonicalId === 'g12-ch3-l2') canonicalId = 'g12-l6';
 
             // Set Title from Catalog or Lesson object
             var titleEl = document.getElementById('lesson-detail-title');
@@ -1303,6 +1886,25 @@
             return '\\(' + s + '\\)';
         }
 
+        function formatSummaryMath(val) {
+            if (val === null || val === undefined) return '';
+            var str = String(val).trim();
+            if (!str) return '';
+            if (str.indexOf('\\(') !== -1 || str.indexOf('\\[') !== -1 || str.indexOf('$$') !== -1) {
+                if (!/<(div|p|table|ul|ol|li)[^>]*>/i.test(str)) {
+                    str = str.replace(/\r?\n/g, '<br>');
+                }
+                return str;
+            }
+            if (/\\(times|text|frac|sqrt|mu|alpha|beta|gamma|theta|phi|Delta|cdot|approx|le|ge|pm)/.test(str)) {
+                if (str.indexOf('=') !== -1 || str.indexOf('\\times') !== -1 || str.indexOf('\\frac') !== -1) {
+                    return '\\[' + str + '\\]';
+                }
+                return '\\(' + str + '\\)';
+            }
+            return str.replace(/\r?\n/g, '<br>');
+        }
+
         function renderCompleteLesson(lesson) {
             if (!lesson) return;
             window.currentLesson = lesson;
@@ -1358,12 +1960,15 @@
                         return '<div class="example">' +
                             '<div class="example-header"><h4><i class="fa-solid fa-pen-ruler"></i> ' + (e.title || 'Worked Example') + '</h4></div>' +
                             '<div class="example-body">' +
-                                (e.given ? '<div class="example-row"><span class="example-label">Given:</span> <div class="example-val">' + e.given + '</div></div>' : '') +
-                                (e.find ? '<div class="example-row"><span class="example-label">Find:</span> <div class="example-val">' + e.find + '</div></div>' : '') +
-                                (e.equation ? '<div class="example-row"><span class="example-label">Equation:</span> <div class="example-val">' + formatMath(e.equation) + '</div></div>' : '') +
-                                (e.solution ? '<div class="example-row"><span class="example-label">Solution:</span> <div class="example-val">' + e.solution + '</div></div>' : '') +
+                                (e.question ? '<div class="example-row example-question"><span class="example-label"><i class="fa-solid fa-circle-question" style="margin-right: 4px;"></i> Question:</span> <div class="example-val">' + formatSummaryMath(e.question) + '</div></div>' : '') +
+                                (e.given ? '<div class="example-row"><span class="example-label">Given:</span> <div class="example-val">' + formatSummaryMath(e.given) + '</div></div>' : '') +
+                                (e.find ? '<div class="example-row"><span class="example-label">Find:</span> <div class="example-val">' + formatSummaryMath(e.find) + '</div></div>' : '') +
+                                (e.equation ? '<div class="example-row"><span class="example-label">Formula:</span> <div class="example-val">' + formatMath(e.equation) + '</div></div>' : '') +
+                                (e.rearrangement ? '<div class="example-row"><span class="example-label">Rearrangement:</span> <div class="example-val">' + formatMath(e.rearrangement) + '</div></div>' : '') +
+                                (e.solution ? '<div class="example-row"><span class="example-label">Solution:</span> <div class="example-val">' + formatSummaryMath(e.solution) + '</div></div>' : '') +
                                 (e.finalAnswer ? '<div class="example-row final-answer"><span class="example-label">Final Answer:</span> <div class="example-val"><strong>' + formatMath(e.finalAnswer) + '</strong></div></div>' : '') +
-                                (e.explanation ? '<div class="example-row explanation"><span class="example-label">Explanation:</span> <div class="example-val">' + e.explanation + '</div></div>' : '') +
+                                (e.explanation ? '<div class="example-row explanation"><span class="example-label">Explanation:</span> <div class="example-val">' + formatSummaryMath(e.explanation) + '</div></div>' : '') +
+                                ((e.desc || e.content) ? '<p>' + (e.desc || e.content) + '</p>' : '') +
                             '</div>' +
                         '</div>';
                     }).join('');
@@ -1389,29 +1994,107 @@
 
             // 5. Equations Tab
             var eqGrid = document.getElementById('lesson-equations');
+            var statsBadge = document.getElementById('eq-stats-count');
+            var searchInput = document.getElementById('eq-search-input');
+            if (searchInput) searchInput.value = '';
             if (eqGrid) {
                 var eqList = lesson.equations || [];
+                if (statsBadge) statsBadge.innerText = eqList.length + ' Formulas';
                 var curSec = '';
                 var eqHtml = '';
                 for (var i = 0; i < eqList.length; i++) {
                     var eq = eqList[i];
                     if (eq.section && eq.section !== curSec) {
                         curSec = eq.section;
-                        eqHtml += '<div class="equation-section-title" style="grid-column: 1 / -1; margin-top: 2rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--cyan); padding-bottom: 0.5rem;"><h2 style="color: var(--primary-blue); font-size: 1.5rem;"><i class="fa-solid fa-layer-group"></i> ' + curSec + '</h2></div>';
+                        eqHtml += '<div class="equation-section-title" style="grid-column: 1 / -1; margin-top: 1.75rem; margin-bottom: 0.75rem; border-bottom: 2px solid var(--cyan, #0284c7); padding-bottom: 0.5rem;"><h2 style="color: var(--primary-blue, #1e3a8a); font-size: 1.4rem; display: flex; align-items: center; gap: 0.6rem;"><i class="fa-solid fa-layer-group" style="color: #0284c7;"></i> ' + curSec + '</h2></div>';
                     }
-                    var symHtml = (eq.symbols || []).map(function(s) {
-                        var sym = (s && s.symbol) ? String(s.symbol) : '';
-                        var desc = (s && s.desc) ? String(s.desc) : '';
-                        return '<li><strong>\\( ' + sym + ' \\)</strong> : ' + desc + '</li>';
-                    }).join('');
 
-                    eqHtml += '<div class="equation-card" onclick="this.classList.toggle(\'expanded\')">' +
-                        '<div class="eq-name">' + (eq.name || 'Formula') + '</div>' +
-                        '<div class="eq-formula">' + (eq.formula || '') + '</div>' +
-                        '<div class="eq-symbols">' +
-                            '<p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">' + (symHtml ? 'Symbols breakdown & SI Units:' : '') + '</p>' +
-                            '<ul>' + symHtml + '</ul>' +
+                    var tableRows = '';
+                    var rawSearchTokens = [eq.name || '', eq.section || '', eq.explanation || ''];
+
+                    if (eq.variables && eq.variables.length > 0) {
+                        for (var v = 0; v < eq.variables.length; v++) {
+                            var item = eq.variables[v];
+                            var sSym = item.symbol || '';
+                            var sRep = item.rep || '';
+                            var sUnit = item.unit || '';
+                            var sUSym = item.unitSym || '';
+
+                            rawSearchTokens.push(sSym, sRep, sUnit, sUSym);
+
+                            var uSymDisplay = (sUSym === 'No SI unit' || sUSym === 'No unit' || !sUSym) 
+                                ? '<span class="unit-none">No SI unit</span>' 
+                                : (sUSym.indexOf('\\') !== -1 || sUSym.indexOf('^') !== -1 ? '\\(' + sUSym + '\\)' : sUSym);
+
+                            var symDisplay = (sSym.indexOf('\\') !== -1 || sSym.indexOf('_') !== -1 || sSym.indexOf('^') !== -1 || sSym.indexOf('/') !== -1)
+                                ? '\\(' + sSym + '\\)'
+                                : '<strong>' + sSym + '</strong>';
+
+                            tableRows += '<tr>' +
+                                '<td class="col-sym">' + symDisplay + '</td>' +
+                                '<td class="col-rep">' + sRep + '</td>' +
+                                '<td class="col-unit">' + sUnit + '</td>' +
+                                '<td class="col-usym">' + uSymDisplay + '</td>' +
+                            '</tr>';
+                        }
+                    } else if (eq.symbols && eq.symbols.length > 0) {
+                        for (var s = 0; s < eq.symbols.length; s++) {
+                            var symObj = eq.symbols[s];
+                            var rawSym = (symObj && symObj.symbol) ? String(symObj.symbol) : '';
+                            var rawDesc = (symObj && symObj.desc) ? String(symObj.desc) : '';
+                            rawSearchTokens.push(rawSym, rawDesc);
+                            
+                            var unitMatch = rawDesc.match(/\(([^)]+)\)$/);
+                            var unitName = unitMatch ? unitMatch[1] : 'No SI unit';
+                            var cleanDesc = unitMatch ? rawDesc.substring(0, unitMatch.index).trim() : rawDesc;
+
+                            tableRows += '<tr>' +
+                                '<td class="col-sym">\\(' + rawSym + '\\)</td>' +
+                                '<td class="col-rep">' + cleanDesc + '</td>' +
+                                '<td class="col-unit">' + unitName + '</td>' +
+                                '<td class="col-usym">' + (unitName === 'No SI unit' ? '<span class="unit-none">No SI unit</span>' : '\\(' + unitName + '\\)') + '</td>' +
+                            '</tr>';
+                        }
+                    }
+
+                    var tableHtml = '';
+                    if (tableRows) {
+                        tableHtml = '<div class="eq-table-wrapper">' +
+                            '<table class="eq-vars-table">' +
+                                '<thead>' +
+                                    '<tr>' +
+                                        '<th style="width: 14%;">Symbol</th>' +
+                                        '<th style="width: 44%;">Representation</th>' +
+                                        '<th style="width: 24%;">SI Unit</th>' +
+                                        '<th style="width: 18%;">SI Unit Symbol</th>' +
+                                    '</tr>' +
+                                '</thead>' +
+                                '<tbody>' + tableRows + '</tbody>' +
+                            '</table>' +
+                        '</div>';
+                    }
+
+                    var pageBadge = eq.pdfPage 
+                        ? '<span class="eq-page-pill"><i class="fa-solid fa-file-pdf"></i> PDF Page ' + eq.pdfPage + '</span>'
+                        : '';
+
+                    var safeFormulaAttr = (eq.formula || '').replace(/"/g, '&quot;').replace(/\\/g, '\\\\');
+                    var searchFilterText = rawSearchTokens.join(' ').toLowerCase().replace(/"/g, '&quot;');
+
+                    eqHtml += '<div class="equation-card" data-eq-search="' + searchFilterText + '">' +
+                        '<div class="eq-card-header">' +
+                            '<div class="eq-name">' + (eq.name || 'Formula') + '</div>' +
+                            '<div class="eq-header-actions">' +
+                                pageBadge +
+                                '<button class="eq-copy-btn" type="button" onclick="copyEqLatex(this, \'' + safeFormulaAttr + '\')" title="Copy LaTeX formula">' +
+                                    '<i class="fa-regular fa-copy"></i> <span>Copy LaTeX</span>' +
+                                '</button>' +
+                            '</div>' +
                         '</div>' +
+                        '<div class="eq-formula">' + (eq.formula || '') + '</div>' +
+                        (eq.explanation ? '<div class="eq-explanation"><i class="fa-solid fa-circle-info"></i> <div><strong>Explanation:</strong> ' + eq.explanation + '</div></div>' : '') +
+                        (eq.conditions ? '<div class="eq-conditions"><i class="fa-solid fa-triangle-exclamation"></i> <div><strong>Conditions & Assumptions:</strong> ' + eq.conditions + '</div></div>' : '') +
+                        tableHtml +
                     '</div>';
                 }
                 eqGrid.innerHTML = eqHtml;
@@ -1674,6 +2357,75 @@
             }
         }
 
+        window.copyEqLatex = function(btn, latex) {
+            if (!latex) return;
+            var cleanLatex = latex.replace(/^\\\(\s*/, '').replace(/\s*\\\)$/, '').replace(/^\\\[\s*/, '').replace(/\s*\\\]$/, '');
+            var notifySuccess = function() {
+                var origHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Copied!</span>';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.innerHTML = origHtml;
+                    btn.classList.remove('copied');
+                }, 2000);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(cleanLatex).then(notifySuccess).catch(function() {
+                    fallbackCopy(cleanLatex, notifySuccess);
+                });
+            } else {
+                fallbackCopy(cleanLatex, notifySuccess);
+            }
+        };
+
+        function fallbackCopy(text, cb) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch(e) {}
+            document.body.removeChild(ta);
+            if (cb) cb();
+        }
+
+        window.filterLessonEquations = function(query) {
+            var q = (query || '').trim().toLowerCase();
+            var cards = document.querySelectorAll('#lesson-equations .equation-card');
+            var sectionTitles = document.querySelectorAll('#lesson-equations .equation-section-title');
+            var visibleCount = 0;
+
+            cards.forEach(function(card) {
+                var text = card.getAttribute('data-eq-search') || card.textContent.toLowerCase();
+                if (!q || text.indexOf(q) !== -1) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            sectionTitles.forEach(function(title) {
+                var next = title.nextElementSibling;
+                var hasVisibleCards = false;
+                while (next && !next.classList.contains('equation-section-title')) {
+                    if (next.classList.contains('equation-card') && next.style.display !== 'none') {
+                        hasVisibleCards = true;
+                        break;
+                    }
+                    next = next.nextElementSibling;
+                }
+                title.style.display = hasVisibleCards ? '' : 'none';
+            });
+
+            var statsBadge = document.getElementById('eq-stats-count');
+            if (statsBadge) {
+                statsBadge.innerText = visibleCount + (q ? ' Found' : ' Formulas');
+            }
+        };
+
         function onAppJsError() {
             console.warn('app.js script loading deferred or unavailable; hub operates with built-in curriculum catalog.');
         }
@@ -1896,6 +2648,16 @@
 
                 <!-- Equations Tab -->
                 <div id="tab-equations" class="tab-pane hidden">
+                    <div class="equations-toolbar">
+                        <div class="eq-search-wrapper">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="eq-search-input" placeholder="Search formulas by name, symbol, or unit (e.g., Carnot, Ohm, Tesla, W, J)..." oninput="filterLessonEquations(this.value)">
+                        </div>
+                        <div class="eq-stats-badge">
+                            <i class="fa-solid fa-square-root-variable"></i>
+                            <span id="eq-stats-count">0 Formulas</span>
+                        </div>
+                    </div>
                     <div class="equations-grid" id="lesson-equations">
                         <!-- Interactive Equation Cards Populated by JS -->
                     </div>
@@ -1992,6 +2754,7 @@
             </div>
         </div>
     </div>
+    <script src="physics-data.js"></script>
     <script src="app.js" onerror="onAppJsError()"></script>
 </body>
 </html>
