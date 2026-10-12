@@ -1244,6 +1244,7 @@ function applyExternalGames(config) {
 
 async function loadExternalGamesConfig() {
     try {
+        if (!window.location.protocol.startsWith('http')) return;
         const res = await fetch('games.json?t=' + Date.now(), { cache: 'no-store' });
         if (!res.ok) return;
         let text = await res.text();
@@ -1308,6 +1309,7 @@ function applyExternalWorksheets(config) {
 
 async function loadExternalWorksheetsConfig() {
     try {
+        if (!window.location.protocol.startsWith('http')) return;
         const res = await fetch('worksheets.json?t=' + Date.now(), { cache: 'no-store' });
         if (!res.ok) return;
         let text = await res.text();

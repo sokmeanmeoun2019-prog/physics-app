@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=75">
+    <link rel="stylesheet" href="styles.css">
     <style>
         .view.active {
             display: block !important;
@@ -39,6 +39,318 @@
     <script>
         window.pendingGrade = null;
         window.pendingLessonId = null;
+        window.currentGrade = '9';
+
+        var CURRICULUM_CATALOG = {
+            "9": [
+                {
+                    id: "g9-l1",
+                    chapterNum: "Chapter 1",
+                    chapterName: "Turning Effect of Force",
+                    subtitle: "Moments, Parallel Forces, Couple & Equilibrium",
+                    icon: "fa-scale-balanced",
+                    color: "#0288d1",
+                    gradient: "linear-gradient(135deg, #00bcd4 0%, #0288d1 100%)",
+                    bgLight: "#e0f7fa",
+                    borderLight: "#b2ebf2",
+                    shadow: "rgba(2, 136, 209, 0.22)",
+                    chips: ["Moments", "Couples", "Equilibrium"],
+                    formulas: 14,
+                    terms: 14,
+                    examples: 12,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g9-l2",
+                    chapterNum: "Chapter 2",
+                    chapterName: "Simple Machines",
+                    subtitle: "Levers, Pulleys, Inclined Plane, Gears & Wheel and Axle",
+                    icon: "fa-gears",
+                    color: "#d97706",
+                    gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+                    bgLight: "#fef3c7",
+                    borderLight: "#fde68a",
+                    shadow: "rgba(217, 119, 6, 0.22)",
+                    chips: ["Levers", "Pulleys", "Incline Plane", "Gears", "Wheel & Axle"],
+                    formulas: 15,
+                    terms: 18,
+                    examples: 10,
+                    sims: 5,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g9-l3",
+                    chapterNum: "Chapter 3",
+                    chapterName: "Electricity",
+                    subtitle: "Current, Voltage, Resistance, Ohm's Law & Electric Power",
+                    icon: "fa-bolt-lightning",
+                    color: "#4f46e5",
+                    gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+                    bgLight: "#e0e7ff",
+                    borderLight: "#c7d2fe",
+                    shadow: "rgba(79, 70, 229, 0.22)",
+                    chips: ["Ohm's Law", "Power Formulas", "Domestic Wiring"],
+                    formulas: 18,
+                    terms: 15,
+                    examples: 10,
+                    sims: 2,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g9-l4",
+                    chapterNum: "Chapter 4",
+                    chapterName: "Magnetic Field",
+                    subtitle: "Magnetic Field Lines, Solenoids & Wire Deflection",
+                    icon: "fa-magnet",
+                    color: "#e11d48",
+                    gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)",
+                    bgLight: "#ffe4e6",
+                    borderLight: "#fecdd3",
+                    shadow: "rgba(225, 29, 72, 0.22)",
+                    chips: ["B-Field", "Solenoid Coil", "Wire in Field"],
+                    formulas: 12,
+                    terms: 10,
+                    examples: 8,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g9-l5",
+                    chapterNum: "Chapter 5",
+                    chapterName: "Light",
+                    subtitle: "Reflection, Pinhole Camera, Refraction, Snell's Law & Mirrors",
+                    icon: "fa-lightbulb",
+                    color: "#059669",
+                    gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+                    bgLight: "#d1fae5",
+                    borderLight: "#a7f3d0",
+                    shadow: "rgba(5, 150, 105, 0.22)",
+                    chips: ["Reflection", "Snell's Law", "Lenses & Mirrors"],
+                    formulas: 16,
+                    terms: 15,
+                    examples: 10,
+                    sims: 7,
+                    hasPdf: true,
+                    hasQuiz: true
+                }
+            ],
+            "12": [
+                {
+                    id: "g12-l1",
+                    chapterNum: "Chapter 1",
+                    chapterName: "Kinetic Theory of Ideal Gases",
+                    subtitle: "Gas Laws, Pressure, Molecular Kinetic Energy & RMS Speed",
+                    icon: "fa-wind",
+                    color: "#0d9488",
+                    gradient: "linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)",
+                    bgLight: "#ccfbf1",
+                    borderLight: "#99f6e4",
+                    shadow: "rgba(13, 148, 136, 0.22)",
+                    chips: ["Ideal Gas Laws", "Molecular Speed", "Pressure"],
+                    formulas: 16,
+                    terms: 17,
+                    examples: 8,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-l2",
+                    chapterNum: "Chapter 2",
+                    chapterName: "Thermodynamics",
+                    subtitle: "First Law of Thermodynamics, Work Done & Thermodynamic Processes",
+                    icon: "fa-fire-flame-curved",
+                    color: "#ea580c",
+                    gradient: "linear-gradient(135deg, #f97316 0%, #c2410c 100%)",
+                    bgLight: "#ffedd5",
+                    borderLight: "#fed7aa",
+                    shadow: "rgba(234, 88, 12, 0.22)",
+                    chips: ["First Law", "Work Done", "Heat Capacity"],
+                    formulas: 12,
+                    terms: 14,
+                    examples: 6,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-l3",
+                    chapterNum: "Chapter 3",
+                    chapterName: "Heat Engines",
+                    subtitle: "Carnot Engine, Thermal Efficiency & Heat Reservoirs",
+                    icon: "fa-gauge-high",
+                    color: "#dc2626",
+                    gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
+                    bgLight: "#fee2e2",
+                    borderLight: "#fecaca",
+                    shadow: "rgba(220, 38, 38, 0.22)",
+                    chips: ["Carnot Cycle", "Efficiency", "Heat Transfer"],
+                    formulas: 10,
+                    terms: 10,
+                    examples: 5,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-l4",
+                    chapterNum: "Chapter 4",
+                    chapterName: "Mechanical Waves",
+                    subtitle: "Mechanical Waves, Wave Speed, Frequency & Sound Velocity",
+                    icon: "fa-water",
+                    color: "#0284c7",
+                    gradient: "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)",
+                    bgLight: "#e0f2fe",
+                    borderLight: "#bae6fd",
+                    shadow: "rgba(2, 132, 199, 0.22)",
+                    chips: ["Wave Equation", "Transverse Waves", "Sound Velocity"],
+                    formulas: 14,
+                    terms: 12,
+                    examples: 6,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-interf",
+                    chapterNum: "Chapter 5",
+                    chapterName: "Wave Superposition & Interference",
+                    subtitle: "Wave Superposition, Young's Double-Slit & Single-Slit Diffraction",
+                    icon: "fa-braille",
+                    color: "#7c3aed",
+                    gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
+                    bgLight: "#ede9fe",
+                    borderLight: "#ddd6fe",
+                    shadow: "rgba(124, 58, 237, 0.22)",
+                    chips: ["Double Slit", "Fringe Spacing", "Diffraction"],
+                    formulas: 10,
+                    terms: 8,
+                    examples: 5,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-standing",
+                    chapterNum: "Chapter 6",
+                    chapterName: "Standing Waves",
+                    subtitle: "Nodes, Antinodes & Resonance in Strings and Pipes",
+                    icon: "fa-wave-square",
+                    color: "#4f46e5",
+                    gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+                    bgLight: "#e0e7ff",
+                    borderLight: "#c7d2fe",
+                    shadow: "rgba(79, 70, 229, 0.22)",
+                    chips: ["Standing Waves", "Harmonics", "Resonance"],
+                    formulas: 8,
+                    terms: 8,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-l5",
+                    chapterNum: "Chapter 7",
+                    chapterName: "Magnetism & Self-Induction",
+                    subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
+                    icon: "fa-compass",
+                    color: "#be123c",
+                    gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
+                    bgLight: "#ffe4e6",
+                    borderLight: "#fecdd3",
+                    shadow: "rgba(190, 18, 60, 0.22)",
+                    chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"],
+                    formulas: 18,
+                    terms: 16,
+                    examples: 7,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-l6",
+                    chapterNum: "Chapter 8",
+                    chapterName: "Alternating Current",
+                    subtitle: "AC Waveforms, RMS Values, RLC Series Impedance & Transformers",
+                    icon: "fa-wave-square",
+                    color: "#2563eb",
+                    gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+                    bgLight: "#eff6ff",
+                    borderLight: "#bfdbfe",
+                    shadow: "rgba(37, 99, 235, 0.22)",
+                    chips: ["AC Current", "RLC Circuit", "Impedance", "Transformers"],
+                    formulas: 16,
+                    terms: 14,
+                    examples: 6,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-ch4-l1",
+                    chapterNum: "Chapter 9",
+                    chapterName: "Semiconductors & Transistors",
+                    subtitle: "Semiconductor Doping, P-N Junction & Transistor Amplification",
+                    icon: "fa-microchip",
+                    color: "#059669",
+                    gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+                    bgLight: "#d1fae5",
+                    borderLight: "#a7f3d0",
+                    shadow: "rgba(5, 150, 105, 0.22)",
+                    chips: ["P-N Junction", "Transistors", "Current Gain"],
+                    formulas: 8,
+                    terms: 10,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-ch4-l2",
+                    chapterNum: "Chapter 10",
+                    chapterName: "Special Relativity",
+                    subtitle: "Michelson-Morley, Lorentz Transformation & Special Relativity",
+                    icon: "fa-clock-rotate-left",
+                    color: "#9333ea",
+                    gradient: "linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)",
+                    bgLight: "#f3e8ff",
+                    borderLight: "#e9d5ff",
+                    shadow: "rgba(147, 51, 234, 0.22)",
+                    chips: ["Lorentz Factor", "Relativity", "Speed of Light"],
+                    formulas: 6,
+                    terms: 12,
+                    examples: 6,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                },
+                {
+                    id: "g12-ch4-l3",
+                    chapterNum: "Chapter 11",
+                    chapterName: "Atomic Structure",
+                    subtitle: "Cathode Rays, Thomson e/m, Photoelectric Effect & Bohr Model",
+                    icon: "fa-atom",
+                    color: "#2563eb",
+                    gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+                    bgLight: "#dbeafe",
+                    borderLight: "#bfdbfe",
+                    shadow: "rgba(37, 99, 235, 0.22)",
+                    chips: ["Thomson e/m", "Photoelectric", "Bohr Atom"],
+                    formulas: 10,
+                    terms: 12,
+                    examples: 5,
+                    sims: 1,
+                    hasPdf: true,
+                    hasQuiz: true
+                }
+            ]
+        };
 
         function showDashboard() {
             if (typeof window.appShowDashboard === 'function') {
@@ -58,18 +370,96 @@
             if (typeof window.appShowLessonsView === 'function') {
                 try { window.appShowLessonsView(true); return; } catch (e) {}
             }
-            var d = document.getElementById('view-dashboard');
-            var l = document.getElementById('view-lessons');
-            var dt = document.getElementById('view-lesson-detail');
-            if (d) { d.style.display = 'none'; d.classList.remove('active'); d.classList.add('hidden'); }
-            if (dt) { dt.style.display = 'none'; dt.classList.remove('active'); dt.classList.add('hidden'); }
-            if (l) { l.style.display = 'block'; l.classList.remove('hidden'); l.classList.add('active'); }
-            window.scrollTo(0, 0);
+            var g = window.pendingGrade || window.currentGrade || '9';
+            loadLessons(g);
+        }
+
+        function updateHeroBannerText(g) {
+            var gradePillText = document.getElementById('lessons-grade-pill-text');
+            var badgeText = document.getElementById('lessons-badge-text');
+            var titleEl = document.getElementById('lessons-title');
+            var subtitleEl = document.getElementById('lessons-subtitle');
+            var heroBanner = document.getElementById('lessons-hero-banner');
+            var gradeIndicator = document.getElementById('lessons-grade-indicator');
+            var statsBar = document.getElementById('lessons-stats-bar');
+
+            if (heroBanner) {
+                heroBanner.classList.remove('hero-theme-9', 'hero-theme-12');
+                heroBanner.classList.add('hero-theme-' + g);
+            }
+            if (gradeIndicator) {
+                gradeIndicator.classList.remove('indicator-grade-9', 'indicator-grade-12');
+                gradeIndicator.classList.add('indicator-grade-' + g);
+            }
+            if (gradePillText) gradePillText.innerText = 'Grade ' + g;
+
+            if (g === '9') {
+                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-compass-drafting"></i> Grade 9 • Fundamental Physics Curriculum';
+                if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g9">Grade 9</span> Physics';
+                if (subtitleEl) subtitleEl.innerText = 'Torque, Simple Machines, Electricity, Magnetism, and Light';
+                if (statsBar) {
+                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 5 Chapters</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 75 Formulas</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 7 Simulations</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
+                }
+            } else {
+                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-atom"></i> Grade 12 • Advanced & Modern Physics';
+                if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g12">Grade 12</span> Physics';
+                if (subtitleEl) subtitleEl.innerText = 'Ideal Gases, Thermodynamics, Waves, Magnetism, Self Induction, Alternating Current, and Modern Physics';
+                if (statsBar) {
+                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 11 Chapters</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 116 Formulas</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
+                }
+            }
+        }
+
+        function renderChapterCards(grade) {
+            var g = String(grade);
+            var container = document.getElementById('lesson-list-container');
+            if (!container) return;
+            var list = CURRICULUM_CATALOG[g] || [];
+            var html = '';
+            for (var i = 0; i < list.length; i++) {
+                var c = list[i];
+                var chipsHtml = (c.chips || []).map(function(t) { return '<span class="topic-tag">' + t + '</span>'; }).join('');
+                html += '<div class="lesson-card" data-lesson-id="' + c.id + '" ' +
+                    'style="--chapter-accent: ' + c.color + '; --chapter-gradient: ' + c.gradient + '; --chapter-shadow: ' + c.shadow + '; --chapter-bg-light: ' + c.bgLight + '; --chapter-border-light: ' + c.borderLight + ';" ' +
+                    'onclick="loadLessonDetail(\'' + c.id + '\')">' +
+                    '<div class="lesson-card-top">' +
+                        '<span class="lesson-number-pill"><i class="fa-solid fa-bookmark"></i> ' + c.chapterNum + '</span>' +
+                        '<div class="lesson-icon-circle">' +
+                            '<i class="fa-solid ' + c.icon + '"></i>' +
+                        '</div>' +
+                    '</div>' +
+                    '<h3 class="lesson-card-heading">' + c.chapterName + '</h3>' +
+                    '<p class="lesson-card-desc">' + c.subtitle + '</p>' +
+                    (chipsHtml ? '<div class="lesson-topic-tags">' + chipsHtml + '</div>' : '') +
+                    '<div class="lesson-features-row">' +
+                        '<span class="feat-pill"><i class="fa-solid fa-square-root-variable"></i> ' + c.formulas + ' Formulas</span>' +
+                        '<span class="feat-pill"><i class="fa-solid fa-book"></i> ' + c.terms + ' Terms</span>' +
+                        '<span class="feat-pill"><i class="fa-solid fa-lightbulb"></i> ' + c.examples + ' Examples</span>' +
+                        '<span class="feat-pill feat-sim"><i class="fa-solid fa-gamepad"></i> ' + c.sims + ' Sim' + (c.sims > 1 ? 's' : '') + '</span>' +
+                        (c.hasPdf ? '<span class="feat-pill feat-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</span>' : '') +
+                        (c.hasQuiz ? '<span class="feat-pill feat-quiz"><i class="fa-solid fa-brain"></i> Quiz</span>' : '') +
+                    '</div>' +
+                    '<div class="lesson-card-footer">' +
+                        '<span class="btn-start-label"><i class="fa-solid fa-circle-play"></i> Start Lesson</span>' +
+                        '<span class="btn-start-arrow"><i class="fa-solid fa-arrow-right"></i></span>' +
+                    '</div>' +
+                '</div>';
+            }
+            container.innerHTML = html;
         }
 
         function loadLessons(grade) {
             if (!grade) return;
             var g = String(grade);
+            window.currentGrade = g;
             window.pendingGrade = g;
 
             // Update URL hash
@@ -90,43 +480,28 @@
             if (_l) { _l.style.display = 'block'; _l.classList.remove('hidden'); _l.classList.add('active'); }
             window.scrollTo(0, 0);
 
-            // If app.js is ready, render immediately
+            // Update Hero Banner & Grade Indicator & Stats Bar immediately
+            updateHeroBannerText(g);
+
+            // Immediately render all chapters into DOM synchronously (0ms delay)
+            renderChapterCards(g);
+
+            // If app.js is ready, notify to sync
             if (typeof window.appLoadLessons === 'function') {
                 try {
                     window.appLoadLessons(g, false);
-                    return;
                 } catch (e) {
-                    console.error('Error in appLoadLessons:', e);
-                }
-            } else if (typeof window.renderLessonsList === 'function') {
-                try {
-                    window.renderLessonsList(g, false);
-                    return;
-                } catch (e) {
-                    console.error('Error in renderLessonsList:', e);
+                    console.warn(e);
                 }
             }
-
-            // Fallback poller
-            var tries = 0;
-            var timer = setInterval(function() {
-                tries++;
-                if (typeof window.appLoadLessons === 'function') {
-                    clearInterval(timer);
-                    try { window.appLoadLessons(g, false); } catch (err) { console.error(err); }
-                } else if (typeof window.renderLessonsList === 'function') {
-                    clearInterval(timer);
-                    try { window.renderLessonsList(g, false); } catch (err) { console.error(err); }
-                } else if (tries > 200) {
-                    clearInterval(timer);
-                }
-            }, 25);
         }
 
         function loadLessonDetail(lessonOrId) {
             if (!lessonOrId) return;
             var id = (typeof lessonOrId === 'object' && lessonOrId.id) ? lessonOrId.id : lessonOrId;
             window.pendingLessonId = id;
+            window.currentSelectedLessonId = id;
+
             try {
                 if (window.location.hash !== '#lesson/' + id) {
                     history.pushState({ lesson: id }, '', '#lesson/' + id);
@@ -134,10 +509,34 @@
             } catch (e) {
                 window.location.hash = '#lesson/' + id;
             }
+
+            // If app.js is ready with complete lesson engine, load it immediately
             if (typeof window.appLoadLessonDetail === 'function') {
-                try { window.appLoadLessonDetail(lessonOrId, false); } catch (e) {}
-            } else if (typeof window.openLessonDetail === 'function') {
-                try { window.openLessonDetail(lessonOrId, false); } catch (e) {}
+                try { window.appLoadLessonDetail(lessonOrId, false); return; } catch (e) {}
+            }
+            if (typeof window.openLessonDetail === 'function' && window.openLessonDetail !== loadLessonDetail) {
+                try { window.openLessonDetail(lessonOrId, false); return; } catch (e) {}
+            }
+
+            // Switch to lesson detail view immediately
+            var _d = document.getElementById('view-dashboard');
+            var _l = document.getElementById('view-lessons');
+            var _dt = document.getElementById('view-lesson-detail');
+            if (_d) { _d.style.display = 'none'; _d.classList.remove('active'); _d.classList.add('hidden'); }
+            if (_l) { _l.style.display = 'none'; _l.classList.remove('active'); _l.classList.add('hidden'); }
+            if (_dt) { _dt.style.display = 'block'; _dt.classList.remove('hidden'); _dt.classList.add('active'); }
+            window.scrollTo(0, 0);
+
+            var titleEl = document.getElementById('lesson-detail-title');
+            if (titleEl) {
+                var foundTitle = id;
+                for (var gr in CURRICULUM_CATALOG) {
+                    var items = CURRICULUM_CATALOG[gr];
+                    for (var k = 0; k < items.length; k++) {
+                        if (items[k].id === id) { foundTitle = items[k].chapterNum + ': ' + items[k].chapterName; break; }
+                    }
+                }
+                titleEl.innerText = foundTitle;
             }
         }
 
@@ -169,28 +568,31 @@
             }
         }
 
-        // On DOM ready, reflect active hash immediately to prevent flash of wrong screen
-        document.addEventListener('DOMContentLoaded', function() {
+        function onAppJsError() {
+            console.warn('app.js script loading deferred or unavailable; hub operates with built-in curriculum catalog.');
+        }
+
+        function handleRouteHash() {
             var hash = (window.location.hash || '').toLowerCase().replace(/^#\/?/, '');
             var params = new URLSearchParams(window.location.search);
             var qGrade = params.get('grade');
             var qLesson = params.get('lesson');
 
-            var d = document.getElementById('view-dashboard');
-            var l = document.getElementById('view-lessons');
-            var dt = document.getElementById('view-lesson-detail');
-
             if (hash.startsWith('lesson/') || qLesson) {
-                if (d) { d.style.display = 'none'; d.classList.remove('active'); d.classList.add('hidden'); }
-                if (l) { l.style.display = 'none'; l.classList.remove('active'); l.classList.add('hidden'); }
-                if (dt) { dt.style.display = 'block'; dt.classList.remove('hidden'); dt.classList.add('active'); }
-            } else if (hash === 'grade-9' || hash === 'grade9' || hash === 'g9' || qGrade === '9' ||
-                       hash === 'grade-12' || hash === 'grade12' || hash === 'g12' || qGrade === '12') {
-                if (d) { d.style.display = 'none'; d.classList.remove('active'); d.classList.add('hidden'); }
-                if (dt) { dt.style.display = 'none'; dt.classList.remove('active'); dt.classList.add('hidden'); }
-                if (l) { l.style.display = 'block'; l.classList.remove('hidden'); l.classList.add('active'); }
+                var lid = hash.startsWith('lesson/') ? hash.replace(/^lesson\//, '').trim() : qLesson;
+                if (lid) loadLessonDetail(lid);
+            } else if (hash === 'grade-9' || hash === 'grade9' || hash === 'g9' || qGrade === '9') {
+                loadLessons('9');
+            } else if (hash === 'grade-12' || hash === 'grade12' || hash === 'g12' || qGrade === '12') {
+                loadLessons('12');
+            } else if (hash === '' || hash === 'home' || hash === 'dashboard') {
+                showDashboard();
             }
-        });
+        }
+
+        document.addEventListener('DOMContentLoaded', handleRouteHash);
+        window.addEventListener('popstate', handleRouteHash);
+        window.addEventListener('hashchange', handleRouteHash);
 
         window.showDashboard = showDashboard;
         window.showLessonsView = showLessonsView;
@@ -198,6 +600,9 @@
         window.loadLessonDetail = loadLessonDetail;
         window.openLessonDetail = openLessonDetail;
         window.switchTab = switchTab;
+        window.onAppJsError = onAppJsError;
+        window.CURRICULUM_CATALOG = CURRICULUM_CATALOG;
+        window.renderChapterCards = renderChapterCards;
     </script>
 </head>
 <body>
@@ -222,7 +627,7 @@
                 <h1>Master Physics with <span class="brand-gradient">@MeanWIS</span></h1>
                 <p class="dashboard-subtitle">A colorful, interactive formula companion with complete definitions, step-by-step worked examples, simulations, and practice worksheets.</p>
                 <div class="dashboard-stats-pills">
-                    <span class="stat-pill"><i class="fa-solid fa-book-open"></i> 15 Full Chapters</span>
+                    <span class="stat-pill"><i class="fa-solid fa-book-open"></i> 16 Full Chapters</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 200+ Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-lightbulb"></i> Step-by-Step Examples</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET Simulations</span>
@@ -282,7 +687,7 @@
                     </div>
 
                     <div class="card-footer-info">
-                        <span><i class="fa-solid fa-layer-group"></i> 10 Chapters</span>
+                        <span><i class="fa-solid fa-layer-group"></i> 11 Chapters</span>
                         <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                         <span><i class="fa-solid fa-brain"></i> Quizzes</span>
                     </div>
@@ -481,6 +886,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=75"></script>
+    <script src="app.js" onerror="onAppJsError()"></script>
 </body>
 </html>
