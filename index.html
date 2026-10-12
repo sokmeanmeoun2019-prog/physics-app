@@ -20,6 +20,7 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="physics-data.js"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -510,14 +511,6 @@
                 window.location.hash = '#lesson/' + id;
             }
 
-            // If app.js is ready with complete lesson engine, load it immediately
-            if (typeof window.appLoadLessonDetail === 'function') {
-                try { window.appLoadLessonDetail(lessonOrId, false); return; } catch (e) {}
-            }
-            if (typeof window.openLessonDetail === 'function' && window.openLessonDetail !== loadLessonDetail) {
-                try { window.openLessonDetail(lessonOrId, false); return; } catch (e) {}
-            }
-
             // Switch to lesson detail view immediately
             var _d = document.getElementById('view-dashboard');
             var _l = document.getElementById('view-lessons');
@@ -527,9 +520,10 @@
             if (_dt) { _dt.style.display = 'block'; _dt.classList.remove('hidden'); _dt.classList.add('active'); }
             window.scrollTo(0, 0);
 
+            // Set Title from Catalog or Lesson object
             var titleEl = document.getElementById('lesson-detail-title');
+            var foundTitle = (typeof lessonOrId === 'object' && lessonOrId.title) ? lessonOrId.title : id;
             if (titleEl) {
-                var foundTitle = id;
                 for (var gr in CURRICULUM_CATALOG) {
                     var items = CURRICULUM_CATALOG[gr];
                     for (var k = 0; k < items.length; k++) {
@@ -538,6 +532,438 @@
                 }
                 titleEl.innerText = foundTitle;
             }
+
+            // Check if physicsData is available immediately
+            var pData = window.physicsData || window.appData;
+            var lessonObj = null;
+            if (typeof lessonOrId === 'object' && lessonOrId.title && lessonOrId.equations) {
+                lessonObj = lessonOrId;
+            } else if (pData) {
+                var allLessons = (pData['9'] || []).concat(pData['12'] || []);
+                lessonObj = allLessons.find(function(l) { return l.id === id; });
+                if (!lessonObj && id === 'g12-waves') lessonObj = allLessons.find(function(l) { return l.id === 'g12-l4'; });
+                if (!lessonObj && id === 'g12-mag') lessonObj = allLessons.find(function(l) { return l.id === 'g12-l5'; });
+            }
+
+            if (lessonObj) {
+                renderCompleteLesson(lessonObj);
+                return;
+            }
+
+            // If app.js engine has extra lesson definitions
+            if (typeof window.appLoadLessonDetail === 'function') {
+                try {
+                    window.appLoadLessonDetail(lessonOrId, false);
+                    return;
+                } catch (e) {
+                    console.warn('appLoadLessonDetail encountered an issue, using fallback:', e);
+                }
+            }
+
+            showLessonLoadingState(id, foundTitle);
+            waitForDataAndRender(id);
+        }
+
+        function showLessonLoadingState(id, title) {
+            var cList = document.getElementById('lesson-concepts');
+            var dGrid = document.getElementById('lesson-definitions');
+            var eContainer = document.getElementById('lesson-examples');
+            var eqGrid = document.getElementById('lesson-equations');
+            var loadingHtml = '<div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">' +
+                '<i class="fa-solid fa-atom fa-spin fa-2x" style="color: var(--cyan); margin-bottom: 1rem; display: block;"></i>' +
+                '<p style="font-size: 1.1rem; font-weight: 500; color: var(--text-main); margin-bottom: 0.5rem;">Loading educational data for ' + title + '...</p>' +
+                '<p style="font-size: 0.85rem;">Formulas, definitions, quizzes, and simulations are syncing.</p>' +
+            '</div>';
+            if (cList) cList.innerHTML = loadingHtml;
+            if (dGrid) dGrid.innerHTML = '';
+            if (eContainer) eContainer.innerHTML = '';
+            if (eqGrid) eqGrid.innerHTML = loadingHtml;
+        }
+
+        function waitForDataAndRender(id) {
+            var attempts = 0;
+            var interval = setInterval(function() {
+                attempts++;
+                if (typeof window.appLoadLessonDetail === 'function') {
+                    clearInterval(interval);
+                    try { window.appLoadLessonDetail(id, false); } catch(e) {}
+                    return;
+                }
+                var pData = window.physicsData || window.appData;
+                if (pData) {
+                    var allLessons = (pData['9'] || []).concat(pData['12'] || []);
+                    var found = allLessons.find(function(l) { return l.id === id; });
+                    if (found) {
+                        clearInterval(interval);
+                        renderCompleteLesson(found);
+                        return;
+                    }
+                }
+                if (attempts >= 40) {
+                    clearInterval(interval);
+                }
+            }, 100);
+        }
+
+        window.addEventListener('physicsDataReady', function(e) {
+            var activeId = window.pendingLessonId || window.currentSelectedLessonId;
+            if (activeId) {
+                window.pendingLessonId = null;
+                if (typeof window.appLoadLessonDetail === 'function') {
+                    try { window.appLoadLessonDetail(activeId, false); return; } catch(err) {}
+                }
+                var pData = e.detail || window.physicsData || window.appData;
+                if (pData) {
+                    var allLessons = (pData['9'] || []).concat(pData['12'] || []);
+                    var found = allLessons.find(function(l) { return l.id === activeId; });
+                    if (found) renderCompleteLesson(found);
+                }
+            }
+        });
+
+        function formatMath(str) {
+            if (!str) return '';
+            var s = String(str).trim();
+            if (!s) return '';
+            if (s.indexOf('\\(') !== -1 || s.indexOf('\\[') !== -1 || s.indexOf('$$') !== -1) return s;
+            return '\\(' + s + '\\)';
+        }
+
+        function renderCompleteLesson(lesson) {
+            if (!lesson) return;
+            window.currentLesson = lesson;
+
+            var titleEl = document.getElementById('lesson-detail-title');
+            if (titleEl) titleEl.innerText = lesson.title || 'Lesson Details';
+
+            // 1. Concepts
+            var conceptsList = document.getElementById('lesson-concepts');
+            var conceptsSection = document.getElementById('lesson-concepts-section');
+            if (conceptsList) {
+                var cList = lesson.concepts || [];
+                if (cList.length > 0) {
+                    conceptsList.innerHTML = cList.map(function(c) { return '<li>' + c + '</li>'; }).join('');
+                    if (conceptsSection) conceptsSection.style.display = 'block';
+                } else {
+                    conceptsList.innerHTML = '';
+                    if (conceptsSection) conceptsSection.style.display = 'none';
+                }
+            }
+
+            // 2. Definitions
+            var defsGrid = document.getElementById('lesson-definitions');
+            var defsSection = document.getElementById('lesson-definitions-section');
+            if (defsGrid) {
+                var dList = lesson.definitions || [];
+                if (dList.length > 0) {
+                    defsGrid.innerHTML = dList.map(function(d) {
+                        var metaItems = [];
+                        if (d.symbol) metaItems.push('<div class="meta-item"><span class="meta-label">Symbol:</span> <span class="meta-val">' + formatMath(d.symbol) + '</span></div>');
+                        if (d.unit) metaItems.push('<div class="meta-item"><span class="meta-label">SI Unit:</span> <span class="meta-val">' + (String(d.unit).indexOf('\\') !== -1 ? formatMath(d.unit) : d.unit) + '</span></div>');
+                        if (d.equation) metaItems.push('<div class="meta-item meta-equation"><span class="meta-label">Related Equation:</span> <div class="meta-val">' + formatMath(d.equation) + '</div></div>');
+                        return '<div class="definition-card">' +
+                            '<h4><i class="fa-solid fa-bookmark"></i> ' + (d.term || '') + '</h4>' +
+                            '<p class="def-desc">' + (d.definition || d.desc || '') + '</p>' +
+                            (metaItems.length > 0 ? '<div class="def-meta">' + metaItems.join('') + '</div>' : '') +
+                        '</div>';
+                    }).join('');
+                    if (defsSection) defsSection.style.display = 'block';
+                } else {
+                    defsGrid.innerHTML = '';
+                    if (defsSection) defsSection.style.display = 'none';
+                }
+            }
+
+            // 3. Examples
+            var examplesContainer = document.getElementById('lesson-examples');
+            var examplesSection = document.getElementById('lesson-examples-section');
+            if (examplesContainer) {
+                var eList = lesson.examples || [];
+                if (eList.length > 0) {
+                    examplesContainer.innerHTML = eList.map(function(e) {
+                        return '<div class="example">' +
+                            '<div class="example-header"><h4><i class="fa-solid fa-pen-ruler"></i> ' + (e.title || 'Worked Example') + '</h4></div>' +
+                            '<div class="example-body">' +
+                                (e.given ? '<div class="example-row"><span class="example-label">Given:</span> <div class="example-val">' + e.given + '</div></div>' : '') +
+                                (e.find ? '<div class="example-row"><span class="example-label">Find:</span> <div class="example-val">' + e.find + '</div></div>' : '') +
+                                (e.equation ? '<div class="example-row"><span class="example-label">Equation:</span> <div class="example-val">' + formatMath(e.equation) + '</div></div>' : '') +
+                                (e.solution ? '<div class="example-row"><span class="example-label">Solution:</span> <div class="example-val">' + e.solution + '</div></div>' : '') +
+                                (e.finalAnswer ? '<div class="example-row final-answer"><span class="example-label">Final Answer:</span> <div class="example-val"><strong>' + formatMath(e.finalAnswer) + '</strong></div></div>' : '') +
+                                (e.explanation ? '<div class="example-row explanation"><span class="example-label">Explanation:</span> <div class="example-val">' + e.explanation + '</div></div>' : '') +
+                            '</div>' +
+                        '</div>';
+                    }).join('');
+                    if (examplesSection) examplesSection.style.display = 'block';
+                } else {
+                    examplesContainer.innerHTML = '';
+                    if (examplesSection) examplesSection.style.display = 'none';
+                }
+            }
+
+            // 4. Animation Gif
+            var animSection = document.getElementById('lesson-animation-section');
+            var gifImg = document.getElementById('lesson-gif');
+            if (animSection && gifImg) {
+                if (lesson.gifUrl) {
+                    animSection.style.display = 'block';
+                    gifImg.src = lesson.gifUrl;
+                } else {
+                    animSection.style.display = 'none';
+                    gifImg.src = '';
+                }
+            }
+
+            // 5. Equations Tab
+            var eqGrid = document.getElementById('lesson-equations');
+            if (eqGrid) {
+                var eqList = lesson.equations || [];
+                var curSec = '';
+                var eqHtml = '';
+                for (var i = 0; i < eqList.length; i++) {
+                    var eq = eqList[i];
+                    if (eq.section && eq.section !== curSec) {
+                        curSec = eq.section;
+                        eqHtml += '<div class="equation-section-title" style="grid-column: 1 / -1; margin-top: 2rem; margin-bottom: 0.5rem; border-bottom: 2px solid var(--cyan); padding-bottom: 0.5rem;"><h2 style="color: var(--primary-blue); font-size: 1.5rem;"><i class="fa-solid fa-layer-group"></i> ' + curSec + '</h2></div>';
+                    }
+                    var symHtml = (eq.symbols || []).map(function(s) {
+                        var sym = (s && s.symbol) ? String(s.symbol) : '';
+                        var desc = (s && s.desc) ? String(s.desc) : '';
+                        return '<li><strong>\\( ' + sym + ' \\)</strong> : ' + desc + '</li>';
+                    }).join('');
+
+                    eqHtml += '<div class="equation-card" onclick="this.classList.toggle(\'expanded\')">' +
+                        '<div class="eq-name">' + (eq.name || 'Formula') + '</div>' +
+                        '<div class="eq-formula">' + (eq.formula || '') + '</div>' +
+                        '<div class="eq-symbols">' +
+                            '<p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">' + (symHtml ? 'Symbols breakdown & SI Units:' : '') + '</p>' +
+                            '<ul>' + symHtml + '</ul>' +
+                        '</div>' +
+                    '</div>';
+                }
+                eqGrid.innerHTML = eqHtml;
+            }
+
+            // 6. Flashcards Tab
+            initFlashcardsUI(lesson);
+
+            // 7. Quiz Tab
+            initQuizUI(lesson);
+
+            // 8. Worksheet Tab
+            initWorksheetUI(lesson);
+
+            // 9. Interactive Game Tab
+            initGameUI(lesson);
+
+            // Typeset math via MathJax
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                try { window.MathJax.typesetPromise(); } catch(e) {}
+            }
+
+            // Default Tab
+            var hasSummary = (lesson.concepts && lesson.concepts.length > 0) || (lesson.definitions && lesson.definitions.length > 0) || (lesson.examples && lesson.examples.length > 0);
+            switchTab(hasSummary ? 'summary' : 'equations');
+        }
+
+        var currentFcIdx = 0;
+        function initFlashcardsUI(lesson) {
+            currentFcIdx = 0;
+            var fcs = lesson.flashcards || [];
+            var fcBtn = document.querySelector('.tab-btn[data-target="flashcards"]');
+            if (fcBtn) fcBtn.classList.toggle('hidden', fcs.length === 0);
+            updateFcCard(lesson);
+
+            var flipBtn = document.getElementById('fc-flip-btn');
+            var card = document.getElementById('active-flashcard');
+            if (flipBtn && card) flipBtn.onclick = function() { card.classList.toggle('flipped'); };
+            if (card) card.onclick = function() { card.classList.toggle('flipped'); };
+
+            var prevBtn = document.getElementById('fc-prev');
+            var nextBtn = document.getElementById('fc-next');
+            if (prevBtn) prevBtn.onclick = function() {
+                if (currentFcIdx > 0) { currentFcIdx--; updateFcCard(lesson); }
+            };
+            if (nextBtn) nextBtn.onclick = function() {
+                if (currentFcIdx < fcs.length - 1) { currentFcIdx++; updateFcCard(lesson); }
+            };
+        }
+
+        function updateFcCard(lesson) {
+            var fcs = (lesson && lesson.flashcards) ? lesson.flashcards : [];
+            if (!fcs.length) return;
+            var fc = fcs[currentFcIdx];
+            var front = document.getElementById('fc-front-text');
+            var back = document.getElementById('fc-back-text');
+            var counter = document.getElementById('fc-counter');
+            var card = document.getElementById('active-flashcard');
+            if (card) card.classList.remove('flipped');
+            if (front) front.innerText = fc.front || '';
+            if (back) back.innerHTML = fc.back || '';
+            if (counter) counter.innerText = (currentFcIdx + 1) + ' / ' + fcs.length;
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                try { window.MathJax.typesetPromise([front, back]); } catch(e) {}
+            }
+        }
+
+        var currentQIdx = 0;
+        var currentQScore = 0;
+        function initQuizUI(lesson) {
+            currentQIdx = 0;
+            currentQScore = 0;
+            var quizList = lesson.quiz || [];
+            var qTabBtn = document.querySelector('.tab-btn[data-target="quiz"]');
+            if (qTabBtn) qTabBtn.classList.toggle('hidden', quizList.length === 0);
+
+            var qContainer = document.getElementById('quiz-question-container');
+            var rContainer = document.getElementById('quiz-results-container');
+            if (qContainer) qContainer.classList.remove('hidden');
+            if (rContainer) rContainer.classList.add('hidden');
+
+            loadQQuestion(lesson);
+
+            var nextBtn = document.getElementById('quiz-next-btn');
+            if (nextBtn) nextBtn.onclick = function() {
+                currentQIdx++;
+                if (currentQIdx < quizList.length) {
+                    loadQQuestion(lesson);
+                } else {
+                    if (qContainer) qContainer.classList.add('hidden');
+                    if (rContainer) rContainer.classList.remove('hidden');
+                    var scoreEl = document.getElementById('quiz-score');
+                    var totalEl = document.getElementById('quiz-total');
+                    var msgEl = document.getElementById('quiz-result-message');
+                    if (scoreEl) scoreEl.innerText = currentQScore;
+                    if (totalEl) totalEl.innerText = quizList.length;
+                    var pct = (currentQScore / (quizList.length || 1)) * 100;
+                    if (msgEl) {
+                        if (pct === 100) msgEl.innerText = 'Excellent! You mastered this topic.';
+                        else if (pct >= 50) msgEl.innerText = 'Good job! Keep practicing to get a perfect score.';
+                        else msgEl.innerText = 'You might want to review the summary and flashcards before trying again.';
+                    }
+                }
+            };
+
+            var retryBtn = document.getElementById('quiz-retry-btn');
+            if (retryBtn) retryBtn.onclick = function() { initQuizUI(lesson); };
+        }
+
+        function loadQQuestion(lesson) {
+            var quizList = lesson.quiz || [];
+            if (!quizList[currentQIdx]) return;
+            var q = quizList[currentQIdx];
+            var prog = document.getElementById('quiz-progress-text');
+            var qText = document.getElementById('quiz-question-text');
+            var opts = document.getElementById('quiz-options');
+            var fb = document.getElementById('quiz-feedback');
+            var nextBtn = document.getElementById('quiz-next-btn');
+            if (prog) prog.innerText = 'Question ' + (currentQIdx + 1) + ' of ' + quizList.length;
+            if (qText) qText.innerHTML = q.question || '';
+            if (fb) { fb.classList.add('hidden'); fb.className = 'quiz-feedback hidden'; }
+            if (nextBtn) nextBtn.classList.add('hidden');
+
+            if (opts) {
+                opts.innerHTML = '';
+                (q.options || []).forEach(function(opt, idx) {
+                    var btn = document.createElement('button');
+                    btn.className = 'quiz-option';
+                    btn.innerHTML = opt;
+                    btn.onclick = function() {
+                        Array.from(opts.children).forEach(function(child, cIdx) {
+                            child.disabled = true;
+                            if (cIdx === q.correctIndex) child.classList.add('correct');
+                            else if (cIdx === idx) child.classList.add('wrong');
+                        });
+                        if (fb) {
+                            fb.classList.remove('hidden');
+                            fb.innerHTML = q.feedback || '';
+                            if (idx === q.correctIndex) {
+                                currentQScore++;
+                                fb.classList.add('correct-feedback');
+                            } else {
+                                fb.classList.add('wrong-feedback');
+                            }
+                            if (window.MathJax && window.MathJax.typesetPromise) {
+                                try { window.MathJax.typesetPromise([fb]); } catch(e) {}
+                            }
+                        }
+                        if (nextBtn) nextBtn.classList.remove('hidden');
+                    };
+                    opts.appendChild(btn);
+                });
+            }
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                try { window.MathJax.typesetPromise([qText, opts]); } catch(e) {}
+            }
+        }
+
+        function initWorksheetUI(lesson) {
+            var wsContainer = document.getElementById('lesson-worksheet');
+            if (!wsContainer) return;
+            if (lesson.worksheetUrl) {
+                wsContainer.innerHTML = '<div class="worksheet-header">' +
+                    '<h2><i class="fa-solid fa-file-pdf"></i> ' + (lesson.title || 'Lesson') + ' - Practice Worksheet</h2>' +
+                    '<p>Open, download, or print the worksheet for practice exercises.</p>' +
+                '</div>' +
+                '<div class="worksheet-actions">' +
+                    '<a href="' + lesson.worksheetUrl + '" target="_blank" class="worksheet-btn primary">' +
+                        '<i class="fa-solid fa-arrow-up-right-from-square"></i> Open / Download PDF' +
+                    '</a>' +
+                '</div>' +
+                '<iframe src="' + lesson.worksheetUrl + '" class="worksheet-preview" title="Worksheet Preview"></iframe>';
+            } else {
+                wsContainer.innerHTML = '<div class="worksheet-empty"><i class="fa-solid fa-file-circle-question"></i><h3>Worksheet Coming Soon</h3><p>Practice exercises for this lesson will be available soon.</p></div>';
+            }
+        }
+
+        function initGameUI(lesson) {
+            var gameContainer = document.getElementById('lesson-game');
+            if (!gameContainer) return;
+            var games = lesson.games || [];
+            if (!games.length && lesson.gameUrl) games = [{ topic: "Interactive Simulation", url: lesson.gameUrl }];
+            if (!games.length) {
+                gameContainer.innerHTML = '<div class="game-empty"><i class="fa-solid fa-gamepad"></i><h3>Interactive Game Coming Soon</h3><p>An interactive simulation for this lesson will be available soon.</p></div>';
+                return;
+            }
+
+            function renderSelectedGame(idx) {
+                var g = games[idx] || games[0];
+                var topicPillsHtml = '';
+                if (games.length > 1) {
+                    topicPillsHtml = '<div class="game-topics-selector" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem;">' +
+                        games.map(function(item, i) {
+                            var isAct = i === idx;
+                            return '<button type="button" class="game-topic-pill' + (isAct ? ' active' : '') + '" data-game-idx="' + i + '" style="padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; cursor: pointer; border: 1.5px solid ' + (isAct ? 'var(--cyan)' : 'var(--border-color)') + '; background: ' + (isAct ? 'var(--cyan-light, #e0f7fa)' : 'var(--bg-card)') + '; color: ' + (isAct ? 'var(--primary-blue)' : 'var(--text-main)') + ';">' +
+                                '<i class="fa-solid fa-puzzle-piece" style="margin-right: 5px;"></i> ' + item.topic +
+                            '</button>';
+                        }).join('') +
+                    '</div>';
+                }
+
+                gameContainer.innerHTML = '<div class="game-header">' +
+                    '<h2><i class="fa-solid fa-gamepad"></i> ' + (lesson.title || 'Lesson') + '</h2>' +
+                    '<div class="game-current-topic"><i class="fa-solid fa-puzzle-piece"></i> Topic: <span>' + g.topic + '</span></div>' +
+                    '<p>Launch interactive simulation or practice game to test your physics intuition!</p>' +
+                '</div>' +
+                topicPillsHtml +
+                '<div class="game-actions">' +
+                    '<a href="' + g.url + '" target="_blank" rel="noopener noreferrer" class="game-btn primary">' +
+                        '<i class="fa-solid fa-arrow-up-right-from-square"></i> Open "' + g.topic + '" Simulation in New Tab' +
+                    '</a>' +
+                '</div>' +
+                '<div class="game-embed-wrapper">' +
+                    '<iframe src="' + g.url + '" class="game-preview" allowfullscreen title="' + g.topic + '"></iframe>' +
+                '</div>';
+
+                var pillBtns = gameContainer.querySelectorAll('.game-topic-pill');
+                pillBtns.forEach(function(btn) {
+                    btn.onclick = function() {
+                        var nextIdx = parseInt(btn.getAttribute('data-game-idx'), 10);
+                        renderSelectedGame(nextIdx);
+                    };
+                });
+            }
+
+            renderSelectedGame(0);
         }
 
         function openLessonDetail(lessonOrId) {
@@ -565,6 +991,12 @@
             });
             if (typeof window.appSwitchTab === 'function') {
                 try { window.appSwitchTab(targetName); } catch (e) {}
+            }
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                var activePane = document.getElementById('tab-' + targetName);
+                if (activePane) {
+                    try { window.MathJax.typesetPromise([activePane]); } catch(e) {}
+                }
             }
         }
 
@@ -603,6 +1035,7 @@
         window.onAppJsError = onAppJsError;
         window.CURRICULUM_CATALOG = CURRICULUM_CATALOG;
         window.renderChapterCards = renderChapterCards;
+        window.renderCompleteLesson = renderCompleteLesson;
     </script>
 </head>
 <body>
