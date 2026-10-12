@@ -67,7 +67,7 @@
       ]
     },
     "g12-l4": {
-      "chapter": "Chapter 2 Lesson 1: Superposition and Waves",
+      "chapter": "Chapter 2 Lesson 1: Superposition and Standing Waves",
       "games": [
         { "topic": "Superposition and Waves", "url": "https://gemini.google.com/share/2e83761df9b7" }
       ]
@@ -79,7 +79,7 @@
       ]
     },
     "g12-l5": {
-      "chapter": "Chapter 3 Lesson 1: Magnetism & Induction",
+      "chapter": "Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",
       "games": [
         { "topic": "Magnetic Field", "url": "https://gemini.google.com/share/8a653df6b614" },
         { "topic": "Faraday’s Law", "url": "https://gemini.google.com/share/a36b992c1d6d" },
@@ -87,13 +87,13 @@
       ]
     },
     "g12-l6": {
-      "chapter": "Chapter 3 Lesson 2: Alternating Current",
+      "chapter": "Chapter 3 Lesson 2: Alternating Currents",
       "games": [
         { "topic": "Alternating Current", "url": "https://gemini.google.com/share/0c850ab5a53b" }
       ]
     },
     "g12-ch4-l1": {
-      "chapter": "Chapter 4 Lesson 1: Solid-State Physics",
+      "chapter": "Chapter 4 Lesson 1: Semiconductors & Transistors",
       "games": []
     },
     "g12-ch4-l2": {

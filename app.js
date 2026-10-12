@@ -388,7 +388,7 @@ equations:[
 {question:"Which equation represents the Combined Gas Law?", options:["\\( PV = nRT \\)","\\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)","\\( P_1 T_1 = P_2 T_2 \\)","\\( V_1 / P_1 = V_2 / P_2 \\)"], correctIndex:1, feedback:"The Combined Gas Law is \\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)."},
 {question:"Total kinetic energy \\( K \\) of \\( N \\) molecules is given by:", options:["\\( \\frac{3}{2} N k_B T \\)","\\( \\frac{1}{2} N k_B T \\)","\\( N m_0 v^2 \\)","\\( P V^2 \\)"], correctIndex:0, feedback:"Total kinetic energy is the average energy per molecule multiplied by \\( N \\): \\( \\frac{3}{2} N k_B T \\)."}
 ]},
-{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",worksheetUrl:"worksheets/ch1-l2-worksheet.pdf",games:[{topic:"First Law of Thermodynamics",url:"https://gemini.google.com/share/9e34579d87cd"}],title:"Chapter 1 Lesson 2: First Law of Thermodynamic",concepts:["First Law of Thermodynamics: Conservation of energy in thermodynamic systems, \\( Q = W + \\Delta U \\).","Internal Energy (\\( U \\)): Depends solely on temperature for an ideal gas, \\( \\Delta U = \\frac{3}{2}nR\\Delta T \\).","Thermodynamic Work (\\( W \\)): Work done by expanding gas against external pressure, \\( W = P\\Delta V \\) (isobaric).","Special Processes: Isobaric (constant \\( P \\)), Isochoric (constant \\( V, W = 0 \\)), Isothermal (constant \\( T, \\Delta U = 0 \\)), and Adiabatic (\\( Q = 0 \\))."],definitions:[
+{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",worksheetUrl:"worksheets/ch1-l2-worksheet.pdf",games:[{topic:"First Law of Thermodynamics",url:"https://gemini.google.com/share/9e34579d87cd"}],title:"Chapter 1 Lesson 2: First Law of Thermodynamics",concepts:["First Law of Thermodynamics: Conservation of energy in thermodynamic systems, \\( Q = W + \\Delta U \\).","Internal Energy (\\( U \\)): Depends solely on temperature for an ideal gas, \\( \\Delta U = \\frac{3}{2}nR\\Delta T \\).","Thermodynamic Work (\\( W \\)): Work done by expanding gas against external pressure, \\( W = P\\Delta V \\) (isobaric).","Special Processes: Isobaric (constant \\( P \\)), Isochoric (constant \\( V, W = 0 \\)), Isothermal (constant \\( T, \\Delta U = 0 \\)), and Adiabatic (\\( Q = 0 \\))."],definitions:[
 {term:"First Law of Thermodynamics",definition:"The principle of conservation of energy applied to thermodynamic systems, stating that the heat added to a system equals the work done by the system plus the increase in its internal energy.",symbol:"Q = W + \\Delta U",unit:"\\mathrm{J}",equation:"Q = W + \\Delta U"},
 {term:"Internal Energy",definition:"The total microscopic kinetic and potential energy associated with the random thermal motions and bonds of all molecules within the system.",symbol:"U",unit:"\\mathrm{J}",equation:"U = \\frac{3}{2}nRT \\quad (\\text{monatomic ideal gas})"},
 {term:"Change in Internal Energy",definition:"The net increase or decrease of the system's thermal energy store between initial and final thermodynamic states, depending solely on temperature change.",symbol:"\\Delta U",unit:"\\mathrm{J}",equation:"\\Delta U = U_f - U_i = \\frac{3}{2}nR\\Delta T"},
@@ -498,7 +498,7 @@ equations:[
 {question:"Why is a Carnot engine's efficiency always less than 100%?", options:["Because \\( T_h \\) is finite","Because \\( T_c \\) is always greater than 0 K","Because friction exists","Because \\( Q_c \\) is zero"], correctIndex:1, feedback:"Reaching 100% would require \\( T_c = 0\\text{K} \\), which violates the third law of thermodynamics."},
 {question:"If an engine absorbs 1000J of heat from the hot reservoir and does 400J of work, how much heat is rejected?", options:["400J","600J","1000J","1400J"], correctIndex:1, feedback:"Using \\( Q_h = W_M + Q_c \\), we find \\( 1000 = 400 + Q_c \\Rightarrow Q_c = 600\\text{J} \\)."}
 ]},
-{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",worksheetUrl:"worksheets/ch2-l1-worksheet.pdf",games:[{topic:"Superposition and Waves",url:"https://gemini.google.com/share/2e83761df9b7"}],title:"Chapter 2 Lesson 1: Superposition and Waves",concepts:["Sinusoidal Wave: Propagates disturbances through space described by \\( y = a \\sin(\\omega t \\pm kx) \\).","Wave Characteristics: Wavelength (\\( \\lambda \\)), Period (\\( T \\)), Angular Frequency (\\( \\omega = 2\\pi/T \\)), and Wave Number (\\( k = 2\\pi/\\lambda \\)).","Wave Speed: Linear rate of propagation, \\( v = f\\lambda = \\frac{\\omega}{k} \\).","Superposition Principle: Net displacement equals the algebraic sum of individual wave displacements.","Standing Waves: Interference of identical opposite-traveling waves producing nodes (zero motion) and antinodes (maximum amplitude)."],definitions:[
+{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",worksheetUrl:"worksheets/ch2-l1-worksheet.pdf",games:[{topic:"Superposition and Waves",url:"https://gemini.google.com/share/2e83761df9b7"}],title:"Chapter 2 Lesson 1: Superposition and Standing Waves",concepts:["Sinusoidal Wave: Propagates disturbances through space described by \\( y = a \\sin(\\omega t \\pm kx) \\).","Wave Characteristics: Wavelength (\\( \\lambda \\)), Period (\\( T \\)), Angular Frequency (\\( \\omega = 2\\pi/T \\)), and Wave Number (\\( k = 2\\pi/\\lambda \\)).","Wave Speed: Linear rate of propagation, \\( v = f\\lambda = \\frac{\\omega}{k} \\).","Superposition Principle: Net displacement equals the algebraic sum of individual wave displacements.","Standing Waves: Interference of identical opposite-traveling waves producing nodes (zero motion) and antinodes (maximum amplitude)."],definitions:[
 {term:"Sinusoidal Wave",definition:"A smooth periodic travelling disturbance that propagates through space described by a sinusoidal function of space and time.",symbol:"y(x, t)",unit:"\\mathrm{m}",equation:"y = a \\sin(\\omega t \\pm kx)"},
 {term:"Displacement",definition:"The instantaneous position offset of a medium particle from its undisturbed central equilibrium position.",symbol:"y",unit:"\\mathrm{m}",equation:"y = a \\sin(\\omega t \\pm kx)"},
 {term:"Wave Amplitude",definition:"The maximum absolute displacement of a wave oscillation measured from the center line of equilibrium.",symbol:"a",unit:"\\mathrm{m}",equation:"y_{max} = a"},
@@ -620,36 +620,7 @@ equations:[
 {question:"When \\( m = 0 \\) in \\( d\\sin\\theta = m\\lambda \\), this corresponds to:", options:["The first dark fringe","The central maximum (bright fringe)","No interference","The minimum amplitude"], correctIndex:1, feedback:"\\( m = 0 \\) gives the zero maximum fringe, or central maximum."},
 {question:"What is the maximum amplitude \\( A' \\) of the superposition of two waves with amplitude \\( A \\)?", options:["\\( A \\)","\\( A/2 \\)","\\( 2A \\)","\\( 4A \\)"], correctIndex:2, feedback:"Constructive interference doubles the amplitude, giving a maximum of \\( 2A \\)."}
 ]},
-{id:"g12-standing",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_waves_3D.gif",worksheetUrl:"worksheets/ch2-l3-worksheet.pdf",games:[{topic:"Standing Waves & Harmonics",url:"https://gemini.google.com/share/2e83761df9b7"}],title:"Chapter 6: Standing Waves",concepts:[
-"Standing Wave: Formed by the superposition of two identical waves traveling in opposite directions.",
-"Wave Function: Described by \\( y = 2a \\sin(kx) \\cos(\\omega t) \\).",
-"Nodes: Points of permanently zero displacement where \\( \\sin(kx) = 0 \\implies x_n = n \\frac{\\lambda}{2} \\).",
-"Antinodes: Points of maximum vibrational amplitude \\( 2a \\) where \\( x_n = (2n + 1) \\frac{\\lambda}{4} \\).",
-"Resonance in Strings: Fixed at both ends with harmonics \\( f_n = n \\frac{v}{2L} \\)."
-],definitions:[
-{term:"Standing Wave",definition:"A stationary vibrational pattern formed by interference of two identical oppositely directed waves.",symbol:"\\text{Standing Wave}",unit:"\\mathrm{m}",equation:"y = 2a \\sin(kx) \\cos(\\omega t)"},
-{term:"Node",definition:"A point along a standing wave having permanently zero vibrational amplitude.",symbol:"A = 0",unit:"\\mathrm{m}",equation:"x_n = n \\frac{\\lambda}{2} \\quad (n = 0, 1, 2, \\dots)"},
-{term:"Antinode",definition:"A point along a standing wave experiencing peak constructive amplitude 2a.",symbol:"A = 2a",unit:"\\mathrm{m}",equation:"x_n = (2n + 1) \\frac{\\lambda}{4} \\quad (n = 0, 1, 2, \\dots)"},
-{term:"Fundamental Frequency (1st Harmonic)",definition:"Lowest resonant frequency at which a string or pipe vibrates standing waves.",symbol:"f_1",unit:"\\mathrm{Hz}",equation:"f_1 = \\frac{v}{2L}"},
-{term:"Harmonic Frequencies",definition:"Integer multiples of the fundamental frequency produced in resonant standing wave cavities.",symbol:"f_n",unit:"\\mathrm{Hz}",equation:"f_n = n f_1 = n \\frac{v}{2L}"}
-],examples:[
-{title:"Positions of Nodes on a Vibrating String",given:"Standing wave with wavelength \\( \\lambda = 0.60\\,\\mathrm{m} \\).",find:"Positions of first four nodes starting from \\( x = 0 \\).",equation:"x_n = n \\frac{\\lambda}{2}",solution:"\\( \\lambda/2 = 0.30\\,\\mathrm{m} \\).<br>For \\( n = 0, 1, 2, 3 \\): \\( x = 0\\,\\mathrm{m}, 0.30\\,\\mathrm{m}, 0.60\\,\\mathrm{m}, 0.90\\,\\mathrm{m} \\).",finalAnswer:"x = 0, \\; 0.30\\,\\mathrm{m}, \\; 0.60\\,\\mathrm{m}, \\; 0.90\\,\\mathrm{m}",explanation:"Adjacent nodes are spaced precisely by half a wavelength along the string."},
-{title:"Fundamental Resonant Frequency of a String",given:"String length \\( L = 0.80\\,\\mathrm{m} \\), wave speed \\( v = 240\\,\\mathrm{m/s} \\).",find:"Fundamental frequency \\( f_1 \\) and 3rd harmonic \\( f_3 \\).",equation:"f_n = n \\frac{v}{2L}",solution:"1. \\( f_1 = \\frac{240}{2(0.80)} = \\frac{240}{1.60} = 150\\,\\mathrm{Hz} \\).<br>2. \\( f_3 = 3 \\times 150\\,\\mathrm{Hz} = 450\\,\\mathrm{Hz} \\).",finalAnswer:"f_1 = 150\\,\\mathrm{Hz}, \\quad f_3 = 450\\,\\mathrm{Hz}",explanation:"The 3rd harmonic vibrates at three times the fundamental frequency."}
-],equations:[
-{section:"Standing Wave",name:"Standing Wave Equation",formula:"\\( y = 2a \\sin(kx) \\cos(\\omega t) \\)",symbols:[{symbol:"2a",desc:"Peak amplitude envelope (m)"},{symbol:"k",desc:"Wave number (rad/m)"},{symbol:"ω",desc:"Angular frequency (rad/s)"}]},
-{section:"Standing Wave",name:"Node Positions (Min Amplitude)",formula:"\\( x_n = n \\frac{\\lambda}{2} \\quad (n = 0, 1, 2, \\dots) \\)",symbols:[{symbol:"x_n",desc:"Node positions (m)"},{symbol:"λ",desc:"Wavelength (m)"}]},
-{section:"Standing Wave",name:"Antinode Positions (Max Amplitude)",formula:"\\( x_n = (2n + 1) \\frac{\\lambda}{4} \\quad (n = 0, 1, 2, \\dots) \\)",symbols:[{symbol:"x_n",desc:"Antinode positions (m)"}]},
-{section:"Harmonics",name:"String Resonant Frequencies",formula:"\\( f_n = n \\frac{v}{2L} \\quad (n = 1, 2, 3, \\dots) \\)",symbols:[{symbol:"f_n",desc:"Harmonic frequency (Hz)"},{symbol:"L",desc:"Length (m)"}]}
-],flashcards:[
-{front:"What is the standing wave equation?", back:"\\( y = 2a \\sin(kx) \\cos(\\omega t) \\)"},
-{front:"Where do nodes occur in a standing wave?", back:"\\( x_n = n \\frac{\\lambda}{2} \\)"},
-{front:"Where do antinodes occur in a standing wave?", back:"\\( x_n = (2n + 1) \\frac{\\lambda}{4} \\)"},
-{front:"What is the distance between two consecutive nodes?", back:"\\( \\frac{\\lambda}{2} \\) (half a wavelength)."}
-],quiz:[
-{question:"At what positions does a standing wave have minimum amplitude (nodes)?", options:["\\( x = n\\lambda \\)","\\( x = n\\lambda/2 \\)","\\( x = (2n+1)\\lambda/4 \\)","\\( x = n\\lambda/4 \\)"], correctIndex:1, feedback:"Nodes occur where sin(kx) = 0, yielding x = nλ/2."},
-{question:"The distance between a node and the nearest adjacent antinode is:", options:["\\( \\lambda \\)","\\( \\lambda / 2 \\)","\\( \\lambda / 4 \\)","\\( 2\\lambda \\)"], correctIndex:2, feedback:"Adjacent node and antinode are separated by a quarter wavelength: λ/4."}
-]},
-{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",worksheetUrl:"worksheets/ch3-l1-worksheet.pdf",games:[{topic:"Magnetic Field",url:"https://gemini.google.com/share/8a653df6b614"},{topic:"Faraday’s Law",url:"https://gemini.google.com/share/a36b992c1d6d"},{topic:"Self Induction",url:"https://gemini.google.com/share/ae9787424975"}],title:"Chapter 3 Lesson 1: Magnetism & Induction",concepts:[
+{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",worksheetUrl:"worksheets/ch3-l1-worksheet.pdf",games:[{topic:"Magnetic Field",url:"https://gemini.google.com/share/8a653df6b614"},{topic:"Faraday’s Law",url:"https://gemini.google.com/share/a36b992c1d6d"},{topic:"Self Induction",url:"https://gemini.google.com/share/ae9787424975"}],title:"Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",concepts:[
 "Magnetic Fields: Generated by moving electric charges, long straight wires, circular coils, and solenoids.",
 "Lorentz & Laplace Forces: Magnetic forces exerted on individual moving charges (\\( F = |q|vB\\sin\\theta \\)) and straight conductors (\\( F = IBl\\sin\\theta \\)).",
 "Electromagnetic Induction: Faraday's law states that an induced emf is produced by a changing magnetic flux (\\( e = -\\frac{d\\Phi}{dt} \\)), with Lenz's law opposing the flux change.",
@@ -748,7 +719,7 @@ equations:[
 {question:"The resonant angular frequency of an LC circuit is:", options:["\\( \\sqrt{CL} \\)","\\( \\frac{1}{CL} \\)","\\( \\frac{1}{\\sqrt{CL}} \\)","\\( \\frac{C}{L} \\)"], correctIndex:2, feedback:"The frequency is given by \\( \\omega_0 = \\frac{1}{\\sqrt{CL}} \\)."},
 {question:"The force between two parallel current-carrying wires depends inversely on:", options:["The length of the wires","The currents \\(I_1\\) and \\(I_2\\)","The permeability \\(\\mu_0\\)","The distance between them \\(a\\)"], correctIndex:3, feedback:"\\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\), so it is inversely proportional to distance \\(a\\)."}
 ]},
-{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",worksheetUrl:"worksheets/ch3-l2-worksheet.pdf",games:[{topic:"Alternating Current",url:"https://gemini.google.com/share/0c850ab5a53b"}],title:"Chapter 3 Lesson 2: Alternating Current",concepts:["Alternating Current & Voltage: Sinusoidal waveforms characterized by peak and RMS values: \\( I = \\frac{I_m}{\\sqrt{2}} \\), \\( V = \\frac{V_m}{\\sqrt{2}} \\).","Reactance in AC Circuits: Inductors resist AC via inductive reactance \\( Z_L = L\\omega \\); capacitors resist via capacitive reactance \\( Z_C = \\frac{1}{C\\omega} \\).","RLC Series Impedance: Total opposition to current given by \\( Z = \\sqrt{R^2 + (Z_L - Z_C)^2} \\), with Ohm's law \\( I = \\frac{V}{Z} \\).","Phase Angle & Power Factor: Phase difference \\( \\tan\\phi = \\frac{Z_L - Z_C}{R} \\), with true average power \\( P = VI\\cos\\phi \\).","RLC Series Circuit Diagram<br><img src='images/ch3-l2-rlc-circuit.png' style='width:100%; border-radius:8px; margin-top:10px;'>"],definitions:[
+{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",worksheetUrl:"worksheets/ch3-l2-worksheet.pdf",games:[{topic:"Alternating Current",url:"https://gemini.google.com/share/0c850ab5a53b"}],title:"Chapter 3 Lesson 2: Alternating Currents",concepts:["Alternating Current & Voltage: Sinusoidal waveforms characterized by peak and RMS values: \\( I = \\frac{I_m}{\\sqrt{2}} \\), \\( V = \\frac{V_m}{\\sqrt{2}} \\).","Reactance in AC Circuits: Inductors resist AC via inductive reactance \\( Z_L = L\\omega \\); capacitors resist via capacitive reactance \\( Z_C = \\frac{1}{C\\omega} \\).","RLC Series Impedance: Total opposition to current given by \\( Z = \\sqrt{R^2 + (Z_L - Z_C)^2} \\), with Ohm's law \\( I = \\frac{V}{Z} \\).","Phase Angle & Power Factor: Phase difference \\( \\tan\\phi = \\frac{Z_L - Z_C}{R} \\), with true average power \\( P = VI\\cos\\phi \\).","RLC Series Circuit Diagram<br><img src='images/ch3-l2-rlc-circuit.png' style='width:100%; border-radius:8px; margin-top:10px;'>"],definitions:[
 {term:"Alternating Current (AC)",definition:"Electric current that periodically reverses its direction and continuously fluctuates in magnitude sinusoidally with time.",symbol:"i(t)",unit:"\\mathrm{A}",equation:"i = i_m \\sin(\\omega t + \\phi_0)"},
 {term:"Peak Current (Current Amplitude)",definition:"The maximum instantaneous current magnitude reached in either half-cycle of an AC waveform.",symbol:"i_m \\text{ or } I_m",unit:"\\mathrm{A}",equation:"I_m = \\sqrt{2} \\times I"},
 {term:"Root Mean Square Current (RMS Current)",definition:"The effective DC-equivalent value of alternating current that produces the identical heating power in a given resistor.",symbol:"I",unit:"\\mathrm{A}",equation:"I = \\frac{I_m}{\\sqrt{2}} \\approx 0.7071 \\, I_m"},
@@ -811,7 +782,7 @@ equations:[
 {question:"The instantaneous current is \\( i = i_m \\sin(\\omega t + \\phi_0) \\). What is \\( i_m \\)?", options:["RMS current","Average current","Peak current","Initial current"], correctIndex:2, feedback:"\\( i_m \\) is the maximum or peak amplitude of the current."}
 ]},
 {
-id:"g12-ch4-l1",gifUrl:"",worksheetUrl:"worksheets/ch4-l1-worksheet.pdf",games:[],title:"Chapter 4 Lesson 1: Solid-State Physics",
+id:"g12-ch4-l1",gifUrl:"",worksheetUrl:"worksheets/ch4-l1-worksheet.pdf",games:[],title:"Chapter 4 Lesson 1: Semiconductors & Transistors",
 concepts:[
 "Semiconductor: Material with conductivity between conductor and insulator. Can be doped to form N-type (extra electrons) or P-type (extra holes).",
 "P-N Junction: Boundary between P-type and N-type semiconductors, creating a depletion region.",
@@ -1104,8 +1075,8 @@ const CHAPTER_THEMES = {
         borderLight: "#bae6fd",
         shadow: "rgba(2, 132, 199, 0.22)",
         icon: "fa-water",
-        subtitle: "Mechanical Waves, Wave Speed, Frequency & Sound Velocity",
-        chips: ["Wave Equation", "Transverse Waves", "Sound Velocity"]
+        subtitle: "Principle of Superposition, Standing Wave Nodes, Antinodes & Resonances",
+        chips: ["Superposition", "Standing Waves", "Nodes & Antinodes"]
     },
     "g12-waves": {
         color: "#0284c7",
@@ -1114,8 +1085,8 @@ const CHAPTER_THEMES = {
         borderLight: "#bae6fd",
         shadow: "rgba(2, 132, 199, 0.22)",
         icon: "fa-water",
-        subtitle: "Mechanical Waves, Wave Speed, Frequency & Sound Velocity",
-        chips: ["Wave Equation", "Transverse Waves", "Sound Velocity"]
+        subtitle: "Principle of Superposition, Standing Wave Nodes, Antinodes & Resonances",
+        chips: ["Superposition", "Standing Waves", "Nodes & Antinodes"]
     },
     "g12-interf": {
         color: "#7c3aed",
@@ -1124,18 +1095,18 @@ const CHAPTER_THEMES = {
         borderLight: "#ddd6fe",
         shadow: "rgba(124, 58, 237, 0.22)",
         icon: "fa-braille",
-        subtitle: "Wave Superposition, Young's Double-Slit & Single-Slit Diffraction",
-        chips: ["Double Slit", "Fringe Spacing", "Diffraction"]
+        subtitle: "Young's Double-Slit, Path Difference, Fringe Width & Diffraction Minima",
+        chips: ["Double Slit", "Interference", "Diffraction"]
     },
     "g12-standing": {
-        color: "#4f46e5",
-        gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
-        bgLight: "#e0e7ff",
-        borderLight: "#c7d2fe",
-        shadow: "rgba(79, 70, 229, 0.22)",
-        icon: "fa-wave-square",
-        subtitle: "Nodes, Antinodes & Resonance in Strings and Pipes",
-        chips: ["Standing Waves", "Harmonics", "Resonance"]
+        color: "#0284c7",
+        gradient: "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)",
+        bgLight: "#e0f2fe",
+        borderLight: "#bae6fd",
+        shadow: "rgba(2, 132, 199, 0.22)",
+        icon: "fa-water",
+        subtitle: "Principle of Superposition, Standing Wave Nodes, Antinodes & Resonances",
+        chips: ["Superposition", "Standing Waves", "Nodes & Antinodes"]
     },
     "g12-l5": {
         color: "#be123c",
@@ -1144,8 +1115,8 @@ const CHAPTER_THEMES = {
         borderLight: "#fecdd3",
         shadow: "rgba(190, 18, 60, 0.22)",
         icon: "fa-compass",
-        subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
-        chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"]
+        subtitle: "Biot-Savart, Lorentz Force, Faraday's Law, RL Circuit & Self-Inductance",
+        chips: ["B-Fields", "Lorentz Force", "Induction", "RL Circuit"]
     },
     "g12-mag": {
         color: "#be123c",
@@ -1562,10 +1533,10 @@ function loadLessons(grade, pushRoute = true) {
         } else {
             if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-atom"></i> Grade 12 • Advanced & Modern Physics';
             if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g12">Grade 12</span> Physics';
-            if (subtitleEl) subtitleEl.innerText = 'Ideal Gases, Thermodynamics, Waves, Magnetism, Self Induction, Alternating Current, and Modern Physics';
+            if (subtitleEl) subtitleEl.innerText = '4 Comprehensive Chapters • 10 Core Lessons: Ideal Gases, Waves, Magnetism & AC, and Modern Physics';
             if (statsBar) {
                 statsBar.innerHTML = `
-                    <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
+                    <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters (${totalChapters} Lessons)</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
@@ -1712,11 +1683,29 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
 
     let lesson = lessonOrId;
     if (typeof lessonOrId === 'string') {
+        let cleanId = String(lessonOrId).replace(/^[#\/]+/, '').replace(/^lesson\//i, '').replace(/\/+$/, '').trim().toLowerCase();
+        const aliasMap = {
+            'g12-waves': 'g12-l4',
+            'g12-standing': 'g12-l4',
+            'g12-superposition': 'g12-l4',
+            'g12-ch2-l1': 'g12-l4',
+            'g12-mag': 'g12-l5',
+            'g12-ch3-l1': 'g12-l5',
+            'g12-ac': 'g12-l6',
+            'g12-ch3-l2': 'g12-l6',
+            'g12-diffraction': 'g12-interf',
+            'g12-ch2-l2': 'g12-interf',
+            'g12-ch1-l1': 'g12-l1',
+            'g12-ch1-l2': 'g12-l2',
+            'g12-ch1-l3': 'g12-l3',
+            'g12-ch4-l1': 'g12-ch4-l1',
+            'g12-ch4-l2': 'g12-ch4-l2',
+            'g12-ch4-l3': 'g12-ch4-l3'
+        };
+        if (aliasMap[cleanId]) cleanId = aliasMap[cleanId];
         const pData = (typeof window !== 'undefined' && (window.physicsData || window.appData)) ? (window.physicsData || window.appData) : data;
         const allLessons = [...(pData['9'] || []), ...(pData['12'] || [])];
-        lesson = allLessons.find(l => l.id === lessonOrId) || null;
-        if (!lesson && lessonOrId === 'g12-waves') lesson = allLessons.find(l => l.id === 'g12-l4') || null;
-        if (!lesson && lessonOrId === 'g12-mag') lesson = allLessons.find(l => l.id === 'g12-l5') || null;
+        lesson = allLessons.find(l => l.id.toLowerCase() === cleanId) || null;
     }
     if (!lesson) {
         console.warn('Lesson not found:', lessonOrId);
@@ -3407,6 +3396,7 @@ function handleRoute() {
         let match = allLessons.find(l => l.id.toLowerCase() === hash);
         if (!match && hash === 'g12-waves') match = allLessons.find(l => l.id === 'g12-l4');
         if (!match && hash === 'g12-mag') match = allLessons.find(l => l.id === 'g12-l5');
+        if (!match && hash === 'g12-standing') match = allLessons.find(l => l.id === 'g12-l4');
         if (match) {
             loadLessonDetail(match.id, false);
             return;

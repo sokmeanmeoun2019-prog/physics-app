@@ -20,6 +20,640 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script id="inline-physics-data">
+        window.physicsData = window.physicsData || { "9": [], "12": [] };
+        window.appData = window.physicsData;
+        window.physicsData["9"] = [
+            {
+                id: "g9-l1",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Torque_animation.gif",
+                worksheetUrl: "worksheets/g9-ch1-worksheet.pdf",
+                games: [{ topic: "Turning Effect", url: "https://g.co/gemini/share/da86f09d1c05" }],
+                title: "Chapter 1: Turning Effect of Force",
+                concepts: [
+                    "Resultant Force: Calculated depending on the direction of the acting forces.",
+                    "Trigonometry Basics: Using right triangles to relate angles to side lengths (sine, cosine, tangent).",
+                    "Resolving Force: A force can be broken down into horizontal and vertical components.",
+                    "Moment of a force: The turning effect produced by a force.",
+                    "Principle of moment: For equilibrium, Anti-clockwise moment = Clockwise moment \\( M_{ACW} = M_{CW} \\)."
+                ],
+                definitions: [
+                    { term: "Resultant Force", definition: "The single overall vector force that represents the combined physical effect of two or more individual forces acting on an object.", symbol: "R", unit: "\\mathrm{N}", equation: "R = a + b \\quad\\text{or}\\quad R = |a - b|" },
+                    { term: "Collinear Forces", definition: "Forces whose lines of action lie along the exact same straight line, acting in either the same or directly opposite directions.", symbol: "a, b", unit: "\\mathrm{N}", equation: "R = a + b \\quad (\\text{same}) \\;\\Big|\\; R = |a - b| \\quad (\\text{opposite})" },
+                    { term: "Perpendicular Forces", definition: "Two forces that act at a right angle (90°) relative to each other, whose resultant forms the hypotenuse of a right-angled force triangle.", symbol: "R", unit: "\\mathrm{N}", equation: "R = \\sqrt{a^2 + b^2}" },
+                    { term: "Parallelogram Law of Forces", definition: "If two forces acting at a point are represented in magnitude and direction by adjacent sides of a parallelogram, their resultant is represented by the diagonal passing through that point.", symbol: "R", unit: "\\mathrm{N}", equation: "R = \\sqrt{a^2 + b^2 + 2ab\\cos\\theta}" },
+                    { term: "Resolution of a Force", definition: "The process of splitting a single applied vector force into two mutually perpendicular component forces (horizontal and vertical).", symbol: "F_x, F_y", unit: "\\mathrm{N}", equation: "F_x = F\\cos\\theta, \\; F_y = F\\sin\\theta" },
+                    { term: "Horizontal Component", definition: "The part of an applied force that acts parallel to the horizontal ground or x-axis.", symbol: "F_x", unit: "\\mathrm{N}", equation: "F_x = F\\cos\\theta \\quad (\\theta \\text{ to horizontal})" },
+                    { term: "Vertical Component", definition: "The part of an applied force that acts perpendicular to the ground along the vertical y-axis.", symbol: "F_y", unit: "\\mathrm{N}", equation: "F_y = F\\sin\\theta \\quad (\\theta \\text{ to horizontal})" },
+                    { term: "Direction of Resultant", definition: "The orientation angle (\\(\\theta\\)) that the resultant force makes with a chosen reference axis (typically the horizontal adjacent side).", symbol: "\\theta", unit: "{^\\circ} \\text{ or rad}", equation: "\\theta = \\tan^{-1}\\left(\\frac{b}{a}\\right)" },
+                    { term: "Moment of a Force", definition: "The turning effect or rotational tendency produced by a force about a fixed pivot or axis of rotation.", symbol: "M", unit: "\\mathrm{N\\cdot m}", equation: "M = F \\times d_{\\perp}" },
+                    { term: "Perpendicular Distance", definition: "The shortest distance measured perpendicularly from the axis of rotation or pivot to the line of action of the force.", symbol: "d_{\\perp}", unit: "\\mathrm{m}", equation: "d_{\\perp} = \\frac{M}{F}" },
+                    { term: "Principle of Moments", definition: "For an object in rotational equilibrium, the total sum of anti-clockwise moments about any pivot must equal the total sum of clockwise moments.", symbol: "M_{ACW}, M_{CW}", unit: "\\mathrm{N\\cdot m}", equation: "M_{ACW} = M_{CW}" },
+                    { term: "Net Moment", definition: "The resultant turning effect obtained by finding the algebraic difference between anti-clockwise and clockwise moments.", symbol: "M_{net}", unit: "\\mathrm{N\\cdot m}", equation: "M_{net} = M_{ACW} - M_{CW}" },
+                    { term: "Parallel Forces", definition: "Forces that act along parallel lines of action in the same or opposite directions on a rigid body.", symbol: "F_1, F_2", unit: "\\mathrm{N}", equation: "F_1 d_1 = F_2 d_2 \\implies \\frac{F_1}{F_2} = \\frac{d_2}{d_1}" },
+                    { term: "Beam Support Reaction Forces", definition: "The upward normal forces exerted by supports at points A and B to maintain equilibrium when supporting a downward load.", symbol: "F_A, F_B", unit: "\\mathrm{N}", equation: "F_A = \\frac{F \\times OB}{AB}, \\; F_B = \\frac{F \\times OA}{AB}" }
+                ],
+                examples: [
+                    { title: "Resultant of Forces in Same Direction", given: "Force \\( a = 15\\,\\mathrm{N} \\) directed East, Force \\( b = 25\\,\\mathrm{N} \\) directed East.", find: "Resultant force (\\( R \\)).", equation: "R = a + b", solution: "Since both forces act along the same line and in the identical direction:<br>\\( R = 15\\,\\mathrm{N} + 25\\,\\mathrm{N} = 40\\,\\mathrm{N} \\).", finalAnswer: "R = 40\\,\\mathrm{N} \\text{ (East)}", explanation: "When collinear forces pull in the same direction, their magnitudes add directly to produce a stronger net force." },
+                    { title: "Resultant of Forces in Opposite Directions", given: "Force \\( a = 40\\,\\mathrm{N} \\) pulling to the right, Force \\( b = 18\\,\\mathrm{N} \\) pulling to the left.", find: "Resultant force (\\( R \\)).", equation: "R = |a - b|", solution: "Because the forces pull in opposite directions, subtract the smaller magnitude from the larger:<br>\\( R = |40\\,\\mathrm{N} - 18\\,\\mathrm{N}| = 22\\,\\mathrm{N} \\).", finalAnswer: "R = 22\\,\\mathrm{N} \\text{ (to the right)}", explanation: "Opposite forces cancel each other partially; the resulting motion is dictated by the leftover force in the direction of the larger force." },
+                    { title: "Resultant of Perpendicular Forces (90° Angle)", given: "Horizontal force \\( a = 8\\,\\mathrm{N} \\), Vertical force \\( b = 6\\,\\mathrm{N} \\).", find: "Magnitude of the resultant force (\\( R \\)).", equation: "R = \\sqrt{a^2 + b^2}", solution: "Use Pythagoras' theorem on the perpendicular components:<br>\\( R = \\sqrt{(8)^2 + (6)^2} = \\sqrt{64 + 36} = \\sqrt{100} = 10\\,\\mathrm{N} \\).", finalAnswer: "R = 10\\,\\mathrm{N}", explanation: "Perpendicular vectors form the adjacent and opposite sides of a right triangle whose hypotenuse is the magnitude of the resultant force." },
+                    { title: "Resultant of Two Forces at an Oblique Angle (Parallelogram Law)", given: "Force \\( a = 5\\,\\mathrm{N} \\), Force \\( b = 7\\,\\mathrm{N} \\), Angle between forces \\( \\theta = 60^\\circ \\).", find: "Resultant force (\\( R \\)).", equation: "R = \\sqrt{a^2 + b^2 + 2ab\\cos\\theta}", solution: "Substitute values knowing \\( \\cos 60^\\circ = 0.5 \\):<br>\\( R = \\sqrt{5^2 + 7^2 + 2(5)(7)\\cos 60^\\circ} = \\sqrt{25 + 49 + 35} = \\sqrt{109} \\approx 10.44\\,\\mathrm{N} \\).", finalAnswer: "R \\approx 10.44\\,\\mathrm{N}", explanation: "The parallelogram law accounts for the geometric separation angle between two non-perpendicular vectors." },
+                    { title: "Resolving Force (Angle with Horizontal Axis)", given: "Tension force \\( F = 50\\,\\mathrm{N} \\) acting at \\( \\theta = 30^\\circ \\) above horizontal ground.", find: "Components \\( F_x \\) and \\( F_y \\).", equation: "F_x = F\\cos\\theta, \\; F_y = F\\sin\\theta", solution: "\\( F_x = 50 \\times \\cos 30^\\circ = 43.30\\,\\mathrm{N} \\)<br>\\( F_y = 50 \\times \\sin 30^\\circ = 25.00\\,\\mathrm{N} \\).", finalAnswer: "F_x = 43.30\\,\\mathrm{N}, \\; F_y = 25.00\\,\\mathrm{N}", explanation: "Cosine projection yields horizontal component, and sine projection yields vertical component." }
+                ],
+                equations: [
+                    { section: "Resultant Force", name: "Resultant: Opposite direction", formula: "\\( R = |a - b| \\)", symbols: [{ symbol: "R", desc: "Resultant Force (N)" }, { symbol: "a, b", desc: "Component Forces (N)" }] },
+                    { section: "Resultant Force", name: "Resultant: Same direction", formula: "\\( R = a + b \\)", symbols: [{ symbol: "R", desc: "Resultant Force (N)" }, { symbol: "a, b", desc: "Component Forces (N)" }] },
+                    { section: "Resultant Force (Perpendicular)", name: "Resultant: At 90° angle", formula: "\\( R = \\sqrt{a^2 + b^2} \\)", symbols: [{ symbol: "R", desc: "Resultant Force (N)" }, { symbol: "a, b", desc: "Component Forces (N)" }] },
+                    { section: "Resultant Force (At angle θ)", name: "Parallelogram Law of Forces", formula: "\\( R = \\sqrt{a^2 + b^2 + 2ab \\cos \\theta} \\)", symbols: [{ symbol: "R", desc: "Resultant Force (N)" }] },
+                    { section: "Resolving Force", name: "Horizontal Force", formula: "\\( F_x = F \\cos \\theta \\)", symbols: [{ symbol: "F_x", desc: "Horizontal Force (N)" }, { symbol: "F", desc: "Applied Force (N)" }, { symbol: "θ", desc: "Angle" }] },
+                    { section: "Resolving Force", name: "Vertical Force", formula: "\\( F_y = F \\sin \\theta \\)", symbols: [{ symbol: "F_y", desc: "Vertical Force (N)" }, { symbol: "F", desc: "Applied Force (N)" }, { symbol: "θ", desc: "Angle" }] },
+                    { section: "Moment", name: "Moment of a force", formula: "\\( M = F \\times d_{\\perp} \\)", symbols: [{ symbol: "M", desc: "Moment (N·m)" }, { symbol: "F", desc: "Force (N)" }, { symbol: "d_⊥", desc: "Perpendicular distance (m)" }] },
+                    { section: "Moment", name: "Principle of moments", formula: "\\( M_{ACW} = M_{CW} \\)", symbols: [{ symbol: "M_{ACW}, M_{CW}", desc: "Anti-Clockwise & Clockwise Moments (N·m)" }] }
+                ],
+                flashcards: [
+                    { front: "What is the formula for resultant of opposite forces?", back: "\\( R = |a - b| \\)" },
+                    { front: "What is the formula for resultant of perpendicular forces?", back: "\\( R = \\sqrt{a^2 + b^2} \\)" },
+                    { front: "What is the formula for the moment of a force?", back: "\\( M = F \\times d_{\\perp} \\)" },
+                    { front: "What is the condition for rotational equilibrium?", back: "\\( M_{ACW} = M_{CW} \\)" }
+                ],
+                quiz: [
+                    { question: "If forces of 10 N and 6 N act in opposite directions, the resultant is:", options: ["16 N", "4 N", "60 N", "1.67 N"], correctIndex: 1, feedback: "R = |10 - 6| = 4 N." },
+                    { question: "The resultant of perpendicular forces of 3 N and 4 N is:", options: ["7 N", "1 N", "5 N", "12 N"], correctIndex: 2, feedback: "R = sqrt(3^2 + 4^2) = 5 N." }
+                ]
+            },
+            {
+                id: "g9-l2",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",
+                worksheetUrl: "worksheets/g9-ch2-worksheet.pdf",
+                games: [{ topic: "Levers", url: "https://g.co/gemini/share/0b9242977d1a" }, { topic: "Inclined Plane", url: "https://g.co/gemini/share/a0f83fb13666" }],
+                title: "Chapter 2: Simple Machines",
+                concepts: [
+                    "Simple Machines: Devices that change magnitude, direction, or distance of force.",
+                    "Mechanical Advantage: Ratio of load force to effort force \\( MA = F_R / F_E \\).",
+                    "Velocity Ratio: Ratio of effort distance to load distance \\( VR = d_E / d_R \\).",
+                    "Efficiency: Percentage of useful work output: \\( eff = (MA / VR) \\times 100\\% \\)."
+                ],
+                definitions: [
+                    { term: "Mechanical Advantage (MA)", definition: "Factor by which a machine multiplies applied effort force.", symbol: "MA", unit: "\\text{No unit}", equation: "MA = \\frac{F_R}{F_E}" },
+                    { term: "Velocity Ratio (VR)", definition: "Ratio of distance moved by effort to distance moved by load.", symbol: "VR", unit: "\\text{No unit}", equation: "VR = \\frac{d_E}{d_R}" },
+                    { term: "Efficiency (eff)", definition: "Percentage of input work transformed into useful output work.", symbol: "eff", unit: "\\%", equation: "eff = \\frac{MA}{VR} \\times 100\\%" },
+                    { term: "Inclined Plane MA", definition: "Mechanical advantage of ramp of length L and height h.", symbol: "MA", unit: "\\text{No unit}", equation: "MA = \\frac{L}{h}" },
+                    { term: "Wheel and Axle MA", definition: "Ratio of wheel radius R to axle radius r.", symbol: "MA", unit: "\\text{No unit}", equation: "MA = \\frac{R}{r}" }
+                ],
+                examples: [
+                    { title: "Mechanical Advantage of a Lever", given: "Load \\( F_R = 600\\,\\mathrm{N} \\), Effort \\( F_E = 150\\,\\mathrm{N} \\).", find: "Mechanical Advantage (\\( MA \\)).", equation: "MA = F_R / F_E", solution: "\\( MA = 600 / 150 = 4.0 \\).", finalAnswer: "MA = 4.0", explanation: "Effort force is multiplied by 4." }
+                ],
+                equations: [
+                    { section: "Lever", name: "Mechanical Advantage", formula: "\\( MA = \\frac{F_R}{F_E} = \\frac{d_E}{d_R} \\)", symbols: [{ symbol: "MA", desc: "Mechanical Advantage" }, { symbol: "F_R, F_E", desc: "Load and Effort Forces (N)" }] },
+                    { section: "Lever", name: "Efficiency", formula: "\\( eff = \\frac{MA}{VR} \\times 100\\% \\)", symbols: [{ symbol: "eff", desc: "Efficiency (%)" }] },
+                    { section: "Inclined Plane", name: "Inclined Plane MA", formula: "\\( MA = \\frac{L}{h} \\)", symbols: [{ symbol: "L, h", desc: "Length and height of ramp (m)" }] },
+                    { section: "Wheel and Axle", name: "Wheel and Axle MA & VR", formula: "\\( MA = VR = \\frac{R}{r} \\)", symbols: [{ symbol: "R, r", desc: "Radii of wheel and axle (m)" }] }
+                ],
+                flashcards: [
+                    { front: "What is Mechanical Advantage (MA)?", back: "\\( MA = \\frac{F_R}{F_E} \\)" },
+                    { front: "What is Velocity Ratio (VR)?", back: "\\( VR = \\frac{d_E}{d_R} \\)" },
+                    { front: "What is the MA of an inclined plane?", back: "\\( MA = \\frac{L}{h} \\)" }
+                ],
+                quiz: [
+                    { question: "If effort arm is 4 m and load arm is 1 m, the MA is:", options: ["0.25", "4", "5", "3"], correctIndex: 1, feedback: "MA = 4 / 1 = 4." }
+                ]
+            },
+            {
+                id: "g9-l3",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",
+                worksheetUrl: "worksheets/g9-ch3-worksheet.pdf",
+                games: [{ topic: "Electricity", url: "https://gemini.google.com/share/e1def1ea44ff" }],
+                title: "Chapter 3: Electricity",
+                concepts: [
+                    "Ohm's Law: Relates voltage, current, and resistance: \\( V = IR \\).",
+                    "Electrical Power: Rate of energy consumption: \\( P = VI = I^2 R = \\frac{V^2}{R} \\).",
+                    "Electrical Energy: \\( E = Pt = VIt \\), measured commercially in kilowatt-hours (kWh).",
+                    "Heat Energy: Converted electrical energy into thermal heat: \\( Q = mc\\Delta T = RI^2 t \\)."
+                ],
+                definitions: [
+                    { term: "Electrical Power", definition: "Rate of electrical energy conversion.", symbol: "P", unit: "\\mathrm{W}", equation: "P = VI = RI^2 = \\frac{V^2}{R}" },
+                    { term: "Electrical Energy", definition: "Work done in moving charge over time.", symbol: "E", unit: "\\mathrm{J}", equation: "E = VIt = RI^2 t" },
+                    { term: "Ohm's Law", definition: "Current is directly proportional to voltage across resistance.", symbol: "V = IR", unit: "\\mathrm{V}", equation: "V = IR" }
+                ],
+                examples: [
+                    { title: "Power of an Appliance", given: "Voltage \\( V = 220\\,\\mathrm{V} \\), Current \\( I = 2.5\\,\\mathrm{A} \\).", find: "Power \\( P \\).", equation: "P = VI", solution: "\\( P = 220 \\times 2.5 = 550\\,\\mathrm{W} \\).", finalAnswer: "P = 550\\,\\mathrm{W}", explanation: "Consumes 550 Joules of energy per second." }
+                ],
+                equations: [
+                    { section: "Electrical Power", name: "Power Formulas", formula: "\\( P = VI = RI^2 = \\frac{V^2}{R} \\)", symbols: [{ symbol: "P", desc: "Power (W)" }, { symbol: "V", desc: "Voltage (V)" }, { symbol: "I", desc: "Current (A)" }, { symbol: "R", desc: "Resistance (Ω)" }] },
+                    { section: "Electrical Energy", name: "Energy & Heat", formula: "\\( E = VIt = RI^2 t = mc\\Delta T \\)", symbols: [{ symbol: "E", desc: "Energy (J)" }, { symbol: "t", desc: "Time (s)" }] }
+                ],
+                flashcards: [
+                    { front: "What is Ohm's Law?", back: "\\( V = IR \\)" },
+                    { front: "What is the power formula in terms of I and R?", back: "\\( P = RI^2 \\)" }
+                ],
+                quiz: [
+                    { question: "Electrical Power in terms of Voltage and Current is:", options: ["P = V / I", "P = I / V", "P = VI", "P = V²I"], correctIndex: 2, feedback: "P = VI." }
+                ]
+            },
+            {
+                id: "g9-l4",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/VFPt_solenoid-field-animation.gif",
+                worksheetUrl: "worksheets/g9-ch4-worksheet.pdf",
+                games: [{ topic: "Straight Wire B-Field", url: "https://gemini.google.com/share/4e08057d8f02" }],
+                title: "Chapter 4: Magnetic Field",
+                concepts: [
+                    "Magnetic Field (\\( B \\)): Vector field measured in Tesla (T).",
+                    "Straight Wire: Concentric circular field lines \\( B = \\frac{\\mu_0 I}{2\\pi d} \\).",
+                    "Solenoid: Concentrated core field \\( B = \\frac{\\mu_0 NI}{l} \\).",
+                    "Magnetic Force: Force on current-carrying conductor \\( F = IlB\\sin\\theta \\).",
+                    "Transformer: Turns and voltage ratio \\( \\frac{V_S}{V_P} = \\frac{N_S}{N_P} = \\frac{I_P}{I_S} \\)."
+                ],
+                definitions: [
+                    { term: "Magnetic Field", definition: "Force field surrounding moving charges.", symbol: "B", unit: "\\mathrm{T}", equation: "B = \\frac{\\mu_0 I}{2\\pi d}" },
+                    { term: "Magnetic Force on Wire", definition: "Deflection force on current-carrying wire.", symbol: "F", unit: "\\mathrm{N}", equation: "F = IlB\\sin\\theta" },
+                    { term: "Transformer Ratios", definition: "Voltage and turns transformation ratio.", symbol: "\\frac{V_S}{V_P}", unit: "\\text{No unit}", equation: "\\frac{V_S}{V_P} = \\frac{N_S}{N_P} = \\frac{I_P}{I_S}" }
+                ],
+                examples: [
+                    { title: "Magnetic Field of Straight Wire", given: "Current \\( I = 5.0\\,\\mathrm{A} \\), distance \\( d = 0.10\\,\\mathrm{m} \\).", find: "Field \\( B \\).", equation: "B = \\frac{\\mu_0 I}{2\\pi d}", solution: "\\( B = \\frac{4\\pi\\times 10^{-7} \\times 5.0}{2\\pi \\times 0.10} = 1.0\\times 10^{-5}\\,\\mathrm{T} \\).", finalAnswer: "B = 10\\,\\mu\\mathrm{T}", explanation: "Field drops inversely with distance." }
+                ],
+                equations: [
+                    { section: "Magnetic Field", name: "Straight Wire Field", formula: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)", symbols: [{ symbol: "B", desc: "Field (T)" }, { symbol: "I", desc: "Current (A)" }, { symbol: "d", desc: "Distance (m)" }] },
+                    { section: "Magnetic Force", name: "Force on Wire", formula: "\\( F = IlB \\sin \\theta \\)", symbols: [{ symbol: "F", desc: "Force (N)" }, { symbol: "l", desc: "Length (m)" }] },
+                    { section: "Transformers", name: "Transformer Ratios", formula: "\\( \\frac{V_S}{V_P} = \\frac{N_S}{N_P} = \\frac{I_P}{I_S} \\)", symbols: [{ symbol: "V, N, I", desc: "Voltage, Turns, Current" }] }
+                ],
+                flashcards: [
+                    { front: "What is the magnetic field formula for a straight wire?", back: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)" },
+                    { front: "What is the force on a current-carrying wire?", back: "\\( F = IlB\\sin\\theta \\)" }
+                ],
+                quiz: [
+                    { question: "The magnetic field near a long straight wire is inversely proportional to:", options: ["Current", "Distance d", "Voltage", "Wire resistance"], correctIndex: 1, feedback: "B is inversely proportional to d." }
+                ]
+            },
+            {
+                id: "g9-l5",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Refraction_animation.gif",
+                worksheetUrl: "worksheets/g9-ch5-worksheet.pdf",
+                games: [{ topic: "Refraction of Light", url: "https://gemini.google.com/share/307ba374b958" }],
+                title: "Chapter 5: Light",
+                concepts: [
+                    "Reflection: Angle of incidence equals angle of reflection (\\( i = r \\)).",
+                    "Refraction: Light bends across media boundaries with Snell's law \\( n_1 \\sin i = n_2 \\sin r \\).",
+                    "Critical Angle: Angle of incidence causing 90° refraction: \\( \\sin\\theta_c = \\frac{n_2}{n_1} \\).",
+                    "Mirror/Lens Equation: Relates focal length, object, and image distance: \\( \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i} \\)."
+                ],
+                definitions: [
+                    { term: "Law of Reflection", definition: "Angle of incidence equals reflection angle.", symbol: "i = r", unit: "{^\\circ}", equation: "i = r" },
+                    { term: "Refractive Index", definition: "Ratio of speed of light in vacuum to speed in medium.", symbol: "n", unit: "\\text{No unit}", equation: "n = \\frac{c}{v}" },
+                    { term: "Snell's Law", definition: "Quantitative law of light refraction.", symbol: "n_1, n_2", unit: "\\text{No unit}", equation: "n_1 \\sin i = n_2 \\sin r" },
+                    { term: "Critical Angle", definition: "Incident angle producing 90° refraction.", symbol: "\\theta_c", unit: "{^\\circ}", equation: "\\sin\\theta_c = \\frac{n_2}{n_1}" },
+                    { term: "Mirror/Lens Equation", definition: "Relates focal length to distances.", symbol: "f", unit: "\\mathrm{m}", equation: "\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}" }
+                ],
+                examples: [
+                    { title: "Refractive Index Calculation", given: "Light speed in vacuum \\( c = 3.0\\times 10^8\\,\\mathrm{m/s} \\), speed in glass \\( v = 2.0\\times 10^8\\,\\mathrm{m/s} \\).", find: "Refractive index \\( n \\).", equation: "n = c / v", solution: "\\( n = (3.0\\times 10^8) / (2.0\\times 10^8) = 1.50 \\).", finalAnswer: "n = 1.50", explanation: "Light travels 1.5 times slower in glass." }
+                ],
+                equations: [
+                    { section: "Reflection & Refraction", name: "Snell's Law", formula: "\\( n_1 \\sin i = n_2 \\sin r \\)", symbols: [{ symbol: "n_1, n_2", desc: "Indices" }, { symbol: "i, r", desc: "Angles" }] },
+                    { section: "Reflection & Refraction", name: "Critical Angle", formula: "\\( \\sin\\theta_c = \\frac{n_2}{n_1} \\)", symbols: [{ symbol: "θ_c", desc: "Critical angle" }] },
+                    { section: "Mirrors & Lenses", name: "Mirror/Lens Equation", formula: "\\( \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}, \\quad f = \\frac{R}{2} \\)", symbols: [{ symbol: "f", desc: "Focal length (m)" }, { symbol: "d_o, d_i", desc: "Object and image distance (m)" }] }
+                ],
+                flashcards: [
+                    { front: "What is Snell's Law?", back: "\\( n_1 \\sin i = n_2 \\sin r \\)" },
+                    { front: "What is the critical angle formula?", back: "\\( \\sin\\theta_c = \\frac{n_2}{n_1} \\)" },
+                    { front: "What is the mirror/lens equation?", back: "\\( \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i} \\)" }
+                ],
+                quiz: [
+                    { question: "When light travels from air into glass, it bends:", options: ["Toward the normal", "Away from the normal", "Not at all", "Reverses completely"], correctIndex: 0, feedback: "Glass is optically denser, so light slows down and bends toward the normal." }
+                ]
+            }
+        ];
+
+        window.physicsData["12"] = [
+            // Chapter 1 Lesson 1
+            {
+                id: "g12-l1",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",
+                worksheetUrl: "worksheets/ch1-l1-worksheet.pdf",
+                games: [{ topic: "Kinetic Theory of Ideal Gases", url: "https://gemini.google.com/share/acfae742b2c0" }],
+                title: "Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",
+                concepts: [
+                    "Ideal Gas Model: Molecules treated as point masses in continuous random motion with elastic collisions.",
+                    "Microscopic Pressure: Arises from momentum transfer on wall collisions: \\( P = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av} \\).",
+                    "Ideal Gas Law: Combines gas laws into \\( PV = nRT = Nk_B T \\).",
+                    "Average Kinetic Energy: Depends solely on temperature \\( T \\): \\( K_{av} = \\frac{3}{2}k_B T \\).",
+                    "Root-Mean-Square Speed: Statistical molecular speed \\( v_{rms} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3k_B T}{m_0}} \\)."
+                ],
+                definitions: [
+                    { term: "Ideal Gas", definition: "A theoretical gas of point particles exerting forces only during elastic collisions.", symbol: "\\text{Ideal Gas}", unit: "\\text{No unit}", equation: "PV = nRT = N k_B T" },
+                    { term: "Gas Pressure", definition: "Force exerted per unit area by molecular collisions on walls.", symbol: "P", unit: "\\mathrm{Pa}", equation: "P = \\frac{F}{A} = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av}" },
+                    { term: "Universal Gas Constant", definition: "Energy per mole per Kelvin.", symbol: "R", unit: "\\mathrm{J/(mol\\cdot K)}", equation: "R = 8.314\\,\\mathrm{J/(mol\\cdot K)}" },
+                    { term: "Boltzmann Constant", definition: "Gas constant per individual particle.", symbol: "k_B", unit: "\\mathrm{J/K}", equation: "k_B = \\frac{R}{N_A} = 1.38\\times 10^{-23}\\,\\mathrm{J/K}" },
+                    { term: "Average Kinetic Energy per Molecule", definition: "Mean translational kinetic energy of a molecule, strictly proportional to T.", symbol: "K_{av}", unit: "\\mathrm{J}", equation: "K_{av} = \\frac{3}{2}k_B T" },
+                    { term: "Root-Mean-Square Speed (v_rms)", definition: "Statistical particle speed in a gas.", symbol: "v_{rms}", unit: "\\mathrm{m/s}", equation: "v_{rms} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3k_B T}{m_0}}" }
+                ],
+                examples: [
+                    { title: "Microscopic Pressure from Average Kinetic Energy", given: "Volume \\( V = 0.05\\,\\mathrm{m^3} \\), Molecules \\( N = 1.0\\times 10^{24} \\), \\( K_{av} = 6.0\\times 10^{-21}\\,\\mathrm{J} \\).", find: "Pressure \\( P \\).", equation: "P = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av}", solution: "\\( P = \\frac{2}{3} \\times \\left(\\frac{1.0\\times 10^{24}}{0.05}\\right) \\times (6.0\\times 10^{-21}) = 80{,}000\\,\\mathrm{Pa} \\).", finalAnswer: "P = 8.0\\times 10^4\\,\\mathrm{Pa} \\; (80\\,\\mathrm{kPa})", explanation: "Gas pressure originates directly from kinetic energy density." },
+                    { title: "Ideal Gas State Calculation", given: "Moles \\( n = 2.0\\,\\mathrm{mol} \\), \\( T = 300\\,\\mathrm{K} \\), \\( V = 0.025\\,\\mathrm{m^3} \\), \\( R = 8.31\\,\\mathrm{J/(mol\\cdot K)} \\).", find: "Pressure \\( P \\).", equation: "P = \\frac{nRT}{V}", solution: "\\( P = \\frac{2.0 \\times 8.31 \\times 300}{0.025} = 199{,}440\\,\\mathrm{Pa} \\).", finalAnswer: "P \\approx 199.4\\,\\mathrm{kPa}", explanation: "The ideal gas equation interrelates P, V, n, and T." },
+                    { title: "Root-Mean-Square Speed of Oxygen", given: "Temperature \\( T = 300\\,\\mathrm{K} \\), Molar mass \\( M = 0.032\\,\\mathrm{kg/mol} \\), \\( R = 8.31\\,\\mathrm{J/(mol\\cdot K)} \\).", find: "RMS speed \\( v_{rms} \\).", equation: "v_{rms} = \\sqrt{\\frac{3RT}{M}}", solution: "\\( v_{rms} = \\sqrt{\\frac{3 \\times 8.31 \\times 300}{0.032}} \\approx 483.4\\,\\mathrm{m/s} \\).", finalAnswer: "v_{rms} \\approx 483\\,\\mathrm{m/s}", explanation: "At room temperature, oxygen molecules move at an average speed of 483 m/s." }
+                ],
+                equations: [
+                    { section: "Ideal Gas Law", name: "Equation of State", formula: "\\( PV = nRT = N k_B T \\)", symbols: [{ symbol: "P", desc: "Pressure (Pa)" }, { symbol: "V", desc: "Volume (m³)" }, { symbol: "n", desc: "Moles" }, { symbol: "R", desc: "Gas constant" }, { symbol: "T", desc: "Temp (K)" }] },
+                    { section: "Ideal Gas Law", name: "Combined Gas Law", formula: "\\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)", symbols: [{ symbol: "P, V, T", desc: "Initial and final states" }] },
+                    { section: "Kinetic Energy & Speed", name: "Average Molecular Kinetic Energy", formula: "\\( K_{av} = \\frac{3}{2} k_B T \\)", symbols: [{ symbol: "K_av", desc: "Average KE (J)" }, { symbol: "k_B", desc: "Boltzmann constant" }, { symbol: "T", desc: "Temp (K)" }] },
+                    { section: "Kinetic Energy & Speed", name: "Total Gas Kinetic Energy", formula: "\\( K = \\frac{3}{2} nRT = \\frac{3}{2} PV \\)", symbols: [{ symbol: "K", desc: "Total KE (J)" }] },
+                    { section: "Kinetic Energy & Speed", name: "Root-Mean-Square Speed", formula: "\\( v_{rms} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3k_B T}{m_0}} \\)", symbols: [{ symbol: "v_rms", desc: "RMS speed (m/s)" }, { symbol: "M", desc: "Molar mass (kg/mol)" }] }
+                ],
+                flashcards: [
+                    { front: "What is the Ideal Gas Law equation?", back: "\\( PV = nRT = N k_B T \\)" },
+                    { front: "What is the formula for average molecular kinetic energy?", back: "\\( K_{av} = \\frac{3}{2} k_B T \\)" },
+                    { front: "What is the formula for root-mean-square speed \\( v_{rms} \\)?", back: "\\( v_{rms} = \\sqrt{\\frac{3RT}{M}} \\)" },
+                    { front: "What is the Combined Gas Law?", back: "\\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)" },
+                    { front: "What is the value of the Universal Gas Constant R?", back: "8.31 J/(mol·K)" }
+                ],
+                quiz: [
+                    { question: "The average kinetic energy of an ideal gas molecule depends solely on:", options: ["Pressure", "Volume", "Absolute temperature", "Gas density"], correctIndex: 2, feedback: "K_av = 1.5 k_B T, depending strictly on temperature T." },
+                    { question: "Which equation gives the root-mean-square speed of gas molecules?", options: ["\\( \\sqrt{3RT/M} \\)", "\\( 3RT/M \\)", "\\( \\sqrt{2RT/M} \\)", "\\( RT/M \\)"], correctIndex: 0, feedback: "v_rms = sqrt(3RT / M)." },
+                    { question: "In an isothermal process for an ideal gas, which quantity remains constant?", options: ["Pressure", "Volume", "Temperature", "Heat"], correctIndex: 2, feedback: "Isothermal means constant temperature (T1 = T2)." }
+                ]
+            },
+            // Chapter 1 Lesson 2
+            {
+                id: "g12-l2",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",
+                worksheetUrl: "worksheets/ch1-l2-worksheet.pdf",
+                games: [{ topic: "First Law of Thermodynamics", url: "https://gemini.google.com/share/9e34579d87cd" }],
+                title: "Chapter 1 Lesson 2: First Law of Thermodynamics",
+                concepts: [
+                    "First Law of Thermodynamics: Conservation of energy in thermodynamic systems, \\( Q = W + \\Delta U \\).",
+                    "Internal Energy (\\( U \\)): Depends solely on temperature for ideal gases, \\( \\Delta U = \\frac{3}{2}nR\\Delta T \\).",
+                    "Thermodynamic Work (\\( W \\)): Work done by expanding gas, \\( W = P\\Delta V \\) (isobaric).",
+                    "Special Processes: Isobaric (constant P), Isochoric (constant V, W = 0), Isothermal (constant T, ΔU = 0), and Adiabatic (Q = 0)."
+                ],
+                definitions: [
+                    { term: "First Law of Thermodynamics", definition: "Conservation of energy: heat added equals work done plus internal energy increase.", symbol: "Q = W + \\Delta U", unit: "\\mathrm{J}", equation: "Q = W + \\Delta U" },
+                    { term: "Internal Energy", definition: "Total microscopic thermal kinetic energy of all gas molecules.", symbol: "U", unit: "\\mathrm{J}", equation: "U = \\frac{3}{2}nRT" },
+                    { term: "Thermodynamic Work", definition: "Mechanical energy transferred during gas expansion.", symbol: "W", unit: "\\mathrm{J}", equation: "W = P\\Delta V" },
+                    { term: "Isobaric Process", definition: "State change occurring under constant pressure.", symbol: "P = \\text{const}", unit: "\\text{No unit}", equation: "W = P\\Delta V, \\; Q_p = \\frac{5}{2}nR\\Delta T" },
+                    { term: "Isochoric Process", definition: "State change inside rigid container (constant volume, W = 0).", symbol: "V = \\text{const}", unit: "\\text{No unit}", equation: "W = 0, \\; Q_v = \\Delta U = \\frac{3}{2}nR\\Delta T" },
+                    { term: "Isothermal Process", definition: "State change occurring at constant temperature (ΔU = 0).", symbol: "T = \\text{const}", unit: "\\text{No unit}", equation: "Q = W = nRT\\ln\\left(\\frac{V_2}{V_1}\\right)" },
+                    { term: "Adiabatic Process", definition: "Process occurring with zero heat exchange (Q = 0).", symbol: "Q = 0", unit: "\\text{No unit}", equation: "W = -\\Delta U" }
+                ],
+                examples: [
+                    { title: "First Law Energy Balance", given: "Gas absorbs \\( Q = 800\\,\\mathrm{J} \\) and does \\( W = 350\\,\\mathrm{J} \\) of work.", find: "Internal energy change \\( \\Delta U \\).", equation: "\\Delta U = Q - W", solution: "\\( \\Delta U = 800\\,\\mathrm{J} - 350\\,\\mathrm{J} = 450\\,\\mathrm{J} \\).", finalAnswer: "\\Delta U = +450\\,\\mathrm{J}", explanation: "Surplus absorbed heat increases the internal thermal energy of the gas." },
+                    { title: "Work in Isobaric Expansion", given: "Pressure \\( P = 2.0\\times 10^5\\,\\mathrm{Pa} \\), volume expands from \\( 0.010\\,\\mathrm{m^3} \\) to \\( 0.025\\,\\mathrm{m^3} \\).", find: "Work done \\( W \\).", equation: "W = P(V_2 - V_1)", solution: "\\( W = 2.0\\times 10^5 \\times 0.015 = 3000\\,\\mathrm{J} = 3.0\\,\\mathrm{kJ} \\).", finalAnswer: "W = 3.0\\,\\mathrm{kJ}", explanation: "Constant pressure expansion work is the product of pressure and volume change." }
+                ],
+                equations: [
+                    { section: "First Law", name: "First Law of Thermodynamics", formula: "\\( Q = W + \\Delta U \\)", symbols: [{ symbol: "Q", desc: "Heat added (J)" }, { symbol: "W", desc: "Work done (J)" }, { symbol: "ΔU", desc: "Internal energy change (J)" }] },
+                    { section: "Internal Energy", name: "Internal energy change", formula: "\\( \\Delta U = \\frac{3}{2} nR\\Delta T \\)", symbols: [{ symbol: "n", desc: "Moles" }, { symbol: "R", desc: "Gas constant" }, { symbol: "ΔT", desc: "Temp change (K)" }] },
+                    { section: "Processes", name: "Isobaric Work", formula: "\\( W = P \\Delta V \\)", symbols: [{ symbol: "P", desc: "Pressure (Pa)" }, { symbol: "ΔV", desc: "Volume change (m³)" }] },
+                    { section: "Processes", name: "Isothermal Work & Heat", formula: "\\( Q = W = nRT \\ln\\left(\\frac{V_2}{V_1}\\right) \\)", symbols: [{ symbol: "V2/V1", desc: "Expansion ratio" }] },
+                    { section: "Processes", name: "Adiabatic Work", formula: "\\( W = \\frac{P_1 V_1 - P_2 V_2}{\\gamma - 1} \\)", symbols: [{ symbol: "γ", desc: "Adiabatic index" }] }
+                ],
+                flashcards: [
+                    { front: "What is the First Law of Thermodynamics?", back: "\\( Q = W + \\Delta U \\)" },
+                    { front: "What is the work done in an isobaric process?", back: "\\( W = P \\Delta V \\)" },
+                    { front: "What is the work done in an isochoric process?", back: "\\( W = 0 \\)" },
+                    { front: "What is the change in internal energy during an isothermal process?", back: "\\( \\Delta U = 0 \\)" }
+                ],
+                quiz: [
+                    { question: "In an isochoric process, the work done by the gas is:", options: ["PΔV", "nRT ln(V2/V1)", "0", "Positive"], correctIndex: 2, feedback: "Constant volume means ΔV = 0, so work is 0." },
+                    { question: "According to the First Law of Thermodynamics:", options: ["Q = W - ΔU", "Q = W + ΔU", "W = Q + ΔU", "ΔU = Q + W"], correctIndex: 1, feedback: "Q = W + ΔU." }
+                ]
+            },
+            // Chapter 1 Lesson 3
+            {
+                id: "g12-l3",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",
+                worksheetUrl: "worksheets/ch1-l3-worksheet.pdf",
+                games: [{ topic: "Heat Engine", url: "https://gemini.google.com/share/a6cfadc258e4" }],
+                title: "Chapter 1 Lesson 3: Heat Engine",
+                concepts: [
+                    "Heat Engine: Converts thermal energy from hot reservoir into mechanical work, rejecting waste heat.",
+                    "Energy Conservation: \\( Q_h = W_M + Q_c \\).",
+                    "Thermal Efficiency (\\( \\eta \\)): Ratio of useful work to heat input: \\( \\eta = \\frac{W_M}{Q_h} = 1 - \\frac{Q_c}{Q_h} \\).",
+                    "Carnot Maximum Efficiency: Ideal theoretical limit dependent solely on temperatures: \\( \\eta_{max} = 1 - \\frac{T_c}{T_h} \\)."
+                ],
+                definitions: [
+                    { term: "Heat Engine", definition: "A cyclic device converting heat into mechanical work.", symbol: "\\text{Heat Engine}", unit: "\\text{No unit}", equation: "W_M = Q_h - Q_c" },
+                    { term: "Thermal Efficiency", definition: "Fraction of heat input converted into useful mechanical work.", symbol: "\\eta", unit: "\\%", equation: "\\eta = \\frac{W_M}{Q_h} = 1 - \\frac{Q_c}{Q_h}" },
+                    { term: "Carnot Efficiency", definition: "Upper theoretical limit of efficiency operating between temperatures Th and Tc.", symbol: "\\eta_{Carnot}", unit: "\\%", equation: "\\eta_{Carnot} = 1 - \\frac{T_c}{T_h}" }
+                ],
+                examples: [
+                    { title: "Heat Engine Efficiency Calculation", given: "Heat absorbed \\( Q_h = 5000\\,\\mathrm{J} \\), Waste heat rejected \\( Q_c = 3000\\,\\mathrm{J} \\).", find: "Work output (\\( W_M \\)) and Efficiency (\\( \\eta \\)).", equation: "W_M = Q_h - Q_c, \\; \\eta = \\frac{W_M}{Q_h}", solution: "1. \\( W_M = 5000 - 3000 = 2000\\,\\mathrm{J} \\).<br>2. \\( \\eta = 2000 / 5000 = 0.40 = 40\\% \\).", finalAnswer: "W_M = 2000\\,\\mathrm{J}, \\quad \\eta = 40\\%", explanation: "40% of heat input is successfully converted to mechanical work." },
+                    { title: "Carnot Maximum Efficiency", given: "Hot reservoir \\( T_h = 500^\\circ\\mathrm{C} = 773.15\\,\\mathrm{K} \\), Cold reservoir \\( T_c = 25^\\circ\\mathrm{C} = 298.15\\,\\mathrm{K} \\).", find: "Maximum theoretical efficiency (\\( \\eta_{Carnot} \\)).", equation: "\\eta_{Carnot} = 1 - \\frac{T_c}{T_h}", solution: "\\( \\eta = 1 - \\frac{298.15}{773.15} = 1 - 0.3856 = 0.6144 = 61.4\\% \\).", finalAnswer: "\\eta_{Carnot} \\approx 61.4\\%", explanation: "Kelvin temperatures determine maximum possible thermal efficiency." }
+                ],
+                equations: [
+                    { section: "Heat Engine", name: "Work Output", formula: "\\( W_M = Q_h - Q_c \\)", symbols: [{ symbol: "W_M", desc: "Work output (J)" }, { symbol: "Q_h, Q_c", desc: "Heat input & rejected (J)" }] },
+                    { section: "Heat Engine", name: "Thermal Efficiency", formula: "\\( \\eta = \\frac{W_M}{Q_h} = 1 - \\frac{Q_c}{Q_h} \\)", symbols: [{ symbol: "η", desc: "Efficiency" }] },
+                    { section: "Carnot Engine", name: "Carnot Maximum Efficiency", formula: "\\( \\eta_{Carnot} = 1 - \\frac{T_c}{T_h} \\)", symbols: [{ symbol: "T_h, T_c", desc: "Temperatures (K)" }] }
+                ],
+                flashcards: [
+                    { front: "What is the formula for heat engine work output?", back: "\\( W_M = Q_h - Q_c \\)" },
+                    { front: "What is thermal efficiency \\( \\eta \\)?", back: "\\( \\eta = 1 - \\frac{Q_c}{Q_h} = \\frac{W_M}{Q_h} \\)" },
+                    { front: "What is the Carnot efficiency formula?", back: "\\( \\eta_{Carnot} = 1 - \\frac{T_c}{T_h} \\)" }
+                ],
+                quiz: [
+                    { question: "A heat engine absorbs 2000 J and rejects 1200 J. Its efficiency is:", options: ["40%", "60%", "80%", "20%"], correctIndex: 0, feedback: "η = (2000 - 1200)/2000 = 800/2000 = 40%." },
+                    { question: "Carnot efficiency depends solely on:", options: ["Working fluid type", "Reservoir temperatures in Kelvin", "Engine size", "Piston friction"], correctIndex: 1, feedback: "Carnot efficiency depends exclusively on absolute temperatures Th and Tc." }
+                ]
+            }
+            ,
+            // Chapter 2 Lesson 1
+            {
+                id: "g12-l4",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",
+                worksheetUrl: "worksheets/ch2-l1-worksheet.pdf",
+                games: [
+                    { topic: "Mechanical Waves", url: "https://gemini.google.com/share/2e83761df9b7" },
+                    { topic: "Standing Waves & Harmonics", url: "https://gemini.google.com/share/2e83761df9b7" }
+                ],
+                title: "Chapter 2 Lesson 1: Superposition and Standing Waves",
+                concepts: [
+                    "Principle of Superposition: Resultant wave disturbance is the algebraic sum of individual displacements: \\( y = y_1 + y_2 \\).",
+                    "Sinusoidal Travelling Wave: Described by \\( y = a \\sin(\\omega t \\pm kx) \\) with wave speed \\( v = f\\lambda = \\frac{\\omega}{k} \\).",
+                    "Standing Wave Formation: Stationary vibrational pattern formed by interference of two identical oppositely traveling waves: \\( y = 2a \\sin(kx) \\cos(\\omega t) \\).",
+                    "Nodes: Points of permanently zero vibrational amplitude where \\( \\sin(kx) = 0 \\implies x_n = n \\frac{\\lambda}{2} \\).",
+                    "Antinodes: Points of maximum vibrational amplitude \\( 2a \\) where \\( x_n = (2n + 1) \\frac{\\lambda}{4} \\).",
+                    "Resonance in Strings: Fixed boundary conditions vibrate at harmonic frequencies \\( f_n = n \\frac{v}{2L} \\)."
+                ],
+                definitions: [
+                    { term: "Principle of Superposition", definition: "When two or more waves overlap, the resultant displacement at any point is the sum of the individual displacements.", symbol: "y = y_1 + y_2", unit: "\\mathrm{m}", equation: "y = y_1 + y_2" },
+                    { term: "Sinusoidal Travelling Wave", definition: "A smooth periodic disturbance propagating through space described by a sinusoidal function.", symbol: "y(x, t)", unit: "\\mathrm{m}", equation: "y = a \\sin(\\omega t \\pm kx)" },
+                    { term: "Wave Speed", definition: "Linear speed of wave propagation through the medium.", symbol: "v", unit: "\\mathrm{m/s}", equation: "v = f\\lambda = \\frac{\\omega}{k}" },
+                    { term: "Standing Wave", definition: "A stationary vibrational pattern formed by interference of two identical oppositely directed waves.", symbol: "\\text{Standing Wave}", unit: "\\mathrm{m}", equation: "y = 2a \\sin(kx) \\cos(\\omega t)" },
+                    { term: "Node", definition: "A point along a standing wave having permanently zero vibrational amplitude.", symbol: "A = 0", unit: "\\mathrm{m}", equation: "x_n = n \\frac{\\lambda}{2} \\quad (n = 0, 1, 2, \\dots)" },
+                    { term: "Antinode", definition: "A point along a standing wave experiencing peak constructive amplitude 2a.", symbol: "A = 2a", unit: "\\mathrm{m}", equation: "x_n = (2n + 1) \\frac{\\lambda}{4} \\quad (n = 0, 1, 2, \\dots)" },
+                    { term: "Fundamental Frequency", definition: "Lowest resonant frequency at which a string or pipe vibrates standing waves.", symbol: "f_1", unit: "\\mathrm{Hz}", equation: "f_1 = \\frac{v}{2L}" },
+                    { term: "Harmonic Frequencies", definition: "Integer multiples of the fundamental frequency produced in resonant standing wave cavities.", symbol: "f_n", unit: "\\mathrm{Hz}", equation: "f_n = n f_1 = n \\frac{v}{2L}" }
+                ],
+                examples: [
+                    { title: "Extracting Characteristics from Wave Equation", given: "Wave equation \\( y = 0.05\\sin(40\\pi t - 2\\pi x) \\) in SI units.", find: "Amplitude \\( a \\), Angular frequency \\( \\omega \\), Wave number \\( k \\), and Speed \\( v \\).", equation: "y = a\\sin(\\omega t - kx), \\quad v = \\frac{\\omega}{k}", solution: "1. \\( a = 0.05\\,\\mathrm{m} \\).<br>2. \\( \\omega = 40\\pi\\,\\mathrm{rad/s} \\).<br>3. \\( k = 2\\pi\\,\\mathrm{rad/m} \\).<br>4. \\( v = \\frac{40\\pi}{2\\pi} = 20\\,\\mathrm{m/s} \\).", finalAnswer: "a = 0.05\\,\\mathrm{m}, \\; \\omega = 40\\pi\\,\\mathrm{rad/s}, \\; k = 2\\pi\\,\\mathrm{rad/m}, \\; v = 20\\,\\mathrm{m/s}", explanation: "Comparing with standard form directly yields all wave constants." },
+                    { title: "Positions of Nodes on a Vibrating String", given: "Standing wave with wavelength \\( \\lambda = 0.60\\,\\mathrm{m} \\).", find: "Positions of first four nodes starting from \\( x = 0 \\).", equation: "x_n = n \\frac{\\lambda}{2}", solution: "\\( \\lambda/2 = 0.30\\,\\mathrm{m} \\).<br>For \\( n = 0, 1, 2, 3 \\): \\( x = 0\\,\\mathrm{m}, 0.30\\,\\mathrm{m}, 0.60\\,\\mathrm{m}, 0.90\\,\\mathrm{m} \\).", finalAnswer: "x = 0, \\; 0.30\\,\\mathrm{m}, \\; 0.60\\,\\mathrm{m}, \\; 0.90\\,\\mathrm{m}", explanation: "Adjacent nodes are spaced precisely by half a wavelength along the string." },
+                    { title: "Fundamental Resonant Frequency of a String", given: "String length \\( L = 0.80\\,\\mathrm{m} \\), wave speed \\( v = 240\\,\\mathrm{m/s} \\).", find: "Fundamental frequency \\( f_1 \\) and 3rd harmonic \\( f_3 \\).", equation: "f_n = n \\frac{v}{2L}", solution: "1. \\( f_1 = \\frac{240}{2(0.80)} = \\frac{240}{1.60} = 150\\,\\mathrm{Hz} \\).<br>2. \\( f_3 = 3 \\times 150\\,\\mathrm{Hz} = 450\\,\\mathrm{Hz} \\).", finalAnswer: "f_1 = 150\\,\\mathrm{Hz}, \\quad f_3 = 450\\,\\mathrm{Hz}", explanation: "The 3rd harmonic vibrates at three times the fundamental frequency." }
+                ],
+                equations: [
+                    { section: "Sinusoidal Wave", name: "Wave Equation", formula: "\\( y = a \\sin(\\omega t \\pm kx) \\)", symbols: [{ symbol: "y", desc: "Displacement (m)" }, { symbol: "a", desc: "Amplitude (m)" }, { symbol: "ω", desc: "Angular frequency (rad/s)" }, { symbol: "k", desc: "Wave number (rad/m)" }] },
+                    { section: "Wave Parameters", name: "Angular frequency, Wave number & Speed", formula: "\\( \\omega = 2\\pi f, \\quad k = \\frac{2\\pi}{\\lambda}, \\quad v = f\\lambda = \\frac{\\omega}{k} \\)", symbols: [{ symbol: "v", desc: "Speed (m/s)" }, { symbol: "λ", desc: "Wavelength (m)" }] },
+                    { section: "Standing Waves", name: "Standing Wave Equation", formula: "\\( y = 2a \\sin(kx) \\cos(\\omega t) \\)", symbols: [{ symbol: "2a", desc: "Peak amplitude (m)" }] },
+                    { section: "Nodes & Antinodes", name: "Node & Antinode Positions", formula: "\\( x_n = n \\frac{\\lambda}{2} \\; (\\text{Nodes}), \\quad x_n = (2n + 1) \\frac{\\lambda}{4} \\; (\\text{Antinodes}) \\)", symbols: [{ symbol: "x_n", desc: "Positions (m)" }] },
+                    { section: "Harmonics", name: "String Resonant Frequencies", formula: "\\( f_n = n \\frac{v}{2L} \\quad (n = 1, 2, 3, \\dots) \\)", symbols: [{ symbol: "f_n", desc: "Harmonic frequency (Hz)" }, { symbol: "L", desc: "Length (m)" }] }
+                ],
+                flashcards: [
+                    { front: "What is the principle of superposition?", back: "The resultant displacement of overlapping waves is the algebraic sum: \\( y = y_1 + y_2 \\)." },
+                    { front: "What is the sinusoidal travelling wave equation?", back: "\\( y = a \\sin(\\omega t \\pm kx) \\)" },
+                    { front: "What is the standing wave equation?", back: "\\( y = 2a \\sin(kx) \\cos(\\omega t) \\)" },
+                    { front: "Where do nodes occur in a standing wave?", back: "\\( x_n = n \\frac{\\lambda}{2} \\)" },
+                    { front: "What is the distance between two consecutive nodes?", back: "\\( \\frac{\\lambda}{2} \\) (half a wavelength)." },
+                    { front: "What is the formula for wave speed v?", back: "\\( v = f\\lambda = \\frac{\\omega}{k} \\)" }
+                ],
+                quiz: [
+                    { question: "At what positions does a standing wave have minimum amplitude (nodes)?", options: ["x = nλ", "x = nλ/2", "x = (2n+1)λ/4", "x = nλ/4"], correctIndex: 1, feedback: "Nodes occur where sin(kx) = 0, yielding x = nλ/2." },
+                    { question: "The distance between a node and the nearest adjacent antinode is:", options: ["λ", "λ / 2", "λ / 4", "2λ"], correctIndex: 2, feedback: "Adjacent node and antinode are separated by a quarter wavelength: λ/4." },
+                    { question: "Which formula defines the wave number k?", options: ["2π / ω", "2π / λ", "λ / T", "2π f"], correctIndex: 1, feedback: "Wave number relates to wavelength: k = 2π / λ." }
+                ]
+            },
+            // Chapter 2 Lesson 2
+            {
+                id: "g12-interf",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",
+                worksheetUrl: "worksheets/ch2-l2-worksheet.pdf",
+                games: [{ topic: "Interference and Diffraction", url: "https://gemini.google.com/share/14c6c1b23c4d" }],
+                title: "Chapter 2 Lesson 2: Interference and Diffraction",
+                concepts: [
+                    "Interference: Overlapping of two coherent waves altering resultant amplitude.",
+                    "Constructive Interference: In-phase superposition producing maximum intensity when path difference \\( \\Delta d = n\\lambda \\).",
+                    "Destructive Interference: Out-of-phase superposition cancelling amplitude when \\( \\Delta d = (2n+1)\\frac{\\lambda}{2} \\).",
+                    "Young's Double-Slit: Produces bright fringes at \\( d\\sin\\theta = m\\lambda \\) and fringe spacing \\( \\Delta y = \\frac{L\\lambda}{d} \\).",
+                    "Diffraction: Spreading of light through a slit of width a with dark minima at \\( a\\sin\\theta = m\\lambda \\)."
+                ],
+                definitions: [
+                    { term: "Interference of Waves", definition: "Phenomenon occurring when coherent waves superpose to form modified resultant amplitude.", symbol: "\\text{Interference}", unit: "\\text{No unit}", equation: "y = y_1 + y_2" },
+                    { term: "Coherent Sources", definition: "Wave sources maintaining identical frequency, wavelength, and constant phase difference.", symbol: "\\Delta\\phi = \\text{const}", unit: "\\text{No unit}", equation: "\\Delta\\phi = \\text{constant}" },
+                    { term: "Path Difference", definition: "Difference in distance traveled by waves from their respective sources to a given point.", symbol: "\\Delta d", unit: "\\mathrm{m}", equation: "\\Delta d = d\\sin\\theta" },
+                    { term: "Constructive Interference", definition: "Reinforcement occurring when waves arrive in phase.", symbol: "\\text{Max}", unit: "\\mathrm{m}", equation: "d_2 - d_1 = n\\lambda" },
+                    { term: "Destructive Interference", definition: "Cancellation occurring when waves arrive half a cycle out of phase.", symbol: "\\text{Min}", unit: "\\mathrm{m}", equation: "d_2 - d_1 = (2n + 1)\\frac{\\lambda}{2}" },
+                    { term: "Fringe Spacing", definition: "Constant distance between two consecutive bright or dark fringes on a screen.", symbol: "\\Delta y", unit: "\\mathrm{m}", equation: "\\Delta y = \\frac{L\\lambda}{d}" },
+                    { term: "Single-Slit Diffraction Minima", definition: "Angular positions of dark bands in diffraction through slit of width a.", symbol: "\\theta_{min}", unit: "{^\\circ}", equation: "a\\sin\\theta = m\\lambda" }
+                ],
+                examples: [
+                    { title: "Young's Double-Slit Fringe Width", given: "Wavelength \\( \\lambda = 600\\,\\mathrm{nm} = 6.0\\times 10^{-7}\\,\\mathrm{m} \\), slit spacing \\( d = 0.20\\,\\mathrm{mm} = 2.0\\times 10^{-4}\\,\\mathrm{m} \\), screen distance \\( L = 1.5\\,\\mathrm{m} \\).", find: "Fringe width \\( \\Delta y \\).", equation: "\\Delta y = \\frac{L\\lambda}{d}", solution: "\\( \\Delta y = \\frac{1.5 \\times 6.0\\times 10^{-7}}{2.0\\times 10^{-4}} = 4.5\\times 10^{-3}\\,\\mathrm{m} = 4.5\\,\\mathrm{mm} \\).", finalAnswer: "\\Delta y = 4.5\\,\\mathrm{mm}", explanation: "Fringes are evenly spaced across screen." }
+                ],
+                equations: [
+                    { section: "Interference Conditions", name: "Constructive Interference", formula: "\\( \\Delta d = d_2 - d_1 = n\\lambda \\quad (n = 0, 1, 2, \\dots) \\)", symbols: [{ symbol: "Δd", desc: "Path difference (m)" }] },
+                    { section: "Interference Conditions", name: "Destructive Interference", formula: "\\( \\Delta d = (2n + 1)\\frac{\\lambda}{2} \\quad (n = 0, 1, 2, \\dots) \\)", symbols: [{ symbol: "Δd", desc: "Path difference (m)" }] },
+                    { section: "Young's Double-Slit", name: "Fringe Width & Maxima", formula: "\\( \\Delta y = \\frac{L\\lambda}{d}, \\quad d\\sin\\theta = m\\lambda \\)", symbols: [{ symbol: "Δy", desc: "Fringe width (m)" }, { symbol: "L", desc: "Screen distance (m)" }, { symbol: "d", desc: "Slit separation (m)" }] },
+                    { section: "Diffraction", name: "Single-Slit Diffraction Minima", formula: "\\( a\\sin\\theta = m\\lambda \\quad (m = 1, 2, 3, \\dots) \\)", symbols: [{ symbol: "a", desc: "Slit width (m)" }] }
+                ],
+                flashcards: [
+                    { front: "What is the condition for constructive interference?", back: "\\( \\Delta d = n\\lambda \\)" },
+                    { front: "What is the condition for destructive interference?", back: "\\( \\Delta d = (2n+1)\\frac{\\lambda}{2} \\)" },
+                    { front: "What is the formula for fringe width in Young's experiment?", back: "\\( \\Delta y = \\frac{L\\lambda}{d} \\)" }
+                ],
+                quiz: [
+                    { question: "In Young's experiment, increasing screen distance L causes fringe width Δy to:", options: ["Increase", "Decrease", "Remain unchanged", "Drop to zero"], correctIndex: 0, feedback: "Δy = Lλ / d, so fringe width is directly proportional to L." },
+                    { question: "Destructive interference occurs when the path difference between two waves is:", options: ["An integer multiple of λ", "An odd multiple of λ/2", "Zero", "2λ"], correctIndex: 1, feedback: "Odd multiples of half wavelength cause complete crest-to-trough cancellation." }
+                ]
+            },
+            // Chapter 3 Lesson 1
+            {
+                id: "g12-l5",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electromagnetic_induction.gif",
+                worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+                games: [
+                    { topic: "Magnetism & Biot-Savart", url: "https://gemini.google.com/share/b034179373cf" },
+                    { topic: "Lorentz Force & Deflection", url: "https://gemini.google.com/share/b034179373cf" },
+                    { topic: "Electromagnetic Induction & RL", url: "https://gemini.google.com/share/b034179373cf" }
+                ],
+                title: "Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",
+                concepts: [
+                    "Biot-Savart Law: Current elements create magnetic fields: \\( B = \\frac{\\mu_0 I}{2\\pi d} \\) (wire) and \\( B = \\frac{\\mu_0 NI}{l} \\) (solenoid).",
+                    "Lorentz Force: Force on moving charge in magnetic field: \\( F = |q|vB\\sin\\theta \\). Charged particles follow circular orbits: \\( R = \\frac{mv}{|q|B} \\).",
+                    "Electromagnetic Induction: Faraday's law states \\( e = -\\frac{d\\Phi}{dt} \\) with magnetic flux \\( \\Phi = NBA\\cos\\theta \\).",
+                    "Self-Induction & RL Circuit: Coil induces back-emf \\( e = -L\\frac{dI}{dt} \\) with time constant \\( \\tau = \\frac{L}{R} \\)."
+                ],
+                definitions: [
+                    { term: "Lorentz Force", definition: "Force experienced by a moving electric charge inside a magnetic field.", symbol: "F", unit: "\\mathrm{N}", equation: "F = |q|vB\\sin\\theta" },
+                    { term: "Cyclotron Radius", definition: "Orbital radius of a charged particle in a magnetic field.", symbol: "R", unit: "\\mathrm{m}", equation: "R = \\frac{mv}{|q|B}" },
+                    { term: "Magnetic Flux", definition: "Measure of total magnetic field threading an area.", symbol: "\\Phi", unit: "\\mathrm{Wb}", equation: "\\Phi = NBA\\cos\\theta" },
+                    { term: "Faraday's Law", definition: "Electromotive force induced by time-varying magnetic flux.", symbol: "e", unit: "\\mathrm{V}", equation: "e = -\\frac{d\\Phi}{dt}" },
+                    { term: "Self-Inductance", definition: "Back-emf induced by time-varying current in a coil.", symbol: "L", unit: "\\mathrm{H}", equation: "e = -L\\frac{dI}{dt}" },
+                    { term: "RL Time Constant", definition: "Time for current to build to 63.2% or decay to 36.8%.", symbol: "\\tau", unit: "\\mathrm{s}", equation: "\\tau = \\frac{L}{R}" }
+                ],
+                examples: [
+                    { title: "Lorentz Force on a Proton", given: "Charge \\( q = 1.6\\times 10^{-19}\\,\\mathrm{C} \\), velocity \\( v = 2.5\\times 10^6\\,\\mathrm{m/s} \\), field \\( B = 0.80\\,\\mathrm{T} \\), \\( \\theta = 30^\\circ \\).", find: "Force \\( F \\).", equation: "F = qvB\\sin\\theta", solution: "\\( F = (1.6\\times 10^{-19}) \\times (2.5\\times 10^6) \\times 0.80 \\times 0.5 = 1.6\\times 10^{-13}\\,\\mathrm{N} \\).", finalAnswer: "F = 1.6\\times 10^{-13}\\,\\mathrm{N}", explanation: "The magnetic force acts perpendicular to the velocity and magnetic field vectors." },
+                    { title: "RL Circuit Time Constant", given: "Battery \\( V = 24\\,\\mathrm{V} \\), \\( R = 12\\,\\Omega \\), \\( L = 0.060\\,\\mathrm{H} \\).", find: "Time constant \\( \\tau \\).", equation: "\\tau = \\frac{L}{R}", solution: "\\( \\tau = \\frac{0.060}{12} = 0.0050\\,\\mathrm{s} = 5.0\\,\\mathrm{ms} \\).", finalAnswer: "\\tau = 5.0\\,\\mathrm{ms}", explanation: "The inductor opposes immediate current surge, reaching 63.2% after 5 ms." }
+                ],
+                equations: [
+                    { section: "Magnetic Fields", name: "Biot-Savart Straight Wire", formula: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)", symbols: [{ symbol: "B", desc: "Field (T)" }, { symbol: "I", desc: "Current (A)" }, { symbol: "d", desc: "Distance (m)" }] },
+                    { section: "Magnetic Forces", name: "Lorentz Force", formula: "\\( F = |q|vB\\sin\\theta \\)", symbols: [{ symbol: "F", desc: "Force (N)" }, { symbol: "q", desc: "Charge (C)" }] },
+                    { section: "Induction", name: "Faraday's Law", formula: "\\( e = -\\frac{d\\Phi}{dt}, \\quad \\Phi = NBA\\cos\\theta \\)", symbols: [{ symbol: "e", desc: "Induced emf (V)" }, { symbol: "Φ", desc: "Flux (Wb)" }] },
+                    { section: "Self-Induction", name: "Back-EMF & RL Constant", formula: "\\( e = -L\\frac{dI}{dt}, \\quad \\tau = \\frac{L}{R} \\)", symbols: [{ symbol: "L", desc: "Inductance (H)" }, { symbol: "τ", desc: "Time constant (s)" }] }
+                ],
+                flashcards: [
+                    { front: "What is Faraday's law of electromagnetic induction?", back: "\\( e = -\\frac{d\\Phi}{dt} \\)" },
+                    { front: "What is the formula for the time constant in an RL circuit?", back: "\\( \\tau = \\frac{L}{R} \\)" },
+                    { front: "What is the Lorentz force formula?", back: "\\( F = |q|vB\\sin\\theta \\)" }
+                ],
+                quiz: [
+                    { question: "Self-induced emf in an inductor is directly proportional to:", options: ["Current I", "Voltage V", "Rate of current change dI/dt", "Resistance R"], correctIndex: 2, feedback: "e = -L (dI/dt)." },
+                    { question: "The time constant τ of an RL circuit is given by:", options: ["R / L", "L / R", "L × R", "1 / (LR)"], correctIndex: 1, feedback: "τ = L / R." }
+                ]
+            },
+            // Chapter 3 Lesson 2
+            {
+                id: "g12-l6",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",
+                worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
+                games: [{ topic: "Alternating Current", url: "https://gemini.google.com/share/0c850ab5a53b" }],
+                title: "Chapter 3 Lesson 2: Alternating Currents",
+                concepts: [
+                    "AC Waveforms: Sinusoidal current and voltage with RMS values \\( I = \\frac{I_m}{\\sqrt{2}} \\), \\( V = \\frac{V_m}{\\sqrt{2}} \\).",
+                    "Reactance: Inductive reactance \\( Z_L = L\\omega \\); capacitive reactance \\( Z_C = \\frac{1}{C\\omega} \\).",
+                    "RLC Impedance: Total opposition \\( Z = \\sqrt{R^2 + (Z_L - Z_C)^2} \\) with Ohm's law \\( I = \\frac{V}{Z} \\).",
+                    "Power in AC: Active power \\( P = VI\\cos\\phi \\) with power factor \\( \\cos\\phi = \\frac{R}{Z} \\)."
+                ],
+                definitions: [
+                    { term: "RMS Current", definition: "Effective DC heating equivalent of alternating current.", symbol: "I", unit: "\\mathrm{A}", equation: "I = \\frac{I_m}{\\sqrt{2}}" },
+                    { term: "RMS Voltage", definition: "Effective value of alternating potential difference.", symbol: "V", unit: "\\mathrm{V}", equation: "V = \\frac{V_m}{\\sqrt{2}}" },
+                    { term: "Inductive Reactance", definition: "Opposition offered by an inductor to AC flow.", symbol: "Z_L", unit: "\\Omega", equation: "Z_L = L\\omega = 2\\pi f L" },
+                    { term: "Capacitive Reactance", definition: "Opposition offered by a capacitor to AC flow.", symbol: "Z_C", unit: "\\Omega", equation: "Z_C = \\frac{1}{C\\omega}" },
+                    { term: "Impedance", definition: "Total combined opposition to AC current in an RLC circuit.", symbol: "Z", unit: "\\Omega", equation: "Z = \\sqrt{R^2 + (Z_L - Z_C)^2}" },
+                    { term: "Power Factor", definition: "Cosine of phase angle indicating active power fraction.", symbol: "\\cos\\phi", unit: "\\text{No unit}", equation: "\\cos\\phi = \\frac{R}{Z}" }
+                ],
+                examples: [
+                    { title: "RMS to Peak Voltage Conversion", given: "Rated mains voltage \\( V = 230\\,\\mathrm{V} \\).", find: "Peak voltage \\( V_m \\).", equation: "V_m = V\\sqrt{2}", solution: "\\( V_m = 230 \\times 1.4142 \\approx 325\\,\\mathrm{V} \\).", finalAnswer: "V_m \\approx 325\\,\\mathrm{V}", explanation: "A nominal 230 V RMS AC supply oscillates between +325 V and -325 V peak." },
+                    { title: "RLC Series Circuit Impedance", given: "Resistance \\( R = 40\\,\\Omega \\), \\( Z_L = 100\\,\\Omega \\), \\( Z_C = 70\\,\\Omega \\).", find: "Impedance \\( Z \\).", equation: "Z = \\sqrt{R^2 + (Z_L - Z_C)^2}", solution: "\\( Z = \\sqrt{40^2 + (100 - 70)^2} = \\sqrt{1600 + 900} = 50\\,\\Omega \\).", finalAnswer: "Z = 50\\,\\Omega", explanation: "Pythagorean combination of resistance and net reactance." }
+                ],
+                equations: [
+                    { section: "AC Fundamentals", name: "RMS Relations & Ohm's Law", formula: "\\( I = \\frac{I_m}{\\sqrt{2}}, \\quad V = \\frac{V_m}{\\sqrt{2}}, \\quad I = \\frac{V}{Z} \\)", symbols: [{ symbol: "I, V", desc: "RMS values" }, { symbol: "Z", desc: "Impedance (Ω)" }] },
+                    { section: "Reactance & Impedance", name: "Reactance and Impedance Formulas", formula: "\\( Z_L = L\\omega, \\quad Z_C = \\frac{1}{C\\omega}, \\quad Z = \\sqrt{R^2 + (Z_L - Z_C)^2} \\)", symbols: [{ symbol: "Z_L, Z_C", desc: "Reactances (Ω)" }] },
+                    { section: "AC Power", name: "Active Power & Factor", formula: "\\( P = VI \\cos\\phi, \\quad \\cos\\phi = \\frac{R}{Z} \\)", symbols: [{ symbol: "P", desc: "Power (W)" }, { symbol: "cosφ", desc: "Power factor" }] }
+                ],
+                flashcards: [
+                    { front: "What is the relation between RMS and peak voltage?", back: "\\( V = \\frac{V_m}{\\sqrt{2}} \\)" },
+                    { front: "What is the formula for inductive reactance \\( Z_L \\)?", back: "\\( Z_L = L\\omega = 2\\pi f L \\)" },
+                    { front: "What is the formula for capacitive reactance \\( Z_C \\)?", back: "\\( Z_C = \\frac{1}{C\\omega} \\)" },
+                    { front: "What is the total impedance in an RLC series circuit?", back: "\\( Z = \\sqrt{R^2 + (Z_L - Z_C)^2} \\)" }
+                ],
+                quiz: [
+                    { question: "In an RLC series circuit at resonance (Z_L = Z_C), the impedance Z equals:", options: ["Zero", "R", "Infinite", "R²"], correctIndex: 1, feedback: "When Z_L = Z_C, the reactive terms cancel, leaving Z = R." },
+                    { question: "The power factor in an AC circuit is given by:", options: ["R / Z", "Z / R", "Z_L / Z_C", "V / I"], correctIndex: 0, feedback: "Power factor cos φ = R / Z." }
+                ]
+            },
+            // Chapter 4 Lesson 1
+            {
+                id: "g12-ch4-l1",
+                gifUrl: "",
+                worksheetUrl: "worksheets/ch4-l1-worksheet.pdf",
+                games: [],
+                title: "Chapter 4 Lesson 1: Semiconductors & Transistors",
+                concepts: [
+                    "Semiconductors: Material whose conductivity lies between conductors and insulators (doped N-type with electrons, P-type with holes).",
+                    "P-N Junction: Forward bias reduces depletion zone allowing current; reverse bias widens barrier blocking current.",
+                    "Transistors: Three-terminal devices (Emitter, Base, Collector) satisfying \\( I_E = I_B + I_C \\).",
+                    "Current Amplification: Common-emitter gain \\( \\beta = \\frac{I_C}{I_B} \\) and common-base gain \\( \\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1} \\)."
+                ],
+                definitions: [
+                    { term: "Semiconductor", definition: "Material whose electrical conductivity can be controlled via doping.", symbol: "\\text{Semiconductor}", unit: "\\text{No unit}", equation: "R = \\rho \\frac{l}{A}" },
+                    { term: "Transistor Current Conservation", definition: "Total emitter current equals sum of base and collector currents.", symbol: "I_E", unit: "\\mathrm{A}", equation: "I_E = I_B + I_C" },
+                    { term: "Common-Emitter Current Gain", definition: "Ratio of output collector current to input base current.", symbol: "\\beta", unit: "\\text{No unit}", equation: "\\beta = \\frac{I_C}{I_B}" },
+                    { term: "Common-Base Current Gain", definition: "Ratio of collector current to emitter current.", symbol: "\\alpha", unit: "\\text{No unit}", equation: "\\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1}" }
+                ],
+                examples: [
+                    { title: "Transistor Current Conservation", given: "Base current \\( I_B = 0.050\\,\\mathrm{mA} \\), collector current \\( I_C = 4.95\\,\\mathrm{mA} \\).", find: "Emitter current \\( I_E \\).", equation: "I_E = I_B + I_C", solution: "\\( I_E = 0.050 + 4.95 = 5.00\\,\\mathrm{mA} \\).", finalAnswer: "I_E = 5.00\\,\\mathrm{mA}", explanation: "Current conservation requires emitter current to equal base plus collector current." },
+                    { title: "Common-Emitter Gain Calculation", given: "Base current \\( I_B = 40\\,\\mu\\mathrm{A} \\), collector current \\( I_C = 4.0\\,\\mathrm{mA} \\).", find: "Gain \\( \\beta \\).", equation: "\\beta = \\frac{I_C}{I_B}", solution: "\\( \\beta = \\frac{4.0\\times 10^{-3}}{40\\times 10^{-6}} = 100 \\).", finalAnswer: "\\beta = 100", explanation: "A gain of 100 multiplies the small control base current into large collector current." }
+                ],
+                equations: [
+                    { section: "Semiconductor", name: "Resistance and Resistivity", formula: "\\( R = \\rho \\frac{l}{A} \\)", symbols: [{ symbol: "ρ", desc: "Resistivity (Ω·m)" }] },
+                    { section: "Transistor", name: "Current Conservation", formula: "\\( I_E = I_B + I_C \\)", symbols: [{ symbol: "I_E, I_B, I_C", desc: "Transistor currents (A)" }] },
+                    { section: "Transistor Gains", name: "Current Gain Ratios", formula: "\\( \\beta = \\frac{I_C}{I_B}, \\quad \\alpha = \\frac{I_C}{I_E} = \\frac{\\beta}{\\beta + 1} \\)", symbols: [{ symbol: "β, α", desc: "Current gains" }] }
+                ],
+                flashcards: [
+                    { front: "What is the relationship between transistor currents?", back: "\\( I_E = I_B + I_C \\)" },
+                    { front: "What is common-emitter current gain β?", back: "\\( \\beta = \\frac{I_C}{I_B} \\)" },
+                    { front: "What are majority carriers in N-type semiconductors?", back: "Electrons" }
+                ],
+                quiz: [
+                    { question: "If I_E = 10 mA and I_B = 0.1 mA, what is the collector current I_C?", options: ["10.1 mA", "9.9 mA", "100 mA", "0.01 mA"], correctIndex: 1, feedback: "I_C = I_E - I_B = 10 - 0.1 = 9.9 mA." },
+                    { question: "The common-emitter current gain β is defined as:", options: ["I_C / I_E", "I_E / I_B", "I_C / I_B", "I_B / I_C"], correctIndex: 2, feedback: "β is the ratio of collector current to base current." }
+                ]
+            },
+            // Chapter 4 Lesson 2
+            {
+                id: "g12-ch4-l2",
+                gifUrl: "",
+                worksheetUrl: "worksheets/ch4-l2-worksheet.pdf",
+                games: [],
+                title: "Chapter 4 Lesson 2: Special Theory of Relativity",
+                concepts: [
+                    "Inertial Frames: Frames moving at constant velocity where Newton's laws are valid.",
+                    "Michelson-Morley Experiment: Null result proved the speed of light is invariant in all directions without ether.",
+                    "Einstein's Postulates: 1. Physics laws are universal in all inertial frames. 2. Speed of light c is constant for all observers.",
+                    "Lorentz Factor: \\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\ge 1 \\).",
+                    "Relativistic Transformations: Spacetime transforms via \\( x' = \\gamma(x - ut) \\), \\( t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)."
+                ],
+                definitions: [
+                    { term: "Speed of Light in Vacuum", definition: "Universal physical invariant speed limit.", symbol: "c", unit: "\\mathrm{m/s}", equation: "c \\approx 3.0\\times 10^8\\,\\mathrm{m/s}" },
+                    { term: "Lorentz Factor", definition: "Relativistic scaling factor for time dilation and length contraction.", symbol: "\\gamma", unit: "\\text{No unit}", equation: "\\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}}" },
+                    { term: "Lorentz Spatial Coordinate", definition: "Relativistic position transformation between moving frames.", symbol: "x'", unit: "\\mathrm{m}", equation: "x' = \\gamma(x - ut)" },
+                    { term: "Lorentz Time Coordinate", definition: "Relativistic time transformation showing relativity of simultaneity.", symbol: "t'", unit: "\\mathrm{s}", equation: "t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right)" },
+                    { term: "Relativistic Velocity Addition", definition: "Velocity combination ensuring no physical object exceeds c.", symbol: "v_x'", unit: "\\mathrm{m/s}", equation: "v_x' = \\frac{v_x - u}{1 - \\frac{u v_x}{c^2}}" }
+                ],
+                examples: [
+                    { title: "Lorentz Factor Calculation", given: "Particle travels at \\( u = 0.80c \\).", find: "Lorentz factor \\( \\gamma \\).", equation: "\\gamma = \\frac{1}{\\sqrt{1 - u^2/c^2}}", solution: "\\( \\sqrt{1 - (0.80)^2} = \\sqrt{1 - 0.64} = 0.60 \\implies \\gamma = \\frac{1}{0.60} = 1.667 \\).", finalAnswer: "\\gamma \\approx 1.67", explanation: "At 80% light speed, time dilates and space contracts by factor 1.67." },
+                    { title: "Relativistic Velocity Addition", given: "Spaceship moves at \\( u = 0.70c \\) and fires a probe forward at \\( v_x' = 0.60c \\).", find: "Probe speed relative to Earth \\( v_x \\).", equation: "v_x = \\frac{v_x' + u}{1 + \\frac{u v_x'}{c^2}}", solution: "\\( v_x = \\frac{0.60c + 0.70c}{1 + (0.70)(0.60)} = \\frac{1.30c}{1.42} \\approx 0.915c \\).", finalAnswer: "v_x \\approx 0.915c", explanation: "Relativistic addition ensures total velocity remains below c." }
+                ],
+                equations: [
+                    { section: "Lorentz Transformation", name: "Lorentz Factor", formula: "\\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\)", symbols: [{ symbol: "γ", desc: "Lorentz Factor" }, { symbol: "u", desc: "Frame velocity (m/s)" }] },
+                    { section: "Lorentz Transformation", name: "Space & Time Transformations", formula: "\\( x' = \\gamma(x - ut), \\quad t' = \\gamma\\left(t - \\frac{ux}{c^2}\\right) \\)", symbols: [{ symbol: "x', t'", desc: "Transformed coordinates" }] },
+                    { section: "Velocity Addition", name: "Relativistic Velocity", formula: "\\( v_x' = \\frac{v_x - u}{1 - \\frac{u v_x}{c^2}} \\)", symbols: [{ symbol: "v_x'", desc: "Velocity in S'" }] }
+                ],
+                flashcards: [
+                    { front: "What is the formula for the Lorentz factor γ?", back: "\\( \\gamma = \\frac{1}{\\sqrt{1 - \\frac{u^2}{c^2}}} \\)" },
+                    { front: "What was the result of the Michelson-Morley experiment?", back: "Null result — proving light speed is constant with no ether." },
+                    { front: "What happens to γ as velocity approaches light speed c?", back: "γ approaches infinity." }
+                ],
+                quiz: [
+                    { question: "According to Einstein's second postulate, the speed of light in vacuum is:", options: ["Dependent on source speed", "Dependent on observer speed", "Constant for all inertial observers", "Infinite"], correctIndex: 2, feedback: "Light speed c is invariant for all observers." },
+                    { question: "When u << c, the Lorentz factor γ approaches:", options: ["0", "1", "Infinity", "c"], correctIndex: 1, feedback: "At low speeds, γ approaches 1, reverting to Newtonian mechanics." }
+                ]
+            },
+            // Chapter 4 Lesson 3
+            {
+                id: "g12-ch4-l3",
+                gifUrl: "",
+                worksheetUrl: "worksheets/ch4-l3-worksheet.pdf",
+                games: [],
+                title: "Chapter 4 Lesson 3: Atomic Structure",
+                concepts: [
+                    "Cathode Rays: Thomson measured electron specific charge \\( e/m \\).",
+                    "Rutherford's Nucleus: Alpha scattering proved atoms contain a dense positive nucleus.",
+                    "Photoelectric Effect: Light travels as photons with energy \\( E = hf \\). Electrons are emitted when \\( hf \\ge E_0 \\).",
+                    "Einstein's Photoelectric Equation: \\( K_{max} = hf - E_0 = eV_s \\).",
+                    "Bohr Model: Quantized electron orbits; photon emission on transition: \\( \\Delta E = E_2 - E_1 = hf \\)."
+                ],
+                definitions: [
+                    { term: "Charge-to-Mass Ratio (e/m)", definition: "Specific charge of the electron measured by J.J. Thomson.", symbol: "e/m", unit: "\\mathrm{C/kg}", equation: "\\frac{q}{m} = \\frac{Z E}{D l B^2}" },
+                    { term: "Photon", definition: "Quantum packet of light energy.", symbol: "E", unit: "\\mathrm{J}", equation: "E = hf = \\frac{hc}{\\lambda}" },
+                    { term: "Work Function", definition: "Minimum binding energy required to liberate an electron from metal.", symbol: "E_0", unit: "\\mathrm{J} \\; (\\text{or eV})", equation: "E_0 = hf_0" },
+                    { term: "Photoelectric Equation", definition: "Maximum kinetic energy of ejected photoelectrons.", symbol: "K_{max}", unit: "\\mathrm{J}", equation: "K_{max} = hf - E_0 = eV_s" },
+                    { term: "Stopping Potential", definition: "Retarding potential required to reduce photocurrent to zero.", symbol: "V_s", unit: "\\mathrm{V}", equation: "K_{max} = eV_s" }
+                ],
+                examples: [
+                    { title: "Photoelectric Kinetic Energy", given: "UV light frequency \\( f = 1.0\\times 10^{15}\\,\\mathrm{Hz} \\), work function \\( E_0 = 2.30\\,\\mathrm{eV} = 3.685\\times 10^{-19}\\,\\mathrm{J} \\), \\( h = 6.626\\times 10^{-34}\\,\\mathrm{J\\cdot s} \\).", find: "Max kinetic energy \\( K_{max} \\).", equation: "K_{max} = hf - E_0", solution: "1. \\( hf = 6.626\\times 10^{-19}\\,\\mathrm{J} = 4.14\\,\\mathrm{eV} \\).<br>2. \\( K_{max} = 4.14 - 2.30 = 1.84\\,\\mathrm{eV} \\).", finalAnswer: "K_{max} = 1.84\\,\\mathrm{eV} \\; (2.94\\times 10^{-19}\\,\\mathrm{J})", explanation: "Conservation of energy on a single photon-electron collision basis." },
+                    { title: "Stopping Potential Calculation", given: "Max photoelectron energy \\( K_{max} = 1.84\\,\\mathrm{eV} \\).", find: "Stopping potential \\( V_s \\).", equation: "K_{max} = eV_s \\implies V_s = \\frac{K_{max}}{e}", solution: "\\( V_s = 1.84\\,\\mathrm{V} \\).", finalAnswer: "V_s = 1.84\\,\\mathrm{V}", explanation: "A retarding voltage of 1.84 V performs sufficient negative work to stop the electrons." }
+                ],
+                equations: [
+                    { section: "Cathode Rays", name: "Thomson e/m Ratio", formula: "\\( \\frac{q}{m} = \\frac{ZE}{DlB^2} \\)", symbols: [{ symbol: "q/m", desc: "Charge to mass (C/kg)" }] },
+                    { section: "Photoelectric Effect", name: "Einstein's Equation", formula: "\\( K_{max} = hf - E_0 = eV_s \\)", symbols: [{ symbol: "K_max", desc: "Max KE (J)" }, { symbol: "E_0", desc: "Work function (J)" }, { symbol: "V_s", desc: "Stopping potential (V)" }] },
+                    { section: "Bohr Model", name: "Energy Transition", formula: "\\( \\Delta E = E_2 - E_1 = hf = \\frac{hc}{\\lambda} \\)", symbols: [{ symbol: "ΔE", desc: "Energy gap (J)" }] }
+                ],
+                flashcards: [
+                    { front: "What is Einstein's photoelectric equation?", back: "\\( K_{max} = hf - E_0 \\)" },
+                    { front: "What is the work function of a metal?", back: "The minimum energy required to liberate an electron from the metal surface." },
+                    { front: "How is stopping potential related to maximum kinetic energy?", back: "\\( K_{max} = eV_s \\)" }
+                ],
+                quiz: [
+                    { question: "Einstein explained the photoelectric effect by treating light as:", options: ["Continuous waves", "Streams of energy packets called photons", "Sound vibrations", "Electrons"], correctIndex: 1, feedback: "Light consists of localized discrete energy packets called photons." },
+                    { question: "Electrons are emitted in the photoelectric effect only if the photon frequency is:", options: ["Less than threshold frequency", "Equal to or greater than threshold frequency", "Zero", "Arbitrary"], correctIndex: 1, feedback: "Photon energy hf must exceed or equal work function E_0 = hf_0." }
+                ]
+            }
+        ];
+    </script>
     <script src="physics-data.js"></script>
     <script>
         window.MathJax = {
@@ -143,7 +777,7 @@
             "12": [
                 {
                     id: "g12-l1",
-                    chapterNum: "Chapter 1",
+                    chapterNum: "Chapter 1 • Lesson 1",
                     chapterName: "Kinetic Theory of Ideal Gases",
                     subtitle: "Gas Laws, Pressure, Molecular Kinetic Energy & RMS Speed",
                     icon: "fa-wind",
@@ -162,8 +796,8 @@
                 },
                 {
                     id: "g12-l2",
-                    chapterNum: "Chapter 2",
-                    chapterName: "Thermodynamics",
+                    chapterNum: "Chapter 1 • Lesson 2",
+                    chapterName: "First Law of Thermodynamics",
                     subtitle: "First Law of Thermodynamics, Work Done & Thermodynamic Processes",
                     icon: "fa-fire-flame-curved",
                     color: "#ea580c",
@@ -181,8 +815,8 @@
                 },
                 {
                     id: "g12-l3",
-                    chapterNum: "Chapter 3",
-                    chapterName: "Heat Engines",
+                    chapterNum: "Chapter 1 • Lesson 3",
+                    chapterName: "Heat Engine",
                     subtitle: "Carnot Engine, Thermal Efficiency & Heat Reservoirs",
                     icon: "fa-gauge-high",
                     color: "#dc2626",
@@ -200,35 +834,35 @@
                 },
                 {
                     id: "g12-l4",
-                    chapterNum: "Chapter 4",
-                    chapterName: "Mechanical Waves",
-                    subtitle: "Mechanical Waves, Wave Speed, Frequency & Sound Velocity",
+                    chapterNum: "Chapter 2 • Lesson 1",
+                    chapterName: "Superposition and Standing Waves",
+                    subtitle: "Principle of Superposition, Standing Wave Nodes, Antinodes & Resonances",
                     icon: "fa-water",
                     color: "#0284c7",
                     gradient: "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)",
                     bgLight: "#e0f2fe",
                     borderLight: "#bae6fd",
                     shadow: "rgba(2, 132, 199, 0.22)",
-                    chips: ["Wave Equation", "Transverse Waves", "Sound Velocity"],
+                    chips: ["Superposition", "Standing Waves", "Nodes & Antinodes"],
                     formulas: 14,
                     terms: 12,
                     examples: 6,
-                    sims: 1,
+                    sims: 2,
                     hasPdf: true,
                     hasQuiz: true
                 },
                 {
                     id: "g12-interf",
-                    chapterNum: "Chapter 5",
-                    chapterName: "Wave Superposition & Interference",
-                    subtitle: "Wave Superposition, Young's Double-Slit & Single-Slit Diffraction",
+                    chapterNum: "Chapter 2 • Lesson 2",
+                    chapterName: "Interference and Diffraction",
+                    subtitle: "Young's Double-Slit, Path Difference, Fringe Width & Diffraction Minima",
                     icon: "fa-braille",
                     color: "#7c3aed",
                     gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
                     bgLight: "#ede9fe",
                     borderLight: "#ddd6fe",
                     shadow: "rgba(124, 58, 237, 0.22)",
-                    chips: ["Double Slit", "Fringe Spacing", "Diffraction"],
+                    chips: ["Double Slit", "Interference", "Diffraction"],
                     formulas: 10,
                     terms: 8,
                     examples: 5,
@@ -237,55 +871,36 @@
                     hasQuiz: true
                 },
                 {
-                    id: "g12-standing",
-                    chapterNum: "Chapter 6",
-                    chapterName: "Standing Waves",
-                    subtitle: "Nodes, Antinodes & Resonance in Strings and Pipes",
-                    icon: "fa-wave-square",
-                    color: "#4f46e5",
-                    gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
-                    bgLight: "#e0e7ff",
-                    borderLight: "#c7d2fe",
-                    shadow: "rgba(79, 70, 229, 0.22)",
-                    chips: ["Standing Waves", "Harmonics", "Resonance"],
-                    formulas: 8,
-                    terms: 8,
-                    examples: 4,
-                    sims: 1,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
                     id: "g12-l5",
-                    chapterNum: "Chapter 7",
-                    chapterName: "Magnetism & Self-Induction",
-                    subtitle: "Biot-Savart, Solenoids, Lorentz Force, Cyclotron & RL Circuit",
+                    chapterNum: "Chapter 3 • Lesson 1",
+                    chapterName: "Magnetism, Electromagnetic Induction and Self Induction",
+                    subtitle: "Biot-Savart, Lorentz Force, Faraday's Law, RL Circuit & Self-Inductance",
                     icon: "fa-compass",
                     color: "#be123c",
                     gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
                     bgLight: "#ffe4e6",
                     borderLight: "#fecdd3",
                     shadow: "rgba(190, 18, 60, 0.22)",
-                    chips: ["B-Fields", "Lorentz Force", "RL Circuit", "Induction"],
+                    chips: ["B-Fields", "Lorentz Force", "Induction", "RL Circuit"],
                     formulas: 18,
                     terms: 16,
                     examples: 7,
-                    sims: 1,
+                    sims: 3,
                     hasPdf: true,
                     hasQuiz: true
                 },
                 {
                     id: "g12-l6",
-                    chapterNum: "Chapter 8",
-                    chapterName: "Alternating Current",
-                    subtitle: "AC Waveforms, RMS Values, RLC Series Impedance & Transformers",
+                    chapterNum: "Chapter 3 • Lesson 2",
+                    chapterName: "Alternating Currents",
+                    subtitle: "AC Waveforms, RMS Values, RLC Series Impedance & Power Factor",
                     icon: "fa-wave-square",
                     color: "#2563eb",
                     gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
                     bgLight: "#eff6ff",
                     borderLight: "#bfdbfe",
                     shadow: "rgba(37, 99, 235, 0.22)",
-                    chips: ["AC Current", "RLC Circuit", "Impedance", "Transformers"],
+                    chips: ["AC Waveforms", "RMS Values", "RLC Impedance", "Power Factor"],
                     formulas: 16,
                     terms: 14,
                     examples: 6,
@@ -295,7 +910,7 @@
                 },
                 {
                     id: "g12-ch4-l1",
-                    chapterNum: "Chapter 9",
+                    chapterNum: "Chapter 4 • Lesson 1",
                     chapterName: "Semiconductors & Transistors",
                     subtitle: "Semiconductor Doping, P-N Junction & Transistor Amplification",
                     icon: "fa-microchip",
@@ -314,8 +929,8 @@
                 },
                 {
                     id: "g12-ch4-l2",
-                    chapterNum: "Chapter 10",
-                    chapterName: "Special Relativity",
+                    chapterNum: "Chapter 4 • Lesson 2",
+                    chapterName: "Special Theory of Relativity",
                     subtitle: "Michelson-Morley, Lorentz Transformation & Special Relativity",
                     icon: "fa-clock-rotate-left",
                     color: "#9333ea",
@@ -333,7 +948,7 @@
                 },
                 {
                     id: "g12-ch4-l3",
-                    chapterNum: "Chapter 11",
+                    chapterNum: "Chapter 4 • Lesson 3",
                     chapterName: "Atomic Structure",
                     subtitle: "Cathode Rays, Thomson e/m, Photoelectric Effect & Bohr Model",
                     icon: "fa-atom",
@@ -408,10 +1023,10 @@
             } else {
                 if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-atom"></i> Grade 12 • Advanced & Modern Physics';
                 if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g12">Grade 12</span> Physics';
-                if (subtitleEl) subtitleEl.innerText = 'Ideal Gases, Thermodynamics, Waves, Magnetism, Self Induction, Alternating Current, and Modern Physics';
+                if (subtitleEl) subtitleEl.innerText = '4 Comprehensive Chapters • 10 Core Lessons: Ideal Gases, Waves, Magnetism & AC, and Modern Physics';
                 if (statsBar) {
-                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 11 Chapters</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 116 Formulas</span>' +
+                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters (10 Lessons)</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 110+ Formulas</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
@@ -499,7 +1114,8 @@
 
         function loadLessonDetail(lessonOrId) {
             if (!lessonOrId) return;
-            var id = (typeof lessonOrId === 'object' && lessonOrId.id) ? lessonOrId.id : lessonOrId;
+            var rawId = (typeof lessonOrId === 'object' && lessonOrId.id) ? lessonOrId.id : lessonOrId;
+            var id = String(rawId).replace(/^[#\/]+/, '').replace(/\/+$/, '').trim().toLowerCase();
             window.pendingLessonId = id;
             window.currentSelectedLessonId = id;
 
@@ -520,16 +1136,30 @@
             if (_dt) { _dt.style.display = 'block'; _dt.classList.remove('hidden'); _dt.classList.add('active'); }
             window.scrollTo(0, 0);
 
+            // Canonical ID alias mapping
+            var canonicalId = id;
+            if (canonicalId === 'g12-waves' || canonicalId === 'g12-standing' || canonicalId === 'g12-ch2-l1') canonicalId = 'g12-l4';
+            else if (canonicalId === 'g12-mag' || canonicalId === 'g12-ch3-l1') canonicalId = 'g12-l5';
+            else if (canonicalId === 'g12-ch1-l1') canonicalId = 'g12-l1';
+            else if (canonicalId === 'g12-ch1-l2') canonicalId = 'g12-l2';
+            else if (canonicalId === 'g12-ch1-l3') canonicalId = 'g12-l3';
+            else if (canonicalId === 'g12-ch2-l2') canonicalId = 'g12-interf';
+            else if (canonicalId === 'g12-ch3-l2') canonicalId = 'g12-l6';
+
             // Set Title from Catalog or Lesson object
             var titleEl = document.getElementById('lesson-detail-title');
-            var foundTitle = (typeof lessonOrId === 'object' && lessonOrId.title) ? lessonOrId.title : id;
-            if (titleEl) {
-                for (var gr in CURRICULUM_CATALOG) {
-                    var items = CURRICULUM_CATALOG[gr];
-                    for (var k = 0; k < items.length; k++) {
-                        if (items[k].id === id) { foundTitle = items[k].chapterNum + ': ' + items[k].chapterName; break; }
+            var foundTitle = (typeof lessonOrId === 'object' && lessonOrId.title) ? lessonOrId.title : rawId;
+            for (var gr in CURRICULUM_CATALOG) {
+                var items = CURRICULUM_CATALOG[gr];
+                for (var k = 0; k < items.length; k++) {
+                    var itemLid = items[k].id.toLowerCase();
+                    if (itemLid === id || itemLid === canonicalId) { 
+                        foundTitle = items[k].chapterNum + ': ' + items[k].chapterName; 
+                        break; 
                     }
                 }
+            }
+            if (titleEl) {
                 titleEl.innerText = foundTitle;
             }
 
@@ -540,9 +1170,10 @@
                 lessonObj = lessonOrId;
             } else if (pData) {
                 var allLessons = (pData['9'] || []).concat(pData['12'] || []);
-                lessonObj = allLessons.find(function(l) { return l.id === id; });
-                if (!lessonObj && id === 'g12-waves') lessonObj = allLessons.find(function(l) { return l.id === 'g12-l4'; });
-                if (!lessonObj && id === 'g12-mag') lessonObj = allLessons.find(function(l) { return l.id === 'g12-l5'; });
+                lessonObj = allLessons.find(function(l) { 
+                    var lid = l.id.toLowerCase();
+                    return lid === canonicalId || lid === id; 
+                });
             }
 
             if (lessonObj) {
@@ -553,7 +1184,7 @@
             // If app.js engine has extra lesson definitions
             if (typeof window.appLoadLessonDetail === 'function') {
                 try {
-                    window.appLoadLessonDetail(lessonOrId, false);
+                    window.appLoadLessonDetail(canonicalId || lessonOrId, false);
                     return;
                 } catch (e) {
                     console.warn('appLoadLessonDetail encountered an issue, using fallback:', e);
@@ -561,7 +1192,7 @@
             }
 
             showLessonLoadingState(id, foundTitle);
-            waitForDataAndRender(id);
+            waitForDataAndRender(id, canonicalId);
         }
 
         function showLessonLoadingState(id, title) {
@@ -580,29 +1211,72 @@
             if (eqGrid) eqGrid.innerHTML = loadingHtml;
         }
 
-        function waitForDataAndRender(id) {
+        function waitForDataAndRender(id, canonicalId) {
+            canonicalId = canonicalId || id;
             var attempts = 0;
             var interval = setInterval(function() {
                 attempts++;
-                if (typeof window.appLoadLessonDetail === 'function') {
-                    clearInterval(interval);
-                    try { window.appLoadLessonDetail(id, false); } catch(e) {}
-                    return;
-                }
                 var pData = window.physicsData || window.appData;
                 if (pData) {
                     var allLessons = (pData['9'] || []).concat(pData['12'] || []);
-                    var found = allLessons.find(function(l) { return l.id === id; });
+                    var found = allLessons.find(function(l) { 
+                        var lid = l.id.toLowerCase();
+                        return lid === canonicalId || lid === id;
+                    });
                     if (found) {
                         clearInterval(interval);
                         renderCompleteLesson(found);
                         return;
                     }
                 }
-                if (attempts >= 40) {
+                if (typeof window.appLoadLessonDetail === 'function') {
                     clearInterval(interval);
+                    try { window.appLoadLessonDetail(canonicalId || id, false); } catch(e) {}
+                    return;
+                }
+                if (attempts >= 20) {
+                    clearInterval(interval);
+                    // Network fetch fallback if running on HTTP
+                    if (window.fetch && window.location.protocol.startsWith('http')) {
+                        fetch('physics-data.js?t=' + Date.now())
+                            .then(function(r) { return r.text(); })
+                            .then(function(code) {
+                                try {
+                                    var fn = new Function(code);
+                                    fn();
+                                    var p2 = window.physicsData || window.appData;
+                                    if (p2) {
+                                        var all2 = (p2['9'] || []).concat(p2['12'] || []);
+                                        var f2 = all2.find(function(l) { 
+                                            var lid = l.id.toLowerCase();
+                                            return lid === canonicalId || lid === id;
+                                        });
+                                        if (f2) { renderCompleteLesson(f2); return; }
+                                    }
+                                } catch(e) {}
+                                showLessonErrorState(id);
+                            })
+                            .catch(function() { showLessonErrorState(id); });
+                    } else {
+                        showLessonErrorState(id);
+                    }
                 }
             }, 100);
+        }
+
+        function showLessonErrorState(id) {
+            var cList = document.getElementById('lesson-concepts');
+            var eqGrid = document.getElementById('lesson-equations');
+            var errHtml = '<div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">' +
+                '<i class="fa-solid fa-circle-exclamation fa-2x" style="color: #ef4444; margin-bottom: 1rem; display: block;"></i>' +
+                '<p style="font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Lesson content could not be synchronized.</p>' +
+                '<p style="font-size: 0.85rem; margin-bottom: 1.25rem;">Please return to the lessons catalog and select a lesson.</p>' +
+                '<button type="button" class="btn-primary" onclick="showLessonsView()" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 8px; font-weight: 600; cursor: pointer;">' +
+                    '<i class="fa-solid fa-arrow-left"></i> Return to Lessons Catalog' +
+                '</button>' +
+            '</div>';
+            if (cList) cList.innerHTML = errHtml;
+            if (eqGrid) eqGrid.innerHTML = errHtml;
         }
 
         window.addEventListener('physicsDataReady', function(e) {
@@ -1060,7 +1734,7 @@
                 <h1>Master Physics with <span class="brand-gradient">@MeanWIS</span></h1>
                 <p class="dashboard-subtitle">A colorful, interactive formula companion with complete definitions, step-by-step worked examples, simulations, and practice worksheets.</p>
                 <div class="dashboard-stats-pills">
-                    <span class="stat-pill"><i class="fa-solid fa-book-open"></i> 16 Full Chapters</span>
+                    <span class="stat-pill"><i class="fa-solid fa-book-open"></i> 9 Chapters • 15 Lessons</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 200+ Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-lightbulb"></i> Step-by-Step Examples</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET Simulations</span>
@@ -1107,20 +1781,19 @@
                         <i class="fa-solid fa-atom"></i>
                     </div>
                     <h2>Grade 12 Physics</h2>
-                    <p class="card-desc">Ideal Gases, Thermodynamics, Waves, Magnetism, Self Induction, Alternating Current, and Modern Physics</p>
+                    <p class="card-desc">Ideal Gases, Waves & Superposition, Magnetism & AC, and Modern Physics</p>
                     
                     <div class="topic-chips">
                         <span class="topic-chip chip-gases"><i class="fa-solid fa-wind"></i> Ideal Gases</span>
                         <span class="topic-chip chip-thermo"><i class="fa-solid fa-fire-flame-curved"></i> Thermodynamics</span>
-                        <span class="topic-chip chip-waves"><i class="fa-solid fa-water"></i> Waves</span>
-                        <span class="topic-chip chip-magnet"><i class="fa-solid fa-compass"></i> Magnetism</span>
-                        <span class="topic-chip chip-induction"><i class="fa-solid fa-rotate"></i> Self Induction</span>
-                        <span class="topic-chip chip-ac"><i class="fa-solid fa-wave-square"></i> Alternating Current</span>
+                        <span class="topic-chip chip-waves"><i class="fa-solid fa-water"></i> Waves & Superposition</span>
+                        <span class="topic-chip chip-magnet"><i class="fa-solid fa-compass"></i> Magnetism & Induction</span>
+                        <span class="topic-chip chip-ac"><i class="fa-solid fa-wave-square"></i> Alternating Currents</span>
                         <span class="topic-chip chip-modern"><i class="fa-solid fa-microchip"></i> Modern Physics</span>
                     </div>
 
                     <div class="card-footer-info">
-                        <span><i class="fa-solid fa-layer-group"></i> 11 Chapters</span>
+                        <span><i class="fa-solid fa-layer-group"></i> 4 Chapters • 10 Lessons</span>
                         <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                         <span><i class="fa-solid fa-brain"></i> Quizzes</span>
                     </div>
