@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>WIS Physics Learning Hub</title>
+    <link rel="stylesheet" href="styles.css?v=60">
+    <style>
+        .view.active {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']]
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'iframe'],
+                enableMenu: false
+            },
+            startup: {
+                typeset: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.pendingGrade = null;
+        window.pendingLessonId = null;
+
+        function showDashboard() {
+            var d = document.getElementById('view-dashboard');
+            var l = document.getElementById('view-lessons');
+            var dt = document.getElementById('view-lesson-detail');
+            if (l) { l.style.display = 'none'; l.classList.remove('active'); l.classList.add('hidden'); }
+            if (dt) { dt.style.display = 'none'; dt.classList.remove('active'); dt.classList.add('hidden'); }
+            if (d) { d.style.display = 'block'; d.classList.remove('hidden'); d.classList.add('active'); }
+            window.scrollTo(0, 0);
+            if (typeof window.appShowDashboard === 'function') {
+                try { window.appShowDashboard(); } catch (e) {}
+            }
+        }
+
+        function showLessonsView() {
+            var d = document.getElementById('view-dashboard');
+            var l = document.getElementById('view-lessons');
+            var dt = document.getElementById('view-lesson-detail');
+            if (d) { d.style.display = 'none'; d.classList.remove('active'); d.classList.add('hidden'); }
+            if (dt) { dt.style.display = 'none'; dt.classList.remove('active'); dt.classList.add('hidden'); }
+            if (l) { l.style.display = 'block'; l.classList.remove('hidden'); l.classList.add('active'); }
+            window.scrollTo(0, 0);
+            if (typeof window.appShowLessonsView === 'function') {
+                try { window.appShowLessonsView(); } catch (e) {}
+            }
+        }
+
+        function loadLessons(grade) {
+            if (!grade) return;
+            var g = String(grade);
+            window.pendingGrade = g;
+
+            // 1. Immediately switch view on screen with zero latency
+            showLessonsView();
+
+            // 2. If app.js is ready, render immediately
+            if (typeof window.appLoadLessons === 'function') {
+                try {
+                    window.appLoadLessons(g);
+                    return;
+                } catch (e) {
+                    console.error('Error in appLoadLessons:', e);
+                }
+            } else if (typeof window.renderLessonsList === 'function') {
+                try {
+                    window.renderLessonsList(g);
+                    return;
+                } catch (e) {
+                    console.error('Error in renderLessonsList:', e);
+                }
+            }
+
+            // 3. Fallback poller: automatically render the moment app.js finishes downloading & parsing
+            var tries = 0;
+            var timer = setInterval(function() {
+                tries++;
+                if (typeof window.appLoadLessons === 'function') {
+                    clearInterval(timer);
+                    try { window.appLoadLessons(g); } catch (err) { console.error(err); }
+                } else if (typeof window.renderLessonsList === 'function') {
+                    clearInterval(timer);
+                    try { window.renderLessonsList(g); } catch (err) { console.error(err); }
+                } else if (tries > 150) {
+                    clearInterval(timer);
+                }
+            }, 25);
+        }
+
+        function loadLessonDetail(lessonOrId) {
+            if (!lessonOrId) return;
+            window.pendingLessonId = (typeof lessonOrId === 'object' && lessonOrId.id) ? lessonOrId.id : lessonOrId;
+            if (typeof window.appLoadLessonDetail === 'function') {
+                try { window.appLoadLessonDetail(lessonOrId); } catch (e) {}
+            } else if (typeof window.openLessonDetail === 'function') {
+                try { window.openLessonDetail(lessonOrId); } catch (e) {}
+            }
+        }
+
+        function openLessonDetail(lessonOrId) {
+            loadLessonDetail(lessonOrId);
+        }
+
+        function switchTab(targetName) {
+            if (!targetName) return;
+            var tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(function(b) {
+                if (b.getAttribute('data-target') === targetName) b.classList.add('active');
+                else b.classList.remove('active');
+            });
+            var tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(function(p) {
+                if (p.id === 'tab-' + targetName) {
+                    p.classList.remove('hidden');
+                    p.classList.add('active');
+                    p.style.display = 'block';
+                } else {
+                    p.classList.add('hidden');
+                    p.classList.remove('active');
+                    p.style.display = 'none';
+                }
+            });
+            if (typeof window.appSwitchTab === 'function') {
+                try { window.appSwitchTab(targetName); } catch (e) {}
+            }
+        }
+
+        window.showDashboard = showDashboard;
+        window.showLessonsView = showLessonsView;
+        window.loadLessons = loadLessons;
+        window.loadLessonDetail = loadLessonDetail;
+        window.openLessonDetail = openLessonDetail;
+        window.switchTab = switchTab;
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics
+        </div>
+        <div class="nav-links">
+            <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main id="app-container">
+        <!-- Dashboard View -->
+        <section id="view-dashboard" class="view active">
+            <header class="dashboard-header">
+                <div class="dashboard-hero-badge">
+                    <i class="fa-solid fa-atom"></i> Interactive Physics Learning Hub
+                </div>
+                <h1>Master Physics with <span class="brand-gradient">@MeanWIS</span></h1>
+                <p class="dashboard-subtitle">A colorful, interactive formula companion with complete definitions, step-by-step worked examples, simulations, and practice worksheets.</p>
+                <div class="dashboard-stats-pills">
+                    <span class="stat-pill"><i class="fa-solid fa-book-open"></i> 15 Full Chapters</span>
+                    <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 200+ Formulas</span>
+                    <span class="stat-pill"><i class="fa-solid fa-lightbulb"></i> Step-by-Step Examples</span>
+                    <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET Simulations</span>
+                </div>
+            </header>
+            <div class="grade-cards">
+                <!-- Grade 9 Card -->
+                <div class="grade-card grade-card-9" data-grade="9" onclick="loadLessons('9')">
+                    <div class="grade-badge badge-g9">
+                        <i class="fa-solid fa-seedling"></i> Fundamental Physics
+                    </div>
+                    <div class="card-icon icon-g9">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <h2>Grade 9 Physics</h2>
+                    <p class="card-desc">Torque, Simple Machines, Electricity, Magnetism, and Light</p>
+                    
+                    <div class="topic-chips">
+                        <span class="topic-chip chip-torque"><i class="fa-solid fa-arrows-spin"></i> Torque</span>
+                        <span class="topic-chip chip-machines"><i class="fa-solid fa-gears"></i> Simple Machines</span>
+                        <span class="topic-chip chip-electricity"><i class="fa-solid fa-bolt"></i> Electricity</span>
+                        <span class="topic-chip chip-magnetism"><i class="fa-solid fa-magnet"></i> Magnetism</span>
+                        <span class="topic-chip chip-light"><i class="fa-solid fa-lightbulb"></i> Light</span>
+                    </div>
+
+                    <div class="card-footer-info">
+                        <span><i class="fa-solid fa-layer-group"></i> 5 Chapters</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-vial"></i> Simulations</span>
+                    </div>
+
+                    <button class="btn-grade btn-grade-9" type="button" data-grade="9" onclick="event.stopPropagation(); loadLessons('9');">
+                        <span>Explore Grade 9</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Grade 12 Card -->
+                <div class="grade-card grade-card-12" data-grade="12" onclick="loadLessons('12')">
+                    <div class="grade-badge badge-g12">
+                        <i class="fa-solid fa-graduation-cap"></i> Advanced Physics
+                    </div>
+                    <div class="card-icon icon-g12">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <h2>Grade 12 Physics</h2>
+                    <p class="card-desc">Ideal Gases, Thermodynamics, Waves, Magnetism, Self Induction, Alternating Current, and Modern Physics</p>
+                    
+                    <div class="topic-chips">
+                        <span class="topic-chip chip-gases"><i class="fa-solid fa-wind"></i> Ideal Gases</span>
+                        <span class="topic-chip chip-thermo"><i class="fa-solid fa-fire-flame-curved"></i> Thermodynamics</span>
+                        <span class="topic-chip chip-waves"><i class="fa-solid fa-water"></i> Waves</span>
+                        <span class="topic-chip chip-magnet"><i class="fa-solid fa-compass"></i> Magnetism</span>
+                        <span class="topic-chip chip-induction"><i class="fa-solid fa-rotate"></i> Self Induction</span>
+                        <span class="topic-chip chip-ac"><i class="fa-solid fa-wave-square"></i> Alternating Current</span>
+                        <span class="topic-chip chip-modern"><i class="fa-solid fa-microchip"></i> Modern Physics</span>
+                    </div>
+
+                    <div class="card-footer-info">
+                        <span><i class="fa-solid fa-layer-group"></i> 10 Chapters</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    </div>
+
+                    <button class="btn-grade btn-grade-12" type="button" data-grade="12" onclick="event.stopPropagation(); loadLessons('12');">
+                        <span>Explore Grade 12</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lessons View -->
+        <section id="view-lessons" class="view hidden">
+            <!-- Modern Breadcrumb & Quick Nav Bar -->
+            <div class="lessons-nav-bar">
+                <button id="back-to-dashboard-btn" class="nav-back-pill" onclick="showDashboard()" title="Back to Grade Selection">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>All Grades</span>
+                </button>
+                <div class="lessons-grade-indicator" id="lessons-grade-indicator">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span id="lessons-grade-pill-text">Physics</span>
+                </div>
+            </div>
+
+            <!-- Grade Hero Banner -->
+            <header class="lessons-hero-banner" id="lessons-hero-banner">
+                <div class="lessons-hero-badge" id="lessons-hero-badge">
+                    <i class="fa-solid fa-atom"></i>
+                    <span id="lessons-badge-text">Physics Curriculum</span>
+                </div>
+                <h1 id="lessons-title" class="lessons-hero-title">Physics Lessons</h1>
+                <p id="lessons-subtitle" class="lessons-hero-subtitle">Interactive formulas, explanations, and practice</p>
+                <div class="lessons-stats-bar" id="lessons-stats-bar">
+                    <!-- Populated dynamically based on grade -->
+                </div>
+            </header>
+
+            <div class="lesson-list" id="lesson-list-container">
+                <!-- Lesson cards will be populated here -->
+            </div>
+        </section>
+
+        <!-- Single Lesson View -->
+        <section id="view-lesson-detail" class="view hidden">
+            <!-- Progress Indicator -->
+            <div class="progress-container">
+                <div class="progress-bar" id="reading-progress"></div>
+            </div>
+            
+            <header class="lesson-header">
+                <button id="back-to-lessons-btn" class="btn-text" onclick="showLessonsView()"><i class="fa-solid fa-arrow-left"></i> Back to Lessons</button>
+                <h1 id="lesson-detail-title">Lesson Title</h1>
+            </header>
+
+            <!-- Navigation Tabs for Lesson -->
+            <div class="lesson-tabs">
+                <button class="tab-btn active" data-target="summary" onclick="switchTab('summary')">Summary</button>
+                <button class="tab-btn" data-target="equations" onclick="switchTab('equations')">Equations</button>
+                <button class="tab-btn" data-target="flashcards" onclick="switchTab('flashcards')">Flashcards</button>
+                <button class="tab-btn" data-target="quiz" onclick="switchTab('quiz')">Quiz</button>
+                <button class="tab-btn" data-target="worksheet" onclick="switchTab('worksheet')">Worksheet</button>
+                <button class="tab-btn" data-target="game" onclick="switchTab('game')">Game</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Summary Tab -->
+                <div id="tab-summary" class="tab-pane active">
+                    
+                    <div class="summary-section" id="lesson-animation-section" style="display: none; text-align: center;">
+                        <h2><i class="fa-solid fa-play"></i> Animated Figure</h2>
+                        <div style="margin-top: 1rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-block;">
+                            <img id="lesson-gif" src="" alt="Physics Animation" style="max-width: 100%; height: auto; display: block;">
+                        </div>
+                    </div>
+
+                    <div class="summary-section" id="lesson-concepts-section">
+                        <h2><i class="fa-solid fa-key"></i> Key Concepts</h2>
+                        <ul id="lesson-concepts" class="concept-list">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                    
+                    <div class="summary-section" id="lesson-definitions-section">
+                        <h2><i class="fa-solid fa-book"></i> Definitions</h2>
+                        <div id="lesson-definitions" class="definitions-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="summary-section" id="lesson-examples-section">
+                        <h2><i class="fa-solid fa-lightbulb"></i> Examples</h2>
+                        <div id="lesson-examples" class="examples-container">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equations Tab -->
+                <div id="tab-equations" class="tab-pane hidden">
+                    <div class="equations-grid" id="lesson-equations">
+                        <!-- Interactive Equation Cards Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Flashcards Tab -->
+                <div id="tab-flashcards" class="tab-pane hidden">
+                    <div class="flashcard-container">
+                        <div class="flashcard" id="active-flashcard" onclick="void(0)">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <h3 id="fc-front-text">Front</h3>
+                                </div>
+                                <div class="flashcard-back">
+                                    <p id="fc-back-text">Back</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flashcard-controls">
+                            <button class="btn-icon" id="fc-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                            <span id="fc-counter">1 / 5</span>
+                            <button class="btn-icon" id="fc-next"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                        <button class="btn-secondary" id="fc-flip-btn"><i class="fa-solid fa-rotate"></i> Flip Card</button>
+                    </div>
+                </div>
+
+                <!-- Quiz Tab -->
+                <div id="tab-quiz" class="tab-pane hidden">
+                    <div class="quiz-container" id="quiz-container">
+                        <div id="quiz-question-container">
+                            <div class="quiz-progress">
+                                <span id="quiz-progress-text">Question 1 of 5</span>
+                            </div>
+                            <h3 id="quiz-question-text">Question text</h3>
+                            <div class="quiz-options" id="quiz-options">
+                                <!-- Populated by JS -->
+                            </div>
+                            <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+                            <button class="btn-primary hidden" id="quiz-next-btn">Next Question</button>
+                        </div>
+                        <div id="quiz-results-container" class="hidden">
+                            <h3>Quiz Complete!</h3>
+                            <div class="score-display">
+                                <span id="quiz-score">0</span> / <span id="quiz-total">0</span>
+                            </div>
+                            <p id="quiz-result-message"></p>
+                            <button class="btn-primary" id="quiz-retry-btn">Retry Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Worksheet Tab -->
+                <div id="tab-worksheet" class="tab-pane hidden">
+                    <div class="worksheet-container" id="lesson-worksheet">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Interactive Game Tab -->
+                <div id="tab-game" class="tab-pane hidden">
+                    <div class="game-container" id="lesson-game">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Tutor Widget -->
+    <div id="ai-widget-container" class="ai-widget-collapsed">
+        <button id="ai-toggle-btn" class="ai-fab">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+        <div id="ai-chat-panel" class="ai-panel">
+            <div class="ai-header">
+                <h3><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tutor</h3>
+                <button id="ai-close-btn" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="ai-messages" class="ai-messages">
+                <div class="ai-msg ai">Hi there! I'm your AI Physics Tutor. Ask me any physics question or ask me to explain a concept from this lesson!</div>
+            </div>
+            
+            <div id="ai-api-key-setup" class="ai-api-key-setup">
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Please enter your Gemini API key to chat. It is stored locally in your browser.</p>
+                <input type="password" id="ai-api-key-input" placeholder="Paste Gemini API Key here..." style="width:100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <button id="ai-save-key-btn" class="btn-primary" style="width: 100%;">Save Key</button>
+                <p style="font-size: 0.8rem; margin-top: 10px; text-align: center;"><a href="https://aistudio.google.com/app/apikey" target="_blank">Get an API key</a></p>
+            </div>
+
+            <div class="ai-input-area" id="ai-input-area" style="display: none;">
+                <input type="text" id="ai-user-input" placeholder="Ask about physics..." autocomplete="off">
+                <button id="ai-send-btn" class="btn-icon"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js?v=60"></script>
+</body>
+</html>

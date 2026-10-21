@@ -1,0 +1,108 @@
+{
+  "_NOTE": "Paste your simulation links here! Next time you change links, just edit this file on GitHub, commit changes, and your website will update automatically.",
+  "Grade 9": {
+    "g9-l1": {
+      "chapter": "Chapter 1: Turning Effect of Force",
+      "games": [
+        { "topic": "Turning Effect", "url": "https://g.co/gemini/share/da86f09d1c05" }
+      ]
+    },
+    "g9-l2": {
+      "chapter": "Chapter 2: Simple Machines",
+      "games": [
+        { "topic": "Levers", "url": "https://g.co/gemini/share/0b9242977d1a" },
+        { "topic": "Inclined Plane", "url": "https://g.co/gemini/share/a0f83fb13666" },
+        { "topic": "Pulley", "url": "https://share.gemini.google/ikZlefCPf3VG" },
+        { "topic": "Gear and Belt System", "url": "https://gemini.google.com/share/a559ad0916ce" },
+        { "topic": "Wheel and Axle", "url": "https://gemini.google.com/share/8a5c6aeecc08" }
+      ]
+    },
+    "g9-l3": {
+      "chapter": "Chapter 3: Electricity",
+      "games": [
+        { "topic": "Electricity", "url": "https://gemini.google.com/share/e1def1ea44ff" },
+        { "topic": "Household Wiring System", "url": "https://gemini.google.com/share/b1b0af13b130" }
+      ]
+    },
+    "g9-l4": {
+      "chapter": "Chapter 4: Magnetic Field",
+      "games": [
+        { "topic": "Magnetic Field due to a straight wire", "url": "https://gemini.google.com/share/4e08057d8f02" },
+        { "topic": "Magnetic due to a circular loop", "url": "https://gemini.google.com/share/d3ff81a78225" },
+        { "topic": "Magnetic due to a Solenoid", "url": "https://gemini.google.com/share/97335be64f77" },
+        { "topic": "Magnetic Force", "url": "https://gemini.google.com/share/e58537b64df4" },
+        { "topic": "Transformers", "url": "https://gemini.google.com/share/4436f3b52926" }
+      ]
+    },
+    "g9-l5": {
+      "chapter": "Chapter 5: Light",
+      "games": [
+        { "topic": "Light Rays", "url": "https://gemini.google.com/share/2ac63456c976" },
+        { "topic": "Reflection of light", "url": "https://gemini.google.com/share/01abdd9ea9aa" },
+        { "topic": "Plane Mirrors", "url": "https://gemini.google.com/share/7e4ee437394b" },
+        { "topic": "Concave Mirrors", "url": "https://gemini.google.com/share/7e4ee437394b" },
+        { "topic": "Convex Mirrors", "url": "https://gemini.google.com/share/7e4ee437394b" },
+        { "topic": "Refraction of light", "url": "https://gemini.google.com/share/307ba374b958" },
+        { "topic": "Lenses", "url": "https://gemini.google.com/share/1d57559d8cb4" }
+      ]
+    }
+  },
+  "Grade 12": {
+    "g12-l1": {
+      "chapter": "Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",
+      "games": [
+        { "topic": "Kinetic Theory of Ideal Gases", "url": "https://gemini.google.com/share/acfae742b2c0" }
+      ]
+    },
+    "g12-l2": {
+      "chapter": "Chapter 1 Lesson 2: First Law of Thermodynamics",
+      "games": [
+        { "topic": "First Law of Thermodynamics", "url": "https://gemini.google.com/share/9e34579d87cd" }
+      ]
+    },
+    "g12-l3": {
+      "chapter": "Chapter 1 Lesson 3: Heat Engine",
+      "games": [
+        { "topic": "Heat Engine", "url": "https://gemini.google.com/share/a6cfadc258e4" }
+      ]
+    },
+    "g12-l4": {
+      "chapter": "Chapter 2 Lesson 1: Superposition and Waves",
+      "games": [
+        { "topic": "Superposition and Waves", "url": "https://gemini.google.com/share/2e83761df9b7" }
+      ]
+    },
+    "g12-interf": {
+      "chapter": "Chapter 2 Lesson 2: Interference and Diffraction",
+      "games": [
+        { "topic": "Interference and Diffraction", "url": "https://gemini.google.com/share/14c6c1b23c4d" }
+      ]
+    },
+    "g12-l5": {
+      "chapter": "Chapter 3 Lesson 1: Magnetism & Induction",
+      "games": [
+        { "topic": "Magnetic Field", "url": "https://gemini.google.com/share/8a653df6b614" },
+        { "topic": "Faraday’s Law", "url": "https://gemini.google.com/share/a36b992c1d6d" },
+        { "topic": "Self Induction", "url": "https://gemini.google.com/share/ae9787424975" }
+      ]
+    },
+    "g12-l6": {
+      "chapter": "Chapter 3 Lesson 2: Alternating Current",
+      "games": [
+        { "topic": "Alternating Current", "url": "https://gemini.google.com/share/0c850ab5a53b" }
+      ]
+    },
+    "g12-ch4-l1": {
+      "chapter": "Chapter 4 Lesson 1: Solid-State Physics",
+      "games": []
+    },
+    "g12-ch4-l2": {
+      "chapter": "Chapter 4 Lesson 2: Special Theory of Relativity",
+      "games": []
+    },
+    "g12-ch4-l3": {
+      "chapter": "Chapter 4 Lesson 3: Atomic Structure",
+      "games": []
+    }
+  }
+}
