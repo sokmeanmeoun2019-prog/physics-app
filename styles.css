@@ -2162,34 +2162,50 @@ mjx-container[jax="CHTML"] mjx-mi {
 .ebook-actions {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin: 1rem 0 1.35rem 0;
     flex-wrap: wrap;
 }
 
 .ebook-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 10px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: var(--transition);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    transition: all 0.22s ease;
     cursor: pointer;
+    box-shadow: 0 4px 14px rgba(15, 118, 110, 0.28);
 }
 
 .ebook-btn.primary {
-    background: #0f766e;
-    color: var(--white);
+    background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+    color: #ffffff;
     border: none;
 }
 
 .ebook-btn.primary:hover {
-    background: #0d9488;
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 6px 20px rgba(15, 118, 110, 0.38);
+}
+
+.ebook-btn.pdf-btn-exit-fullscreen {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.38) !important;
+}
+
+.ebook-btn.pdf-btn-exit-fullscreen:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+    transform: translateY(-2px);
 }
 
 .ebook-btn.secondary {
@@ -2552,11 +2568,17 @@ body.pdf-modal-open {
     text-align: center;
 }
 
-.ebook-preview-wrapper.pdf-fullscreen-active .ebook-preview {
+.ebook-preview-wrapper.pdf-fullscreen-active .ebook-preview,
+.pdf-viewer-wrapper.pdf-fullscreen-active iframe,
+.pdf-viewer-wrapper.pdf-fullscreen-active .ebook-preview,
+.pdf-viewer-wrapper.pdf-fullscreen-active .ebook-preview-wrapper {
     flex: 1 1 0% !important;
-    height: calc(100vh - 58px) !important;
-    height: calc(100dvh - 58px) !important;
+    height: calc(100vh - 56px) !important;
+    height: calc(100dvh - 56px) !important;
+    min-height: 0 !important;
+    max-height: none !important;
     border-radius: 0 !important;
+    width: 100% !important;
 }
 
 @media (max-width: 768px) {

@@ -4164,6 +4164,12 @@ function renderEbook(lesson) {
                 <p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>
             </div>
 
+            <div class="ebook-actions">
+                <button type="button" class="ebook-btn primary" id="ebook-fullscreen-action-btn" title="Toggle Fullscreen Reading View">
+                    <i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>
+                </button>
+            </div>
+
             ${topicsSelectorHtml}
 
             <div class="pdf-viewer-wrapper" id="pdf-viewer-wrapper" oncontextmenu="return false;">
@@ -4252,7 +4258,7 @@ function renderEbook(lesson) {
                         </span>
                     </div>
                     <div class="pdf-toolbar-group">
-                        <button type="button" class="pdf-btn" id="fallback-fs-btn">
+                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="fallback-fs-btn" title="Toggle Fullscreen Reading View">
                             <i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>
                         </button>
                         <button type="button" class="pdf-btn" id="retry-pdf-load-btn" style="padding: 0.45rem 0.85rem;">
@@ -4261,6 +4267,9 @@ function renderEbook(lesson) {
                     </div>
                 </div>
                 <div class="ebook-preview-wrapper" id="fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
+                    <button type="button" class="pdf-floating-exit-btn" id="fallback-floating-exit-btn" title="Exit Fullscreen Reading Mode">
+                        <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
+                    </button>
                     <iframe src="${protectedViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
                 </div>
             `;
@@ -4268,15 +4277,30 @@ function renderEbook(lesson) {
             if (retryBtn) retryBtn.addEventListener('click', () => buildEbookUI(currentSelectedIndex));
 
             const fbFsBtn = document.getElementById('fallback-fs-btn');
-            if (fbFsBtn) {
-                fbFsBtn.addEventListener('click', () => {
-                    const isFs = wrapper.classList.toggle('pdf-fullscreen-active');
-                    document.body.classList.toggle('pdf-modal-open', isFs);
+            const topActionBtn = document.getElementById('ebook-fullscreen-action-btn');
+            const fbFloatingBtn = document.getElementById('fallback-floating-exit-btn');
+
+            function toggleFallbackFs(force) {
+                const isFs = (typeof force === 'boolean') ? force : !wrapper.classList.contains('pdf-fullscreen-active');
+                wrapper.classList.toggle('pdf-fullscreen-active', isFs);
+                document.body.classList.toggle('pdf-modal-open', isFs);
+                if (fbFsBtn) {
+                    fbFsBtn.classList.toggle('pdf-btn-exit-fullscreen', isFs);
                     fbFsBtn.innerHTML = isFs 
                         ? '<i class="fa-solid fa-xmark"></i> <span class="btn-text">Exit</span>' 
                         : '<i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>';
-                });
+                }
+                if (topActionBtn) {
+                    topActionBtn.classList.toggle('pdf-btn-exit-fullscreen', isFs);
+                    topActionBtn.innerHTML = isFs 
+                        ? '<i class="fa-solid fa-xmark"></i> <span id="ebook-fs-btn-text">Exit Fullscreen</span>' 
+                        : '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                }
             }
+
+            if (fbFsBtn) fbFsBtn.addEventListener('click', () => toggleFallbackFs());
+            if (topActionBtn) topActionBtn.addEventListener('click', () => toggleFallbackFs());
+            if (fbFloatingBtn) fbFloatingBtn.addEventListener('click', () => toggleFallbackFs(false));
         }
 
         function getPdfJsLib() {
@@ -4695,6 +4719,8 @@ function renderEbook(lesson) {
                 window.addEventListener('orientationchange', onViewportResize);
 
                 // Fullscreen Reading View Management
+                const topFsBtn = document.getElementById('ebook-fullscreen-action-btn');
+
                 function toggleFullscreen(forceState) {
                     const isCurrentlyActive = wrapper.classList.contains('pdf-fullscreen-active');
                     const targetState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyActive;
@@ -4708,6 +4734,10 @@ function renderEbook(lesson) {
                         if (fsBtn) {
                             fsBtn.classList.add('pdf-btn-exit-fullscreen');
                             fsBtn.title = 'Exit Fullscreen (Esc)';
+                        }
+                        if (topFsBtn) {
+                            topFsBtn.classList.add('pdf-btn-exit-fullscreen');
+                            topFsBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> <span id="ebook-fs-btn-text">Exit Fullscreen</span>';
                         }
 
                         // Try native fullscreen on desktop/Android if available
@@ -4730,6 +4760,10 @@ function renderEbook(lesson) {
                             fsBtn.classList.remove('pdf-btn-exit-fullscreen');
                             fsBtn.title = 'Toggle Fullscreen Reading View (Esc)';
                         }
+                        if (topFsBtn) {
+                            topFsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                            topFsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                        }
 
                         // Exit native fullscreen if active
                         try {
@@ -4746,6 +4780,9 @@ function renderEbook(lesson) {
 
                 if (fsBtn) {
                     fsBtn.addEventListener('click', () => toggleFullscreen());
+                }
+                if (topFsBtn) {
+                    topFsBtn.addEventListener('click', () => toggleFullscreen());
                 }
                 if (floatingExitBtn) {
                     floatingExitBtn.addEventListener('click', () => toggleFullscreen(false));
@@ -4786,6 +4823,10 @@ function renderEbook(lesson) {
                         scrollContainer.removeEventListener('scroll', onScrollUpdate);
                         document.body.classList.remove('pdf-modal-open');
                         document.body.style.overflow = '';
+                        if (topFsBtn) {
+                            topFsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                            topFsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                        }
                     }
                 };
             } catch (fatalErr) {
@@ -5515,6 +5556,18 @@ if (pendingId) {
     loadLessons(pg, false);
 } else if (window.location.hash || window.location.search.includes('grade=') || window.location.search.includes('lesson=')) {
     handleRoute();
+}
+
+// Automatically sync eBook reader if eBook tab is active or lesson is open
+if (typeof window !== 'undefined') {
+    try {
+        window.dispatchEvent(new CustomEvent('app-engine-ready'));
+    } catch (e) {}
+    const ebookPane = document.getElementById('tab-ebook');
+    const curLes = (typeof currentLesson !== 'undefined' && currentLesson) ? currentLesson : window.currentLesson;
+    if (ebookPane && !ebookPane.classList.contains('hidden') && curLes) {
+        try { renderEbook(curLes); } catch(e) {}
+    }
 }
 
 
