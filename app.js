@@ -4248,7 +4248,6 @@ function renderEbook(lesson) {
             const fsText = document.getElementById('fallback-fs-text');
             if (ffsBtn) {
                 ffsBtn.addEventListener('click', () => {
-                    // NEVER invoke native webkitRequestFullscreen on an iframe (it triggers Apple's frozen QuickLook viewer!)
                     const isFs = wrapper.classList.toggle('pdf-fullscreen-active');
                     if (isFs) {
                         if (fsIcon) fsIcon.className = 'fa-solid fa-compress';
@@ -4263,345 +4262,358 @@ function renderEbook(lesson) {
             }
         }
 
-        if (typeof window.pdfjsLib === 'undefined') {
-            fallbackToIframe(primaryUrl, 'PDF.js library not loaded');
-            return;
+        async function waitForPdfJs(maxWaitMs = 5000) {
+            if (window.pdfjsLib) return window.pdfjsLib;
+            const start = Date.now();
+            while (Date.now() - start < maxWaitMs) {
+                await new Promise(r => setTimeout(r, 80));
+                if (window.pdfjsLib) return window.pdfjsLib;
+            }
+            return window.pdfjsLib;
         }
 
         const loadingStatus = document.getElementById('pdf-loading-status');
         if (loadingStatus) loadingStatus.textContent = 'Loading textbook...';
 
-        async function fetchPdfDoc() {
-            // Step 1: Pre-fetch PDF binary directly on the main thread via fetch()
-            // This guarantees same-origin resolution and bypasses worker networking errors entirely
-            let pdfBuffer = null;
-            let finalUrl = primaryUrl;
-
-            try {
-                const res1 = await fetch(primaryUrl);
-                if (!res1.ok) throw new Error(`HTTP ${res1.status}`);
-                pdfBuffer = await res1.arrayBuffer();
-            } catch (fetchErr1) {
-                console.warn(`Primary fetch failed for ${primaryUrl}, trying altUrl: ${altUrl}`, fetchErr1);
-                if (altUrl && altUrl !== primaryUrl) {
-                    if (loadingStatus) loadingStatus.textContent = 'Retrying secondary path...';
-                    const res2 = await fetch(altUrl);
-                    if (!res2.ok) throw new Error(`HTTP ${res2.status}`);
-                    pdfBuffer = await res2.arrayBuffer();
-                    finalUrl = altUrl;
-                } else {
-                    throw fetchErr1;
-                }
+        waitForPdfJs().then(async (pdfjs) => {
+            if (!pdfjs) {
+                fallbackToIframe(primaryUrl, 'PDF.js library not available after timeout');
+                return;
             }
 
-            const binaryData = new Uint8Array(pdfBuffer);
-
-            // Step 2: Try to load with standard settings (supports worker where available)
-            try {
-                const docTask = window.pdfjsLib.getDocument({
-                    data: binaryData,
-                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-                    cMapPacked: true
-                });
-                return await docTask.promise;
-            } catch (workerErr) {
-                // If a browser (like iOS Safari) blocks cross-origin worker creation, fallback to main-thread fake worker
-                console.warn('Worker instantiation failed (e.g. Safari CORS), switching to main-thread fake worker:', workerErr);
-                if (window.pdfjsLib && window.pdfjsLib.GlobalWorkerOptions) {
-                    window.pdfjsLib.GlobalWorkerOptions.workerSrc = '';
-                }
-                const fakeWorkerTask = window.pdfjsLib.getDocument({
-                    data: binaryData,
-                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-                    cMapPacked: true
-                });
-                return await fakeWorkerTask.promise;
-            }
-        }
-
-        fetchPdfDoc().then(async (pdfDoc) => {
-            const numPages = pdfDoc.numPages;
-            const totalPagesEl = document.getElementById('pdf-total-pages');
-            const pageInput = document.getElementById('pdf-page-input');
-            const zoomLabel = document.getElementById('pdf-zoom-label');
-            const scrollContainer = document.getElementById('pdf-scroll-container');
-            const mount = document.getElementById('pdf-pages-mount');
-            const mainLoading = document.getElementById('pdf-loading-card');
-            const wrapper = document.getElementById('pdf-viewer-wrapper');
-            const fsBtn = document.getElementById('pdf-fullscreen-btn');
-            const fsIcon = document.getElementById('pdf-fs-icon');
-            const fsText = document.getElementById('pdf-fs-text');
-            const prevBtn = document.getElementById('pdf-prev-btn');
-            const nextBtn = document.getElementById('pdf-next-btn');
-            const zoomInBtn = document.getElementById('pdf-zoom-in-btn');
-            const zoomOutBtn = document.getElementById('pdf-zoom-out-btn');
-            const fitWidthBtn = document.getElementById('pdf-fit-width-btn');
-
-            if (!scrollContainer || !mount) return;
-
-            if (totalPagesEl) totalPagesEl.textContent = numPages;
-            if (pageInput) {
-                pageInput.max = numPages;
-                pageInput.value = 1;
+            // Proactively disable cross-origin worker on iOS/Safari to prevent SecurityError
+            const isAppleDevice = /iPad|iPhone|iPod|Macintosh/i.test(navigator.userAgent) && (navigator.maxTouchPoints > 1 || !window.MSStream);
+            if (isAppleDevice && pdfjs.GlobalWorkerOptions) {
+                pdfjs.GlobalWorkerOptions.workerSrc = '';
             }
 
-            // Inspect page 1 for base aspect ratio
-            const page1 = await pdfDoc.getPage(1);
-            const vp1 = page1.getViewport({ scale: 1 });
-            const baseW = vp1.width;
-            const baseH = vp1.height;
-
-            const availWidth = scrollContainer.clientWidth > 0 ? (scrollContainer.clientWidth - 32) : (window.innerWidth > 900 ? 820 : window.innerWidth - 32);
-            let currentScale = Math.min(Math.max(availWidth / baseW, 0.7), 1.6);
-
-            function updateZoomDisplay() {
-                if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
-            }
-            updateZoomDisplay();
-
-            const renderedPages = new Set();
-            const activeTasks = {};
-            let observer = null;
-
-            mount.innerHTML = '';
-            for (let p = 1; p <= numPages; p++) {
-                const card = document.createElement('div');
-                card.className = 'pdf-page-card';
-                card.id = `pdf-page-${p}`;
-                card.dataset.page = p;
-                card.style.width = Math.floor(baseW * currentScale) + 'px';
-                card.style.height = Math.floor(baseH * currentScale) + 'px';
-
-                const placeholder = document.createElement('div');
-                placeholder.className = 'pdf-loading-card';
-                placeholder.id = `pdf-placeholder-${p}`;
-                placeholder.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i><span>Page ${p}</span>`;
-
-                const canvas = document.createElement('canvas');
-                canvas.className = 'pdf-page-canvas';
-                canvas.id = `pdf-canvas-${p}`;
-                canvas.style.display = 'none';
-
-                const badge = document.createElement('span');
-                badge.className = 'pdf-page-badge';
-                badge.textContent = `${p} / ${numPages}`;
-
-                card.appendChild(placeholder);
-                card.appendChild(canvas);
-                card.appendChild(badge);
-                mount.appendChild(card);
-            }
-
-            if (mainLoading) mainLoading.style.display = 'none';
-
-            async function renderPage(pageNum) {
-                if (renderedPages.has(pageNum)) return;
-                renderedPages.add(pageNum);
-
-                const card = document.getElementById(`pdf-page-${pageNum}`);
-                const canvas = document.getElementById(`pdf-canvas-${pageNum}`);
-                const ph = document.getElementById(`pdf-placeholder-${pageNum}`);
-                if (!card || !canvas) return;
+            async function fetchPdfDoc() {
+                let pdfBuffer = null;
+                let finalUrl = primaryUrl;
 
                 try {
-                    const page = await pdfDoc.getPage(pageNum);
-                    const viewport = page.getViewport({ scale: currentScale });
-                    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-                    canvas.width = Math.floor(viewport.width * dpr);
-                    canvas.height = Math.floor(viewport.height * dpr);
-                    canvas.style.width = Math.floor(viewport.width) + 'px';
-                    canvas.style.height = Math.floor(viewport.height) + 'px';
-
-                    card.style.width = Math.floor(viewport.width) + 'px';
-                    card.style.height = Math.floor(viewport.height) + 'px';
-
-                    const ctx = canvas.getContext('2d');
-                    const renderContext = {
-                        canvasContext: ctx,
-                        viewport: viewport,
-                        transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null
-                    };
-
-                    const task = page.render(renderContext);
-                    activeTasks[pageNum] = task;
-                    await task.promise;
-
-                    if (ph) ph.style.display = 'none';
-                    canvas.style.display = 'block';
-                } catch (renderErr) {
-                    if (renderErr && renderErr.name !== 'RenderingCancelledException') {
-                        console.warn(`Render error on page ${pageNum}:`, renderErr);
+                    const res1 = await fetch(primaryUrl);
+                    if (!res1.ok) throw new Error(`HTTP ${res1.status}`);
+                    pdfBuffer = await res1.arrayBuffer();
+                } catch (fetchErr1) {
+                    console.warn(`Primary fetch failed for ${primaryUrl}, trying altUrl: ${altUrl}`, fetchErr1);
+                    if (altUrl && altUrl !== primaryUrl) {
+                        if (loadingStatus) loadingStatus.textContent = 'Retrying secondary path...';
+                        const res2 = await fetch(altUrl);
+                        if (!res2.ok) throw new Error(`HTTP ${res2.status}`);
+                        pdfBuffer = await res2.arrayBuffer();
+                        finalUrl = altUrl;
+                    } else {
+                        throw fetchErr1;
                     }
-                } finally {
-                    delete activeTasks[pageNum];
                 }
-            }
 
-            // Always render pages 1, 2, and 3 immediately on load
-            renderPage(1);
-            if (numPages >= 2) renderPage(2);
-            if (numPages >= 3) renderPage(3);
+                const binaryData = new Uint8Array(pdfBuffer);
 
-            if ('IntersectionObserver' in window) {
-                observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const p = parseInt(entry.target.dataset.page, 10);
-                            renderPage(p);
-                            if (p < numPages) setTimeout(() => renderPage(p + 1), 60);
-                            if (p > 1) setTimeout(() => renderPage(p - 1), 100);
-                        }
+                try {
+                    const docTask = pdfjs.getDocument({
+                        data: binaryData,
+                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                        cMapPacked: true
                     });
-                }, {
-                    root: scrollContainer,
-                    rootMargin: '600px 0px 600px 0px'
-                });
-
-                mount.querySelectorAll('.pdf-page-card').forEach(c => observer.observe(c));
-            }
-
-            let scrollTimeout = null;
-            function onScrollUpdate() {
-                if (scrollTimeout) return;
-                scrollTimeout = setTimeout(() => {
-                    scrollTimeout = null;
-                    const containerRect = scrollContainer.getBoundingClientRect();
-                    const cards = mount.querySelectorAll('.pdf-page-card');
-                    for (const card of cards) {
-                        const r = card.getBoundingClientRect();
-                        if (r.top <= containerRect.top + containerRect.height / 3 && r.bottom >= containerRect.top) {
-                            const p = parseInt(card.dataset.page, 10);
-                            if (pageInput && document.activeElement !== pageInput) {
-                                pageInput.value = p;
-                            }
-                            renderPage(p);
-                            if (p < numPages) renderPage(p + 1);
-                            if (p > 1) renderPage(p - 1);
-                            break;
-                        }
+                    return await docTask.promise;
+                } catch (workerErr) {
+                    console.warn('Worker instantiation error, falling back to main-thread fake worker:', workerErr);
+                    if (pdfjs.GlobalWorkerOptions) {
+                        pdfjs.GlobalWorkerOptions.workerSrc = '';
                     }
-                }, 60);
-            }
-            scrollContainer.addEventListener('scroll', onScrollUpdate, { passive: true });
-
-            function scrollToPage(p) {
-                const card = document.getElementById(`pdf-page-${p}`);
-                if (card) {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    if (pageInput) pageInput.value = p;
-                    renderPage(p);
-                    if (p < numPages) renderPage(p + 1);
+                    const fakeWorkerTask = pdfjs.getDocument({
+                        data: binaryData,
+                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                        cMapPacked: true
+                    });
+                    return await fakeWorkerTask.promise;
                 }
             }
 
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    const cur = parseInt(pageInput.value, 10) || 1;
-                    scrollToPage(Math.max(1, cur - 1));
-                });
-            }
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    const cur = parseInt(pageInput.value, 10) || 1;
-                    scrollToPage(Math.min(numPages, cur + 1));
-                });
-            }
+            try {
+                const pdfDoc = await fetchPdfDoc();
+                const numPages = pdfDoc.numPages;
+                const totalPagesEl = document.getElementById('pdf-total-pages');
+                const pageInput = document.getElementById('pdf-page-input');
+                const zoomLabel = document.getElementById('pdf-zoom-label');
+                const scrollContainer = document.getElementById('pdf-scroll-container');
+                const mount = document.getElementById('pdf-pages-mount');
+                const mainLoading = document.getElementById('pdf-loading-card');
+                const wrapper = document.getElementById('pdf-viewer-wrapper');
+                const fsBtn = document.getElementById('pdf-fullscreen-btn');
+                const fsIcon = document.getElementById('pdf-fs-icon');
+                const fsText = document.getElementById('pdf-fs-text');
+                const prevBtn = document.getElementById('pdf-prev-btn');
+                const nextBtn = document.getElementById('pdf-next-btn');
+                const zoomInBtn = document.getElementById('pdf-zoom-in-btn');
+                const zoomOutBtn = document.getElementById('pdf-zoom-out-btn');
+                const fitWidthBtn = document.getElementById('pdf-fit-width-btn');
 
-            if (pageInput) {
-                pageInput.addEventListener('change', () => {
-                    const val = parseInt(pageInput.value, 10);
-                    if (!isNaN(val)) {
-                        scrollToPage(Math.min(Math.max(1, val), numPages));
-                    }
-                });
-                pageInput.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        pageInput.blur();
-                    }
-                });
-            }
+                if (!scrollContainer || !mount) return;
 
-            function applyZoom(newScale) {
-                currentScale = Math.min(Math.max(newScale, 0.5), 2.5);
+                if (totalPagesEl) totalPagesEl.textContent = numPages;
+                if (pageInput) {
+                    pageInput.max = numPages;
+                    pageInput.value = 1;
+                }
+
+                const page1 = await pdfDoc.getPage(1);
+                const vp1 = page1.getViewport({ scale: 1 });
+                const baseW = vp1.width;
+                const baseH = vp1.height;
+
+                const availWidth = scrollContainer.clientWidth > 0 ? (scrollContainer.clientWidth - 32) : (window.innerWidth > 900 ? 820 : window.innerWidth - 32);
+                let currentScale = Math.min(Math.max(availWidth / baseW, 0.7), 1.6);
+
+                function updateZoomDisplay() {
+                    if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
+                }
                 updateZoomDisplay();
 
-                Object.values(activeTasks).forEach(t => {
-                    try { t.cancel(); } catch (e) {}
-                });
-                renderedPages.clear();
+                const renderedPages = new Set();
+                const activeTasks = {};
+                let observer = null;
 
-                mount.querySelectorAll('.pdf-page-card').forEach(c => {
-                    c.style.width = Math.floor(baseW * currentScale) + 'px';
-                    c.style.height = Math.floor(baseH * currentScale) + 'px';
-                    const cv = c.querySelector('.pdf-page-canvas');
-                    if (cv) cv.style.display = 'none';
-                    const ph = c.querySelector('.pdf-loading-card');
-                    if (ph) ph.style.display = 'flex';
-                });
+                mount.innerHTML = '';
+                for (let p = 1; p <= numPages; p++) {
+                    const card = document.createElement('div');
+                    card.className = 'pdf-page-card';
+                    card.id = `pdf-page-${p}`;
+                    card.dataset.page = p;
+                    card.style.width = Math.floor(baseW * currentScale) + 'px';
+                    card.style.height = Math.floor(baseH * currentScale) + 'px';
 
-                const cur = parseInt(pageInput.value, 10) || 1;
-                renderPage(cur);
-                if (cur < numPages) renderPage(cur + 1);
-                if (cur > 1) renderPage(cur - 1);
-            }
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'pdf-loading-card';
+                    placeholder.id = `pdf-placeholder-${p}`;
+                    placeholder.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i><span>Page ${p}</span>`;
 
-            if (zoomInBtn) zoomInBtn.addEventListener('click', () => applyZoom(currentScale + 0.15));
-            if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => applyZoom(currentScale - 0.15));
-            if (fitWidthBtn) {
-                fitWidthBtn.addEventListener('click', () => {
-                    const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 32 : window.innerWidth - 32;
-                    applyZoom(avail / baseW);
-                });
-            }
+                    const canvas = document.createElement('canvas');
+                    canvas.className = 'pdf-page-canvas';
+                    canvas.id = `pdf-canvas-${p}`;
+                    canvas.style.display = 'none';
 
-            function toggleFullscreen(forceState) {
-                const isActive = typeof forceState === 'boolean' 
-                    ? forceState 
-                    : wrapper.classList.contains('pdf-fullscreen-active');
-                
-                if (isActive) {
-                    wrapper.classList.remove('pdf-fullscreen-active');
-                    if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
-                    if (fsText) fsText.textContent = 'Fullscreen';
-                    document.body.style.overflow = '';
-                } else {
-                    wrapper.classList.add('pdf-fullscreen-active');
-                    if (fsIcon) fsIcon.className = 'fa-solid fa-compress';
-                    if (fsText) fsText.textContent = 'Exit';
-                    document.body.style.overflow = 'hidden';
-                    setTimeout(() => {
-                        const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 40 : window.innerWidth - 40;
+                    const badge = document.createElement('span');
+                    badge.className = 'pdf-page-badge';
+                    badge.textContent = `${p} / ${numPages}`;
+
+                    card.appendChild(placeholder);
+                    card.appendChild(canvas);
+                    card.appendChild(badge);
+                    mount.appendChild(card);
+                }
+
+                if (mainLoading) mainLoading.style.display = 'none';
+
+                async function renderPage(pageNum) {
+                    if (renderedPages.has(pageNum)) return;
+                    renderedPages.add(pageNum);
+
+                    const card = document.getElementById(`pdf-page-${pageNum}`);
+                    const canvas = document.getElementById(`pdf-canvas-${pageNum}`);
+                    const ph = document.getElementById(`pdf-placeholder-${pageNum}`);
+                    if (!card || !canvas) return;
+
+                    try {
+                        const page = await pdfDoc.getPage(pageNum);
+                        const viewport = page.getViewport({ scale: currentScale });
+                        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+                        canvas.width = Math.floor(viewport.width * dpr);
+                        canvas.height = Math.floor(viewport.height * dpr);
+                        canvas.style.width = Math.floor(viewport.width) + 'px';
+                        canvas.style.height = Math.floor(viewport.height) + 'px';
+
+                        card.style.width = Math.floor(viewport.width) + 'px';
+                        card.style.height = Math.floor(viewport.height) + 'px';
+
+                        const ctx = canvas.getContext('2d');
+                        const renderContext = {
+                            canvasContext: ctx,
+                            viewport: viewport,
+                            transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null
+                        };
+
+                        const task = page.render(renderContext);
+                        activeTasks[pageNum] = task;
+                        await task.promise;
+
+                        if (ph) ph.style.display = 'none';
+                        canvas.style.display = 'block';
+                    } catch (renderErr) {
+                        if (renderErr && renderErr.name !== 'RenderingCancelledException') {
+                            console.warn(`Render error on page ${pageNum}:`, renderErr);
+                        }
+                    } finally {
+                        delete activeTasks[pageNum];
+                    }
+                }
+
+                renderPage(1);
+                if (numPages >= 2) renderPage(2);
+                if (numPages >= 3) renderPage(3);
+
+                if ('IntersectionObserver' in window) {
+                    observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const p = parseInt(entry.target.dataset.page, 10);
+                                renderPage(p);
+                                if (p < numPages) setTimeout(() => renderPage(p + 1), 60);
+                                if (p > 1) setTimeout(() => renderPage(p - 1), 100);
+                            }
+                        });
+                    }, {
+                        root: scrollContainer,
+                        rootMargin: '600px 0px 600px 0px'
+                    });
+
+                    mount.querySelectorAll('.pdf-page-card').forEach(c => observer.observe(c));
+                }
+
+                let scrollTimeout = null;
+                function onScrollUpdate() {
+                    if (scrollTimeout) return;
+                    scrollTimeout = setTimeout(() => {
+                        scrollTimeout = null;
+                        const containerRect = scrollContainer.getBoundingClientRect();
+                        const cards = mount.querySelectorAll('.pdf-page-card');
+                        for (const card of cards) {
+                            const r = card.getBoundingClientRect();
+                            if (r.top <= containerRect.top + containerRect.height / 3 && r.bottom >= containerRect.top) {
+                                const p = parseInt(card.dataset.page, 10);
+                                if (pageInput && document.activeElement !== pageInput) {
+                                    pageInput.value = p;
+                                }
+                                renderPage(p);
+                                if (p < numPages) renderPage(p + 1);
+                                if (p > 1) renderPage(p - 1);
+                                break;
+                            }
+                        }
+                    }, 60);
+                }
+                scrollContainer.addEventListener('scroll', onScrollUpdate, { passive: true });
+
+                function scrollToPage(p) {
+                    const card = document.getElementById(`pdf-page-${p}`);
+                    if (card) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        if (pageInput) pageInput.value = p;
+                        renderPage(p);
+                        if (p < numPages) renderPage(p + 1);
+                    }
+                }
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        const cur = parseInt(pageInput.value, 10) || 1;
+                        scrollToPage(Math.max(1, cur - 1));
+                    });
+                }
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        const cur = parseInt(pageInput.value, 10) || 1;
+                        scrollToPage(Math.min(numPages, cur + 1));
+                    });
+                }
+
+                if (pageInput) {
+                    pageInput.addEventListener('change', () => {
+                        const val = parseInt(pageInput.value, 10);
+                        if (!isNaN(val)) {
+                            scrollToPage(Math.min(Math.max(1, val), numPages));
+                        }
+                    });
+                    pageInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            pageInput.blur();
+                        }
+                    });
+                }
+
+                function applyZoom(newScale) {
+                    currentScale = Math.min(Math.max(newScale, 0.5), 2.5);
+                    updateZoomDisplay();
+
+                    Object.values(activeTasks).forEach(t => {
+                        try { t.cancel(); } catch (e) {}
+                    });
+                    renderedPages.clear();
+
+                    mount.querySelectorAll('.pdf-page-card').forEach(c => {
+                        c.style.width = Math.floor(baseW * currentScale) + 'px';
+                        c.style.height = Math.floor(baseH * currentScale) + 'px';
+                        const cv = c.querySelector('.pdf-page-canvas');
+                        if (cv) cv.style.display = 'none';
+                        const ph = c.querySelector('.pdf-loading-card');
+                        if (ph) ph.style.display = 'flex';
+                    });
+
+                    const cur = parseInt(pageInput.value, 10) || 1;
+                    renderPage(cur);
+                    if (cur < numPages) renderPage(cur + 1);
+                    if (cur > 1) renderPage(cur - 1);
+                }
+
+                if (zoomInBtn) zoomInBtn.addEventListener('click', () => applyZoom(currentScale + 0.15));
+                if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => applyZoom(currentScale - 0.15));
+                if (fitWidthBtn) {
+                    fitWidthBtn.addEventListener('click', () => {
+                        const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 32 : window.innerWidth - 32;
                         applyZoom(avail / baseW);
-                    }, 100);
+                    });
                 }
+
+                function toggleFullscreen(forceState) {
+                    const isActive = typeof forceState === 'boolean' 
+                        ? forceState 
+                        : wrapper.classList.contains('pdf-fullscreen-active');
+                    
+                    if (isActive) {
+                        wrapper.classList.remove('pdf-fullscreen-active');
+                        if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
+                        if (fsText) fsText.textContent = 'Fullscreen';
+                        document.body.style.overflow = '';
+                    } else {
+                        wrapper.classList.add('pdf-fullscreen-active');
+                        if (fsIcon) fsIcon.className = 'fa-solid fa-compress';
+                        if (fsText) fsText.textContent = 'Exit';
+                        document.body.style.overflow = 'hidden';
+                        setTimeout(() => {
+                            const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 40 : window.innerWidth - 40;
+                            applyZoom(avail / baseW);
+                        }, 100);
+                    }
+                }
+
+                if (fsBtn) {
+                    fsBtn.addEventListener('click', () => toggleFullscreen());
+                }
+
+                const keyHandler = (e) => {
+                    if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
+                        toggleFullscreen(true);
+                    }
+                };
+                window.addEventListener('keydown', keyHandler);
+
+                currentPdfSession = {
+                    pdfDoc: pdfDoc,
+                    observer: observer,
+                    activeTasks: activeTasks,
+                    cleanup: () => {
+                        window.removeEventListener('keydown', keyHandler);
+                        scrollContainer.removeEventListener('scroll', onScrollUpdate);
+                        document.body.style.overflow = '';
+                    }
+                };
+            } catch (fatalErr) {
+                console.error('Fatal error initializing PDF.js viewer:', fatalErr);
+                fallbackToIframe(primaryUrl, fatalErr.message || 'PDF.js load failure');
             }
-
-            if (fsBtn) {
-                fsBtn.addEventListener('click', () => toggleFullscreen());
-            }
-
-            const keyHandler = (e) => {
-                if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
-                    toggleFullscreen(true);
-                }
-            };
-            window.addEventListener('keydown', keyHandler);
-
-            currentPdfSession = {
-                pdfDoc: pdfDoc,
-                observer: observer,
-                activeTasks: activeTasks,
-                cleanup: () => {
-                    window.removeEventListener('keydown', keyHandler);
-                    scrollContainer.removeEventListener('scroll', onScrollUpdate);
-                    document.body.style.overflow = '';
-                }
-            };
-        }).catch(fatalErr => {
-            console.error('Fatal error initializing PDF.js viewer:', fatalErr);
-            fallbackToIframe(primaryUrl, fatalErr.message || 'PDF.js load failure');
         });
     }
 

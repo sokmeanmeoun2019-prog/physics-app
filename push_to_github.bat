@@ -10,7 +10,7 @@ git add .
 
 echo.
 echo 2. Committing changes...
-git commit -m "Fix Safari iOS worker CORS by prefetching binary arrayBuffer and fake worker fallback"
+git commit -m "Upgrade to universal iOS PDF.js 2.16 with async load waiter and main-thread execution"
 
 echo.
 echo 3. Pushing to GitHub (origin main)...

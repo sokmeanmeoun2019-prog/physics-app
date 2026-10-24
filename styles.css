@@ -2342,8 +2342,8 @@ mjx-container[jax="CHTML"] mjx-mi {
     background: #334155;
     overflow-y: auto;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y pinch-zoom;
     height: 750px;
     max-height: 80vh;
     padding: 1.25rem 0.75rem;
