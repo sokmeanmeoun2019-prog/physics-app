@@ -10,7 +10,7 @@ git add .
 
 echo.
 echo 2. Committing changes...
-git commit -m "Fix mobile and iPad touch scrolling and pinch-to-zoom in Grade 9 and 12 ebooks (v3.0)"
+git commit -m "Deploy Blob worker for iOS/Safari to eliminate iframe fallback and enable full multi-page scrolling (v3.1)"
 
 echo.
 echo 3. Pushing to GitHub (origin main)...

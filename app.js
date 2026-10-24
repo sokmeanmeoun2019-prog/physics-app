@@ -4225,6 +4225,7 @@ function renderEbook(lesson) {
             console.warn('Using safe in-page fallback for ebook:', errInfo);
             const wrapper = document.getElementById('pdf-viewer-wrapper');
             if (!wrapper) return;
+            const isIOS = /iPad|iPhone|iPod/i.test(navigator.userAgent);
             const protectedViewerSrc = url ? (url.includes('#') ? url : `${url}#toolbar=0&navpanes=0`) : '';
             wrapper.innerHTML = `
                 <div class="pdf-toolbar" style="position: sticky; top: 0; z-index: 25;">
@@ -4234,37 +4235,40 @@ function renderEbook(lesson) {
                         </span>
                     </div>
                     <div class="pdf-toolbar-group">
-                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="fallback-fs-btn" style="padding: 0.45rem 0.85rem;">
-                            <i class="fa-solid fa-expand" id="fallback-fs-icon"></i> <span id="fallback-fs-text">Fullscreen</span>
+                        <button type="button" class="pdf-btn" id="retry-pdf-load-btn" style="padding: 0.45rem 0.85rem;">
+                            <i class="fa-solid fa-arrows-rotate"></i> <span>Reload Reader</span>
                         </button>
                     </div>
                 </div>
-                <div class="ebook-preview-wrapper" id="fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow: hidden;">
-                    <iframe src="${protectedViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
+                <div class="ebook-preview-wrapper" id="fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
+                    ${isIOS ? `
+                        <div style="padding: 2.5rem 1.5rem; text-align: center; color: #cbd5e1; background: #1e293b; border-radius: 8px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
+                            <i class="fa-solid fa-book-open" style="font-size: 2.5rem; color: #38bdf8;"></i>
+                            <h3 style="color: #f8fafc; margin: 0;">Interactive Reader Ready</h3>
+                            <p style="max-width: 480px; font-size: 0.92rem; color: #94a3b8; margin: 0;">Tap below to display the multi-page scrollable textbook.</p>
+                            <button type="button" class="pdf-btn primary" id="ios-init-retry-btn" style="padding: 0.65rem 1.25rem; font-size: 0.95rem; background: #0284c7; color: #fff; border-radius: 6px; cursor: pointer;">
+                                <i class="fa-solid fa-play"></i> Launch Full Textbook
+                            </button>
+                        </div>
+                    ` : `
+                        <iframe src="${protectedViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
+                    `}
                 </div>
             `;
-            const ffsBtn = document.getElementById('fallback-fs-btn');
-            const fsIcon = document.getElementById('fallback-fs-icon');
-            const fsText = document.getElementById('fallback-fs-text');
-            if (ffsBtn) {
-                ffsBtn.addEventListener('click', () => {
-                    const isFs = wrapper.classList.toggle('pdf-fullscreen-active');
-                    if (isFs) {
-                        if (fsIcon) fsIcon.className = 'fa-solid fa-compress';
-                        if (fsText) fsText.textContent = 'Exit';
-                    } else {
-                        if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
-                        if (fsText) fsText.textContent = 'Fullscreen';
-                    }
-                });
-            }
+            const retryBtn = document.getElementById('retry-pdf-load-btn');
+            const iosRetryBtn = document.getElementById('ios-init-retry-btn');
+            const onRetry = () => {
+                buildEbookUI(currentSelectedIndex);
+            };
+            if (retryBtn) retryBtn.addEventListener('click', onRetry);
+            if (iosRetryBtn) iosRetryBtn.addEventListener('click', onRetry);
         }
 
         function getPdfJsLib() {
             return window.pdfjsLib || window['pdfjs-dist/build/pdf'] || window.PDFJS || null;
         }
 
-        async function waitForPdfJs(maxWaitMs = 5000) {
+        async function waitForPdfJs(maxWaitMs = 6000) {
             let lib = getPdfJsLib();
             if (lib) return lib;
             const start = Date.now();
@@ -4276,6 +4280,31 @@ function renderEbook(lesson) {
             return getPdfJsLib();
         }
 
+        let cachedWorkerUrl = null;
+        function setupPdfWorker(pdfjs) {
+            if (!pdfjs || !pdfjs.GlobalWorkerOptions) return;
+            if (cachedWorkerUrl) {
+                pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerUrl;
+                return;
+            }
+
+            const cdnWorker = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+            try {
+                // Inline importScripts Blob worker creates a same-origin worker that iOS Safari & Android never block
+                const workerBlob = new Blob(
+                    [`importScripts("${cdnWorker}");`],
+                    { type: 'application/javascript' }
+                );
+                cachedWorkerUrl = URL.createObjectURL(workerBlob);
+                pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerUrl;
+                return;
+            } catch (blobErr) {
+                console.warn('Blob worker creation failed, using direct CDN worker URL:', blobErr);
+            }
+
+            pdfjs.GlobalWorkerOptions.workerSrc = cdnWorker;
+        }
+
         const loadingStatus = document.getElementById('pdf-loading-status');
         if (loadingStatus) loadingStatus.textContent = 'Loading textbook...';
 
@@ -4285,20 +4314,24 @@ function renderEbook(lesson) {
                 return;
             }
 
-            // Always configure worker safely: fake worker on mobile touch devices to eliminate CORS/SecurityError
-            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
-            if (pdfjs.GlobalWorkerOptions) {
-                if (isTouchDevice) {
-                    pdfjs.GlobalWorkerOptions.workerSrc = '';
-                } else {
-                    pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-                }
-            }
+            // Configure multi-threaded same-origin Blob worker
+            setupPdfWorker(pdfjs);
 
             async function fetchPdfDoc() {
-                let pdfBuffer = null;
-                let finalUrl = primaryUrl;
+                // Method 1: Try direct URL loading via PDF.js
+                try {
+                    const task1 = pdfjs.getDocument({
+                        url: primaryUrl,
+                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                        cMapPacked: true
+                    });
+                    return await task1.promise;
+                } catch (urlErr1) {
+                    console.warn(`Direct URL loading failed for ${primaryUrl}, fetching binary ArrayBuffer:`, urlErr1);
+                }
 
+                // Method 2: Fetch binary buffer directly
+                let pdfBuffer = null;
                 try {
                     const res1 = await fetch(primaryUrl);
                     if (!res1.ok) throw new Error(`HTTP ${res1.status}`);
@@ -4310,33 +4343,18 @@ function renderEbook(lesson) {
                         const res2 = await fetch(altUrl);
                         if (!res2.ok) throw new Error(`HTTP ${res2.status}`);
                         pdfBuffer = await res2.arrayBuffer();
-                        finalUrl = altUrl;
                     } else {
                         throw fetchErr1;
                     }
                 }
 
                 const binaryData = new Uint8Array(pdfBuffer);
-
-                try {
-                    const docTask = pdfjs.getDocument({
-                        data: binaryData,
-                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
-                        cMapPacked: true
-                    });
-                    return await docTask.promise;
-                } catch (workerErr) {
-                    console.warn('Worker error, switching to fake worker on main thread:', workerErr);
-                    if (pdfjs.GlobalWorkerOptions) {
-                        pdfjs.GlobalWorkerOptions.workerSrc = '';
-                    }
-                    const fakeWorkerTask = pdfjs.getDocument({
-                        data: binaryData,
-                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
-                        cMapPacked: true
-                    });
-                    return await fakeWorkerTask.promise;
-                }
+                const task2 = pdfjs.getDocument({
+                    data: binaryData,
+                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                    cMapPacked: true
+                });
+                return await task2.promise;
             }
 
             try {
