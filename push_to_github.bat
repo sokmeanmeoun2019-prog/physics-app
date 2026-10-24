@@ -10,7 +10,7 @@ git add .
 
 echo.
 echo 2. Committing changes...
-git commit -m "Fix Grade 9 and Grade 12 Ebook touch scrolling on iPad and phone with HTML5 canvas reader"
+git commit -m "Fix Safari iOS worker CORS by prefetching binary arrayBuffer and fake worker fallback"
 
 echo.
 echo 3. Pushing to GitHub (origin main)...

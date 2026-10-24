@@ -4222,63 +4222,100 @@ function renderEbook(lesson) {
 
     function initPdfReader(primaryUrl, altUrl, title) {
         function fallbackToIframe(url, errInfo) {
-            console.warn('Using iframe fallback for ebook:', errInfo);
+            console.warn('Using safe in-page fallback for ebook:', errInfo);
             const wrapper = document.getElementById('pdf-viewer-wrapper');
             if (!wrapper) return;
             const protectedViewerSrc = url ? (url.includes('#') ? url : `${url}#toolbar=0&navpanes=0`) : '';
             wrapper.innerHTML = `
-                <div style="background: #1e293b; padding: 0.5rem 1rem; color: #94a3b8; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center;">
-                    <span><i class="fa-solid fa-book-open"></i> Standard Reader View</span>
-                    <button type="button" class="pdf-btn pdf-btn-fullscreen" id="fallback-fs-btn" style="padding: 0.35rem 0.65rem; font-size: 0.82rem;">
-                        <i class="fa-solid fa-expand"></i> Fullscreen
-                    </button>
+                <div class="pdf-toolbar" style="position: sticky; top: 0; z-index: 25;">
+                    <div class="pdf-toolbar-group">
+                        <span style="font-size: 0.88rem; color: #cbd5e1; font-weight: 600;">
+                            <i class="fa-solid fa-book-open" style="color: #38bdf8; margin-right: 6px;"></i> Standard Curriculum Reader
+                        </span>
+                    </div>
+                    <div class="pdf-toolbar-group">
+                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="fallback-fs-btn" style="padding: 0.45rem 0.85rem;">
+                            <i class="fa-solid fa-expand" id="fallback-fs-icon"></i> <span id="fallback-fs-text">Fullscreen</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="ebook-preview-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%;">
-                    <iframe src="${protectedViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; border: none;"></iframe>
+                <div class="ebook-preview-wrapper" id="fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow: hidden;">
+                    <iframe src="${protectedViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
                 </div>
             `;
             const ffsBtn = document.getElementById('fallback-fs-btn');
-            const iframe = document.getElementById('ebook-iframe');
-            if (ffsBtn && iframe) {
+            const fsIcon = document.getElementById('fallback-fs-icon');
+            const fsText = document.getElementById('fallback-fs-text');
+            if (ffsBtn) {
                 ffsBtn.addEventListener('click', () => {
-                    if (iframe.requestFullscreen) iframe.requestFullscreen();
-                    else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
-                    else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
+                    // NEVER invoke native webkitRequestFullscreen on an iframe (it triggers Apple's frozen QuickLook viewer!)
+                    const isFs = wrapper.classList.toggle('pdf-fullscreen-active');
+                    if (isFs) {
+                        if (fsIcon) fsIcon.className = 'fa-solid fa-compress';
+                        if (fsText) fsText.textContent = 'Exit';
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
+                        if (fsText) fsText.textContent = 'Fullscreen';
+                        document.body.style.overflow = '';
+                    }
                 });
             }
         }
 
         if (typeof window.pdfjsLib === 'undefined') {
-            fallbackToIframe(primaryUrl, 'PDF.js library not present');
+            fallbackToIframe(primaryUrl, 'PDF.js library not loaded');
             return;
-        }
-
-        if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
-            window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
         }
 
         const loadingStatus = document.getElementById('pdf-loading-status');
         if (loadingStatus) loadingStatus.textContent = 'Loading textbook...';
 
         async function fetchPdfDoc() {
+            // Step 1: Pre-fetch PDF binary directly on the main thread via fetch()
+            // This guarantees same-origin resolution and bypasses worker networking errors entirely
+            let pdfBuffer = null;
+            let finalUrl = primaryUrl;
+
+            try {
+                const res1 = await fetch(primaryUrl);
+                if (!res1.ok) throw new Error(`HTTP ${res1.status}`);
+                pdfBuffer = await res1.arrayBuffer();
+            } catch (fetchErr1) {
+                console.warn(`Primary fetch failed for ${primaryUrl}, trying altUrl: ${altUrl}`, fetchErr1);
+                if (altUrl && altUrl !== primaryUrl) {
+                    if (loadingStatus) loadingStatus.textContent = 'Retrying secondary path...';
+                    const res2 = await fetch(altUrl);
+                    if (!res2.ok) throw new Error(`HTTP ${res2.status}`);
+                    pdfBuffer = await res2.arrayBuffer();
+                    finalUrl = altUrl;
+                } else {
+                    throw fetchErr1;
+                }
+            }
+
+            const binaryData = new Uint8Array(pdfBuffer);
+
+            // Step 2: Try to load with standard settings (supports worker where available)
             try {
                 const docTask = window.pdfjsLib.getDocument({
-                    url: primaryUrl,
+                    data: binaryData,
                     cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
                     cMapPacked: true
                 });
                 return await docTask.promise;
-            } catch (err1) {
-                if (altUrl && altUrl !== primaryUrl) {
-                    if (loadingStatus) loadingStatus.textContent = 'Retrying secondary path...';
-                    const docTaskAlt = window.pdfjsLib.getDocument({
-                        url: altUrl,
-                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-                        cMapPacked: true
-                    });
-                    return await docTaskAlt.promise;
+            } catch (workerErr) {
+                // If a browser (like iOS Safari) blocks cross-origin worker creation, fallback to main-thread fake worker
+                console.warn('Worker instantiation failed (e.g. Safari CORS), switching to main-thread fake worker:', workerErr);
+                if (window.pdfjsLib && window.pdfjsLib.GlobalWorkerOptions) {
+                    window.pdfjsLib.GlobalWorkerOptions.workerSrc = '';
                 }
-                throw err1;
+                const fakeWorkerTask = window.pdfjsLib.getDocument({
+                    data: binaryData,
+                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+                    cMapPacked: true
+                });
+                return await fakeWorkerTask.promise;
             }
         }
 
@@ -4401,6 +4438,11 @@ function renderEbook(lesson) {
                 }
             }
 
+            // Always render pages 1, 2, and 3 immediately on load
+            renderPage(1);
+            if (numPages >= 2) renderPage(2);
+            if (numPages >= 3) renderPage(3);
+
             if ('IntersectionObserver' in window) {
                 observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -4413,14 +4455,10 @@ function renderEbook(lesson) {
                     });
                 }, {
                     root: scrollContainer,
-                    rootMargin: '500px 0px 500px 0px'
+                    rootMargin: '600px 0px 600px 0px'
                 });
 
                 mount.querySelectorAll('.pdf-page-card').forEach(c => observer.observe(c));
-            } else {
-                renderPage(1);
-                if (numPages >= 2) renderPage(2);
-                if (numPages >= 3) renderPage(3);
             }
 
             let scrollTimeout = null;
@@ -4437,14 +4475,13 @@ function renderEbook(lesson) {
                             if (pageInput && document.activeElement !== pageInput) {
                                 pageInput.value = p;
                             }
-                            if (!observer) {
-                                renderPage(p);
-                                if (p < numPages) renderPage(p + 1);
-                            }
+                            renderPage(p);
+                            if (p < numPages) renderPage(p + 1);
+                            if (p > 1) renderPage(p - 1);
                             break;
                         }
                     }
-                }, 80);
+                }, 60);
             }
             scrollContainer.addEventListener('scroll', onScrollUpdate, { passive: true });
 
@@ -4562,9 +4599,6 @@ function renderEbook(lesson) {
                     document.body.style.overflow = '';
                 }
             };
-
-            renderPage(1);
-            if (numPages >= 2) renderPage(2);
         }).catch(fatalErr => {
             console.error('Fatal error initializing PDF.js viewer:', fatalErr);
             fallbackToIframe(primaryUrl, fatalErr.message || 'PDF.js load failure');

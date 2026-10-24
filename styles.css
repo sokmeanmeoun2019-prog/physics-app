@@ -2426,7 +2426,8 @@ mjx-container[jax="CHTML"] mjx-mi {
 }
 
 /* In-Page Fullscreen Modal Mode for iPad/iPhone/Tablets without WebKit Freeze */
-.pdf-viewer-wrapper.pdf-fullscreen-active {
+.pdf-viewer-wrapper.pdf-fullscreen-active,
+.ebook-preview-wrapper.pdf-fullscreen-active {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -2438,6 +2439,7 @@ mjx-container[jax="CHTML"] mjx-mi {
     border-radius: 0 !important;
     border: none !important;
     margin: 0 !important;
+    overscroll-behavior: contain !important;
 }
 
 .pdf-viewer-wrapper.pdf-fullscreen-active .pdf-scroll-container {
@@ -2445,6 +2447,12 @@ mjx-container[jax="CHTML"] mjx-mi {
     max-height: calc(100vh - 58px) !important;
     border-radius: 0 !important;
     padding: 1.5rem 1rem !important;
+    overscroll-behavior: contain !important;
+}
+
+.ebook-preview-wrapper.pdf-fullscreen-active .ebook-preview {
+    height: calc(100vh - 58px) !important;
+    border-radius: 0 !important;
 }
 
 @media (max-width: 768px) {
