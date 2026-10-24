@@ -10,7 +10,7 @@ git add .
 
 echo.
 echo 2. Committing changes...
-git commit -m "Add PhET simulations for Grade 9 and Grade 12"
+git commit -m "Fix Grade 9 and Grade 12 Ebook touch scrolling on iPad and phone with HTML5 canvas reader"
 
 echo.
 echo 3. Pushing to GitHub (origin main)...
