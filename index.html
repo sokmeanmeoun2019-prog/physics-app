@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=3.8">
+    <link rel="stylesheet" href="styles.css?v=3.9">
     <style>
         .view.active {
             display: block !important;
@@ -40,8 +40,8 @@
             document.write('<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.min.js"><\/script>');
         }
     </script>
-    <script src="physics-figures.js?v=3.8"></script>
-    <script src="physics-data.js?v=3.8"></script>
+    <script src="physics-figures.js?v=3.9"></script>
+    <script src="physics-data.js?v=3.9"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "9": [], "12": [] };
         window.appData = window.physicsData;
@@ -4006,6 +4006,19 @@
                         tbBtn.classList.add('pdf-btn-exit-fullscreen');
                         tbBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> <span class="btn-text">Exit</span>';
                     }
+
+                    // Native full-screen for laptop, desktop, Android
+                    try {
+                        var req = wrapper.requestFullscreen ||
+                                  wrapper.webkitRequestFullscreen ||
+                                  wrapper.mozRequestFullScreen ||
+                                  wrapper.msRequestFullscreen ||
+                                  document.documentElement.requestFullscreen;
+                        if (req && !document.fullscreenElement && !document.webkitFullscreenElement) {
+                            var p = req.call(wrapper);
+                            if (p && p.catch) p.catch(function() {});
+                        }
+                    } catch(e) {}
                 } else {
                     wrapper.classList.remove('pdf-fullscreen-active');
                     document.body.classList.remove('pdf-modal-open');
@@ -4017,8 +4030,39 @@
                         tbBtn.classList.remove('pdf-btn-exit-fullscreen');
                         tbBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>';
                     }
+
+                    // Exit native full-screen if active
+                    try {
+                        var exit = document.exitFullscreen ||
+                                   document.webkitExitFullscreen ||
+                                   document.mozCancelFullScreen ||
+                                   document.msExitFullscreen;
+                        if (exit && (document.fullscreenElement || document.webkitFullscreenElement)) {
+                            var p2 = exit.call(document);
+                            if (p2 && p2.catch) p2.catch(function() {});
+                        }
+                    } catch(e) {}
                 }
             }
+
+            var onFsStateChange = function() {
+                var isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+                var wrapper = document.getElementById('pdf-viewer-wrapper');
+                if (!isNativeFs && wrapper && wrapper.classList.contains('pdf-fullscreen-active')) {
+                    toggleFallbackFs(false);
+                }
+            };
+            document.addEventListener('fullscreenchange', onFsStateChange);
+            document.addEventListener('webkitfullscreenchange', onFsStateChange);
+
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    var wrapper = document.getElementById('pdf-viewer-wrapper');
+                    if (wrapper && wrapper.classList.contains('pdf-fullscreen-active')) {
+                        toggleFallbackFs(false);
+                    }
+                }
+            });
 
             var topFsBtn = document.getElementById('ebook-fullscreen-action-btn');
             if (topFsBtn) topFsBtn.onclick = function() { toggleFallbackFs(); };
@@ -4315,7 +4359,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v3.8 Live</span>
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v3.9 Live</span>
         </div>
         <div class="nav-links">
             <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
@@ -4730,8 +4774,8 @@
             </div>
         </div>
     </div>
-    <script src="physics-figures.js?v=3.8"></script>
-    <script src="physics-data.js?v=3.8"></script>
-    <script src="app.js?v=3.8" onerror="onAppJsError()"></script>
+    <script src="physics-figures.js?v=3.9"></script>
+    <script src="physics-data.js?v=3.9"></script>
+    <script src="app.js?v=3.9" onerror="onAppJsError()"></script>
 </body>
 </html>

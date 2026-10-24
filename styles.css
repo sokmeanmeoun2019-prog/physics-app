@@ -1199,12 +1199,10 @@ button:active, .nav-btn:active, .btn-grade:active, .nav-back-pill:active, .works
 
 .tab-pane {
     display: none;
-    will-change: opacity, transform;
 }
 
 .tab-pane.active {
     display: block;
-    animation: fadeInFast 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Summary Tab */
@@ -2379,9 +2377,46 @@ mjx-container[jax="CHTML"] mjx-mi {
     text-align: center;
 }
 
-/* Touch-optimized scrollable container (display: block for iOS WebKit native touch momentum) */
+/* Edge-to-Edge Fullscreen Reading Mode (Laptops, Desktops, iPads & Phones) */
 body.pdf-modal-open {
     overflow: hidden !important;
+    position: static !important;
+}
+
+/* 1. Hide the entire website header, navbar, AI assistant, and background tabs */
+body.pdf-modal-open .navbar,
+body.pdf-modal-open #ai-widget-container,
+body.pdf-modal-open .progress-container,
+body.pdf-modal-open .lesson-header,
+body.pdf-modal-open .lesson-tabs,
+body.pdf-modal-open .ebook-actions,
+body.pdf-modal-open .ebook-topic-selector,
+body.pdf-modal-open .ebook-notice {
+    display: none !important;
+}
+
+/* 2. Neutralize all ancestor margins, padding, and constraints so reader spans 100% of display */
+body.pdf-modal-open #app-container,
+body.pdf-modal-open .view,
+body.pdf-modal-open #view-lesson-detail,
+body.pdf-modal-open .tab-content,
+body.pdf-modal-open .tab-pane,
+body.pdf-modal-open .ebook-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    transform: none !important;
+    will-change: auto !important;
+    animation: none !important;
+    filter: none !important;
+    perspective: none !important;
+    contain: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border: none !important;
 }
 
 .app-version-badge {
@@ -2523,9 +2558,14 @@ body.pdf-modal-open {
     display: inline-flex;
 }
 
-/* In-Page Fullscreen Modal Mode for iPad/iPhone/Tablets without WebKit Freeze */
+/* Fullscreen Reading Mode (Laptop, Desktop, iPad & Mobile) */
 .pdf-viewer-wrapper.pdf-fullscreen-active,
-.ebook-preview-wrapper.pdf-fullscreen-active {
+#pdf-viewer-wrapper.pdf-fullscreen-active,
+.ebook-preview-wrapper.pdf-fullscreen-active,
+:fullscreen .pdf-viewer-wrapper,
+.pdf-viewer-wrapper:fullscreen,
+:-webkit-full-screen .pdf-viewer-wrapper,
+.pdf-viewer-wrapper:-webkit-full-screen {
     position: fixed !important;
     inset: 0 !important;
     top: 0 !important;
@@ -2538,47 +2578,71 @@ body.pdf-modal-open {
     max-width: 100vw !important;
     max-height: 100vh !important;
     max-height: 100dvh !important;
-    z-index: 9999999 !important;
+    z-index: 2147483647 !important;
     border-radius: 0 !important;
     border: none !important;
     margin: 0 !important;
+    padding: 0 !important;
     background: #0f172a !important;
     display: flex !important;
     flex-direction: column !important;
 }
 
-.pdf-viewer-wrapper.pdf-fullscreen-active .pdf-toolbar {
+.pdf-viewer-wrapper.pdf-fullscreen-active .pdf-toolbar,
+:fullscreen .pdf-viewer-wrapper .pdf-toolbar,
+:-webkit-full-screen .pdf-viewer-wrapper .pdf-toolbar {
     flex-shrink: 0 !important;
     border-radius: 0 !important;
-    padding: 0.55rem 1rem !important;
+    padding: 0.65rem 1.25rem !important;
+    background: #1e293b !important;
+    border-bottom: 1px solid #334155 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
-.pdf-viewer-wrapper.pdf-fullscreen-active .pdf-scroll-container {
+.pdf-viewer-wrapper.pdf-fullscreen-active .pdf-scroll-container,
+:fullscreen .pdf-viewer-wrapper .pdf-scroll-container,
+:-webkit-full-screen .pdf-viewer-wrapper .pdf-scroll-container {
     flex: 1 1 0% !important;
-    height: 100% !important;
+    height: calc(100vh - 52px) !important;
+    height: calc(100dvh - 52px) !important;
     min-height: 0 !important;
-    max-height: none !important;
+    max-height: calc(100vh - 52px) !important;
+    max-height: calc(100dvh - 52px) !important;
     border-radius: 0 !important;
     padding: 1.25rem 0.5rem !important;
+    margin: 0 !important;
     overflow-y: scroll !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-y pinch-zoom !important;
     display: block !important;
     text-align: center;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .ebook-preview-wrapper.pdf-fullscreen-active .ebook-preview,
 .pdf-viewer-wrapper.pdf-fullscreen-active iframe,
 .pdf-viewer-wrapper.pdf-fullscreen-active .ebook-preview,
-.pdf-viewer-wrapper.pdf-fullscreen-active .ebook-preview-wrapper {
+.pdf-viewer-wrapper.pdf-fullscreen-active .ebook-preview-wrapper,
+:fullscreen .pdf-viewer-wrapper iframe,
+:fullscreen .pdf-viewer-wrapper .ebook-preview,
+:-webkit-full-screen .pdf-viewer-wrapper iframe,
+:-webkit-full-screen .pdf-viewer-wrapper .ebook-preview {
     flex: 1 1 0% !important;
-    height: calc(100vh - 56px) !important;
-    height: calc(100dvh - 56px) !important;
+    width: 100vw !important;
+    height: calc(100vh - 52px) !important;
+    height: calc(100dvh - 52px) !important;
     min-height: 0 !important;
-    max-height: none !important;
+    max-height: calc(100vh - 52px) !important;
+    max-height: calc(100dvh - 52px) !important;
+    border: none !important;
     border-radius: 0 !important;
-    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    background: #0f172a !important;
 }
 
 @media (max-width: 768px) {

@@ -4296,7 +4296,50 @@ function renderEbook(lesson) {
                         ? '<i class="fa-solid fa-xmark"></i> <span id="ebook-fs-btn-text">Exit Fullscreen</span>' 
                         : '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
                 }
+
+                if (isFs) {
+                    // Laptop, desktop, Android native fullscreen
+                    try {
+                        const req = wrapper.requestFullscreen ||
+                                    wrapper.webkitRequestFullscreen ||
+                                    wrapper.mozRequestFullScreen ||
+                                    wrapper.msRequestFullscreen ||
+                                    document.documentElement.requestFullscreen;
+                        if (req && !document.fullscreenElement && !document.webkitFullscreenElement) {
+                            const p = req.call(wrapper);
+                            if (p && p.catch) p.catch(() => {});
+                        }
+                    } catch (e) {}
+                } else {
+                    // Exit native fullscreen if active
+                    try {
+                        const exit = document.exitFullscreen ||
+                                     document.webkitExitFullscreen ||
+                                     document.mozCancelFullScreen ||
+                                     document.msExitFullscreen;
+                        if (exit && (document.fullscreenElement || document.webkitFullscreenElement)) {
+                            const p2 = exit.call(document);
+                            if (p2 && p2.catch) p2.catch(() => {});
+                        }
+                    } catch (e) {}
+                }
             }
+
+            const onFallbackNativeFsChange = () => {
+                const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+                if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
+                    toggleFallbackFs(false);
+                }
+            };
+            document.addEventListener('fullscreenchange', onFallbackNativeFsChange);
+            document.addEventListener('webkitfullscreenchange', onFallbackNativeFsChange);
+
+            const onFallbackEscapeKey = (e) => {
+                if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
+                    toggleFallbackFs(false);
+                }
+            };
+            window.addEventListener('keydown', onFallbackEscapeKey);
 
             if (fbFsBtn) fbFsBtn.addEventListener('click', () => toggleFallbackFs());
             if (topActionBtn) topActionBtn.addEventListener('click', () => toggleFallbackFs());
@@ -4742,8 +4785,14 @@ function renderEbook(lesson) {
 
                         // Try native fullscreen on desktop/Android if available
                         try {
-                            if (wrapper.requestFullscreen && !document.fullscreenElement) {
-                                wrapper.requestFullscreen().catch(() => {});
+                            const reqFs = wrapper.requestFullscreen ||
+                                          wrapper.webkitRequestFullscreen ||
+                                          wrapper.mozRequestFullScreen ||
+                                          wrapper.msRequestFullscreen ||
+                                          document.documentElement.requestFullscreen;
+                            if (reqFs && !document.fullscreenElement && !document.webkitFullscreenElement) {
+                                const p = reqFs.call(wrapper);
+                                if (p && p.catch) p.catch(() => {});
                             }
                         } catch (e) {}
 
@@ -4767,8 +4816,13 @@ function renderEbook(lesson) {
 
                         // Exit native fullscreen if active
                         try {
-                            if (document.fullscreenElement && document.exitFullscreen) {
-                                document.exitFullscreen().catch(() => {});
+                            const exitFs = document.exitFullscreen ||
+                                           document.webkitExitFullscreen ||
+                                           document.mozCancelFullScreen ||
+                                           document.msExitFullscreen;
+                            if ((document.fullscreenElement || document.webkitFullscreenElement) && exitFs) {
+                                const p2 = exitFs.call(document);
+                                if (p2 && p2.catch) p2.catch(() => {});
                             }
                         } catch (e) {}
 
@@ -4789,11 +4843,13 @@ function renderEbook(lesson) {
                 }
 
                 const onNativeFsChange = () => {
-                    if (!document.fullscreenElement && wrapper.classList.contains('pdf-fullscreen-active')) {
+                    const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+                    if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
                         toggleFullscreen(false);
                     }
                 };
                 document.addEventListener('fullscreenchange', onNativeFsChange);
+                document.addEventListener('webkitfullscreenchange', onNativeFsChange);
 
                 const keyHandler = (e) => {
                     if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
@@ -4820,6 +4876,7 @@ function renderEbook(lesson) {
                         window.removeEventListener('resize', onViewportResize);
                         window.removeEventListener('orientationchange', onViewportResize);
                         document.removeEventListener('fullscreenchange', onNativeFsChange);
+                        document.removeEventListener('webkitfullscreenchange', onNativeFsChange);
                         scrollContainer.removeEventListener('scroll', onScrollUpdate);
                         document.body.classList.remove('pdf-modal-open');
                         document.body.style.overflow = '';
