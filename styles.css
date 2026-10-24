@@ -2439,6 +2439,8 @@ body.pdf-modal-open .ebook-container {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-y pinch-zoom !important;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     height: 750px;
     max-height: 80vh;
     padding: 1.25rem 0.75rem;
@@ -2616,6 +2618,8 @@ body.pdf-modal-open .ebook-container {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-y pinch-zoom !important;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     display: block !important;
     text-align: center;
     width: 100% !important;

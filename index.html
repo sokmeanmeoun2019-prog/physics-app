@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=3.9">
+    <link rel="stylesheet" href="styles.css?v=4.0">
     <style>
         .view.active {
             display: block !important;
@@ -33,15 +33,28 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- PDF.js Universal Mobile & Desktop ES5/ES6 Compatible Build (2.16.105) with fallback CDN -->
+    <!-- PDF.js Universal Mobile & Desktop ES5/ES6 Compatible Build (2.16.105) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script>
-        if (typeof window !== 'undefined' && !window.pdfjsLib && !window['pdfjs-dist/build/pdf']) {
-            document.write('<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.min.js"><\/script>');
-        }
+        (function() {
+            try {
+                var lib = window.pdfjsLib || window['pdfjs-dist/build/pdf'] || window.PDFJS;
+                if (lib && lib.GlobalWorkerOptions) {
+                    var blobCode = 'importScripts("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js");';
+                    var workerBlob = new Blob([blobCode], { type: 'application/javascript' });
+                    lib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
+                }
+            } catch(e) {
+                try {
+                    if (window.pdfjsLib && window.pdfjsLib.GlobalWorkerOptions) {
+                        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                    }
+                } catch(err) {}
+            }
+        })();
     </script>
-    <script src="physics-figures.js?v=3.9"></script>
-    <script src="physics-data.js?v=3.9"></script>
+    <script src="physics-figures.js?v=4.0"></script>
+    <script src="physics-data.js?v=4.0"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "9": [], "12": [] };
         window.appData = window.physicsData;
@@ -3918,10 +3931,20 @@
             var ebContainer = document.getElementById('lesson-ebook');
             if (!ebContainer) return;
 
-            // Immediately render eBook view with prominent Fullscreen Reading View button!
-            renderEbookFallback(lesson, ebContainer);
+            // Render interactive multi-page container shell with loading indicator
+            ebContainer.innerHTML = '<div class="ebook-header" style="user-select:none;">' +
+                '<h2><i class="fa-solid fa-book-open"></i> ' + (lesson.title || 'Lesson') + ' - E-Book / Textbook</h2>' +
+                '<p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>' +
+            '</div>' +
+            '<div class="pdf-viewer-wrapper" id="pdf-viewer-wrapper">' +
+                '<div class="pdf-scroll-container" style="display:flex; align-items:center; justify-content:center; min-height:480px;">' +
+                    '<div class="pdf-loading-card">' +
+                        '<i class="fa-solid fa-circle-notch fa-spin"></i>' +
+                        '<span>Loading interactive textbook reader...</span>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
 
-            // Continuously check for app.js to upgrade to full touch-scrolling PDF.js reader
             var retries = 0;
             var timer = setInterval(function() {
                 retries++;
@@ -3931,163 +3954,8 @@
                 } else if (retries >= 80) {
                     clearInterval(timer);
                 }
-            }, 100);
+            }, 60);
         }
-
-        function renderEbookFallback(lesson, ebContainer) {
-            if (!ebContainer || !lesson) return;
-            var candidates = (lesson.ebooks && lesson.ebooks.length > 0) ? lesson.ebooks : [{ title: lesson.title || 'Lesson E-Book', url: lesson.ebookUrl || '' }];
-            var first = candidates[0] || {};
-            var url = first.url || lesson.ebookUrl || '';
-            if (!url) {
-                ebContainer.innerHTML = '<div class="ebook-empty"><i class="fa-solid fa-book-open"></i><h3>Ebook Coming Soon</h3><p>The electronic textbook for this lesson will be available soon.</p></div>';
-                return;
-            }
-            var protectedUrl = url.indexOf('#') !== -1 ? url : (url + '#toolbar=0&navpanes=0');
-
-            var topicHtml = '';
-            if (candidates.length > 1) {
-                topicHtml = '<div class="ebook-topic-selector">' +
-                    '<span class="ebook-topic-label"><i class="fa-solid fa-layer-group"></i> Select Section / Topic (' + candidates.length + ' Files):</span>' +
-                    '<div class="ebook-topic-pills">' +
-                    candidates.map(function(eb, idx) {
-                        return '<button type="button" class="ebook-topic-pill ' + (idx === 0 ? 'active' : '') + '" onclick="window.switchFallbackEbook(' + idx + ')"><i class="fa-solid fa-file-pdf"></i> ' + (eb.title || 'Part ' + (idx + 1)) + '</button>';
-                    }).join('') +
-                    '</div></div>';
-            }
-
-            ebContainer.innerHTML = '<div class="ebook-header" style="user-select:none;">' +
-                '<h2><i class="fa-solid fa-book-open"></i> ' + (lesson.title || 'Lesson') + ' - E-Book / Textbook</h2>' +
-                '<p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>' +
-            '</div>' +
-            '<div class="ebook-actions">' +
-                '<button type="button" class="ebook-btn primary" id="ebook-fullscreen-action-btn" title="Toggle Fullscreen Reading View">' +
-                    '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>' +
-                '</button>' +
-            '</div>' +
-            topicHtml +
-            '<div class="pdf-viewer-wrapper" id="pdf-viewer-wrapper" oncontextmenu="return false;">' +
-                '<div class="pdf-toolbar">' +
-                    '<div class="pdf-toolbar-group">' +
-                        '<span style="font-size:0.88rem; color:#cbd5e1; font-weight:600;"><i class="fa-solid fa-book-open" style="color:#38bdf8; margin-right:6px;"></i> Curriculum Reader</span>' +
-                    '</div>' +
-                    '<div class="pdf-toolbar-group">' +
-                        '<button type="button" class="pdf-btn pdf-btn-fullscreen" id="fallback-toolbar-fs-btn" title="Toggle Fullscreen Reading View">' +
-                            '<i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>' +
-                        '</button>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="pdf-scroll-container" style="padding:0; height:750px; overflow:hidden; position:relative;">' +
-                    '<button type="button" class="pdf-floating-exit-btn" id="fallback-floating-exit-btn" title="Exit Fullscreen Reading Mode">' +
-                        '<i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>' +
-                    '</button>' +
-                    '<iframe id="fallback-ebook-iframe" src="' + protectedUrl + '" class="ebook-preview" style="width:100%; height:100%; border:none; display:block;" title="Ebook Preview"></iframe>' +
-                '</div>' +
-            '</div>' +
-            '<div class="ebook-notice" style="background:#f0fdf4; border:1px solid #bbf7d0; color:#166534; border-radius:8px; padding:0.75rem 1.25rem; margin-top:1rem;">' +
-                '<i class="fa-solid fa-shield-halved" style="color:#15803d; font-size:1.15rem; margin-right:8px;"></i>' +
-                '<span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, and exporting are restricted for this electronic textbook.</span>' +
-            '</div>';
-
-            function toggleFallbackFs(force) {
-                var wrapper = document.getElementById('pdf-viewer-wrapper');
-                var topBtn = document.getElementById('ebook-fullscreen-action-btn');
-                var tbBtn = document.getElementById('fallback-toolbar-fs-btn');
-                if (!wrapper) return;
-                var willBeFs = (typeof force === 'boolean') ? force : !wrapper.classList.contains('pdf-fullscreen-active');
-                if (willBeFs) {
-                    wrapper.classList.add('pdf-fullscreen-active');
-                    document.body.classList.add('pdf-modal-open');
-                    if (topBtn) {
-                        topBtn.classList.add('pdf-btn-exit-fullscreen');
-                        topBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> <span id="ebook-fs-btn-text">Exit Fullscreen</span>';
-                    }
-                    if (tbBtn) {
-                        tbBtn.classList.add('pdf-btn-exit-fullscreen');
-                        tbBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> <span class="btn-text">Exit</span>';
-                    }
-
-                    // Native full-screen for laptop, desktop, Android
-                    try {
-                        var req = wrapper.requestFullscreen ||
-                                  wrapper.webkitRequestFullscreen ||
-                                  wrapper.mozRequestFullScreen ||
-                                  wrapper.msRequestFullscreen ||
-                                  document.documentElement.requestFullscreen;
-                        if (req && !document.fullscreenElement && !document.webkitFullscreenElement) {
-                            var p = req.call(wrapper);
-                            if (p && p.catch) p.catch(function() {});
-                        }
-                    } catch(e) {}
-                } else {
-                    wrapper.classList.remove('pdf-fullscreen-active');
-                    document.body.classList.remove('pdf-modal-open');
-                    if (topBtn) {
-                        topBtn.classList.remove('pdf-btn-exit-fullscreen');
-                        topBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
-                    }
-                    if (tbBtn) {
-                        tbBtn.classList.remove('pdf-btn-exit-fullscreen');
-                        tbBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>';
-                    }
-
-                    // Exit native full-screen if active
-                    try {
-                        var exit = document.exitFullscreen ||
-                                   document.webkitExitFullscreen ||
-                                   document.mozCancelFullScreen ||
-                                   document.msExitFullscreen;
-                        if (exit && (document.fullscreenElement || document.webkitFullscreenElement)) {
-                            var p2 = exit.call(document);
-                            if (p2 && p2.catch) p2.catch(function() {});
-                        }
-                    } catch(e) {}
-                }
-            }
-
-            var onFsStateChange = function() {
-                var isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
-                var wrapper = document.getElementById('pdf-viewer-wrapper');
-                if (!isNativeFs && wrapper && wrapper.classList.contains('pdf-fullscreen-active')) {
-                    toggleFallbackFs(false);
-                }
-            };
-            document.addEventListener('fullscreenchange', onFsStateChange);
-            document.addEventListener('webkitfullscreenchange', onFsStateChange);
-
-            window.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    var wrapper = document.getElementById('pdf-viewer-wrapper');
-                    if (wrapper && wrapper.classList.contains('pdf-fullscreen-active')) {
-                        toggleFallbackFs(false);
-                    }
-                }
-            });
-
-            var topFsBtn = document.getElementById('ebook-fullscreen-action-btn');
-            if (topFsBtn) topFsBtn.onclick = function() { toggleFallbackFs(); };
-            var tbFsBtn = document.getElementById('fallback-toolbar-fs-btn');
-            if (tbFsBtn) tbFsBtn.onclick = function() { toggleFallbackFs(); };
-            var floatExitBtn = document.getElementById('fallback-floating-exit-btn');
-            if (floatExitBtn) floatExitBtn.onclick = function() { toggleFallbackFs(false); };
-        }
-
-        window.switchFallbackEbook = function(idx) {
-            var lesson = window.currentLesson;
-            if (!lesson) return;
-            var candidates = (lesson.ebooks && lesson.ebooks.length > 0) ? lesson.ebooks : [{ title: lesson.title || 'Lesson E-Book', url: lesson.ebookUrl || '' }];
-            var target = candidates[idx] || candidates[0];
-            if (!target) return;
-            var ifr = document.getElementById('fallback-ebook-iframe');
-            if (ifr) {
-                var u = target.url || '';
-                ifr.src = u.indexOf('#') !== -1 ? u : (u + '#toolbar=0&navpanes=0');
-            }
-            var pills = document.querySelectorAll('#lesson-ebook .ebook-topic-pill');
-            pills.forEach(function(p, i) {
-                p.classList.toggle('active', i === idx);
-            });
-        };
 
         function initWorksheetUI(lesson) {
             var wsContainer = document.getElementById('lesson-worksheet');
@@ -4217,7 +4085,11 @@
             }
 
             if (targetName === 'ebook' && activeLesson) {
-                initEbookUI(activeLesson);
+                if (typeof window.appRenderEbook === 'function') {
+                    try { window.appRenderEbook(activeLesson); } catch(e) { initEbookUI(activeLesson); }
+                } else {
+                    initEbookUI(activeLesson);
+                }
             } else if (targetName === 'worksheet' && activeLesson) {
                 initWorksheetUI(activeLesson);
             } else if (targetName === 'game' && activeLesson) {
@@ -4359,7 +4231,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v3.9 Live</span>
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v4.0 Live</span>
         </div>
         <div class="nav-links">
             <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
@@ -4774,8 +4646,8 @@
             </div>
         </div>
     </div>
-    <script src="physics-figures.js?v=3.9"></script>
-    <script src="physics-data.js?v=3.9"></script>
-    <script src="app.js?v=3.9" onerror="onAppJsError()"></script>
+    <script src="physics-figures.js?v=4.0"></script>
+    <script src="physics-data.js?v=4.0"></script>
+    <script src="app.js?v=4.0" onerror="onAppJsError()"></script>
 </body>
 </html>

@@ -4250,6 +4250,26 @@ function renderEbook(lesson) {
             const wrapper = document.getElementById('pdf-viewer-wrapper');
             if (!wrapper) return;
             const protectedViewerSrc = url ? (url.includes('#') ? url : `${url}#toolbar=0&navpanes=0`) : '';
+            const isTouchIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            let iosBanner = '';
+            if (isTouchIOS) {
+                iosBanner = `
+                    <div style="background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #0284c7; border-radius: 10px; padding: 1.25rem; margin: 1rem auto; max-width: 600px; text-align: center; color: #f8fafc; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <div style="font-size: 1.1rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.5rem;">
+                            <i class="fa-solid fa-tablet-screen-button"></i> iPad Continuous Multi-Page Reading Mode
+                        </div>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem;">
+                            On iPad, you can open all pages (1–12) with smooth touch continuous scrolling:
+                        </p>
+                        <a href="${url}" target="_blank" rel="noopener noreferrer" class="ebook-btn primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 0.95rem; padding: 0.75rem 1.4rem;">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full Multi-Page PDF on iPad
+                        </a>
+                    </div>
+                `;
+            }
+
             wrapper.innerHTML = `
                 <div class="pdf-toolbar" style="position: sticky; top: 0; z-index: 25;">
                     <div class="pdf-toolbar-group">
@@ -4266,6 +4286,7 @@ function renderEbook(lesson) {
                         </button>
                     </div>
                 </div>
+                ${iosBanner}
                 <div class="ebook-preview-wrapper" id="fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
                     <button type="button" class="pdf-floating-exit-btn" id="fallback-floating-exit-btn" title="Exit Fullscreen Reading Mode">
                         <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
@@ -4363,8 +4384,9 @@ function renderEbook(lesson) {
         }
 
         let cachedWorkerBlobUrl = null;
-        async function setupPdfWorker(pdfjs) {
+        function setupPdfWorker(pdfjs) {
             if (!pdfjs || !pdfjs.GlobalWorkerOptions) return;
+            if (pdfjs.GlobalWorkerOptions.workerSrc) return;
             if (cachedWorkerBlobUrl) {
                 pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerBlobUrl;
                 return;
@@ -4372,26 +4394,16 @@ function renderEbook(lesson) {
 
             const cdnWorker = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
             try {
-                // Timeout after 2.5s to avoid holding up the UI on slow mobile networks
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 2500);
-                const resp = await fetch(cdnWorker, { signal: controller.signal });
-                clearTimeout(timeoutId);
-                if (resp.ok) {
-                    const workerCode = await resp.text();
-                    const workerBlob = new Blob([workerCode], { type: 'application/javascript' });
-                    cachedWorkerBlobUrl = URL.createObjectURL(workerBlob);
-                    pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerBlobUrl;
-                    return;
-                }
+                // Instantly construct inline worker script that loads the CDN worker via importScripts!
+                // This eliminates cross-origin restrictions and avoids network timeouts on mobile/iPad.
+                const blobCode = `importScripts("${cdnWorker}");`;
+                const workerBlob = new Blob([blobCode], { type: 'application/javascript' });
+                cachedWorkerBlobUrl = URL.createObjectURL(workerBlob);
+                pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerBlobUrl;
             } catch (e) {
-                console.warn('Worker script fetch timed out or failed, using main thread execution:', e);
+                console.warn('Worker blob creation failed, assigning CDN URL directly:', e);
+                pdfjs.GlobalWorkerOptions.workerSrc = cdnWorker;
             }
-
-            // Safe fallback to main-thread execution
-            try {
-                pdfjs.GlobalWorkerOptions.workerSrc = '';
-            } catch (e) {}
         }
 
         const loadingStatus = document.getElementById('pdf-loading-status');
@@ -4403,40 +4415,56 @@ function renderEbook(lesson) {
                 return;
             }
 
-            await setupPdfWorker(pdfjs);
+            setupPdfWorker(pdfjs);
 
             async function fetchPdfDoc() {
                 let pdfBuffer = null;
-                try {
-                    const res1 = await fetch(primaryUrl);
-                    if (!res1.ok) throw new Error(`HTTP ${res1.status}`);
-                    pdfBuffer = await res1.arrayBuffer();
-                } catch (fetchErr1) {
-                    console.warn(`Primary fetch failed for ${primaryUrl}, trying altUrl: ${altUrl}`, fetchErr1);
-                    if (altUrl && altUrl !== primaryUrl) {
-                        if (loadingStatus) loadingStatus.textContent = 'Retrying secondary path...';
-                        const res2 = await fetch(altUrl);
-                        if (!res2.ok) throw new Error(`HTTP ${res2.status}`);
-                        pdfBuffer = await res2.arrayBuffer();
-                    } else {
-                        throw fetchErr1;
+                const candidateUrls = [primaryUrl];
+                if (altUrl && !candidateUrls.includes(altUrl)) candidateUrls.push(altUrl);
+                if (primaryUrl.toLowerCase().endsWith('.pdf.pdf')) {
+                    const singlePdf = primaryUrl.slice(0, -4);
+                    if (!candidateUrls.includes(singlePdf)) candidateUrls.push(singlePdf);
+                } else if (primaryUrl.toLowerCase().endsWith('.pdf')) {
+                    const doublePdf = primaryUrl + '.pdf';
+                    if (!candidateUrls.includes(doublePdf)) candidateUrls.push(doublePdf);
+                }
+
+                let lastErr = null;
+                for (const u of candidateUrls) {
+                    try {
+                        const res = await fetch(u);
+                        if (res.ok) {
+                            pdfBuffer = await res.arrayBuffer();
+                            break;
+                        }
+                    } catch (e) {
+                        lastErr = e;
                     }
+                }
+
+                if (!pdfBuffer) {
+                    throw lastErr || new Error(`Could not fetch PDF from candidates: ${candidateUrls.join(', ')}`);
                 }
 
                 const docParams = {
                     data: new Uint8Array(pdfBuffer),
                     cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
-                    cMapPacked: true
+                    cMapPacked: true,
+                    disableAutoFetch: false,
+                    disableStream: false
                 };
 
                 try {
                     return await pdfjs.getDocument(docParams).promise;
                 } catch (firstErr) {
-                    console.warn('Initial getDocument promise rejected, retrying on main thread:', firstErr);
+                    console.warn('Initial getDocument promise rejected, retrying with fallback options:', firstErr);
                     try {
-                        pdfjs.GlobalWorkerOptions.workerSrc = '';
-                    } catch(e) {}
-                    return await pdfjs.getDocument(docParams).promise;
+                        const fallbackDocParams = Object.assign({}, docParams, { stopAtErrors: false });
+                        return await pdfjs.getDocument(fallbackDocParams).promise;
+                    } catch (secondErr) {
+                        console.warn('Fallback getDocument promise rejected, retrying with URL:', secondErr);
+                        return await pdfjs.getDocument({ url: primaryUrl, cMapUrl: docParams.cMapUrl, cMapPacked: true }).promise;
+                    }
                 }
             }
 
@@ -4504,6 +4532,8 @@ function renderEbook(lesson) {
                     card.style.height = Math.floor(baseH * currentScale) + 'px';
                     card.style.margin = '0 auto 1.25rem auto';
                     card.style.display = 'block';
+                    card.style.touchAction = 'pan-y pinch-zoom';
+                    card.style.pointerEvents = 'auto';
 
                     const placeholder = document.createElement('div');
                     placeholder.className = 'pdf-loading-card';
