@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=3.1">
+    <link rel="stylesheet" href="styles.css?v=3.5">
     <style>
         .view.active {
             display: block !important;
@@ -3906,147 +3906,22 @@
         }
 
         function initEbookUI(lesson) {
+            if (typeof window.appRenderEbook === 'function') {
+                return window.appRenderEbook(lesson);
+            }
+            if (typeof window.renderEbook === 'function' && window.renderEbook !== initEbookUI) {
+                return window.renderEbook(lesson);
+            }
             var ebContainer = document.getElementById('lesson-ebook');
             if (!ebContainer) return;
-            var ebTabBtn = document.querySelector('.tab-btn[data-target="ebook"]');
-            if (!lesson) {
-                if (ebTabBtn) ebTabBtn.classList.add('hidden');
-                ebContainer.innerHTML = '<div class="ebook-empty"><i class="fa-solid fa-lock"></i><h3>E-Book Not Available</h3><p>Textbook downloads and viewer are disabled for this grade level.</p></div>';
-                return;
-            }
-
-            var ebooksList = [];
-            if (lesson.ebooks && Array.isArray(lesson.ebooks) && lesson.ebooks.length > 0) {
-                ebooksList = lesson.ebooks.map(function(e) { return (typeof e === 'string' ? { title: 'Lesson E-Book', url: e } : e); });
-            } else if (lesson.ebookUrl) {
-                ebooksList = [{ title: lesson.title || 'Lesson E-Book', url: lesson.ebookUrl }];
-            } else if (lesson.id) {
-                var lid = lesson.id.toLowerCase();
-                var fallbackMap = {
-                    'g9-l1': [{ title: "Chapter 1: Turning Effect of Force (pp. 1–12)", url: "ebooks/g9-ch1-ebook.pdf.pdf", altUrl: "ebooks/g9-ch1-ebook.pdf" }],
-                    'g9-l2': [
-                        { title: "1. Levers (pp. 13–19)", url: "ebooks/g9-ch2-1-levers.pdf.pdf", altUrl: "ebooks/g9-ch2-1-levers.pdf" },
-                        { title: "2. Inclined Plane (pp. 20–22)", url: "ebooks/g9-ch2-2-incline.pdf.pdf", altUrl: "ebooks/g9-ch2-2-incline.pdf" },
-                        { title: "3. Pulleys (pp. 23–26)", url: "ebooks/g9-ch2-3-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-3-pulley.pdf" },
-                        { title: "4. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-4-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-4-gears.pdf" },
-                        { title: "5. Wheel & Axle (p. 30)", url: "ebooks/g9-ch2-5-wheel-axle.pdf.pdf", altUrl: "ebooks/g9-ch2-5-wheel-axle.pdf" }
-                    ],
-                    'g9-l3': [
-                        { title: "Part 1: Electric Energy (pp. 31–38)", url: "ebooks/g9-ch3-part1.pdf.pdf", altUrl: "ebooks/g9-ch3-part1.pdf" },
-                        { title: "Part 2: Household Wiring Systems (pp. 39–47)", url: "ebooks/g9-ch3-part2.pdf.pdf", altUrl: "ebooks/g9-ch3-part2.pdf" }
-                    ],
-                    'g9-l4': [
-                        { title: "Part 1: Magnetic Field (pp. 48–54)", url: "ebooks/g9-ch4-part1.pdf.pdf", altUrl: "ebooks/g9-ch4-part1.pdf" },
-                        { title: "Part 2: Magnetic Force & Transformers (pp. 55–65)", url: "ebooks/g9-ch4-part2.pdf.pdf", altUrl: "ebooks/g9-ch4-part2.pdf" }
-                    ],
-                    'g9-l5': [
-                        { title: "1. Light Ray (pp. 66–68)", url: "ebooks/g9-ch5-1-light-ray.pdf.pdf", altUrl: "ebooks/g9-ch5-1-light-ray.pdf" },
-                        { title: "2. Reflection of Light (pp. 69–71)", url: "ebooks/g9-ch5-2-reflection.pdf.pdf", altUrl: "ebooks/g9-ch5-2-reflection.pdf" },
-                        { title: "3. Mirrors (pp. 72–79)", url: "ebooks/g9-ch5-3-mirrors.pdf.pdf", altUrl: "ebooks/g9-ch5-3-mirrors.pdf" },
-                        { title: "4. Refraction of Light (pp. 80–85)", url: "ebooks/g9-ch5-4-refraction.pdf.pdf", altUrl: "ebooks/g9-ch5-4-refraction.pdf" },
-                        { title: "5. Lenses (pp. 86–97)", url: "ebooks/g9-ch5-5-lenses.pdf.pdf", altUrl: "ebooks/g9-ch5-5-lenses.pdf" }
-                    ],
-                    'g12-l1': [{ title: "Thermal Physics (pp. 1–18)", url: "ebooks/g12-ch1-l1-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l1-ebook.pdf" }],
-                    'g12-l2': [{ title: "The Laws of Thermodynamics (pp. 19–48)", url: "ebooks/g12-ch1-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l2-ebook.pdf" }],
-                    'g12-l3': [{ title: "Thermodynamics & Heat Engines (pp. 19–48)", url: "ebooks/g12-ch1-l3-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l3-ebook.pdf" }],
-                    'g12-l4': [{ title: "Superposition & Standing Waves (pp. 49–63)", url: "ebooks/g12-ch2-l1-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l1-ebook.pdf" }],
-                    'g12-interf': [{ title: "Interference & Diffraction of Light (pp. 64–78)", url: "ebooks/g12-ch2-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l2-ebook.pdf" }],
-                    'g12-ch2-l2': [{ title: "Interference & Diffraction of Light (pp. 64–78)", url: "ebooks/g12-ch2-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l2-ebook.pdf" }],
-                    'g12-l5': [
-                        { title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" },
-                        { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
-                    ],
-                    'g12-l6': [{ title: "AC Circuits & Electromagnetic Waves (pp. 131–159)", url: "ebooks/g12-ch3-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch3-l2-ebook.pdf" }]
-                };
-                if (fallbackMap[lid]) {
-                    ebooksList = fallbackMap[lid];
+            ebContainer.innerHTML = '<div class="ebook-empty" style="text-align:center; padding: 2.5rem 1rem; color: #cbd5e1;"><i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: #38bdf8; margin-bottom: 12px;"></i><h3>Loading interactive textbook...</h3></div>';
+            setTimeout(function() {
+                if (typeof window.appRenderEbook === 'function') {
+                    window.appRenderEbook(lesson);
+                } else if (typeof window.renderEbook === 'function' && window.renderEbook !== initEbookUI) {
+                    window.renderEbook(lesson);
                 }
-            }
-
-            if (ebTabBtn) ebTabBtn.classList.toggle('hidden', ebooksList.length === 0);
-
-            if (!ebooksList.length) {
-                ebContainer.innerHTML = '<div class="ebook-empty"><i class="fa-solid fa-lock"></i><h3>E-Book Not Available</h3><p>Textbook downloads and viewer are disabled for this grade level.</p></div>';
-                return;
-            }
-
-            var currentSelectedIndex = 0;
-
-            function buildEbookUI(selectedIndex) {
-                currentSelectedIndex = selectedIndex;
-                var currentEbook = ebooksList[selectedIndex];
-                var pair = resolveEbookCandidates(currentEbook);
-                var activeUrl = pair.primary || pair.alt || '';
-                var currentTitle = currentEbook.title || lesson.title || 'Ebook';
-
-                // Embed PDF directly with toolbar hidden - no external Google Drive links or download options
-                var currentViewerSrc = activeUrl ? (activeUrl + (activeUrl.indexOf('#') === -1 ? '#toolbar=0&navpanes=0' : '')) : '';
-
-                var topicsSelectorHtml = '';
-                if (ebooksList.length > 1) {
-                    topicsSelectorHtml = '<div class="ebook-topic-selector">' +
-                        '<span class="ebook-topic-label"><i class="fa-solid fa-layer-group"></i> Select Section / Topic (' + ebooksList.length + ' Files):</span>' +
-                        '<div class="ebook-topic-pills">' +
-                            ebooksList.map(function(eb, idx) {
-                                return '<button type="button" class="ebook-topic-pill ' + (idx === selectedIndex ? 'active' : '') + '" data-index="' + idx + '">' +
-                                    '<i class="fa-solid fa-file-pdf"></i> ' + eb.title +
-                                '</button>';
-                            }).join('') +
-                        '</div>' +
-                    '</div>';
-                }
-
-                var subtitleHtml = ebooksList.length > 1 
-                    ? '<div class="ebook-current-topic"><i class="fa-solid fa-book-bookmark"></i> Viewing Section: <span>' + currentTitle + '</span></div>'
-                    : '';
-
-                ebContainer.innerHTML = '<div class="ebook-header" style="user-select: none;">' +
-                    '<h2><i class="fa-solid fa-book-open"></i> ' + (lesson.title || 'Lesson') + ' - E-Book / Textbook</h2>' +
-                    subtitleHtml +
-                    '<p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>' +
-                '</div>' +
-                topicsSelectorHtml +
-                '<div class="ebook-actions">' +
-                    '<button type="button" class="ebook-btn primary" id="fullscreen-ebook-btn" title="Expand reading viewer to full screen">' +
-                        '<i class="fa-solid fa-expand"></i> Fullscreen Reading View' +
-                    '</button>' +
-                '</div>' +
-                '<div class="ebook-preview-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%;">' +
-                    '<iframe src="' + currentViewerSrc + '" class="ebook-preview" id="ebook-iframe" title="' + currentTitle + ' Preview" style="width: 100%; border-radius: 8px;"></iframe>' +
-                '</div>' +
-                '<div class="ebook-notice" style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 8px; padding: 0.75rem 1.25rem;">' +
-                    '<i class="fa-solid fa-shield-halved" style="color: #15803d; font-size: 1.15rem; margin-right: 8px;"></i>' +
-                    '<div>' +
-                        '<span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, and exporting are restricted for this electronic textbook. Students can read, scroll, and zoom all pages directly in the viewer above.</span>' +
-                    '</div>' +
-                '</div>';
-
-                var fsBtn = document.getElementById('fullscreen-ebook-btn');
-                var iframe = document.getElementById('ebook-iframe');
-                if (fsBtn && iframe) {
-                    fsBtn.onclick = function() {
-                        if (iframe.requestFullscreen) {
-                            iframe.requestFullscreen();
-                        } else if (iframe.webkitRequestFullscreen) {
-                            iframe.webkitRequestFullscreen();
-                        } else if (iframe.msRequestFullscreen) {
-                            iframe.msRequestFullscreen();
-                        }
-                    };
-                }
-
-                if (ebooksList.length > 1) {
-                    var pills = ebContainer.querySelectorAll('.ebook-topic-pill');
-                    pills.forEach(function(pill) {
-                        pill.onclick = function() {
-                            var idx = parseInt(pill.getAttribute('data-index'), 10);
-                            buildEbookUI(idx);
-                        };
-                    });
-                }
-            }
-
-            buildEbookUI(0);
+            }, 250);
         }
 
         function initWorksheetUI(lesson) {
@@ -4166,11 +4041,16 @@
                     p.style.display = 'none';
                 }
             });
-            if (typeof window.appSwitchTab === 'function') {
+            if (targetName === 'ebook') {
+                if (typeof window.appRenderEbook === 'function') {
+                    window.appRenderEbook(window.currentLesson);
+                } else if (typeof window.renderEbook === 'function' && window.renderEbook !== initEbookUI) {
+                    window.renderEbook(window.currentLesson);
+                } else if (typeof initEbookUI === 'function') {
+                    initEbookUI(window.currentLesson);
+                }
+            } else if (typeof window.appSwitchTab === 'function') {
                 try { window.appSwitchTab(targetName); } catch (e) {}
-            }
-            if (targetName === 'ebook' && typeof initEbookUI === 'function') {
-                initEbookUI(window.currentLesson);
             }
             if (window.MathJax && window.MathJax.typesetPromise) {
                 var activePane = document.getElementById('tab-' + targetName);
@@ -4283,8 +4163,8 @@
         window.loadLessonDetail = loadLessonDetail;
         window.openLessonDetail = openLessonDetail;
         window.switchTab = switchTab;
-        window.initEbookUI = initEbookUI;
-        window.renderEbook = initEbookUI;
+        window.initEbookUI = function(l) { return (window.appRenderEbook || initEbookUI)(l); };
+        window.renderEbook = function(l) { return (window.appRenderEbook || initEbookUI)(l); };
         window.onAppJsError = onAppJsError;
         window.CURRICULUM_CATALOG = CURRICULUM_CATALOG;
         window.renderChapterCards = renderChapterCards;
@@ -4295,7 +4175,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-atom"></i> @MeanWIS Physics
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v3.5 Live</span>
         </div>
         <div class="nav-links">
             <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
@@ -4710,8 +4590,8 @@
             </div>
         </div>
     </div>
-    <script src="physics-figures.js?v=3.1"></script>
-    <script src="physics-data.js?v=3.1"></script>
-    <script src="app.js?v=3.1" onerror="onAppJsError()"></script>
+    <script src="physics-figures.js?v=3.5"></script>
+    <script src="physics-data.js?v=3.5"></script>
+    <script src="app.js?v=3.5" onerror="onAppJsError()"></script>
 </body>
 </html>

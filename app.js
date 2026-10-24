@@ -4192,7 +4192,7 @@ function renderEbook(lesson) {
                         <i class="fa-solid fa-circle-notch fa-spin"></i>
                         <span id="pdf-loading-status">Loading textbook pages...</span>
                     </div>
-                    <div id="pdf-pages-mount" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 1.25rem;"></div>
+                    <div id="pdf-pages-mount" style="width: 100%; display: block; text-align: center;"></div>
                 </div>
             </div>
 
@@ -4225,7 +4225,6 @@ function renderEbook(lesson) {
             console.warn('Using safe in-page fallback for ebook:', errInfo);
             const wrapper = document.getElementById('pdf-viewer-wrapper');
             if (!wrapper) return;
-            const isIOS = /iPad|iPhone|iPod/i.test(navigator.userAgent);
             const protectedViewerSrc = url ? (url.includes('#') ? url : `${url}#toolbar=0&navpanes=0`) : '';
             wrapper.innerHTML = `
                 <div class="pdf-toolbar" style="position: sticky; top: 0; z-index: 25;">
@@ -4241,27 +4240,11 @@ function renderEbook(lesson) {
                     </div>
                 </div>
                 <div class="ebook-preview-wrapper" id="fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
-                    ${isIOS ? `
-                        <div style="padding: 2.5rem 1.5rem; text-align: center; color: #cbd5e1; background: #1e293b; border-radius: 8px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
-                            <i class="fa-solid fa-book-open" style="font-size: 2.5rem; color: #38bdf8;"></i>
-                            <h3 style="color: #f8fafc; margin: 0;">Interactive Reader Ready</h3>
-                            <p style="max-width: 480px; font-size: 0.92rem; color: #94a3b8; margin: 0;">Tap below to display the multi-page scrollable textbook.</p>
-                            <button type="button" class="pdf-btn primary" id="ios-init-retry-btn" style="padding: 0.65rem 1.25rem; font-size: 0.95rem; background: #0284c7; color: #fff; border-radius: 6px; cursor: pointer;">
-                                <i class="fa-solid fa-play"></i> Launch Full Textbook
-                            </button>
-                        </div>
-                    ` : `
-                        <iframe src="${protectedViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
-                    `}
+                    <iframe src="${protectedViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
                 </div>
             `;
             const retryBtn = document.getElementById('retry-pdf-load-btn');
-            const iosRetryBtn = document.getElementById('ios-init-retry-btn');
-            const onRetry = () => {
-                buildEbookUI(currentSelectedIndex);
-            };
-            if (retryBtn) retryBtn.addEventListener('click', onRetry);
-            if (iosRetryBtn) iosRetryBtn.addEventListener('click', onRetry);
+            if (retryBtn) retryBtn.addEventListener('click', () => buildEbookUI(currentSelectedIndex));
         }
 
         function getPdfJsLib() {
@@ -4280,29 +4263,32 @@ function renderEbook(lesson) {
             return getPdfJsLib();
         }
 
-        let cachedWorkerUrl = null;
-        function setupPdfWorker(pdfjs) {
+        let cachedWorkerBlobUrl = null;
+        async function setupPdfWorker(pdfjs) {
             if (!pdfjs || !pdfjs.GlobalWorkerOptions) return;
-            if (cachedWorkerUrl) {
-                pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerUrl;
+            if (cachedWorkerBlobUrl) {
+                pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerBlobUrl;
                 return;
             }
 
             const cdnWorker = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
             try {
-                // Inline importScripts Blob worker creates a same-origin worker that iOS Safari & Android never block
-                const workerBlob = new Blob(
-                    [`importScripts("${cdnWorker}");`],
-                    { type: 'application/javascript' }
-                );
-                cachedWorkerUrl = URL.createObjectURL(workerBlob);
-                pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerUrl;
-                return;
-            } catch (blobErr) {
-                console.warn('Blob worker creation failed, using direct CDN worker URL:', blobErr);
+                const resp = await fetch(cdnWorker);
+                if (resp.ok) {
+                    const workerCode = await resp.text();
+                    const workerBlob = new Blob([workerCode], { type: 'application/javascript' });
+                    cachedWorkerBlobUrl = URL.createObjectURL(workerBlob);
+                    pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerBlobUrl;
+                    return;
+                }
+            } catch (e) {
+                console.warn('Worker script fetch failed, disabling worker for main thread:', e);
             }
 
-            pdfjs.GlobalWorkerOptions.workerSrc = cdnWorker;
+            // Safe fallback to fake worker on main thread to prevent Safari cross-origin SecurityError
+            try {
+                pdfjs.GlobalWorkerOptions.workerSrc = '';
+            } catch (e) {}
         }
 
         const loadingStatus = document.getElementById('pdf-loading-status');
@@ -4314,23 +4300,11 @@ function renderEbook(lesson) {
                 return;
             }
 
-            // Configure multi-threaded same-origin Blob worker
-            setupPdfWorker(pdfjs);
+            // Configure multi-threaded same-origin Blob worker with embedded script
+            await setupPdfWorker(pdfjs);
 
             async function fetchPdfDoc() {
-                // Method 1: Try direct URL loading via PDF.js
-                try {
-                    const task1 = pdfjs.getDocument({
-                        url: primaryUrl,
-                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
-                        cMapPacked: true
-                    });
-                    return await task1.promise;
-                } catch (urlErr1) {
-                    console.warn(`Direct URL loading failed for ${primaryUrl}, fetching binary ArrayBuffer:`, urlErr1);
-                }
-
-                // Method 2: Fetch binary buffer directly
+                // Pre-fetch binary buffer directly to avoid any Safari URL or range request issues
                 let pdfBuffer = null;
                 try {
                     const res1 = await fetch(primaryUrl);
@@ -4348,13 +4322,21 @@ function renderEbook(lesson) {
                     }
                 }
 
-                const binaryData = new Uint8Array(pdfBuffer);
-                const task2 = pdfjs.getDocument({
-                    data: binaryData,
+                const docParams = {
+                    data: new Uint8Array(pdfBuffer),
                     cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
                     cMapPacked: true
-                });
-                return await task2.promise;
+                };
+
+                try {
+                    return await pdfjs.getDocument(docParams).promise;
+                } catch (firstErr) {
+                    console.warn('Initial getDocument promise rejected, retrying on main thread:', firstErr);
+                    try {
+                        pdfjs.GlobalWorkerOptions.workerSrc = '';
+                    } catch(e) {}
+                    return await pdfjs.getDocument(docParams).promise;
+                }
             }
 
             try {
@@ -4409,20 +4391,25 @@ function renderEbook(lesson) {
                     card.dataset.page = p;
                     card.style.width = Math.floor(baseW * currentScale) + 'px';
                     card.style.height = Math.floor(baseH * currentScale) + 'px';
+                    card.style.margin = '0 auto 1.25rem auto';
+                    card.style.display = 'block';
 
                     const placeholder = document.createElement('div');
                     placeholder.className = 'pdf-loading-card';
                     placeholder.id = `pdf-placeholder-${p}`;
                     placeholder.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i><span>Page ${p}</span>`;
+                    placeholder.style.pointerEvents = 'none';
 
                     const canvas = document.createElement('canvas');
                     canvas.className = 'pdf-page-canvas';
                     canvas.id = `pdf-canvas-${p}`;
                     canvas.style.display = 'none';
+                    canvas.style.pointerEvents = 'none';
 
                     const badge = document.createElement('span');
                     badge.className = 'pdf-page-badge';
                     badge.textContent = `${p} / ${numPages}`;
+                    badge.style.pointerEvents = 'none';
 
                     card.appendChild(placeholder);
                     card.appendChild(canvas);
@@ -4443,22 +4430,21 @@ function renderEbook(lesson) {
 
                     try {
                         const page = await pdfDoc.getPage(pageNum);
-                        const viewport = page.getViewport({ scale: currentScale });
                         const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                        const viewport = page.getViewport({ scale: currentScale * dpr });
 
-                        canvas.width = Math.floor(viewport.width * dpr);
-                        canvas.height = Math.floor(viewport.height * dpr);
-                        canvas.style.width = Math.floor(viewport.width) + 'px';
-                        canvas.style.height = Math.floor(viewport.height) + 'px';
+                        canvas.width = Math.floor(viewport.width);
+                        canvas.height = Math.floor(viewport.height);
+                        canvas.style.width = Math.floor(viewport.width / dpr) + 'px';
+                        canvas.style.height = Math.floor(viewport.height / dpr) + 'px';
 
-                        card.style.width = Math.floor(viewport.width) + 'px';
-                        card.style.height = Math.floor(viewport.height) + 'px';
+                        card.style.width = Math.floor(viewport.width / dpr) + 'px';
+                        card.style.height = Math.floor(viewport.height / dpr) + 'px';
 
                         const ctx = canvas.getContext('2d');
                         const renderContext = {
                             canvasContext: ctx,
-                            viewport: viewport,
-                            transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null
+                            viewport: viewport
                         };
 
                         const task = page.render(renderContext);
@@ -4476,9 +4462,19 @@ function renderEbook(lesson) {
                     }
                 }
 
-                renderPage(1);
-                if (numPages >= 2) renderPage(2);
-                if (numPages >= 3) renderPage(3);
+                // Render page 1 immediately for instant display
+                await renderPage(1);
+
+                // Progressively pre-render remaining pages sequentially in background
+                async function renderRemainingPages() {
+                    for (let p = 2; p <= numPages; p++) {
+                        if (!renderedPages.has(p)) {
+                            await renderPage(p);
+                            await new Promise(r => setTimeout(r, 40));
+                        }
+                    }
+                }
+                renderRemainingPages();
 
                 if ('IntersectionObserver' in window) {
                     observer = new IntersectionObserver((entries) => {
@@ -4486,8 +4482,8 @@ function renderEbook(lesson) {
                             if (entry.isIntersecting) {
                                 const p = parseInt(entry.target.dataset.page, 10);
                                 renderPage(p);
-                                if (p < numPages) setTimeout(() => renderPage(p + 1), 60);
-                                if (p > 1) setTimeout(() => renderPage(p - 1), 100);
+                                if (p < numPages) setTimeout(() => renderPage(p + 1), 50);
+                                if (p > 1) setTimeout(() => renderPage(p - 1), 80);
                             }
                         });
                     }, {
@@ -4642,12 +4638,14 @@ function renderEbook(lesson) {
                     
                     if (isActive) {
                         wrapper.classList.remove('pdf-fullscreen-active');
+                        document.body.classList.remove('pdf-modal-open');
                         if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
                         if (fsText) fsText.textContent = 'Fullscreen';
                     } else {
                         wrapper.classList.add('pdf-fullscreen-active');
+                        document.body.classList.add('pdf-modal-open');
                         if (fsIcon) fsIcon.className = 'fa-solid fa-compress';
-                        if (fsText) fsText.textContent = 'Exit';
+                        if (fsText) fsText.textContent = 'Exit Fullscreen';
                         setTimeout(() => {
                             const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 32 : window.innerWidth - 32;
                             applyZoom(avail / baseW);
@@ -4673,6 +4671,7 @@ function renderEbook(lesson) {
                     cleanup: () => {
                         window.removeEventListener('keydown', keyHandler);
                         scrollContainer.removeEventListener('scroll', onScrollUpdate);
+                        document.body.classList.remove('pdf-modal-open');
                         document.body.style.overflow = '';
                     }
                 };
@@ -5274,6 +5273,9 @@ window.updateFlashcard = updateFlashcard;
 window.initQuiz = initQuiz;
 window.renderWorksheet = renderWorksheet;
 window.renderGame = renderGame;
+window.renderEbook = renderEbook;
+window.appRenderEbook = renderEbook;
+window.initEbookUI = renderEbook;
 window.physicsData = (typeof window !== 'undefined' && window.physicsData && window.physicsData["12"] && window.physicsData["12"].length >= 10) ? window.physicsData : data;
 window.appData = window.physicsData;
 window.__appLoaded = true;

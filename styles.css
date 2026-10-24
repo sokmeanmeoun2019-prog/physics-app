@@ -2337,7 +2337,25 @@ mjx-container[jax="CHTML"] mjx-mi {
     text-align: center;
 }
 
-/* Touch-optimized scrollable container */
+/* Touch-optimized scrollable container (display: block for iOS WebKit native touch momentum) */
+body.pdf-modal-open {
+    overflow: hidden !important;
+}
+
+.app-version-badge {
+    background: #0284c7;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-left: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    letter-spacing: 0.04em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
 .pdf-scroll-container {
     background: #334155;
     overflow-y: scroll !important;
@@ -2347,10 +2365,8 @@ mjx-container[jax="CHTML"] mjx-mi {
     height: 750px;
     max-height: 80vh;
     padding: 1.25rem 0.75rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
+    display: block !important;
+    text-align: center;
     position: relative;
     box-sizing: border-box;
     overscroll-behavior-y: contain;
@@ -2373,11 +2389,8 @@ mjx-container[jax="CHTML"] mjx-mi {
     border-radius: 6px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
     position: relative;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin: 0 auto 1.25rem auto !important;
+    display: block !important;
     min-height: 200px;
     transition: transform 0.2s ease;
     user-select: none;
@@ -2397,7 +2410,7 @@ mjx-container[jax="CHTML"] mjx-mi {
     border-radius: 4px;
     font-size: 0.74rem;
     font-weight: 600;
-    pointer-events: none;
+    pointer-events: none !important;
     z-index: 5;
     letter-spacing: 0.03em;
 }
@@ -2407,6 +2420,7 @@ mjx-container[jax="CHTML"] mjx-mi {
     max-width: 100%;
     height: auto;
     border-radius: 6px;
+    margin: 0 auto;
     pointer-events: none !important;
     user-select: none !important;
     -webkit-user-select: none !important;
@@ -2425,6 +2439,7 @@ mjx-container[jax="CHTML"] mjx-mi {
     border-radius: 6px;
     width: 100%;
     min-height: 300px;
+    pointer-events: none !important;
 }
 
 .pdf-loading-card i {
@@ -2464,6 +2479,7 @@ mjx-container[jax="CHTML"] mjx-mi {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-y pinch-zoom !important;
+    display: block !important;
 }
 
 .ebook-preview-wrapper.pdf-fullscreen-active .ebook-preview {
