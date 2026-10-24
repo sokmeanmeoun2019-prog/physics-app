@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=3.5">
+    <link rel="stylesheet" href="styles.css?v=3.6">
     <style>
         .view.active {
             display: block !important;
@@ -3906,22 +3906,46 @@
         }
 
         function initEbookUI(lesson) {
+            if (!lesson) return;
             if (typeof window.appRenderEbook === 'function') {
-                return window.appRenderEbook(lesson);
-            }
-            if (typeof window.renderEbook === 'function' && window.renderEbook !== initEbookUI) {
-                return window.renderEbook(lesson);
+                try {
+                    window.appRenderEbook(lesson);
+                    return;
+                } catch(e) {
+                    console.warn('appRenderEbook error:', e);
+                }
             }
             var ebContainer = document.getElementById('lesson-ebook');
             if (!ebContainer) return;
             ebContainer.innerHTML = '<div class="ebook-empty" style="text-align:center; padding: 2.5rem 1rem; color: #cbd5e1;"><i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: #38bdf8; margin-bottom: 12px;"></i><h3>Loading interactive textbook...</h3></div>';
-            setTimeout(function() {
+
+            var retries = 0;
+            var timer = setInterval(function() {
+                retries++;
                 if (typeof window.appRenderEbook === 'function') {
-                    window.appRenderEbook(lesson);
-                } else if (typeof window.renderEbook === 'function' && window.renderEbook !== initEbookUI) {
-                    window.renderEbook(lesson);
+                    clearInterval(timer);
+                    try { window.appRenderEbook(lesson); } catch(e) {}
+                } else if (retries >= 15) {
+                    clearInterval(timer);
+                    renderEbookFallback(lesson, ebContainer);
                 }
-            }, 250);
+            }, 100);
+        }
+
+        function renderEbookFallback(lesson, ebContainer) {
+            if (!ebContainer || !lesson) return;
+            var candidates = (lesson.ebooks && lesson.ebooks.length > 0) ? lesson.ebooks : [{ title: lesson.title || 'Lesson E-Book', url: lesson.ebookUrl || '' }];
+            var first = candidates[0] || {};
+            var url = first.url || lesson.ebookUrl || '';
+            if (!url) {
+                ebContainer.innerHTML = '<div class="ebook-empty"><i class="fa-solid fa-book-open"></i><h3>Ebook Coming Soon</h3><p>The electronic textbook for this lesson will be available soon.</p></div>';
+                return;
+            }
+            ebContainer.innerHTML = '<div class="ebook-header"><h2><i class="fa-solid fa-book-open"></i> ' + (lesson.title || 'Lesson') + ' - E-Book / Textbook</h2><p>Read the official curriculum textbook directly in the interactive viewer.</p></div>' +
+                '<div class="pdf-viewer-wrapper" id="pdf-viewer-wrapper">' +
+                    '<div class="pdf-toolbar"><span style="font-size:0.88rem; color:#cbd5e1; font-weight:600;"><i class="fa-solid fa-book-open" style="color:#38bdf8; margin-right:6px;"></i> Curriculum Reader</span></div>' +
+                    '<iframe src="' + url + '#toolbar=0&navpanes=0" class="ebook-preview" style="width:100%; height:750px; border:none;" title="Ebook Preview"></iframe>' +
+                '</div>';
         }
 
         function initWorksheetUI(lesson) {
@@ -4041,15 +4065,25 @@
                     p.style.display = 'none';
                 }
             });
-            if (targetName === 'ebook') {
-                if (typeof window.appRenderEbook === 'function') {
-                    window.appRenderEbook(window.currentLesson);
-                } else if (typeof window.renderEbook === 'function' && window.renderEbook !== initEbookUI) {
-                    window.renderEbook(window.currentLesson);
-                } else if (typeof initEbookUI === 'function') {
-                    initEbookUI(window.currentLesson);
+
+            var activeLesson = window.currentLesson || null;
+            if (!activeLesson && window.currentSelectedLessonId) {
+                var pData = window.physicsData || window.appData;
+                if (pData) {
+                    var allLessons = Object.values(pData).flat();
+                    activeLesson = allLessons.find(function(l) { return l.id === window.currentSelectedLessonId; }) || null;
                 }
-            } else if (typeof window.appSwitchTab === 'function') {
+            }
+
+            if (targetName === 'ebook' && activeLesson) {
+                initEbookUI(activeLesson);
+            } else if (targetName === 'worksheet' && activeLesson) {
+                initWorksheetUI(activeLesson);
+            } else if (targetName === 'game' && activeLesson) {
+                initGameUI(activeLesson);
+            }
+
+            if (typeof window.appSwitchTab === 'function') {
                 try { window.appSwitchTab(targetName); } catch (e) {}
             }
             if (window.MathJax && window.MathJax.typesetPromise) {
@@ -4163,8 +4197,10 @@
         window.loadLessonDetail = loadLessonDetail;
         window.openLessonDetail = openLessonDetail;
         window.switchTab = switchTab;
-        window.initEbookUI = function(l) { return (window.appRenderEbook || initEbookUI)(l); };
-        window.renderEbook = function(l) { return (window.appRenderEbook || initEbookUI)(l); };
+        window.initEbookUI = initEbookUI;
+        window.renderEbook = initEbookUI;
+        window.initWorksheetUI = initWorksheetUI;
+        window.initGameUI = initGameUI;
         window.onAppJsError = onAppJsError;
         window.CURRICULUM_CATALOG = CURRICULUM_CATALOG;
         window.renderChapterCards = renderChapterCards;
@@ -4175,7 +4211,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v3.5 Live</span>
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v3.6 Live</span>
         </div>
         <div class="nav-links">
             <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
@@ -4590,8 +4626,8 @@
             </div>
         </div>
     </div>
-    <script src="physics-figures.js?v=3.5"></script>
-    <script src="physics-data.js?v=3.5"></script>
-    <script src="app.js?v=3.5" onerror="onAppJsError()"></script>
+    <script src="physics-figures.js?v=3.6"></script>
+    <script src="physics-data.js?v=3.6"></script>
+    <script src="app.js?v=3.6" onerror="onAppJsError()"></script>
 </body>
 </html>

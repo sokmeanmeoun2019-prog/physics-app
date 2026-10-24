@@ -4901,9 +4901,13 @@ function switchTab(targetName) {
         }
     });
 
+    if (!currentLesson) {
+        currentLesson = window.currentLesson || null;
+    }
     if (!currentLesson && window.currentSelectedLessonId) {
-        const allLessons = Object.values(data).flat();
-        currentLesson = allLessons.find(l => l.id === window.currentSelectedLessonId) || null;
+        const pData = (typeof window !== 'undefined' && (window.physicsData || window.appData)) ? (window.physicsData || window.appData) : data;
+        const allLessons = Object.values(pData).flat();
+        currentLesson = allLessons.find(l => (l.id && l.id.toLowerCase() === window.currentSelectedLessonId.toLowerCase())) || null;
     }
     if (!currentLesson) return;
 
