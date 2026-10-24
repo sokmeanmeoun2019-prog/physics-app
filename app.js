@@ -4029,6 +4029,9 @@ function resolveAppEbookCandidates(item) {
     return { primary, alt };
 }
 
+let currentLoadedEbookLessonId = null;
+let currentLoadedEbookSectionIdx = null;
+
 function renderEbook(lesson) {
     const ebookContainer = document.getElementById('lesson-ebook');
     if (!ebookContainer || !lesson) return;
@@ -4083,6 +4086,8 @@ function renderEbook(lesson) {
 
     if (!ebooksList.length) {
         cleanupCurrentPdfSession();
+        currentLoadedEbookLessonId = null;
+        currentLoadedEbookSectionIdx = null;
         ebookContainer.innerHTML = `
             <div class="ebook-empty">
                 <i class="fa-solid fa-book-open"></i>
@@ -4093,11 +4098,21 @@ function renderEbook(lesson) {
         return;
     }
 
+    // If this lesson and section is already loaded in DOM, avoid reloading; just refresh fit
+    const existingMount = document.getElementById('pdf-pages-mount');
+    if (currentLoadedEbookLessonId === lesson.id && existingMount && existingMount.children.length > 0 && currentPdfSession && typeof currentPdfSession.fitWidth === 'function') {
+        currentPdfSession.fitWidth();
+        return;
+    }
+
     let currentSelectedIndex = 0;
 
     function buildEbookUI(selectedIndex) {
         cleanupCurrentPdfSession();
         currentSelectedIndex = selectedIndex;
+        currentLoadedEbookLessonId = lesson.id;
+        currentLoadedEbookSectionIdx = selectedIndex;
+
         const currentEbook = ebooksList[selectedIndex];
         const pair = resolveAppEbookCandidates(currentEbook);
         const activeUrl = pair.primary || pair.alt || '';
@@ -4154,7 +4169,7 @@ function renderEbook(lesson) {
             <div class="pdf-viewer-wrapper" id="pdf-viewer-wrapper" oncontextmenu="return false;">
                 <div class="pdf-toolbar">
                     <div class="pdf-toolbar-group">
-                        <button type="button" class="pdf-btn" id="pdf-prev-btn" title="Previous Page">
+                        <button type="button" class="pdf-btn" id="pdf-prev-btn" title="Previous Page (Left Arrow)">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
                         <div class="pdf-page-indicator">
@@ -4162,17 +4177,17 @@ function renderEbook(lesson) {
                             <input type="number" id="pdf-page-input" class="pdf-page-input" value="1" min="1" max="1" aria-label="Current Page">
                             <span>/ <span id="pdf-total-pages">-</span></span>
                         </div>
-                        <button type="button" class="pdf-btn" id="pdf-next-btn" title="Next Page">
+                        <button type="button" class="pdf-btn" id="pdf-next-btn" title="Next Page (Right Arrow)">
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
 
                     <div class="pdf-toolbar-group">
-                        <button type="button" class="pdf-btn" id="pdf-zoom-out-btn" title="Zoom Out">
+                        <button type="button" class="pdf-btn" id="pdf-zoom-out-btn" title="Zoom Out (-)">
                             <i class="fa-solid fa-magnifying-glass-minus"></i>
                         </button>
                         <span class="pdf-zoom-label" id="pdf-zoom-label">100%</span>
-                        <button type="button" class="pdf-btn" id="pdf-zoom-in-btn" title="Zoom In">
+                        <button type="button" class="pdf-btn" id="pdf-zoom-in-btn" title="Zoom In (+)">
                             <i class="fa-solid fa-magnifying-glass-plus"></i>
                         </button>
                         <button type="button" class="pdf-btn" id="pdf-fit-width-btn" title="Fit to Screen Width">
@@ -4181,18 +4196,21 @@ function renderEbook(lesson) {
                     </div>
 
                     <div class="pdf-toolbar-group">
-                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="pdf-fullscreen-btn" title="Toggle Fullscreen Reading View">
+                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="pdf-fullscreen-btn" title="Toggle Fullscreen Reading View (Esc)">
                             <i class="fa-solid fa-expand" id="pdf-fs-icon"></i> <span class="btn-text" id="pdf-fs-text">Fullscreen</span>
                         </button>
                     </div>
                 </div>
 
                 <div class="pdf-scroll-container" id="pdf-scroll-container">
+                    <button type="button" class="pdf-floating-exit-btn" id="pdf-floating-exit-btn" title="Exit Fullscreen Reading Mode">
+                        <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
+                    </button>
                     <div class="pdf-loading-card" id="pdf-loading-card">
                         <i class="fa-solid fa-circle-notch fa-spin"></i>
                         <span id="pdf-loading-status">Loading textbook pages...</span>
                     </div>
-                    <div id="pdf-pages-mount" style="width: 100%; display: block; text-align: center;"></div>
+                    <div id="pdf-pages-mount" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>
                 </div>
             </div>
 
@@ -4234,6 +4252,9 @@ function renderEbook(lesson) {
                         </span>
                     </div>
                     <div class="pdf-toolbar-group">
+                        <button type="button" class="pdf-btn" id="fallback-fs-btn">
+                            <i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>
+                        </button>
                         <button type="button" class="pdf-btn" id="retry-pdf-load-btn" style="padding: 0.45rem 0.85rem;">
                             <i class="fa-solid fa-arrows-rotate"></i> <span>Reload Reader</span>
                         </button>
@@ -4245,6 +4266,17 @@ function renderEbook(lesson) {
             `;
             const retryBtn = document.getElementById('retry-pdf-load-btn');
             if (retryBtn) retryBtn.addEventListener('click', () => buildEbookUI(currentSelectedIndex));
+
+            const fbFsBtn = document.getElementById('fallback-fs-btn');
+            if (fbFsBtn) {
+                fbFsBtn.addEventListener('click', () => {
+                    const isFs = wrapper.classList.toggle('pdf-fullscreen-active');
+                    document.body.classList.toggle('pdf-modal-open', isFs);
+                    fbFsBtn.innerHTML = isFs 
+                        ? '<i class="fa-solid fa-xmark"></i> <span class="btn-text">Exit</span>' 
+                        : '<i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>';
+                });
+            }
         }
 
         function getPdfJsLib() {
@@ -4273,7 +4305,11 @@ function renderEbook(lesson) {
 
             const cdnWorker = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
             try {
-                const resp = await fetch(cdnWorker);
+                // Timeout after 2.5s to avoid holding up the UI on slow mobile networks
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 2500);
+                const resp = await fetch(cdnWorker, { signal: controller.signal });
+                clearTimeout(timeoutId);
                 if (resp.ok) {
                     const workerCode = await resp.text();
                     const workerBlob = new Blob([workerCode], { type: 'application/javascript' });
@@ -4282,10 +4318,10 @@ function renderEbook(lesson) {
                     return;
                 }
             } catch (e) {
-                console.warn('Worker script fetch failed, disabling worker for main thread:', e);
+                console.warn('Worker script fetch timed out or failed, using main thread execution:', e);
             }
 
-            // Safe fallback to fake worker on main thread to prevent Safari cross-origin SecurityError
+            // Safe fallback to main-thread execution
             try {
                 pdfjs.GlobalWorkerOptions.workerSrc = '';
             } catch (e) {}
@@ -4300,11 +4336,9 @@ function renderEbook(lesson) {
                 return;
             }
 
-            // Configure multi-threaded same-origin Blob worker with embedded script
             await setupPdfWorker(pdfjs);
 
             async function fetchPdfDoc() {
-                // Pre-fetch binary buffer directly to avoid any Safari URL or range request issues
                 let pdfBuffer = null;
                 try {
                     const res1 = await fetch(primaryUrl);
@@ -4352,6 +4386,7 @@ function renderEbook(lesson) {
                 const fsBtn = document.getElementById('pdf-fullscreen-btn');
                 const fsIcon = document.getElementById('pdf-fs-icon');
                 const fsText = document.getElementById('pdf-fs-text');
+                const floatingExitBtn = document.getElementById('pdf-floating-exit-btn');
                 const prevBtn = document.getElementById('pdf-prev-btn');
                 const nextBtn = document.getElementById('pdf-next-btn');
                 const zoomInBtn = document.getElementById('pdf-zoom-in-btn');
@@ -4371,8 +4406,17 @@ function renderEbook(lesson) {
                 const baseW = vp1.width;
                 const baseH = vp1.height;
 
-                const availWidth = scrollContainer.clientWidth > 0 ? (scrollContainer.clientWidth - 28) : (window.innerWidth > 900 ? 820 : window.innerWidth - 28);
-                let currentScale = Math.min(Math.max(availWidth / baseW, 0.4), 1.6);
+                function getOptimalFitScale() {
+                    let w = scrollContainer.clientWidth;
+                    if (!w || w <= 0) {
+                        w = window.innerWidth > 900 ? 820 : window.innerWidth;
+                    }
+                    const padding = w < 600 ? 16 : 28;
+                    const avail = Math.max(w - padding, 280);
+                    return Math.min(Math.max(avail / baseW, 0.35), 2.5);
+                }
+
+                let currentScale = getOptimalFitScale();
 
                 function updateZoomDisplay() {
                     if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
@@ -4454,6 +4498,7 @@ function renderEbook(lesson) {
                         if (ph) ph.style.display = 'none';
                         canvas.style.display = 'block';
                     } catch (renderErr) {
+                        renderedPages.delete(pageNum);
                         if (renderErr && renderErr.name !== 'RenderingCancelledException') {
                             console.warn(`Render error on page ${pageNum}:`, renderErr);
                         }
@@ -4465,12 +4510,12 @@ function renderEbook(lesson) {
                 // Render page 1 immediately for instant display
                 await renderPage(1);
 
-                // Progressively pre-render remaining pages sequentially in background
+                // Progressively pre-render remaining pages with low-overhead scheduler
                 async function renderRemainingPages() {
                     for (let p = 2; p <= numPages; p++) {
                         if (!renderedPages.has(p)) {
                             await renderPage(p);
-                            await new Promise(r => setTimeout(r, 40));
+                            await new Promise(r => setTimeout(r, 60));
                         }
                     }
                 }
@@ -4482,13 +4527,13 @@ function renderEbook(lesson) {
                             if (entry.isIntersecting) {
                                 const p = parseInt(entry.target.dataset.page, 10);
                                 renderPage(p);
-                                if (p < numPages) setTimeout(() => renderPage(p + 1), 50);
-                                if (p > 1) setTimeout(() => renderPage(p - 1), 80);
+                                if (p < numPages) setTimeout(() => renderPage(p + 1), 40);
+                                if (p > 1) setTimeout(() => renderPage(p - 1), 60);
                             }
                         });
                     }, {
                         root: scrollContainer,
-                        rootMargin: '600px 0px 600px 0px'
+                        rootMargin: '800px 0px 800px 0px'
                     });
 
                     mount.querySelectorAll('.pdf-page-card').forEach(c => observer.observe(c));
@@ -4514,7 +4559,7 @@ function renderEbook(lesson) {
                                 break;
                             }
                         }
-                    }, 60);
+                    }, 50);
                 }
                 scrollContainer.addEventListener('scroll', onScrollUpdate, { passive: true });
 
@@ -4525,6 +4570,7 @@ function renderEbook(lesson) {
                         if (pageInput) pageInput.value = p;
                         renderPage(p);
                         if (p < numPages) renderPage(p + 1);
+                        if (p > 1) renderPage(p - 1);
                     }
                 }
 
@@ -4584,15 +4630,15 @@ function renderEbook(lesson) {
                 if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => applyZoom(currentScale - 0.15));
                 if (fitWidthBtn) {
                     fitWidthBtn.addEventListener('click', () => {
-                        const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 28 : window.innerWidth - 28;
-                        applyZoom(avail / baseW);
+                        applyZoom(getOptimalFitScale());
                     });
                 }
 
-                // Two-finger Pinch-to-Zoom gesture on mobile touch screens
+                // Two-finger Real-time Pinch-to-Zoom gesture on mobile touch screens
                 let touchStartDist = 0;
                 let touchStartScale = currentScale;
                 let isPinching = false;
+                let lastPinchRatio = 1;
 
                 scrollContainer.addEventListener('touchstart', (e) => {
                     if (e.touches && e.touches.length === 2) {
@@ -4602,6 +4648,7 @@ function renderEbook(lesson) {
                             e.touches[0].clientY - e.touches[1].clientY
                         );
                         touchStartScale = currentScale;
+                        lastPinchRatio = 1;
                     } else {
                         isPinching = false;
                     }
@@ -4613,42 +4660,86 @@ function renderEbook(lesson) {
                             e.touches[0].clientX - e.touches[1].clientX,
                             e.touches[0].clientY - e.touches[1].clientY
                         );
-                        const ratio = curDist / touchStartDist;
-                        const candidateScale = Math.min(Math.max(touchStartScale * ratio, 0.35), 3.0);
+                        lastPinchRatio = curDist / touchStartDist;
+                        const candidateScale = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
                         if (zoomLabel) zoomLabel.textContent = Math.round(candidateScale * 100) + '%';
+                        mount.style.transform = `scale(${lastPinchRatio})`;
+                        mount.style.transformOrigin = 'center top';
                     }
                 }, { passive: true });
 
                 scrollContainer.addEventListener('touchend', (e) => {
                     if (isPinching) {
                         isPinching = false;
+                        mount.style.transform = '';
+                        mount.style.transformOrigin = '';
                         if (!e.touches || e.touches.length < 2) {
-                            const displayed = parseInt(zoomLabel ? zoomLabel.textContent : '100', 10) / 100;
-                            if (!isNaN(displayed) && Math.abs(displayed - currentScale) > 0.05) {
-                                applyZoom(displayed);
+                            const candidateScale = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
+                            if (Math.abs(candidateScale - currentScale) > 0.05) {
+                                applyZoom(candidateScale);
                             }
                         }
                     }
                 }, { passive: true });
 
+                // Responsive auto-fit on window resize or iPad/phone orientation change
+                let resizeDebounce = null;
+                const onViewportResize = () => {
+                    clearTimeout(resizeDebounce);
+                    resizeDebounce = setTimeout(() => {
+                        if (!scrollContainer || !baseW) return;
+                        applyZoom(getOptimalFitScale());
+                    }, 120);
+                };
+                window.addEventListener('resize', onViewportResize);
+                window.addEventListener('orientationchange', onViewportResize);
+
+                // Fullscreen Reading View Management
                 function toggleFullscreen(forceState) {
-                    const isActive = typeof forceState === 'boolean' 
-                        ? forceState 
-                        : wrapper.classList.contains('pdf-fullscreen-active');
-                    
-                    if (isActive) {
+                    const isCurrentlyActive = wrapper.classList.contains('pdf-fullscreen-active');
+                    const targetState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyActive;
+
+                    if (targetState) {
+                        // Enter Fullscreen
+                        wrapper.classList.add('pdf-fullscreen-active');
+                        document.body.classList.add('pdf-modal-open');
+                        if (fsIcon) fsIcon.className = 'fa-solid fa-xmark';
+                        if (fsText) fsText.textContent = 'Exit Fullscreen';
+                        if (fsBtn) {
+                            fsBtn.classList.add('pdf-btn-exit-fullscreen');
+                            fsBtn.title = 'Exit Fullscreen (Esc)';
+                        }
+
+                        // Try native fullscreen on desktop/Android if available
+                        try {
+                            if (wrapper.requestFullscreen && !document.fullscreenElement) {
+                                wrapper.requestFullscreen().catch(() => {});
+                            }
+                        } catch (e) {}
+
+                        setTimeout(() => {
+                            applyZoom(getOptimalFitScale());
+                        }, 120);
+                    } else {
+                        // Exit Fullscreen
                         wrapper.classList.remove('pdf-fullscreen-active');
                         document.body.classList.remove('pdf-modal-open');
                         if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
                         if (fsText) fsText.textContent = 'Fullscreen';
-                    } else {
-                        wrapper.classList.add('pdf-fullscreen-active');
-                        document.body.classList.add('pdf-modal-open');
-                        if (fsIcon) fsIcon.className = 'fa-solid fa-compress';
-                        if (fsText) fsText.textContent = 'Exit Fullscreen';
+                        if (fsBtn) {
+                            fsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                            fsBtn.title = 'Toggle Fullscreen Reading View (Esc)';
+                        }
+
+                        // Exit native fullscreen if active
+                        try {
+                            if (document.fullscreenElement && document.exitFullscreen) {
+                                document.exitFullscreen().catch(() => {});
+                            }
+                        } catch (e) {}
+
                         setTimeout(() => {
-                            const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 32 : window.innerWidth - 32;
-                            applyZoom(avail / baseW);
+                            applyZoom(getOptimalFitScale());
                         }, 120);
                     }
                 }
@@ -4656,10 +4747,28 @@ function renderEbook(lesson) {
                 if (fsBtn) {
                     fsBtn.addEventListener('click', () => toggleFullscreen());
                 }
+                if (floatingExitBtn) {
+                    floatingExitBtn.addEventListener('click', () => toggleFullscreen(false));
+                }
+
+                const onNativeFsChange = () => {
+                    if (!document.fullscreenElement && wrapper.classList.contains('pdf-fullscreen-active')) {
+                        toggleFullscreen(false);
+                    }
+                };
+                document.addEventListener('fullscreenchange', onNativeFsChange);
 
                 const keyHandler = (e) => {
                     if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
-                        toggleFullscreen(true);
+                        toggleFullscreen(false);
+                    } else if (document.activeElement !== pageInput && !document.activeElement.matches('input, textarea')) {
+                        if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                            const cur = parseInt(pageInput.value, 10) || 1;
+                            if (cur < numPages) scrollToPage(cur + 1);
+                        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                            const cur = parseInt(pageInput.value, 10) || 1;
+                            if (cur > 1) scrollToPage(cur - 1);
+                        }
                     }
                 };
                 window.addEventListener('keydown', keyHandler);
@@ -4668,8 +4777,12 @@ function renderEbook(lesson) {
                     pdfDoc: pdfDoc,
                     observer: observer,
                     activeTasks: activeTasks,
+                    fitWidth: () => applyZoom(getOptimalFitScale()),
                     cleanup: () => {
                         window.removeEventListener('keydown', keyHandler);
+                        window.removeEventListener('resize', onViewportResize);
+                        window.removeEventListener('orientationchange', onViewportResize);
+                        document.removeEventListener('fullscreenchange', onNativeFsChange);
                         scrollContainer.removeEventListener('scroll', onScrollUpdate);
                         document.body.classList.remove('pdf-modal-open');
                         document.body.style.overflow = '';
