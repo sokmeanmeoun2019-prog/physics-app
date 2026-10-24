@@ -10,7 +10,7 @@ git add .
 
 echo.
 echo 2. Committing changes...
-git commit -m "Upgrade to universal iOS PDF.js 2.16 with async load waiter and main-thread execution"
+git commit -m "Fix mobile and iPad touch scrolling and pinch-to-zoom in Grade 9 and 12 ebooks (v3.0)"
 
 echo.
 echo 3. Pushing to GitHub (origin main)...

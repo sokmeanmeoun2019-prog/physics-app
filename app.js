@@ -4252,24 +4252,28 @@ function renderEbook(lesson) {
                     if (isFs) {
                         if (fsIcon) fsIcon.className = 'fa-solid fa-compress';
                         if (fsText) fsText.textContent = 'Exit';
-                        document.body.style.overflow = 'hidden';
                     } else {
                         if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
                         if (fsText) fsText.textContent = 'Fullscreen';
-                        document.body.style.overflow = '';
                     }
                 });
             }
         }
 
+        function getPdfJsLib() {
+            return window.pdfjsLib || window['pdfjs-dist/build/pdf'] || window.PDFJS || null;
+        }
+
         async function waitForPdfJs(maxWaitMs = 5000) {
-            if (window.pdfjsLib) return window.pdfjsLib;
+            let lib = getPdfJsLib();
+            if (lib) return lib;
             const start = Date.now();
             while (Date.now() - start < maxWaitMs) {
-                await new Promise(r => setTimeout(r, 80));
-                if (window.pdfjsLib) return window.pdfjsLib;
+                await new Promise(r => setTimeout(r, 60));
+                lib = getPdfJsLib();
+                if (lib) return lib;
             }
-            return window.pdfjsLib;
+            return getPdfJsLib();
         }
 
         const loadingStatus = document.getElementById('pdf-loading-status');
@@ -4281,10 +4285,14 @@ function renderEbook(lesson) {
                 return;
             }
 
-            // Proactively disable cross-origin worker on iOS/Safari to prevent SecurityError
-            const isAppleDevice = /iPad|iPhone|iPod|Macintosh/i.test(navigator.userAgent) && (navigator.maxTouchPoints > 1 || !window.MSStream);
-            if (isAppleDevice && pdfjs.GlobalWorkerOptions) {
-                pdfjs.GlobalWorkerOptions.workerSrc = '';
+            // Always configure worker safely: fake worker on mobile touch devices to eliminate CORS/SecurityError
+            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+            if (pdfjs.GlobalWorkerOptions) {
+                if (isTouchDevice) {
+                    pdfjs.GlobalWorkerOptions.workerSrc = '';
+                } else {
+                    pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                }
             }
 
             async function fetchPdfDoc() {
@@ -4318,7 +4326,7 @@ function renderEbook(lesson) {
                     });
                     return await docTask.promise;
                 } catch (workerErr) {
-                    console.warn('Worker instantiation error, falling back to main-thread fake worker:', workerErr);
+                    console.warn('Worker error, switching to fake worker on main thread:', workerErr);
                     if (pdfjs.GlobalWorkerOptions) {
                         pdfjs.GlobalWorkerOptions.workerSrc = '';
                     }
@@ -4363,8 +4371,8 @@ function renderEbook(lesson) {
                 const baseW = vp1.width;
                 const baseH = vp1.height;
 
-                const availWidth = scrollContainer.clientWidth > 0 ? (scrollContainer.clientWidth - 32) : (window.innerWidth > 900 ? 820 : window.innerWidth - 32);
-                let currentScale = Math.min(Math.max(availWidth / baseW, 0.7), 1.6);
+                const availWidth = scrollContainer.clientWidth > 0 ? (scrollContainer.clientWidth - 28) : (window.innerWidth > 900 ? 820 : window.innerWidth - 28);
+                let currentScale = Math.min(Math.max(availWidth / baseW, 0.4), 1.6);
 
                 function updateZoomDisplay() {
                     if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
@@ -4535,7 +4543,7 @@ function renderEbook(lesson) {
                 }
 
                 function applyZoom(newScale) {
-                    currentScale = Math.min(Math.max(newScale, 0.5), 2.5);
+                    currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
                     updateZoomDisplay();
 
                     Object.values(activeTasks).forEach(t => {
@@ -4562,10 +4570,52 @@ function renderEbook(lesson) {
                 if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => applyZoom(currentScale - 0.15));
                 if (fitWidthBtn) {
                     fitWidthBtn.addEventListener('click', () => {
-                        const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 32 : window.innerWidth - 32;
+                        const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 28 : window.innerWidth - 28;
                         applyZoom(avail / baseW);
                     });
                 }
+
+                // Two-finger Pinch-to-Zoom gesture on mobile touch screens
+                let touchStartDist = 0;
+                let touchStartScale = currentScale;
+                let isPinching = false;
+
+                scrollContainer.addEventListener('touchstart', (e) => {
+                    if (e.touches && e.touches.length === 2) {
+                        isPinching = true;
+                        touchStartDist = Math.hypot(
+                            e.touches[0].clientX - e.touches[1].clientX,
+                            e.touches[0].clientY - e.touches[1].clientY
+                        );
+                        touchStartScale = currentScale;
+                    } else {
+                        isPinching = false;
+                    }
+                }, { passive: true });
+
+                scrollContainer.addEventListener('touchmove', (e) => {
+                    if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
+                        const curDist = Math.hypot(
+                            e.touches[0].clientX - e.touches[1].clientX,
+                            e.touches[0].clientY - e.touches[1].clientY
+                        );
+                        const ratio = curDist / touchStartDist;
+                        const candidateScale = Math.min(Math.max(touchStartScale * ratio, 0.35), 3.0);
+                        if (zoomLabel) zoomLabel.textContent = Math.round(candidateScale * 100) + '%';
+                    }
+                }, { passive: true });
+
+                scrollContainer.addEventListener('touchend', (e) => {
+                    if (isPinching) {
+                        isPinching = false;
+                        if (!e.touches || e.touches.length < 2) {
+                            const displayed = parseInt(zoomLabel ? zoomLabel.textContent : '100', 10) / 100;
+                            if (!isNaN(displayed) && Math.abs(displayed - currentScale) > 0.05) {
+                                applyZoom(displayed);
+                            }
+                        }
+                    }
+                }, { passive: true });
 
                 function toggleFullscreen(forceState) {
                     const isActive = typeof forceState === 'boolean' 
@@ -4576,16 +4626,14 @@ function renderEbook(lesson) {
                         wrapper.classList.remove('pdf-fullscreen-active');
                         if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
                         if (fsText) fsText.textContent = 'Fullscreen';
-                        document.body.style.overflow = '';
                     } else {
                         wrapper.classList.add('pdf-fullscreen-active');
                         if (fsIcon) fsIcon.className = 'fa-solid fa-compress';
                         if (fsText) fsText.textContent = 'Exit';
-                        document.body.style.overflow = 'hidden';
                         setTimeout(() => {
-                            const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 40 : window.innerWidth - 40;
+                            const avail = scrollContainer.clientWidth > 0 ? scrollContainer.clientWidth - 32 : window.innerWidth - 32;
                             applyZoom(avail / baseW);
-                        }, 100);
+                        }, 120);
                     }
                 }
 
