@@ -1,10 +1,63 @@
 {
   "_NOTE": "Paste your simulation links here! Next time you change links, just edit this file on GitHub, commit changes, and your website will update automatically.",
+  "Grade 7": {
+    "g7-l1": {
+      "chapter": "Chapter 1: Measurement, Units & Density",
+      "games": [
+        { "topic": "Density Simulation", "url": "https://phet.colorado.edu/sims/html/density/latest/density_all.html" }
+      ]
+    },
+    "g7-l2": {
+      "chapter": "Chapter 2: Forces & Friction",
+      "games": [
+        { "topic": "Forces and Motion Basics", "url": "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html" }
+      ]
+    },
+    "g7-l3": {
+      "chapter": "Chapter 3: Pressure & Archimedes' Principle",
+      "games": [
+        { "topic": "Under Pressure", "url": "https://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_all.html" }
+      ]
+    },
+    "g7-l4": {
+      "chapter": "Chapter 4: Temperature & Thermal Energy",
+      "games": [
+        { "topic": "Energy Forms and Changes", "url": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" }
+      ]
+    }
+  },
+  "Grade 8": {
+    "g8-l1": {
+      "chapter": "Chapter 1: Work, Energy & Power",
+      "games": [
+        { "topic": "Energy Skate Park Basics", "url": "https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_all.html" }
+      ]
+    },
+    "g8-l2": {
+      "chapter": "Chapter 2: Heat Transfer & Thermal Expansion",
+      "games": [
+        { "topic": "States of Matter: Basics", "url": "https://phet.colorado.edu/sims/html/states-of-matter-basics/latest/states-of-matter-basics_all.html" }
+      ]
+    },
+    "g8-l3": {
+      "chapter": "Chapter 3: Waves & Sound",
+      "games": [
+        { "topic": "Wave on a String", "url": "https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_all.html" }
+      ]
+    },
+    "g8-l4": {
+      "chapter": "Chapter 4: Introduction to Electricity & DC Circuits",
+      "games": [
+        { "topic": "Circuit Construction Kit: DC", "url": "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" }
+      ]
+    }
+  },
   "Grade 9": {
     "g9-l1": {
       "chapter": "Chapter 1: Turning Effect of Force",
       "games": [
-        { "topic": "Turning Effect", "url": "https://g.co/gemini/share/da86f09d1c05" }
+        { "topic": "Turning Effect", "url": "https://g.co/gemini/share/da86f09d1c05" },
+        { "topic": "PhET: Balancing Act (Torque & Balance)", "url": "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" }
       ]
     },
     "g9-l2": {
@@ -14,14 +67,19 @@
         { "topic": "Inclined Plane", "url": "https://g.co/gemini/share/a0f83fb13666" },
         { "topic": "Pulley", "url": "https://share.gemini.google/ikZlefCPf3VG" },
         { "topic": "Gear and Belt System", "url": "https://gemini.google.com/share/a559ad0916ce" },
-        { "topic": "Wheel and Axle", "url": "https://gemini.google.com/share/8a5c6aeecc08" }
+        { "topic": "Wheel and Axle", "url": "https://gemini.google.com/share/8a5c6aeecc08" },
+        { "topic": "PhET: Balancing Act (Levers)", "url": "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" },
+        { "topic": "PhET: Forces & Motion Basics", "url": "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html" }
       ]
     },
     "g9-l3": {
       "chapter": "Chapter 3: Electricity",
       "games": [
         { "topic": "Electricity", "url": "https://gemini.google.com/share/e1def1ea44ff" },
-        { "topic": "Household Wiring System", "url": "https://gemini.google.com/share/b1b0af13b130" }
+        { "topic": "Household Wiring System", "url": "https://gemini.google.com/share/b1b0af13b130" },
+        { "topic": "PhET: Circuit Construction Kit: DC", "url": "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" },
+        { "topic": "PhET: Ohm's Law", "url": "https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_all.html" },
+        { "topic": "PhET: Resistance in a Wire", "url": "https://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_all.html" }
       ]
     },
     "g9-l4": {
@@ -31,7 +89,9 @@
         { "topic": "Magnetic due to a circular loop", "url": "https://gemini.google.com/share/d3ff81a78225" },
         { "topic": "Magnetic due to a Solenoid", "url": "https://gemini.google.com/share/97335be64f77" },
         { "topic": "Magnetic Force", "url": "https://gemini.google.com/share/e58537b64df4" },
-        { "topic": "Transformers", "url": "https://gemini.google.com/share/4436f3b52926" }
+        { "topic": "Transformers", "url": "https://gemini.google.com/share/4436f3b52926" },
+        { "topic": "PhET: Faraday's Electromagnetic Lab", "url": "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" },
+        { "topic": "PhET: Magnet and Compass", "url": "https://phet.colorado.edu/sims/html/magnet-and-compass/latest/magnet-and-compass_all.html" }
       ]
     },
     "g9-l5": {
@@ -43,7 +103,63 @@
         { "topic": "Concave Mirrors", "url": "https://gemini.google.com/share/7e4ee437394b" },
         { "topic": "Convex Mirrors", "url": "https://gemini.google.com/share/7e4ee437394b" },
         { "topic": "Refraction of light", "url": "https://gemini.google.com/share/307ba374b958" },
-        { "topic": "Lenses", "url": "https://gemini.google.com/share/1d57559d8cb4" }
+        { "topic": "Lenses", "url": "https://gemini.google.com/share/1d57559d8cb4" },
+        { "topic": "PhET: Bending Light (Refraction & Prisms)", "url": "https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_all.html" },
+        { "topic": "PhET: Geometric Optics (Lenses & Mirrors)", "url": "https://phet.colorado.edu/sims/html/geometric-optics/latest/geometric-optics_all.html" }
+      ]
+    }
+  },
+  "Grade 10": {
+    "g10-l1": {
+      "chapter": "Chapter 1: Kinematics in 1D & 2D",
+      "games": [
+        { "topic": "Projectile Motion", "url": "https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_all.html" }
+      ]
+    },
+    "g10-l2": {
+      "chapter": "Chapter 2: Dynamics & Newton's Laws",
+      "games": [
+        { "topic": "Forces and Motion", "url": "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html" }
+      ]
+    },
+    "g10-l3": {
+      "chapter": "Chapter 3: Work, Energy & Momentum",
+      "games": [
+        { "topic": "Collision Lab", "url": "https://phet.colorado.edu/sims/html/collision-lab/latest/collision-lab_all.html" }
+      ]
+    },
+    "g10-l4": {
+      "chapter": "Chapter 4: Circular Motion & Universal Gravitation",
+      "games": [
+        { "topic": "Gravity and Orbits", "url": "https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_all.html" }
+      ]
+    }
+  },
+  "Grade 11": {
+    "g11-l1": {
+      "chapter": "Chapter 1: Rotational Dynamics & Angular Momentum",
+      "games": [
+        { "topic": "Torque & Rotation", "url": "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" }
+      ]
+    },
+    "g11-l2": {
+      "chapter": "Chapter 2: Fluid Mechanics & Thermal Physics",
+      "games": [
+        { "topic": "Fluid Pressure and Flow", "url": "https://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_all.html" }
+      ]
+    },
+    "g11-l3": {
+      "chapter": "Chapter 3: Simple Harmonic Motion & Oscillations",
+      "games": [
+        { "topic": "Pendulum Lab", "url": "https://phet.colorado.edu/sims/html/pendulum-lab/latest/pendulum-lab_all.html" },
+        { "topic": "Masses and Springs", "url": "https://phet.colorado.edu/sims/html/masses-and-springs/latest/masses-and-springs_all.html" }
+      ]
+    },
+    "g11-l4": {
+      "chapter": "Chapter 4: Electrostatics & Electric Potential",
+      "games": [
+        { "topic": "Charges and Fields", "url": "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_all.html" },
+        { "topic": "Coulomb's Law", "url": "https://phet.colorado.edu/sims/html/coulombs-law/latest/coulombs-law_all.html" }
       ]
     }
   },
@@ -51,31 +167,40 @@
     "g12-l1": {
       "chapter": "Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",
       "games": [
-        { "topic": "Kinetic Theory of Ideal Gases", "url": "https://gemini.google.com/share/acfae742b2c0" }
+        { "topic": "Kinetic Theory of Ideal Gases", "url": "https://gemini.google.com/share/acfae742b2c0" },
+        { "topic": "PhET: Gas Properties (Ideal Gas Laws)", "url": "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" },
+        { "topic": "PhET: States of Matter", "url": "https://phet.colorado.edu/sims/html/states-of-matter/latest/states-of-matter_all.html" }
       ]
     },
     "g12-l2": {
       "chapter": "Chapter 1 Lesson 2: First Law of Thermodynamics",
       "games": [
-        { "topic": "First Law of Thermodynamics", "url": "https://gemini.google.com/share/9e34579d87cd" }
+        { "topic": "First Law of Thermodynamics", "url": "https://gemini.google.com/share/9e34579d87cd" },
+        { "topic": "PhET: Energy Forms and Changes", "url": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" },
+        { "topic": "PhET: Gas Properties (Thermal Work)", "url": "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" }
       ]
     },
     "g12-l3": {
       "chapter": "Chapter 1 Lesson 3: Heat Engine",
       "games": [
-        { "topic": "Heat Engine", "url": "https://gemini.google.com/share/a6cfadc258e4" }
+        { "topic": "Heat Engine", "url": "https://gemini.google.com/share/a6cfadc258e4" },
+        { "topic": "PhET: Energy Forms and Changes (Systems)", "url": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" }
       ]
     },
     "g12-l4": {
       "chapter": "Chapter 2 Lesson 1: Superposition and Standing Waves",
       "games": [
-        { "topic": "Superposition and Waves", "url": "https://gemini.google.com/share/2e83761df9b7" }
+        { "topic": "Superposition and Waves", "url": "https://gemini.google.com/share/2e83761df9b7" },
+        { "topic": "PhET: Wave on a String (Standing Waves)", "url": "https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_all.html" },
+        { "topic": "PhET: Waves Intro: Sound & Water", "url": "https://phet.colorado.edu/sims/html/waves-intro/latest/waves-intro_all.html" },
+        { "topic": "PhET: Fourier: Making Waves", "url": "https://phet.colorado.edu/sims/html/fourier-making-waves/latest/fourier-making-waves_all.html" }
       ]
     },
     "g12-interf": {
       "chapter": "Chapter 2 Lesson 2: Interference and Diffraction",
       "games": [
-        { "topic": "Interference and Diffraction", "url": "https://gemini.google.com/share/14c6c1b23c4d" }
+        { "topic": "Interference and Diffraction", "url": "https://gemini.google.com/share/14c6c1b23c4d" },
+        { "topic": "PhET: Wave Interference (Slits & Diffraction)", "url": "https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_all.html" }
       ]
     },
     "g12-l5": {
@@ -83,26 +208,42 @@
       "games": [
         { "topic": "Magnetic Field", "url": "https://gemini.google.com/share/8a653df6b614" },
         { "topic": "Faraday’s Law", "url": "https://gemini.google.com/share/a36b992c1d6d" },
-        { "topic": "Self Induction", "url": "https://gemini.google.com/share/ae9787424975" }
+        { "topic": "Self Induction", "url": "https://gemini.google.com/share/ae9787424975" },
+        { "topic": "PhET: Faraday's Law (Induction)", "url": "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html" },
+        { "topic": "PhET: Faraday's Electromagnetic Lab", "url": "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" },
+        { "topic": "PhET: Charges and Fields", "url": "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_all.html" }
       ]
     },
     "g12-l6": {
       "chapter": "Chapter 3 Lesson 2: Alternating Currents",
       "games": [
-        { "topic": "Alternating Current", "url": "https://gemini.google.com/share/0c850ab5a53b" }
+        { "topic": "Alternating Current", "url": "https://gemini.google.com/share/0c850ab5a53b" },
+        { "topic": "PhET: Circuit Construction Kit: AC (Virtual Lab)", "url": "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_all.html" },
+        { "topic": "PhET: Circuit Construction Kit: AC", "url": "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac/latest/circuit-construction-kit-ac_all.html" }
       ]
     },
     "g12-ch4-l1": {
       "chapter": "Chapter 4 Lesson 1: Semiconductors & Transistors",
-      "games": []
+      "games": [
+        { "topic": "Semiconductors & Transistors", "url": "https://gemini.google.com/share/9c33959ceba4" },
+        { "topic": "PhET: Circuit Construction Kit: DC (Conductors & Diodes)", "url": "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc-virtual-lab/latest/circuit-construction-kit-dc-virtual-lab_all.html" },
+        { "topic": "PhET: Ohm's Law & Resistance", "url": "https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_all.html" }
+      ]
     },
     "g12-ch4-l2": {
       "chapter": "Chapter 4 Lesson 2: Special Theory of Relativity",
-      "games": []
+      "games": [
+        { "topic": "Special Relativity", "url": "https://gemini.google.com/share/3565e381b1ba" },
+        { "topic": "PhET: Blackbody Spectrum (Radiation)", "url": "https://phet.colorado.edu/sims/html/blackbody-spectrum/latest/blackbody-spectrum_all.html" }
+      ]
     },
     "g12-ch4-l3": {
       "chapter": "Chapter 4 Lesson 3: Atomic Structure",
-      "games": []
+      "games": [
+        { "topic": "PhET: Photoelectric Effect", "url": "https://phet.colorado.edu/sims/html/photoelectric/latest/photoelectric_all.html" },
+        { "topic": "PhET: Models of the Hydrogen Atom (Bohr)", "url": "https://phet.colorado.edu/sims/html/models-of-the-hydrogen-atom/latest/models-of-the-hydrogen-atom_all.html" },
+        { "topic": "PhET: Rutherford Scattering", "url": "https://phet.colorado.edu/sims/html/rutherford-scattering/latest/rutherford-scattering_all.html" }
+      ]
     }
   }
 }

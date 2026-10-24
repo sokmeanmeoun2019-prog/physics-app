@@ -20,6 +20,19 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="physics-figures.js?v=2.1"></script>
     <script src="physics-data.js?v=2.1"></script>
     <script id="inline-physics-data">
@@ -31,7 +44,10 @@
                 id: "g9-l1",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Torque_animation.gif",
                 worksheetUrl: "worksheets/g9-ch1-worksheet.pdf",
-                games: [{ topic: "Turning Effect", url: "https://g.co/gemini/share/da86f09d1c05" }],
+                games: [
+                    { topic: "Turning Effect", url: "https://g.co/gemini/share/da86f09d1c05" },
+                    { topic: "PhET: Balancing Act (Torque & Balance)", url: "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" }
+                ],
                 title: "Chapter 1: Turning Effect of Force",
                 concepts: [
                     "Resultant Force: Calculated depending on the direction of the acting forces.",
@@ -210,7 +226,15 @@
                 id: "g9-l2",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",
                 worksheetUrl: "worksheets/g9-ch2-worksheet.pdf",
-                games: [{ topic: "Levers", url: "https://g.co/gemini/share/0b9242977d1a" }, { topic: "Inclined Plane", url: "https://g.co/gemini/share/a0f83fb13666" }],
+                games: [
+                    { topic: "Levers", url: "https://g.co/gemini/share/0b9242977d1a" },
+                    { topic: "Inclined Plane", url: "https://g.co/gemini/share/a0f83fb13666" },
+                    { topic: "Pulley", url: "https://share.gemini.google/ikZlefCPf3VG" },
+                    { topic: "Gear and Belt System", url: "https://gemini.google.com/share/a559ad0916ce" },
+                    { topic: "Wheel and Axle", url: "https://gemini.google.com/share/8a5c6aeecc08" },
+                    { topic: "PhET: Balancing Act (Levers)", url: "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" },
+                    { topic: "PhET: Forces & Motion Basics", url: "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html" }
+                ],
                 title: "Chapter 2: Simple Machines",
                 concepts: [
                     "Simple Machines: Devices that change magnitude, direction, or distance of force.",
@@ -365,7 +389,13 @@
                 id: "g9-l3",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",
                 worksheetUrl: "worksheets/g9-ch3-worksheet.pdf",
-                games: [{ topic: "Electricity", url: "https://gemini.google.com/share/e1def1ea44ff" }],
+                games: [
+                    { topic: "Electricity", url: "https://gemini.google.com/share/e1def1ea44ff" },
+                    { topic: "Household Wiring System", url: "https://gemini.google.com/share/b1b0af13b130" },
+                    { topic: "PhET: Circuit Construction Kit: DC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" },
+                    { topic: "PhET: Ohm's Law", url: "https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_all.html" },
+                    { topic: "PhET: Resistance in a Wire", url: "https://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_all.html" }
+                ],
                 title: "Chapter 3: Electricity",
                 concepts: [
                     "Ohm's Law: Relates voltage, current, and resistance: \\( V = IR \\).",
@@ -495,7 +525,15 @@
                 id: "g9-l4",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/VFPt_solenoid-field-animation.gif",
                 worksheetUrl: "worksheets/g9-ch4-worksheet.pdf",
-                games: [{ topic: "Straight Wire B-Field", url: "https://gemini.google.com/share/4e08057d8f02" }],
+                games: [
+                    { topic: "Magnetic Field due to a straight wire", url: "https://gemini.google.com/share/4e08057d8f02" },
+                    { topic: "Magnetic due to a circular loop", url: "https://gemini.google.com/share/d3ff81a78225" },
+                    { topic: "Magnetic due to a Solenoid", url: "https://gemini.google.com/share/97335be64f77" },
+                    { topic: "Magnetic Force", url: "https://gemini.google.com/share/e58537b64df4" },
+                    { topic: "Transformers", url: "https://gemini.google.com/share/4436f3b52926" },
+                    { topic: "PhET: Faraday's Electromagnetic Lab", url: "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" },
+                    { topic: "PhET: Magnet and Compass", url: "https://phet.colorado.edu/sims/html/magnet-and-compass/latest/magnet-and-compass_all.html" }
+                ],
                 title: "Chapter 4: Magnetic Field",
                 concepts: [
                     "Magnetic Field (\\( B \\)): Vector field measured in Tesla (T).",
@@ -622,7 +660,17 @@
                 id: "g9-l5",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Refraction_animation.gif",
                 worksheetUrl: "worksheets/g9-ch5-worksheet.pdf",
-                games: [{ topic: "Refraction of Light", url: "https://gemini.google.com/share/307ba374b958" }],
+                games: [
+                    { topic: "Light Rays", url: "https://gemini.google.com/share/2ac63456c976" },
+                    { topic: "Reflection of light", url: "https://gemini.google.com/share/01abdd9ea9aa" },
+                    { topic: "Plane Mirrors", url: "https://gemini.google.com/share/7e4ee437394b" },
+                    { topic: "Concave Mirrors", url: "https://gemini.google.com/share/7e4ee437394b" },
+                    { topic: "Convex Mirrors", url: "https://gemini.google.com/share/7e4ee437394b" },
+                    { topic: "Refraction of light", url: "https://gemini.google.com/share/307ba374b958" },
+                    { topic: "Lenses", url: "https://gemini.google.com/share/1d57559d8cb4" },
+                    { topic: "PhET: Bending Light (Refraction & Prisms)", url: "https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_all.html" },
+                    { topic: "PhET: Geometric Optics (Lenses & Mirrors)", url: "https://phet.colorado.edu/sims/html/geometric-optics/latest/geometric-optics_all.html" }
+                ],
                 title: "Chapter 5: Light",
                 concepts: [
                     "Law of Reflection: The angle of reflection equals the angle of incidence: \\( i = r \\).",
@@ -786,7 +834,11 @@
                 id: "g12-l1",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",
                 worksheetUrl: "worksheets/ch1-l1-worksheet.pdf",
-                games: [{ topic: "Kinetic Theory of Ideal Gases", url: "https://gemini.google.com/share/acfae742b2c0" }],
+                games: [
+                    { topic: "Kinetic Theory of Ideal Gases", url: "https://gemini.google.com/share/acfae742b2c0" },
+                    { topic: "PhET: Gas Properties (Ideal Gas Laws)", url: "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" },
+                    { topic: "PhET: States of Matter", url: "https://phet.colorado.edu/sims/html/states-of-matter/latest/states-of-matter_all.html" }
+                ],
                 title: "Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",
                 concepts: [
                     "Ideal Gas Model: Molecules treated as point masses in continuous random motion with elastic collisions.",
@@ -848,7 +900,11 @@
                 id: "g12-l2",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",
                 worksheetUrl: "worksheets/ch1-l2-worksheet.pdf",
-                games: [{ topic: "First Law of Thermodynamics", url: "https://gemini.google.com/share/9e34579d87cd" }],
+                games: [
+                    { topic: "First Law of Thermodynamics", url: "https://gemini.google.com/share/9e34579d87cd" },
+                    { topic: "PhET: Energy Forms and Changes", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" },
+                    { topic: "PhET: Gas Properties (Thermal Work)", url: "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" }
+                ],
                 title: "Chapter 1 Lesson 2: First Law of Thermodynamics",
                 concepts: [
                     "First Law of Thermodynamics: Conservation of energy in thermodynamic systems: \\( Q = W + \\Delta U \\iff \\Delta U = Q - W \\).",
@@ -916,7 +972,10 @@
                 id: "g12-l3",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",
                 worksheetUrl: "worksheets/ch1-l3-worksheet.pdf",
-                games: [{ topic: "Heat Engine", url: "https://gemini.google.com/share/a6cfadc258e4" }],
+                games: [
+                    { topic: "Heat Engine", url: "https://gemini.google.com/share/a6cfadc258e4" },
+                    { topic: "PhET: Energy Forms and Changes (Systems)", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" }
+                ],
                 title: "Chapter 1 Lesson 3: Heat Engine",
                 concepts: [
                     "Heat Engine: Converts thermal energy from hot reservoir into mechanical work, rejecting waste heat.",
@@ -971,8 +1030,12 @@
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",
                 worksheetUrl: "worksheets/ch2-l1-worksheet.pdf",
                 games: [
+                    { topic: "Superposition and Waves", url: "https://gemini.google.com/share/2e83761df9b7" },
                     { topic: "Mechanical Waves", url: "https://gemini.google.com/share/2e83761df9b7" },
-                    { topic: "Standing Waves & Harmonics", url: "https://gemini.google.com/share/2e83761df9b7" }
+                    { topic: "Standing Waves & Harmonics", url: "https://gemini.google.com/share/2e83761df9b7" },
+                    { topic: "PhET: Wave on a String (Standing Waves)", url: "https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_all.html" },
+                    { topic: "PhET: Waves Intro: Sound & Water", url: "https://phet.colorado.edu/sims/html/waves-intro/latest/waves-intro_all.html" },
+                    { topic: "PhET: Fourier: Making Waves", url: "https://phet.colorado.edu/sims/html/fourier-making-waves/latest/fourier-making-waves_all.html" }
                 ],
                 title: "Chapter 2 Lesson 1: Superposition and Standing Waves",
                 concepts: [
@@ -1039,7 +1102,10 @@
                 id: "g12-interf",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",
                 worksheetUrl: "worksheets/ch2-l2-worksheet.pdf",
-                games: [{ topic: "Interference and Diffraction", url: "https://gemini.google.com/share/14c6c1b23c4d" }],
+                games: [
+                    { topic: "Interference and Diffraction", url: "https://gemini.google.com/share/14c6c1b23c4d" },
+                    { topic: "PhET: Wave Interference (Slits & Diffraction)", url: "https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_all.html" }
+                ],
                 title: "Chapter 2 Lesson 2: Interference and Diffraction",
                 concepts: [
                     "Conditions for Interference: Constructive interference (maximum amplitude) occurs when path difference \\( d_2 - d_1 = n\\lambda \\) (for \\( n = 0, 1, 2, 3, \\dots \\)). Destructive interference (minimum amplitude) occurs when \\( d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\) (for \\( n = 0, 1, 2, 3, \\dots \\)).",
@@ -1132,9 +1198,16 @@
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electromagnetic_induction.gif",
                 worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
                 games: [
+                    { topic: "Magnetic Field", url: "https://gemini.google.com/share/8a653df6b614" },
+                    { topic: "Faraday’s Law", url: "https://gemini.google.com/share/a36b992c1d6d" },
+                    { topic: "Self Induction", url: "https://gemini.google.com/share/ae9787424975" },
+                    { topic: "Electromagnetic Induction & RL Circuits", url: "https://gemini.google.com/share/5bdf25595304" },
                     { topic: "Magnetism & Biot-Savart", url: "https://gemini.google.com/share/b034179373cf" },
                     { topic: "Lorentz Force & Deflection", url: "https://gemini.google.com/share/b034179373cf" },
-                    { topic: "Electromagnetic Induction & RL", url: "https://gemini.google.com/share/b034179373cf" }
+                    { topic: "Electromagnetic Induction & RL", url: "https://gemini.google.com/share/b034179373cf" },
+                    { topic: "PhET: Faraday's Law (Induction)", url: "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html" },
+                    { topic: "PhET: Faraday's Electromagnetic Lab", url: "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" },
+                    { topic: "PhET: Charges and Fields", url: "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_all.html" }
                 ],
                 title: "Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",
                 concepts: [
@@ -1176,7 +1249,12 @@
                 id: "g12-l6",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",
                 worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
-                games: [{ topic: "Alternating Current", url: "https://gemini.google.com/share/0c850ab5a53b" }],
+                games: [
+                    { topic: "Alternating Current", url: "https://gemini.google.com/share/0c850ab5a53b" },
+                    { topic: "Alternating Current & RLC Circuits", url: "https://gemini.google.com/share/b5177259161a" },
+                    { topic: "PhET: Circuit Construction Kit: AC (Virtual Lab)", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_all.html" },
+                    { topic: "PhET: Circuit Construction Kit: AC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac/latest/circuit-construction-kit-ac_all.html" }
+                ],
                 title: "Chapter 3 Lesson 2: Alternating Currents",
                 concepts: [
                     "AC Waveforms: Sinusoidal current and voltage with RMS values \\( I = \\frac{I_m}{\\sqrt{2}} \\), \\( V = \\frac{V_m}{\\sqrt{2}} \\).",
@@ -1224,7 +1302,11 @@
                 id: "g12-ch4-l1",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/PnJunction-LED-animation.gif",
                 worksheetUrl: "worksheets/ch4-l1-worksheet.pdf",
-                games: [{ topic: "Semiconductors & Transistors", url: "https://gemini.google.com/share/9c33959ceba4" }],
+                games: [
+                    { topic: "Semiconductors & Transistors", url: "https://gemini.google.com/share/9c33959ceba4" },
+                    { topic: "PhET: Circuit Construction Kit: DC (Conductors & Diodes)", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc-virtual-lab/latest/circuit-construction-kit-dc-virtual-lab_all.html" },
+                    { topic: "PhET: Ohm's Law & Resistance", url: "https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_all.html" }
+                ],
                 title: "Chapter 4 Lesson 1: Semiconductors & Transistors",
                 concepts: [
                     "Electrical Resistance and Resistivity: A conductor's resistance depends on its geometry and material: \\( R = \\rho\\frac{l}{A} \\), where \\( \\rho = \\frac{RA}{l} \\) is the electrical resistivity (in \\( \\Omega\\cdot\\mathrm{m} \\)), \\( l \\) is length (in \\( \\mathrm{m} \\)), and \\( A \\) is cross-sectional area (in \\( \\mathrm{m}^2 \\)).",
@@ -1440,7 +1522,10 @@
                 id: "g12-ch4-l2",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Michelson-morley_experiment_animation.gif",
                 worksheetUrl: "worksheets/ch4-l2-worksheet.pdf",
-                games: [{ topic: "Special Relativity", url: "https://gemini.google.com/share/3565e381b1ba" }],
+                games: [
+                    { topic: "Special Relativity", url: "https://gemini.google.com/share/3565e381b1ba" },
+                    { topic: "PhET: Blackbody Spectrum (Radiation)", url: "https://phet.colorado.edu/sims/html/blackbody-spectrum/latest/blackbody-spectrum_all.html" }
+                ],
                 title: "Chapter 4 Lesson 2: Special Theory of Relativity",
                 concepts: [
                     "Reference Frames and Galilean Transformation: An inertial reference frame is one with zero acceleration where Newton's laws hold true. Classical mechanics assumes absolute, universal space and time (\\( t' = t \\)). For frame S' moving at constant velocity \\( u \\) along the +x axis relative to frame S, coordinates transform as \\( x' = x - ut \\), \\( y' = y \\), \\( z' = z \\), \\( t' = t \\); velocities as \\( v'_x = v_x - u \\), \\( v'_y = v_y \\), \\( v'_z = v_z \\); and accelerations as \\( a'_x = a_x \\), \\( a'_y = a_y \\), \\( a'_z = a_z \\). Valid only when \\( u \\ll c \\).",
@@ -1706,7 +1791,11 @@
                 id: "g12-ch4-l3",
                 gifUrl: "",
                 worksheetUrl: "worksheets/ch4-l3-worksheet.pdf",
-                games: [],
+                games: [
+                    { topic: "PhET: Photoelectric Effect", url: "https://phet.colorado.edu/sims/html/photoelectric/latest/photoelectric_all.html" },
+                    { topic: "PhET: Models of the Hydrogen Atom (Bohr)", url: "https://phet.colorado.edu/sims/html/models-of-the-hydrogen-atom/latest/models-of-the-hydrogen-atom_all.html" },
+                    { topic: "PhET: Rutherford Scattering", url: "https://phet.colorado.edu/sims/html/rutherford-scattering/latest/rutherford-scattering_all.html" }
+                ],
                 title: "Chapter 4 Lesson 3: Atomic Structure",
                 concepts: [
                     "Cathode Rays: Thomson measured electron specific charge \\( e/m \\).",
@@ -1787,6 +1876,352 @@
         window.currentGrade = '9';
 
         var CURRICULUM_CATALOG = {
+            "7": [
+                {
+                    id: "g7-l1",
+                    chapterNum: "Chapter 1",
+                    chapterName: "Heat and Temperature",
+                    subtitle: "Thermometers, Fixed Points, Thermal Expansion & Specific Heat",
+                    icon: "fa-temperature-high",
+                    color: "#dc2626",
+                    gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
+                    bgLight: "#fee2e2",
+                    borderLight: "#fecaca",
+                    shadow: "rgba(220, 38, 38, 0.22)",
+                    chips: ["Thermometers", "Expansion", "Heat Capacity", "Conduction"],
+                    formulas: 4,
+                    terms: 11,
+                    examples: 4,
+                    sims: 2,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g7-l2",
+                    chapterNum: "Chapter 2",
+                    chapterName: "Static Electricity",
+                    subtitle: "Electric Charges, Conductors & Insulators, Electrostatic Induction & Lightning",
+                    icon: "fa-bolt-lightning",
+                    color: "#0284c7",
+                    gradient: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
+                    bgLight: "#e0f2fe",
+                    borderLight: "#bae6fd",
+                    shadow: "rgba(2, 132, 199, 0.22)",
+                    chips: ["Electric Charge", "Electrostatics", "Induction", "Electroscope"],
+                    formulas: 2,
+                    terms: 9,
+                    examples: 3,
+                    sims: 2,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g7-l3",
+                    chapterNum: "Chapter 3",
+                    chapterName: "Electric Current, Potential Difference & Resistance",
+                    subtitle: "Electric Current, Potential Difference, Ohm's Law & Resistor Networks",
+                    icon: "fa-plug",
+                    color: "#4f46e5",
+                    gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+                    bgLight: "#e0e7ff",
+                    borderLight: "#c7d2fe",
+                    shadow: "rgba(79, 70, 229, 0.22)",
+                    chips: ["Current (I)", "Voltage (V)", "Ohm's Law", "Circuits"],
+                    formulas: 5,
+                    terms: 8,
+                    examples: 4,
+                    sims: 2,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g7-l4",
+                    chapterNum: "Chapter 4",
+                    chapterName: "Pressure in Solids, Liquids & Gases",
+                    subtitle: "Solid Pressure, Hydrostatic Liquid Pressure, Atmospheric Pressure & Hydraulic Lift",
+                    icon: "fa-water",
+                    color: "#059669",
+                    gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+                    bgLight: "#d1fae5",
+                    borderLight: "#a7f3d0",
+                    shadow: "rgba(5, 150, 105, 0.22)",
+                    chips: ["Solid Pressure", "Liquid Pressure", "Atmosphere", "Hydraulics"],
+                    formulas: 4,
+                    terms: 9,
+                    examples: 4,
+                    sims: 2,
+                    hasPdf: false,
+                    hasQuiz: true
+                }
+            ],
+            "8": [
+                {
+                    id: "g8-l1",
+                    chapterNum: "Lesson 1",
+                    chapterName: "Speed, Velocity and Acceleration",
+                    subtitle: "Scalars vs Vectors, Motion Sensors, Tickertape Timers & Average Speed",
+                    icon: "fa-gauge-high",
+                    color: "#0284c7",
+                    gradient: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
+                    bgLight: "#e0f2fe",
+                    borderLight: "#bae6fd",
+                    shadow: "rgba(2, 132, 199, 0.22)",
+                    chips: ["Speed", "Velocity", "Acceleration", "Tickertape"],
+                    formulas: 5,
+                    terms: 5,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l2",
+                    chapterNum: "Lesson 2",
+                    chapterName: "Graphs of Equations",
+                    subtitle: "Distance-Time & Speed-Time Graphs, Gradients, Area & 4 Equations of Motion",
+                    icon: "fa-chart-line",
+                    color: "#2563eb",
+                    gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+                    bgLight: "#dbeafe",
+                    borderLight: "#bfdbfe",
+                    shadow: "rgba(37, 99, 235, 0.22)",
+                    chips: ["v-t Graphs", "Slope = Accel", "Area = Distance", "Kinematic Eqns"],
+                    formulas: 5,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l3",
+                    chapterNum: "Lesson 3",
+                    chapterName: "Free Falling Bodies",
+                    subtitle: "Acceleration due to Gravity, Free-Fall Timing & Projectile Trajectories",
+                    icon: "fa-arrow-down-long",
+                    color: "#7c3aed",
+                    gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
+                    bgLight: "#ede9fe",
+                    borderLight: "#ddd6fe",
+                    shadow: "rgba(124, 58, 237, 0.22)",
+                    chips: ["Gravity g=9.8", "Free Fall", "Projectiles", "Trajectories"],
+                    formulas: 4,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l4",
+                    chapterNum: "Lesson 4",
+                    chapterName: "Weight and Stretching",
+                    subtitle: "Gravitational Field Strength W=mg, Hooke's Law F=kx & Elastic Limit",
+                    icon: "fa-weight-hanging",
+                    color: "#059669",
+                    gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+                    bgLight: "#d1fae5",
+                    borderLight: "#a7f3d0",
+                    shadow: "rgba(5, 150, 105, 0.22)",
+                    chips: ["W = mg", "Hooke's Law", "Spring Constant", "Elasticity"],
+                    formulas: 4,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l5",
+                    chapterNum: "Lesson 5",
+                    chapterName: "Adding Forces & Vectors",
+                    subtitle: "Parallelogram Law, Resultant Forces, Dynamic vs Static Friction",
+                    icon: "fa-arrows-split-up-and-left",
+                    color: "#d97706",
+                    gradient: "linear-gradient(135deg, #f59e0b 0%, #b45309 100%)",
+                    bgLight: "#fffbeb",
+                    borderLight: "#fde68a",
+                    shadow: "rgba(217, 119, 6, 0.22)",
+                    chips: ["Vectors", "Resultant Force", "Parallelogram Law", "Friction"],
+                    formulas: 4,
+                    terms: 5,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l6",
+                    chapterNum: "Lesson 6",
+                    chapterName: "Force and Acceleration",
+                    subtitle: "Newton's Laws of Motion, F=ma, Inertia & Terminal Velocity",
+                    icon: "fa-truck-fast",
+                    color: "#dc2626",
+                    gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
+                    bgLight: "#fee2e2",
+                    borderLight: "#fecaca",
+                    shadow: "rgba(220, 38, 38, 0.22)",
+                    chips: ["Newton's Laws", "F = ma", "Terminal Velocity", "Drag Force"],
+                    formulas: 4,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l7",
+                    chapterNum: "Lesson 7",
+                    chapterName: "Energy, Work and Power",
+                    subtitle: "Work W=Fd, Forms of Energy, Power P=W/t, Efficiency & Energy Sources",
+                    icon: "fa-bolt-lightning",
+                    color: "#ea580c",
+                    gradient: "linear-gradient(135deg, #f97316 0%, #c2410c 100%)",
+                    bgLight: "#ffedd5",
+                    borderLight: "#fed7aa",
+                    shadow: "rgba(234, 88, 12, 0.22)",
+                    chips: ["Work W=Fd", "Power P=W/t", "Efficiency", "Renewables"],
+                    formulas: 4,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l8",
+                    chapterNum: "Lesson 8",
+                    chapterName: "Kinetic and Potential Energy",
+                    subtitle: "Ek=½mv², Ep=mgh, Energy Conservation, Braking Distance & Car Safety",
+                    icon: "fa-car-burst",
+                    color: "#0891b2",
+                    gradient: "linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)",
+                    bgLight: "#cffafe",
+                    borderLight: "#a5f3fc",
+                    shadow: "rgba(8, 145, 178, 0.22)",
+                    chips: ["Ek = ½mv²", "Ep = mgh", "Stopping Distance", "Car Safety"],
+                    formulas: 4,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l9",
+                    chapterNum: "Lesson 9",
+                    chapterName: "Pressure and Liquid Pressure",
+                    subtitle: "Pressure P=F/A, Liquid Columns P=ρgh, Hydraulics & Barometers",
+                    icon: "fa-water",
+                    color: "#4f46e5",
+                    gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+                    bgLight: "#e0e7ff",
+                    borderLight: "#c7d2fe",
+                    shadow: "rgba(79, 70, 229, 0.22)",
+                    chips: ["P = F/A", "P = ρgh", "Hydraulic Lift", "Barometer"],
+                    formulas: 4,
+                    terms: 5,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l10",
+                    chapterNum: "Lesson 10",
+                    chapterName: "Conduction and Convection",
+                    subtitle: "Free Electron Conduction, Insulators, Convection Currents & Building Heat Loss",
+                    icon: "fa-temperature-arrow-up",
+                    color: "#be185d",
+                    gradient: "linear-gradient(135deg, #ec4899 0%, #be185d 100%)",
+                    bgLight: "#fce7f3",
+                    borderLight: "#fbcfe8",
+                    shadow: "rgba(190, 24, 93, 0.22)",
+                    chips: ["Conduction", "Convection", "Insulation", "Heat Loss"],
+                    formulas: 2,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l11",
+                    chapterNum: "Lesson 11",
+                    chapterName: "Thermal Radiation",
+                    subtitle: "Infrared Radiation, Good/Bad Emitters, Vacuum Flask & Greenhouse Effect",
+                    icon: "fa-sun",
+                    color: "#c026d3",
+                    gradient: "linear-gradient(135deg, #d946ef 0%, #a21caf 100%)",
+                    bgLight: "#fae8ff",
+                    borderLight: "#f5d0fe",
+                    shadow: "rgba(192, 38, 211, 0.22)",
+                    chips: ["Thermal Radiation", "Black Emitters", "Vacuum Flask", "Greenhouse"],
+                    formulas: 2,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l12",
+                    chapterNum: "Lesson 12",
+                    chapterName: "DC Circuits",
+                    subtitle: "Series & Parallel Resistors, Ohm's Law, Voltmeters & Ammeters",
+                    icon: "fa-microchip",
+                    color: "#16a34a",
+                    gradient: "linear-gradient(135deg, #22c55e 0%, #15803d 100%)",
+                    bgLight: "#dcfce7",
+                    borderLight: "#bbf7d0",
+                    shadow: "rgba(22, 163, 74, 0.22)",
+                    chips: ["Series Circuits", "Parallel Circuits", "Ohm's Law", "Equivalent R"],
+                    formulas: 5,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l13",
+                    chapterNum: "Lesson 13",
+                    chapterName: "Electrical Power & Domestic Safety",
+                    subtitle: "Electrical Energy E=Pt, Power P=IV, 3-Pin Plugs, Fuses & Cost Calculation",
+                    icon: "fa-plug-circle-bolt",
+                    color: "#b45309",
+                    gradient: "linear-gradient(135deg, #d97706 0%, #92400e 100%)",
+                    bgLight: "#fef3c7",
+                    borderLight: "#fde68a",
+                    shadow: "rgba(180, 83, 9, 0.22)",
+                    chips: ["P = IV", "1 kWh = 3.6 MJ", "3-Pin Plug", "Fuses & RCD"],
+                    formulas: 5,
+                    terms: 4,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g8-l14",
+                    chapterNum: "Lesson 14",
+                    chapterName: "General Properties of Waves",
+                    subtitle: "Transverse vs Longitudinal, Wave Equation v=fλ, Reflection, Refraction & Diffraction",
+                    icon: "fa-water",
+                    color: "#0d9488",
+                    gradient: "linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)",
+                    bgLight: "#ccfbf1",
+                    borderLight: "#99f6e4",
+                    shadow: "rgba(13, 148, 136, 0.22)",
+                    chips: ["Wave Equation", "v = fλ", "Transverse", "Longitudinal"],
+                    formulas: 4,
+                    terms: 5,
+                    examples: 4,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                }
+            ],
             "9": [
                 {
                     id: "g9-l1",
@@ -1881,6 +2316,409 @@
                     examples: 6,
                     sims: 7,
                     hasPdf: true,
+                    hasQuiz: true
+                }
+            ],
+            "10": [
+                {
+                    id: "g10-l1",
+                    chapterNum: "Chapter 1 • Lesson 1",
+                    chapterName: "Rectilinear Motion & Kinematics",
+                    subtitle: "Uniform Motion, UAM Kinematics Equations & Graphical Motion Analysis",
+                    icon: "fa-person-running",
+                    color: "#2563eb",
+                    gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+                    bgLight: "#dbeafe",
+                    borderLight: "#bfdbfe",
+                    shadow: "rgba(37, 99, 235, 0.22)",
+                    chips: ["Kinematics", "UAM Equations", "Velocity-Time"],
+                    formulas: 28,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-l2",
+                    chapterNum: "Chapter 1 • Lesson 2",
+                    chapterName: "Dynamics: Newton's Laws of Motion",
+                    subtitle: "Newton's Three Laws, Friction Forces, Free Body Diagrams & Inclined Planes",
+                    icon: "fa-weight-hanging",
+                    color: "#7c3aed",
+                    gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
+                    bgLight: "#ede9fe",
+                    borderLight: "#ddd6fe",
+                    shadow: "rgba(124, 58, 237, 0.22)",
+                    chips: ["Newton's Laws", "Friction", "Incline Dynamics"],
+                    formulas: 17,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-l3",
+                    chapterNum: "Chapter 1 • Lesson 3",
+                    chapterName: "Work, Kinetic Energy & Power",
+                    subtitle: "Work of Constant Forces, Work-Energy Theorem, Gravitational Potential & Power",
+                    icon: "fa-bolt",
+                    color: "#0891b2",
+                    gradient: "linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)",
+                    bgLight: "#cffafe",
+                    borderLight: "#a5f3fc",
+                    shadow: "rgba(8, 145, 178, 0.22)",
+                    chips: ["Work", "Kinetic Energy", "Mechanical Power"],
+                    formulas: 13,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-l4",
+                    chapterNum: "Chapter 1 • Lesson 4",
+                    chapterName: "Fluids & Atmospheric Pressure",
+                    subtitle: "Fluid Pressure, Hydrostatic Equation, Pascal's Principle & Archimedes' Law",
+                    icon: "fa-droplet",
+                    color: "#059669",
+                    gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+                    bgLight: "#d1fae5",
+                    borderLight: "#a7f3d0",
+                    shadow: "rgba(5, 150, 105, 0.22)",
+                    chips: ["Hydrostatics", "Pascal Principle", "Archimedes"],
+                    formulas: 16,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-ch2-l1",
+                    chapterNum: "Chapter 2 • Lesson 1",
+                    chapterName: "Heat, Temperature & Gas Model",
+                    subtitle: "Thermodynamic Equilibrium, Specific Heat Capacity, Calorimetry & Kinetic Gas Model",
+                    icon: "fa-temperature-high",
+                    color: "#d97706",
+                    gradient: "linear-gradient(135deg, #f59e0b 0%, #b45309 100%)",
+                    bgLight: "#fef3c7",
+                    borderLight: "#fde68a",
+                    shadow: "rgba(217, 119, 6, 0.22)",
+                    chips: ["Calorimetry", "Specific Heat", "Ideal Gas Law"],
+                    formulas: 15,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-ch3-l1",
+                    chapterNum: "Chapter 3 • Lesson 1",
+                    chapterName: "Electrostatics & Coulomb's Law",
+                    subtitle: "Electric Charges, Coulomb's Law, Electric Fields & Electrostatic Shielding",
+                    icon: "fa-bolt-lightning",
+                    color: "#e11d48",
+                    gradient: "linear-gradient(135deg, #f43f5e 0%, #be123c 100%)",
+                    bgLight: "#ffe4e6",
+                    borderLight: "#fecdd3",
+                    shadow: "rgba(225, 29, 72, 0.22)",
+                    chips: ["Coulomb's Law", "Electric Field", "Field Lines"],
+                    formulas: 8,
+                    terms: 5,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-ch3-l2",
+                    chapterNum: "Chapter 3 • Lesson 2",
+                    chapterName: "DC Circuits & Magnetic Fields",
+                    subtitle: "Electric Current, Ohm's Law, Resistor Combinations & Magnetic Effects",
+                    icon: "fa-network-wired",
+                    color: "#4f46e5",
+                    gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+                    bgLight: "#e0e7ff",
+                    borderLight: "#c7d2fe",
+                    shadow: "rgba(79, 70, 229, 0.22)",
+                    chips: ["Ohm's Law", "Resistors", "Magnetic Force"],
+                    formulas: 14,
+                    terms: 5,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-ch3-l3",
+                    chapterNum: "Chapter 3 • Lesson 3",
+                    chapterName: "AC & Transformer Systems",
+                    subtitle: "Electromagnetic Induction, Sinusoidal AC Voltage & Transformer Transformations",
+                    icon: "fa-plug",
+                    color: "#9333ea",
+                    gradient: "linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)",
+                    bgLight: "#f3e8ff",
+                    borderLight: "#e9d5ff",
+                    shadow: "rgba(147, 51, 234, 0.22)",
+                    chips: ["Induction", "RMS Voltage", "Transformers"],
+                    formulas: 12,
+                    terms: 5,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-ch4-l1",
+                    chapterNum: "Chapter 4 • Lesson 1",
+                    chapterName: "Light Propagation & Reflection",
+                    subtitle: "Ray Optics, Fermat's Principle, Specular Reflection & Plane Mirrors",
+                    icon: "fa-sun",
+                    color: "#ea580c",
+                    gradient: "linear-gradient(135deg, #f97316 0%, #c2410c 100%)",
+                    bgLight: "#ffedd5",
+                    borderLight: "#fed7aa",
+                    shadow: "rgba(234, 88, 12, 0.22)",
+                    chips: ["Ray Model", "Reflection", "Plane Mirror"],
+                    formulas: 5,
+                    terms: 5,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-ch4-l2",
+                    chapterNum: "Chapter 4 • Lesson 2",
+                    chapterName: "Refraction & Snell's Law",
+                    subtitle: "Refractive Index, Snell's Law, Total Internal Reflection & Fiber Optics",
+                    icon: "fa-water",
+                    color: "#0284c7",
+                    gradient: "linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)",
+                    bgLight: "#e0f2fe",
+                    borderLight: "#bae6fd",
+                    shadow: "rgba(2, 132, 199, 0.22)",
+                    chips: ["Snell's Law", "Refractive Index", "TIR"],
+                    formulas: 9,
+                    terms: 5,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g10-ch4-l3",
+                    chapterNum: "Chapter 4 • Lesson 3",
+                    chapterName: "Double Plane, Slab, and Prism",
+                    subtitle: "Lateral Displacement, Apparent Depth, Prism Deviation & Minimum Deviation",
+                    icon: "fa-gem",
+                    color: "#db2777",
+                    gradient: "linear-gradient(135deg, #f472b6 0%, #be185d 100%)",
+                    bgLight: "#fce7f3",
+                    borderLight: "#fbcfe8",
+                    shadow: "rgba(219, 39, 119, 0.22)",
+                    chips: ["Parallel Slab", "Prism Optics", "Minimum Deviation"],
+                    formulas: 11,
+                    terms: 5,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                }
+            ],
+            "11": [
+                {
+                    id: "g11-l1",
+                    chapterNum: "Chapter 1 • Lesson 1",
+                    chapterName: "Kinematics in 2D & Projectile Motion",
+                    subtitle: "2D Vectors, Parabolic Trajectory, Maximum Apex Height & Horizontal Range",
+                    icon: "fa-route",
+                    color: "#2563eb",
+                    gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+                    bgLight: "#dbeafe",
+                    borderLight: "#bfdbfe",
+                    shadow: "rgba(37, 99, 235, 0.22)",
+                    chips: ["2D Kinematics", "Projectile Motion", "Trajectory"],
+                    formulas: 17,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g11-l2",
+                    chapterNum: "Chapter 1 • Lesson 2",
+                    chapterName: "Accelerated Frames & Rotational Dynamics",
+                    subtitle: "Inertial Forces, Road Banking, Vertical Loop Dynamics, Torque & Moment of Inertia",
+                    icon: "fa-arrows-spin",
+                    color: "#7c3aed",
+                    gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
+                    bgLight: "#ede9fe",
+                    borderLight: "#ddd6fe",
+                    shadow: "rgba(124, 58, 237, 0.22)",
+                    chips: ["Accelerated Frames", "Banked Curves", "Torque & Inertia"],
+                    formulas: 19,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g11-l3",
+                    chapterNum: "Chapter 1 • Lesson 3",
+                    chapterName: "Universal Gravitation & Satellite Motion",
+                    subtitle: "Newton's Gravitation Law, Kepler's 3rd Law, Satellite Velocity & Escape Speed",
+                    icon: "fa-earth-americas",
+                    color: "#0891b2",
+                    gradient: "linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)",
+                    bgLight: "#cffafe",
+                    borderLight: "#a5f3fc",
+                    shadow: "rgba(8, 145, 178, 0.22)",
+                    chips: ["Universal Gravity", "Kepler's Law", "Escape Velocity"],
+                    formulas: 16,
+                    terms: 5,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g11-l4",
+                    chapterNum: "Chapter 1 • Lesson 4",
+                    chapterName: "Impulse, Momentum & Collisions",
+                    subtitle: "Linear Momentum, Impulse Theorem, Elastic & Inelastic Collisions & Restitution",
+                    icon: "fa-burst",
+                    color: "#dc2626",
+                    gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
+                    bgLight: "#fee2e2",
+                    borderLight: "#fecaca",
+                    shadow: "rgba(220, 38, 38, 0.22)",
+                    chips: ["Linear Momentum", "Impulse", "Collisions"],
+                    formulas: 13,
+                    terms: 5,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g11-ch1-l5",
+                    chapterNum: "Chapter 1 • Lesson 5",
+                    chapterName: "Energy Conservation, Pendulum & Moduli",
+                    subtitle: "Conservative Forces, Simple Pendulum Dynamics, Static Equilibrium & Elastic Moduli",
+                    icon: "fa-cubes",
+                    color: "#059669",
+                    gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+                    bgLight: "#d1fae5",
+                    borderLight: "#a7f3d0",
+                    shadow: "rgba(5, 150, 105, 0.22)",
+                    chips: ["Energy Conservation", "Pendulum", "Young's Modulus"],
+                    formulas: 18,
+                    terms: 5,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g11-ch1-l6",
+                    chapterNum: "Chapter 1 • Lesson 6",
+                    chapterName: "Fluid Dynamics, Continuity & Viscosity",
+                    subtitle: "Continuity Equation, Bernoulli's Principle, Torricelli's Law, Poiseuille & Stokes",
+                    icon: "fa-droplet",
+                    color: "#0284c7",
+                    gradient: "linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)",
+                    bgLight: "#e0f2fe",
+                    borderLight: "#bae6fd",
+                    shadow: "rgba(2, 132, 199, 0.22)",
+                    chips: ["Continuity", "Bernoulli", "Poiseuille Viscosity"],
+                    formulas: 11,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g11-ch2-l1",
+                    chapterNum: "Chapter 2 • Lesson 1",
+                    chapterName: "Thermal Physics, Expansion & Heat",
+                    subtitle: "Thermal Expansion, Calorimetry, Heat Conduction, Radiation & Kinetic Theory",
+                    icon: "fa-temperature-high",
+                    color: "#d97706",
+                    gradient: "linear-gradient(135deg, #f59e0b 0%, #b45309 100%)",
+                    bgLight: "#fef3c7",
+                    borderLight: "#fde68a",
+                    shadow: "rgba(217, 119, 6, 0.22)",
+                    chips: ["Thermal Expansion", "Calorimetry", "RMS Speed"],
+                    formulas: 12,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g11-ch2-l2",
+                    chapterNum: "Chapter 2 • Lesson 2",
+                    chapterName: "Periodic Motion, Oscillations & Waves",
+                    subtitle: "Simple Harmonic Motion, Spring Oscillators, Wave Speed on Strings & Doppler Effect",
+                    icon: "fa-wave-square",
+                    color: "#86198f",
+                    gradient: "linear-gradient(135deg, #a21caf 0%, #701a75 100%)",
+                    bgLight: "#fae8ff",
+                    borderLight: "#f5d0fe",
+                    shadow: "rgba(134, 25, 143, 0.22)",
+                    chips: ["SHM Oscillation", "Wave Speed", "Doppler Effect"],
+                    formulas: 15,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g11-ch3-l1",
+                    chapterNum: "Chapter 3 • Lesson 1",
+                    chapterName: "Electrostatics, Fields & Capacitors",
+                    subtitle: "Coulomb's Law, Electric Fields, Gauss's Law, Capacitance & Stored Energy",
+                    icon: "fa-bolt-lightning",
+                    color: "#b45309",
+                    gradient: "linear-gradient(135deg, #f59e0b 0%, #b45309 100%)",
+                    bgLight: "#fef3c7",
+                    borderLight: "#fde68a",
+                    shadow: "rgba(180, 83, 9, 0.22)",
+                    chips: ["Coulomb Force", "Electric Potential", "Capacitors"],
+                    formulas: 14,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
+                    hasQuiz: true
+                },
+                {
+                    id: "g11-ch3-l2",
+                    chapterNum: "Chapter 3 • Lesson 2",
+                    chapterName: "Electric Current, Resistance & DC Circuits",
+                    subtitle: "Ohm's Law, Resistivity, Electromotive Force, Kirchhoff's Rules & Joule Heating",
+                    icon: "fa-network-wired",
+                    color: "#4f46e5",
+                    gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+                    bgLight: "#e0e7ff",
+                    borderLight: "#c7d2fe",
+                    shadow: "rgba(79, 70, 229, 0.22)",
+                    chips: ["Ohm's Law", "Kirchhoff Rules", "DC Circuits"],
+                    formulas: 16,
+                    terms: 6,
+                    examples: 2,
+                    sims: 1,
+                    hasPdf: false,
                     hasQuiz: true
                 }
             ],
@@ -2110,16 +2948,38 @@
             var statsBar = document.getElementById('lessons-stats-bar');
 
             if (heroBanner) {
-                heroBanner.classList.remove('hero-theme-9', 'hero-theme-12');
+                heroBanner.classList.remove('hero-theme-7', 'hero-theme-8', 'hero-theme-9', 'hero-theme-10', 'hero-theme-11', 'hero-theme-12');
                 heroBanner.classList.add('hero-theme-' + g);
             }
             if (gradeIndicator) {
-                gradeIndicator.classList.remove('indicator-grade-9', 'indicator-grade-12');
+                gradeIndicator.classList.remove('indicator-grade-7', 'indicator-grade-8', 'indicator-grade-9', 'indicator-grade-10', 'indicator-grade-11', 'indicator-grade-12');
                 gradeIndicator.classList.add('indicator-grade-' + g);
             }
             if (gradePillText) gradePillText.innerText = 'Grade ' + g;
 
-            if (g === '9') {
+            if (g === '7') {
+                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-seedling"></i> Grade 7 • Introduction to Physics & Scientific Inquiry';
+                if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g7">Grade 7</span> Physics';
+                if (subtitleEl) subtitleEl.innerText = 'Measurement, Density, Forces, Friction, Hydrostatic Pressure, and Thermal Energy';
+                if (statsBar) {
+                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 16 Formulas</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
+                }
+            } else if (g === '8') {
+                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-bolt"></i> Grade 8 • Energy, Waves & Electrical Foundations';
+                if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g8">Grade 8</span> Physics';
+                if (subtitleEl) subtitleEl.innerText = 'Work, Mechanical Energy, Heat Transfer, Sound & Acoustic Waves, and DC Circuits';
+                if (statsBar) {
+                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 18 Formulas</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
+                }
+            } else if (g === '9') {
                 if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-compass-drafting"></i> Grade 9 • Fundamental Physics Curriculum';
                 if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g9">Grade 9</span> Physics';
                 if (subtitleEl) subtitleEl.innerText = 'Torque, Simple Machines, Electricity, Magnetism, and Light';
@@ -2127,6 +2987,28 @@
                     statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 5 Chapters</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 39 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 7 Simulations</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
+                }
+            } else if (g === '10') {
+                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-rocket"></i> Grade 10 • Classical Mechanics & Kinematics';
+                if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g10">Grade 10</span> Physics';
+                if (subtitleEl) subtitleEl.innerText = '1D & 2D Kinematics, Newton\'s Laws of Motion, Work-Energy Theorem, and Gravitation';
+                if (statsBar) {
+                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 20 Formulas</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
+                }
+            } else if (g === '11') {
+                if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-wave-square"></i> Grade 11 • Oscillations, Fluids & Electrostatics';
+                if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g11">Grade 11</span> Physics';
+                if (subtitleEl) subtitleEl.innerText = 'Rotational Dynamics, Fluid Mechanics, Simple Harmonic Motion, and Coulomb\'s Law';
+                if (statsBar) {
+                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 20 Formulas</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
                 }
@@ -2279,7 +3161,7 @@
             if (typeof lessonOrId === 'object' && lessonOrId.title && lessonOrId.equations) {
                 lessonObj = lessonOrId;
             } else if (pData) {
-                var allLessons = (pData['9'] || []).concat(pData['12'] || []);
+                var allLessons = Object.values(pData).flat();
                 lessonObj = allLessons.find(function(l) { 
                     var lid = l.id.toLowerCase();
                     return lid === canonicalId || lid === id; 
@@ -2328,7 +3210,7 @@
                 attempts++;
                 var pData = window.physicsData || window.appData;
                 if (pData) {
-                    var allLessons = (pData['9'] || []).concat(pData['12'] || []);
+                    var allLessons = Object.values(pData).flat();
                     var found = allLessons.find(function(l) { 
                         var lid = l.id.toLowerCase();
                         return lid === canonicalId || lid === id;
@@ -2356,7 +3238,7 @@
                                     fn();
                                     var p2 = window.physicsData || window.appData;
                                     if (p2) {
-                                        var all2 = (p2['9'] || []).concat(p2['12'] || []);
+                                        var all2 = Object.values(p2).flat();
                                         var f2 = all2.find(function(l) { 
                                             var lid = l.id.toLowerCase();
                                             return lid === canonicalId || lid === id;
@@ -2398,7 +3280,7 @@
                 }
                 var pData = e.detail || window.physicsData || window.appData;
                 if (pData) {
-                    var allLessons = (pData['9'] || []).concat(pData['12'] || []);
+                    var allLessons = Object.values(pData).flat();
                     var found = allLessons.find(function(l) { return l.id === activeId; });
                     if (found) renderCompleteLesson(found);
                 }
@@ -3012,8 +3894,10 @@
         function initEbookUI(lesson) {
             var ebContainer = document.getElementById('lesson-ebook');
             if (!ebContainer) return;
+            var ebTabBtn = document.querySelector('.tab-btn[data-target="ebook"]');
             if (!lesson) {
-                ebContainer.innerHTML = '<div class="ebook-empty"><i class="fa-solid fa-book-open"></i><h3>Ebook Coming Soon</h3><p>The electronic textbook / lesson PDF for this topic will be available soon.</p></div>';
+                if (ebTabBtn) ebTabBtn.classList.add('hidden');
+                ebContainer.innerHTML = '<div class="ebook-empty"><i class="fa-solid fa-lock"></i><h3>E-Book Not Available</h3><p>Textbook downloads and viewer are disabled for this grade level.</p></div>';
                 return;
             }
 
@@ -3065,39 +3949,24 @@
                 }
             }
 
+            if (ebTabBtn) ebTabBtn.classList.toggle('hidden', ebooksList.length === 0);
+
             if (!ebooksList.length) {
-                ebContainer.innerHTML = '<div class="ebook-empty"><i class="fa-solid fa-book-open"></i><h3>Ebook Coming Soon</h3><p>The electronic textbook / lesson PDF for this topic will be available soon.</p></div>';
+                ebContainer.innerHTML = '<div class="ebook-empty"><i class="fa-solid fa-lock"></i><h3>E-Book Not Available</h3><p>Textbook downloads and viewer are disabled for this grade level.</p></div>';
                 return;
             }
 
-            if (typeof window.preferAltPdfExt === 'undefined') {
-                window.preferAltPdfExt = false;
-            }
-
             var currentSelectedIndex = 0;
-            var isUsingGoogle = false;
 
             function buildEbookUI(selectedIndex) {
                 currentSelectedIndex = selectedIndex;
                 var currentEbook = ebooksList[selectedIndex];
                 var pair = resolveEbookCandidates(currentEbook);
-                var activeUrl = window.preferAltPdfExt ? pair.alt : pair.primary;
+                var activeUrl = pair.primary || pair.alt || '';
                 var currentTitle = currentEbook.title || lesson.title || 'Ebook';
-                var fileName = activeUrl.split('/').pop();
 
-                var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                var isOnline = window.location.protocol.startsWith('http');
-                var absolutePdfUrl = '';
-                try {
-                    absolutePdfUrl = new URL(activeUrl, window.location.href).href;
-                } catch(e) {
-                    absolutePdfUrl = activeUrl;
-                }
-                var googleDocsViewerUrl = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(absolutePdfUrl);
-                var rawViewerSrc = (isMobile && isOnline && isUsingGoogle) ? googleDocsViewerUrl : (isUsingGoogle ? googleDocsViewerUrl : activeUrl);
-                var currentViewerSrc = (!isUsingGoogle && rawViewerSrc && rawViewerSrc.indexOf('#') === -1)
-                    ? (rawViewerSrc + '#toolbar=0&navpanes=0')
-                    : rawViewerSrc;
+                // Embed PDF directly with toolbar hidden - no external Google Drive links or download options
+                var currentViewerSrc = activeUrl ? (activeUrl + (activeUrl.indexOf('#') === -1 ? '#toolbar=0&navpanes=0' : '')) : '';
 
                 var topicsSelectorHtml = '';
                 if (ebooksList.length > 1) {
@@ -3120,21 +3989,13 @@
                 ebContainer.innerHTML = '<div class="ebook-header" style="user-select: none;">' +
                     '<h2><i class="fa-solid fa-book-open"></i> ' + (lesson.title || 'Lesson') + ' - E-Book / Textbook</h2>' +
                     subtitleHtml +
-                    '<p>Read the official curriculum textbook and lesson notes directly in the interactive viewer (View-Only).</p>' +
+                    '<p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>' +
                 '</div>' +
                 topicsSelectorHtml +
                 '<div class="ebook-actions">' +
                     '<button type="button" class="ebook-btn primary" id="fullscreen-ebook-btn" title="Expand reading viewer to full screen">' +
                         '<i class="fa-solid fa-expand"></i> Fullscreen Reading View' +
                     '</button>' +
-                    '<button type="button" class="ebook-btn secondary" id="toggle-ebook-ext-btn" title="Toggle file extension between .pdf and .pdf.pdf">' +
-                        '<i class="fa-solid fa-file-signature"></i> Toggle Extension (' + (window.preferAltPdfExt ? 'Using .pdf ➔ Try .pdf.pdf' : 'Using .pdf.pdf ➔ Try .pdf') + ')' +
-                    '</button>' +
-                    '<span class="ebook-file-pill" title="Currently active file"><i class="fa-solid fa-file-lines"></i> ' + fileName + '</span>' +
-                    (isOnline ? 
-                    '<button type="button" class="ebook-btn secondary" id="switch-ebook-viewer-btn">' +
-                        '<i class="fa-solid fa-arrows-rotate"></i> ' + (isUsingGoogle ? 'Switch to Direct PDF' : 'Switch to Google Viewer') +
-                    '</button>' : '') +
                 '</div>' +
                 '<div class="ebook-preview-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%;">' +
                     '<iframe src="' + currentViewerSrc + '" class="ebook-preview" id="ebook-iframe" title="' + currentTitle + ' Preview" style="width: 100%; border-radius: 8px;"></iframe>' +
@@ -3142,7 +4003,7 @@
                 '<div class="ebook-notice" style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 8px; padding: 0.75rem 1.25rem;">' +
                     '<i class="fa-solid fa-shield-halved" style="color: #15803d; font-size: 1.15rem; margin-right: 8px;"></i>' +
                     '<div>' +
-                        '<span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, and exporting are restricted for this electronic textbook. You can read, scroll, and zoom all pages directly in the viewer above.</span>' +
+                        '<span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, and exporting are restricted for this electronic textbook. Students can read, scroll, and zoom all pages directly in the viewer above.</span>' +
                     '</div>' +
                 '</div>';
 
@@ -3168,27 +4029,6 @@
                             buildEbookUI(idx);
                         };
                     });
-                }
-
-                var toggleBtn = document.getElementById('toggle-ebook-ext-btn');
-                if (toggleBtn) {
-                    toggleBtn.onclick = function() {
-                        window.preferAltPdfExt = !window.preferAltPdfExt;
-                        buildEbookUI(currentSelectedIndex);
-                    };
-                }
-
-                if (isOnline) {
-                    var switchBtn = document.getElementById('switch-ebook-viewer-btn');
-                    var iframe = document.getElementById('ebook-iframe');
-                    if (switchBtn && iframe) {
-                        switchBtn.onclick = function() {
-                            isUsingGoogle = !isUsingGoogle;
-                            var newSrc = isUsingGoogle ? googleDocsViewerUrl : ((activeUrl.indexOf('#') === -1) ? (activeUrl + '#toolbar=0&navpanes=0') : activeUrl);
-                            iframe.src = newSrc;
-                            switchBtn.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i> ' + (isUsingGoogle ? 'Switch to Direct PDF' : 'Switch to Google Viewer');
-                        };
-                    }
                 }
             }
 
@@ -3408,12 +4248,14 @@
             if (hash.startsWith('lesson/') || qLesson) {
                 var lid = hash.startsWith('lesson/') ? hash.replace(/^lesson\//, '').trim() : qLesson;
                 if (lid) loadLessonDetail(lid);
-            } else if (hash === 'grade-9' || hash === 'grade9' || hash === 'g9' || qGrade === '9') {
-                loadLessons('9');
-            } else if (hash === 'grade-12' || hash === 'grade12' || hash === 'g12' || qGrade === '12') {
-                loadLessons('12');
-            } else if (hash === '' || hash === 'home' || hash === 'dashboard') {
-                showDashboard();
+            } else {
+                var gradeMatch = hash.match(/^(?:grade-?|g)(\d+)$/);
+                var targetG = (gradeMatch && ['7', '8', '9', '10', '11', '12'].indexOf(gradeMatch[1]) !== -1) ? gradeMatch[1] : (qGrade && ['7', '8', '9', '10', '11', '12'].indexOf(qGrade) !== -1 ? qGrade : null);
+                if (targetG) {
+                    loadLessons(targetG);
+                } else if (hash === '' || hash === 'home' || hash === 'dashboard') {
+                    showDashboard();
+                }
             }
         }
 
@@ -3457,13 +4299,74 @@
                 <h1>Master Physics with <span class="brand-gradient">@MeanWIS</span></h1>
                 <p class="dashboard-subtitle">A colorful, interactive formula companion with complete definitions, step-by-step worked examples, simulations, and practice worksheets.</p>
                 <div class="dashboard-stats-pills">
-                    <span class="stat-pill"><i class="fa-solid fa-book-open"></i> 9 Chapters • 15 Lessons</span>
+                    <span class="stat-pill"><i class="fa-solid fa-graduation-cap"></i> 6 Grades (7–12)</span>
+                    <span class="stat-pill"><i class="fa-solid fa-book-open"></i> 25 Chapters • Comprehensive</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 200+ Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-lightbulb"></i> Step-by-Step Examples</span>
-                    <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET Simulations</span>
+                    <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>
                 </div>
             </header>
             <div class="grade-cards">
+                <!-- Grade 7 Card -->
+                <div class="grade-card grade-card-7" data-grade="7" onclick="loadLessons('7')">
+                    <div class="grade-badge badge-g7">
+                        <i class="fa-solid fa-seedling"></i> Introductory Physics
+                    </div>
+                    <div class="card-icon icon-g7">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h2>Grade 7 Physics</h2>
+                    <p class="card-desc">Measurement, Density, Forces, Friction, Hydrostatic Pressure, and Thermal Energy</p>
+                    
+                    <div class="topic-chips">
+                        <span class="topic-chip chip-measure"><i class="fa-solid fa-ruler-combined"></i> Measurement & Density</span>
+                        <span class="topic-chip chip-torque"><i class="fa-solid fa-arrows-to-dot"></i> Forces & Friction</span>
+                        <span class="topic-chip chip-pressure"><i class="fa-solid fa-water"></i> Pressure in Fluids</span>
+                        <span class="topic-chip chip-thermo"><i class="fa-solid fa-temperature-three-quarters"></i> Heat & Thermal Energy</span>
+                    </div>
+
+                    <div class="card-footer-info">
+                        <span><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-vial"></i> Simulations</span>
+                    </div>
+
+                    <button class="btn-grade btn-grade-7" type="button" data-grade="7" onclick="event.stopPropagation(); loadLessons('7');">
+                        <span>Explore Grade 7</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Grade 8 Card -->
+                <div class="grade-card grade-card-8" data-grade="8" onclick="loadLessons('8')">
+                    <div class="grade-badge badge-g8">
+                        <i class="fa-solid fa-bolt"></i> Intermediate Physics
+                    </div>
+                    <div class="card-icon icon-g8">
+                        <i class="fa-solid fa-battery-three-quarters"></i>
+                    </div>
+                    <h2>Grade 8 Physics</h2>
+                    <p class="card-desc">Work, Mechanical Energy, Heat Transfer, Sound & Acoustic Waves, and DC Circuits</p>
+                    
+                    <div class="topic-chips">
+                        <span class="topic-chip chip-energy"><i class="fa-solid fa-fire"></i> Work, Energy & Power</span>
+                        <span class="topic-chip chip-thermo"><i class="fa-solid fa-temperature-high"></i> Heat Transfer</span>
+                        <span class="topic-chip chip-sound"><i class="fa-solid fa-volume-high"></i> Waves & Sound</span>
+                        <span class="topic-chip chip-electricity"><i class="fa-solid fa-bolt"></i> DC Circuits</span>
+                    </div>
+
+                    <div class="card-footer-info">
+                        <span><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-vial"></i> Simulations</span>
+                    </div>
+
+                    <button class="btn-grade btn-grade-8" type="button" data-grade="8" onclick="event.stopPropagation(); loadLessons('8');">
+                        <span>Explore Grade 8</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
                 <!-- Grade 9 Card -->
                 <div class="grade-card grade-card-9" data-grade="9" onclick="loadLessons('9')">
                     <div class="grade-badge badge-g9">
@@ -3491,6 +4394,66 @@
 
                     <button class="btn-grade btn-grade-9" type="button" data-grade="9" onclick="event.stopPropagation(); loadLessons('9');">
                         <span>Explore Grade 9</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Grade 10 Card -->
+                <div class="grade-card grade-card-10" data-grade="10" onclick="loadLessons('10')">
+                    <div class="grade-badge badge-g10">
+                        <i class="fa-solid fa-rocket"></i> Classical Mechanics
+                    </div>
+                    <div class="card-icon icon-g10">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <h2>Grade 10 Physics</h2>
+                    <p class="card-desc">1D & 2D Kinematics, Newton's Laws, Work-Energy Theorem, and Universal Gravitation</p>
+                    
+                    <div class="topic-chips">
+                        <span class="topic-chip chip-kinematics"><i class="fa-solid fa-route"></i> Kinematics & Motion</span>
+                        <span class="topic-chip chip-newton"><i class="fa-solid fa-weight-hanging"></i> Newton's Laws</span>
+                        <span class="topic-chip chip-energy"><i class="fa-solid fa-burst"></i> Momentum & Energy</span>
+                        <span class="topic-chip chip-gravitation"><i class="fa-solid fa-earth-americas"></i> Circular & Gravitation</span>
+                    </div>
+
+                    <div class="card-footer-info">
+                        <span><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-vial"></i> Simulations</span>
+                    </div>
+
+                    <button class="btn-grade btn-grade-10" type="button" data-grade="10" onclick="event.stopPropagation(); loadLessons('10');">
+                        <span>Explore Grade 10</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Grade 11 Card -->
+                <div class="grade-card grade-card-11" data-grade="11" onclick="loadLessons('11')">
+                    <div class="grade-badge badge-g11">
+                        <i class="fa-solid fa-wave-square"></i> Advanced Mechanics & Fields
+                    </div>
+                    <div class="card-icon icon-g11">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                    </div>
+                    <h2>Grade 11 Physics</h2>
+                    <p class="card-desc">Rotational Dynamics, Fluid Mechanics & Thermodynamics, SHM & Oscillations, and Electrostatics</p>
+                    
+                    <div class="topic-chips">
+                        <span class="topic-chip chip-rotation"><i class="fa-solid fa-compass-drafting"></i> Rotational Dynamics</span>
+                        <span class="topic-chip chip-fluids"><i class="fa-solid fa-droplet"></i> Fluid Mechanics</span>
+                        <span class="topic-chip chip-oscillation"><i class="fa-solid fa-water"></i> SHM & Oscillations</span>
+                        <span class="topic-chip chip-electrostatics"><i class="fa-solid fa-bolt-lightning"></i> Electric Fields</span>
+                    </div>
+
+                    <div class="card-footer-info">
+                        <span><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-vial"></i> Simulations</span>
+                    </div>
+
+                    <button class="btn-grade btn-grade-11" type="button" data-grade="11" onclick="event.stopPropagation(); loadLessons('11');">
+                        <span>Explore Grade 11</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>

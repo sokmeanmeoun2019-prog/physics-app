@@ -1,0 +1,24 @@
+{
+  "name": "wis-physics-hub",
+  "version": "2.2.0",
+  "description": "Interactive Physics Learning Hub with secure student-only authentication and protected resource delivery.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "physics",
+    "education",
+    "learning-hub",
+    "student-portal"
+  ],
+  "author": "@MeanWIS",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.3.1"
+  }
+}

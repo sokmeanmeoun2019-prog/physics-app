@@ -1,5 +1,41 @@
 {
   "_NOTE": "Change or update your worksheet PDF links here! Next time you want to change worksheets, simply edit this file on GitHub or upload new PDF files to the worksheets folder.",
+  "Grade 7": {
+    "g7-l1": {
+      "chapter": "Chapter 1: Measurement, Units & Density",
+      "worksheet": "worksheets/g7-ch1-worksheet.pdf"
+    },
+    "g7-l2": {
+      "chapter": "Chapter 2: Forces & Motion",
+      "worksheet": "worksheets/g7-ch2-worksheet.pdf"
+    },
+    "g7-l3": {
+      "chapter": "Chapter 3: Pressure & Archimedes' Principle",
+      "worksheet": "worksheets/g7-ch3-worksheet.pdf"
+    },
+    "g7-l4": {
+      "chapter": "Chapter 4: Temperature & Thermal Energy",
+      "worksheet": "worksheets/g7-ch4-worksheet.pdf"
+    }
+  },
+  "Grade 8": {
+    "g8-l1": {
+      "chapter": "Chapter 1: Work, Energy & Power",
+      "worksheet": "worksheets/g8-ch1-worksheet.pdf"
+    },
+    "g8-l2": {
+      "chapter": "Chapter 2: Heat Transfer & Thermal Expansion",
+      "worksheet": "worksheets/g8-ch2-worksheet.pdf"
+    },
+    "g8-l3": {
+      "chapter": "Chapter 3: Waves & Sound",
+      "worksheet": "worksheets/g8-ch3-worksheet.pdf"
+    },
+    "g8-l4": {
+      "chapter": "Chapter 4: Introduction to Electricity & DC Circuits",
+      "worksheet": "worksheets/g8-ch4-worksheet.pdf"
+    }
+  },
   "Grade 9": {
     "g9-l1": {
       "chapter": "Chapter 1: Turning Effect of Force",
@@ -20,6 +56,42 @@
     "g9-l5": {
       "chapter": "Chapter 5: Light",
       "worksheet": "worksheets/g9-ch5-worksheet.pdf"
+    }
+  },
+  "Grade 10": {
+    "g10-l1": {
+      "chapter": "Chapter 1: Kinematics in 1D & 2D",
+      "worksheet": "worksheets/g10-ch1-worksheet.pdf"
+    },
+    "g10-l2": {
+      "chapter": "Chapter 2: Dynamics & Newton's Laws",
+      "worksheet": "worksheets/g10-ch2-worksheet.pdf"
+    },
+    "g10-l3": {
+      "chapter": "Chapter 3: Work, Energy & Momentum",
+      "worksheet": "worksheets/g10-ch3-worksheet.pdf"
+    },
+    "g10-l4": {
+      "chapter": "Chapter 4: Circular Motion & Universal Gravitation",
+      "worksheet": "worksheets/g10-ch4-worksheet.pdf"
+    }
+  },
+  "Grade 11": {
+    "g11-l1": {
+      "chapter": "Chapter 1: Rotational Dynamics & Angular Momentum",
+      "worksheet": "worksheets/g11-ch1-worksheet.pdf"
+    },
+    "g11-l2": {
+      "chapter": "Chapter 2: Fluid Mechanics & Thermal Physics",
+      "worksheet": "worksheets/g11-ch2-worksheet.pdf"
+    },
+    "g11-l3": {
+      "chapter": "Chapter 3: Simple Harmonic Motion & Oscillations",
+      "worksheet": "worksheets/g11-ch3-worksheet.pdf"
+    },
+    "g11-l4": {
+      "chapter": "Chapter 4: Electrostatics & Electric Potential",
+      "worksheet": "worksheets/g11-ch4-worksheet.pdf"
     }
   },
   "Grade 12": {

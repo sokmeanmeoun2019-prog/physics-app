@@ -1265,6 +1265,170 @@ const CHAPTER_THEMES = {
         icon: "fa-atom",
         subtitle: "Cathode Rays, Thomson e/m, Photoelectric Effect & Bohr Model",
         chips: ["Thomson e/m", "Photoelectric", "Bohr Atom"]
+    },
+    // --- GRADE 7 CHAPTER THEMES ---
+    "g7-l1": {
+        color: "#0d9488",
+        gradient: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
+        bgLight: "#ccfbf1",
+        borderLight: "#99f6e4",
+        shadow: "rgba(13, 148, 136, 0.22)",
+        icon: "fa-scale-balanced",
+        subtitle: "Physical Quantities, SI Units, Volume & Mass Density",
+        chips: ["Units", "Mass", "Density", "Displacement"]
+    },
+    "g7-l2": {
+        color: "#059669",
+        gradient: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+        bgLight: "#d1fae5",
+        borderLight: "#a7f3d0",
+        shadow: "rgba(5, 150, 105, 0.22)",
+        icon: "fa-person-running",
+        subtitle: "Forces, Contact Types, Speed & Net Force Calculations",
+        chips: ["Friction", "Speed", "Net Force", "Motion"]
+    },
+    "g7-l3": {
+        color: "#0284c7",
+        gradient: "linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)",
+        bgLight: "#e0f2fe",
+        borderLight: "#bae6fd",
+        shadow: "rgba(2, 132, 199, 0.22)",
+        icon: "fa-arrows-down-to-line",
+        subtitle: "Pressure in Solids, Fluid Hydrostatic Pressure & Pascal's Principle",
+        chips: ["Pressure", "Pascal", "Fluid Depth", "Atmosphere"]
+    },
+    "g7-l4": {
+        color: "#d97706",
+        gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+        bgLight: "#fef3c7",
+        borderLight: "#fde68a",
+        shadow: "rgba(217, 119, 6, 0.22)",
+        icon: "fa-temperature-three-quarters",
+        subtitle: "Particle Model, Temperature Scales, Expansion & Phase Transitions",
+        chips: ["Temperature", "Kelvin", "Expansion", "States of Matter"]
+    },
+    // --- GRADE 8 CHAPTER THEMES ---
+    "g8-l1": {
+        color: "#ea580c",
+        gradient: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
+        bgLight: "#ffedd5",
+        borderLight: "#fed7aa",
+        shadow: "rgba(234, 88, 12, 0.22)",
+        icon: "fa-bolt",
+        subtitle: "Mechanical Work, Kinetic Energy, Potential Energy & Power",
+        chips: ["Work", "Kinetic Energy", "Potential Energy", "Power"]
+    },
+    "g8-l2": {
+        color: "#dc2626",
+        gradient: "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)",
+        bgLight: "#fee2e2",
+        borderLight: "#fecaca",
+        shadow: "rgba(220, 38, 38, 0.22)",
+        icon: "fa-fire-flame-curved",
+        subtitle: "Conduction, Convection, Radiation, Specific Heat & Latent Heat",
+        chips: ["Conduction", "Convection", "Specific Heat", "Latent Heat"]
+    },
+    "g8-l3": {
+        color: "#2563eb",
+        gradient: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+        bgLight: "#dbeafe",
+        borderLight: "#bfdbfe",
+        shadow: "rgba(37, 99, 235, 0.22)",
+        icon: "fa-wave-square",
+        subtitle: "Transverse & Longitudinal Waves, Sound Speed & Echo Ranging",
+        chips: ["Wavelength", "Frequency", "Wave Speed", "Echo"]
+    },
+    "g8-l4": {
+        color: "#7c3aed",
+        gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
+        bgLight: "#ede9fe",
+        borderLight: "#ddd6fe",
+        shadow: "rgba(124, 58, 237, 0.22)",
+        icon: "fa-plug",
+        subtitle: "Electric Current, Voltage, Resistance, Ohm's Law & Series-Parallel Circuits",
+        chips: ["Current", "Voltage", "Ohm's Law", "Circuits"]
+    },
+    // --- GRADE 10 CHAPTER THEMES ---
+    "g10-l1": {
+        color: "#1d4ed8",
+        gradient: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
+        bgLight: "#dbeafe",
+        borderLight: "#bfdbfe",
+        shadow: "rgba(29, 78, 216, 0.22)",
+        icon: "fa-arrow-trend-up",
+        subtitle: "Uniform Acceleration, Kinematic Equations, Free Fall & Projectile Trajectories",
+        chips: ["Kinematics", "Acceleration", "Free Fall", "Projectiles"]
+    },
+    "g10-l2": {
+        color: "#4338ca",
+        gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
+        bgLight: "#e0e7ff",
+        borderLight: "#c7d2fe",
+        shadow: "rgba(67, 56, 202, 0.22)",
+        icon: "fa-hand-fist",
+        subtitle: "Newton's Three Laws, Friction Forces & Inclined Plane Dynamics",
+        chips: ["Inertia", "Newton II", "Friction", "Inclines"]
+    },
+    "g10-l3": {
+        color: "#6d28d9",
+        gradient: "linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)",
+        bgLight: "#ede9fe",
+        borderLight: "#ddd6fe",
+        shadow: "rgba(109, 40, 217, 0.22)",
+        icon: "fa-arrows-split-up-and-left",
+        subtitle: "Work-Energy Theorem, Impulse, and Elastic & Inelastic Collisions",
+        chips: ["Work-Energy", "Momentum", "Impulse", "Collisions"]
+    },
+    "g10-l4": {
+        color: "#a21caf",
+        gradient: "linear-gradient(135deg, #c026d3 0%, #86198f 100%)",
+        bgLight: "#fae8ff",
+        borderLight: "#f5d0fe",
+        shadow: "rgba(162, 28, 175, 0.22)",
+        icon: "fa-earth-americas",
+        subtitle: "Centripetal Acceleration, Universal Gravitation & Satellite Orbits",
+        chips: ["Centripetal", "Gravitation", "Orbits", "Kepler"]
+    },
+    // --- GRADE 11 CHAPTER THEMES ---
+    "g11-l1": {
+        color: "#be123c",
+        gradient: "linear-gradient(135deg, #e11d48 0%, #be123c 100%)",
+        bgLight: "#ffe4e6",
+        borderLight: "#fecdd3",
+        shadow: "rgba(190, 18, 60, 0.22)",
+        icon: "fa-arrows-spin",
+        subtitle: "Torque, Static Equilibrium, Moment of Inertia & Angular Momentum",
+        chips: ["Torque", "Equilibrium", "Moment of Inertia", "Angular Momentum"]
+    },
+    "g11-l2": {
+        color: "#0369a1",
+        gradient: "linear-gradient(135deg, #0284c7 0%, #0369a1 100%)",
+        bgLight: "#e0f2fe",
+        borderLight: "#bae6fd",
+        shadow: "rgba(3, 105, 161, 0.22)",
+        icon: "fa-water",
+        subtitle: "Archimedes' Buoyancy, Continuity Equation, Bernoulli & Ideal Gas Laws",
+        chips: ["Buoyancy", "Continuity", "Bernoulli", "Gas Law"]
+    },
+    "g11-l3": {
+        color: "#7e22ce",
+        gradient: "linear-gradient(135deg, #9333ea 0%, #6b21a8 100%)",
+        bgLight: "#f3e8ff",
+        borderLight: "#e9d5ff",
+        shadow: "rgba(126, 34, 206, 0.22)",
+        icon: "fa-circle-nodes",
+        subtitle: "Hooke's Law, Mass-Spring & Pendulum Oscillations & Doppler Shift",
+        chips: ["SHM", "Pendulum", "Oscillations", "Doppler"]
+    },
+    "g11-l4": {
+        color: "#b45309",
+        gradient: "linear-gradient(135deg, #d97706 0%, #b45309 100%)",
+        bgLight: "#fef3c7",
+        borderLight: "#fde68a",
+        shadow: "rgba(180, 83, 9, 0.22)",
+        icon: "fa-car-battery",
+        subtitle: "Coulomb's Law, Electric Fields, Potential Difference & Capacitors",
+        chips: ["Coulomb", "Electric Field", "Capacitance", "Stored Energy"]
     }
 };
 window.CHAPTER_THEMES = CHAPTER_THEMES;
@@ -1333,7 +1497,7 @@ function findLessonEntryInConfig(config, lessonId) {
 
 function applyExternalGames(config) {
     if (!config) return;
-    ['9', '12'].forEach(gradeKey => {
+    ['7', '8', '9', '10', '11', '12'].forEach(gradeKey => {
         const list = data[gradeKey];
         if (!list) return;
         list.forEach(lesson => {
@@ -1396,7 +1560,7 @@ let externalWorksheetsCache = null;
 
 function applyExternalWorksheets(config) {
     if (!config) return;
-    ['9', '12'].forEach(gradeKey => {
+    ['7', '8', '9', '10', '11', '12'].forEach(gradeKey => {
         const list = data[gradeKey];
         if (!list) return;
         list.forEach(lesson => {
@@ -1538,8 +1702,8 @@ function bindGradeSelection() {
     Array.from(document.querySelectorAll('.btn-grade')).forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const grade = btn.getAttribute('data-grade') || 
-                          (btn.classList.contains('btn-grade-9') ? '9' : btn.classList.contains('btn-grade-12') ? '12' : null);
+            const gradeMatch = btn.className.match(/btn-grade-(\d+)/);
+            const grade = btn.getAttribute('data-grade') || (gradeMatch ? gradeMatch[1] : null);
             if (grade) loadLessons(grade);
         });
     });
@@ -1550,7 +1714,8 @@ bindGradeSelection();
 document.addEventListener('click', function(e) {
     const btn = e.target.closest('.btn-grade');
     if (btn) {
-        const grade = btn.getAttribute('data-grade') || (btn.classList.contains('btn-grade-9') ? '9' : '12');
+        const gradeMatch = btn.className.match(/btn-grade-(\d+)/);
+        const grade = btn.getAttribute('data-grade') || (gradeMatch ? gradeMatch[1] : null);
         if (grade) {
             loadLessons(grade);
             return;
@@ -1558,7 +1723,8 @@ document.addEventListener('click', function(e) {
     }
     const card = e.target.closest('.grade-card');
     if (card) {
-        const grade = card.getAttribute('data-grade') || (card.classList.contains('grade-card-9') ? '9' : '12');
+        const cardMatch = card.className.match(/grade-card-(\d+)/);
+        const grade = card.getAttribute('data-grade') || (cardMatch ? cardMatch[1] : null);
         if (grade) {
             loadLessons(grade);
         }
@@ -1595,11 +1761,11 @@ function loadLessons(grade, pushRoute = true) {
         const gradePillText = document.getElementById('lessons-grade-pill-text');
 
         if (heroBanner) {
-            heroBanner.classList.remove('hero-theme-9', 'hero-theme-12');
+            heroBanner.classList.remove('hero-theme-7', 'hero-theme-8', 'hero-theme-9', 'hero-theme-10', 'hero-theme-11', 'hero-theme-12');
             heroBanner.classList.add(`hero-theme-${currentGrade}`);
         }
         if (gradeIndicator) {
-            gradeIndicator.classList.remove('indicator-grade-9', 'indicator-grade-12');
+            gradeIndicator.classList.remove('indicator-grade-7', 'indicator-grade-8', 'indicator-grade-9', 'indicator-grade-10', 'indicator-grade-11', 'indicator-grade-12');
             gradeIndicator.classList.add(`indicator-grade-${currentGrade}`);
         }
         if (gradePillText) {
@@ -1615,7 +1781,33 @@ function loadLessons(grade, pushRoute = true) {
             if (l.games && l.games.length > 0) totalSimulations += l.games.length;
         });
 
-        if (currentGrade === '9') {
+        if (currentGrade === '7') {
+            if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-seedling"></i> Grade 7 • Introduction to Physics & Scientific Inquiry';
+            if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g7">Grade 7</span> Physics';
+            if (subtitleEl) subtitleEl.innerText = 'Measurement, Density, Forces, Friction, Hydrostatic Pressure, and Thermal Energy';
+            if (statsBar) {
+                statsBar.innerHTML = `
+                    <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
+                    <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
+                    <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                `;
+            }
+        } else if (currentGrade === '8') {
+            if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-bolt"></i> Grade 8 • Energy, Waves & Electrical Foundations';
+            if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g8">Grade 8</span> Physics';
+            if (subtitleEl) subtitleEl.innerText = 'Work, Mechanical Energy, Heat Transfer, Sound & Acoustic Waves, and DC Circuits';
+            if (statsBar) {
+                statsBar.innerHTML = `
+                    <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
+                    <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
+                    <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                `;
+            }
+        } else if (currentGrade === '9') {
             if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-compass-drafting"></i> Grade 9 • Fundamental Physics Curriculum';
             if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g9">Grade 9</span> Physics';
             if (subtitleEl) subtitleEl.innerText = 'Torque, Simple Machines, Electricity, Magnetism, and Light';
@@ -1624,6 +1816,32 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 7} Simulations</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                `;
+            }
+        } else if (currentGrade === '10') {
+            if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-rocket"></i> Grade 10 • Classical Mechanics & Kinematics';
+            if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g10">Grade 10</span> Physics';
+            if (subtitleEl) subtitleEl.innerText = '1D & 2D Kinematics, Newton\'s Laws of Motion, Work-Energy Theorem, and Gravitation';
+            if (statsBar) {
+                statsBar.innerHTML = `
+                    <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
+                    <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
+                    <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                `;
+            }
+        } else if (currentGrade === '11') {
+            if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-wave-square"></i> Grade 11 • Oscillations, Fluids & Electrostatics';
+            if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g11">Grade 11</span> Physics';
+            if (subtitleEl) subtitleEl.innerText = 'Rotational Dynamics, Fluid Mechanics, Simple Harmonic Motion, and Coulomb\'s Law';
+            if (statsBar) {
+                statsBar.innerHTML = `
+                    <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
+                    <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
+                    <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
                 `;
@@ -1735,6 +1953,23 @@ function typesetMath(elements) {
     }
 
     if (!window.MathJax || !window.MathJax.typesetPromise) {
+        if (typeof document !== 'undefined' && !document.getElementById('MathJax-script')) {
+            window.MathJax = window.MathJax || {
+                tex: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                    processEscapes: true
+                },
+                options: {
+                    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                }
+            };
+            const script = document.createElement('script');
+            script.id = 'MathJax-script';
+            script.async = true;
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+            document.head.appendChild(script);
+        }
         let retries = 0;
         const timer = setInterval(() => {
             retries++;
@@ -1759,7 +1994,10 @@ function typesetMath(elements) {
                     const promise = (targets && targets.length > 0)
                         ? window.MathJax.typesetPromise(targets)
                         : window.MathJax.typesetPromise();
-                    promise.then(resolve).catch(resolve);
+                    promise.then(resolve).catch((err) => {
+                        console.warn('MathJax typeset notice:', err);
+                        resolve();
+                    });
                 });
             });
         });
@@ -1769,11 +2007,17 @@ function typesetMath(elements) {
 // Helper to ensure math formulas and expressions are recognized and rendered by MathJax
 function formatMathField(val) {
     if (!val) return '';
-    const trimmed = String(val).trim();
+    let trimmed = String(val).trim();
     if (!trimmed) return '';
     if (/<br\s*\/?>/i.test(trimmed)) {
         return trimmed.split(/<br\s*\/?>/i).map(part => formatMathField(part)).join('<br>');
     }
+    // Clean up malformed closing/opening delimiters like \\] or \\)
+    trimmed = trimmed.replace(/\\{2,}\]/g, '\\]')
+                     .replace(/\\{2,}\)/g, '\\)')
+                     .replace(/\\{2,}\[/g, '\\[')
+                     .replace(/\\{2,}\(/g, '\\(');
+
     if ((trimmed.startsWith('\\(') && trimmed.endsWith('\\)')) ||
         (trimmed.startsWith('\\[') && trimmed.endsWith('\\]')) ||
         (trimmed.startsWith('$$') && trimmed.endsWith('$$'))) {
@@ -1782,7 +2026,7 @@ function formatMathField(val) {
     if (trimmed.includes('\\(') || trimmed.includes('\\[') || trimmed.includes('$$')) {
         return trimmed;
     }
-    return `\\(${trimmed}\\)`;
+    return `\\[ ${trimmed} \\]`;
 }
 
 // Helper to ensure all LaTeX strings in Summary worked examples & fields are rendered properly
@@ -1790,6 +2034,12 @@ function formatSummaryMath(val) {
     if (val === null || val === undefined) return '';
     let str = String(val).trim();
     if (!str) return '';
+
+    // Clean up malformed closing/opening delimiters
+    str = str.replace(/\\{2,}\]/g, '\\]')
+             .replace(/\\{2,}\)/g, '\\)')
+             .replace(/\\{2,}\[/g, '\\[')
+             .replace(/\\{2,}\(/g, '\\(');
 
     // If string already contains explicit LaTeX delimiters
     if (str.includes('\\(') || str.includes('\\[') || str.includes('$$')) {
@@ -1853,7 +2103,7 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
         };
         if (aliasMap[cleanId]) cleanId = aliasMap[cleanId];
         const pData = (typeof window !== 'undefined' && (window.physicsData || window.appData)) ? (window.physicsData || window.appData) : data;
-        const allLessons = [...(pData['9'] || []), ...(pData['12'] || [])];
+        const allLessons = Object.values(pData).flat();
         lesson = allLessons.find(l => l.id.toLowerCase() === cleanId) || null;
     }
     if (!lesson) {
@@ -1864,10 +2114,11 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
     window.currentSelectedLessonId = lesson.id;
 
     // Detect and maintain currentGrade
-    if (data['9'] && data['9'].some(l => l.id === lesson.id)) {
-        currentGrade = '9';
-    } else if (data['12'] && data['12'].some(l => l.id === lesson.id)) {
-        currentGrade = '12';
+    for (const gKey of Object.keys(data)) {
+        if (data[gKey] && data[gKey].some(l => l.id === lesson.id)) {
+            currentGrade = gKey;
+            break;
+        }
     }
     window.currentGrade = currentGrade;
 
@@ -3819,33 +4070,17 @@ function renderEbook(lesson) {
         return;
     }
 
-    if (typeof window.preferAltPdfExt === 'undefined') {
-        window.preferAltPdfExt = false;
-    }
-
     let currentSelectedIndex = 0;
-    let isUsingGoogleViewer = false;
 
     function buildEbookUI(selectedIndex) {
         currentSelectedIndex = selectedIndex;
         const currentEbook = ebooksList[selectedIndex];
         const pair = resolveAppEbookCandidates(currentEbook);
-        const activeUrl = window.preferAltPdfExt ? pair.alt : pair.primary;
+        const activeUrl = pair.primary || pair.alt || '';
         const currentTitle = currentEbook.title || lesson.title || 'Ebook';
-        const fileName = activeUrl.split('/').pop();
 
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        const isOnline = window.location.protocol.startsWith('http');
-        let absolutePdfUrl = activeUrl;
-        try {
-            absolutePdfUrl = new URL(activeUrl, window.location.href).href;
-        } catch (e) {}
-
-        const googleDocsViewerUrl = `https://docs.google.com/viewer?embedded=true&url=${encodeURIComponent(absolutePdfUrl)}`;
-        const rawViewerSrc = (isMobile && isOnline && isUsingGoogleViewer) ? googleDocsViewerUrl : (isUsingGoogleViewer ? googleDocsViewerUrl : activeUrl);
-        const protectedViewerSrc = (!isUsingGoogleViewer && rawViewerSrc && !rawViewerSrc.includes('#')) 
-            ? `${rawViewerSrc}#toolbar=0&navpanes=0` 
-            : rawViewerSrc;
+        // Embed PDF directly with toolbar hidden - no external Google Drive links or download options
+        const protectedViewerSrc = activeUrl ? (activeUrl.includes('#') ? activeUrl : `${activeUrl}#toolbar=0&navpanes=0`) : '';
 
         let topicsSelectorHtml = '';
         if (ebooksList.length > 1) {
@@ -3871,7 +4106,7 @@ function renderEbook(lesson) {
             <div class="ebook-header" style="user-select: none;">
                 <h2><i class="fa-solid fa-book-open"></i> ${lesson.title} - E-Book / Textbook</h2>
                 ${subtitleHtml}
-                <p>Read the official curriculum textbook and lesson notes directly in the interactive viewer (View-Only).</p>
+                <p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>
             </div>
 
             ${topicsSelectorHtml}
@@ -3880,15 +4115,6 @@ function renderEbook(lesson) {
                 <button type="button" class="ebook-btn primary" id="fullscreen-ebook-btn" title="Expand reading viewer to full screen">
                     <i class="fa-solid fa-expand"></i> Fullscreen Reading View
                 </button>
-                <button type="button" class="ebook-btn secondary" id="toggle-ebook-ext-btn" title="Toggle file extension between .pdf and .pdf.pdf">
-                    <i class="fa-solid fa-file-signature"></i> Toggle Extension (${window.preferAltPdfExt ? 'Using .pdf ➔ Try .pdf.pdf' : 'Using .pdf.pdf ➔ Try .pdf'})
-                </button>
-                <span class="ebook-file-pill" title="Currently active file"><i class="fa-solid fa-file-lines"></i> ${fileName}</span>
-                ${isOnline ? `
-                <button type="button" class="ebook-btn secondary" id="switch-ebook-viewer-btn">
-                    <i class="fa-solid fa-arrows-rotate"></i> ${isUsingGoogleViewer ? 'Switch to Direct PDF' : 'Switch to Google Viewer'}
-                </button>
-                ` : ''}
             </div>
 
             <div class="ebook-preview-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%;">
@@ -3898,7 +4124,7 @@ function renderEbook(lesson) {
             <div class="ebook-notice" style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 8px; padding: 0.75rem 1.25rem;">
                 <i class="fa-solid fa-shield-halved" style="color: #15803d; font-size: 1.15rem; margin-right: 8px;"></i>
                 <div>
-                    <span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, and exporting are restricted for this electronic textbook. You can read, scroll, and zoom all pages directly in the viewer above.</span>
+                    <span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, and exporting are restricted for this electronic textbook. Students can read, scroll, and zoom all pages directly in the viewer above.</span>
                 </div>
             </div>
         `;
@@ -3925,27 +4151,6 @@ function renderEbook(lesson) {
                     buildEbookUI(idx);
                 });
             });
-        }
-
-        const toggleBtn = document.getElementById('toggle-ebook-ext-btn');
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', () => {
-                window.preferAltPdfExt = !window.preferAltPdfExt;
-                buildEbookUI(currentSelectedIndex);
-            });
-        }
-
-        if (isOnline) {
-            const switchBtn = document.getElementById('switch-ebook-viewer-btn');
-            const iframe = document.getElementById('ebook-iframe');
-            if (switchBtn && iframe) {
-                switchBtn.addEventListener('click', () => {
-                    isUsingGoogleViewer = !isUsingGoogleViewer;
-                    const nextSrc = isUsingGoogleViewer ? googleDocsViewerUrl : (activeUrl + '#toolbar=0&navpanes=0');
-                    iframe.src = nextSrc;
-                    switchBtn.innerHTML = `<i class="fa-solid fa-arrows-rotate"></i> ${isUsingGoogleViewer ? 'Switch to Direct PDF' : 'Switch to Google Viewer'}`;
-                });
-            }
         }
     }
 
@@ -4169,7 +4374,7 @@ function switchTab(targetName) {
     });
 
     if (!currentLesson && window.currentSelectedLessonId) {
-        const allLessons = [...(data['9'] || []), ...(data['12'] || [])];
+        const allLessons = Object.values(data).flat();
         currentLesson = allLessons.find(l => l.id === window.currentSelectedLessonId) || null;
     }
     if (!currentLesson) return;
@@ -4618,22 +4823,21 @@ function handleRoute() {
         }
     }
 
-    // 2. Grade 9 route: #grade-9, #grade9, #g9, or ?grade=9
-    if (hash === 'grade-9' || hash === 'grade9' || hash === 'g9' || queryGrade === '9') {
-        loadLessons('9', false);
+    // 2. Grade routes: #grade-X, #gradeX, #gX, or ?grade=X (7, 8, 9, 10, 11, 12)
+    const gradeMatch = hash.match(/^(?:grade-?|g)(\d+)$/);
+    if (gradeMatch && ['7', '8', '9', '10', '11', '12'].includes(gradeMatch[1])) {
+        loadLessons(gradeMatch[1], false);
+        return;
+    }
+    if (queryGrade && ['7', '8', '9', '10', '11', '12'].includes(queryGrade)) {
+        loadLessons(queryGrade, false);
         return;
     }
 
-    // 3. Grade 12 route: #grade-12, #grade12, #g12, or ?grade=12
-    if (hash === 'grade-12' || hash === 'grade12' || hash === 'g12' || queryGrade === '12') {
-        loadLessons('12', false);
-        return;
-    }
-
-    // 4. Direct lesson ID hash matching (e.g. #g9-l1, #g12-l3, #g12-waves)
+    // 3. Direct lesson ID hash matching (e.g. #g7-l1, #g8-l2, #g9-l1, #g10-l3, #g11-l1, #g12-l3, #g12-waves)
     if (hash && hash !== 'home' && hash !== 'dashboard') {
         const pData = (typeof window !== 'undefined' && (window.physicsData || window.appData)) ? (window.physicsData || window.appData) : data;
-        const allLessons = [...(pData['9'] || []), ...(pData['12'] || [])];
+        const allLessons = Object.values(pData).flat();
         let match = allLessons.find(l => l.id.toLowerCase() === hash);
         if (!match && hash === 'g12-waves') match = allLessons.find(l => l.id === 'g12-l4');
         if (!match && hash === 'g12-mag') match = allLessons.find(l => l.id === 'g12-l5');

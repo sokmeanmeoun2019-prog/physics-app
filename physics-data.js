@@ -11,7 +11,10 @@
             ebooks: [
                 { title: "Chapter 1: Turning Effect of Force (pp. 1–12)", url: "ebooks/g9-ch1-ebook.pdf.pdf", altUrl: "ebooks/g9-ch1-ebook.pdf" }
             ],
-            games: [{ topic: "Turning Effect", url: "https://g.co/gemini/share/da86f09d1c05" }],
+            games: [
+                { topic: "Turning Effect", url: "https://g.co/gemini/share/da86f09d1c05" },
+                { topic: "PhET: Balancing Act (Torque & Balance)", url: "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" }
+            ],
             title: "Chapter 1: Turning Effect of Force",
             concepts: [
                 "Resultant Force: Calculated depending on the direction of the acting forces.",
@@ -368,7 +371,11 @@
             games: [
                 { topic: "Levers", url: "https://g.co/gemini/share/0b9242977d1a" },
                 { topic: "Inclined Plane", url: "https://g.co/gemini/share/a0f83fb13666" },
-                { topic: "Pulley", url: "https://share.gemini.google/ikZlefCPf3VG" }
+                { topic: "Pulley", url: "https://share.gemini.google/ikZlefCPf3VG" },
+                { topic: "Gear and Belt System", url: "https://gemini.google.com/share/a559ad0916ce" },
+                { topic: "Wheel and Axle", url: "https://gemini.google.com/share/8a5c6aeecc08" },
+                { topic: "PhET: Balancing Act (Levers)", url: "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" },
+                { topic: "PhET: Forces & Motion Basics", url: "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html" }
             ],
             title: "Chapter 2: Simple Machines",
             concepts: [
@@ -654,7 +661,13 @@
                 { title: "Part 1: Electric Energy (pp. 31–38)", url: "ebooks/g9-ch3-part1.pdf.pdf", altUrl: "ebooks/g9-ch3-part1.pdf" },
                 { title: "Part 2: Household Wiring Systems (pp. 39–47)", url: "ebooks/g9-ch3-part2.pdf.pdf", altUrl: "ebooks/g9-ch3-part2.pdf" }
             ],
-            games: [{ topic: "Electricity", url: "https://gemini.google.com/share/e1def1ea44ff" }],
+            games: [
+                { topic: "Electricity", url: "https://gemini.google.com/share/e1def1ea44ff" },
+                { topic: "Household Wiring System", url: "https://gemini.google.com/share/b1b0af13b130" },
+                { topic: "PhET: Circuit Construction Kit: DC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" },
+                { topic: "PhET: Ohm's Law", url: "https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_all.html" },
+                { topic: "PhET: Resistance in a Wire", url: "https://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_all.html" }
+            ],
             title: "Chapter 3: Electricity",
             concepts: [
                 "Ohm's Law: Electric potential difference is directly proportional to current: \\( V = IR \\).",
@@ -908,7 +921,15 @@
                 { title: "Part 1: Magnetic Field (pp. 48–54)", url: "ebooks/g9-ch4-part1.pdf.pdf", altUrl: "ebooks/g9-ch4-part1.pdf" },
                 { title: "Part 2: Magnetic Force & Transformers (pp. 55–65)", url: "ebooks/g9-ch4-part2.pdf.pdf", altUrl: "ebooks/g9-ch4-part2.pdf" }
             ],
-            games: [{ topic: "Magnetic Force", url: "https://gemini.google.com/share/e58537b64df4" }],
+            games: [
+                { topic: "Magnetic Field due to a straight wire", url: "https://gemini.google.com/share/4e08057d8f02" },
+                { topic: "Magnetic due to a circular loop", url: "https://gemini.google.com/share/d3ff81a78225" },
+                { topic: "Magnetic due to a Solenoid", url: "https://gemini.google.com/share/97335be64f77" },
+                { topic: "Magnetic Force", url: "https://gemini.google.com/share/e58537b64df4" },
+                { topic: "Transformers", url: "https://gemini.google.com/share/4436f3b52926" },
+                { topic: "PhET: Faraday's Electromagnetic Lab", url: "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" },
+                { topic: "PhET: Magnet and Compass", url: "https://phet.colorado.edu/sims/html/magnet-and-compass/latest/magnet-and-compass_all.html" }
+            ],
             title: "Chapter 4: Magnetic Field",
             concepts: [
                 "Magnetic Field of a Straight Wire: Concentric circular field lines form around the wire: \\( B = \\frac{\\mu_0 I}{2\\pi d} \\). The right-hand grip rule gives the field direction.",
@@ -1140,7 +1161,17 @@
                 { title: "4. Refraction of Light (pp. 80–85)", url: "ebooks/g9-ch5-4-refraction.pdf.pdf", altUrl: "ebooks/g9-ch5-4-refraction.pdf" },
                 { title: "5. Lenses (pp. 86–97)", url: "ebooks/g9-ch5-5-lenses.pdf.pdf", altUrl: "ebooks/g9-ch5-5-lenses.pdf" }
             ],
-            games: [{ topic: "Refraction of Light", url: "https://gemini.google.com/share/307ba374b958" }],
+            games: [
+                { topic: "Light Rays", url: "https://gemini.google.com/share/2ac63456c976" },
+                { topic: "Reflection of light", url: "https://gemini.google.com/share/01abdd9ea9aa" },
+                { topic: "Plane Mirrors", url: "https://gemini.google.com/share/7e4ee437394b" },
+                { topic: "Concave Mirrors", url: "https://gemini.google.com/share/7e4ee437394b" },
+                { topic: "Convex Mirrors", url: "https://gemini.google.com/share/7e4ee437394b" },
+                { topic: "Refraction of light", url: "https://gemini.google.com/share/307ba374b958" },
+                { topic: "Lenses", url: "https://gemini.google.com/share/1d57559d8cb4" },
+                { topic: "PhET: Bending Light (Refraction & Prisms)", url: "https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_all.html" },
+                { topic: "PhET: Geometric Optics (Lenses & Mirrors)", url: "https://phet.colorado.edu/sims/html/geometric-optics/latest/geometric-optics_all.html" }
+            ],
             title: "Chapter 5: Light",
             concepts: [
                 "Law of Reflection: The angle of reflection equals the angle of incidence: \\( i = r \\).",
@@ -1409,7 +1440,11 @@
             ebooks: [
                 { title: "Thermal Physics (pp. 1–18)", url: "ebooks/g12-ch1-l1-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l1-ebook.pdf" }
             ],
-            games: [{ topic: "Kinetic Theory of Ideal Gases", url: "https://gemini.google.com/share/acfae742b2c0" }],
+            games: [
+                { topic: "Kinetic Theory of Ideal Gases", url: "https://gemini.google.com/share/acfae742b2c0" },
+                { topic: "PhET: Gas Properties (Ideal Gas Laws)", url: "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" },
+                { topic: "PhET: States of Matter", url: "https://phet.colorado.edu/sims/html/states-of-matter/latest/states-of-matter_all.html" }
+            ],
             title: "Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",
             concepts: [
                 "Ideal Gas Model: Particles treated as point masses in continuous random motion with elastic collisions.",
@@ -1909,7 +1944,11 @@
             ebooks: [
                 { title: "The Laws of Thermodynamics (pp. 19–48)", url: "ebooks/g12-ch1-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l2-ebook.pdf" }
             ],
-            games: [{ topic: "First Law of Thermodynamics", url: "https://gemini.google.com/share/9e34579d87cd" }],
+            games: [
+                { topic: "First Law of Thermodynamics", url: "https://gemini.google.com/share/9e34579d87cd" },
+                { topic: "PhET: Energy Forms and Changes", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" },
+                { topic: "PhET: Gas Properties (Thermal Work)", url: "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" }
+            ],
             title: "Chapter 1 Lesson 2: First Law of Thermodynamics",
             concepts: [
                 "First Law of Thermodynamics: Conservation of energy in thermodynamic systems: \\( Q = W + \\Delta U \\iff \\Delta U = Q - W \\).",
@@ -2287,7 +2326,11 @@
             ebooks: [
                 { title: "Thermodynamics & Heat Engines (pp. 19–48)", url: "ebooks/g12-ch1-l3-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l3-ebook.pdf" }
             ],
-            games: [{ topic: "Heat Engine & Carnot Cycle", url: "https://gemini.google.com/share/9e34579d87cd" }],
+            games: [
+                { topic: "Heat Engine & Carnot Cycle", url: "https://gemini.google.com/share/9e34579d87cd" },
+                { topic: "Heat Engine", url: "https://gemini.google.com/share/a6cfadc258e4" },
+                { topic: "PhET: Energy Forms and Changes (Systems)", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" }
+            ],
             title: "Chapter 1 Lesson 3: Heat Engine",
             concepts: [
                 "Heat Engine Operation: Transforms absorbed heat \\( Q_h \\) from a hot reservoir into mechanical work \\( W_M \\) and rejects waste heat \\( Q_c \\).",
@@ -2486,7 +2529,11 @@
             ],
             games: [
                 { topic: "Mechanical Waves", url: "https://gemini.google.com/share/2e83761df9b7" },
-                { topic: "Standing Waves & Harmonics", url: "https://gemini.google.com/share/2e83761df9b7" }
+                { topic: "Standing Waves & Harmonics", url: "https://gemini.google.com/share/2e83761df9b7" },
+                { topic: "Superposition and Waves", url: "https://gemini.google.com/share/2e83761df9b7" },
+                { topic: "PhET: Wave on a String (Standing Waves)", url: "https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_all.html" },
+                { topic: "PhET: Waves Intro: Sound & Water", url: "https://phet.colorado.edu/sims/html/waves-intro/latest/waves-intro_all.html" },
+                { topic: "PhET: Fourier: Making Waves", url: "https://phet.colorado.edu/sims/html/fourier-making-waves/latest/fourier-making-waves_all.html" }
             ],
             title: "Chapter 2 Lesson 1: Superposition and Standing Waves",
             concepts: [
@@ -2750,7 +2797,10 @@
             ebooks: [
                 { title: "Interference & Diffraction of Light (pp. 64–78)", url: "ebooks/g12-ch2-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l2-ebook.pdf" }
             ],
-            games: [{ topic: "Interference and Diffraction", url: "https://gemini.google.com/share/14c6c1b23c4d" }],
+            games: [
+                { topic: "Interference and Diffraction", url: "https://gemini.google.com/share/14c6c1b23c4d" },
+                { topic: "PhET: Wave Interference (Slits & Diffraction)", url: "https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_all.html" }
+            ],
             title: "Chapter 2 Lesson 2: Interference and Diffraction",
             concepts: [
                 "Conditions for Interference: Constructive interference (maximum amplitude) occurs when path difference \\( d_2 - d_1 = n\\lambda \\) (for \\( n = 0, 1, 2, 3, \\dots \\)). Destructive interference (minimum amplitude) occurs when \\( d_2 - d_1 = \\frac{(2n+1)\\lambda}{2} \\) (for \\( n = 0, 1, 2, 3, \\dots \\)).",
@@ -3129,8 +3179,13 @@
                 { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
             ],
             games: [
-                { topic: "Electromagnetic Induction", url: "https://gemini.google.com/share/5bdf25595304" },
-                { topic: "RL Circuits & Induction", url: "https://gemini.google.com/share/5bdf25595304" }
+                { topic: "Magnetic Field", url: "https://gemini.google.com/share/8a653df6b614" },
+                { topic: "Faraday’s Law", url: "https://gemini.google.com/share/a36b992c1d6d" },
+                { topic: "Self Induction", url: "https://gemini.google.com/share/ae9787424975" },
+                { topic: "Electromagnetic Induction & RL Circuits", url: "https://gemini.google.com/share/5bdf25595304" },
+                { topic: "PhET: Faraday's Law (Induction)", url: "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html" },
+                { topic: "PhET: Faraday's Electromagnetic Lab", url: "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" },
+                { topic: "PhET: Charges and Fields", url: "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_all.html" }
             ],
             title: "Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",
             concepts: [
@@ -3793,7 +3848,12 @@
             ebooks: [
                 { title: "AC Circuits & Electromagnetic Waves (pp. 131–159)", url: "ebooks/g12-ch3-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch3-l2-ebook.pdf" }
             ],
-            games: [{ topic: "Alternating Current & RLC Circuits", url: "https://gemini.google.com/share/b5177259161a" }],
+            games: [
+                { topic: "Alternating Current", url: "https://gemini.google.com/share/0c850ab5a53b" },
+                { topic: "Alternating Current & RLC Circuits", url: "https://gemini.google.com/share/b5177259161a" },
+                { topic: "PhET: Circuit Construction Kit: AC (Virtual Lab)", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_all.html" },
+                { topic: "PhET: Circuit Construction Kit: AC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac/latest/circuit-construction-kit-ac_all.html" }
+            ],
             title: "Chapter 3 Lesson 2: Alternating Currents",
             concepts: [
                 "Sinusoidal AC: Current reversing direction twice per cycle: \\( i(t) = I_m\\sin(\\omega t + \\phi_0) \\).",
@@ -4226,7 +4286,11 @@
             gifUrl: "",
             worksheetUrl: "worksheets/ch4-l1-worksheet.pdf",
             ebookUrl: "ebooks/g12-ch4-l1-ebook.pdf",
-            games: [{ topic: "Semiconductors & Transistors", url: "https://gemini.google.com/share/9c33959ceba4" }],
+            games: [
+                { topic: "Semiconductors & Transistors", url: "https://gemini.google.com/share/9c33959ceba4" },
+                { topic: "PhET: Circuit Construction Kit: DC (Conductors & Diodes)", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc-virtual-lab/latest/circuit-construction-kit-dc-virtual-lab_all.html" },
+                { topic: "PhET: Ohm's Law & Resistance", url: "https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_all.html" }
+            ],
             title: "Chapter 4 Lesson 1: Semiconductors & Transistors",
             concepts: [
                 "Electrical Resistance and Resistivity: A conductor's resistance depends on its geometry and material: \\( R = \\rho\\frac{l}{A} \\), where \\( \\rho = \\frac{RA}{l} \\) is the electrical resistivity (in \\( \\Omega\\cdot\\mathrm{m} \\)), \\( l \\) is length (in \\( \\mathrm{m} \\)), and \\( A \\) is cross-sectional area (in \\( \\mathrm{m}^2 \\)).",
@@ -4558,7 +4622,10 @@
             gifUrl: "",
             worksheetUrl: "worksheets/ch4-l2-worksheet.pdf",
             ebookUrl: "ebooks/g12-ch4-l2-ebook.pdf",
-            games: [{ topic: "Special Relativity", url: "https://gemini.google.com/share/3565e381b1ba" }],
+            games: [
+                { topic: "Special Relativity", url: "https://gemini.google.com/share/3565e381b1ba" },
+                { topic: "PhET: Blackbody Spectrum (Radiation)", url: "https://phet.colorado.edu/sims/html/blackbody-spectrum/latest/blackbody-spectrum_all.html" }
+            ],
             title: "Chapter 4 Lesson 2: Special Theory of Relativity",
             concepts: [
                 "Reference Frames and Galilean Transformation: An inertial reference frame is one with zero acceleration where Newton's laws hold true. Classical mechanics assumes absolute, universal space and time (\\( t' = t \\)). For frame S' moving at constant velocity \\( u \\) along the +x axis relative to frame S, coordinates transform as \\( x' = x - ut \\), \\( y' = y \\), \\( z' = z \\), \\( t' = t \\); velocities as \\( v'_x = v_x - u \\), \\( v'_y = v_y \\), \\( v'_z = v_z \\); and accelerations as \\( a'_x = a_x \\), \\( a'_y = a_y \\), \\( a'_z = a_z \\). Valid only when \\( u \\ll c \\).",
@@ -4934,7 +5001,11 @@
             gifUrl: "",
             worksheetUrl: "worksheets/ch4-l3-worksheet.pdf",
             ebookUrl: "ebooks/g12-ch4-l3-ebook.pdf",
-            games: [],
+            games: [
+                { topic: "PhET: Photoelectric Effect", url: "https://phet.colorado.edu/sims/html/photoelectric/latest/photoelectric_all.html" },
+                { topic: "PhET: Models of the Hydrogen Atom (Bohr)", url: "https://phet.colorado.edu/sims/html/models-of-the-hydrogen-atom/latest/models-of-the-hydrogen-atom_all.html" },
+                { topic: "PhET: Rutherford Scattering", url: "https://phet.colorado.edu/sims/html/rutherford-scattering/latest/rutherford-scattering_all.html" }
+            ],
             title: "Chapter 4 Lesson 3: Atomic Structure",
             concepts: [
                 "Cathode Rays: Thomson measured electron charge-to-mass ratio \\( e/m \\).",
@@ -5148,8 +5219,8305 @@
         }
     ];
 
+    // =========================================================================
+    // GRADE 7 PHYSICS CURRICULUM DATA
+    // =========================================================================
+    const G7_LESSONS = [
+        {
+            id: "g7-l1",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g7-ch1-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Energy Forms and Changes", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" },
+                { topic: "States of Matter: Basics", url: "https://phet.colorado.edu/sims/html/states-of-matter-basics/latest/states-of-matter-basics_all.html" }
+            ],
+            title: "Chapter 1: Heat and Temperature",
+            concepts: [
+                "Temperature vs Heat: Temperature is a fundamental scalar measure of how hot or cold a body is, representing the average molecular kinetic energy. Heat (thermal/internal energy) is the total kinetic and potential energy of all molecules in a body.",
+                "Direction of Heat Flow: Heat energy always transfers spontaneously from a body at a higher temperature to a body at a lower temperature until thermal equilibrium is established.",
+                "Thermometer Types: Liquid-in-glass (Mercury: freezes at \\(-39\\,^\\circ\\mathrm{C}\\), boils at \\(357\\,^\\circ\\mathrm{C}\\); Alcohol: freezes at \\(-115\\,^\\circ\\mathrm{C}\\), boils at \\(78\\,^\\circ\\mathrm{C}\\)); Clinical thermometer with narrow constriction; Thermocouple (copper-iron wires, \\(-250\\,^\\circ\\mathrm{C}\\) to \\(1500\\,^\\circ\\mathrm{C}\\)); Resistance thermometer (platinum wire); and Thermistor.",
+                "Fixed Points of Celsius Scale: Lower fixed point is pure melting ice (\\(0\\,^\\circ\\mathrm{C}\\)); Upper fixed point is steam from boiling water at normal atmospheric pressure \\(100\\,\\mathrm{kPa}\\) (\\(100\\,^\\circ\\mathrm{C}\\)). Divided into 100 equal degrees.",
+                "Heat Equation: Heat received or given out is \\(Q = mc\\Delta T\\), where \\(c\\) is the specific heat capacity in \\(\\mathrm{J/(kg\\cdot^\\circ C)}\\).",
+                "Thermal Capacity: The quantity of heat required to raise the temperature of the entire body by \\(1\\,^\\circ\\mathrm{C}\\), \\(\\text{Thermal Capacity} = mc\\), measured in \\(\\mathrm{J/^\\circ C}\\).",
+                "Bimetallic Strip: Equal strips of copper and iron bonded together. Copper expands more than iron, causing the strip to bend outward with copper on the outside upon heating. Used in fire alarms and thermostats.",
+                "Precautions Against Expansion: Expansion gaps in railway lines, flexible expansion loops in steam pipes, steel bridges supported on rollers at one end, and slack in overhead transmission cables.",
+                "Anomalous Expansion of Water: Water contracts as it is cooled down to \\(4\\,^\\circ\\mathrm{C}\\) (where it has maximum density). Between \\(4\\,^\\circ\\mathrm{C}\\) and \\(0\\,^\\circ\\mathrm{C}\\), water unexpectedly expands. When freezing at \\(0\\,^\\circ\\mathrm{C}\\), \\(100\\,\\mathrm{cm^3}\\) of water expands to \\(109\\,\\mathrm{cm^3}\\) of ice. Ice floats and insulates the water below, allowing aquatic life to survive in frozen ponds.",
+                "Three Heat Transfer Mechanisms: Conduction (particle-to-particle kinetic energy transfer in solids), Convection (bulk movement of fluid particles due to density differences), and Radiation (infrared electromagnetic waves travelling through vacuum at \\(c = 3.0 \\times 10^8\\,\\mathrm{m/s}\\)). Rough black surfaces are best absorbers and emitters; shiny white surfaces are best reflectors."
+            ],
+            definitions: [
+                { term: "Temperature", definition: "A physical quantity that measures how hot or cold a body is, representing the average kinetic energy of its constituent molecules.", symbol: "T", unit: "\\mathrm{K} \\;(\\text{or } {^\\circ}\\mathrm{C})", equation: "T_K = T_C + 273^\\circ" },
+                { term: "Heat (Thermal Energy)", definition: "The form of energy transferred from a hotter body to a colder body due to a temperature difference.", symbol: "Q", unit: "\\mathrm{J}", equation: "Q = mc\\Delta T" },
+                { term: "Specific Heat Capacity", definition: "The quantity of heat energy required to produce a 1 °C (or 1 K) rise in temperature for a mass of 1 kilogram of a substance.", symbol: "c", unit: "\\mathrm{J/(kg\\cdot^\\circ C)}", equation: "c = \\frac{Q}{m\\Delta T}" },
+                { term: "Thermal Capacity", definition: "The quantity of heat energy needed to raise the temperature of an entire object by 1 °C.", symbol: "C_{\\text{th}}", unit: "\\mathrm{J/^\\circ C}", equation: "C_{\\text{th}} = mc" },
+                { term: "Clinical Thermometer", definition: "A high-sensitivity mercury thermometer with a small range around normal human body temperature (37 °C) featuring a constriction to prevent mercury retreating.", symbol: "\\text{Thermometer}", unit: "{^\\circ}\\mathrm{C}", equation: "\\text{Range: } 35\\text{--}42\\,^\\circ\\mathrm{C}" },
+                { term: "Thermocouple", definition: "A rapid-response temperature measuring device consisting of two dissimilar metal wires (e.g. copper and iron) joined at two junctions with an electric meter.", symbol: "\\text{Thermocouple}", unit: "{^\\circ}\\mathrm{C}", equation: "\\text{Range: } -250\\,^\\circ\\mathrm{C} \\text{ to } 1500\\,^\\circ\\mathrm{C}" },
+                { term: "Bimetallic Strip", definition: "A composite strip made of two different metals (such as copper and iron) riveted together that bends when heated due to unequal rates of expansion.", symbol: "\\text{Bimetallic}", unit: "\\text{No unit}", equation: "\\text{Used in fire alarms and thermostats}" },
+                { term: "Anomalous Expansion of Water", definition: "The unusual property of water expanding when cooled from 4 °C down to 0 °C, reaching maximum density at 4 °C.", symbol: "\\rho_{\\text{max}} \\text{ at } 4\\,^\\circ\\mathrm{C}", unit: "\\mathrm{g/cm^3}", equation: "100\\,\\mathrm{cm^3} \\;(\\text{water}) \\to 109\\,\\mathrm{cm^3} \\;(\\text{ice})" },
+                { term: "Conduction", definition: "The transfer of thermal energy through a medium from a hotter region to a colder region by collisions of neighboring vibrating particles without bulk motion of matter.", symbol: "\\text{Conduction}", unit: "\\text{Heat transfer in solids}", equation: "\\text{Metals: good conductors; Wood/Wool: insulators}" },
+                { term: "Convection", definition: "The transfer of thermal energy in fluids (liquids and gases) by the actual macroscopic circulation movement of the heated, less dense fluid rising and colder denser fluid sinking.", symbol: "\\text{Convection}", unit: "\\text{Heat transfer in fluids}", equation: "\\text{Convection currents: Land and sea breezes}" },
+                { term: "Thermal Radiation", definition: "The transfer of thermal energy from one body to another by infrared electromagnetic waves without the necessity of an intervening material medium.", symbol: "\\text{Radiation}", unit: "\\text{Travels through vacuum}", equation: "\\text{Rough/black: good absorber/emitter; Polished: reflector}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Temperature Scale Conversion (Celsius to Fahrenheit)",
+                    question: "Convert a room temperature of 30 °C to the Fahrenheit scale.",
+                    given: "Celsius temperature \\( T_C = 30\\,^\\circ\\mathrm{C} \\).",
+                    find: "Fahrenheit temperature (\\( T_F \\)).",
+                    equation: "T_F = \\frac{9}{5}T_C + 32^\\circ",
+                    rearrangement: "T_F = \\left(\\frac{9}{5} \\times 30\\right) + 32^\\circ",
+                    solution: "1. <strong>Multiply by \\(\\frac{9}{5}\\):</strong><br>\\[ \\frac{9}{5} \\times 30 = 9 \\times 6 = 54 \\]<br>2. <strong>Add 32:</strong><br>\\[ T_F = 54 + 32 = 86\\,^\\circ\\mathrm{F} \\]",
+                    finalAnswer: "T_F = 86\\,^\\circ\\mathrm{F}",
+                    explanation: "Every Celsius degree interval corresponds to 1.8 Fahrenheit degrees, shifted by the 32° freezing offset."
+                },
+                {
+                    title: "Example 2: Temperature Scale Conversion (Fahrenheit to Celsius)",
+                    question: "The boiling point of water is 212 °F. Convert this temperature to degrees Celsius.",
+                    given: "Fahrenheit temperature \\( T_F = 212\\,^\\circ\\mathrm{F} \\).",
+                    find: "Celsius temperature (\\( T_C \\)).",
+                    equation: "T_C = \\frac{5}{9}(T_F - 32^\\circ)",
+                    rearrangement: "T_C = \\frac{5}{9}(212 - 32)",
+                    solution: "1. <strong>Subtract 32:</strong><br>\\[ 212 - 32 = 180 \\]<br>2. <strong>Multiply by \\(\\frac{5}{9}\\):</strong><br>\\[ T_C = \\frac{5}{9} \\times 180 = 5 \\times 20 = 100\\,^\\circ\\mathrm{C} \\]",
+                    finalAnswer: "T_C = 100\\,^\\circ\\mathrm{C}",
+                    explanation: "212 °F corresponds exactly to the upper fixed point (steam point) of water at standard pressure."
+                },
+                {
+                    title: "Example 3: Temperature Scale Conversion (Celsius to Kelvin)",
+                    question: "Convert the following temperatures to the Kelvin scale: (a) 0 °C, (b) -50 °C, and (c) 90 °C.",
+                    given: "Celsius temperatures \\( T_C = 0\\,^\\circ\\mathrm{C}, -50\\,^\\circ\\mathrm{C}, 90\\,^\\circ\\mathrm{C} \\).",
+                    find: "Kelvin temperatures (\\( T_K \\)).",
+                    equation: "T_K = T_C + 273^\\circ",
+                    rearrangement: "T_K = T_C + 273",
+                    solution: "1. <strong>For 0 °C:</strong><br>\\[ T_K = 0 + 273 = 273\\,\\mathrm{K} \\]<br>2. <strong>For -50 °C:</strong><br>\\[ T_K = -50 + 273 = 223\\,\\mathrm{K} \\]<br>3. <strong>For 90 °C:</strong><br>\\[ T_K = 90 + 273 = 363\\,\\mathrm{K} \\]",
+                    finalAnswer: "T_K = 273\\,\\mathrm{K}, \\; 223\\,\\mathrm{K}, \\; 363\\,\\mathrm{K}",
+                    explanation: "Kelvin is the SI base unit of thermodynamic temperature where 0 K represents absolute zero."
+                },
+                {
+                    title: "Example 4: Heat Energy Absorbed by a Material",
+                    question: "If the temperature of a 5 kg mass of a material with specific heat capacity 400 J/(kg °C) rises from 15 °C to 25 °C, calculate the heat received Q.",
+                    given: "Mass \\( m = 5\\,\\mathrm{kg} \\), Specific heat capacity \\( c = 400\\,\\mathrm{J/(kg\\cdot^\\circ C)} \\), Initial temperature \\( T_1 = 15\\,^\\circ\\mathrm{C} \\), Final temperature \\( T_2 = 25\\,^\\circ\\mathrm{C} \\).",
+                    find: "Heat received (\\( Q \\)) in Joules.",
+                    equation: "Q = mc\\Delta T = mc(T_2 - T_1)",
+                    rearrangement: "Q = 5\\,\\mathrm{kg} \\times 400\\,\\mathrm{J/(kg\\cdot^\\circ C)} \\times (25 - 15)\\,^\\circ\\mathrm{C}",
+                    solution: "1. <strong>Temperature Change:</strong><br>\\[ \\Delta T = 25 - 15 = 10\\,^\\circ\\mathrm{C} \\]<br>2. <strong>Calculate Heat Energy:</strong><br>\\[ Q = 5\\,\\mathrm{kg} \\times 10\\,^\\circ\\mathrm{C} \\times 400\\,\\mathrm{J/(kg\\cdot^\\circ C)} = 20{,}000\\,\\mathrm{J} = 20\\,\\mathrm{kJ} \\]",
+                    finalAnswer: "Q = 20{,}000\\,\\mathrm{J} \\quad (20\\,\\mathrm{kJ})",
+                    explanation: "Direct textbook example showing multiplication of mass, specific heat capacity, and temperature increase."
+                },
+                {
+                    title: "Example 5: Thermal Capacity of a Copper Block",
+                    question: "A copper block has a mass of 0.1 kg and specific heat capacity 390 J/(kg °C). What is the thermal capacity of the block?",
+                    given: "Mass \\( m = 0.1\\,\\mathrm{kg} \\), Specific heat capacity \\( c = 390\\,\\mathrm{J/(kg\\cdot^\\circ C)} \\).",
+                    find: "Thermal capacity (\\( C_{\\text{th}} \\)).",
+                    equation: "\\text{Thermal Capacity} = m \\times c",
+                    rearrangement: "C_{\\text{th}} = 0.1\\,\\mathrm{kg} \\times 390\\,\\mathrm{J/(kg\\cdot^\\circ C)}",
+                    solution: "Multiply mass by specific heat capacity:<br>\\[ C_{\\text{th}} = 0.1 \\times 390 = 39\\,\\mathrm{J/^\\circ C} \\]",
+                    finalAnswer: "C_{\\text{th}} = 39\\,\\mathrm{J/^\\circ C}",
+                    explanation: "Thermal capacity is the heat energy needed to raise the entire body by 1 °C."
+                },
+                {
+                    title: "Example 6: Heat Required for Water with Power Immersion Heater",
+                    question: "In kJ, how much heat is required to raise the temperature of 1.23 kg of water from 23.6 °C to 84.9 °C? (Take specific heat capacity of water c = 4200 J/(kg °C)).",
+                    given: "Mass \\( m = 1.23\\,\\mathrm{kg} \\), \\( c = 4200\\,\\mathrm{J/(kg\\cdot^\\circ C)} \\), \\( T_1 = 23.6\\,^\\circ\\mathrm{C} \\), \\( T_2 = 84.9\\,^\\circ\\mathrm{C} \\).",
+                    find: "Heat required (\\( Q \\)) in kJ.",
+                    equation: "Q = mc\\Delta T",
+                    rearrangement: "\\Delta T = T_2 - T_1, \\quad Q = mc(T_2 - T_1)",
+                    solution: "1. <strong>Temperature Rise:</strong><br>\\[ \\Delta T = 84.9 - 23.6 = 61.3\\,^\\circ\\mathrm{C} \\]<br>2. <strong>Heat in Joules:</strong><br>\\[ Q = 1.23 \\times 4200 \\times 61.3 = 316{,}675.8\\,\\mathrm{J} \\]<br>3. <strong>Convert to kJ:</strong><br>\\[ Q = \\frac{316{,}675.8}{1000} \\approx 316.7\\,\\mathrm{kJ} \\]",
+                    finalAnswer: "Q \\approx 316.7\\,\\mathrm{kJ}",
+                    explanation: "Water requires an exceptionally large amount of thermal energy to change its temperature due to its high specific heat capacity."
+                }
+            ],
+            equations: [
+                {
+                    section: "Temperature Scales & Conversions",
+                    name: "Celsius to Fahrenheit Conversion",
+                    formula: "\\[ T_F = \\frac{9}{5}T_C + 32^\\circ \\]",
+                    explanation: "Calculates the Fahrenheit temperature corresponding to a measured Celsius temperature.",
+                    conditions: "Standard linear temperature scales.",
+                    variables: [
+                        { symbol: "T_F", rep: "Temperature in Fahrenheit", unit: "Degree Fahrenheit", unitSym: "{^\\circ}\\mathrm{F}" },
+                        { symbol: "T_C", rep: "Temperature in Celsius", unit: "Degree Celsius", unitSym: "{^\\circ}\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Temperature Scales & Conversions",
+                    name: "Fahrenheit to Celsius Conversion",
+                    formula: "\\[ T_C = \\frac{5}{9}(T_F - 32^\\circ) \\]",
+                    explanation: "Converts temperature in degrees Fahrenheit to degrees Celsius.",
+                    conditions: "Standard linear temperature scales.",
+                    variables: [
+                        { symbol: "T_C", rep: "Temperature in Celsius", unit: "Degree Celsius", unitSym: "{^\\circ}\\mathrm{C}" },
+                        { symbol: "T_F", rep: "Temperature in Fahrenheit", unit: "Degree Fahrenheit", unitSym: "{^\\circ}\\mathrm{F}" }
+                    ]
+                },
+                {
+                    section: "Temperature Scales & Conversions",
+                    name: "Celsius to Kelvin Scale Conversion",
+                    formula: "\\[ T_K = T_C + 273^\\circ \\]",
+                    explanation: "Converts temperature in degrees Celsius to thermodynamic temperature in Kelvin.",
+                    conditions: "Absolute thermodynamic temperature scale.",
+                    variables: [
+                        { symbol: "T_K", rep: "Thermodynamic temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" },
+                        { symbol: "T_C", rep: "Temperature in Celsius", unit: "Degree Celsius", unitSym: "{^\\circ}\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Temperature Scales & Conversions",
+                    name: "Kelvin to Celsius Scale Conversion",
+                    formula: "\\[ T_C = T_K - 273^\\circ \\]",
+                    explanation: "Converts Kelvin temperature to degrees Celsius.",
+                    conditions: "Absolute thermodynamic temperature scale.",
+                    variables: [
+                        { symbol: "T_C", rep: "Temperature in Celsius", unit: "Degree Celsius", unitSym: "{^\\circ}\\mathrm{C}" },
+                        { symbol: "T_K", rep: "Thermodynamic temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Quantity of Heat",
+                    name: "Heat Energy Equation",
+                    formula: "\\[ Q = m \\times c \\times \\Delta T \\]",
+                    explanation: "Calculates the quantity of heat energy received or given out when a mass m changes temperature by ΔT.",
+                    conditions: "No phase transition occurring during heating or cooling.",
+                    variables: [
+                        { symbol: "Q", rep: "Quantity of heat energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass of substance", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "c", rep: "Specific heat capacity", unit: "Joule per kilogram degree Celsius", unitSym: "\\mathrm{J/(kg\\cdot^\\circ C)}" },
+                        { symbol: "\\Delta T", rep: "Temperature change (T_2 - T_1)", unit: "Degree Celsius (or Kelvin)", unitSym: "{^\\circ}\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Quantity of Heat",
+                    name: "Specific Heat Capacity Equation",
+                    formula: "\\[ c = \\frac{Q}{m \\times \\Delta T} \\]",
+                    explanation: "Specific heat capacity is the heat energy absorbed per unit mass per unit temperature rise.",
+                    conditions: "Uniform material sample.",
+                    variables: [
+                        { symbol: "c", rep: "Specific heat capacity", unit: "Joule per kilogram degree Celsius", unitSym: "\\mathrm{J/(kg\\cdot^\\circ C)}" },
+                        { symbol: "Q", rep: "Quantity of heat energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass of substance", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "\\Delta T", rep: "Temperature rise", unit: "Degree Celsius", unitSym: "{^\\circ}\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Quantity of Heat",
+                    name: "Thermal Capacity",
+                    formula: "\\[ \\text{Thermal Capacity} = m \\times c \\]",
+                    explanation: "Thermal capacity is the heat energy needed to raise the whole body by 1 °C.",
+                    conditions: "Entire mass of the object.",
+                    variables: [
+                        { symbol: "C_{\\text{th}}", rep: "Thermal capacity", unit: "Joule per degree Celsius", unitSym: "\\mathrm{J/^\\circ C}" },
+                        { symbol: "m", rep: "Mass of the body", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "c", rep: "Specific heat capacity", unit: "Joule per kilogram degree Celsius", unitSym: "\\mathrm{J/(kg\\cdot^\\circ C)}" }
+                    ]
+                },
+                {
+                    section: "Quantity of Heat",
+                    name: "Electrical Immersion Heater Energy Balance",
+                    formula: "\\[ Q = P \\times t = mc\\Delta T \\implies c = \\frac{P \\times t}{m \\times \\Delta T} \\]",
+                    explanation: "In an electric immersion heating experiment, electrical work (Power × time) equals thermal heat absorbed by the liquid.",
+                    conditions: "Assuming negligible heat losses to the surroundings.",
+                    variables: [
+                        { symbol: "Q", rep: "Heat energy supplied by heater", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "P", rep: "Power rating of electric immersion heater", unit: "Watt (or Joule per second)", unitSym: "\\mathrm{W}" },
+                        { symbol: "t", rep: "Heating duration", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "m", rep: "Mass of liquid (water or aluminium)", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "c", rep: "Specific heat capacity", unit: "Joule per kilogram degree Celsius", unitSym: "\\mathrm{J/(kg\\cdot^\\circ C)}" },
+                        { symbol: "\\Delta T", rep: "Temperature rise", unit: "Degree Celsius", unitSym: "{^\\circ}\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Thermal Expansion",
+                    name: "Linear Thermal Expansion",
+                    formula: "\\[ \\Delta L = \\alpha L_0 \\Delta T \\iff L = L_0(1 + \\alpha \\Delta T) \\]",
+                    explanation: "The increase in length ΔL of a solid rod is proportional to original length L₀ and temperature change ΔT.",
+                    conditions: "Solid materials subjected to moderate temperature changes.",
+                    variables: [
+                        { symbol: "\\Delta L", rep: "Change in length (expansion)", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\alpha", rep: "Linear expansion coefficient", unit: "Per degree Celsius (or per Kelvin)", unitSym: "{^\\circ}\\mathrm{C}^{-1}" },
+                        { symbol: "L_0", rep: "Original initial length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\Delta T", rep: "Temperature change", unit: "Degree Celsius", unitSym: "{^\\circ}\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Latent Heat & Phase Transitions",
+                    name: "Specific Latent Heat of Fusion",
+                    formula: "\\[ Q_f = m L_f \\iff L_f = \\frac{Q_f}{m} \\]",
+                    explanation: "The thermal energy absorbed or released when a solid changes phase to liquid at its melting point without temperature change.",
+                    conditions: "Isothermal melting or freezing phase transition.",
+                    variables: [
+                        { symbol: "Q_f", rep: "Latent heat of fusion", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass of substance melting", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "L_f", rep: "Specific latent heat of fusion", unit: "Joule per kilogram", unitSym: "\\mathrm{J/kg}" }
+                    ]
+                },
+                {
+                    section: "Latent Heat & Phase Transitions",
+                    name: "Specific Latent Heat of Vaporization",
+                    formula: "\\[ Q_v = m L_v \\iff L_v = \\frac{Q_v}{m} \\]",
+                    explanation: "The thermal energy absorbed or released when a liquid turns into vapor at its boiling point without temperature change.",
+                    conditions: "Isothermal boiling or condensation phase change.",
+                    variables: [
+                        { symbol: "Q_v", rep: "Latent heat of vaporization", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass of liquid vaporizing", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "L_v", rep: "Specific latent heat of vaporization", unit: "Joule per kilogram", unitSym: "\\mathrm{J/kg}" }
+                    ]
+                },
+                {
+                    section: "Calorimetry & Heat Exchange",
+                    name: "Calorimetry (Method of Mixtures)",
+                    formula: "\\[ Q_{\\text{lost}} = Q_{\\text{gained}} \\implies m_1 c_1 (T_1 - T_f) = m_2 c_2 (T_f - T_2) \\]",
+                    explanation: "In an insulated system, heat lost by hotter bodies equals heat absorbed by colder bodies until thermal equilibrium is attained.",
+                    conditions: "Thermally isolated calorimeter with negligible external heat exchange.",
+                    variables: [
+                        { symbol: "Q_{\\text{lost}}, Q_{\\text{gained}}", rep: "Thermal energy transferred", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m_1, m_2", rep: "Masses of the interacting bodies", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "c_1, c_2", rep: "Specific heat capacities", unit: "Joule per kilogram degree Celsius", unitSym: "\\mathrm{J/(kg\\cdot^\\circ C)}" },
+                        { symbol: "T_1, T_2, T_f", rep: "Initial and final equilibrium temperatures", unit: "Degree Celsius", unitSym: "{^\\circ}\\mathrm{C}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula to convert Celsius to Fahrenheit?", back: "\\( T_F = \\frac{9}{5}T_C + 32^\\circ \\)" },
+                { front: "What is the formula to convert Fahrenheit to Celsius?", back: "\\( T_C = \\frac{5}{9}(T_F - 32^\\circ) \\)" },
+                { front: "What is the formula to convert Celsius to Kelvin?", back: "\\( T_K = T_C + 273^\\circ \\)" },
+                { front: "What is the fundamental heat equation?", back: "\\( Q = mc\\Delta T \\)" },
+                { front: "What is the formula and unit of thermal capacity?", back: "\\( \\text{Thermal Capacity} = mc \\), measured in \\( \\mathrm{J/^\\circ C} \\)" },
+                { front: "At what temperature does water have its maximum density?", back: "At \\( 4\\,^\\circ\\mathrm{C} \\) (it expands between \\( 4\\,^\\circ\\mathrm{C} \\) and \\( 0\\,^\\circ\\mathrm{C} \\))." },
+                { front: "Why does a bimetallic strip of copper and iron bend when heated?", back: "Copper expands more than iron, forcing the strip to bend with copper on the outside." },
+                { front: "What are the three mechanisms of heat transfer?", back: "Conduction (solids), Convection (fluids), and Radiation (electromagnetic waves through vacuum)." }
+            ],
+            quiz: [
+                { question: "If the temperature is 30 °C, what is it on the Fahrenheit scale?", options: ["86 °F", "62 °F", "98 °F", "74 °F"], correctIndex: 0, feedback: "T_F = (9/5 × 30) + 32 = 54 + 32 = 86 °F." },
+                { question: "The upper fixed point on the Celsius thermometer is defined as:", options: ["Temperature of melting ice", "Temperature of pure boiling water at 100 kPa (100 °C)", "Normal body temperature (37 °C)", "Absolute zero"], correctIndex: 1, feedback: "The upper fixed point is steam above boiling water at 100 kPa (100 °C)." },
+                { question: "How much heat is required to raise 5 kg of a substance (c = 400 J/(kg °C)) by 10 °C?", options: ["20,000 J", "2,000 J", "4,000 J", "200 J"], correctIndex: 0, feedback: "Q = mcΔT = 5 × 400 × 10 = 20,000 J (20 kJ)." },
+                { question: "Water has a maximum density at what temperature?", options: ["0 °C", "4 °C", "100 °C", "-4 °C"], correctIndex: 1, feedback: "Water contracts as it cools down to 4 °C where it reaches maximum density, then expands from 4 °C to 0 °C." },
+                { question: "Which surface is the best absorber and emitter of thermal radiation?", options: ["Shiny polished silver", "Smooth white plastic", "Rough, dull black surface", "Transparent glass"], correctIndex: 2, feedback: "Dull, black, rough surfaces absorb and emit thermal infrared radiation much more effectively than light shiny surfaces." }
+            ]
+        },
+        {
+            id: "g7-l2",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g7-ch2-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Balloons and Static Electricity", url: "https://phet.colorado.edu/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_all.html" },
+                { topic: "John Travoltage", url: "https://phet.colorado.edu/sims/html/john-travoltage/latest/john-travoltage_all.html" }
+            ],
+            title: "Chapter 2: Static Electricity",
+            concepts: [
+                "Electrostatics: The branch of physics that studies electric charges at rest, their properties, and electrostatic forces.",
+                "Atomic Nature of Charge: An atom consists of a central nucleus containing positively charged protons and neutral neutrons, surrounded by revolving negatively charged electrons. Normally, number of electrons equals number of protons, so the atom is electrically neutral.",
+                "Two Types of Electric Charges: Positive charge (carried by protons) and Negative charge (carried by electrons). The SI unit of electric charge is the Coulomb (C), where 1 Coulomb represents \\(6.25 \\times 10^{18}\\) electron charges.",
+                "Charging by Friction (Rubbing): Friction between two materials causes transfer of electrons. For example, a polythene or plastic rod rubbed with wool/hair gains electrons and becomes negatively charged; a glass rod rubbed with silk loses electrons and becomes positively charged.",
+                "Charging by Conduction (Sharing): When a neutral body touches a charged conductor, electrons transfer directly between them until charge is shared.",
+                "Law of Electrostatics: Like charges repel each other; unlike charges attract each other. Electric force is a non-contact force that acts at a distance.",
+                "The Electroscope: A sensitive instrument consisting of a brass cap, brass rod, and delicate aluminum leaves in a glass casing. Uses: (1) determine whether an object is charged or uncharged, (2) detect the sign (+ or -) of unknown charge, and (3) illustrate that charges move through metals.",
+                "Dangers of Static Electricity & Lightning: Passing thunderclouds induce large opposite charges on ground and tall buildings. Lightning conductors with sharp copper spikes utilize 'action at points' to stream an electric wind of air ions, neutralizing the cloud charge or guiding lightning harmlessly to Earth.",
+                "Refueling Safety: Friction between aircraft bodies and air in flight charges the aircraft. Conducting rubber tyres discharge this static electricity harmlessly to the ground on landing to prevent sparks during fuel filling."
+            ],
+            definitions: [
+                { term: "Electrostatics", definition: "The branch of electricity that studies electric charges at rest and the electrostatic forces between them.", symbol: "\\text{Electrostatics}", unit: "\\text{Field of Physics}", equation: "\\text{Static charges at rest}" },
+                { term: "Electric Charge", definition: "An inherent physical property of certain subatomic particles that is responsible for electrical and magnetic phenomena.", symbol: "Q", unit: "\\mathrm{C} \\;(\\mathrm{Coulomb})", equation: "1\\,\\mathrm{C} = 6.25 \\times 10^{18} \\text{ electrons}" },
+                { term: "Proton", definition: "A subatomic particle in the nucleus carrying a fundamental positive unit of electric charge (+e).", symbol: "p^+", unit: "+1.6 \\times 10^{-19}\\,\\mathrm{C}", equation: "\\text{Positive charge carrier}" },
+                { term: "Electron", definition: "A subatomic particle revolving around the nucleus carrying a fundamental negative unit of electric charge (-e).", symbol: "e^-", unit: "-1.6 \\times 10^{-19}\\,\\mathrm{C}", equation: "\\text{Negative charge carrier}" },
+                { term: "Neutron", definition: "A neutral subatomic particle located in the atomic nucleus that has zero electric charge.", symbol: "n^0", unit: "0\\,\\mathrm{C}", equation: "\\text{Neutral particle}" },
+                { term: "Law of Electrostatics", definition: "Fundamental law stating that like electric charges repel each other, while unlike electric charges attract each other.", symbol: "\\text{Attraction / Repulsion}", unit: "\\text{Non-contact force}", equation: "(+) \\leftrightarrow (+), \\; (-) \\leftrightarrow (-), \\; (+) \\to \\leftarrow (-)" },
+                { term: "Electroscope", definition: "A simple device with a brass cap, rod, and gold or aluminum leaves used to detect the presence, sign, and relative magnitude of electric charge.", symbol: "\\text{Electroscope}", unit: "\\text{Measuring instrument}", equation: "\\text{Divergence of leaves indicates charge}" },
+                { term: "Lightning Conductor", definition: "A thick copper strip with sharp spikes fixed on the outside of tall buildings connecting to a metal earth plate in the ground to protect against lightning.", symbol: "\\text{Lightning Rod}", unit: "\\text{Safety device}", equation: "\\text{Discharges via action at points}" },
+                { term: "Discharging", definition: "The process of removing excess electric charge from a charged body by connecting it to earth (grounding) or a conductor until it becomes neutral.", symbol: "\\text{Grounding}", unit: "\\text{Process}", equation: "Q \\to 0 \\;(\\text{Neutral state})" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Identifying Charge Types and Carriers",
+                    question: "State what types of charge are carried by (a) protons, (b) electrons, and (c) neutrons. What is the net charge of an uncharged neutral atom?",
+                    given: "Proton, Electron, Neutron subatomic particles.",
+                    find: "Respective electric charge sign and total atomic charge.",
+                    equation: "Q_{\\text{atom}} = N_p(+e) + N_e(-e)",
+                    rearrangement: "\\text{For neutral atom: } N_p = N_e \\implies Q_{\\text{atom}} = 0",
+                    solution: "1. <strong>Protons:</strong> Carry positive (+) charge.<br>2. <strong>Electrons:</strong> Carry negative (-) charge.<br>3. <strong>Neutrons:</strong> Carry zero (0) charge.<br>4. In a neutral atom, number of protons equals number of electrons, so net charge is zero.",
+                    finalAnswer: "\\text{Proton: }(+), \\; \\text{Electron: }(-), \\; \\text{Neutron: } 0, \\; Q_{\\text{net}} = 0",
+                    explanation: "Matter is electrical in nature, but exhibits no macroscopic charge when positive and negative charges perfectly cancel."
+                },
+                {
+                    title: "Example 2: Charging by Rubbing (Friction)",
+                    question: "When a polythene rod is rubbed with a woolen cloth, what particle is transferred, and which object gains a negative charge?",
+                    given: "Polythene rod rubbed with wool.",
+                    find: "Transferred particle and polarity of rod and cloth.",
+                    equation: "\\text{Electrons transferred from wool } \\to \\text{ polythene rod}",
+                    rearrangement: "\\text{Polythene gains electrons } (-) ; \\text{ Wool loses electrons } (+)",
+                    solution: "1. Electrons are transferred from the wool to the plastic rod.<br>2. The plastic rod now has a surplus of electrons, giving it a negative (-) charge.<br>3. The woolen cloth has a deficit of electrons, leaving it with a surplus positive (+) charge.",
+                    finalAnswer: "\\text{Polythene: Negative (-)}, \\quad \\text{Wool: Positive (+)}",
+                    explanation: "Electrons are mobile and bound less tightly in wool; only electrons transfer during frictional charging."
+                },
+                {
+                    title: "Example 3: Electroscope Divergence Test",
+                    question: "An electroscope is charged negatively so its leaves diverge. When a charged rod of unknown sign is brought near the brass cap, the divergence of the leaves increases. What is the sign of the unknown charge?",
+                    given: "Negatively charged electroscope with diverged leaves. Nearby rod causes divergence to increase.",
+                    find: "Sign of unknown charge on rod.",
+                    equation: "\\text{Increase in divergence} \\implies \\text{Similar charge (-)}",
+                    rearrangement: "\\text{Decrease in divergence} \\implies \\text{Opposite charge (+)}",
+                    solution: "1. The electroscope already has negative charge on its leaves.<br>2. Bringing a similarly charged negative rod repels more electrons down to the leaves.<br>3. The extra like charges on the leaves repel each other more strongly, increasing leaf divergence.",
+                    finalAnswer: "\\text{Unknown charge is Negative } (-)",
+                    explanation: "An increase in leaf divergence confirms the unknown body carries the exact same sign of charge as the electroscope."
+                }
+            ],
+            equations: [
+                {
+                    section: "Electrostatics & Charge",
+                    name: "Law of Electrostatics",
+                    formula: "\\[ (+\\leftrightarrow +), \\quad (-\\leftrightarrow -), \\quad (+ \\to \\leftarrow -) \\]",
+                    explanation: "Like charges repel each other; unlike charges attract each other.",
+                    conditions: "Electrostatic charges at rest.",
+                    variables: [
+                        { symbol: "+, -", rep: "Positive and Negative electric charges", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Electrostatics & Charge",
+                    name: "Elementary Charge Quantization",
+                    formula: "\\[ Q = N \\times e \\]",
+                    explanation: "Net charge is the integer multiple N of the fundamental elementary charge e.",
+                    conditions: "Subatomic charge conservation.",
+                    variables: [
+                        { symbol: "Q", rep: "Total electric charge", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "N", rep: "Number of elementary charges (electrons or protons)", unit: "Integer count", unitSym: "\\text{No unit}" },
+                        { symbol: "e", rep: "Elementary unit charge (1.6 × 10⁻¹⁹ C)", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Coulomb's Law",
+                    name: "Coulomb's Law of Electrostatic Force",
+                    formula: "\\[ F = k \\frac{|q_1 q_2|}{r^2} \\]",
+                    explanation: "The electrostatic force between two stationary point charges is directly proportional to the product of their charges and inversely proportional to the square of the distance separating them.",
+                    conditions: "Point charges in vacuum or air.",
+                    variables: [
+                        { symbol: "F", rep: "Electrostatic force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "k", rep: "Coulomb constant (8.99 × 10⁹ N·m²/C²)", unit: "Newton meter squared per coulomb squared", unitSym: "\\mathrm{N\\cdot m^2/C^2}" },
+                        { symbol: "q_1, q_2", rep: "Electric point charges", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "r", rep: "Distance separating the charges", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Electric Field",
+                    name: "Electric Field Strength",
+                    formula: "\\[ E = \\frac{F}{q} \\iff F = qE \\]",
+                    explanation: "Electric field strength is the electrostatic force experienced per unit positive test charge placed at that point.",
+                    conditions: "Static electric field.",
+                    variables: [
+                        { symbol: "E", rep: "Electric field strength", unit: "Newton per Coulomb (or Volt per meter)", unitSym: "\\mathrm{N/C}" },
+                        { symbol: "F", rep: "Electrostatic force exerted on charge", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "q", rep: "Test charge magnitude", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Electric Potential",
+                    name: "Electric Potential & Work",
+                    formula: "\\[ V = \\frac{W}{q} \\iff W = qV \\]",
+                    explanation: "Electric potential difference is the work done per unit positive charge in bringing it between two points in an electric field.",
+                    conditions: "Electrostatic conservative field.",
+                    variables: [
+                        { symbol: "V", rep: "Electric potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "W", rep: "Work done or electrical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "q", rep: "Quantity of charge moved", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What does the Law of Electrostatics state?", back: "Like charges repel each other; unlike charges attract each other." },
+                { front: "What is the SI unit of electric charge?", back: "The Coulomb (symbol C)." },
+                { front: "Which subatomic particle carries negative charge?", back: "The electron (protons carry positive charge, neutrons have zero charge)." },
+                { front: "What happens when a polythene rod is rubbed with wool?", back: "Electrons transfer from wool to rod, making the rod negatively charged and wool positively charged." },
+                { front: "What are the three main uses of an electroscope?", back: "1. Detect if a body is charged. 2. Detect the sign (+ or -) of charge. 3. Show that charges move through metals." },
+                { front: "Why are aircraft tyres made of conducting rubber?", back: "To safely discharge static electricity accumulated by air friction upon landing, preventing refueling sparks." }
+            ],
+            quiz: [
+                { question: "Which of the following is an example of static electricity?", options: ["A dry-cell battery", "A person being shocked when touching a metal doorknob", "An electric current generating station", "A running electric fan"], correctIndex: 1, feedback: "A spark or shock upon touching a doorknob is caused by the discharge of static electricity." },
+                { question: "A proton has a positive charge. What charge will attract a proton?", options: ["Positive", "Negative", "Neutral", "Repulsive"], correctIndex: 1, feedback: "By the law of electrostatics, unlike charges attract, so a negative charge attracts a proton." },
+                { question: "An atom is electrically neutral under ordinary conditions because:", options: ["It contains only neutrons", "Number of electrons equals number of protons", "Electrons have no charge", "Protons reside outside the nucleus"], correctIndex: 1, feedback: "The equal number of positive protons and negative electrons cancel each other out." },
+                { question: "If an unknown charged body increases the divergence of a negatively charged electroscope, its charge is:", options: ["Positive", "Neutral", "Negative", "Zero"], correctIndex: 2, feedback: "An increase in leaf divergence indicates the rod carries the same sign of charge (negative)." },
+                { question: "Lightning conductors on tall buildings protect structures by:", options: ["Attracting lightning to enter the building", "Providing a low-resistance path to ground and discharging ions via sharp points", "Insulating the building from air", "Storing electricity in batteries"], correctIndex: 1, feedback: "Lightning conductors use action at points to neutralize thunderclouds and safely conduct strikes into the earth." }
+            ]
+        },
+        {
+            id: "g7-l3",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",
+            worksheetUrl: "worksheets/g7-ch3-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Circuit Construction Kit: DC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" },
+                { topic: "Ohm's Law Simulation", url: "https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_all.html" }
+            ],
+            title: "Chapter 3: Electric Current, Potential Difference & Resistance",
+            concepts: [
+                "Electric Current (I): Defined as the rate of flow of electric charges in a circuit, \\(I = \\frac{Q}{t}\\). Measured in Amperes (A), where \\(1\\,\\mathrm{C} = 1\\,\\mathrm{A}\\cdot\\mathrm{s}\\).",
+                "Conventional Current vs Electron Flow: Conventional current flows from positive (+) to negative (-) terminal. Electrons, carrying negative charge, actually drift from negative (-) to positive (+) terminal.",
+                "Current in Series Circuits: The current is identical at all points in a series circuit: \\(I = I_1 = I_2 = I_3\\). Ammeters must always be connected in series.",
+                "Current in Parallel Circuits: The total current entering a parallel junction splits among the branches: \\(I_{\\text{total}} = I_1 + I_2\\).",
+                "Electric Potential Difference (p.d. or Voltage V): The work done or electrical energy transferred per unit of charge: \\(V = \\frac{E}{Q}\\), measured in Volts (V), where \\(1\\,\\mathrm{V} = 1\\,\\mathrm{J/C}\\). Total energy is \\(E = V \\times Q = I \\times V \\times t\\).",
+                "Cells in Series and Parallel: Connecting identical cells in series adds voltages (\\(V = V_1 + V_2 + V_3\\)); connecting cells in parallel keeps voltage the same (\\(V = V_1 = V_2\\)) while extending operational lifetime.",
+                "Voltages Round a Circuit: In a series circuit, total terminal voltage equals the sum of voltages across individual components: \\(V = V_1 + V_2\\). In a parallel circuit, voltages across parallel devices are equal: \\(V = V_1 = V_2\\).",
+                "Electric Resistance (R) & Ohm's Law: Resistance is the opposition of a conductor to the flow of current. Ohm's Law states that current in a metallic conductor is directly proportional to the potential difference across it at constant temperature: \\(R = \\frac{V}{I} \\iff V = IR\\).",
+                "Resistors in Series: Total combined resistance equals the algebraic sum of the separate resistances: \\(R = R_1 + R_2 + R_3\\).",
+                "Resistors in Parallel: The reciprocal of total resistance equals the sum of reciprocals: \\(\\frac{1}{R} = \\frac{1}{R_1} + \\frac{1}{R_2} \\iff R = \\frac{R_1 \\times R_2}{R_1 + R_2}\\). Parallel resistance is always less than any individual branch resistor.",
+                "Unit Prefix Conversions: \\(1\\,\\mathrm{mA} = 10^{-3}\\,\\mathrm{A}\\), \\(1\\,\\mathrm{kA} = 10^3\\,\\mathrm{A}\\), \\(1\\,\\mathrm{k\\Omega} = 10^3\\,\\Omega\\), \\(1\\,\\mathrm{mV} = 10^{-3}\\,\\mathrm{V}\\), \\(1\\,\\mathrm{kV} = 10^3\\,\\mathrm{V}\\)."
+            ],
+            definitions: [
+                { term: "Electric Current", definition: "The continuous rate of flow of electric charges past a point in a circuit.", symbol: "I", unit: "\\mathrm{A} \\;(\\mathrm{Ampere})", equation: "I = \\frac{Q}{t}" },
+                { term: "Coulomb (C)", definition: "The quantity of electric charge passing any point in a circuit when a steady current of 1 Ampere flows for 1 second.", symbol: "\\mathrm{C}", unit: "\\mathrm{A\\cdot s}", equation: "1\\,\\mathrm{C} = 1\\,\\mathrm{A} \\times 1\\,\\mathrm{s}" },
+                { term: "Potential Difference (Voltage)", definition: "The electrical energy transferred (or work done) per Coulomb of electric charge moving between two points in a circuit.", symbol: "V", unit: "\\mathrm{V} \\;(\\mathrm{Volt})", equation: "V = \\frac{E}{Q}" },
+                { term: "Volt (V)", definition: "The potential difference between two points in a circuit when 1 Joule of energy is transferred as 1 Coulomb of charge passes.", symbol: "\\mathrm{V}", unit: "\\mathrm{J/C}", equation: "1\\,\\mathrm{V} = 1\\,\\mathrm{J/C}" },
+                { term: "Electrical Resistance", definition: "The opposition offered by a conductor material to the passage of electric current.", symbol: "R", unit: "\\Omega \\;(\\mathrm{Ohm})", equation: "R = \\frac{V}{I}" },
+                { term: "Ohm (Ω)", definition: "The electrical resistance of a conductor through which a current of 1 Ampere flows when a potential difference of 1 Volt is applied.", symbol: "\\Omega", unit: "\\mathrm{V/A}", equation: "1\\,\\Omega = 1\\,\\mathrm{V/A}" },
+                { term: "Ohm's Law", definition: "The current in a metallic conductor is directly proportional to the potential difference across its ends, provided temperature remains constant.", symbol: "I \\propto V", unit: "\\text{Law of Electricity}", equation: "V = IR \\iff R = \\frac{V}{I}" },
+                { term: "Rheostat (Variable Resistor)", definition: "A variable resistor with a sliding contact over a coil of constantan wire used to regulate current or divide potential in a circuit.", symbol: "\\text{Rheostat}", unit: "\\Omega", equation: "\\text{Adjusts circuit current or p.d.}" },
+                { term: "Equivalent Resistance (Series)", definition: "The total effective resistance of resistors connected end-to-end along a single path.", symbol: "R_{\\text{eq}}", unit: "\\Omega", equation: "R_{\\text{eq}} = R_1 + R_2 + R_3" },
+                { term: "Equivalent Resistance (Parallel)", definition: "The total effective resistance of resistors connected across common voltage nodes.", symbol: "R_{\\text{eq}}", unit: "\\Omega", equation: "R_{\\text{eq}} = \\frac{R_1 R_2}{R_1 + R_2} \\;\\Big|\\; \\frac{1}{R_{\\text{eq}}} = \\sum \\frac{1}{R_i}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Calculating Charge from Current and Time",
+                    question: "A current of 4 A flows through a light bulb. Find the amount of charge flowing through the bulb in 60 s.",
+                    given: "Current \\( I = 4\\,\\mathrm{A} \\), Time \\( t = 60\\,\\mathrm{s} \\).",
+                    find: "Total charge (\\( Q \\)) in Coulombs.",
+                    equation: "Q = I \\times t",
+                    rearrangement: "Q = 4\\,\\mathrm{A} \\times 60\\,\\mathrm{s}",
+                    solution: "Multiply current by time:<br>\\[ Q = 4 \\times 60 = 240\\,\\mathrm{C} \\]",
+                    finalAnswer: "Q = 240\\,\\mathrm{C}",
+                    explanation: "Charge equals current multiplied by time in seconds (1 A·s = 1 C)."
+                },
+                {
+                    title: "Example 2: Calculating Current from Charge and Time",
+                    question: "How much current must there be in a circuit if 1000 Coulombs flow past a point in 4 minutes?",
+                    given: "Charge \\( Q = 1000\\,\\mathrm{C} \\), Time \\( t = 4\\,\\text{minutes} = 4 \\times 60 = 240\\,\\mathrm{s} \\).",
+                    find: "Electric current (\\( I \\)) in Amperes.",
+                    equation: "I = \\frac{Q}{t}",
+                    rearrangement: "I = \\frac{1000\\,\\mathrm{C}}{240\\,\\mathrm{s}}",
+                    solution: "1. <strong>Convert time to seconds:</strong> \\( t = 4 \\times 60 = 240\\,\\mathrm{s} \\).<br>2. <strong>Compute Current:</strong><br>\\[ I = \\frac{1000}{240} = \\frac{25}{6} \\approx 4.17\\,\\mathrm{A} \\]",
+                    finalAnswer: "I \\approx 4.17\\,\\mathrm{A}",
+                    explanation: "Time must always be converted into SI base units of seconds before dividing."
+                },
+                {
+                    title: "Example 3: Energy Transferred by Potential Difference",
+                    question: "The p.d. across a lamp is 12 V. How many Joules of electrical energy are changed into light and heat when (a) a charge of 1 C passes, (b) a charge of 5 C passes, and (c) a current of 2 A flows for 10 s?",
+                    given: "Voltage \\( V = 12\\,\\mathrm{V} \\).",
+                    find: "Energy transferred (\\( E \\)) for each case.",
+                    equation: "E = V \\times Q, \\quad E = I \\times V \\times t",
+                    rearrangement: "\\text{(a) } E = 12 \\times 1, \\quad \\text{(b) } E = 12 \\times 5, \\quad \\text{(c) } E = 2 \\times 12 \\times 10",
+                    solution: "1. <strong>Case (a) with Q = 1 C:</strong><br>\\[ E = 12\\,\\mathrm{V} \\times 1\\,\\mathrm{C} = 12\\,\\mathrm{J} \\]<br>2. <strong>Case (b) with Q = 5 C:</strong><br>\\[ E = 12\\,\\mathrm{V} \\times 5\\,\\mathrm{C} = 60\\,\\mathrm{J} \\]<br>3. <strong>Case (c) with I = 2 A, t = 10 s:</strong><br>\\[ Q = I \\times t = 2 \\times 10 = 20\\,\\mathrm{C} \\implies E = 20\\,\\mathrm{C} \\times 12\\,\\mathrm{V} = 240\\,\\mathrm{J} \\]",
+                    finalAnswer: "\\text{(a) } 12\\,\\mathrm{J}, \\quad \\text{(b) } 60\\,\\mathrm{J}, \\quad \\text{(c) } 240\\,\\mathrm{J}",
+                    explanation: "Potential difference measures energy transferred per coulomb; energy is proportional to charge and duration."
+                },
+                {
+                    title: "Example 4: Three Identical Resistors in Series",
+                    question: "Three resistors of 9 Ω, 9 Ω, and 9 Ω are connected in series. What is the total equivalent resistance?",
+                    given: "Resistances \\( R_1 = 9\\,\\Omega, \\; R_2 = 9\\,\\Omega, \\; R_3 = 9\\,\\Omega \\).",
+                    find: "Total equivalent resistance (\\( R_{\\text{tot}} \\)).",
+                    equation: "R_{\\text{tot}} = R_1 + R_2 + R_3",
+                    rearrangement: "R_{\\text{tot}} = 9\\,\\Omega + 9\\,\\Omega + 9\\,\\Omega",
+                    solution: "Sum the resistances along the single path:<br>\\[ R_{\\text{tot}} = 9 + 9 + 9 = 27\\,\\Omega \\]",
+                    finalAnswer: "R_{\\text{tot}} = 27\\,\\Omega",
+                    explanation: "In a series circuit, each resistor adds its opposition directly to the flow of current."
+                },
+                {
+                    title: "Example 5: Two Resistors in Parallel",
+                    question: "Two resistors of 4 Ω and 12 Ω are connected in parallel. Find the combined equivalent resistance.",
+                    given: "Resistances \\( R_1 = 4\\,\\Omega, \\; R_2 = 12\\,\\Omega \\).",
+                    find: "Combined resistance (\\( R_{\\text{tot}} \\)).",
+                    equation: "\\frac{1}{R_{\\text{tot}}} = \\frac{1}{R_1} + \\frac{1}{R_2} \\iff R_{\\text{tot}} = \\frac{R_1 \\times R_2}{R_1 + R_2}",
+                    rearrangement: "R_{\\text{tot}} = \\frac{4 \\times 12}{4 + 12} = \\frac{48}{16}",
+                    solution: "1. <strong>Using Reciprocal Method:</strong><br>\\[ \\frac{1}{R_{\\text{tot}}} = \\frac{1}{4} + \\frac{1}{12} = \\frac{3}{12} + \\frac{1}{12} = \\frac{4}{12} = \\frac{1}{3} \\implies R_{\\text{tot}} = 3\\,\\Omega \\]<br>2. <strong>Using Product-Over-Sum:</strong><br>\\[ R_{\\text{tot}} = \\frac{4 \\times 12}{4 + 12} = \\frac{48}{16} = 3\\,\\Omega \\]",
+                    finalAnswer: "R_{\\text{tot}} = 3\\,\\Omega",
+                    explanation: "Connecting resistors in parallel creates alternative current paths, making the combined resistance smaller than any individual branch."
+                },
+                {
+                    title: "Example 6: Applying Ohm's Law with Prefix Conversion",
+                    question: "A circuit has a 12 V power supply and a 1 kΩ resistor. What is the current flowing in the circuit in mA?",
+                    given: "Voltage \\( V = 12\\,\\mathrm{V} \\), Resistance \\( R = 1\\,\\mathrm{k\\Omega} = 1000\\,\\Omega \\).",
+                    find: "Current (\\( I \\)) in Amperes and milliamperes (mA).",
+                    equation: "I = \\frac{V}{R}",
+                    rearrangement: "I = \\frac{12\\,\\mathrm{V}}{1000\\,\\Omega}",
+                    solution: "1. <strong>Calculate Current in Amperes:</strong><br>\\[ I = \\frac{12}{1000} = 0.012\\,\\mathrm{A} \\]<br>2. <strong>Convert to mA:</strong><br>\\[ I = 0.012 \\times 1000 = 12\\,\\mathrm{mA} \\]",
+                    finalAnswer: "I = 0.012\\,\\mathrm{A} \\quad (12\\,\\mathrm{mA})",
+                    explanation: "1 kΩ equals 1000 Ω; dividing voltage by kilo-ohms yields current in milliamperes directly."
+                }
+            ],
+            equations: [
+                {
+                    section: "Electric Current",
+                    name: "Electric Current Equation",
+                    formula: "\\[ I = \\frac{Q}{t} \\iff Q = I \\times t \\]",
+                    explanation: "Electric current is the rate of flow of electric charges past a point in a circuit.",
+                    conditions: "Steady, uniform direct current.",
+                    variables: [
+                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "Q", rep: "Electric charge", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "t", rep: "Time taken", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Electric Potential Difference",
+                    name: "Potential Difference (Voltage) Equation",
+                    formula: "\\[ V = \\frac{E}{Q} \\iff E = V \\times Q \\]",
+                    explanation: "Potential difference is the work done or electrical energy transferred per unit charge.",
+                    conditions: "Electrostatic potential difference across a device.",
+                    variables: [
+                        { symbol: "V", rep: "Potential difference (voltage)", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "E", rep: "Energy transferred or work done", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "Q", rep: "Electric charge transferred", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Electric Potential Difference",
+                    name: "Total Electrical Energy in Terms of Current",
+                    formula: "\\[ E = I \\times V \\times t \\]",
+                    explanation: "Substituting Q = It yields total electrical energy transferred over time t.",
+                    conditions: "Steady voltage and current.",
+                    variables: [
+                        { symbol: "E", rep: "Electrical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "V", rep: "Potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "t", rep: "Time interval", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Ohm's Law & Resistance",
+                    name: "Ohm's Law Equation",
+                    formula: "\\[ R = \\frac{V}{I} \\iff V = IR \\iff I = \\frac{V}{R} \\]",
+                    explanation: "Resistance is the ratio of potential difference across a conductor to the resulting current.",
+                    conditions: "Ohmic metallic conductors at constant temperature.",
+                    variables: [
+                        { symbol: "R", rep: "Electrical resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "V", rep: "Potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "Resistor Combinations",
+                    name: "Resistors in Series",
+                    formula: "\\[ R_{\\text{eq}} = R_1 + R_2 + R_3 + \\dots \\]",
+                    explanation: "The equivalent resistance of series resistors is the sum of their individual values.",
+                    conditions: "End-to-end unbranched series connection.",
+                    variables: [
+                        { symbol: "R_{\\text{eq}}", rep: "Total equivalent resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "R_1, R_2, R_3", rep: "Individual series resistors", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Resistor Combinations",
+                    name: "Resistors in Parallel",
+                    formula: "\\[ \\frac{1}{R_{\\text{eq}}} = \\frac{1}{R_1} + \\frac{1}{R_2} \\iff R_{\\text{eq}} = \\frac{R_1 \\times R_2}{R_1 + R_2} \\]",
+                    explanation: "Combined resistance of parallel resistors is the reciprocal sum, or product divided by sum for two resistors.",
+                    conditions: "Parallel branches across identical voltage.",
+                    variables: [
+                        { symbol: "R_{\\text{eq}}", rep: "Total equivalent resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "R_1, R_2", rep: "Individual parallel resistors", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Circuit Laws",
+                    name: "Voltages and Currents in Series vs Parallel",
+                    formula: "\\[ V_{\\text{series}} = V_1 + V_2, \\quad I_{\\text{series}} = \\text{const}; \\qquad V_{\\text{parallel}} = \\text{const}, \\quad I_{\\text{parallel}} = I_1 + I_2 \\]",
+                    explanation: "Summarizes Kirchhoff's branch rules for voltages and currents in basic DC configurations.",
+                    conditions: "Direct current circuits.",
+                    variables: [
+                        { symbol: "V", rep: "Total circuit potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I", rep: "Total circuit current", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "Electrical Power",
+                    name: "Electrical Power Equation",
+                    formula: "\\[ P = IV = I^2 R = \\frac{V^2}{R} \\]",
+                    explanation: "The rate at which electrical energy is transformed into thermal, radiant, or mechanical energy in a circuit component.",
+                    conditions: "Steady DC or instantaneous AC power in resistive loads.",
+                    variables: [
+                        { symbol: "P", rep: "Electrical power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "V", rep: "Potential difference (voltage)", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "R", rep: "Resistance of conductor", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Conductor Resistance",
+                    name: "Resistance and Resistivity Law",
+                    formula: "\\[ R = \\rho \\frac{L}{A} \\iff \\rho = \\frac{RA}{L} \\]",
+                    explanation: "The resistance of a uniform conductor is directly proportional to its length and inversely proportional to its cross-sectional area.",
+                    conditions: "Uniform cylindrical or rectangular wire at constant temperature.",
+                    variables: [
+                        { symbol: "R", rep: "Resistance of the conductor", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "\\rho", rep: "Resistivity of the material", unit: "Ohm meter", unitSym: "\\Omega\\cdot\\mathrm{m}" },
+                        { symbol: "L", rep: "Length of the wire", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "A", rep: "Cross-sectional area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Electromotive Force",
+                    name: "EMF and Internal Resistance",
+                    formula: "\\[ E = I(R + r) = V + Ir \\iff V = E - Ir \\]",
+                    explanation: "Electromotive force E of a source equals terminal potential difference V plus the internal voltage drop Ir across internal resistance r.",
+                    conditions: "Closed DC circuit with a real power source.",
+                    variables: [
+                        { symbol: "E", rep: "Electromotive force (EMF)", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "V", rep: "Terminal potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I", rep: "Total circuit current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "R", rep: "External load resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "r", rep: "Internal resistance of the battery", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Circuit Laws",
+                    name: "Current Divider Rule (Parallel Branches)",
+                    formula: "\\[ I_1 = I_{\\text{total}} \\left(\\frac{R_2}{R_1 + R_2}\\right), \\quad I_2 = I_{\\text{total}} \\left(\\frac{R_1}{R_1 + R_2}\\right) \\]",
+                    explanation: "Calculates the individual branch current flowing through one of two parallel resistors from the total incoming current.",
+                    conditions: "Two resistors connected in parallel.",
+                    variables: [
+                        { symbol: "I_1, I_2", rep: "Branch currents", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "I_{\\text{total}}", rep: "Total current entering junction", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "R_1, R_2", rep: "Branch resistances", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula defining electric current?", back: "\\( I = \\frac{Q}{t} \\iff Q = I \\times t \\)" },
+                { front: "What is the SI unit of current and what does it equal?", back: "Ampere (A); \\( 1\\,\\mathrm{A} = 1\\,\\mathrm{C/s} \\)" },
+                { front: "What is the formula defining electric potential difference (volt)?", back: "\\( V = \\frac{E}{Q} \\iff E = V \\times Q \\)" },
+                { front: "State Ohm's Law mathematically.", back: "\\( V = IR \\iff R = \\frac{V}{I} \\iff I = \\frac{V}{R} \\)" },
+                { front: "What is the formula for two resistors in series?", back: "\\( R = R_1 + R_2 \\)" },
+                { front: "What is the formula for two resistors in parallel?", back: "\\( R = \\frac{R_1 \\times R_2}{R_1 + R_2} \\quad\\text{or}\\quad \\frac{1}{R} = \\frac{1}{R_1} + \\frac{1}{R_2} \\)" },
+                { front: "How is an ammeter connected vs a voltmeter?", back: "An ammeter is connected in series; a voltmeter is connected in parallel." },
+                { front: "What happens to the current in an unbranched series circuit?", back: "The current is identical at every point in a series circuit." }
+            ],
+            quiz: [
+                { question: "If 1000 Coulombs flow past a point in 4 minutes (240 s), the current is approximately:", options: ["4.17 A", "250 A", "4000 A", "0.24 A"], correctIndex: 0, feedback: "I = Q / t = 1000 / 240 ≈ 4.17 A." },
+                { question: "The potential difference across a device that transfers 60 Joules for 5 Coulombs of charge is:", options: ["300 V", "12 V", "0.083 V", "55 V"], correctIndex: 1, feedback: "V = E / Q = 60 / 5 = 12 V." },
+                { question: "When two resistors of 4 Ω and 12 Ω are connected in parallel, their equivalent resistance is:", options: ["16 Ω", "8 Ω", "3 Ω", "48 Ω"], correctIndex: 2, feedback: "R = (4 × 12) / (4 + 12) = 48 / 16 = 3 Ω." },
+                { question: "Which equation represents Ohm's Law?", options: ["P = VI", "I = V / R", "E = VQ", "F = ma"], correctIndex: 1, feedback: "Ohm's Law states I = V / R, or V = IR." },
+                { question: "In a series circuit with two lamps, if one lamp burns out and breaks the circuit, the second lamp:", options: ["Gets twice as bright", "Will not light up", "Continues glowing normally", "Flashes intermittently"], correctIndex: 1, feedback: "In a series circuit, there is only one continuous path for current; breaking it stops all current flow." }
+            ]
+        },
+        {
+            id: "g7-l4",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g7-ch4-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Under Pressure", url: "https://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_all.html" },
+                { topic: "Gas Properties", url: "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" }
+            ],
+            title: "Chapter 4: Pressure in Solids, Liquids & Gases",
+            concepts: [
+                "Mass vs Weight: Mass (m) is the invariant quantity of substance in kg. Weight (W) is the gravitational force exerted by the Earth on that mass, \\(W = mg\\), measured in Newtons (N). Near Earth, gravitational field strength \\(g \\approx 9.8\\,\\mathrm{N/kg}\\) (or \\(10\\,\\mathrm{N/kg}\\) for simplified calculations).",
+                "Pressure in Solids: Defined as the perpendicular force acting per unit surface area: \\(P = \\frac{F}{A}\\). The SI unit is Newton per square meter (\\(\\mathrm{N/m^2}\\)), called the Pascal (Pa). \\(1\\,\\mathrm{Pa} = 1\\,\\mathrm{N/m^2}\\).",
+                "Effect of Contact Area: A smaller contact area concentrates force and produces immense pressure (e.g. sharp knives, nail tips, axes, stiletto heels, ballpoint pens). A larger contact area spreads force and reduces pressure, preventing objects from sinking (e.g. elephant hooves, wide tractor tires, skis, snowboards).",
+                "Pressure in Liquids: Liquid pressure acts in all directions equally at a given depth and depends strictly on depth (h) and liquid density (\\(\\rho\\)): \\(P = \\rho g h\\). It is independent of container shape or base area.",
+                "Pascal's Principle: Pressure applied to an enclosed, confined fluid is transmitted undiminished to every point in the fluid and to the walls of the containing vessel: \\(P_1 = P_2 \\iff \\frac{F_1}{A_1} = \\frac{F_2}{A_2}\\). This principle operates hydraulic presses, hydraulic car lifts, and hydraulic vehicle brakes.",
+                "Atmospheric Pressure: The Earth is surrounded by the atmosphere. Air has mass and weight, exerting downward pressure on all surfaces. Standard atmospheric pressure at sea level supports a \\(76\\,\\mathrm{cm}\\) (\\(760\\,\\mathrm{mm}\\)) column of mercury: \\(1\\,\\mathrm{atm} = 760\\,\\mathrm{torr} = 1.01 \\times 10^5\\,\\mathrm{Pa} = 1.01\\,\\mathrm{bar} = 1010\\,\\mathrm{mbar}\\).",
+                "Measurement of Air Pressure: A Mercury Barometer uses an inverted glass tube with a Torricellian vacuum at the top. A water barometer would require a glass tube over 10 meters tall (\\(h_w \\approx 10.34\\,\\mathrm{m}\\))! Mercury is preferred because of its very high density (\\(\\rho = 1.36 \\times 10^4\\,\\mathrm{kg/m^3}\\)), low vapor pressure, and clear meniscus.",
+                "Everyday Atmospheric Pressure Devices: Siphons (moving liquids over barriers from higher to lower levels), Lift Pumps (valves A and B operating by atmospheric pressure to draw water from wells up to ~10 m), Syringes (drawing plunger reduces barrel pressure, allowing outside atmospheric pressure to force liquid in), and Rubber Suckers."
+            ],
+            definitions: [
+                { term: "Pressure", definition: "The perpendicular force exerted per unit area of a surface.", symbol: "P", unit: "\\mathrm{Pa} \\;(\\mathrm{N/m^2})", equation: "P = \\frac{F}{A}" },
+                { term: "Pascal (Pa)", definition: "The SI unit of pressure equal to a force of 1 Newton acting perpendicular to an area of 1 square meter.", symbol: "\\mathrm{Pa}", unit: "\\mathrm{N/m^2}", equation: "1\\,\\mathrm{Pa} = 1\\,\\mathrm{N/m^2}" },
+                { term: "Weight Force", definition: "The gravitational downward force exerted on an object's mass by the Earth.", symbol: "W", unit: "\\mathrm{N}", equation: "W = mg" },
+                { term: "Gravitational Field Strength", definition: "The gravitational force experienced per unit mass at a point in space.", symbol: "g", unit: "\\mathrm{N/kg} \\;(\\mathrm{m/s^2})", equation: "g = \\frac{W}{m} \\approx 9.8\\,\\mathrm{N/kg}" },
+                { term: "Liquid Hydrostatic Pressure", definition: "The pressure exerted by a stationary liquid column at a given depth below its surface.", symbol: "P", unit: "\\mathrm{Pa}", equation: "P = \\rho g h" },
+                { term: "Pascal's Principle", definition: "Pressure applied to an enclosed, incompressible fluid is transmitted undiminished to every portion of the fluid and container walls.", symbol: "P_1 = P_2", unit: "\\text{Fluid Mechanics Principle}", equation: "\\frac{F_1}{A_1} = \\frac{F_2}{A_2} \\iff F_2 = F_1 \\left(\\frac{A_2}{A_1}\\right)" },
+                { term: "Atmospheric Pressure", definition: "The force per unit area exerted on a surface by the weight of the air column in the atmosphere above that surface.", symbol: "P_{\\text{atm}}", unit: "\\mathrm{Pa} \\;(\\text{or } \\mathrm{torr})", equation: "1\\,\\mathrm{atm} = 760\\,\\mathrm{mmHg} = 1.01 \\times 10^5\\,\\mathrm{Pa}" },
+                { term: "Mercury Barometer", definition: "An instrument consisting of an inverted glass tube filled with mercury used to measure atmospheric pressure by the height of the mercury column supported.", symbol: "\\text{Barometer}", unit: "\\mathrm{cm\\text{-}Hg} \\text{ or torr}", equation: "P = \\rho_{\\text{Hg}} g h_{\\text{Hg}}" },
+                { term: "Siphon", definition: "A bent tube that allows liquid to flow from a higher reservoir over an elevation barrier down to a lower level without disturbing the liquid vessel.", symbol: "\\text{Siphon}", unit: "\\text{Fluid device}", equation: "\\text{Operated by liquid hydrostatic & atmospheric pressure}" },
+                { term: "Lift Pump", definition: "A mechanical device with a barrel, piston, and two one-way valves used to lift water from wells utilizing atmospheric pressure up to ~10 meters.", symbol: "\\text{Lift Pump}", unit: "\\text{Fluid machine}", equation: "h_{\\text{max}} \\approx 10\\,\\mathrm{m} \\;(\\text{water})" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Pressure Exerted by a Standing Person",
+                    question: "If your mass is 70 kg and the total area of the soles of both your feet is 0.2 m², what pressure do you exert on the ground? (Take g = 9.8 m/s²).",
+                    given: "Mass \\( m = 70\\,\\mathrm{kg} \\), Contact area \\( A = 0.2\\,\\mathrm{m^2} \\), \\( g = 9.8\\,\\mathrm{m/s^2} \\).",
+                    find: "Pressure exerted on ground (\\( P \\)).",
+                    equation: "F = mg, \\quad P = \\frac{F}{A} = \\frac{mg}{A}",
+                    rearrangement: "P = \\frac{70 \\times 9.8}{0.2}",
+                    solution: "1. <strong>Weight Force:</strong><br>\\[ F = mg = 70 \\times 9.8 = 686\\,\\mathrm{N} \\]<br>2. <strong>Pressure:</strong><br>\\[ P = \\frac{686\\,\\mathrm{N}}{0.2\\,\\mathrm{m^2}} = 3430\\,\\mathrm{Pa} \\approx 3400\\,\\mathrm{Pa} \\]",
+                    finalAnswer: "P = 3430\\,\\mathrm{Pa} \\; (3.43\\,\\mathrm{kPa})",
+                    explanation: "Direct textbook example showing calculation of weight force divided by total foot surface area."
+                },
+                {
+                    title: "Example 2: Enormous Pressure at a Sharp Nail Tip",
+                    question: "Calculate the pressure exerted at a point when a nail tip of area 0.1 cm² is hammered into a wooden block with a force of 20 N.",
+                    given: "Force \\( F = 20\\,\\mathrm{N} \\), Area \\( A = 0.1\\,\\mathrm{cm^2} = 0.1 \\times 10^{-4}\\,\\mathrm{m^2} = 0.00001\\,\\mathrm{m^2} = 10^{-5}\\,\\mathrm{m^2} \\).",
+                    find: "Pressure (\\( P \\)) in \\( \\mathrm{N/m^2} \\) (Pa).",
+                    equation: "P = \\frac{F}{A}",
+                    rearrangement: "P = \\frac{20\\,\\mathrm{N}}{0.00001\\,\\mathrm{m^2}}",
+                    solution: "Convert area to square meters and divide:<br>\\[ P = \\frac{20}{10^{-5}} = 2{,}000{,}000\\,\\mathrm{N/m^2} = 2.0 \\times 10^6\\,\\mathrm{Pa} \\]",
+                    finalAnswer: "P = 2{,}000{,}000\\,\\mathrm{Pa} \\quad (2.0 \\times 10^6\\,\\mathrm{Pa} = 2000\\,\\mathrm{kPa})",
+                    explanation: "Because the nail tip has an extremely minute area, even a modest 20 N hammer blow generates 2 million Pascals of pressure, piercing the wood."
+                },
+                {
+                    title: "Example 3: Maximum vs Minimum Pressure of a Solid Block",
+                    question: "A rectangular block of mass 50 kg has dimensions 1 m × 2 m × 5 m. Calculate (a) the maximum pressure when resting on its smallest face, and (b) the minimum pressure when resting on its largest face. (Take g = 10 m/s²).",
+                    given: "Mass \\( m = 50\\,\\mathrm{kg} \\), \\( g = 10\\,\\mathrm{m/s^2} \\), dimensions \\( 1\\,\\mathrm{m} \\times 2\\,\\mathrm{m} \\times 5\\,\\mathrm{m} \\).",
+                    find: "Weight \\( W \\), Minimum area \\( A_{\\text{min}} \\), Maximum area \\( A_{\\text{max}} \\), \\( P_{\\text{max}} \\), and \\( P_{\\text{min}} \\).",
+                    equation: "W = mg, \\quad P_{\\text{max}} = \\frac{W}{A_{\\text{min}}}, \\quad P_{\\text{min}} = \\frac{W}{A_{\\text{max}}}",
+                    rearrangement: "A_{\\text{min}} = 1 \\times 2 = 2\\,\\mathrm{m^2}, \\quad A_{\\text{max}} = 2 \\times 5 = 10\\,\\mathrm{m^2}",
+                    solution: "1. <strong>Weight Force:</strong><br>\\[ W = mg = 50 \\times 10 = 500\\,\\mathrm{N} \\]<br>2. <strong>Maximum Pressure (Smallest Area \\( 1\\,\\mathrm{m} \\times 2\\,\\mathrm{m} = 2\\,\\mathrm{m^2} \\)):</strong><br>\\[ P_{\\text{max}} = \\frac{500\\,\\mathrm{N}}{2\\,\\mathrm{m^2}} = 250\\,\\mathrm{N/m^2} \\]<br>3. <strong>Minimum Pressure (Largest Area \\( 2\\,\\mathrm{m} \\times 5\\,\\mathrm{m} = 10\\,\\mathrm{m^2} \\)):</strong><br>\\[ P_{\\text{min}} = \\frac{500\\,\\mathrm{N}}{10\\,\\mathrm{m^2}} = 50\\,\\mathrm{N/m^2} \\]",
+                    finalAnswer: "P_{\\text{max}} = 250\\,\\mathrm{N/m^2}, \\quad P_{\\text{min}} = 50\\,\\mathrm{N/m^2}",
+                    explanation: "The block exerts five times more pressure on its smallest face than on its largest face, proving pressure is inversely proportional to area."
+                },
+                {
+                    title: "Example 4: Liquid Pressure at Depth in a Vessel",
+                    question: "A vessel is filled with water of density 1000 kg/m³ to a depth of 50 cm. Calculate the liquid pressure exerted on the base. (Take g = 10 m/s²).",
+                    given: "Depth \\( h = 50\\,\\mathrm{cm} = 0.5\\,\\mathrm{m} \\), Density \\( \\rho = 1000\\,\\mathrm{kg/m^3} \\), \\( g = 10\\,\\mathrm{m/s^2} \\).",
+                    find: "Liquid pressure (\\( P \\)).",
+                    equation: "P = \\rho g h",
+                    rearrangement: "P = 1000\\,\\mathrm{kg/m^3} \\times 10\\,\\mathrm{m/s^2} \\times 0.5\\,\\mathrm{m}",
+                    solution: "Multiply density, gravity, and depth:<br>\\[ P = 1000 \\times 10 \\times 0.5 = 5000\\,\\mathrm{N/m^2} = 5000\\,\\mathrm{Pa} \\]",
+                    finalAnswer: "P = 5000\\,\\mathrm{Pa} \\quad (5.0\\,\\mathrm{kPa})",
+                    explanation: "Liquid pressure increases linearly with depth; depth must be expressed in meters."
+                },
+                {
+                    title: "Example 5: Force Multiplication in a Hydraulic Press (Pascal's Principle)",
+                    question: "In a hydraulic press, the small piston has an area of 8 cm² while the large piston has an area of 400 cm². If a force of 20 N is applied to the small piston, what force is produced on the large piston?",
+                    given: "Small piston area \\( A_1 = 8\\,\\mathrm{cm^2} = 0.0008\\,\\mathrm{m^2} \\), Large piston area \\( A_2 = 400\\,\\mathrm{cm^2} = 0.04\\,\\mathrm{m^2} \\), Effort force \\( F_1 = 20\\,\\mathrm{N} \\).",
+                    find: "Lifting force on large piston (\\( F_2 \\)).",
+                    equation: "\\frac{F_1}{A_1} = \\frac{F_2}{A_2} \\implies F_2 = \\frac{A_2}{A_1} \\times F_1",
+                    rearrangement: "F_2 = \\frac{400\\,\\mathrm{cm^2}}{8\\,\\mathrm{cm^2}} \\times 20\\,\\mathrm{N} = 50 \\times 20\\,\\mathrm{N}",
+                    solution: "1. <strong>Area Ratio:</strong> \\( \\frac{A_2}{A_1} = \\frac{400}{8} = 50 \\).<br>2. <strong>Force on Large Piston:</strong><br>\\[ F_2 = 50 \\times 20\\,\\mathrm{N} = 1000\\,\\mathrm{N} \\]",
+                    finalAnswer: "F_2 = 1000\\,\\mathrm{N} \\quad (1.0\\,\\mathrm{kN})",
+                    explanation: "Pascal's principle multiplies force by 50 times because the output piston's area is 50 times larger than the input piston's area."
+                },
+                {
+                    title: "Example 6: Atmospheric Pressure Conversion (torr, Pa, bar)",
+                    question: "In a certain area, atmospheric pressure is 820 torr. Express this pressure in (a) Pascal, (b) bar, and (c) millibar. (Standard pressure: 760 torr = 101,000 Pa = 1.01 bar).",
+                    given: "Pressure \\( P = 820\\,\\mathrm{torr} \\).",
+                    find: "Pressure in Pa, bar, and millibar.",
+                    equation: "P(\\mathrm{Pa}) = \\frac{820}{760} \\times 101{,}000\\,\\mathrm{Pa}, \\quad P(\\mathrm{bar}) = \\frac{820}{760} \\times 1.01\\,\\mathrm{bar}",
+                    rearrangement: "\\text{millibar} = \\text{bar} \\times 1000",
+                    solution: "1. <strong>In Pascal:</strong><br>\\[ P = \\frac{101{,}000 \\times 820}{760} \\approx 108{,}974\\,\\mathrm{Pa} \\; (1.09 \\times 10^5\\,\\mathrm{Pa}) \\]<br>2. <strong>In Bar:</strong><br>\\[ P = \\frac{1.01 \\times 820}{760} \\approx 1.09\\,\\mathrm{bar} \\]<br>3. <strong>In Millibar:</strong><br>\\[ P = 1.09 \\times 1000 = 1090\\,\\mathrm{millibar} \\]",
+                    finalAnswer: "P \\approx 1.09 \\times 10^5\\,\\mathrm{Pa} = 1.09\\,\\mathrm{bar} = 1090\\,\\mathrm{mbar}",
+                    explanation: "Atmospheric pressures above 760 torr correspond to high-pressure weather zones exceeding 1.01 bar."
+                }
+            ],
+            equations: [
+                {
+                    section: "Pressure in Solids",
+                    name: "Pressure Definition Equation",
+                    formula: "\\[ P = \\frac{F}{A} \\iff F = P \\times A \\iff A = \\frac{F}{P} \\]",
+                    explanation: "Pressure is the amount of perpendicular force acting per unit surface area.",
+                    conditions: "Force distributed uniformly over flat area A.",
+                    variables: [
+                        { symbol: "P", rep: "Pressure", unit: "Pascal (Newton per square meter)", unitSym: "\\mathrm{Pa} \\; (\\mathrm{N/m^2})" },
+                        { symbol: "F", rep: "Normal thrust force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "A", rep: "Contact surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Pressure in Solids",
+                    name: "Weight Equation",
+                    formula: "\\[ W = mg \\]",
+                    explanation: "Gravitational force acting downward on a mass m near Earth's surface.",
+                    conditions: "Local gravitational field strength g ≈ 9.8 N/kg (or 10 N/kg).",
+                    variables: [
+                        { symbol: "W", rep: "Weight force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Mass of object", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational field strength", unit: "Newton per kilogram", unitSym: "\\mathrm{N/kg}" }
+                    ]
+                },
+                {
+                    section: "Pressure in Liquids",
+                    name: "Liquid Hydrostatic Pressure Equation",
+                    formula: "\\[ P = \\rho g h \\]",
+                    explanation: "Hydrostatic pressure exerted by a fluid at depth h beneath its free surface.",
+                    conditions: "Incompressible static fluid at rest.",
+                    variables: [
+                        { symbol: "P", rep: "Liquid pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Density of the liquid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "g", rep: "Acceleration due to gravity", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Depth below liquid surface", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Pressure in Liquids",
+                    name: "Total Downward Force on Container Base",
+                    formula: "\\[ F = P \\times A = \\rho g h A \\]",
+                    explanation: "Total thrust force exerted by liquid column on the bottom surface of area A.",
+                    conditions: "Flat container floor.",
+                    variables: [
+                        { symbol: "F", rep: "Thrust force on bottom", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "P", rep: "Liquid pressure at base", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "A", rep: "Area of the base", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Pascal's Principle & Hydraulics",
+                    name: "Pascal's Principle (Hydraulic Multiplier)",
+                    formula: "\\[ P_1 = P_2 \\implies \\frac{F_1}{A_1} = \\frac{F_2}{A_2} \\iff F_2 = F_1 \\times \\frac{A_2}{A_1} \\]",
+                    explanation: "External pressure applied to an enclosed fluid transmits equally, multiplying force by the ratio of piston areas.",
+                    conditions: "Confined, enclosed incompressible liquid (oil or hydraulic fluid).",
+                    variables: [
+                        { symbol: "F_1", rep: "Input effort force on small piston", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "A_1", rep: "Cross-sectional area of small piston", unit: "Square meter (or cm²)", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "F_2", rep: "Output lifting force on large piston", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "A_2", rep: "Cross-sectional area of large piston", unit: "Square meter (or cm²)", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Atmospheric Pressure",
+                    name: "Standard Atmospheric Pressure Equivalences",
+                    formula: "\\[ 1\\,\\mathrm{atm} = 76\\,\\mathrm{cmHg} = 760\\,\\mathrm{mmHg} = 760\\,\\mathrm{torr} = 1.01 \\times 10^5\\,\\mathrm{Pa} = 1.01\\,\\mathrm{bar} = 1010\\,\\mathrm{mbar} \\]",
+                    explanation: "Standard atmospheric pressure at sea level measured across international units.",
+                    conditions: "Standard sea level temperature and pressure (STP).",
+                    variables: [
+                        { symbol: "1\\,\\mathrm{atm}", rep: "Standard atmosphere", unit: "Atmosphere", unitSym: "\\mathrm{atm}" },
+                        { symbol: "\\mathrm{torr}", rep: "Torr (1 mm of Mercury)", unit: "Millimeter of mercury", unitSym: "\\mathrm{mmHg}" },
+                        { symbol: "\\mathrm{Pa}", rep: "Pascal (N/m²)", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\mathrm{bar}", rep: "Bar (100,000 Pa)", unit: "Bar", unitSym: "\\mathrm{bar}" }
+                    ]
+                },
+                {
+                    section: "Atmospheric Pressure",
+                    name: "Barometer Column Height Ratio (Mercury vs Water)",
+                    formula: "\\[ \\rho_m g h_m = \\rho_w g h_w \\implies h_w = \\frac{\\rho_m}{\\rho_w} h_m = \\frac{13{,}600}{1000} \\times 0.76\\,\\mathrm{m} \\approx 10.34\\,\\mathrm{m} \\]",
+                    explanation: "Equates pressures supported by mercury and water columns, proving why water requires a column over 10 meters high.",
+                    conditions: "Equal sea-level atmospheric pressure.",
+                    variables: [
+                        { symbol: "h_m", rep: "Height of mercury column (~0.76 m)", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "h_w", rep: "Height of water column (~10.34 m)", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\rho_m", rep: "Density of mercury (13,600 kg/m³)", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "\\rho_w", rep: "Density of water (1,000 kg/m³)", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Density & Mass",
+                    name: "Density Equation",
+                    formula: "\\[ \\rho = \\frac{m}{V} \\iff m = \\rho V \\iff V = \\frac{m}{\\rho} \\]",
+                    explanation: "Density is defined as the mass per unit volume of a substance.",
+                    conditions: "Homogeneous uniform material.",
+                    variables: [
+                        { symbol: "\\rho", rep: "Density of the substance", unit: "Kilogram per cubic meter (or g/cm³)", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "m", rep: "Mass of the body", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "V", rep: "Volume occupied", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" }
+                    ]
+                },
+                {
+                    section: "Pressure in Liquids",
+                    name: "Total (Absolute) Liquid Pressure",
+                    formula: "\\[ P_{\\text{total}} = P_0 + \\rho g h \\]",
+                    explanation: "The total absolute pressure at depth h is the atmospheric surface pressure P₀ plus the liquid hydrostatic pressure ρgh.",
+                    conditions: "Liquid open to the atmosphere at rest.",
+                    variables: [
+                        { symbol: "P_{\\text{total}}", rep: "Total absolute pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "P_0", rep: "Atmospheric pressure at surface", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Density of the liquid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "g", rep: "Acceleration due to gravity", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Depth beneath liquid surface", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Buoyancy & Archimedes' Principle",
+                    name: "Archimedes' Upthrust (Buoyant Force)",
+                    formula: "\\[ F_{\\text{up}} = \\rho_{\\text{fluid}} V_{\\text{disp}} g \\]",
+                    explanation: "When a body is wholly or partially immersed in a fluid, it experiences an upward buoyant force equal to the weight of fluid displaced.",
+                    conditions: "Body fully or partially submerged in a fluid under gravity.",
+                    variables: [
+                        { symbol: "F_{\\text{up}}", rep: "Upthrust (buoyant force)", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\rho_{\\text{fluid}}", rep: "Density of the fluid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "V_{\\text{disp}}", rep: "Volume of displaced fluid", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Gas Pressure & Boyle's Law",
+                    name: "Boyle's Law for Enclosed Gases",
+                    formula: "\\[ P_1 V_1 = P_2 V_2 \\iff P \\times V = \\text{constant} \\]",
+                    explanation: "For a fixed mass of gas at constant temperature, the volume is inversely proportional to the applied pressure.",
+                    conditions: "Constant temperature and fixed mass of ideal gas.",
+                    variables: [
+                        { symbol: "P_1, P_2", rep: "Initial and final gas pressures", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "V_1, V_2", rep: "Initial and final gas volumes", unit: "Cubic meter (or liters)", unitSym: "\\mathrm{m^3}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for pressure in solids?", back: "\\( P = \\frac{F}{A} \\) (Force divided by area)" },
+                { front: "What is the SI unit of pressure and what is it equivalent to?", back: "The Pascal (Pa), where \\( 1\\,\\mathrm{Pa} = 1\\,\\mathrm{N/m^2} \\)" },
+                { front: "What is the formula for liquid hydrostatic pressure?", back: "\\( P = \\rho g h \\)" },
+                { front: "State Pascal's principle mathematically.", back: "\\( \\frac{F_1}{A_1} = \\frac{F_2}{A_2} \\iff F_2 = F_1 \\times \\frac{A_2}{A_1} \\)" },
+                { front: "What is the standard atmospheric pressure at sea level in cm of Hg and in Pa?", back: "\\( 76\\,\\mathrm{cmHg} = 760\\,\\mathrm{mmHg} = 1.01 \\times 10^5\\,\\mathrm{Pa} \\)" },
+                { front: "Why is mercury used instead of water in a barometer?", back: "Mercury is 13.6 times denser than water, requiring a compact 76 cm column instead of an impractical 10.34 m water column." },
+                { front: "Why do sharp knives cut more easily than blunt knives?", back: "Sharp knives have a smaller surface area, creating a much larger pressure for the same applied effort force." },
+                { front: "What powers a drinking straw or a syringe?", back: "Suction creates lower pressure inside, allowing external atmospheric pressure to force the liquid upward." }
+            ],
+            quiz: [
+                { question: "If a 70 kg person stands on feet of area 0.2 m² (take g = 9.8 m/s²), the pressure exerted is:", options: ["3430 Pa", "140 Pa", "686 Pa", "14,000 Pa"], correctIndex: 0, feedback: "F = mg = 70 × 9.8 = 686 N. Pressure P = 686 / 0.2 = 3430 Pa." },
+                { question: "The liquid pressure at a depth of 2 m in water (density 1000 kg/m³, g = 10 m/s²) is:", options: ["20,000 Pa", "5,000 Pa", "2,000 Pa", "200 Pa"], correctIndex: 0, feedback: "P = ρgh = 1000 × 10 × 2 = 20,000 Pa (2 × 10⁴ Pa)." },
+                { question: "In a hydraulic press with A₁ = 8 cm² and A₂ = 400 cm², an input force of 20 N produces:", options: ["1000 N", "200 N", "50 N", "8000 N"], correctIndex: 0, feedback: "F₂ = (A₂ / A₁) × F₁ = (400 / 8) × 20 = 50 × 20 = 1000 N." },
+                { question: "Standard atmospheric pressure is equal to:", options: ["76 cm of Hg (1.01 × 10⁵ Pa)", "10 cm of Hg", "1000 Pa", "0 Pa"], correctIndex: 0, feedback: "Standard atmospheric pressure at sea level is 76 cm of Hg (760 torr or 1.01 × 10⁵ Pa)." },
+                { question: "Tractors have wide tyres with large surface areas in order to:", options: ["Increase speed", "Decrease the pressure exerted on soft ground to avoid sinking", "Increase the pressure on the ground", "Look larger"], correctIndex: 1, feedback: "Large surface area spreads the tractor's heavy weight, decreasing pressure (P = F/A) so it does not sink into muddy soil." }
+            ]
+        }
+    ];
+
+    // =========================================================================
+    // GRADE 8 PHYSICS CURRICULUM DATA
+    // =========================================================================
+    const G8_LESSONS = [
+        {
+            id: "g8-l1",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Linear_motion_simulation.gif",
+            worksheetUrl: "worksheets/g8-l1-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "The Moving Man", url: "https://phet.colorado.edu/sims/cheerpj/moving-man/latest/moving-man.html" }
+            ],
+            title: "Lesson 1: Speed, Velocity and Acceleration",
+            concepts: [
+                "Speed: A scalar quantity defined as distance travelled per unit time, \\(v = \\frac{d}{t}\\). Speed has magnitude only and is measured in \\(\\mathrm{m/s}\\) or \\(\\mathrm{km/h}\\).",
+                "Velocity: A vector quantity defined as displacement (distance moved in a stated direction) per unit time, \\(v = \\frac{s}{t}\\). Velocity possesses both magnitude and direction.",
+                "Uniform Velocity: Motion at a steady speed along an uncurved straight line. If direction changes, velocity is non-uniform even if speed remains constant.",
+                "Speed & Velocity Conversion: \\(1\\,\\mathrm{km/h} = \\frac{1000\\,\\mathrm{m}}{3600\\,\\mathrm{s}} = \\frac{1}{3.6}\\,\\mathrm{m/s}\\). Example: \\(60\\,\\mathrm{km/h} = \\frac{60000\\,\\mathrm{m}}{3600\\,\\mathrm{s}} \\approx 16.7\\,\\mathrm{m/s}\\).",
+                "Acceleration: The rate of change of velocity with respect to time, \\(a = \\frac{v - u}{t}\\), measured in \\(\\mathrm{m/s^2}\\). An acceleration is positive if velocity increases and negative (deceleration or retardation) if velocity decreases.",
+                "Motion Laboratory Timers: Motion sensors use ultrasonic echoes connected to dataloggers. Photogates measure transit times of interrupt cards. Tickertape timers make 50 dots/s (1 tick = \\(\\frac{1}{50}\\,\\mathrm{s} = 0.02\\,\\mathrm{s}\\); 1 tentick = \\(\\frac{1}{5}\\,\\mathrm{s} = 0.2\\,\\mathrm{s}\\)).",
+                "Tape Charts: Equal distance strips in tape charts indicate uniform speed. Strips with steadily increasing step lengths indicate uniform acceleration."
+            ],
+            definitions: [
+                { term: "Speed", definition: "The distance travelled by an object per unit of time regardless of direction.", symbol: "v", unit: "\\mathrm{m/s} \\; (\\text{or } \\mathrm{km/h})", equation: "v = \\frac{d}{t}" },
+                { term: "Velocity", definition: "The distance moved per unit time in a specified stated direction (displacement rate).", symbol: "v \\; (\\vec{v})", unit: "\\mathrm{m/s}", equation: "v = \\frac{s}{t}" },
+                { term: "Acceleration", definition: "The change of velocity per unit time.", symbol: "a", unit: "\\mathrm{m/s^2}", equation: "a = \\frac{v - u}{t}" },
+                { term: "Deceleration (Retardation)", definition: "A negative acceleration where the velocity of an object decreases over time.", symbol: "-a", unit: "\\mathrm{m/s^2}", equation: "a = \\frac{v - u}{t} < 0" },
+                { term: "Tentick", definition: "A unit of time in tickertape timer experiments equal to 10 ticks (0.2 seconds).", symbol: "\\text{tentick}", unit: "\\mathrm{s}", equation: "1\\,\\text{tentick} = \\frac{10}{50}\\,\\mathrm{s} = 0.2\\,\\mathrm{s}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Average Speed of a Long-Distance Drive",
+                    question: "A car travels 300 km from Liverpool to London in 5.0 hours. Calculate its average speed in km/h and in m/s.",
+                    given: "Distance \\( d = 300\\,\\mathrm{km} \\), Time \\( t = 5.0\\,\\mathrm{h} \\).",
+                    find: "Average speed (\\( v \\)) in \\( \\mathrm{km/h} \\) and \\( \\mathrm{m/s} \\).",
+                    equation: "v = \\frac{d}{t}, \\quad v_{(\\mathrm{m/s})} = \\frac{v_{(\\mathrm{km/h})}}{3.6}",
+                    rearrangement: "v = \\frac{300\\,\\mathrm{km}}{5.0\\,\\mathrm{h}}",
+                    solution: "1. <strong>In km/h:</strong><br>\\[ v = \\frac{300}{5} = 60\\,\\mathrm{km/h} \\]<br>2. <strong>Convert to m/s:</strong><br>\\[ v = \\frac{60 \\times 1000\\,\\mathrm{m}}{3600\\,\\mathrm{s}} = \\frac{60000}{3600} \\approx 16.67\\,\\mathrm{m/s} \\approx 17\\,\\mathrm{m/s} \\]",
+                    finalAnswer: "v = 60\\,\\mathrm{km/h} \\quad (\\approx 17\\,\\mathrm{m/s})",
+                    explanation: "Average speed smooths over all individual variations in speed caused by traffic, stops, and turns."
+                },
+                {
+                    title: "Example 2: Steady Acceleration of a Vehicle",
+                    question: "A vehicle increases its velocity steadily from 20 m/s to 50 m/s in 5.0 seconds. Calculate its acceleration.",
+                    given: "Initial velocity \\( u = 20\\,\\mathrm{m/s} \\), Final velocity \\( v = 50\\,\\mathrm{m/s} \\), Time \\( t = 5.0\\,\\mathrm{s} \\).",
+                    find: "Acceleration (\\( a \\)).",
+                    equation: "a = \\frac{v - u}{t}",
+                    rearrangement: "a = \\frac{50\\,\\mathrm{m/s} - 20\\,\\mathrm{m/s}}{5.0\\,\\mathrm{s}}",
+                    solution: "Subtract initial from final velocity and divide by time:<br>\\[ a = \\frac{30\\,\\mathrm{m/s}}{5.0\\,\\mathrm{s}} = 6.0\\,\\mathrm{m/s^2} \\]",
+                    finalAnswer: "a = 6.0\\,\\mathrm{m/s^2}",
+                    explanation: "Velocity increases uniformly by 6.0 m/s during every single second of elapsed time."
+                },
+                {
+                    title: "Example 3: Tickertape Acceleration Analysis",
+                    question: "A trolley pulls a tape through a 50 Hz timer. During the first tentick (0.2 s) the tape moves 2 cm (speed 10 cm/s). During the sixth tentick it moves 12 cm (speed 60 cm/s). Calculate the acceleration across the 5 tentick interval (1.0 s).",
+                    given: "Initial speed \\( u = 10\\,\\mathrm{cm/s} \\), Final speed \\( v = 60\\,\\mathrm{cm/s} \\), Time \\( t = 5\\,\\text{tenticks} = 1.0\\,\\mathrm{s} \\).",
+                    find: "Acceleration in \\( \\mathrm{cm/s^2} \\) and in \\( \\mathrm{m/s^2} \\).",
+                    equation: "a = \\frac{v - u}{t}",
+                    rearrangement: "a = \\frac{(60 - 10)\\,\\mathrm{cm/s}}{1.0\\,\\mathrm{s}}",
+                    solution: "1. <strong>In cm/s²:</strong><br>\\[ a = \\frac{50\\,\\mathrm{cm/s}}{1.0\\,\\mathrm{s}} = 50\\,\\mathrm{cm/s^2} \\]<br>2. <strong>In m/s²:</strong><br>\\[ a = \\frac{50}{100} = 0.50\\,\\mathrm{m/s^2} \\]",
+                    finalAnswer: "a = 50\\,\\mathrm{cm/s^2} = 0.50\\,\\mathrm{m/s^2}",
+                    explanation: "The stepped strips of equal difference prove that the accelerating force on the trolley was constant."
+                },
+                {
+                    title: "Example 4: Final Velocity from Constant Acceleration",
+                    question: "A train travelling at 10 m/s starts to accelerate at 1.0 m/s² for 15 seconds along a straight track. Find its final velocity.",
+                    given: "Initial velocity \\( u = 10\\,\\mathrm{m/s} \\), Acceleration \\( a = 1.0\\,\\mathrm{m/s^2} \\), Time \\( t = 15\\,\\mathrm{s} \\).",
+                    find: "Final velocity (\\( v \\)).",
+                    equation: "v = u + at",
+                    rearrangement: "v = 10\\,\\mathrm{m/s} + (1.0\\,\\mathrm{m/s^2} \\times 15\\,\\mathrm{s})",
+                    solution: "Multiply acceleration by time and add to initial velocity:<br>\\[ v = 10 + 15 = 25\\,\\mathrm{m/s} \\]",
+                    finalAnswer: "v = 25\\,\\mathrm{m/s}",
+                    explanation: "Every second adds 1.0 m/s to the train's velocity, elevating speed from 10 m/s to 25 m/s."
+                }
+            ],
+            equations: [
+                {
+                    section: "Speed and Velocity",
+                    name: "Average Speed Equation",
+                    formula: "\\[ v = \\frac{d}{t} \\iff d = v \\times t \\iff t = \\frac{d}{v} \\]",
+                    explanation: "Average speed is total distance travelled divided by total time elapsed.",
+                    conditions: "Scalar motion.",
+                    variables: [
+                        { symbol: "v", rep: "Average speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "d", rep: "Distance moved", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "t", rep: "Time taken", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Speed and Velocity",
+                    name: "Velocity Equation",
+                    formula: "\\[ v = \\frac{s}{t} \\iff s = v \\times t \\]",
+                    explanation: "Velocity is displacement divided by time in a stated direction.",
+                    conditions: "Vector straight-line motion.",
+                    variables: [
+                        { symbol: "v", rep: "Velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "s", rep: "Displacement", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "t", rep: "Time taken", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Acceleration",
+                    name: "Acceleration Equation",
+                    formula: "\\[ a = \\frac{v - u}{t} \\iff v = u + at \\]",
+                    explanation: "Acceleration is change in velocity divided by time taken for change.",
+                    conditions: "Uniform acceleration along a straight path.",
+                    variables: [
+                        { symbol: "a", rep: "Acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "u", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "t", rep: "Time taken for change", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Unit Conversion",
+                    name: "Speed Conversion Factor",
+                    formula: "\\[ 1\\,\\mathrm{km/h} = \\frac{1000\\,\\mathrm{m}}{3600\\,\\mathrm{s}} = \\frac{1}{3.6}\\,\\mathrm{m/s} \\iff v_{(\\mathrm{m/s})} = \\frac{v_{(\\mathrm{km/h})}}{3.6} \\]",
+                    explanation: "Converts kilometers per hour to meters per second by dividing by 3.6.",
+                    conditions: "SI metric conversion.",
+                    variables: [
+                        { symbol: "v_{(\\mathrm{m/s})}", rep: "Speed in meters per second", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_{(\\mathrm{km/h})}", rep: "Speed in kilometers per hour", unit: "Kilometer per hour", unitSym: "\\mathrm{km/h}" }
+                    ]
+                },
+                {
+                    section: "Relative Motion",
+                    name: "Relative Velocity Equation",
+                    formula: "\\[ v_{\\text{rel}} = v_1 + v_2 \\quad (\\text{opposite directions}) \\quad\\Big|\\quad v_{\\text{rel}} = |v_1 - v_2| \\quad (\\text{same direction}) \\]",
+                    explanation: "Calculates the apparent velocity of one moving body relative to another moving observer.",
+                    conditions: "Collinear motion along a straight path.",
+                    variables: [
+                        { symbol: "v_{\\text{rel}}", rep: "Relative speed / velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_1, v_2", rep: "Individual velocities of the two bodies", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Speed and Velocity",
+                    name: "Displacement from Average Speed",
+                    formula: "\\[ d = v_{\\text{avg}} \\times t = \\left(\\frac{u + v}{2}\\right)t \\]",
+                    explanation: "Total displacement under uniform acceleration equals the average of initial and final speeds multiplied by elapsed time.",
+                    conditions: "Uniformly accelerated rectilinear motion.",
+                    variables: [
+                        { symbol: "d", rep: "Total distance / displacement", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_{\\text{avg}}", rep: "Average velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "u", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the key difference between speed and velocity?", back: "Speed is a scalar quantity (magnitude only); velocity is a vector quantity (magnitude in a stated direction)." },
+                { front: "What is the formula for acceleration?", back: "\\( a = \\frac{v - u}{t} \\) (Change in velocity divided by time)" },
+                { front: "How do you convert km/h to m/s?", back: "Divide by 3.6 (e.g. \\( 60\\,\\mathrm{km/h} \\div 3.6 \\approx 16.7\\,\\mathrm{m/s} \\))." },
+                { front: "In a tickertape timer vibrating at 50 Hz, what is 1 tick and 1 tentick?", back: "1 tick = \\( \\frac{1}{50}\\,\\mathrm{s} = 0.02\\,\\mathrm{s} \\); 1 tentick = 10 ticks = \\( \\frac{1}{5}\\,\\mathrm{s} = 0.2\\,\\mathrm{s} \\)." },
+                { front: "What does negative acceleration indicate?", back: "Deceleration or retardation, where an object is slowing down over time." }
+            ],
+            quiz: [
+                { question: "A runner covers 1500 meters in 4 minutes (240 s). Their average speed is approximately:", options: ["6.25 m/s", "375 m/s", "0.16 m/s", "25 m/s"], correctIndex: 0, feedback: "v = d / t = 1500 m / 240 s = 6.25 m/s." },
+                { question: "A motorcyclist starting from rest reaches 6.0 m/s after accelerating for 3.0 s. Their acceleration is:", options: ["18 m/s²", "2.0 m/s²", "0.5 m/s²", "9.0 m/s²"], correctIndex: 1, feedback: "a = (v - u) / t = (6.0 - 0) / 3.0 = 2.0 m/s²." },
+                { question: "If a train travelling at 10 m/s accelerates at 1 m/s² for 15 s, its final velocity is:", options: ["15 m/s", "20 m/s", "25 m/s", "10 m/s"], correctIndex: 2, feedback: "v = u + at = 10 + (1 × 15) = 25 m/s." },
+                { question: "A tickertape timer producing 50 dots per second makes a dot every:", options: ["0.02 s (1/50 s)", "0.5 s", "0.2 s", "0.05 s"], correctIndex: 0, feedback: "Period = 1/50 = 0.02 s, known as 1 tick." }
+            ]
+        },
+        {
+            id: "g8-l2",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Acceleration_graphs.gif",
+            worksheetUrl: "worksheets/g8-l2-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Calculus Grapher / Motion Graphs", url: "https://phet.colorado.edu/sims/html/calculus-grapher/latest/calculus-grapher_all.html" }
+            ],
+            title: "Lesson 2: Graphs of Equations",
+            concepts: [
+                "Area Under Velocity-Time (v-t) Graph: Measures the total distance travelled, \\(s = \\text{Area}\\). For uniform acceleration, \\(\\text{Area} = \\text{Rectangle} + \\text{Triangle}\\).",
+                "Slope of Velocity-Time Graph: The gradient represents acceleration, \\(a = \\frac{\\Delta v}{\\Delta t}\\). A horizontal slope means zero acceleration (uniform velocity).",
+                "Slope of Distance-Time (s-t) Graph: The gradient represents speed or velocity, \\(v = \\frac{\\Delta s}{\\Delta t}\\). The slope of a tangent line gives instantaneous velocity.",
+                "First Kinematic Equation: \\(v = u + at\\), relating velocity, initial speed, acceleration, and time.",
+                "Second Kinematic Equation: \\(s = \\left(\\frac{u + v}{2}\\right)t\\), distance equals average velocity multiplied by time.",
+                "Third Kinematic Equation: \\(s = ut + \\frac{1}{2}at^2\\), expressing displacement without final velocity.",
+                "Fourth Kinematic Equation: \\(v^2 = u^2 + 2as\\), relating velocities, acceleration, and displacement independent of time."
+            ],
+            definitions: [
+                { term: "Velocity-Time Graph Area", definition: "The geometric area enclosed between a velocity-time line and the time axis, which quantitatively equals distance travelled.", symbol: "s", unit: "\\mathrm{m}", equation: "s = \\text{Area under } v\\text{-}t \\text{ graph}" },
+                { term: "Velocity-Time Graph Gradient", definition: "The slope (rise over run) of a velocity-time graph representing physical acceleration.", symbol: "a", unit: "\\mathrm{m/s^2}", equation: "a = \\frac{\\Delta v}{\\Delta t}" },
+                { term: "Distance-Time Graph Gradient", definition: "The slope of a distance-time graph representing velocity.", symbol: "v", unit: "\\mathrm{m/s}", equation: "v = \\frac{\\Delta s}{\\Delta t}" },
+                { term: "Average Velocity in UAM", definition: "The arithmetic mean of initial and final velocities under constant acceleration.", symbol: "v_{\\text{avg}}", unit: "\\mathrm{m/s}", equation: "v_{\\text{avg}} = \\frac{u + v}{2}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Finding Distance from Area under a v-t Graph",
+                    question: "A body moves with uniform acceleration from 20 m/s to 40 m/s in 5.0 s. Calculate the total distance covered using graph area.",
+                    given: "Initial velocity \\( u = 20\\,\\mathrm{m/s} \\), Final velocity \\( v = 40\\,\\mathrm{m/s} \\), Time \\( t = 5.0\\,\\mathrm{s} \\).",
+                    find: "Total distance travelled (\\( s \\)).",
+                    equation: "s = \\text{Area of rectangle} + \\text{Area of triangle} = ut + \\frac{1}{2}(v - u)t",
+                    rearrangement: "s = (20 \\times 5) + \\frac{1}{2}(40 - 20)(5)",
+                    solution: "1. <strong>Rectangle Area:</strong> \\( 20 \\times 5 = 100\\,\\mathrm{m} \\).<br>2. <strong>Triangle Area:</strong> \\( \\frac{1}{2} \\times 5 \\times 20 = 50\\,\\mathrm{m} \\).<br>3. <strong>Total Distance:</strong> \\( 100 + 50 = 150\\,\\mathrm{m} \\).",
+                    finalAnswer: "s = 150\\,\\mathrm{m}",
+                    explanation: "Geometric summation of area under a v-t graph accurately computes total displacement."
+                },
+                {
+                    title: "Example 2: Three-Stage Sprint Cyclist Journey",
+                    question: "A cyclist starts from rest and accelerates at 1 m/s² for 20 s, travels at constant speed for 60 s, then decelerates at 2 m/s² to rest. Find maximum speed in km/h and total distance covered.",
+                    given: "Stage 1: \\( u = 0, a = 1\\,\\mathrm{m/s^2}, t_1 = 20\\,\\mathrm{s} \\). Stage 2: \\( t_2 = 60\\,\\mathrm{s} \\). Stage 3: \\( v = 0, a = -2\\,\\mathrm{m/s^2} \\).",
+                    find: "Maximum speed in km/h and total distance \\( s_{\\text{tot}} \\).",
+                    equation: "v = u + at, \\quad s_1 = ut + \\frac{1}{2}at^2, \\quad s_2 = vt_2, \\quad s_3 = \\frac{v^2 - u^2}{2a}",
+                    rearrangement: "v_{\\max} = 0 + (1)(20) = 20\\,\\mathrm{m/s}",
+                    solution: "1. <strong>Stage 1:</strong> \\( v = 20\\,\\mathrm{m/s} = 20 \\times 3.6 = 72\\,\\mathrm{km/h} \\); \\( s_1 = \\frac{1}{2}(1)(20)^2 = 200\\,\\mathrm{m} \\).<br>2. <strong>Stage 2:</strong> \\( s_2 = 20 \\times 60 = 1200\\,\\mathrm{m} \\).<br>3. <strong>Stage 3:</strong> \\( s_3 = \\frac{0 - (20)^2}{2(-2)} = \\frac{-400}{-4} = 100\\,\\mathrm{m} \\).<br>4. <strong>Total:</strong> \\( s = 200 + 1200 + 100 = 1500\\,\\mathrm{m} \\).",
+                    finalAnswer: "v_{\\max} = 72\\,\\mathrm{km/h}, \\quad s_{\\text{tot}} = 1500\\,\\mathrm{m}",
+                    explanation: "Total journey displacement is the sum of distances across the accelerating, constant-velocity, and decelerating stages."
+                },
+                {
+                    title: "Example 3: Braking Distance from Kinematic Equation 4",
+                    question: "A bus travelling at 20 m/s decelerates steadily at 5 m/s² to a complete stop. How long does it take and what distance does it cover?",
+                    given: "Initial velocity \\( u = 20\\,\\mathrm{m/s} \\), Final velocity \\( v = 0 \\), Acceleration \\( a = -5.0\\,\\mathrm{m/s^2} \\).",
+                    find: "Time \\( t \\) and stopping distance \\( s \\).",
+                    equation: "v = u + at \\implies t = \\frac{v - u}{a}, \\quad v^2 = u^2 + 2as \\implies s = \\frac{v^2 - u^2}{2a}",
+                    rearrangement: "t = \\frac{0 - 20}{-5} = 4.0\\,\\mathrm{s}, \\quad s = \\frac{0 - (20)^2}{2(-5)} = \\frac{-400}{-10} = 40\\,\\mathrm{m}",
+                    solution: "1. Time to rest: \\( t = \\frac{20}{5} = 4.0\\,\\mathrm{s} \\).<br>2. Distance covered: \\( s = \\frac{400}{10} = 40\\,\\mathrm{m} \\).",
+                    finalAnswer: "t = 4.0\\,\\mathrm{s}, \\quad s = 40\\,\\mathrm{m}",
+                    explanation: "Kinematic equations directly link initial speed and deceleration to stopping time and stopping distance."
+                }
+            ],
+            equations: [
+                {
+                    section: "Kinematic Equations",
+                    name: "First Equation of Motion",
+                    formula: "\\[ v = u + at \\]",
+                    explanation: "Final velocity equals initial velocity plus acceleration multiplied by time.",
+                    conditions: "Uniform acceleration along a straight line.",
+                    variables: [
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "u", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "a", rep: "Acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Kinematic Equations",
+                    name: "Second Equation of Motion",
+                    formula: "\\[ s = \\left(\\frac{u + v}{2}\\right)t \\]",
+                    explanation: "Displacement equals average velocity multiplied by time elapsed.",
+                    conditions: "Constant acceleration.",
+                    variables: [
+                        { symbol: "s", rep: "Displacement / distance", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "u", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Kinematic Equations",
+                    name: "Third Equation of Motion",
+                    formula: "\\[ s = ut + \\frac{1}{2}at^2 \\]",
+                    explanation: "Displacement without requiring final velocity.",
+                    conditions: "Constant acceleration.",
+                    variables: [
+                        { symbol: "s", rep: "Displacement / distance", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "u", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "a", rep: "Acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Kinematic Equations",
+                    name: "Fourth Equation of Motion",
+                    formula: "\\[ v^2 = u^2 + 2as \\iff s = \\frac{v^2 - u^2}{2a} \\]",
+                    explanation: "Relationship between velocities, acceleration, and distance without time.",
+                    conditions: "Constant acceleration.",
+                    variables: [
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "u", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "a", rep: "Acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "s", rep: "Displacement / distance", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Kinematic Equations",
+                    name: "Displacement in the n-th Second",
+                    formula: "\\[ s_n = u + \\frac{1}{2}a(2n - 1) \\]",
+                    explanation: "Calculates the distance travelled specifically during the n-th individual second of uniformly accelerated motion.",
+                    conditions: "Constant acceleration with time intervals of 1 second.",
+                    variables: [
+                        { symbol: "s_n", rep: "Distance covered in n-th second", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "u", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "a", rep: "Acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "n", rep: "Specified second number (e.g. 1st, 2nd, 3rd)", unit: "Integer count", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Kinematic Equations",
+                    name: "Average Velocity in UAM",
+                    formula: "\\[ v_{\\text{avg}} = \\frac{u + v}{2} \\]",
+                    explanation: "Under uniform acceleration, average velocity is the arithmetic midpoint of initial and final velocities.",
+                    conditions: "Linear motion with constant acceleration.",
+                    variables: [
+                        { symbol: "v_{\\text{avg}}", rep: "Average velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "u", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What physical quantity does the area under a velocity-time graph represent?", back: "The distance (or displacement) travelled by the object." },
+                { front: "What does the gradient (slope) of a velocity-time graph represent?", back: "The acceleration of the object (\\( a = \\frac{\\Delta v}{\\Delta t} \\))." },
+                { front: "What does the gradient of a distance-time graph represent?", back: "The speed or velocity of the object." },
+                { front: "State the equation connecting v, u, a, and s without time t.", back: "\\( v^2 = u^2 + 2as \\)" },
+                { front: "What is the formula for distance when u, a, and t are known?", back: "\\( s = ut + \\frac{1}{2}at^2 \\)" }
+            ],
+            quiz: [
+                { question: "The area under a velocity-time graph represents:", options: ["Acceleration", "Distance travelled", "Speed", "Force"], correctIndex: 1, feedback: "Area under a v-t graph equals total distance travelled (s = Area)." },
+                { question: "A horizontal straight line on a velocity-time graph indicates:", options: ["Zero velocity", "Constant acceleration", "Zero acceleration (constant velocity)", "Increasing speed"], correctIndex: 2, feedback: "A horizontal line has zero gradient, meaning acceleration is zero and velocity is uniform." },
+                { question: "If a car starting from rest accelerates at 2 m/s² for 5 s, distance covered is:", options: ["10 m", "25 m", "50 m", "100 m"], correctIndex: 1, feedback: "s = ut + 1/2 a t² = 0 + 1/2 (2)(5)² = 25 m." },
+                { question: "The slope of a distance-time graph gives:", options: ["Velocity", "Acceleration", "Force", "Work"], correctIndex: 0, feedback: "The gradient of distance over time represents velocity." }
+            ]
+        },
+        {
+            id: "g8-l3",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Falling_bodies_vacuum_air.gif",
+            worksheetUrl: "worksheets/g8-l3-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Projectile Motion", url: "https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_all.html" }
+            ],
+            title: "Lesson 3: Free Falling Bodies",
+            concepts: [
+                "Free Fall in a Vacuum: In a vacuum tube without air resistance, all bodies (such as a coin and a paper slip) fall at the exact same rate under gravity regardless of mass.",
+                "Acceleration of Free Fall (g): Near the Earth's surface, all freely falling bodies experience a constant downward gravitational acceleration, \\(g \\approx 9.8\\,\\mathrm{m/s^2} \\approx 10\\,\\mathrm{m/s^2}\\).",
+                "Sign Conventions in Motion Equations: For downward falling motion, \\(a = +g = +10\\,\\mathrm{m/s^2}\\). For upward projected bodies, gravity acts as a deceleration, \\(a = -g = -10\\,\\mathrm{m/s^2}\\).",
+                "Measuring g with an Electronic Timer: A steel ball-bearing falling from rest through height \\(s\\) takes time \\(t\\), where \\(s = \\frac{1}{2}gt^2 \\implies g = \\frac{2s}{t^2}\\).",
+                "Distance-Time Graphs for Free Fall: A graph of distance \\(s\\) against \\(t\\) forms a parabola; a graph of \\(s\\) against \\(t^2\\) is a straight line through the origin, proving \\(s \\propto t^2\\).",
+                "Projectiles & Independence of Motion: Horizontal motion (constant velocity \\(v_x\\), \\(a_x = 0\\)) and vertical motion (accelerated downward by gravity \\(a_y = g\\)) are completely independent. Neglecting air resistance, maximum horizontal range occurs at a launch angle of \\(45^\\circ\\)."
+            ],
+            definitions: [
+                { term: "Acceleration of Free Fall (g)", definition: "The constant downward acceleration experienced by any body falling freely under gravity without air resistance.", symbol: "g", unit: "\\mathrm{m/s^2} \\; (\\text{or } \\mathrm{N/kg})", equation: "g \\approx 9.8\\,\\mathrm{m/s^2} \\approx 10\\,\\mathrm{m/s^2}" },
+                { term: "Free Fall Distance Equation", definition: "The vertical distance fallen by a body dropped from rest.", symbol: "s", unit: "\\mathrm{m}", equation: "s = \\frac{1}{2}gt^2" },
+                { term: "Projectile Motion", definition: "Two-dimensional curved motion of an object thrown into space acted upon only by gravitational attraction.", symbol: "\\text{Projectile}", unit: "\\text{No unit}", equation: "x = v_x t, \\quad y = u_y t + \\frac{1}{2}gt^2" },
+                { term: "Maximum Range Angle", definition: "The projection angle on level ground that produces the greatest horizontal flight distance.", symbol: "\\theta_{\\max}", unit: "{^\\circ}", equation: "\\theta = 45^\\circ" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Ball Projected Vertically Upwards",
+                    question: "A ball is projected vertically upwards with an initial velocity of 30 m/s. Neglecting air resistance and taking g = 10 m/s², find (a) its maximum height and (b) the total time taken to return to its starting point.",
+                    given: "Initial velocity \\( u = 30\\,\\mathrm{m/s} \\), \\( v = 0 \\) at top, \\( a = -10\\,\\mathrm{m/s^2} \\).",
+                    find: "Maximum height \\( s \\) and round-trip time \\( T \\).",
+                    equation: "v^2 = u^2 + 2as, \\quad v = u + at, \\quad T = 2t",
+                    rearrangement: "s = \\frac{v^2 - u^2}{2a} = \\frac{0 - (30)^2}{2(-10)}, \\quad t = \\frac{v - u}{a} = \\frac{0 - 30}{-10}",
+                    solution: "1. <strong>Maximum Height:</strong><br>\\[ s = \\frac{-900}{-20} = 45\\,\\mathrm{m} \\]<br>2. <strong>Time to Reach Top:</strong><br>\\[ t = \\frac{-30}{-10} = 3.0\\,\\mathrm{s} \\]<br>3. <strong>Total Round-Trip Time:</strong><br>\\[ T = 2 \\times 3.0 = 6.0\\,\\mathrm{s} \\]",
+                    finalAnswer: "s_{\\max} = 45\\,\\mathrm{m}, \\quad T = 6.0\\,\\mathrm{s}",
+                    explanation: "Upward ascent decelerates at 10 m/s² for 3 s; downward descent takes the exact same 3 s."
+                },
+                {
+                    title: "Example 2: Cliff Height from Horizontal Projectile",
+                    question: "A ball is thrown horizontally from the top of a cliff and takes 3.0 s to reach the beach below. Calculate the height of the cliff (take g = +10 m/s²).",
+                    given: "Vertical initial velocity \\( u_y = 0 \\), Time \\( t = 3.0\\,\\mathrm{s} \\), \\( g = 10\\,\\mathrm{m/s^2} \\).",
+                    find: "Cliff vertical height (\\( s \\)).",
+                    equation: "s = u_y t + \\frac{1}{2}gt^2",
+                    rearrangement: "s = 0 \\times 3.0 + \\frac{1}{2}(10)(3.0)^2",
+                    solution: "Calculate vertical drop under gravity:<br>\\[ s = \\frac{1}{2} \\times 10 \\times 9.0 = 5 \\times 9.0 = 45\\,\\mathrm{m} \\]",
+                    finalAnswer: "s = 45\\,\\mathrm{m}",
+                    explanation: "Horizontal projection speed does not influence vertical falling time or height."
+                },
+                {
+                    title: "Example 3: Object Dropped from Hovering Helicopter",
+                    question: "An object falls from a hovering helicopter and strikes the ground at a speed of 30 m/s. How long does it take to fall and what is the height?",
+                    given: "Initial velocity \\( u = 0 \\), Final velocity \\( v = 30\\,\\mathrm{m/s} \\), \\( g = 10\\,\\mathrm{m/s^2} \\).",
+                    find: "Fall time \\( t \\) and fall height \\( s \\).",
+                    equation: "v = gt \\implies t = \\frac{v}{g}, \\quad s = \\frac{1}{2}gt^2 = \\frac{v^2}{2g}",
+                    rearrangement: "t = \\frac{30}{10} = 3.0\\,\\mathrm{s}, \\quad s = \\frac{(30)^2}{2(10)} = \\frac{900}{20} = 45\\,\\mathrm{m}",
+                    solution: "1. Time: \\( t = 3.0\\,\\mathrm{s} \\).<br>2. Height: \\( s = 45\\,\\mathrm{m} \\).",
+                    finalAnswer: "t = 3.0\\,\\mathrm{s}, \\quad s = 45\\,\\mathrm{m}",
+                    explanation: "Gravity steadily accelerates the falling object by 10 m/s each second."
+                }
+            ],
+            equations: [
+                {
+                    section: "Free Fall",
+                    name: "Vertical Free Fall Velocity",
+                    formula: "\\[ v = u \\pm gt \\]",
+                    explanation: "Velocity of a freely falling body (+ for falling, - for rising).",
+                    conditions: "Negligible air resistance.",
+                    variables: [
+                        { symbol: "v", rep: "Velocity at time t", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "u", rep: "Initial projection speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Free Fall",
+                    name: "Free Fall Distance Formula",
+                    formula: "\\[ s = ut \\pm \\frac{1}{2}gt^2 \\]",
+                    explanation: "Vertical displacement under gravity.",
+                    conditions: "Uniform gravitational acceleration.",
+                    variables: [
+                        { symbol: "s", rep: "Vertical distance / height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "u", rep: "Initial vertical velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Acceleration due to gravity", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Free Fall",
+                    name: "Measuring g from Free Fall",
+                    formula: "\\[ g = \\frac{2s}{t^2} \\]",
+                    explanation: "Calculates acceleration of gravity from known drop distance and time.",
+                    conditions: "Release from rest (u = 0).",
+                    variables: [
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "s", rep: "Drop distance", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "t", rep: "Time of fall", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Vertical Projection",
+                    name: "Maximum Height of Vertical Projection",
+                    formula: "\\[ H_{\\max} = \\frac{u^2}{2g} \\]",
+                    explanation: "The maximum vertical height attained by a projectile launched upwards with initial speed u against gravity.",
+                    conditions: "Vertical upward motion with negligible air resistance.",
+                    variables: [
+                        { symbol: "H_{\\max}", rep: "Maximum peak height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "u", rep: "Initial upward launch speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Vertical Projection",
+                    name: "Time of Ascent and Flight",
+                    formula: "\\[ t_{\\text{up}} = \\frac{u}{g}, \\quad T_{\\text{flight}} = \\frac{2u}{g} \\]",
+                    explanation: "Time to reach apex equals initial velocity divided by g; total flight time to return to launch level is doubled.",
+                    conditions: "Vertical motion under gravity with level launch and landing.",
+                    variables: [
+                        { symbol: "t_{\\text{up}}", rep: "Time to reach peak height", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "T_{\\text{flight}}", rep: "Total round-trip flight duration", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "u", rep: "Launch speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Projectile Motion",
+                    name: "Horizontal Projectile Range from Height",
+                    formula: "\\[ R = v_x \\times t = v_x \\sqrt{\\frac{2h}{g}} \\]",
+                    explanation: "Horizontal distance covered by an object launched horizontally from elevated height h.",
+                    conditions: "Horizontal launch velocity vx with zero initial vertical velocity.",
+                    variables: [
+                        { symbol: "R", rep: "Horizontal landing range", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_x", rep: "Horizontal launch speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "h", rep: "Initial elevation height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the acceleration of free fall near the Earth's surface?", back: "\\( g \\approx 9.8\\,\\mathrm{m/s^2} \\approx 10\\,\\mathrm{m/s^2} \\)" },
+                { front: "Why do a coin and paper fall at the same rate in a vacuum tube?", back: "Because in a vacuum there is no air resistance to retard the lighter paper." },
+                { front: "How is g calculated if an object falls distance s from rest in time t?", back: "\\( g = \\frac{2s}{t^2} \\)" },
+                { front: "What angle of projection yields the maximum horizontal range on level ground?", back: "\\( 45^\\circ \\) (in the absence of air drag)." },
+                { front: "Are the horizontal and vertical motions of a projectile dependent?", back: "No, they are completely independent and can be treated separately." }
+            ],
+            quiz: [
+                { question: "A stone falls from rest for 3 seconds (take g = 10 m/s²). Its velocity is:", options: ["10 m/s", "20 m/s", "30 m/s", "45 m/s"], correctIndex: 2, feedback: "v = gt = 10 × 3 = 30 m/s." },
+                { question: "How far has the stone fallen from rest after 3 seconds?", options: ["30 m", "45 m", "90 m", "15 m"], correctIndex: 1, feedback: "s = 1/2 g t² = 0.5 × 10 × 9 = 45 m." },
+                { question: "In a vacuum, which object falls with greater acceleration?", options: ["A 10 kg iron ball", "A 1 g feather", "Both fall with the exact same acceleration", "Neither falls"], correctIndex: 2, feedback: "In a vacuum, all bodies experience the exact same gravitational acceleration g." },
+                { question: "Neglecting air resistance, the maximum range of a projectile occurs at an angle of:", options: ["30°", "45°", "60°", "90°"], correctIndex: 1, feedback: "Maximum range occurs at 45° where sin(2θ) = 1." }
+            ]
+        },
+        {
+            id: "g8-l4",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Hookes_law_spring.gif",
+            worksheetUrl: "worksheets/g8-l4-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Masses and Springs", url: "https://phet.colorado.edu/sims/html/masses-and-springs/latest/masses-and-springs_all.html" },
+                { topic: "Hooke's Law Simulation", url: "https://phet.colorado.edu/sims/html/hookes-law/latest/hookes-law_all.html" }
+            ],
+            title: "Lesson 4: Weight and Stretching (Hooke's Law)",
+            concepts: [
+                "Definition of Force: A push or pull capable of changing a body's state of rest, speed, direction of motion, shape, or size.",
+                "Weight vs Mass: Mass is the invariant quantity of matter (measured in kg). Weight is the downward gravitational pull acting on that mass: \\(W = mg\\), measured in Newtons (N).",
+                "Weight on Earth vs Moon: Near Earth's surface, \\(1\\,\\mathrm{kg}\\) has a weight of \\(9.8\\,\\mathrm{N}\\) (approx \\(10\\,\\mathrm{N}\\)). On the Moon where \\(g \\approx 1.6\\,\\mathrm{N/kg}\\), a \\(1\\,\\mathrm{kg}\\) mass weighs only \\(1.6\\,\\mathrm{N}\\) (one-sixth of Earth).",
+                "Hooke's Law: The extension of a spring is directly proportional to the stretching force, \\(F \\propto x \\implies F = kx\\), provided the elastic limit or limit of proportionality is not exceeded.",
+                "Force Constant (Spring Constant k): The force needed to cause unit extension (1 meter): \\(k = \\frac{F}{x}\\), measured in \\(\\mathrm{N/m}\\) or \\(\\mathrm{N/mm}\\).",
+                "Elastic Limit & Permanent Deformation: Beyond the limit of proportionality \\(E\\), the spring suffers permanent strain extension and no longer returns to its original length when the stretching force is removed."
+            ],
+            definitions: [
+                { term: "Force", definition: "A push or pull that can alter a body's speed, direction of motion, or geometric dimensions.", symbol: "F", unit: "\\mathrm{N}", equation: "1\\,\\mathrm{N} = 1\\,\\mathrm{kg\\cdot m/s^2}" },
+                { term: "Weight", definition: "The force of gravity acting on the mass of a body.", symbol: "W", unit: "\\mathrm{N}", equation: "W = mg" },
+                { term: "Hooke's Law", definition: "Extension is directly proportional to stretching force within the elastic limit.", symbol: "F = kx", unit: "\\mathrm{N}", equation: "F = kx" },
+                { term: "Spring Constant (Force Constant)", definition: "The stiffness of a spring, defined as stretching force per unit extension.", symbol: "k", unit: "\\mathrm{N/m} \\; (\\text{or } \\mathrm{N/mm})", equation: "k = \\frac{F}{x}" },
+                { term: "Limit of Proportionality", definition: "The maximum force up to which extension remains strictly proportional to applied force.", symbol: "E", unit: "\\mathrm{N}", equation: "\\text{Hooke's law boundary}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Calculating Spring Constant and Extended Load",
+                    question: "A spring is stretched 10 mm (0.01 m) by a weight of 2.0 N. Calculate (a) the force constant k, and (b) the weight W needed to produce an extension of 80 mm (0.08 m).",
+                    given: "Force \\( F = 2.0\\,\\mathrm{N} \\), Extension \\( x_1 = 0.01\\,\\mathrm{m} \\), Target extension \\( x_2 = 0.08\\,\\mathrm{m} \\).",
+                    find: "Spring constant \\( k \\) and force \\( W \\).",
+                    equation: "k = \\frac{F}{x}, \\quad W = kx_2",
+                    rearrangement: "k = \\frac{2.0\\,\\mathrm{N}}{0.01\\,\\mathrm{m}}, \\quad W = 200\\,\\mathrm{N/m} \\times 0.08\\,\\mathrm{m}",
+                    solution: "1. <strong>Spring Constant:</strong><br>\\[ k = \\frac{2.0}{0.01} = 200\\,\\mathrm{N/m} \\]<br>2. <strong>Weight for 80 mm:</strong><br>\\[ W = 200 \\times 0.08 = 16\\,\\mathrm{N} \\]",
+                    finalAnswer: "k = 200\\,\\mathrm{N/m}, \\quad W = 16\\,\\mathrm{N}",
+                    explanation: "Multiplying extension by 8 multiplies required force by 8, in exact adherence to Hooke's law."
+                },
+                {
+                    title: "Example 2: Mass-Spring System with Unit Conversion",
+                    question: "A mass of 620 g is hung on a spring with a spring constant of 31 N/m. Calculate (a) the weight of the mass (g = 10 N/kg) and (b) the extension of the spring.",
+                    given: "Mass \\( m = 620\\,\\mathrm{g} = 0.62\\,\\mathrm{kg} \\), \\( g = 10\\,\\mathrm{N/kg} \\), \\( k = 31\\,\\mathrm{N/m} \\).",
+                    find: "Weight \\( W \\) and spring extension \\( x \\).",
+                    equation: "W = mg, \\quad x = \\frac{W}{k}",
+                    rearrangement: "W = 0.62 \\times 10 = 6.2\\,\\mathrm{N}, \\quad x = \\frac{6.2\\,\\mathrm{N}}{31\\,\\mathrm{N/m}}",
+                    solution: "1. Weight: \\( W = 6.2\\,\\mathrm{N} \\).<br>2. Extension: \\( x = \\frac{6.2}{31} = 0.20\\,\\mathrm{m} = 20\\,\\mathrm{cm} \\).",
+                    finalAnswer: "W = 6.2\\,\\mathrm{N}, \\quad x = 0.20\\,\\mathrm{m} \\; (20\\,\\mathrm{cm})",
+                    explanation: "Converting grams to kilograms is necessary to obtain force in Newtons."
+                },
+                {
+                    title: "Example 3: Earth vs Moon Weight",
+                    question: "A mass of 12 kg is placed on Earth (g = 9.8 N/kg) and on the Moon (g = 1.6 N/kg). Calculate its weight in both locations.",
+                    given: "Mass \\( m = 12\\,\\mathrm{kg} \\), \\( g_{\\text{Earth}} = 9.8\\,\\mathrm{N/kg} \\), \\( g_{\\text{Moon}} = 1.6\\,\\mathrm{N/kg} \\).",
+                    find: "Weight on Earth (\\( W_E \\)) and Moon (\\( W_M \\)).",
+                    equation: "W = mg",
+                    rearrangement: "W_E = 12 \\times 9.8, \\quad W_M = 12 \\times 1.6",
+                    solution: "1. Earth: \\( W_E = 117.6\\,\\mathrm{N} \\approx 120\\,\\mathrm{N} \\).<br>2. Moon: \\( W_M = 19.2\\,\\mathrm{N} \\).",
+                    finalAnswer: "W_{\\text{Earth}} \\approx 118\\,\\mathrm{N}, \\quad W_{\\text{Moon}} = 19.2\\,\\mathrm{N}",
+                    explanation: "Mass remains invariant across the universe; weight changes with local gravitational field strength."
+                }
+            ],
+            equations: [
+                {
+                    section: "Hooke's Law",
+                    name: "Hooke's Law Formula",
+                    formula: "\\[ F = kx \\iff k = \\frac{F}{x} \\iff x = \\frac{F}{k} \\]",
+                    explanation: "Stretching force is proportional to spring extension.",
+                    conditions: "Within the limit of proportionality.",
+                    variables: [
+                        { symbol: "F", rep: "Stretching force / weight", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "k", rep: "Spring constant / force constant", unit: "Newton per meter", unitSym: "\\mathrm{N/m}" },
+                        { symbol: "x", rep: "Extension (stretched length - original length)", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Gravitational Weight",
+                    name: "Weight Equation",
+                    formula: "\\[ W = mg \\iff m = \\frac{W}{g} \\]",
+                    explanation: "Gravitational force acting on mass m.",
+                    conditions: "Gravitational field strength g.",
+                    variables: [
+                        { symbol: "W", rep: "Weight force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational field strength", unit: "Newton per kilogram", unitSym: "\\mathrm{N/kg}" }
+                    ]
+                },
+                {
+                    section: "Elastic Strain Energy",
+                    name: "Elastic Potential Energy",
+                    formula: "\\[ E_p = \\frac{1}{2}kx^2 = \\frac{1}{2}Fx \\]",
+                    explanation: "Work done stretching an elastic spring is stored as strain energy equal to the area under the force-extension graph.",
+                    conditions: "Hookean elastic deformation within limit of proportionality.",
+                    variables: [
+                        { symbol: "E_p", rep: "Elastic potential energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "k", rep: "Spring constant", unit: "Newton per meter", unitSym: "\\mathrm{N/m}" },
+                        { symbol: "x", rep: "Extension", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "F", rep: "Stretching force applied", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                },
+                {
+                    section: "Spring Combinations",
+                    name: "Springs in Series",
+                    formula: "\\[ \\frac{1}{k_{\\text{eq}}} = \\frac{1}{k_1} + \\frac{1}{k_2} \\iff k_{\\text{eq}} = \\frac{k_1 k_2}{k_1 + k_2} \\]",
+                    explanation: "When springs are joined end-to-end in series, total stiffness decreases.",
+                    conditions: "Linearly elastic springs in series sharing the same load.",
+                    variables: [
+                        { symbol: "k_{\\text{eq}}", rep: "Combined equivalent spring constant", unit: "Newton per meter", unitSym: "\\mathrm{N/m}" },
+                        { symbol: "k_1, k_2", rep: "Individual spring constants", unit: "Newton per meter", unitSym: "\\mathrm{N/m}" }
+                    ]
+                },
+                {
+                    section: "Spring Combinations",
+                    name: "Springs in Parallel",
+                    formula: "\\[ k_{\\text{eq}} = k_1 + k_2 \\]",
+                    explanation: "When springs are mounted side-by-side in parallel, total stiffness is the sum of individual constants.",
+                    conditions: "Parallel springs sharing common extension.",
+                    variables: [
+                        { symbol: "k_{\\text{eq}}", rep: "Combined equivalent spring constant", unit: "Newton per meter", unitSym: "\\mathrm{N/m}" },
+                        { symbol: "k_1, k_2", rep: "Individual spring constants", unit: "Newton per meter", unitSym: "\\mathrm{N/m}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is Hooke's Law in symbols?", back: "\\( F = kx \\), where F is stretching force, k is spring constant, and x is extension." },
+                { front: "What is the SI unit of the spring constant k?", back: "Newton per meter (\\( \\mathrm{N/m} \\))." },
+                { front: "What happens if a spring is stretched beyond its elastic limit?", back: "It suffers permanent extension and will not return to its original length." },
+                { front: "How much does a 1 kg mass weigh on Earth?", back: "Approximately \\( 9.8\\,\\mathrm{N} \\) (often taken as \\( 10\\,\\mathrm{N} \\))." },
+                { front: "Does mass change on the Moon?", back: "No, mass is invariant; only weight changes because Moon's gravity is \\( \\approx 1.6\\,\\mathrm{N/kg} \\)." }
+            ],
+            quiz: [
+                { question: "Hooke's Law states that spring extension is directly proportional to:", options: ["Mass squared", "Stretching force", "Spring length", "Gravitational acceleration"], correctIndex: 1, feedback: "Hooke's Law states extension is proportional to applied force (F = kx)." },
+                { question: "If a 30 N force stretches a spring by 0.3 m, the spring constant k is:", options: ["90 N/m", "100 N/m", "10 N/m", "0.01 N/m"], correctIndex: 1, feedback: "k = F / x = 30 / 0.3 = 100 N/m." },
+                { question: "On Earth (g = 10 N/kg), what is the weight of a 5 kg object?", options: ["5 N", "0.5 N", "50 N", "500 N"], correctIndex: 2, feedback: "W = mg = 5 × 10 = 50 N." },
+                { question: "What is an average apple's weight on Earth?", options: ["About 1 N (mass ~100 g)", "About 10 N", "About 0.1 N", "About 100 N"], correctIndex: 0, feedback: "An apple of mass 100 g (0.1 kg) weighs about 0.1 × 10 = 1 N." }
+            ]
+        },
+        {
+            id: "g8-l5",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Vector_addition.gif",
+            worksheetUrl: "worksheets/g8-l5-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Vector Addition Simulation", url: "https://phet.colorado.edu/sims/html/vector-addition/latest/vector-addition_all.html" },
+                { topic: "Forces and Motion: Basics", url: "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html" }
+            ],
+            title: "Lesson 5: Adding Forces & Vectors",
+            concepts: [
+                "Vectors vs Scalars: A scalar has magnitude only (mass, distance, speed, time). A vector has both magnitude and direction (force, weight, velocity, acceleration, displacement).",
+                "Resultant Force: The single combined vector force having the identical physical effect as two or more forces acting together on an object.",
+                "Collinear Forces: Forces acting along the same straight line. In the same direction: \\(R = a + b\\). In opposite directions: \\(R = |a - b|\\).",
+                "Parallelogram Law of Forces: If two forces acting at a point are represented in size and direction by the adjacent sides of a parallelogram, their resultant is represented in size and direction by the diagonal drawn from the common point.",
+                "Perpendicular Forces (90°): By Pythagoras' theorem, the resultant magnitude is \\(R = \\sqrt{a^2 + b^2}\\), and its angle \\(\\theta = \\tan^{-1}\\left(\\frac{b}{a}\\right)\\).",
+                "Friction: The resistive contact force opposing relative motion between surfaces. Starting (static) friction is slightly greater than sliding (dynamic) friction. Work against friction turns mechanical energy into heat."
+            ],
+            definitions: [
+                { term: "Scalar Quantity", definition: "A physical quantity that has magnitude (size) only.", symbol: "\\text{Scalar}", unit: "\\text{Varies}", equation: "m, t, v, d" },
+                { term: "Vector Quantity", definition: "A physical quantity that has both magnitude and direction.", symbol: "\\vec{v}, \\vec{F}", unit: "\\text{Varies}", equation: "\\vec{F}, \\vec{v}, \\vec{a}, \\vec{s}" },
+                { term: "Resultant Force", definition: "The single vector force that produces the exact same acceleration and effect as two or more separate forces combined.", symbol: "R \\; (F_{\\text{net}})", unit: "\\mathrm{N}", equation: "R = \\sqrt{a^2 + b^2} \\quad (90^\\circ)" },
+                { term: "Parallelogram Law", definition: "Geometric vector addition where the diagonal of a constructed parallelogram represents the vector resultant.", symbol: "\\text{Diagonal}", unit: "\\mathrm{N}", equation: "\\vec{R} = \\vec{F}_1 + \\vec{F}_2" },
+                { term: "Friction", definition: "A contact force that opposes the motion or attempted motion of one surface over another, generating heat.", symbol: "F_f", unit: "\\mathrm{N}", equation: "F_f \\le \\mu R_N" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Resultant of Perpendicular Forces",
+                    question: "Find the size and direction of the resultant of two forces of 30 N and 40 N acting at right angles (90°) to each other.",
+                    given: "Force 1 \\( a = 30\\,\\mathrm{N} \\), Force 2 \\( b = 40\\,\\mathrm{N} \\), Angle \\( = 90^\\circ \\).",
+                    find: "Resultant magnitude \\( R \\) and angle \\( \\theta \\).",
+                    equation: "R = \\sqrt{a^2 + b^2}, \\quad \\tan\\theta = \\frac{b}{a}",
+                    rearrangement: "R = \\sqrt{30^2 + 40^2} = \\sqrt{900 + 1600}",
+                    solution: "1. <strong>Magnitude:</strong><br>\\[ R = \\sqrt{2500} = 50\\,\\mathrm{N} \\]<br>2. <strong>Direction:</strong><br>\\[ \\tan\\theta = \\frac{40}{30} \\approx 1.333 \\implies \\theta = \\tan^{-1}(1.333) \\approx 53.1^\\circ \\]",
+                    finalAnswer: "R = 50\\,\\mathrm{N} \\quad (\\text{at } 53^\\circ \\text{ to the } 30\\,\\mathrm{N} \\text{ force})",
+                    explanation: "Pythagorean vector addition resolves orthogonal force vectors into a single resultant."
+                },
+                {
+                    title: "Example 2: Equilibrium in Tug of War",
+                    question: "Jo pulls with 100 N due East and Daniel pulls with 140 N due West on a metal ring. If the ring does not move, what force must Helen exert and in what direction?",
+                    given: "Jo's force \\( F_J = 100\\,\\mathrm{N} \\) (East), Daniel's force \\( F_D = 140\\,\\mathrm{N} \\) (West).",
+                    find: "Helen's force \\( F_H \\) for equilibrium (\\( R = 0 \\)).",
+                    equation: "F_{\\text{East}} = F_{\\text{West}} \\implies F_J + F_H = F_D",
+                    rearrangement: "F_H = F_D - F_J = 140\\,\\mathrm{N} - 100\\,\\mathrm{N}",
+                    solution: "Subtract to find required balancing force:<br>\\[ F_H = 140 - 100 = 40\\,\\mathrm{N} \\]",
+                    finalAnswer: "F_H = 40\\,\\mathrm{N} \\text{ East (same direction as Jo)}",
+                    explanation: "Forces must be equal in opposite directions for the system to remain in static equilibrium."
+                },
+                {
+                    title: "Example 3: Opposing Drag and Forward Friction",
+                    question: "A boy drags a suitcase along the ground with a pulling force of 100 N. Frictional resistance opposing the motion is 50 N. What is the net forward resultant force?",
+                    given: "Pull force \\( P = 100\\,\\mathrm{N} \\), Frictional force \\( F_f = 50\\,\\mathrm{N} \\).",
+                    find: "Net forward force \\( F_{\\text{net}} \\).",
+                    equation: "F_{\\text{net}} = P - F_f",
+                    rearrangement: "F_{\\text{net}} = 100\\,\\mathrm{N} - 50\\,\\mathrm{N}",
+                    solution: "Subtract opposing friction from applied pull:<br>\\[ F_{\\text{net}} = 50\\,\\mathrm{N} \\]",
+                    finalAnswer: "F_{\\text{net}} = 50\\,\\mathrm{N} \\text{ forward}",
+                    explanation: "Friction acts directly opposite to the dragging direction, reducing effective acceleration force."
+                }
+            ],
+            equations: [
+                {
+                    section: "Vector Addition",
+                    name: "Perpendicular Forces Resultant",
+                    formula: "\\[ R = \\sqrt{a^2 + b^2} \\iff R^2 = a^2 + b^2 \\]",
+                    explanation: "Pythagorean theorem formula for resultant of two forces acting at 90°.",
+                    conditions: "Forces acting at right angles.",
+                    variables: [
+                        { symbol: "R", rep: "Resultant force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "a", rep: "First perpendicular force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "b", rep: "Second perpendicular force", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                },
+                {
+                    section: "Vector Addition",
+                    name: "Collinear Forces Resultant",
+                    formula: "\\[ R = a + b \\quad (\\text{same}) \\quad\\Big|\\quad R = |a - b| \\quad (\\text{opposite}) \\]",
+                    explanation: "Algebraic sum or difference of collinear forces acting along one straight line.",
+                    conditions: "1D collinear forces.",
+                    variables: [
+                        { symbol: "R", rep: "Resultant force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "a, b", rep: "Individual collinear forces", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                },
+                {
+                    section: "Vector Addition",
+                    name: "Parallelogram Law of Forces (General)",
+                    formula: "\\[ R = \\sqrt{a^2 + b^2 + 2ab\\cos\\theta} \\]",
+                    explanation: "Calculates the magnitude of resultant force R of two forces a and b inclined at any angle θ to each other.",
+                    conditions: "Two coplanar concurrent forces.",
+                    variables: [
+                        { symbol: "R", rep: "Resultant force magnitude", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "a, b", rep: "Magnitudes of the two component forces", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\theta", rep: "Angle included between the two forces", unit: "Degree (or Radian)", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Vector Addition",
+                    name: "Direction of Resultant Vector",
+                    formula: "\\[ \\tan\\alpha = \\frac{b\\sin\\theta}{a + b\\cos\\theta} \\]",
+                    explanation: "Finds the direction angle α of the resultant with respect to force vector a.",
+                    conditions: "Two coplanar concurrent vectors.",
+                    variables: [
+                        { symbol: "\\alpha", rep: "Angle of resultant relative to force a", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "a, b", rep: "Component force magnitudes", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\theta", rep: "Angle between component forces", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Equilibrium",
+                    name: "Lami's Theorem for Three Forces in Equilibrium",
+                    formula: "\\[ \\frac{F_1}{\\sin\\alpha} = \\frac{F_2}{\\sin\\beta} = \\frac{F_3}{\\sin\\gamma} \\]",
+                    explanation: "When three coplanar forces acting at a point keep a body in static equilibrium, each force is proportional to the sine of the angle between the other two.",
+                    conditions: "Three coplanar concurrent forces in static equilibrium.",
+                    variables: [
+                        { symbol: "F_1, F_2, F_3", rep: "Magnitudes of the three balancing forces", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\alpha, \\beta, \\gamma", rep: "Opposite angles between force pairs", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is a vector quantity?", back: "A physical quantity that has both magnitude (size) and direction (e.g. force, velocity, acceleration)." },
+                { front: "What is a scalar quantity?", back: "A physical quantity that has magnitude only, with no direction (e.g. mass, speed, time, energy)." },
+                { front: "How is the resultant of two forces acting at 90° calculated?", back: "\\( R = \\sqrt{a^2 + b^2} \\) (Pythagoras' Theorem)." },
+                { front: "Which is greater: starting (static) friction or sliding (dynamic) friction?", back: "Starting (static) friction is slightly greater than sliding (dynamic) friction." },
+                { front: "What type of energy is generated when work is done against friction?", back: "Heat (thermal) energy." }
+            ],
+            quiz: [
+                { question: "Which of the following is a vector quantity?", options: ["Speed", "Mass", "Force", "Time"], correctIndex: 2, feedback: "Force has both magnitude and direction, making it a vector quantity." },
+                { question: "Two perpendicular forces of 5 N and 12 N act on a body. The resultant is:", options: ["17 N", "7 N", "13 N", "60 N"], correctIndex: 2, feedback: "R = √(5² + 12²) = √(25 + 144) = √169 = 13 N." },
+                { question: "If an object moves at a constant steady velocity along a table, the net resultant force is:", options: ["Zero (forces are balanced)", "Equal to applied push", "Equal to weight", "Infinite"], correctIndex: 0, feedback: "Constant velocity implies zero acceleration, so net resultant force must be zero." },
+                { question: "A force of 30 N acts East and 40 N acts North. What is the resultant?", options: ["70 N", "10 N", "50 N", "1200 N"], correctIndex: 2, feedback: "R = √(30² + 40²) = √(900 + 1600) = √2500 = 50 N." }
+            ]
+        },
+        {
+            id: "g8-l6",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Newtons_second_law.gif",
+            worksheetUrl: "worksheets/g8-l6-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Forces and Motion: Basics", url: "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html" }
+            ],
+            title: "Lesson 6: Force and Acceleration (Newton's Laws)",
+            concepts: [
+                "Newton's First Law of Motion (Law of Inertia): A body stays at rest, or if moving continues to move with uniform velocity in a straight line, unless acted upon by a net external force.",
+                "Inertia and Mass: Inertia is the intrinsic reluctance of matter to have its motion changed. The mass of a body measures its inertia.",
+                "Newton's Second Law of Motion: The acceleration of a body is directly proportional to the net applied force and inversely proportional to its mass: \\(a = \\frac{F}{m} \\iff F = ma\\).",
+                "Definition of the Newton: One Newton is the force that imparts an acceleration of \\(1\\,\\mathrm{m/s^2}\\) to a mass of \\(1\\,\\mathrm{kg}\\) (\\(1\\,\\mathrm{N} = 1\\,\\mathrm{kg\\cdot m/s^2}\\)).",
+                "Gravitational Field Strength (g): The gravitational force per unit mass, \\(g = \\frac{W}{m} = 9.8\\,\\mathrm{N/kg} = 9.8\\,\\mathrm{m/s^2}\\).",
+                "Newton's Third Law of Motion: If body A exerts a force on body B, then body B exerts an equal but opposite force on body A (action and reaction pairs act on different bodies).",
+                "Air Resistance & Terminal Velocity: As a falling body speeds up, upward air resistance increases until it balances weight (\\(F_{\\text{drag}} = W\\)). Net force becomes zero and acceleration ceases, reaching terminal velocity."
+            ],
+            definitions: [
+                { term: "Inertia", definition: "The natural property of matter to resist any change in its velocity or state of rest.", symbol: "\\text{Inertia}", unit: "\\text{Measured by mass (kg)}", equation: "m \\propto \\text{Inertia}" },
+                { term: "Newton's Second Law", definition: "Net unbalanced force equals the product of mass and acceleration.", symbol: "F = ma", unit: "\\mathrm{N}", equation: "F_{\\text{net}} = ma" },
+                { term: "Newton (N)", definition: "The SI unit of force equal to the force giving 1 kg mass an acceleration of 1 m/s².", symbol: "\\mathrm{N}", unit: "\\mathrm{kg\\cdot m/s^2}", equation: "1\\,\\mathrm{N} = 1\\,\\mathrm{kg\\cdot m/s^2}" },
+                { term: "Gravitational Field Strength", definition: "The gravitational force exerted on unit mass at a point in space.", symbol: "g", unit: "\\mathrm{N/kg}", equation: "g = \\frac{W}{m}" },
+                { term: "Terminal Velocity", definition: "The constant maximum speed of an object falling through a fluid when upward drag balances downward weight.", symbol: "v_t", unit: "\\mathrm{m/s}", equation: "F_{\\text{drag}} = W \\implies a = 0" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Unbalanced Push on a Friction Bench",
+                    question: "A block of mass 2 kg has constant velocity when pushed with 5 N. When the push is increased to 9 N, what are (a) the resultant force and (b) the acceleration?",
+                    given: "Mass \\( m = 2.0\\,\\mathrm{kg} \\), Friction \\( F_f = 5.0\\,\\mathrm{N} \\), Increased push \\( P = 9.0\\,\\mathrm{N} \\).",
+                    find: "Resultant force \\( F_{\\text{net}} \\) and acceleration \\( a \\).",
+                    equation: "F_{\\text{net}} = P - F_f, \\quad a = \\frac{F_{\\text{net}}}{m}",
+                    rearrangement: "F_{\\text{net}} = 9 - 5 = 4\\,\\mathrm{N}, \\quad a = \\frac{4\\,\\mathrm{N}}{2\\,\\mathrm{kg}}",
+                    solution: "1. Resultant force: \\( F_{\\text{net}} = 4.0\\,\\mathrm{N} \\).<br>2. Acceleration: \\( a = \\frac{4}{2} = 2.0\\,\\mathrm{m/s^2} \\).",
+                    finalAnswer: "F_{\\text{net}} = 4.0\\,\\mathrm{N}, \\quad a = 2.0\\,\\mathrm{m/s^2}",
+                    explanation: "Only the net unbalanced force (above friction) causes acceleration."
+                },
+                {
+                    title: "Example 2: Force Required to Accelerate a Car",
+                    question: "What resultant force produces an acceleration of 5 m/s² in a car of mass 1000 kg?",
+                    given: "Mass \\( m = 1000\\,\\mathrm{kg} \\), Acceleration \\( a = 5.0\\,\\mathrm{m/s^2} \\).",
+                    find: "Force \\( F \\).",
+                    equation: "F = ma",
+                    rearrangement: "F = 1000\\,\\mathrm{kg} \\times 5.0\\,\\mathrm{m/s^2}",
+                    solution: "Multiply mass by acceleration:<br>\\[ F = 1000 \\times 5.0 = 5000\\,\\mathrm{N} = 5.0\\,\\mathrm{kN} \\]",
+                    finalAnswer: "F = 5000\\,\\mathrm{N} \\; (5.0\\,\\mathrm{kN})",
+                    explanation: "Newton's second law directly gives required thrust."
+                },
+                {
+                    title: "Example 3: Rocket Lift-off Acceleration",
+                    question: "A rocket has a mass of 500 kg. At lift-off the engine exerts an upward thrust of 25,000 N. Taking g = 10 N/kg, calculate (a) its weight, (b) resultant force, and (c) initial acceleration.",
+                    given: "Mass \\( m = 500\\,\\mathrm{kg} \\), Thrust \\( T = 25{,}000\\,\\mathrm{N} \\), \\( g = 10\\,\\mathrm{N/kg} \\).",
+                    find: "Weight \\( W \\), Net force \\( F_{\\text{net}} \\), Acceleration \\( a \\).",
+                    equation: "W = mg, \\quad F_{\\text{net}} = T - W, \\quad a = \\frac{F_{\\text{net}}}{m}",
+                    rearrangement: "W = 500 \\times 10 = 5000\\,\\mathrm{N}, \\quad F_{\\text{net}} = 25000 - 5000 = 20000\\,\\mathrm{N}",
+                    solution: "1. <strong>Weight:</strong> \\( W = 5000\\,\\mathrm{N} \\).<br>2. <strong>Net Force:</strong> \\( F_{\\text{net}} = 20{,}000\\,\\mathrm{N} \\).<br>3. <strong>Acceleration:</strong> \\( a = \\frac{20{,}000}{500} = 40\\,\\mathrm{m/s^2} \\).",
+                    finalAnswer: "W = 5000\\,\\mathrm{N}, \\quad F_{\\text{net}} = 20{,}000\\,\\mathrm{N}, \\quad a = 40\\,\\mathrm{m/s^2}",
+                    explanation: "Upward thrust must first overcome downward gravity before the rocket can accelerate."
+                }
+            ],
+            equations: [
+                {
+                    section: "Newton's Second Law",
+                    name: "Force and Acceleration Formula",
+                    formula: "\\[ F = ma \\iff a = \\frac{F}{m} \\iff m = \\frac{F}{a} \\]",
+                    explanation: "Unbalanced force equals mass times acceleration.",
+                    conditions: "Standard SI units (F in N, m in kg, a in m/s²).",
+                    variables: [
+                        { symbol: "F", rep: "Resultant net force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Mass of body", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "a", rep: "Acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Gravitational Force",
+                    name: "Weight Equation",
+                    formula: "\\[ W = mg \\iff g = \\frac{W}{m} \\]",
+                    explanation: "Relates weight to mass and gravitational field strength.",
+                    conditions: "Surface of celestial body.",
+                    variables: [
+                        { symbol: "W", rep: "Weight force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational field strength", unit: "Newton per kilogram", unitSym: "\\mathrm{N/kg}" }
+                    ]
+                },
+                {
+                    section: "Linear Momentum",
+                    name: "Linear Momentum Equation",
+                    formula: "\\[ p = mv \\iff \\Delta p = m(v - u) \\]",
+                    explanation: "Linear momentum is the product of mass and velocity, representing the quantity of motion possessed by a body.",
+                    conditions: "Translational motion at non-relativistic velocities.",
+                    variables: [
+                        { symbol: "p", rep: "Linear momentum", unit: "Kilogram meter per second (or Newton second)", unitSym: "\\mathrm{kg\\cdot m/s}" },
+                        { symbol: "m", rep: "Mass of the body", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "v", rep: "Velocity of the body", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Impulse & Momentum",
+                    name: "Impulse and Force-Momentum Theorem",
+                    formula: "\\[ J = F \\times \\Delta t = \\Delta p = m(v - u) \\]",
+                    explanation: "Impulse is the product of net force and contact duration, quantitatively equal to the change in linear momentum.",
+                    conditions: "Force acting over short collision duration Δt.",
+                    variables: [
+                        { symbol: "J", rep: "Impulse of force", unit: "Newton second", unitSym: "\\mathrm{N\\cdot s}" },
+                        { symbol: "F", rep: "Impact force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\Delta t", rep: "Contact impact time interval", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "\\Delta p", rep: "Change in momentum", unit: "Kilogram meter per second", unitSym: "\\mathrm{kg\\cdot m/s}" }
+                    ]
+                },
+                {
+                    section: "Conservation of Momentum",
+                    name: "Conservation of Linear Momentum",
+                    formula: "\\[ m_1 u_1 + m_2 u_2 = m_1 v_1 + m_2 v_2 \\]",
+                    explanation: "In any closed isolated system with no external forces, total momentum before collision equals total momentum after collision.",
+                    conditions: "Isolated system with zero net external impulse.",
+                    variables: [
+                        { symbol: "m_1, m_2", rep: "Masses of colliding bodies", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "u_1, u_2", rep: "Initial velocities before collision", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_1, v_2", rep: "Final velocities after collision", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Friction Force",
+                    name: "Friction and Normal Reaction Law",
+                    formula: "\\[ F_f = \\mu N = \\mu mg \\]",
+                    explanation: "Frictional resistance opposing sliding is proportional to normal contact reaction force N.",
+                    conditions: "Dry Coulomb friction between solid surfaces.",
+                    variables: [
+                        { symbol: "F_f", rep: "Frictional opposing force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\mu", rep: "Coefficient of friction", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "N", rep: "Normal reaction force (N = mg on flat plane)", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is Newton's First Law of Motion?", back: "An object remains at rest or moves with uniform velocity unless acted on by an external net force." },
+                { front: "What is the formula for Newton's Second Law?", back: "\\( F = ma \\) (Net Force = mass × acceleration)." },
+                { front: "What is Newton's Third Law of Motion?", back: "If body A exerts a force on body B, body B exerts an equal and opposite force on body A." },
+                { front: "Why do passengers lurch forward when a car stops suddenly?", back: "Due to inertia, their bodies tend to continue moving at the car's previous speed." },
+                { front: "What is terminal velocity?", back: "The steady speed reached when air drag upward equals downward gravitational weight." }
+            ],
+            quiz: [
+                { question: "What resultant force produces an acceleration of 5 m/s² in a 1000 kg car?", options: ["200 N", "5000 N", "50,000 N", "500 N"], correctIndex: 1, feedback: "F = ma = 1000 kg × 5 m/s² = 5000 N." },
+                { question: "The property of a body that resists changes in motion is called:", options: ["Momentum", "Inertia", "Velocity", "Gravity"], correctIndex: 1, feedback: "Inertia is the natural reluctance of an object to change its motion, measured by mass." },
+                { question: "When a raindrop reaches terminal velocity, what is its acceleration?", options: ["9.8 m/s²", "10 m/s²", "0 m/s²", "Infinite"], correctIndex: 2, feedback: "At terminal velocity, forces balance (Fnet = 0), so acceleration is 0 m/s²." },
+                { question: "Newton's third law pair forces act on:", options: ["The same body", "Two different bodies", "Friction only", "Objects at rest only"], correctIndex: 1, feedback: "Action and reaction forces always act on two different bodies (e.g. foot on Earth, Earth on foot)." }
+            ]
+        },
+        {
+            id: "g8-l7",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Energy_conservation_pendulum.gif",
+            worksheetUrl: "worksheets/g8-l7-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Energy Forms and Changes", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" }
+            ],
+            title: "Lesson 7: Energy, Work and Power",
+            concepts: [
+                "Forms of Energy: Chemical (food, fuels, batteries), Gravitational Potential (height), Elastic Strain (stretched springs), Kinetic (motion), Electrical, Thermal/Heat, Sound, Light, and Nuclear.",
+                "Principle of Conservation of Energy: Energy cannot be created or destroyed; it is always conserved and merely transformed between forms. Total energy in any closed system is constant.",
+                "Mechanical Work: Work is done when an applied force moves through a distance in the direction of the force: \\(W = Fd\\). Measured in Joules (\\(1\\,\\mathrm{J} = 1\\,\\mathrm{N\\cdot m}\\)). No work is done if no displacement occurs.",
+                "Power: The rate of doing work or transferring energy per unit time, \\(P = \\frac{W}{t} = \\frac{E}{t}\\). Measured in Watts (\\(1\\,\\mathrm{W} = 1\\,\\mathrm{J/s}\\)). Larger units: kilowatt (\\(1\\,\\mathrm{kW} = 1000\\,\\mathrm{W} = 10^3\\,\\mathrm{W}\\)) and megawatt (\\(1\\,\\mathrm{MW} = 10^6\\,\\mathrm{W}\\)).",
+                "Efficiency: The percentage of input energy converted into useful output work: \\(\\text{Efficiency} = \\frac{\\text{Useful energy output}}{\\text{Total energy input}} \\times 100\\%\\). Due to friction, machines have efficiency under 100%.",
+                "Energy Values of Foods and Fuels: Food energy is measured in \\(\\mathrm{MJ/kg}\\) (released during oxidation). Fuel combustion heating values are measured in \\(\\mathrm{kJ/g}\\) (e.g. methane 55 kJ/g, paraffin 48 kJ/g)."
+            ],
+            definitions: [
+                { term: "Energy", definition: "The capacity of a physical body or system to perform mechanical work.", symbol: "E", unit: "\\mathrm{J}", equation: "1\\,\\mathrm{J} = 1\\,\\mathrm{N\\cdot m}" },
+                { term: "Work Done", definition: "The product of the applied force and the distance moved in the direction of the force.", symbol: "W", unit: "\\mathrm{J}", equation: "W = Fd" },
+                { term: "Power", definition: "The time rate of doing work or transferring energy.", symbol: "P", unit: "\\mathrm{W} \\;(\\mathrm{J/s})", equation: "P = \\frac{W}{t} = \\frac{E}{t}" },
+                { term: "Watt (W)", definition: "The SI unit of power equal to one Joule of energy transferred per second.", symbol: "\\mathrm{W}", unit: "\\mathrm{J/s}", equation: "1\\,\\mathrm{W} = 1\\,\\mathrm{J/s}" },
+                { term: "Efficiency", definition: "The ratio of useful output energy to total input energy expressed as a percentage.", symbol: "\\text{Eff}", unit: "\\%", equation: "\\text{Eff} = \\frac{\\text{Output}}{\\text{Input}} \\times 100\\%" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Work Done Pulling a Crate",
+                    question: "A worker pulls with a force of 50 N to move a crate steadily 3.0 m in the direction of the force. Calculate the work done.",
+                    given: "Force \\( F = 50\\,\\mathrm{N} \\), Distance \\( d = 3.0\\,\\mathrm{m} \\).",
+                    find: "Work done (\\( W \\)).",
+                    equation: "W = F \\times d",
+                    rearrangement: "W = 50\\,\\mathrm{N} \\times 3.0\\,\\mathrm{m}",
+                    solution: "Multiply force by distance:<br>\\[ W = 50 \\times 3.0 = 150\\,\\mathrm{N\\cdot m} = 150\\,\\mathrm{J} \\]",
+                    finalAnswer: "W = 150\\,\\mathrm{J}",
+                    explanation: "Mechanical work done equals 150 Joules of energy transferred to move the crate."
+                },
+                {
+                    title: "Example 2: Lifting Work against Gravity",
+                    question: "A mass of 3.0 kg is lifted vertically through 2.0 m (take g = 10 N/kg). How much work is done?",
+                    given: "Mass \\( m = 3.0\\,\\mathrm{kg} \\), Height \\( h = 2.0\\,\\mathrm{m} \\), \\( g = 10\\,\\mathrm{N/kg} \\).",
+                    find: "Work done (\\( W \\)).",
+                    equation: "F = mg, \\quad W = F \\times h = mgh",
+                    rearrangement: "W = 3.0\\,\\mathrm{kg} \\times 10\\,\\mathrm{N/kg} \\times 2.0\\,\\mathrm{m}",
+                    solution: "1. Upward lifting force: \\( F = 30\\,\\mathrm{N} \\).<br>2. Work done: \\( W = 30 \\times 2.0 = 60\\,\\mathrm{J} \\).",
+                    finalAnswer: "W = 60\\,\\mathrm{J}",
+                    explanation: "Work done lifting against gravity equals the gravitational potential energy gained."
+                },
+                {
+                    title: "Example 3: Average Power of a Student Running Upstairs",
+                    question: "A boy whose weight is 600 N runs up a flight of stairs 10 m high in 12 s. What is his average power?",
+                    given: "Weight \\( F = 600\\,\\mathrm{N} \\), Height \\( h = 10\\,\\mathrm{m} \\), Time \\( t = 12\\,\\mathrm{s} \\).",
+                    find: "Power output (\\( P \\)).",
+                    equation: "W = Fh, \\quad P = \\frac{W}{t}",
+                    rearrangement: "P = \\frac{600\\,\\mathrm{N} \\times 10\\,\\mathrm{m}}{12\\,\\mathrm{s}} = \\frac{6000\\,\\mathrm{J}}{12\\,\\mathrm{s}}",
+                    solution: "Divide total work done by time:<br>\\[ P = \\frac{6000}{12} = 500\\,\\mathrm{W} = 0.50\\,\\mathrm{kW} \\]",
+                    finalAnswer: "P = 500\\,\\mathrm{W} \\; (0.50\\,\\mathrm{kW})",
+                    explanation: "The boy develops half a kilowatt of mechanical power during his climb."
+                },
+                {
+                    title: "Example 4: Power Station Thermal Efficiency",
+                    question: "When the energy input to a gas-fired power station is 1000 MJ, the electrical energy output is 300 MJ. Calculate (a) the efficiency of the station and (b) the lost energy.",
+                    given: "Total energy input = \\( 1000\\,\\mathrm{MJ} \\), Useful electrical output = \\( 300\\,\\mathrm{MJ} \\).",
+                    find: "Efficiency percentage and wasted heat energy.",
+                    equation: "\\text{Eff} = \\frac{\\text{Output}}{\\text{Input}} \\times 100\\%, \\quad E_{\\text{lost}} = E_{\\text{in}} - E_{\\text{out}}",
+                    rearrangement: "\\text{Eff} = \\frac{300}{1000} \\times 100\\%",
+                    solution: "1. Efficiency: \\( \\frac{300}{1000} \\times 100\\% = 30\\% \\).<br>2. Lost heat: \\( 1000 - 300 = 700\\,\\mathrm{MJ} \\).",
+                    finalAnswer: "\\text{Efficiency} = 30\\%, \\quad E_{\\text{lost}} = 700\\,\\mathrm{MJ}",
+                    explanation: "700 MJ is dissipated as low-temperature thermal waste heat into cooling towers and rivers."
+                }
+            ],
+            equations: [
+                {
+                    section: "Work",
+                    name: "Mechanical Work Formula",
+                    formula: "\\[ W = F \\times d \\iff F = \\frac{W}{d} \\iff d = \\frac{W}{F} \\]",
+                    explanation: "Work done by a force acting over a displacement in its direction.",
+                    conditions: "Force parallel to displacement.",
+                    variables: [
+                        { symbol: "W", rep: "Work done", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "F", rep: "Applied force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "d", rep: "Distance moved in force direction", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Power",
+                    name: "Power Formula",
+                    formula: "\\[ P = \\frac{W}{t} = \\frac{E}{t} \\iff W = P \\times t \\]",
+                    explanation: "Power is rate of doing work or rate of energy transfer.",
+                    conditions: "Steady energy transfer.",
+                    variables: [
+                        { symbol: "P", rep: "Power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "W", rep: "Work done", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Efficiency",
+                    name: "Energy Efficiency Equation",
+                    formula: "\\[ \\text{Efficiency} = \\frac{\\text{Useful Energy Output}}{\\text{Total Energy Input}} \\times 100\\% \\]",
+                    explanation: "Percentage of input energy converted into useful work output.",
+                    conditions: "All energy values in identical units.",
+                    variables: [
+                        { symbol: "\\text{Efficiency}", rep: "Efficiency rating", unit: "Percentage", unitSym: "\\%" },
+                        { symbol: "E_{\\text{out}}", rep: "Useful output energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "E_{\\text{in}}", rep: "Total input energy", unit: "Joule", unitSym: "\\mathrm{J}" }
+                    ]
+                },
+                {
+                    section: "Work Done",
+                    name: "Work Done at an Angle",
+                    formula: "\\[ W = F d \\cos\\theta \\]",
+                    explanation: "When force is applied at an angle θ to the direction of motion, only the parallel component F cos θ does mechanical work.",
+                    conditions: "Constant force applied at angle θ to straight displacement.",
+                    variables: [
+                        { symbol: "W", rep: "Mechanical work done", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "F", rep: "Applied pulling or pushing force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "d", rep: "Displacement magnitude", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Angle between force vector and displacement vector", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Mechanical Power",
+                    name: "Power from Force and Velocity",
+                    formula: "\\[ P = F \\times v \\]",
+                    explanation: "Mechanical power delivered by a driving force F propelling an object at instantaneous steady velocity v.",
+                    conditions: "Motion along line of action of driving force.",
+                    variables: [
+                        { symbol: "P", rep: "Power developed", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "F", rep: "Driving tractive force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "v", rep: "Steady velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Work Done",
+                    name: "Gravitational Work Done in Lifting",
+                    formula: "\\[ W = mg\\Delta h \\]",
+                    explanation: "Work performed against gravity to vertically lift mass m through height Δh.",
+                    conditions: "Uniform gravitational field.",
+                    variables: [
+                        { symbol: "W", rep: "Lifting work done", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass of lifted object", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Newton per kilogram", unitSym: "\\mathrm{N/kg}" },
+                        { symbol: "\\Delta h", rep: "Vertical height lifted", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "State the principle of conservation of energy.", back: "Energy cannot be created or destroyed; it is always conserved and only transformed between forms." },
+                { front: "What is the formula for mechanical work?", back: "\\( W = F \\times d \\) (Force multiplied by distance in the force's direction)." },
+                { front: "What is 1 Watt equal to?", back: "\\( 1\\,\\mathrm{J/s} \\) (1 Joule per second)." },
+                { front: "How many Watts are in 1 kilowatt (kW) and 1 megawatt (MW)?", back: "\\( 1\\,\\mathrm{kW} = 1000\\,\\mathrm{W} = 10^3\\,\\mathrm{W} \\); \\( 1\\,\\mathrm{MW} = 10^6\\,\\mathrm{W} \\)." },
+                { front: "What is the formula for efficiency?", back: "\\( \\text{Efficiency} = \\frac{\\text{Useful Energy Output}}{\\text{Total Energy Input}} \\times 100\\% \\)" }
+            ],
+            quiz: [
+                { question: "If a machine does 500 J of work in 10 s, its power output is:", options: ["5000 W", "50 W", "0.02 W", "5 W"], correctIndex: 1, feedback: "P = W / t = 500 J / 10 s = 50 W." },
+                { question: "What is the SI unit of work and energy?", options: ["Watt", "Newton", "Joule", "Pascal"], correctIndex: 2, feedback: "Work and all forms of energy are measured in Joules (J)." },
+                { question: "A device receives 200 J of electrical energy and outputs 50 J of light. Its efficiency is:", options: ["25%", "50%", "75%", "10%"], correctIndex: 0, feedback: "Efficiency = (50 / 200) × 100% = 25%." },
+                { question: "Holding a heavy 50 N box completely motionless for 1 hour produces:", options: ["50 J of work", "180,000 J of work", "0 J of work", "3000 J of work"], correctIndex: 2, feedback: "Work W = F × d. Since displacement d = 0, work done in the scientific sense is 0 J." }
+            ]
+        },
+        {
+            id: "g8-l8",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Kinetic_and_potential_energy_roller_coaster.gif",
+            worksheetUrl: "worksheets/g8-l8-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Energy Skate Park: Basics", url: "https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_all.html" }
+            ],
+            title: "Lesson 8: Kinetic and Potential Energy",
+            concepts: [
+                "Kinetic Energy (k.e.): Energy possessed by a body due to its motion: \\(E_k = \\frac{1}{2}mv^2\\). Because speed is squared, doubling speed quadruples kinetic energy.",
+                "Gravitational Potential Energy (p.e.): Energy stored in a body by virtue of its vertical position in a gravitational field: \\(\\Delta E_p = mgh\\).",
+                "Conservation in Free Fall: When an object falls from rest under gravity, potential energy lost equals kinetic energy gained: \\(mgh = \\frac{1}{2}mv^2 \\implies v = \\sqrt{2gh}\\).",
+                "Simple Pendulum Energy Interchange: Continual oscillation where energy is purely potential at extreme swing ends and purely kinetic at the lowest central point.",
+                "Collisions & Elasticity: In perfectly elastic collisions, kinetic energy is conserved. In inelastic collisions, kinetic energy is partially converted into heat and sound.",
+                "Driving and Car Safety: Overall stopping distance equals thinking distance plus braking distance. Braking distance is directly proportional to speed squared (\\(s_{\\text{braking}} \\propto v^2\\)). Crumple zones extend collision impact time, drastically reducing decelerating force."
+            ],
+            definitions: [
+                { term: "Kinetic Energy", definition: "The mechanical energy an object possesses by virtue of its speed and mass.", symbol: "E_k", unit: "\\mathrm{J}", equation: "E_k = \\frac{1}{2}mv^2" },
+                { term: "Gravitational Potential Energy", definition: "The potential energy stored in an object elevated to vertical height h in a gravitational field.", symbol: "\\Delta E_p", unit: "\\mathrm{J}", equation: "\\Delta E_p = mgh" },
+                { term: "Conservation of Mechanical Energy", definition: "The law stating that in frictionless systems, total mechanical energy (Ek + Ep) remains constant.", symbol: "E_{\\text{tot}}", unit: "\\mathrm{J}", equation: "\\frac{1}{2}mv^2 = mgh \\implies v = \\sqrt{2gh}" },
+                { term: "Stopping Distance", definition: "The total distance required for a vehicle to stop completely from initial speed v.", symbol: "d_{\\text{stop}}", unit: "\\mathrm{m}", equation: "d_{\\text{stop}} = d_{\\text{think}} + d_{\\text{brake}}" },
+                { term: "Crumple Zone", definition: "Structural regions in vehicles engineered to deform progressively during collision, extending impact duration and decreasing deceleration force.", symbol: "\\text{Safety}", unit: "\\text{No unit}", equation: "F = \\frac{\\Delta p}{\\Delta t}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Kinetic Energy of a High-Speed Football",
+                    question: "A football of mass 0.40 kg (400 g) moves with a velocity of 20 m/s. Calculate its kinetic energy.",
+                    given: "Mass \\( m = 0.40\\,\\mathrm{kg} \\), Velocity \\( v = 20\\,\\mathrm{m/s} \\).",
+                    find: "Kinetic energy (\\( E_k \\)).",
+                    equation: "E_k = \\frac{1}{2}mv^2",
+                    rearrangement: "E_k = \\frac{1}{2} \\times 0.40\\,\\mathrm{kg} \\times (20\\,\\mathrm{m/s})^2",
+                    solution: "Multiply half-mass by velocity squared:<br>\\[ E_k = 0.20 \\times 400 = 80\\,\\mathrm{J} \\]",
+                    finalAnswer: "E_k = 80\\,\\mathrm{J}",
+                    explanation: "Kinetic energy scales quadratically with speed."
+                },
+                {
+                    title: "Example 2: Cliff Height and Fall Energy of a Boulder",
+                    question: "A boulder of mass 4 kg rolls over a cliff and strikes the beach below at 20 m/s. Neglecting air resistance and taking g = 10 m/s², find (a) kinetic energy at landing, (b) potential energy on cliff, and (c) cliff height.",
+                    given: "Mass \\( m = 4.0\\,\\mathrm{kg} \\), Landing velocity \\( v = 20\\,\\mathrm{m/s} \\), \\( g = 10\\,\\mathrm{m/s^2} \\).",
+                    find: "Landing \\( E_k \\), Initial \\( \\Delta E_p \\), Cliff height \\( h \\).",
+                    equation: "E_k = \\frac{1}{2}mv^2, \\quad \\Delta E_p = E_k, \\quad h = \\frac{\\Delta E_p}{mg}",
+                    rearrangement: "E_k = \\frac{1}{2}(4.0)(20)^2 = 800\\,\\mathrm{J}, \\quad h = \\frac{800\\,\\mathrm{J}}{4.0 \\times 10}",
+                    solution: "1. <strong>Kinetic Energy:</strong> \\( E_k = 2.0 \\times 400 = 800\\,\\mathrm{J} \\).<br>2. <strong>Potential Energy:</strong> \\( \\Delta E_p = 800\\,\\mathrm{J} \\) (by conservation of energy).<br>3. <strong>Height:</strong> \\( h = \\frac{800}{40} = 20\\,\\mathrm{m} \\).",
+                    finalAnswer: "E_k = 800\\,\\mathrm{J}, \\quad \\Delta E_p = 800\\,\\mathrm{J}, \\quad h = 20\\,\\mathrm{m}",
+                    explanation: "All initial gravitational potential energy transfers seamlessly into kinetic energy."
+                },
+                {
+                    title: "Example 3: Rebound Velocity and Energy Loss of a Bouncing Ball",
+                    question: "A 100 g steel ball falls from 1.8 m onto a metal plate and rebounds to 1.25 m (take g = 10 m/s²). Calculate impact velocity and rebound velocity.",
+                    given: "Mass \\( m = 0.10\\,\\mathrm{kg} \\), Drop height \\( h_1 = 1.8\\,\\mathrm{m} \\), Rebound height \\( h_2 = 1.25\\,\\mathrm{m} \\), \\( g = 10\\,\\mathrm{m/s^2} \\).",
+                    find: "Impact velocity \\( v_1 \\), Rebound velocity \\( v_2 \\), and energy lost.",
+                    equation: "v = \\sqrt{2gh}, \\quad E_{\\text{lost}} = mg(h_1 - h_2)",
+                    rearrangement: "v_1 = \\sqrt{2(10)(1.8)} = \\sqrt{36}, \\quad v_2 = \\sqrt{2(10)(1.25)} = \\sqrt{25}",
+                    solution: "1. <strong>Impact Velocity:</strong> \\( v_1 = 6.0\\,\\mathrm{m/s} \\).<br>2. <strong>Rebound Velocity:</strong> \\( v_2 = 5.0\\,\\mathrm{m/s} \\).<br>3. <strong>Energy Lost:</strong> \\( 0.10 \\times 10 \\times (1.8 - 1.25) = 1.0 \\times 0.55 = 0.55\\,\\mathrm{J} \\).",
+                    finalAnswer: "v_1 = 6.0\\,\\mathrm{m/s}, \\quad v_2 = 5.0\\,\\mathrm{m/s}, \\quad E_{\\text{lost}} = 0.55\\,\\mathrm{J}",
+                    explanation: "0.55 J of mechanical kinetic energy is converted into heat and sound during the inelastic impact."
+                }
+            ],
+            equations: [
+                {
+                    section: "Kinetic Energy",
+                    name: "Kinetic Energy Formula",
+                    formula: "\\[ E_k = \\frac{1}{2}mv^2 \\iff v = \\sqrt{\\frac{2E_k}{m}} \\]",
+                    explanation: "Translational kinetic energy of mass m moving with speed v.",
+                    conditions: "Speeds much less than speed of light.",
+                    variables: [
+                        { symbol: "E_k", rep: "Kinetic energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "v", rep: "Speed / velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Potential Energy",
+                    name: "Gravitational Potential Energy",
+                    formula: "\\[ \\Delta E_p = mgh \\iff h = \\frac{\\Delta E_p}{mg} \\]",
+                    explanation: "Change in gravitational potential energy elevated through height h.",
+                    conditions: "Uniform gravitational field g.",
+                    variables: [
+                        { symbol: "\\Delta E_p", rep: "Potential energy change", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational field strength", unit: "Newton per kilogram", unitSym: "\\mathrm{N/kg}" },
+                        { symbol: "h", rep: "Vertical height", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Conservation",
+                    name: "Free Fall Velocity from Height",
+                    formula: "\\[ v = \\sqrt{2gh} \\]",
+                    explanation: "Speed reached by an object dropped from height h with zero air resistance.",
+                    conditions: "Dropped from rest under gravity.",
+                    variables: [
+                        { symbol: "v", rep: "Impact speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Drop height", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Work-Energy Theorem",
+                    name: "Work-Energy Theorem",
+                    formula: "\\[ W_{\\text{net}} = \\Delta E_k = \\frac{1}{2}mv^2 - \\frac{1}{2}mu^2 \\]",
+                    explanation: "The net mechanical work done on an object by all acting forces equals the change in its translational kinetic energy.",
+                    conditions: "Rectilinear or curved motion under net force.",
+                    variables: [
+                        { symbol: "W_{\\text{net}}", rep: "Net work done on object", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "\\Delta E_k", rep: "Change in kinetic energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass of the object", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "u", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Car Safety & Stopping",
+                    name: "Vehicle Braking Distance Equation",
+                    formula: "\\[ s_{\\text{brake}} = \\frac{v^2}{2a} \\iff s_{\\text{brake}} \\propto v^2 \\]",
+                    explanation: "Braking distance is directly proportional to the square of vehicle speed for a given steady braking deceleration a.",
+                    conditions: "Uniform vehicle deceleration to rest.",
+                    variables: [
+                        { symbol: "s_{\\text{brake}}", rep: "Braking distance to stop", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v", rep: "Initial vehicle speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "a", rep: "Braking deceleration rate", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Car Safety & Stopping",
+                    name: "Total Stopping Distance",
+                    formula: "\\[ d_{\\text{stop}} = d_{\\text{think}} + d_{\\text{brake}} = v \\times t_{\\text{react}} + \\frac{v^2}{2a} \\]",
+                    explanation: "Total stopping distance is the sum of thinking distance during reaction time and physical vehicle braking distance.",
+                    conditions: "Real driver emergency braking.",
+                    variables: [
+                        { symbol: "d_{\\text{stop}}", rep: "Total vehicle stopping distance", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v", rep: "Initial vehicle speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "t_{\\text{react}}", rep: "Driver reaction time", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "a", rep: "Braking deceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for kinetic energy?", back: "\\( E_k = \\frac{1}{2}mv^2 \\)" },
+                { front: "What happens to kinetic energy if a vehicle's speed is doubled?", back: "It quadruples (increases by \\( 2^2 = 4 \\) times)." },
+                { front: "What is the formula for gravitational potential energy?", back: "\\( \\Delta E_p = mgh \\)" },
+                { front: "What is the relation between stopping distance, thinking distance, and braking distance?", back: "\\( \\text{Stopping Distance} = \\text{Thinking Distance} + \\text{Braking Distance} \\)" },
+                { front: "How do crumple zones protect car passengers?", back: "They collapse progressively, extending collision time and reducing decelerating impact force." }
+            ],
+            quiz: [
+                { question: "If a 1 kg trolley travels at 2 m/s, its kinetic energy is:", options: ["1 J", "2 J", "4 J", "0.5 J"], correctIndex: 1, feedback: "Ek = 1/2 m v² = 0.5 × 1 × (2)² = 2 J." },
+                { question: "A 5 kg mass lifted 6 m high (take g = 10 N/kg) has gravitational potential energy of:", options: ["30 J", "300 J", "60 J", "180 J"], correctIndex: 1, feedback: "Ep = mgh = 5 × 10 × 6 = 300 J." },
+                { question: "If vehicle speed is doubled, braking distance increases by a factor of:", options: ["2 times", "4 times", "8 times", "Remains unchanged"], correctIndex: 1, feedback: "Braking distance is proportional to speed squared (v²), so doubling speed quadruples braking distance." },
+                { question: "At the highest point of its swing, the bob of a pendulum has:", options: ["Maximum kinetic energy", "Zero energy", "Maximum gravitational potential energy", "Infinite acceleration"], correctIndex: 2, feedback: "At the peak, velocity is momentarily zero (Ek = 0) and height is maximized (maximum Ep)." }
+            ]
+        },
+        {
+            id: "g8-l9",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Hydraulic_press_animation.gif",
+            worksheetUrl: "worksheets/g8-l9-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Under Pressure Simulation", url: "https://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_all.html" }
+            ],
+            title: "Lesson 9: Pressure and Liquid Pressure",
+            concepts: [
+                "Pressure: Force acting perpendicular per unit surface area: \\(P = \\frac{F}{A}\\). Measured in Pascals (\\(1\\,\\mathrm{Pa} = 1\\,\\mathrm{N/m^2}\\)).",
+                "Contact Area Effect: Spreading force over large areas decreases pressure (skis on snow, tractor caterpillar tracks); concentrating force over tiny areas produces intense pressure (sharp knife edges, needle tips).",
+                "Liquid Hydrostatic Pressure: Pressure in a static liquid increases with depth and density: \\(P = \\rho g h\\). It acts equally in all directions at any given depth and is independent of container shape (liquid finds its own level).",
+                "Hydraulic Machines & Force Multiplication: Liquids are virtually incompressible. Pressure applied to an enclosed liquid is transmitted undiminished in all directions (Pascal's Principle). Force multiplier ratio: \\(\\frac{F}{f} = \\frac{A}{a} \\implies F = f \\times \\frac{A}{a}\\). Used in hydraulic car lifts, vehicle brakes, and presses.",
+                "Pressure Gauges: Bourdon gauges use curved tubes that straighten under fluid pressure. U-tube manometers measure pressure differences via liquid column height (\\(\\Delta P = h\\rho g\\)). Mercury barometers measure atmospheric pressure (standard sea level \\(760\\,\\mathrm{mmHg} = 76\\,\\mathrm{cmHg} \\approx 1.01 \\times 10^5\\,\\mathrm{Pa}\\))."
+            ],
+            definitions: [
+                { term: "Pressure", definition: "The normal thrust force exerted per unit area of contact.", symbol: "P", unit: "\\mathrm{Pa} \\;(\\mathrm{N/m^2})", equation: "P = \\frac{F}{A}" },
+                { term: "Pascal (Pa)", definition: "The SI unit of pressure equal to one Newton of force distributed uniformly over one square meter.", symbol: "\\mathrm{Pa}", unit: "\\mathrm{N/m^2}", equation: "1\\,\\mathrm{Pa} = 1\\,\\mathrm{N/m^2}" },
+                { term: "Hydrostatic Liquid Pressure", definition: "The pressure exerted by an incompressible fluid at equilibrium at depth h beneath its surface.", symbol: "P", unit: "\\mathrm{Pa}", equation: "P = \\rho g h" },
+                { term: "Pascal's Principle", definition: "Pressure exerted anywhere in a confined incompressible fluid is transmitted equally in all directions throughout the fluid.", symbol: "\\frac{F}{A} = \\frac{f}{a}", unit: "\\mathrm{Pa}", equation: "F = f \\times \\frac{A}{a}" },
+                { term: "Atmospheric Pressure", definition: "The pressure exerted by the weight of Earth's atmosphere on surfaces at sea level.", symbol: "P_0", unit: "\\mathrm{Pa} \\; (\\text{or } \\mathrm{mmHg})", equation: "P_0 \\approx 760\\,\\mathrm{mmHg} \\approx 1.01 \\times 10^5\\,\\mathrm{Pa}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Pressure Exerted by a Solid Box on Different Faces",
+                    question: "A heavy box weighing 24 N has dimensions such that standing on its end its base area is 6 m², while lying flat its base area is 12 m². Calculate the pressure exerted on the floor in each case.",
+                    given: "Weight force \\( F = 24\\,\\mathrm{N} \\), End area \\( A_1 = 6.0\\,\\mathrm{m^2} \\), Flat area \\( A_2 = 12\\,\\mathrm{m^2} \\).",
+                    find: "Pressures \\( P_1 \\) and \\( P_2 \\).",
+                    equation: "P = \\frac{F}{A}",
+                    rearrangement: "P_1 = \\frac{24}{6.0}, \\quad P_2 = \\frac{24}{12}",
+                    solution: "1. <strong>Standing on end:</strong><br>\\[ P_1 = \\frac{24\\,\\mathrm{N}}{6.0\\,\\mathrm{m^2}} = 4.0\\,\\mathrm{Pa} \\]<br>2. <strong>Lying flat:</strong><br>\\[ P_2 = \\frac{24\\,\\mathrm{N}}{12\\,\\mathrm{m^2}} = 2.0\\,\\mathrm{Pa} \\]",
+                    finalAnswer: "P_{\\text{end}} = 4.0\\,\\mathrm{Pa}, \\quad P_{\\text{flat}} = 2.0\\,\\mathrm{Pa}",
+                    explanation: "Doubling the contact surface area cuts the contact pressure in half for the same weight."
+                },
+                {
+                    title: "Example 2: Hydraulic Machine Force Multiplier",
+                    question: "In a hydraulic press, an effort force of 20 N is applied to a small piston of area 0.20 m². The load piston has an area of 2.0 m². Calculate (a) the pressure transmitted through the liquid and (b) the upward lifting force on the load piston.",
+                    given: "Input force \\( f = 20\\,\\mathrm{N} \\), Small piston area \\( a = 0.20\\,\\mathrm{m^2} \\), Large piston area \\( A = 2.0\\,\\mathrm{m^2} \\).",
+                    find: "Transmitted pressure \\( P \\) and output load force \\( F \\).",
+                    equation: "P = \\frac{f}{a}, \\quad F = P \\times A = f \\times \\frac{A}{a}",
+                    rearrangement: "P = \\frac{20\\,\\mathrm{N}}{0.20\\,\\mathrm{m^2}}, \\quad F = 100\\,\\mathrm{Pa} \\times 2.0\\,\\mathrm{m^2}",
+                    solution: "1. <strong>Transmitted Pressure:</strong><br>\\[ P = \\frac{20}{0.20} = 100\\,\\mathrm{Pa} \\]<br>2. <strong>Load Force:</strong><br>\\[ F = 100 \\times 2.0 = 200\\,\\mathrm{N} \\]",
+                    finalAnswer: "P = 100\\,\\mathrm{Pa}, \\quad F = 200\\,\\mathrm{N}",
+                    explanation: "Because the large piston's area is 10 times larger, the hydraulic press multiplies input force by 10 times."
+                },
+                {
+                    title: "Example 3: Hydrostatic Pressure at 100 m Ocean Depth",
+                    question: "Calculate the water pressure at a depth of 100 m beneath the surface of the sea. Seawater density is 1150 kg/m³ and g = 9.8 m/s².",
+                    given: "Depth \\( h = 100\\,\\mathrm{m} \\), Density \\( \\rho = 1150\\,\\mathrm{kg/m^3} \\), \\( g = 9.8\\,\\mathrm{m/s^2} \\).",
+                    find: "Hydrostatic pressure (\\( P \\)).",
+                    equation: "P = \\rho g h",
+                    rearrangement: "P = 1150\\,\\mathrm{kg/m^3} \\times 9.8\\,\\mathrm{m/s^2} \\times 100\\,\\mathrm{m}",
+                    solution: "Multiply density, gravity, and depth:<br>\\[ P = 1150 \\times 9.8 \\times 100 = 1{,}127{,}000\\,\\mathrm{Pa} = 1.13 \\times 10^6\\,\\mathrm{Pa} \\; (1.13\\,\\mathrm{MPa}) \\]",
+                    finalAnswer: "P = 1.13 \\times 10^6\\,\\mathrm{Pa} \\; (1.13\\,\\mathrm{MPa})",
+                    explanation: "Hydrostatic pressure reaches over 1.1 million Pascals at a depth of 100 meters."
+                }
+            ],
+            equations: [
+                {
+                    section: "Pressure in Solids",
+                    name: "Pressure Definition Equation",
+                    formula: "\\[ P = \\frac{F}{A} \\iff F = P \\times A \\iff A = \\frac{F}{P} \\]",
+                    explanation: "Pressure is the amount of perpendicular force acting per unit surface area.",
+                    conditions: "Force distributed uniformly over flat area A.",
+                    variables: [
+                        { symbol: "P", rep: "Pressure", unit: "Pascal", unitSym: "\\mathrm{Pa} \\; (\\mathrm{N/m^2})" },
+                        { symbol: "F", rep: "Thrust force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "A", rep: "Contact area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Pressure in Liquids",
+                    name: "Hydrostatic Liquid Pressure",
+                    formula: "\\[ P = \\rho g h \\]",
+                    explanation: "Pressure exerted by static fluid at depth h.",
+                    conditions: "Incompressible liquid at rest.",
+                    variables: [
+                        { symbol: "P", rep: "Hydrostatic pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Liquid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Depth of liquid column", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Hydraulics",
+                    name: "Pascal's Hydraulic Multiplier",
+                    formula: "\\[ \\frac{F}{A} = \\frac{f}{a} \\iff F = f \\times \\frac{A}{a} \\]",
+                    explanation: "Multiplication of force in hydraulic systems proportional to area ratio.",
+                    conditions: "Incompressible fluid enclosed without air bubbles.",
+                    variables: [
+                        { symbol: "F", rep: "Output load force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "f", rep: "Input effort force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "A", rep: "Output piston area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "a", rep: "Input piston area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Pressure in Liquids",
+                    name: "Total (Absolute) Fluid Pressure",
+                    formula: "\\[ P = P_{\\text{atm}} + \\rho g h \\]",
+                    explanation: "Absolute total pressure at depth h beneath a liquid exposed to open air equals atmospheric surface pressure plus hydrostatic pressure.",
+                    conditions: "Open container exposed to ambient atmospheric pressure.",
+                    variables: [
+                        { symbol: "P", rep: "Total absolute pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "P_{\\text{atm}}", rep: "Atmospheric surface pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Liquid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Depth below surface", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Buoyancy & Archimedes' Principle",
+                    name: "Archimedes' Buoyancy Force",
+                    formula: "\\[ F_B = \\rho_{\\text{fluid}} g V_{\\text{disp}} \\]",
+                    explanation: "Upward buoyant force exerted on an object equals the weight of the fluid volume displaced by the submerged portion.",
+                    conditions: "Static fluid under gravity.",
+                    variables: [
+                        { symbol: "F_B", rep: "Buoyant upthrust force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\rho_{\\text{fluid}}", rep: "Density of surrounding fluid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "V_{\\text{disp}}", rep: "Volume of fluid displaced", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" }
+                    ]
+                },
+                {
+                    section: "Buoyancy & Archimedes' Principle",
+                    name: "Apparent Submerged Weight",
+                    formula: "\\[ W_{\\text{app}} = W_{\\text{air}} - F_B = mg - \\rho_{\\text{fluid}} g V_{\\text{disp}} \\]",
+                    explanation: "The measured weight of an object submerged in a liquid is reduced by the upward buoyant force.",
+                    conditions: "Object immersed in fluid under gravity.",
+                    variables: [
+                        { symbol: "W_{\\text{app}}", rep: "Apparent submerged weight", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "W_{\\text{air}}", rep: "True weight in air (mg)", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "F_B", rep: "Buoyant upthrust force", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                },
+                {
+                    section: "Pressure Measurement",
+                    name: "U-Tube Manometer Equation",
+                    formula: "\\[ \\Delta P = P_{\\text{gas}} - P_{\\text{atm}} = \\rho g \\Delta h \\]",
+                    explanation: "Measures excess gauge pressure of a gas supply from the height difference Δh between liquid columns.",
+                    conditions: "Static liquid in vertical U-tube manometer.",
+                    variables: [
+                        { symbol: "\\Delta P", rep: "Gauge pressure difference", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "P_{\\text{gas}}", rep: "Gas supply pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "P_{\\text{atm}}", rep: "Atmospheric pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Density of manometer liquid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "\\Delta h", rep: "Height difference between columns", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for pressure in solids?", back: "\\( P = \\frac{F}{A} \\) (Force divided by area)" },
+                { front: "What is 1 Pascal equal to?", back: "\\( 1\\,\\mathrm{N/m^2} \\) (1 Newton per square meter)" },
+                { front: "What is the formula for liquid hydrostatic pressure at depth h?", back: "\\( P = \\rho g h \\)" },
+                { front: "State the hydraulic force multiplier equation.", back: "\\( F = f \\times \\frac{A}{a} \\)" },
+                { front: "What is standard atmospheric pressure in mm of mercury?", back: "\\( 760\\,\\mathrm{mmHg} \\; (\\approx 1.01 \\times 10^5\\,\\mathrm{Pa}) \\)" }
+            ],
+            quiz: [
+                { question: "If a force of 50 N acts on an area of 2.0 m², the pressure is:", options: ["100 Pa", "25 Pa", "0.04 Pa", "10 Pa"], correctIndex: 1, feedback: "P = F / A = 50 / 2.0 = 25 Pa." },
+                { question: "Liquid hydrostatic pressure depends directly on which factors?", options: ["Depth and liquid density", "Container shape", "Atmospheric temperature only", "Container width only"], correctIndex: 0, feedback: "P = ρgh depends only on depth h and density ρ." },
+                { question: "Why must hydraulic systems use liquid rather than gas?", options: ["Liquids are incompressible", "Gases are too heavy", "Liquids evaporate faster", "Gases have zero mass"], correctIndex: 0, feedback: "Liquids cannot be compressed, allowing applied pressure to transmit undiminished." },
+                { question: "A girl of weight 500 N standing on stiletto heels of area 0.0002 m² exerts a pressure of:", options: ["2,500,000 Pa (2500 kPa)", "0.1 Pa", "1000 Pa", "250 Pa"], correctIndex: 0, feedback: "P = F / A = 500 / 0.0002 = 2,500,000 Pa = 2500 kPa (exceeding even an elephant's foot pressure!)." }
+            ]
+        },
+        {
+            id: "g8-l10",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Convection_cell.gif",
+            worksheetUrl: "worksheets/g8-l10-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Energy Forms and Changes", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" }
+            ],
+            title: "Lesson 10: Conduction and Convection",
+            concepts: [
+                "Thermal Conduction: The flow of thermal energy (heat) through matter from places of higher temperature to lower temperature without bulk movement of the matter as a whole.",
+                "Conducting Powers of Metals: Metals are good conductors of heat. Copper conducts fastest, followed by aluminium, brass, and iron. Conduction is faster through rods with large cross-sectional area, short length, and large temperature difference.",
+                "Conduction & Kinetic Theory (Free Electrons): Metals contain huge numbers of free mobile electrons. When heated, their kinetic energy increases and they rapidly drift and jostle atoms in cooler regions. In non-metals, conduction occurs much more slowly by atomic lattice vibrations alone.",
+                "Thermal Insulators: Materials that trap air (wool, felt, fur, feathers, polystyrene foam, fibreglass lagging) are poor conductors because still air is an exceptionally poor thermal conductor.",
+                "Thermal Convection in Fluids: The transfer of heat through fluids (liquids and gases) by the bulk movement of the fluid itself. When heated, fluids expand, become less dense, and are pushed upward by surrounding cooler, denser fluid sinking beneath them.",
+                "Natural Convection Currents: Coastal breezes (day sea breeze: cool air from sea replaces rising warm air over land; night land breeze: warmer sea air rises and cool air blows from land); atmospheric thermals used by glider pilots.",
+                "Insulating Buildings: Heat is lost through walls (35%), roof (25%), floors (15%), windows (10%), and draughts (15%). Cavity wall foam insulation saves 65% of wall heat loss; roof lagging saves 80% of roof heat loss; double glazing saves 50% of window heat loss."
+            ],
+            definitions: [
+                { term: "Conduction", definition: "The flow of thermal energy through matter from higher to lower temperature without physical movement of the matter as a whole.", symbol: "\\text{Conduction}", unit: "\\text{No unit}", equation: "Q \\propto \\frac{A\\Delta T}{d}" },
+                { term: "Free Electrons (in Metals)", definition: "Mobile delocalized electrons that move rapidly through a metallic lattice, transferring thermal kinetic energy.", symbol: "e^-", unit: "\\text{Particles}", equation: "K = \\frac{1}{2}mv^2" },
+                { term: "Convection", definition: "The transfer of thermal energy through a fluid by the bulk upward movement of warmer, less dense fluid currents.", symbol: "\\text{Convection}", unit: "\\text{No unit}", equation: "\\Delta \\rho = \\rho_{\\text{cold}} - \\rho_{\\text{hot}}" },
+                { term: "Thermal Insulator (Bad Conductor)", definition: "A material (such as trapped air, wool, or plastic foam) that conducts heat only very slowly.", symbol: "\\text{Insulator}", unit: "\\text{No unit}", equation: "\\text{Low thermal conductivity}" },
+                { term: "Convection Current", definition: "A circulating stream of fluid caused by differences in temperature and density within the fluid.", symbol: "\\text{Current}", unit: "\\text{No unit}", equation: "\\text{Buoyant circulation}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Demonstrating Conducting Powers of Metals",
+                    question: "Matches are attached with melted wax to identical rods of copper, aluminium, brass, and iron heated by a single burner. In what order do the matches drop off?",
+                    given: "Rods of copper, aluminium, brass, and iron of identical length and thickness.",
+                    find: "Sequence of match detachment.",
+                    equation: "\\text{Thermal conductivity ranking}",
+                    rearrangement: "\\text{Best conductor reaches wax melting point first}",
+                    solution: "1. <strong>Copper:</strong> Drops first (highest thermal conductivity).<br>2. <strong>Aluminium:</strong> Drops second.<br>3. <strong>Brass:</strong> Drops third.<br>4. <strong>Iron:</strong> Drops last (poorest metal conductor among the four).",
+                    finalAnswer: "\\text{Copper} \\to \\text{Aluminium} \\to \\text{Brass} \\to \\text{Iron}",
+                    explanation: "Copper has the highest concentration of fast-moving free electrons, transporting thermal energy to the wax fastest."
+                },
+                {
+                    title: "Example 2: Heating Power Required for a Ventilated House",
+                    question: "A building loses heat through its structure at a rate of 6.0 kW (6000 J/s). Warming incoming cold ventilated fresh air requires an additional 2.0 kW. What is the total heating power needed to maintain 20 °C?",
+                    given: "Conduction heat loss rate = \\( 6.0\\,\\mathrm{kW} \\), Ventilation air warming rate = \\( 2.0\\,\\mathrm{kW} \\).",
+                    find: "Total heating power required (\\( P_{\\text{total}} \\)).",
+                    equation: "P_{\\text{total}} = P_{\\text{loss}} + P_{\\text{vent}}",
+                    rearrangement: "P_{\\text{total}} = 6.0\\,\\mathrm{kW} + 2.0\\,\\mathrm{kW}",
+                    solution: "Sum the conductive and ventilation power requirements:<br>\\[ P_{\\text{total}} = 6.0 + 2.0 = 8.0\\,\\mathrm{kW} \\]",
+                    finalAnswer: "P_{\\text{total}} = 8.0\\,\\mathrm{kW}",
+                    explanation: "Total heating must compensate for both structural thermal conduction and continuous air exchange."
+                },
+                {
+                    title: "Example 3: Thermal Energy Reduction with Roof Lagging",
+                    question: "In a house, 25% of total heat loss occurs through the roof. If installing fibreglass loft insulation saves 80% of roof heat loss, what percentage of the total house heat loss is eliminated?",
+                    given: "Roof loss share = \\( 25\\% \\), Roof insulation savings = \\( 80\\% \\).",
+                    find: "Net percentage of total home heat loss saved.",
+                    equation: "\\%_{\\text{saved}} = \\%_{\\text{roof}} \\times \\%_{\\text{reduction}}",
+                    rearrangement: "\\%_{\\text{saved}} = 25\\% \\times 0.80",
+                    solution: "Multiply roof fraction by insulation efficiency:<br>\\[ \\%_{\\text{saved}} = 25\\% \\times 0.80 = 20\\% \\]",
+                    finalAnswer: "\\%_{\\text{saved}} = 20\\%",
+                    explanation: "Insulating the attic saves one-fifth of the entire building's total heating expenditure."
+                }
+            ],
+            equations: [
+                {
+                    section: "Conduction",
+                    name: "Rate of Heat Conduction",
+                    formula: "\\[ \\frac{Q}{t} \\propto \\frac{A \\times \\Delta T}{d} \\]",
+                    explanation: "Rate of thermal energy conduction is proportional to surface area and temperature difference, and inversely proportional to thickness.",
+                    conditions: "Steady-state heat flow through a uniform slab.",
+                    variables: [
+                        { symbol: "Q/t", rep: "Rate of heat flow", unit: "Watt (Joule per second)", unitSym: "\\mathrm{W}" },
+                        { symbol: "A", rep: "Cross-sectional surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "\\Delta T", rep: "Temperature difference between faces", unit: "Kelvin or °C", unitSym: "\\mathrm{K}" },
+                        { symbol: "d", rep: "Material thickness / length", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Convection",
+                    name: "Convection Density Difference",
+                    formula: "\\[ \\Delta \\rho = \\rho_{\\text{cold}} - \\rho_{\\text{hot}} \\]",
+                    explanation: "Buoyancy driving force in convection currents caused by thermal expansion.",
+                    conditions: "Fluids under gravitational field.",
+                    variables: [
+                        { symbol: "\\Delta \\rho", rep: "Buoyant density difference", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "\\rho_{\\text{cold}}", rep: "Density of cooler sinking fluid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "\\rho_{\\text{hot}}", rep: "Density of warmer rising fluid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Conduction",
+                    name: "Fourier's Law of Thermal Conduction",
+                    formula: "\\[ \\frac{Q}{t} = k A \\frac{\\Delta T}{d} \\]",
+                    explanation: "Heat transfer rate through a slab of material with thermal conductivity k, cross-sectional area A, thickness d, and temperature difference ΔT.",
+                    conditions: "Steady 1D heat conduction through a uniform wall.",
+                    variables: [
+                        { symbol: "Q/t", rep: "Heat conduction rate", unit: "Watt (Joule per second)", unitSym: "\\mathrm{W}" },
+                        { symbol: "k", rep: "Thermal conductivity of material", unit: "Watt per meter Kelvin", unitSym: "\\mathrm{W/(m\\cdot K)}" },
+                        { symbol: "A", rep: "Surface contact area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "\\Delta T", rep: "Temperature difference across faces", unit: "Kelvin (or °C)", unitSym: "\\mathrm{K}" },
+                        { symbol: "d", rep: "Wall thickness", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Conduction",
+                    name: "Thermal Resistance (R-Value)",
+                    formula: "\\[ R_{\\text{th}} = \\frac{d}{kA} \\implies \\frac{Q}{t} = \\frac{\\Delta T}{R_{\\text{th}}} \\]",
+                    explanation: "Thermal resistance represents the opposition to heat flow, directly analogous to electrical resistance in Ohm's Law.",
+                    conditions: "Steady-state conductive heat transfer.",
+                    variables: [
+                        { symbol: "R_{\\text{th}}", rep: "Thermal resistance", unit: "Kelvin per Watt", unitSym: "\\mathrm{K/W}" },
+                        { symbol: "d", rep: "Thickness of insulating layer", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "k", rep: "Thermal conductivity", unit: "Watt per meter Kelvin", unitSym: "\\mathrm{W/(m\\cdot K)}" },
+                        { symbol: "A", rep: "Surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is thermal conduction?", back: "The flow of heat through matter without movement of the matter as a whole." },
+                { front: "Why are metals much better conductors than non-metals?", back: "Metals contain free mobile electrons that drift rapidly and transfer kinetic energy to lattice atoms." },
+                { front: "What is thermal convection?", back: "The transfer of heat through fluids (liquids and gases) by the bulk movement of the fluid itself." },
+                { front: "Why is trapped air such an effective thermal insulator?", back: "Air has very low thermal conductivity, and trapping it in small pockets prevents convection currents." },
+                { front: "What causes coastal breezes during daytime?", back: "Land warms faster than the sea; rising warm air over land is replaced by cooler air blowing from the sea." }
+            ],
+            quiz: [
+                { question: "Which metal among the following is the best conductor of heat?", options: ["Iron", "Brass", "Aluminium", "Copper"], correctIndex: 3, feedback: "Copper has the highest thermal conductivity among these metals." },
+                { question: "Convection cannot occur in:", options: ["Liquids", "Gases", "Solids", "Water"], correctIndex: 2, feedback: "Convection requires particles to move freely in bulk, which cannot happen in rigid solids." },
+                { question: "Water is a poor conductor of heat because:", options: ["It contains free electrons", "It lacks free electrons and conducts very slowly", "It always boils at 0 °C", "It cannot absorb heat"], correctIndex: 1, feedback: "Non-metallic liquids like water lack free electrons, making conduction very sluggish." },
+                { question: "Why do fleece jackets and wool sweaters keep us warm?", options: ["They generate electrical heat", "They trap air in tiny pockets, preventing conduction and convection", "They reflect light", "They increase air density"], correctIndex: 1, feedback: "Trapped air is an exceptional insulator that drastically reduces body heat loss." }
+            ]
+        },
+        {
+            id: "g8-l11",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Thermal_radiation_spectrum.gif",
+            worksheetUrl: "worksheets/g8-l11-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Blackbody Radiation", url: "https://phet.colorado.edu/sims/html/blackbody-spectrum/latest/blackbody-spectrum_all.html" }
+            ],
+            title: "Lesson 11: Thermal Radiation",
+            concepts: [
+                "Thermal Radiation: The flow of heat from one place to another by means of electromagnetic infrared waves. Radiation requires no material particles and travels through empty vacuum at the speed of light (\\(c = 3.0 \\times 10^8\\,\\mathrm{m/s}\\)). Heat from the Sun reaches Earth entirely by radiation.",
+                "Good and Bad Absorbers: Dull, matte black surfaces absorb radiant heat rapidly. Shiny, polished silver or white surfaces reflect almost all incident radiation and remain cool.",
+                "Good and Bad Emitters: Good absorbers are also good emitters when hot. A dull black surface emits thermal radiation much faster than a polished shiny surface (cooling fins on refrigerators are painted dull black; teapots and saucepans are polished shiny to retain heat).",
+                "Vacuum Flask (Thermos): Double-walled glass container. The vacuum between the walls eliminates conduction and convection; silvered mirror surfaces reflect radiant heat back; the insulating stopper and thin glass neck minimize conduction.",
+                "Greenhouse Effect: Short-wavelength light and infrared radiation from the Sun penetrate glass easily and are absorbed by soil and plants. The warmed plants re-emit longer-wavelength infrared, which cannot pass back through glass, trapping thermal energy inside. Carbon dioxide and methane in Earth's atmosphere act similarly.",
+                "Rate of Cooling & A/V Ratio: The rate at which an object cools is proportional to the ratio of its surface area \\(A\\) to its volume \\(V\\). Larger objects have smaller \\(A/V\\) ratios and cool much more slowly than smaller objects."
+            ],
+            definitions: [
+                { term: "Thermal Radiation", definition: "Heat transfer by electromagnetic infrared waves that can travel across empty vacuum without physical particles.", symbol: "\\text{Radiation}", unit: "\\mathrm{W/m^2}", equation: "P = \\sigma A T^4" },
+                { term: "Good Absorber / Emitter", definition: "A surface texture and color (dull, matte black) that absorbs and radiates thermal infrared efficiently.", symbol: "\\text{Black surface}", unit: "\\text{No unit}", equation: "\\text{High emissivity } \\epsilon \\approx 1" },
+                { term: "Vacuum Flask", definition: "A double-walled silvered vessel with an evacuated space between walls that prevents conduction, convection, and radiation.", symbol: "\\text{Thermos}", unit: "\\text{No unit}", equation: "\\text{Vacuum insulation}" },
+                { term: "Greenhouse Effect", definition: "The trapping of solar thermal energy when short-wave radiation enters a structure or atmosphere and long-wave infrared cannot escape.", symbol: "\\text{Greenhouse}", unit: "\\text{No unit}", equation: "\\text{Trapped infrared}" },
+                { term: "Surface-Area-to-Volume Ratio", definition: "The ratio of an object's external surface area to its enclosed volume, determining cooling rate.", symbol: "A/V", unit: "\\mathrm{m^{-1}}", equation: "\\frac{A}{V} = \\frac{6}{l} \\quad (\\text{for a cube})" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Surface Area to Volume Ratio and Cooling Rate",
+                    question: "Compare the surface-area-to-volume ratio of a small cube of side l with a large cube of side 2l. Which cube cools faster?",
+                    given: "Cube 1 side = \\( l \\), Cube 2 side = \\( 2l \\).",
+                    find: "Ratios \\( A_1/V_1 \\) and \\( A_2/V_2 \\).",
+                    equation: "A = 6l^2, \\quad V = l^3, \\quad \\frac{A}{V} = \\frac{6}{l}",
+                    rearrangement: "\\frac{A_1}{V_1} = \\frac{6l^2}{l^3} = \\frac{6}{l}, \\quad \\frac{A_2}{V_2} = \\frac{6(2l)^2}{(2l)^3} = \\frac{24l^2}{8l^3} = \\frac{3}{l}",
+                    solution: "1. <strong>Small Cube:</strong> \\( \\frac{A_1}{V_1} = \\frac{6}{l} \\).<br>2. <strong>Large Cube:</strong> \\( \\frac{A_2}{V_2} = \\frac{3}{l} = \\frac{1}{2}\\left(\\frac{A_1}{V_1}\\right) \\).<br>3. The larger cube has half the area per unit volume, so it cools twice as slowly.",
+                    finalAnswer: "\\frac{A_2}{V_2} = \\frac{1}{2}\\left(\\frac{A_1}{V_1}\\right) \\implies \\text{Larger cube cools more slowly}",
+                    explanation: "Heat loss occurs through the surface while stored thermal energy is proportional to volume; smaller A/V reduces cooling rate."
+                },
+                {
+                    title: "Example 2: Demonstrating Radiant Absorption",
+                    question: "Two tin lids, one shiny silver and one dull black, have coins stuck to their outer faces with candle wax. An electric heater is placed exactly midway between them. From which lid does the coin drop first and why?",
+                    given: "Shiny lid vs dull black lid at equal distances from an electric heater.",
+                    find: "Lid whose wax melts first.",
+                    equation: "\\text{Absorption rate of radiation}",
+                    rearrangement: "\\text{Black surface absorbs infrared faster}",
+                    solution: "The dull black surface absorbs radiant heat rapidly, melting its wax after a few minutes so the coin drops off. The shiny silver lid reflects the radiation and stays cool.",
+                    finalAnswer: "\\text{Dull black lid drops first}",
+                    explanation: "Dull black surfaces are excellent absorbers of electromagnetic infrared radiation."
+                }
+            ],
+            equations: [
+                {
+                    section: "Radiation",
+                    name: "Surface Area to Volume Ratio (Cube)",
+                    formula: "\\[ \\frac{A}{V} = \\frac{6l^2}{l^3} = \\frac{6}{l} \\]",
+                    explanation: "Shows cooling rate of a solid cube is inversely proportional to its linear size l.",
+                    conditions: "Geometric cubic solid.",
+                    variables: [
+                        { symbol: "A/V", rep: "Area-to-volume ratio", unit: "Per meter", unitSym: "\\mathrm{m^{-1}}" },
+                        { symbol: "A", rep: "Total surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "V", rep: "Volume", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "l", rep: "Side length", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Electromagnetic Waves",
+                    name: "Speed of Thermal Radiation",
+                    formula: "\\[ c = 3.0 \\times 10^8\\,\\mathrm{m/s} \\]",
+                    explanation: "Infrared thermal radiation travels through vacuum at the speed of light.",
+                    conditions: "Vacuum or air.",
+                    variables: [
+                        { symbol: "c", rep: "Speed of electromagnetic waves", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Radiation Laws",
+                    name: "Stefan-Boltzmann Radiation Law",
+                    formula: "\\[ P = \\varepsilon \\sigma A T^4 \\]",
+                    explanation: "Total radiant power emitted by an object is proportional to fourth power of its absolute thermodynamic temperature T in Kelvin.",
+                    conditions: "Ideal or greybody radiator at absolute temperature T.",
+                    variables: [
+                        { symbol: "P", rep: "Radiated thermal power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "\\varepsilon", rep: "Surface emissivity (0 to 1)", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "\\sigma", rep: "Stefan-Boltzmann constant (5.67 × 10⁻⁸ W/(m²·K⁴))", unit: "Watt per square meter Kelvin to the fourth", unitSym: "\\mathrm{W/(m^2\\cdot K^4)}" },
+                        { symbol: "A", rep: "Radiating surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "T", rep: "Absolute temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Radiation Laws",
+                    name: "Net Radiative Heat Exchange",
+                    formula: "\\[ P_{\\text{net}} = \\varepsilon \\sigma A (T^4 - T_0^4) \\]",
+                    explanation: "Net rate of radiant heat transfer between a warm body at temperature T and surrounding enclosure at temperature T₀.",
+                    conditions: "Body completely surrounded by large uniform enclosure.",
+                    variables: [
+                        { symbol: "P_{\\text{net}}", rep: "Net radiated heat transfer rate", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "T", rep: "Body temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" },
+                        { symbol: "T_0", rep: "Surrounding ambient temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" },
+                        { symbol: "A", rep: "Surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Radiation Laws",
+                    name: "Wien's Displacement Law",
+                    formula: "\\[ \\lambda_{\\max} T = b \\approx 2.898 \\times 10^{-3}\\,\\mathrm{m\\cdot K} \\]",
+                    explanation: "The peak wavelength λ_max of thermal radiation emitted by a black body is inversely proportional to its absolute temperature.",
+                    conditions: "Black body thermal emission spectrum.",
+                    variables: [
+                        { symbol: "\\lambda_{\\max}", rep: "Wavelength of maximum radiation intensity", unit: "Meter (or nanometer)", unitSym: "\\mathrm{m}" },
+                        { symbol: "T", rep: "Absolute temperature of radiator", unit: "Kelvin", unitSym: "\\mathrm{K}" },
+                        { symbol: "b", rep: "Wien's displacement constant (2.898 × 10⁻³ m·K)", unit: "Meter Kelvin", unitSym: "\\mathrm{m\\cdot K}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is thermal radiation?", back: "The transfer of heat by electromagnetic infrared waves that can travel through empty vacuum." },
+                { front: "Which color and texture is the best absorber and emitter of thermal radiation?", back: "Dull, matte black surfaces." },
+                { front: "Why are vacuum flasks double-walled with silvered surfaces?", back: "The vacuum stops conduction and convection; silvered surfaces reflect radiant heat back." },
+                { front: "How does the greenhouse effect trap heat?", back: "Short-wave solar radiation enters through glass, but re-emitted long-wave infrared cannot escape." },
+                { front: "Why do larger animals cool down more slowly than smaller animals?", back: "Larger bodies have a smaller surface-area-to-volume ratio (A/V), limiting heat dissipation." }
+            ],
+            quiz: [
+                { question: "Thermal radiation travels through vacuum at a speed of:", options: ["340 m/s", "3.0 × 10⁸ m/s", "1000 km/h", "Zero (it cannot travel in vacuum)"], correctIndex: 1, feedback: "Radiation consists of electromagnetic waves traveling at the speed of light (3.0 × 10⁸ m/s)." },
+                { question: "Which surface is the best emitter of thermal radiation?", options: ["Shiny polished silver", "White gloss paint", "Dull black surface", "Transparent glass"], correctIndex: 2, feedback: "Good absorbers are also good emitters: dull black surfaces emit heat fastest." },
+                { question: "The silvering on the glass walls of a vacuum flask reduces heat transfer by:", options: ["Conduction", "Convection", "Radiation", "Evaporation"], correctIndex: 2, feedback: "Silvered mirror surfaces reflect radiant infrared heat back into the flask." },
+                { question: "Why are houses in hot sunny countries typically painted white?", options: ["To absorb heat", "To reflect solar radiation and keep interiors cool", "To increase friction", "To prevent air convection"], correctIndex: 1, feedback: "White shiny surfaces reflect radiant solar heat, preventing excessive interior warming." }
+            ]
+        },
+        {
+            id: "g8-l12",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Ohm%27s_Law_Circuit.gif",
+            worksheetUrl: "worksheets/g8-l12-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Circuit Construction Kit: DC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" },
+                { topic: "Ohm's Law", url: "https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_all.html" }
+            ],
+            title: "Lesson 12: DC Circuits",
+            concepts: [
+                "Basic Electric Circuit: Consists of a power source (cell or battery), connecting wires, a switch, and an electrical load (e.g. lamp). Closed circuit permits continuous current; open circuit stops flow.",
+                "Circuit Symbols: Standard schematic symbols for cell, battery, ammeter (in series), voltmeter (in parallel), fixed resistor, variable resistor (rheostat), switch, and light bulb.",
+                "Series Circuits: All components are connected end-to-end along a single path. Current is identical at every point: \\(I = I_1 = I_2 = I_3\\). Total voltage equals sum of component potential differences: \\(V = V_1 + V_2 + V_3\\). Total effective resistance: \\(R = R_1 + R_2 + R_3\\). If one bulb blows, all turn off.",
+                "Parallel Circuits: Components are connected across separate branches. Total source current equals sum of branch currents: \\(I = I_1 + I_2\\). Potential difference across all parallel branches is identical: \\(V = V_1 = V_2\\). Total resistance is less than any branch resistor: \\(\\frac{1}{R} = \\frac{1}{R_1} + \\frac{1}{R_2} \\iff R = \\frac{R_1 R_2}{R_1 + R_2}\\). Bulbs operate independently.",
+                "Ohm's Law: The current passing through a metallic conductor is directly proportional to the potential difference across it, provided physical conditions (such as temperature) remain constant: \\(R = \\frac{V}{I} = \\text{constant}\\)."
+            ],
+            definitions: [
+                { term: "Series Circuit", definition: "A circuit in which components are connected end-to-end so that the same current flows through all of them.", symbol: "I = I_1 = I_2", unit: "\\Omega", equation: "R = R_1 + R_2 + R_3" },
+                { term: "Parallel Circuit", definition: "A circuit with multiple branches where each component shares the same potential difference.", symbol: "V = V_1 = V_2", unit: "\\Omega", equation: "\\frac{1}{R} = \\frac{1}{R_1} + \\frac{1}{R_2}" },
+                { term: "Ohm's Law", definition: "Current through a metallic conductor is directly proportional to potential difference across it at constant temperature.", symbol: "R = \\frac{V}{I}", unit: "\\Omega", equation: "V = IR" },
+                { term: "Effective Resistance (Parallel)", definition: "The reciprocal of total resistance equals the sum of the reciprocals of branch resistances.", symbol: "R_p", unit: "\\Omega", equation: "R_p = \\frac{R_1 R_2}{R_1 + R_2}" },
+                { term: "Ohm (Ω)", definition: "The SI unit of electrical resistance equal to one Volt per Ampere.", symbol: "\\Omega", unit: "\\mathrm{V/A}", equation: "1\\,\\Omega = 1\\,\\mathrm{V/A}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Identical Lamps Connected in Parallel",
+                    question: "In a circuit with two identical lamps P and Q in parallel across a 6.0 V cell, the main ammeter reads 3.0 A. Calculate (a) the current in lamp P, (b) the voltage across lamp P, and (c) the resistance of lamp P.",
+                    given: "Total current \\( I = 3.0\\,\\mathrm{A} \\), Battery voltage \\( V = 6.0\\,\\mathrm{V} \\), identical lamps.",
+                    find: "Current \\( I_P \\), Voltage \\( V_P \\), Resistance \\( R_P \\).",
+                    equation: "I = I_P + I_Q = 2I_P, \\quad V_P = V, \\quad R_P = \\frac{V_P}{I_P}",
+                    rearrangement: "I_P = \\frac{3.0}{2} = 1.5\\,\\mathrm{A}, \\quad R_P = \\frac{6.0\\,\\mathrm{V}}{1.5\\,\\mathrm{A}}",
+                    solution: "1. <strong>Current:</strong> Current splits equally: \\( I_P = 1.5\\,\\mathrm{A} \\).<br>2. <strong>Voltage:</strong> Parallel branches share full supply voltage: \\( V_P = 6.0\\,\\mathrm{V} \\).<br>3. <strong>Resistance:</strong> \\( R_P = \\frac{6.0}{1.5} = 4.0\\,\\Omega \\).",
+                    finalAnswer: "I_P = 1.5\\,\\mathrm{A}, \\quad V_P = 6.0\\,\\mathrm{V}, \\quad R_P = 4.0\\,\\Omega",
+                    explanation: "In parallel, each lamp operates at full 6 V voltage independently."
+                },
+                {
+                    title: "Example 2: Two Resistors in Series",
+                    question: "Resistors of 5 Ω and 10 Ω are connected in series with a battery supplying 3.0 V. Calculate (a) the total resistance and (b) the circuit current.",
+                    given: "Resistors \\( R_1 = 5.0\\,\\Omega \\), \\( R_2 = 10\\,\\Omega \\), Voltage \\( V = 3.0\\,\\mathrm{V} \\).",
+                    find: "Total resistance \\( R \\) and current \\( I \\).",
+                    equation: "R = R_1 + R_2, \\quad I = \\frac{V}{R}",
+                    rearrangement: "R = 5.0 + 10 = 15\\,\\Omega, \\quad I = \\frac{3.0\\,\\mathrm{V}}{15\\,\\Omega}",
+                    solution: "1. <strong>Total Resistance:</strong> \\( R = 15\\,\\Omega \\).<br>2. <strong>Current:</strong> \\( I = \\frac{3.0}{15} = 0.20\\,\\mathrm{A} \\).",
+                    finalAnswer: "R = 15\\,\\Omega, \\quad I = 0.20\\,\\mathrm{A}",
+                    explanation: "Series resistors add directly, reducing overall current flow."
+                },
+                {
+                    title: "Example 3: Combined Series and Parallel Resistor Network",
+                    question: "Resistors of 2 Ω and 4 Ω are in parallel across a 6.0 V battery in series with a 5 Ω resistor. Calculate (a) total circuit resistance and (b) current through the 5 Ω resistor.",
+                    given: "Parallel pair \\( R_1 = 2\\,\\Omega, R_2 = 4\\,\\Omega \\); Series resistor \\( R_3 = 5\\,\\Omega \\); \\( V = 6.0\\,\\mathrm{V} \\).",
+                    find: "Total resistance \\( R_{\\text{tot}} \\) and series current \\( I \\).",
+                    equation: "R_p = \\frac{R_1 R_2}{R_1 + R_2}, \\quad R_{\\text{tot}} = R_p + R_3, \\quad I = \\frac{V}{R_{\\text{tot}}}",
+                    rearrangement: "R_p = \\frac{2 \\times 4}{2 + 4} = \\frac{8}{6} = 1.33\\,\\Omega, \\quad R_{\\text{tot}} = 1.33 + 5 = 6.33\\,\\Omega",
+                    solution: "1. <strong>Parallel Equivalent:</strong> \\( R_p = \\frac{8}{6} \\approx 1.33\\,\\Omega \\).<br>2. <strong>Total Resistance:</strong> \\( R_{\\text{tot}} = 1.33 + 5.0 = 6.33\\,\\Omega \\).<br>3. <strong>Main Current:</strong> \\( I = \\frac{6.0\\,\\mathrm{V}}{6.33\\,\\Omega} \\approx 0.95\\,\\mathrm{A} \\).",
+                    finalAnswer: "R_{\\text{tot}} = 6.33\\,\\Omega, \\quad I = 0.95\\,\\mathrm{A}",
+                    explanation: "Current through the 5 Ω resistor is the full main circuit current."
+                },
+                {
+                    title: "Example 4: Parallel Resistor Current and Voltage",
+                    question: "In a parallel circuit with resistors 10 Ω and 20 Ω, 0.6 A flows through the 10 Ω resistor. Calculate (a) voltage supplied by the battery, (b) current through the 20 Ω resistor, and (c) total current drawn from the battery.",
+                    given: "Resistors \\( R_1 = 10\\,\\Omega \\), \\( R_2 = 20\\,\\Omega \\), Branch current \\( I_1 = 0.60\\,\\mathrm{A} \\).",
+                    find: "Battery voltage \\( V \\), Branch current \\( I_2 \\), and Total current \\( I \\).",
+                    equation: "V = I_1 R_1, \\quad I_2 = \\frac{V}{R_2}, \\quad I = I_1 + I_2",
+                    rearrangement: "V = 0.60 \\times 10 = 6.0\\,\\mathrm{V}, \\quad I_2 = \\frac{6.0}{20} = 0.30\\,\\mathrm{A}",
+                    solution: "1. <strong>Battery Voltage:</strong> \\( V = 0.60 \\times 10 = 6.0\\,\\mathrm{V} \\).<br>2. <strong>Current in 20 Ω:</strong> \\( I_2 = \\frac{6.0}{20} = 0.30\\,\\mathrm{A} \\).<br>3. <strong>Total Current:</strong> \\( I = 0.60 + 0.30 = 0.90\\,\\mathrm{A} \\).",
+                    finalAnswer: "V = 6.0\\,\\mathrm{V}, \\quad I_2 = 0.30\\,\\mathrm{A}, \\quad I_{\\text{tot}} = 0.90\\,\\mathrm{A}",
+                    explanation: "Both branches experience the same 6 V potential difference; larger resistor draws smaller current."
+                }
+            ],
+            equations: [
+                {
+                    section: "Ohm's Law",
+                    name: "Ohm's Law Equation",
+                    formula: "\\[ R = \\frac{V}{I} \\iff V = IR \\iff I = \\frac{V}{R} \\]",
+                    explanation: "Resistance equals voltage divided by current under steady conditions.",
+                    conditions: "Ohmic conductors at constant temperature.",
+                    variables: [
+                        { symbol: "R", rep: "Resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "V", rep: "Potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I", rep: "Current", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "Series Circuits",
+                    name: "Series Resistance Sum",
+                    formula: "\\[ R = R_1 + R_2 + R_3 \\]",
+                    explanation: "Total equivalent resistance in a series circuit.",
+                    conditions: "Single unbranched loop.",
+                    variables: [
+                        { symbol: "R", rep: "Total resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "R_1, R_2, R_3", rep: "Individual series resistors", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Parallel Circuits",
+                    name: "Parallel Resistance Formula",
+                    formula: "\\[ \\frac{1}{R} = \\frac{1}{R_1} + \\frac{1}{R_2} \\iff R = \\frac{R_1 R_2}{R_1 + R_2} \\]",
+                    explanation: "Reciprocal sum formula for resistors in parallel.",
+                    conditions: "Parallel branches across identical voltage.",
+                    variables: [
+                        { symbol: "R", rep: "Equivalent parallel resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "R_1, R_2", rep: "Individual branch resistors", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Conductor Resistance",
+                    name: "Resistivity Formula",
+                    formula: "\\[ R = \\rho \\frac{L}{A} \\iff \\rho = \\frac{RA}{L} \\]",
+                    explanation: "Resistance of a uniform conductor is proportional to length L and inversely proportional to cross-sectional area A.",
+                    conditions: "Uniform metal wire at constant temperature.",
+                    variables: [
+                        { symbol: "R", rep: "Electrical resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "\\rho", rep: "Resistivity of the conductor", unit: "Ohm meter", unitSym: "\\Omega\\cdot\\mathrm{m}" },
+                        { symbol: "L", rep: "Length of the conductor", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "A", rep: "Cross-sectional area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Electromotive Force",
+                    name: "EMF and Terminal Potential Difference",
+                    formula: "\\[ E = I(R + r) = V + Ir \\iff V = E - Ir \\]",
+                    explanation: "The electromotive force E of a source equals terminal voltage V plus the internal loss Ir across internal resistance r.",
+                    conditions: "Real DC voltage source driving current through external load.",
+                    variables: [
+                        { symbol: "E", rep: "Electromotive force (EMF)", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "V", rep: "Terminal potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I", rep: "Circuit current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "R", rep: "External load resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "r", rep: "Internal resistance of power source", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Potential Divider",
+                    name: "Voltage Divider Rule",
+                    formula: "\\[ V_1 = V_{\\text{total}} \\left(\\frac{R_1}{R_1 + R_2}\\right), \\quad V_2 = V_{\\text{total}} \\left(\\frac{R_2}{R_1 + R_2}\\right) \\]",
+                    explanation: "Calculates the fractional output potential difference across one resistor in a series pair.",
+                    conditions: "Two resistors connected in series across supply voltage.",
+                    variables: [
+                        { symbol: "V_1, V_2", rep: "Potential differences across individual resistors", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "V_{\\text{total}}", rep: "Total source potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "R_1, R_2", rep: "Series resistances", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is Ohm's Law in symbols?", back: "\\( R = \\frac{V}{I} = \\text{constant} \\iff V = IR \\)" },
+                { front: "How does electric current behave in a series circuit?", back: "Current is identical at every point: \\( I_1 = I_2 = I_3 \\)." },
+                { front: "How does potential difference behave across parallel branches?", back: "Voltage across all parallel branches is equal: \\( V = V_1 = V_2 \\)." },
+                { front: "How is an ammeter connected vs a voltmeter?", back: "An ammeter is connected in series; a voltmeter is connected in parallel." },
+                { front: "What is the equivalent resistance of two identical 10 Ω resistors in parallel?", back: "\\( R = \\frac{10}{2} = 5\\,\\Omega \\) (product over sum)." }
+            ],
+            quiz: [
+                { question: "If 0.6 A flows through a 10 Ω resistor, the potential difference across it is:", options: ["6.0 V", "16.7 V", "0.06 V", "60 V"], correctIndex: 0, feedback: "V = IR = 0.6 A × 10 Ω = 6.0 V." },
+                { question: "When two resistors of 4 Ω and 12 Ω are connected in parallel, their equivalent resistance is:", options: ["16 Ω", "8 Ω", "3 Ω", "48 Ω"], correctIndex: 2, feedback: "R = (4 × 12) / (4 + 12) = 48 / 16 = 3 Ω." },
+                { question: "In a series circuit, if one bulb blows and breaks the circuit, the second bulb:", options: ["Gets twice as bright", "Will not light up", "Continues glowing normally", "Flashes"], correctIndex: 1, feedback: "A broken series circuit interrupts the single path, causing all bulbs to turn off." },
+                { question: "An ammeter must always be connected in:", options: ["Series with components", "Parallel with components", "Opposite to the battery", "Outside the circuit"], correctIndex: 0, feedback: "Ammeters have negligible resistance and must be connected in series to measure current." }
+            ]
+        },
+        {
+            id: "g8-l13",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electric_meter_digital.gif",
+            worksheetUrl: "worksheets/g8-l13-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Circuit Construction Kit: DC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" }
+            ],
+            title: "Lesson 13: Electrical Power & Domestic Safety",
+            concepts: [
+                "Electrical Power (P): The rate of electrical energy transfer, \\(P = \\frac{E}{t} = IV\\). Measured in Watts (W), where \\(1\\,\\mathrm{W} = 1\\,\\mathrm{V} \\times 1\\,\\mathrm{A} = 1\\,\\mathrm{J/s}\\). Joule heating dissipation in resistors: \\(P = I^2 R = \\frac{V^2}{R}\\).",
+                "Electrical Energy: \\(E = Pt = VIt = I^2 Rt\\), measured in Joules (J).",
+                "Paying for Electricity (kWh): Electricity companies charge by the kilowatt-hour (kWh). \\(1\\,\\mathrm{kWh} = 1000\\,\\mathrm{W} \\times 3600\\,\\mathrm{s} = 3{,}600{,}000\\,\\mathrm{J} = 3.6\\,\\mathrm{MJ}\\). Total cost = \\(\\text{Units in kWh} \\times \\text{cost per unit}\\).",
+                "Electric Lighting Efficiency: Traditional filament lamps transfer only 10% to light and 90% is wasted as heat. Fluorescent tubes and compact fluorescent lamps (CFLs) are five times more efficient and last up to 8 times longer.",
+                "Domestic House Wiring: Mains supply consists of Live wire (brown), Neutral wire (blue, earthed at substation), and Earth wire (green and yellow stripes). House circuits are in parallel so each receives full mains voltage (230 V) and operates independently.",
+                "Switches, Fuses and Circuit Breakers: Switches and fuses must ALWAYS be in the Live wire to cut off high voltage. A fuse melts and breaks the circuit during short circuits or overloads. Residual Current Circuit Breakers (RCCBs / RCDs) detect small current imbalances between live and neutral.",
+                "Earthing and Double Insulation: Metal-cased appliances are earthed via 3-pin plugs. Fault touching metal case causes high current to earth, blowing the fuse. Double insulated appliances use two-core cables without an earth wire inside plastic casings."
+            ],
+            definitions: [
+                { term: "Electrical Power", definition: "The rate at which electrical energy is transformed into other forms of energy.", symbol: "P", unit: "\\mathrm{W} \\;(\\mathrm{J/s})", equation: "P = IV = I^2 R = \\frac{V^2}{R}" },
+                { term: "Kilowatt-Hour (kWh)", definition: "The commercial unit of electricity equal to the energy consumed by a 1 kW appliance running for 1 hour.", symbol: "\\mathrm{kWh}", unit: "\\mathrm{kWh} \\; (3.6 \\times 10^6\\,\\mathrm{J})", equation: "1\\,\\mathrm{kWh} = 3.6\\times 10^6\\,\\mathrm{J}" },
+                { term: "Fuse", definition: "A safety device containing a short length of thin wire with low melting point that melts to break the circuit when current exceeds its rating.", symbol: "\\text{Fuse}", unit: "\\mathrm{A}", equation: "I > I_{\\text{rated}} \\implies \\text{Melt}" },
+                { term: "Circuit Breaker (RCCB/RCD)", definition: "An electromagnetic fast-acting switch that breaks the circuit when current exceeds rating or when an earth fault imbalance occurs.", symbol: "\\text{RCD}", unit: "\\text{No unit}", equation: "I_L \\ne I_N \\implies \\text{Trip}" },
+                { term: "Earthing", definition: "A low-resistance protective path connecting metal chassis of electrical appliances to ground.", symbol: "\\text{Earth (E)}", unit: "\\text{No unit}", equation: "V_{\\text{case}} \\approx 0\\,\\mathrm{V}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Power and Energy Transfer of a Lamp",
+                    question: "A lamp operating on a 240 V supply draws a current of 0.25 A. Calculate (a) its electrical power, and (b) the energy transferred in 1 minute (60 s).",
+                    given: "Voltage \\( V = 240\\,\\mathrm{V} \\), Current \\( I = 0.25\\,\\mathrm{A} \\), Time \\( t = 60\\,\\mathrm{s} \\).",
+                    find: "Power \\( P \\) and Energy \\( E \\).",
+                    equation: "P = IV, \\quad E = Pt",
+                    rearrangement: "P = 240\\,\\mathrm{V} \\times 0.25\\,\\mathrm{A}, \\quad E = 60\\,\\mathrm{W} \\times 60\\,\\mathrm{s}",
+                    solution: "1. <strong>Power:</strong> \\( P = 240 \\times 0.25 = 60\\,\\mathrm{W} \\).<br>2. <strong>Energy:</strong> \\( E = 60 \\times 60 = 3600\\,\\mathrm{J} = 3.6\\,\\mathrm{kJ} \\).",
+                    finalAnswer: "P = 60\\,\\mathrm{W}, \\quad E = 3600\\,\\mathrm{J}",
+                    explanation: "The lamp transfers 60 Joules of electrical energy into light and heat every second."
+                },
+                {
+                    title: "Example 2: Cost of Water Heating with Immersion Heater",
+                    question: "What is the cost of heating water with a 3000 W immersion heater for 80 minutes if electricity costs 10p per kWh?",
+                    given: "Power \\( P = 3000\\,\\mathrm{W} = 3.0\\,\\mathrm{kW} \\), Time \\( t = 80\\,\\mathrm{min} = \\frac{80}{60}\\,\\mathrm{h} = 1.333\\,\\mathrm{h} \\), Rate = \\( 10\\text{p/kWh} \\).",
+                    find: "Energy consumed in kWh and total financial cost.",
+                    equation: "E(\\mathrm{kWh}) = P(\\mathrm{kW}) \\times t(\\mathrm{h}), \\quad \\text{Cost} = E \\times \\text{Rate}",
+                    rearrangement: "E = 3.0\\,\\mathrm{kW} \\times \\frac{80}{60}\\,\\mathrm{h} = 4.0\\,\\mathrm{kWh}",
+                    solution: "1. <strong>Energy in kWh:</strong> \\( E = 3.0 \\times \\frac{4}{3} = 4.0\\,\\mathrm{kWh} \\).<br>2. <strong>Cost:</strong> \\( \\text{Cost} = 4.0\\,\\mathrm{kWh} \\times 10\\text{p} = 40\\text{p} \\).",
+                    finalAnswer: "E = 4.0\\,\\mathrm{kWh}, \\quad \\text{Cost} = 40\\text{p}",
+                    explanation: "Utility billing charges directly by kilowatt-hours consumed."
+                },
+                {
+                    title: "Example 3: Sizing a Domestic Plug Fuse",
+                    question: "An electric iron has a power rating of 920 W on a 230 V supply. Calculate the current drawn and determine whether a 3 A or 13 A fuse should be fitted.",
+                    given: "Power \\( P = 920\\,\\mathrm{W} \\), Voltage \\( V = 230\\,\\mathrm{V} \\).",
+                    find: "Operating current \\( I \\) and proper fuse rating.",
+                    equation: "I = \\frac{P}{V}",
+                    rearrangement: "I = \\frac{920\\,\\mathrm{W}}{230\\,\\mathrm{V}}",
+                    solution: "1. <strong>Current:</strong> \\( I = \\frac{920}{230} = 4.0\\,\\mathrm{A} \\).<br>2. <strong>Fuse Selection:</strong> Since 4.0 A exceeds a 3 A fuse, a 13 A fuse must be used.",
+                    finalAnswer: "I = 4.0\\,\\mathrm{A} \\implies \\text{Use 13 A fuse}",
+                    explanation: "A 3 A fuse would blow during normal operation; a 13 A fuse safely protects the 4 A appliance."
+                }
+            ],
+            equations: [
+                {
+                    section: "Electrical Power",
+                    name: "Power Formula",
+                    formula: "\\[ P = IV = I^2 R = \\frac{V^2}{R} \\]",
+                    explanation: "Calculates electrical power transferred in a circuit.",
+                    conditions: "Steady DC or RMS AC current.",
+                    variables: [
+                        { symbol: "P", rep: "Electrical power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "I", rep: "Current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "V", rep: "Potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "R", rep: "Resistance", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Electrical Energy",
+                    name: "Energy Transfer Formula",
+                    formula: "\\[ E = Pt = VIt = I^2 Rt \\]",
+                    explanation: "Total electrical energy transferred over time t.",
+                    conditions: "Constant power consumption.",
+                    variables: [
+                        { symbol: "E", rep: "Electrical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "P", rep: "Power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Commercial Billing",
+                    name: "Kilowatt-Hour Energy Formula",
+                    formula: "\\[ E_{(\\mathrm{kWh})} = P_{(\\mathrm{kW})} \\times t_{(\\mathrm{h})} \\iff \\text{Cost} = E_{(\\mathrm{kWh})} \\times \\text{Rate} \\]",
+                    explanation: "Commercial billing equation for electricity consumption.",
+                    conditions: "Power in kW, time in hours.",
+                    variables: [
+                        { symbol: "E_{(\\mathrm{kWh})}", rep: "Energy consumed", unit: "Kilowatt-hour", unitSym: "\\mathrm{kWh}" },
+                        { symbol: "P_{(\\mathrm{kW})}", rep: "Power in kilowatts", unit: "Kilowatt", unitSym: "\\mathrm{kW}" },
+                        { symbol: "t_{(\\mathrm{h})}", rep: "Operating duration", unit: "Hour", unitSym: "\\mathrm{h}" }
+                    ]
+                },
+                {
+                    section: "Joule Heating",
+                    name: "Joule's Law of Electric Heating",
+                    formula: "\\[ Q = I^2 R t \\]",
+                    explanation: "Heat energy dissipated in an electrical conductor is proportional to resistance, duration, and the square of the current.",
+                    conditions: "Conductor carrying direct or steady alternating current.",
+                    variables: [
+                        { symbol: "Q", rep: "Thermal heat generated", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "R", rep: "Resistance of conductor", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "t", rep: "Current flow duration", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Domestic Safety",
+                    name: "Appliance Current and Fuse Sizing",
+                    formula: "\\[ I = \\frac{P}{V} \\implies I_{\\text{fuse}} > I_{\\text{operating}} \\]",
+                    explanation: "Operating current is calculated from power and voltage; the selected fuse rating must be slightly greater than the normal operating current.",
+                    conditions: "Standard domestic AC/DC appliances.",
+                    variables: [
+                        { symbol: "I", rep: "Normal operating current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "P", rep: "Power rating of appliance", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "V", rep: "Mains supply voltage", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I_{\\text{fuse}}", rep: "Standard fuse rating (e.g. 3 A, 13 A)", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What are the three equations for electrical power?", back: "\\( P = IV = I^2 R = \\frac{V^2}{R} \\)" },
+                { front: "What is 1 kilowatt-hour (kWh) in Joules?", back: "\\( 1\\,\\mathrm{kWh} = 3.6 \\times 10^6\\,\\mathrm{J} = 3.6\\,\\mathrm{MJ} \\)" },
+                { front: "What are the international insulation colors for Live, Neutral, and Earth wires?", back: "Live = Brown; Neutral = Blue; Earth = Green and Yellow stripes." },
+                { front: "Why must switches and fuses always be in the Live wire?", back: "To disconnect the appliance from high voltage, preventing fatal electric shocks when switched off." },
+                { front: "What is the function of the Earth wire in a 3-pin plug?", back: "To provide a safe low-resistance path to ground, blowing the fuse if a live wire touches the metal casing." }
+            ],
+            quiz: [
+                { question: "What is the power of an appliance operating on 230 V drawing 4 A?", options: ["920 W", "57.5 W", "234 W", "1000 W"], correctIndex: 0, feedback: "P = IV = 230 V × 4 A = 920 W." },
+                { question: "How much electrical energy is transferred by a 100 W bulb in 5 seconds?", options: ["20 J", "500 J", "0.05 J", "100 J"], correctIndex: 1, feedback: "E = Pt = 100 W × 5 s = 500 J." },
+                { question: "If electricity costs 15p per kWh, running a 2 kW heater for 3 hours costs:", options: ["30p", "45p", "90p", "$1.50"], correctIndex: 2, feedback: "Energy = 2 kW × 3 h = 6 kWh. Cost = 6 × 15p = 90p." },
+                { question: "The Earth wire in a UK/international 3-pin plug is colored:", options: ["Brown", "Blue", "Green and yellow stripes", "Red"], correctIndex: 2, feedback: "Earth is green and yellow; Live is brown; Neutral is blue." }
+            ]
+        },
+        {
+            id: "g8-l14",
+            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Wave_packet_dispersion.gif",
+            worksheetUrl: "worksheets/g8-l14-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [
+                { topic: "Waves Intro Simulation", url: "https://phet.colorado.edu/sims/html/waves-intro/latest/waves-intro_all.html" },
+                { topic: "Wave on a String", url: "https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_all.html" }
+            ],
+            title: "Lesson 14: General Properties of Waves",
+            concepts: [
+                "What is a Wave: A periodic disturbance in a medium that transmits energy from one place to another without transferring permanent matter.",
+                "Styrofoam Ball Demonstration: When water waves pass across a ripple tank, a floating styrofoam ball bobs vertically up and down across its equilibrium rest position without traveling horizontally with the wave, demonstrating that waves transfer energy without transferring material.",
+                "Transverse Waves: Waves in which medium particles oscillate perpendicularly (at right angles) to the direction of wave travel. They propagate in a series of crests (highest points) and troughs (lowest points). Examples: water waves, light waves, and all electromagnetic waves (which can travel through vacuum).",
+                "Longitudinal Waves: Waves in which medium particles oscillate to and fro along (parallel to) the direction of wave travel. They propagate as alternating compressions (regions of crowded particles) and rarefactions (regions of spread-out particles). Examples: sound waves, compressed slinky springs. Longitudinal waves require a physical medium and cannot travel in a vacuum.",
+                "Wave Parameters: Amplitude (\\(A\\), maximum displacement from equilibrium; indicates wave energy); Wavelength (\\(\\lambda\\), distance between successive crests or compressions); Period (\\(T\\), time for one complete oscillation); Frequency (\\(f\\), complete oscillations per second in Hertz, \\(1\\,\\mathrm{Hz} = 1\\,\\mathrm{s^{-1}}\\)); Wave Speed (\\(v\\), speed of wave propagation).",
+                "The Wave Equation: Fundamental relationship connecting wave speed, frequency, and wavelength: \\(v = f \\lambda\\) (or \\(v = \\frac{\\lambda}{T}\\))."
+            ],
+            definitions: [
+                { term: "Wave", definition: "A periodic disturbance that transmits energy through space or a medium without transporting matter.", symbol: "\\text{Wave}", unit: "\\text{No unit}", equation: "v = f\\lambda" },
+                { term: "Transverse Wave", definition: "A wave whose particle oscillations are perpendicular to the direction of wave propagation.", symbol: "\\text{Transverse}", unit: "\\text{No unit}", equation: "\\text{Crests and Troughs}" },
+                { term: "Longitudinal Wave", definition: "A wave whose particle oscillations are parallel to the direction of wave propagation.", symbol: "\\text{Longitudinal}", unit: "\\text{No unit}", equation: "\\text{Compressions & Rarefactions}" },
+                { term: "Wavelength (λ)", definition: "The distance between two successive corresponding points on a wave, such as crest to crest.", symbol: "\\lambda", unit: "\\mathrm{m}", equation: "\\lambda = \\frac{v}{f}" },
+                { term: "Amplitude (A)", definition: "The maximum displacement of a particle of the medium from its undisturbed equilibrium position.", symbol: "A", unit: "\\mathrm{m}", equation: "A = y_{\\max}" },
+                { term: "Frequency (f)", definition: "The number of complete wave cycles produced or passing a point per second.", symbol: "f", unit: "\\mathrm{Hz} \\;(\\mathrm{s^{-1}})", equation: "f = \\frac{1}{T}" },
+                { term: "Period (T)", definition: "The time required to produce one complete wave cycle.", symbol: "T", unit: "\\mathrm{s}", equation: "T = \\frac{1}{f}" },
+                { term: "Wave Speed (v)", definition: "The speed at which the wave disturbance advances through the medium.", symbol: "v", unit: "\\mathrm{m/s}", equation: "v = f\\lambda" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Calculating Wavelength from Wave Equation",
+                    question: "A sound wave travels at a speed of 335 m/s with a frequency of 67 Hz. Calculate its wavelength.",
+                    given: "Wave speed \\( v = 335\\,\\mathrm{m/s} \\), Frequency \\( f = 67\\,\\mathrm{Hz} \\).",
+                    find: "Wavelength (\\( \\lambda \\)).",
+                    equation: "v = f\\lambda \\implies \\lambda = \\frac{v}{f}",
+                    rearrangement: "\\lambda = \\frac{335\\,\\mathrm{m/s}}{67\\,\\mathrm{Hz}}",
+                    solution: "Divide wave speed by frequency:<br>\\[ \\lambda = \\frac{335}{67} = 5.0\\,\\mathrm{m} \\]",
+                    finalAnswer: "\\lambda = 5.0\\,\\mathrm{m}",
+                    explanation: "Each complete sound wave cycle spans 5.0 meters in space."
+                },
+                {
+                    title: "Example 2: Wave Speed in a Solid Medium",
+                    question: "A sound wave with a frequency of 60.0 Hz travels through a steel structure with a wavelength of 85.5 m. What is the speed of this wave?",
+                    given: "Frequency \\( f = 60.0\\,\\mathrm{Hz} \\), Wavelength \\( \\lambda = 85.5\\,\\mathrm{m} \\).",
+                    find: "Wave speed (\\( v \\)).",
+                    equation: "v = f\\lambda",
+                    rearrangement: "v = 60.0\\,\\mathrm{Hz} \\times 85.5\\,\\mathrm{m}",
+                    solution: "Multiply frequency by wavelength:<br>\\[ v = 60.0 \\times 85.5 = 5130\\,\\mathrm{m/s} \\]",
+                    finalAnswer: "v = 5130\\,\\mathrm{m/s}",
+                    explanation: "Sound travels extremely fast through dense steel due to strong elastic intermolecular bonds."
+                },
+                {
+                    title: "Example 3: Ocean Wave Crests and Frequency",
+                    question: "A ship anchored at sea is rocked by waves whose crests are 14 m apart. The waves travel at 7.0 m/s. What is the frequency and period of the wave?",
+                    given: "Wavelength \\( \\lambda = 14\\,\\mathrm{m} \\), Wave speed \\( v = 7.0\\,\\mathrm{m/s} \\).",
+                    find: "Frequency \\( f \\) and wave period \\( T \\).",
+                    equation: "v = f\\lambda \\implies f = \\frac{v}{\\lambda}, \\quad T = \\frac{1}{f}",
+                    rearrangement: "f = \\frac{7.0\\,\\mathrm{m/s}}{14\\,\\mathrm{m}}, \\quad T = \\frac{1}{0.50}",
+                    solution: "1. <strong>Frequency:</strong> \\( f = \\frac{7.0}{14} = 0.50\\,\\mathrm{Hz} \\).<br>2. <strong>Period:</strong> \\( T = \\frac{1}{0.50} = 2.0\\,\\mathrm{s} \\).",
+                    finalAnswer: "f = 0.50\\,\\mathrm{Hz}, \\quad T = 2.0\\,\\mathrm{s}",
+                    explanation: "One wave crest passes the anchored ship every 2.0 seconds."
+                }
+            ],
+            equations: [
+                {
+                    section: "The Wave Equation",
+                    name: "Universal Wave Equation",
+                    formula: "\\[ v = f \\lambda \\iff f = \\frac{v}{\\lambda} \\iff \\lambda = \\frac{v}{f} \\]",
+                    explanation: "Fundamental relation connecting wave speed, frequency, and wavelength.",
+                    conditions: "All mechanical and electromagnetic waves.",
+                    variables: [
+                        { symbol: "v", rep: "Wave speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "f", rep: "Frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" },
+                        { symbol: "\\lambda", rep: "Wavelength", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Wave Oscillations",
+                    name: "Period-Frequency Relationship",
+                    formula: "\\[ T = \\frac{1}{f} \\iff f = \\frac{1}{T} \\]",
+                    explanation: "Period and frequency are reciprocals of each other.",
+                    conditions: "Periodic harmonic motion.",
+                    variables: [
+                        { symbol: "T", rep: "Wave period", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "f", rep: "Frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" }
+                    ]
+                },
+                {
+                    section: "Wave Parameters",
+                    name: "Angular Frequency Equation",
+                    formula: "\\[ \\omega = 2\\pi f = \\frac{2\\pi}{T} \\]",
+                    explanation: "Angular frequency expresses the rate of wave phase change in radians per second.",
+                    conditions: "Sinusoidal periodic wave motion.",
+                    variables: [
+                        { symbol: "\\omega", rep: "Angular frequency", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
+                        { symbol: "f", rep: "Frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" },
+                        { symbol: "T", rep: "Wave period", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Wave Parameters",
+                    name: "Wave Number Equation",
+                    formula: "\\[ k = \\frac{2\\pi}{\\lambda} \\]",
+                    explanation: "Spatial frequency or wave number representing the number of wave cycles per unit distance.",
+                    conditions: "Harmonic spatial wave propagation.",
+                    variables: [
+                        { symbol: "k", rep: "Wave number (spatial frequency)", unit: "Radian per meter", unitSym: "\\mathrm{rad/m}" },
+                        { symbol: "\\lambda", rep: "Wavelength", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "The Wave Equation",
+                    name: "Wave Speed from Angular Quantities",
+                    formula: "\\[ v = \\frac{\\omega}{k} \\]",
+                    explanation: "Wave propagation speed expressed in terms of angular frequency and wave number.",
+                    conditions: "Dispersive or non-dispersive harmonic waves.",
+                    variables: [
+                        { symbol: "v", rep: "Phase velocity / wave speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\omega", rep: "Angular frequency", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
+                        { symbol: "k", rep: "Wave number", unit: "Radian per meter", unitSym: "\\mathrm{rad/m}" }
+                    ]
+                },
+                {
+                    section: "Wave Reflection & Sound",
+                    name: "Echo / Reflection Distance Equation",
+                    formula: "\\[ d = \\frac{v \\times t}{2} \\iff 2d = v \\times t \\]",
+                    explanation: "Calculates the distance to a reflecting barrier or sea-floor from the round-trip travel time of an acoustic echo.",
+                    conditions: "Uniform wave speed in reflecting medium.",
+                    variables: [
+                        { symbol: "d", rep: "Distance to reflecting barrier or target", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v", rep: "Speed of sound or radar pulse in medium", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "t", rep: "Total two-way transit time", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the universal wave equation?", back: "\\( v = f\\lambda \\) (Wave speed = frequency × wavelength)" },
+                { front: "What is the key difference between transverse and longitudinal waves?", back: "Transverse oscillates perpendicular to wave direction (light); longitudinal oscillates parallel (sound)." },
+                { front: "Can sound waves travel through a vacuum?", back: "No; sound requires a material medium to propagate." },
+                { front: "What is the period of a wave whose frequency is 10 Hz?", back: "\\( T = \\frac{1}{f} = \\frac{1}{10} = 0.1\\,\\mathrm{s} \\)" },
+                { front: "Do water waves transport water molecules across the ocean?", back: "No; waves transfer energy without transferring matter (water molecules bob in place)." }
+            ],
+            quiz: [
+                { question: "What is the velocity of a wave with wavelength 2.0 m and frequency 5.0 Hz?", options: ["2.5 m/s", "0.4 m/s", "10 m/s", "20 m/s"], correctIndex: 2, feedback: "v = f λ = 5.0 Hz × 2.0 m = 10 m/s." },
+                { question: "The frequency of a wave is 10 Hz. What is its period?", options: ["100 s", "10 s", "0.01 s", "0.1 s"], correctIndex: 3, feedback: "T = 1 / f = 1 / 10 = 0.1 s." },
+                { question: "Which of the following waves does NOT require a material medium?", options: ["Sound wave", "Light wave (electromagnetic)", "Water surface ripple", "Vibrating rope wave"], correctIndex: 1, feedback: "Light and other electromagnetic waves can propagate across empty vacuum." },
+                { question: "In a longitudinal wave, the regions where particles are crowded together are called:", options: ["Troughs", "Rarefactions", "Compressions", "Crests"], correctIndex: 2, feedback: "Compressions are crowded regions; rarefactions are stretched-out regions." }
+            ]
+        }
+    ];
+
+    // =========================================================================
+    // GRADE 10 PHYSICS CURRICULUM DATA
+    // =========================================================================
+    const G10_LESSONS = [
+        // --- Grade 10 Chapter 1: Mechanics ---
+        {
+            id: "g10-l1",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch1-l1-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Vector Addition & Motion", url: "https://phet.colorado.edu/sims/html/vector-addition/latest/vector-addition_all.html" }],
+            title: "Chapter 1 • Lesson 1: Linear Motion",
+            concepts: [
+                "Vectors & Scalars: A vector quantity has both magnitude and direction (velocity, force, displacement). A scalar quantity has magnitude only without direction (mass, time, temperature).",
+                "Two-Vector Addition: Two vectors are equal if they have the same magnitude and direction (\\(\\vec{A} = \\vec{B}\\)). When two collinear vectors point in the identical direction, resultant magnitude is \\(C = A + B\\).",
+                "Opposite Vector: Vector \\(-\\vec{A}\\) has equal magnitude but opposite direction. Their sum is the zero vector: \\(\\vec{A} + (-\\vec{A}) = \\vec{0}\\).",
+                "Vector Products: Scalar (dot) product forms a scalar \\(\\vec{A} \\cdot \\vec{B} = |A||B|\\cos\\theta\\). Vector (cross) product forms a vector perpendicular to both: \\(\\vec{A} \\times \\vec{B} = |A||B|\\sin\\alpha\\ \\hat{n}\\).",
+                "Coordinate System of a Vector: In the xy-plane, \\(\\vec{A} = A_x\\hat{i} + A_y\\hat{j}\\) where \\(A_x = A\\cos\\theta\\), \\(A_y = A\\sin\\theta\\), and \\(\\tan\\theta = \\frac{A_y}{A_x}\\). Magnitude is \\(A = \\sqrt{A_x^2 + A_y^2}\\). In 3D: \\(R = \\sqrt{R_x^2 + R_y^2 + R_z^2}\\) with direction cosines \\(\\cos\\theta_x = \\frac{R_x}{R}\\).",
+                "Displacement vs Distance: Distance is total length of path traversed. Displacement depends only on initial and final positions: \\(\\Delta x = x' - x\\).",
+                "Speed and Velocity: Speed is scalar \\(v = \\frac{d}{t}\\). Average velocity is slope of position-time graph: \\(v_{av} = \\frac{\\Delta x}{\\Delta t}\\). Instantaneous velocity is the time derivative: \\(v = \\frac{dx}{dt} = x'\\).",
+                "Acceleration: Average acceleration \\(a_{av} = \\frac{\\Delta v}{\\Delta t}\\). Instantaneous acceleration \\(a = \\frac{dv}{dt} = \\frac{d^2x}{dt^2} = x''\\). Motion classification: \\(a = 0\\) is uniform linear motion; \\(a > 0\\) accelerating; \\(a < 0\\) decelerating; \\(v = 0\\) at rest.",
+                "Uniform Linear Motion: Velocity is constant, acceleration \\(a = 0\\). Position equation: \\(x = x_0 + v(t - t_0)\\).",
+                "Non-Uniform Linear Motion: Under constant acceleration \\(a = \\text{const}\\): Velocity \\(v = v_0 + a(t - t_0)\\); Position \\(x - x_0 = v_0(t - t_0) + \\frac{1}{2}a(t - t_0)^2\\); Average velocity \\(v_{av} = \\frac{v_0 + v}{2}\\); Independent-time equation \\(v^2 - v_0^2 = 2a(x - x_0)\\).",
+                "Free Fall Motion: Object falling solely under gravity with downward acceleration \\(a = g = 9.8\\,\\mathrm{m/s^2}\\). Equations: \\(y = y_0 + v_0 t + \\frac{1}{2}gt^2\\), \\(v = v_0 + gt\\), and \\(v^2 - v_0^2 = 2g(y - y_0)\\)."
+            ],
+            definitions: [
+                { term: "Vector Quantity", definition: "A physical quantity possessing both magnitude and direction.", symbol: "\\vec{A}", unit: "\\text{Varies (e.g. N, m/s)}", equation: "\\vec{A} = A_x\\hat{i} + A_y\\hat{j} + A_z\\hat{k}" },
+                { term: "Scalar Product (Dot Product)", definition: "The algebraic product of vector magnitudes and the cosine of the angle separating them.", symbol: "\\vec{A} \\cdot \\vec{B}", unit: "\\text{Scalar}", equation: "\\vec{A} \\cdot \\vec{B} = |A||B|\\cos\\theta" },
+                { term: "Vector Product (Cross Product)", definition: "A vector perpendicular to two given vectors with magnitude equal to the product of magnitudes and the sine of the angle.", symbol: "\\vec{A} \\times \\vec{B}", unit: "\\text{Vector}", equation: "|\\vec{A} \\times \\vec{B}| = |A||B|\\sin\\alpha" },
+                { term: "Instantaneous Velocity", definition: "The limit of average velocity as elapsed time approaches zero, equal to the first derivative of position.", symbol: "v", unit: "\\mathrm{m/s}", equation: "v = \\lim_{\\Delta t \\to 0}\\frac{\\Delta x}{\\Delta t} = \\frac{dx}{dt}" },
+                { term: "Instantaneous Acceleration", definition: "The limit of average acceleration as time approaches zero, equal to the second derivative of position.", symbol: "a", unit: "\\mathrm{m/s^2}", equation: "a = \\lim_{\\Delta t \\to 0}\\frac{\\Delta v}{\\Delta t} = \\frac{dv}{dt} = \\frac{d^2x}{dt^2}" },
+                { term: "Independent-Time Equation", definition: "The kinematic relationship connecting initial and final velocities, constant acceleration, and displacement without involving time.", symbol: "v^2 - v_0^2", unit: "\\mathrm{m^2/s^2}", equation: "v^2 - v_0^2 = 2a(x - x_0)" },
+                { term: "Free Fall", definition: "Vertical motion under the exclusive influence of Earth's gravitational acceleration (g = 9.8 m/s²).", symbol: "g", unit: "\\mathrm{m/s^2}", equation: "v^2 - v_0^2 = 2g(y - y_0)" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Resolving a Vector into Orthogonal Components",
+                    question: "A force vector of magnitude 50 N acts in the xy-plane at an angle of 30° to the positive x-axis. Find its x and y components and verify its magnitude.",
+                    given: "Magnitude \\( A = 50\\,\\mathrm{N} \\), Angle \\( \\theta = 30^\\circ \\) (\\(\\cos 30^\\circ \\approx 0.866, \\sin 30^\\circ = 0.50\\)).",
+                    find: "Components \\( A_x \\), \\( A_y \\) and magnitude \\( A \\).",
+                    equation: "A_x = A\\cos\\theta, \\quad A_y = A\\sin\\theta, \\quad A = \\sqrt{A_x^2 + A_y^2}",
+                    rearrangement: "A_x = 50\\cos 30^\\circ, \\quad A_y = 50\\sin 30^\\circ",
+                    solution: "1. \\( A_x = 50 \\times 0.8660 = 43.30\\,\\mathrm{N} \\).<br>2. \\( A_y = 50 \\times 0.50 = 25.0\\,\\mathrm{N} \\).<br>3. Check: \\( \\sqrt{(43.3)^2 + (25.0)^2} = \\sqrt{1875 + 625} = \\sqrt{2500} = 50\\,\\mathrm{N} \\).",
+                    finalAnswer: "A_x = 43.3\\,\\mathrm{N}, \\quad A_y = 25.0\\,\\mathrm{N}",
+                    explanation: "Any vector in a plane can be broken down into two perpendicular components using sine and cosine projections."
+                },
+                {
+                    title: "Example 2: Kinematic Independent-Time Braking Distance",
+                    question: "A vehicle traveling at an initial velocity of 20 m/s decelerates uniformly at 4.0 m/s² until it comes to a complete halt. Using the independent-time equation, calculate the stopping distance.",
+                    given: "Initial velocity \\( v_0 = 20\\,\\mathrm{m/s} \\), Final velocity \\( v = 0\\,\\mathrm{m/s} \\), Acceleration \\( a = -4.0\\,\\mathrm{m/s^2} \\).",
+                    find: "Displacement \\( x - x_0 \\).",
+                    equation: "v^2 - v_0^2 = 2a(x - x_0) \\implies x - x_0 = \\frac{v^2 - v_0^2}{2a}",
+                    rearrangement: "x - x_0 = \\frac{0 - (20)^2}{2(-4.0)}",
+                    solution: "1. \\( 0 - 400 = -8.0(x - x_0) \\).<br>2. \\( x - x_0 = \\frac{-400}{-8.0} = 50\\,\\mathrm{m} \\).",
+                    finalAnswer: "x - x_0 = 50\\,\\mathrm{m}",
+                    explanation: "The independent-time equation directly relates velocities and displacement when time duration is unknown."
+                },
+                {
+                    title: "Example 3: Free Fall Impact Velocity from Height",
+                    question: "A metal sphere is released from rest from a building roof of height 44.1 m. Calculate its velocity just before hitting the ground (g = 9.8 m/s²).",
+                    given: "Initial velocity \\( v_0 = 0 \\), Height \\( y - y_0 = 44.1\\,\\mathrm{m} \\), \\( g = 9.8\\,\\mathrm{m/s^2} \\).",
+                    find: "Impact speed \\( v \\).",
+                    equation: "v^2 - v_0^2 = 2g(y - y_0) \\implies v = \\sqrt{2g\\Delta y}",
+                    rearrangement: "v = \\sqrt{2(9.8)(44.1)}",
+                    solution: "1. \\( v^2 = 2 \\times 9.8 \\times 44.1 = 864.36 \\).<br>2. \\( v = \\sqrt{864.36} = 29.4\\,\\mathrm{m/s} \\).",
+                    finalAnswer: "v = 29.4\\,\\mathrm{m/s}",
+                    explanation: "Under uniform gravitational acceleration, potential energy converts directly into kinetic energy during free fall."
+                }
+            ],
+            equations: [
+                {
+                    section: "Vector Algebra",
+                    name: "Resultant of Collinear Vectors",
+                    formula: "\\[ \\vec{C} = \\vec{A} + \\vec{B} \\implies C = A + B \\]",
+                    pdfPage: "PDF Page 3",
+                    explanation: "When two vectors have the identical direction, the resultant vector magnitude equals the direct algebraic sum of their lengths.",
+                    conditions: "Collinear vectors pointing in identical direction (\\(\\vec{A} \\uparrow\\uparrow \\vec{B}\\)).",
+                    variables: [
+                        { symbol: "C", rep: "Resultant vector magnitude", unit: "Meter or Newton", unitSym: "\\mathrm{m}" },
+                        { symbol: "A", rep: "Magnitude of vector A", unit: "Meter or Newton", unitSym: "\\mathrm{m}" },
+                        { symbol: "B", rep: "Magnitude of vector B", unit: "Meter or Newton", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Vector Algebra",
+                    name: "Opposite Vector & Additive Inverse",
+                    formula: "\\[ \\vec{A} + (-\\vec{A}) = \\vec{0} \\]",
+                    pdfPage: "PDF Page 3",
+                    explanation: "An opposite vector has identical length but opposite orientation; their vector sum equals the null (zero) vector.",
+                    conditions: "Equal magnitude, antiparallel directions (\\(\\vec{A} \\uparrow\\downarrow -\\vec{A}\\)).",
+                    variables: [
+                        { symbol: "\\vec{A}", rep: "Original vector", unit: "Varies", unitSym: "\\text{SI unit}" },
+                        { symbol: "-\\vec{A}", rep: "Opposite vector (additive inverse)", unit: "Varies", unitSym: "\\text{SI unit}" },
+                        { symbol: "\\vec{0}", rep: "Zero vector", unit: "Varies", unitSym: "\\text{SI unit}" }
+                    ]
+                },
+                {
+                    section: "Vector Algebra",
+                    name: "Scalar (Dot) Product",
+                    formula: "\\[ \\vec{A} \\cdot \\vec{B} = |A||B|\\cos\\theta \\]",
+                    pdfPage: "PDF Page 3",
+                    explanation: "Forms a scalar quantity by multiplying vector magnitudes by the cosine of the included angle.",
+                    conditions: "Angle \\(\\theta\\) between vectors (\\(0 \\le \\theta \\le \\pi\\)).",
+                    variables: [
+                        { symbol: "\\vec{A} \\cdot \\vec{B}", rep: "Scalar dot product result", unit: "Joule (if F·d) or scalar", unitSym: "\\mathrm{J}" },
+                        { symbol: "|A|, |B|", rep: "Magnitudes of vectors A and B", unit: "Varies", unitSym: "\\text{SI unit}" },
+                        { symbol: "\\theta", rep: "Angle separating vectors", unit: "Radian or degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Vector Algebra",
+                    name: "Vector (Cross) Product Magnitude",
+                    formula: "\\[ |\\vec{A} \\times \\vec{B}| = |A||B|\\sin\\alpha \\]",
+                    pdfPage: "PDF Page 4",
+                    explanation: "Produces a vector perpendicular to both vectors with magnitude equal to the area of the spanned parallelogram.",
+                    conditions: "Angle \\(\\alpha\\) between vectors; direction follows right-hand rule.",
+                    variables: [
+                        { symbol: "|\\vec{A} \\times \\vec{B}|", rep: "Magnitude of cross product vector", unit: "Newton meter (torque) or SI", unitSym: "\\mathrm{N\\cdot m}" },
+                        { symbol: "|A|, |B|", rep: "Magnitudes of vectors A and B", unit: "Varies", unitSym: "\\text{SI unit}" },
+                        { symbol: "\\alpha", rep: "Included angle between vectors", unit: "Degree or radian", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Vector Coordinates",
+                    name: "2D Cartesian Vector Components",
+                    formula: "\\[ A_x = A\\cos\\theta, \\quad A_y = A\\sin\\theta, \\quad \\vec{A} = A_x\\hat{i} + A_y\\hat{j} \\]",
+                    pdfPage: "PDF Page 4",
+                    explanation: "Decomposes a 2D planar vector into orthogonal horizontal and vertical components along Cartesian unit axes.",
+                    conditions: "Orthogonal axes (\\(ox \\perp oy\\)).",
+                    variables: [
+                        { symbol: "A_x", rep: "Horizontal component along x-axis", unit: "Meter or Newton", unitSym: "\\mathrm{m}" },
+                        { symbol: "A_y", rep: "Vertical component along y-axis", unit: "Meter or Newton", unitSym: "\\mathrm{m}" },
+                        { symbol: "A", rep: "Magnitude of vector", unit: "Meter or Newton", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Angle relative to +x axis", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Vector Coordinates",
+                    name: "2D Vector Magnitude & Direction Angle",
+                    formula: "\\[ A = \\sqrt{A_x^2 + A_y^2}, \\quad \\tan\\theta = \\frac{A_y}{A_x} \\implies \\theta = \\tan^{-1}\\left(\\frac{A_y}{A_x}\\right) \\]",
+                    pdfPage: "PDF Page 4",
+                    explanation: "Applies the Pythagorean theorem and trigonometry to find vector magnitude and angular orientation from its components.",
+                    conditions: "Valid in 2D Cartesian plane.",
+                    variables: [
+                        { symbol: "A", rep: "Magnitude of vector", unit: "SI unit", unitSym: "\\text{SI}" },
+                        { symbol: "A_x, A_y", rep: "Cartesian components", unit: "SI unit", unitSym: "\\text{SI}" },
+                        { symbol: "\\theta", rep: "Direction angle", unit: "Degree or radian", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Vector Coordinates",
+                    name: "2D Vector Addition in Coordinate System",
+                    formula: "\\[ \\vec{R} = (A_x + B_x)\\hat{i} + (A_y + B_y)\\hat{j}, \\quad R = \\sqrt{(A_x + B_x)^2 + (A_y + B_y)^2} \\]",
+                    pdfPage: "PDF Page 5",
+                    explanation: "Calculates the resultant vector by adding orthogonal components independently before computing final magnitude.",
+                    conditions: "Coplanar vectors in xy-plane.",
+                    variables: [
+                        { symbol: "R", rep: "Resultant magnitude", unit: "Meter or Newton", unitSym: "\\mathrm{m}" },
+                        { symbol: "A_x, B_x", rep: "x-components of vectors", unit: "Meter or Newton", unitSym: "\\mathrm{m}" },
+                        { symbol: "A_y, B_y", rep: "y-components of vectors", unit: "Meter or Newton", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Vector Coordinates",
+                    name: "Resultant Direction Angle in 2D",
+                    formula: "\\[ \\tan\\theta = \\frac{R_y}{R_x} = \\frac{A_y + B_y}{A_x + B_x} \\]",
+                    pdfPage: "PDF Page 5",
+                    explanation: "Computes the inclination angle of the resultant vector from the ratio of total vertical to horizontal components.",
+                    conditions: "Non-zero horizontal component (\\(R_x \\ne 0\\)).",
+                    variables: [
+                        { symbol: "\\theta", rep: "Angle with respect to x-axis", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "R_y", rep: "Total vertical component", unit: "SI unit", unitSym: "\\text{SI}" },
+                        { symbol: "R_x", rep: "Total horizontal component", unit: "SI unit", unitSym: "\\text{SI}" }
+                    ]
+                },
+                {
+                    section: "Vector Coordinates",
+                    name: "3D Vector Sum & Direction Cosines",
+                    formula: "\\[ R = \\sqrt{R_x^2 + R_y^2 + R_z^2}, \\quad \\cos\\theta_x = \\frac{R_x}{R} \\]",
+                    pdfPage: "PDF Page 5 & 6",
+                    explanation: "Calculates resultant magnitude in 3-dimensional space and finds spatial orientation via directional cosines.",
+                    conditions: "3D orthogonal coordinate system (x, y, z).",
+                    variables: [
+                        { symbol: "R", rep: "3D resultant magnitude", unit: "Meter or Newton", unitSym: "\\mathrm{m}" },
+                        { symbol: "R_x, R_y, R_z", rep: "Components along x, y, z axes", unit: "Meter or Newton", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta_x", rep: "Angle with respect to x-axis", unit: "Radian or degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "1D Kinematics",
+                    name: "Linear Speed",
+                    formula: "\\[ v = \\frac{d}{t} \\]",
+                    pdfPage: "PDF Page 7",
+                    explanation: "Scalar rate of motion defined as the total distance traveled divided by the total time taken.",
+                    conditions: "Uniform speed or average speed over duration t.",
+                    variables: [
+                        { symbol: "v", rep: "Speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "d", rep: "Distance traveled", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "1D Kinematics",
+                    name: "Average Velocity & Graphical Slope",
+                    formula: "\\[ v_{av} = \\frac{\\Delta x}{\\Delta t} = \\frac{x' - x}{t' - t} = \\tan\\alpha \\]",
+                    pdfPage: "PDF Page 7",
+                    explanation: "The displacement per unit time interval, geometrically equal to the slope of the chord on a position-time graph.",
+                    conditions: "Straight-line motion between positions x and x'.",
+                    variables: [
+                        { symbol: "v_{av}", rep: "Average velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\Delta x", rep: "Net displacement (x' - x)", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\Delta t", rep: "Time interval (t' - t)", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "\\tan\\alpha", rep: "Slope of secant line on position-time graph", unit: "Dimensionless ratio", unitSym: "\\text{slope}" }
+                    ]
+                },
+                {
+                    section: "1D Kinematics",
+                    name: "Instantaneous Velocity (Derivative)",
+                    formula: "\\[ v = \\lim_{\\Delta t \\to 0}\\frac{\\Delta x}{\\Delta t} = \\frac{dx}{dt} = x' \\]",
+                    pdfPage: "PDF Page 7",
+                    explanation: "Velocity at a specific instant, representing the limit of average velocity and the first time derivative of position.",
+                    conditions: "Continuous position function x(t).",
+                    variables: [
+                        { symbol: "v", rep: "Instantaneous velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "dx/dt", rep: "Time derivative of position", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "1D Kinematics",
+                    name: "Average Acceleration",
+                    formula: "\\[ a_{av} = \\frac{\\Delta v}{\\Delta t} = \\frac{v_2 - v_1}{t_2 - t_1} \\]",
+                    pdfPage: "PDF Page 8",
+                    explanation: "The rate of change of velocity over a finite time interval.",
+                    conditions: "1D motion with changing velocity.",
+                    variables: [
+                        { symbol: "a_{av}", rep: "Average acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\Delta v", rep: "Change in velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\Delta t", rep: "Elapsed time", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "1D Kinematics",
+                    name: "Instantaneous Acceleration (Derivative)",
+                    formula: "\\[ a = \\lim_{\\Delta t \\to 0}\\frac{\\Delta v}{\\Delta t} = \\frac{dv}{dt} = \\frac{d^2x}{dt^2} = x'' \\]",
+                    pdfPage: "PDF Page 8",
+                    explanation: "Rate of change of velocity at a precise instant, representing the second time derivative of position.",
+                    conditions: "Differentiable velocity function v(t).",
+                    variables: [
+                        { symbol: "a", rep: "Instantaneous acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "dv/dt", rep: "Time derivative of velocity", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Uniform Motion",
+                    name: "Time-Position Equation for Uniform Motion",
+                    formula: "\\[ x = x_0 + v(t - t_0) \\quad (a = 0) \\]",
+                    pdfPage: "PDF Page 9",
+                    explanation: "Calculates position at any time for an object moving with unchanging velocity along a straight line.",
+                    conditions: "Zero acceleration (\\(a = 0, v = \\text{const}\\)).",
+                    variables: [
+                        { symbol: "x", rep: "Final position", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "x_0", rep: "Initial position at time t₀", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v", rep: "Constant velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "t - t_0", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Accelerated Motion",
+                    name: "Velocity under Constant Acceleration",
+                    formula: "\\[ v = v_0 + a(t - t_0) \\quad (v = at \\text{ if } t_0 = 0, v_0 = 0) \\]",
+                    pdfPage: "PDF Page 9 & 10",
+                    explanation: "Calculates instantaneous velocity after time interval (t - t₀) under uniform acceleration.",
+                    conditions: "Constant acceleration (\\(a = \\text{const}\\)).",
+                    variables: [
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_0", rep: "Initial velocity at t₀", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "a", rep: "Uniform acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "t - t_0", rep: "Elapsed time", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Accelerated Motion",
+                    name: "Average Velocity under Constant Acceleration",
+                    formula: "\\[ v_{av} = \\frac{v_0 + v}{2} \\]",
+                    pdfPage: "PDF Page 10",
+                    explanation: "For linear acceleration, average velocity over the time interval equals the arithmetic mean of initial and final velocities.",
+                    conditions: "Uniform acceleration only.",
+                    variables: [
+                        { symbol: "v_{av}", rep: "Average velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_0", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Accelerated Motion",
+                    name: "Position Equation under Constant Acceleration",
+                    formula: "\\[ x - x_0 = v_0(t - t_0) + \\frac{1}{2}a(t - t_0)^2 \\quad \\left(x = \\frac{1}{2}at^2 \\text{ if } x_0=0, v_0=0, t_0=0\\right) \\]",
+                    pdfPage: "PDF Page 10",
+                    explanation: "Integrates velocity over time to determine displacement under uniform acceleration.",
+                    conditions: "Constant acceleration (\\(a = \\text{const}\\)).",
+                    variables: [
+                        { symbol: "x - x_0", rep: "Displacement", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_0", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "a", rep: "Uniform acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "t - t_0", rep: "Time interval", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Accelerated Motion",
+                    name: "Time-Independent Kinematic Equation",
+                    formula: "\\[ v^2 - v_0^2 = 2a(x - x_0) \\]",
+                    pdfPage: "PDF Page 11",
+                    explanation: "Connects velocities directly to displacement without requiring the time variable.",
+                    conditions: "Constant acceleration (\\(a = \\text{const}\\)).",
+                    variables: [
+                        { symbol: "v", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_0", rep: "Initial velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "a", rep: "Uniform acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "x - x_0", rep: "Displacement", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Free Fall",
+                    name: "Free Fall Position-Time Equation",
+                    formula: "\\[ y = y_0 + v_0 t + \\frac{1}{2}gt^2 \\]",
+                    pdfPage: "PDF Page 11 & 12",
+                    explanation: "Vertical displacement equation for free-falling bodies moving under constant gravitational acceleration g.",
+                    conditions: "Free fall under gravity (\\(a = g = 9.8\\,\\mathrm{m/s^2}\\), air resistance negligible).",
+                    variables: [
+                        { symbol: "y", rep: "Final vertical position", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "y_0", rep: "Initial vertical position", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_0", rep: "Initial vertical velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Acceleration due to gravity (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "t", rep: "Fall time", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Free Fall",
+                    name: "Free Fall Velocity-Time Equation",
+                    formula: "\\[ v = v_0 + gt \\]",
+                    pdfPage: "PDF Page 11 & 12",
+                    explanation: "Velocity of a freely falling body as a linear function of elapsed time.",
+                    conditions: "Downward acceleration \\(g = 9.8\\,\\mathrm{m/s^2}\\).",
+                    variables: [
+                        { symbol: "v", rep: "Vertical velocity at time t", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_0", rep: "Initial vertical velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Free Fall",
+                    name: "Free Fall Time-Independent Equation",
+                    formula: "\\[ v^2 - v_0^2 = 2g(y - y_0) \\]",
+                    pdfPage: "PDF Page 11 & 12",
+                    explanation: "Direct relation connecting impact velocity to vertical height dropped.",
+                    conditions: "Constant gravitational field g.",
+                    variables: [
+                        { symbol: "v", rep: "Final vertical velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_0", rep: "Initial vertical velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "y - y_0", rep: "Vertical distance dropped", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Vertical Projection",
+                    name: "Vertical Projection Maximum Height",
+                    formula: "\\[ H_{\\max} = \\frac{v_0^2}{2g} \\]",
+                    pdfPage: "PDF Page 11 & 12",
+                    explanation: "Peak vertical elevation attained by a projectile launched vertically upward before momentarily stopping at the apex.",
+                    conditions: "Vertical motion under gravity with zero air resistance (v = 0 at peak).",
+                    variables: [
+                        { symbol: "H_{\\max}", rep: "Maximum vertical apex height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_0", rep: "Initial vertical launch velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Acceleration due to gravity (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Vertical Projection",
+                    name: "Vertical Projection Time to Apex",
+                    formula: "\\[ t_{\\text{rise}} = \\frac{v_0}{g} \\]",
+                    pdfPage: "PDF Page 11 & 12",
+                    explanation: "Time duration required for an upward-launched object to reach its peak altitude where instantaneous velocity is zero.",
+                    conditions: "Uniform gravitational deceleration (v = v₀ - gt = 0).",
+                    variables: [
+                        { symbol: "t_{\\text{rise}}", rep: "Time to reach apex", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "v_0", rep: "Initial launch velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Acceleration due to gravity", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Vertical Projection",
+                    name: "Vertical Projection Total Flight Time",
+                    formula: "\\[ T_{\\text{flight}} = \\frac{2v_0}{g} = 2t_{\\text{rise}} \\]",
+                    pdfPage: "PDF Page 11 & 12",
+                    explanation: "Total round-trip airborne duration for an object launched upward until returning to its launch elevation.",
+                    conditions: "Symmetrical vertical flight (rise time equals fall time).",
+                    variables: [
+                        { symbol: "T_{\\text{flight}}", rep: "Total time of flight", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "v_0", rep: "Initial vertical launch speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Acceleration due to gravity", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Uniform Acceleration",
+                    name: "Distance Traveled in the n-th Second",
+                    formula: "\\[ \\Delta x_n = v_0 + \\frac{1}{2}a(2n - 1) \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Calculates the distance traversed specifically during the n-th unit time interval under constant acceleration.",
+                    conditions: "Uniform acceleration along a straight path; n is the second index (n = 1, 2, 3, ...).",
+                    variables: [
+                        { symbol: "\\Delta x_n", rep: "Distance traveled during n-th second", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_0", rep: "Initial velocity at t = 0", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "a", rep: "Uniform acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "n", rep: "Time second interval index", unit: "Integer second count", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Relative Motion",
+                    name: "Relative Velocity in One Dimension",
+                    formula: "\\[ v_{\\text{rel}} = v_A - v_B \\quad (\\text{Same: } |v_A - v_B|, \\; \\text{Opposite: } v_A + v_B) \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "The velocity of body A relative to body B in collinear straight-line motion.",
+                    conditions: "Collinear motion along a common axis.",
+                    variables: [
+                        { symbol: "v_{\\text{rel}}", rep: "Relative velocity of A relative to B", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_A", rep: "Velocity of body A", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_B", rep: "Velocity of body B", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for the scalar (dot) product of two vectors?", back: "\\( \\vec{A} \\cdot \\vec{B} = |A||B|\\cos\\theta \\)" },
+                { front: "What is the formula for the vector (cross) product magnitude?", back: "\\( |\\vec{A} \\times \\vec{B}| = |A||B|\\sin\\alpha \\)" },
+                { front: "What is the independent-time kinematic equation?", back: "\\( v^2 - v_0^2 = 2a(x - x_0) \\)" },
+                { front: "What is the value of gravitational acceleration g in free fall?", back: "\\( g = 9.8\\,\\mathrm{m/s^2} \\) (directed downward)" },
+                { front: "What does the slope of a position-time graph represent?", back: "Average velocity (\\( v_{av} = \\frac{\\Delta x}{\\Delta t} = \\tan\\alpha \\))" }
+            ],
+            quiz: [
+                { question: "If two vectors of magnitudes 3 N and 4 N are perpendicular (90°), their resultant magnitude is:", options: ["1 N", "5 N", "7 N", "12 N"], correctIndex: 1, feedback: "R = √(3² + 4²) = √(9 + 16) = √25 = 5 N." },
+                { question: "In uniform linear motion, what is the acceleration of the object?", options: ["a > 0", "a = 9.8 m/s²", "a = 0", "a < 0"], correctIndex: 2, feedback: "Uniform linear motion has constant velocity, so dv/dt = 0." },
+                { question: "A body dropped from rest in free fall for 2 seconds reaches a speed of (g = 9.8 m/s²):", options: ["4.9 m/s", "9.8 m/s", "19.6 m/s", "39.2 m/s"], correctIndex: 2, feedback: "v = gt = 9.8 × 2 = 19.6 m/s." },
+                { question: "Which equation relates velocity and displacement without involving time?", options: ["x = vt", "v = v₀ + at", "v² - v₀² = 2a(x - x₀)", "v = (v₀ + v)/2"], correctIndex: 2, feedback: "The independent-time equation is v² - v₀² = 2a(x - x₀)." }
+            ]
+        },
+        {
+            id: "g10-l2",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch1-l2-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Forces and Motion Dynamics", url: "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html" }],
+            title: "Chapter 1 • Lesson 2: Newton's Laws of Motion",
+            concepts: [
+                "Definition of Force: Force is a cause that makes an object tend to start moving, stop moving, deform, or change its direction of motion.",
+                "Newton's First Law (Principle of Inertia): If an object is not acted upon by any force or net force is zero (\\(\\sum \\vec{F} = \\vec{0}\\)), a body at rest stays at rest, and a moving body continues in uniform linear motion (\\(v = \\text{const}, a = 0\\)).",
+                "Newton's Second Law (Principle of Dynamics): The net force acting on an object equals the product of mass and acceleration: \\(\\sum \\vec{F} = m\\vec{a}\\).",
+                "Newton's Third Law (Principle of Reaction): For every action, there is an equal and opposite reaction: \\(\\vec{F}_{12} = -\\vec{F}_{21}\\). Action-reaction pairs act on different objects in opposite directions with equal magnitude.",
+                "Friction Force on Surfaces: Contact force parallel to surface opposing motion. Static friction \\(f_s \\le \\mu_s N\\) (maximum static friction \\(f_{s,\\max} = \\mu_s N\\)). Kinetic friction \\(f_k = \\mu_k N = \\mu_k mg\\cos\\theta\\).",
+                "Object Sliding on Frictionless Incline: Parallel component \\(F_x = mg\\sin\\theta = ma_x \\implies a_x = g\\sin\\theta\\); Normal force \\(N = mg\\cos\\theta\\); Slide time \\(t = \\sqrt{\\frac{2d}{g\\sin\\theta}}\\); Final speed \\(v_{xf} = \\sqrt{2gd\\sin\\theta}\\); Displacement \\(d = \\frac{1}{2}g\\sin\\theta\\, t^2\\).",
+                "Atwood's Machine: Two masses \\(m_1\\) and \\(m_2\\) suspended over a frictionless pulley. Net acceleration: \\(a = \\left(\\frac{m_2 - m_1}{m_1 + m_2}\\right)g\\); String tension: \\(T = \\left(\\frac{2m_1 m_2}{m_1 + m_2}\\right)g\\)."
+            ],
+            definitions: [
+                { term: "Force", definition: "A physical cause capable of altering an object's state of rest or motion or producing deformation.", symbol: "\\vec{F}", unit: "\\mathrm{N}", equation: "\\vec{F} = m\\vec{a}" },
+                { term: "Newton's First Law", definition: "A body persists in its state of rest or uniform motion unless compelled to change by external forces.", symbol: "\\sum \\vec{F} = 0", unit: "\\mathrm{N}", equation: "a = 0 \\iff v = \\text{constant}" },
+                { term: "Newton's Second Law", definition: "The resultant force acting on a body equals mass multiplied by acceleration.", symbol: "\\sum \\vec{F}", unit: "\\mathrm{N}", equation: "\\sum \\vec{F} = m\\vec{a}" },
+                { term: "Newton's Third Law", definition: "Mutual actions of two bodies upon each other are always equal in magnitude and oppositely directed.", symbol: "\\vec{F}_{12} = -\\vec{F}_{21}", unit: "\\mathrm{N}", equation: "|F_{12}| = |F_{21}|" },
+                { term: "Normal Force", definition: "The perpendicular reaction force exerted by a contact surface on an object.", symbol: "N", unit: "\\mathrm{N}", equation: "N = mg\\cos\\theta" },
+                { term: "Atwood's Machine", definition: "A classic physics apparatus of two masses connected by a string over a pulley used to demonstrate uniform acceleration.", symbol: "a_{\\text{Atwood}}", unit: "\\mathrm{m/s^2}", equation: "a = \\frac{m_2 - m_1}{m_1 + m_2}g" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Acceleration Down a Frictionless Incline",
+                    question: "A cart of mass 5.0 kg slides down a frictionless inclined ramp tilted at 30° to the horizontal. Calculate the acceleration of the cart and the normal reaction force (g = 9.8 m/s²).",
+                    given: "Mass \\( m = 5.0\\,\\mathrm{kg} \\), Incline angle \\( \\theta = 30^\\circ \\) (\\(\\sin 30^\\circ = 0.50, \\cos 30^\\circ = 0.866\\)), \\( g = 9.8\\,\\mathrm{m/s^2} \\).",
+                    find: "Acceleration \\( a_x \\) and Normal force \\( N \\).",
+                    equation: "a_x = g\\sin\\theta, \\quad N = mg\\cos\\theta",
+                    rearrangement: "a_x = 9.8\\sin 30^\\circ, \\quad N = (5.0)(9.8)\\cos 30^\\circ",
+                    solution: "1. \\( a_x = 9.8 \\times 0.50 = 4.9\\,\\mathrm{m/s^2} \\).<br>2. \\( N = 49.0 \\times 0.866 = 42.43\\,\\mathrm{N} \\).",
+                    finalAnswer: "a_x = 4.9\\,\\mathrm{m/s^2}, \\quad N = 42.4\\,\\mathrm{N}",
+                    explanation: "On a frictionless incline, acceleration depends solely on gravity and the slope angle, completely independent of the object's mass."
+                },
+                {
+                    title: "Example 2: Atwood's Machine Acceleration and Tension",
+                    question: "An Atwood's machine carries two masses m₁ = 3.0 kg and m₂ = 5.0 kg over a frictionless pulley. Find the acceleration of the masses and the tension in the connecting cord (g = 9.8 m/s²).",
+                    given: "Mass \\( m_1 = 3.0\\,\\mathrm{kg} \\), Mass \\( m_2 = 5.0\\,\\mathrm{kg} \\), \\( g = 9.8\\,\\mathrm{m/s^2} \\).",
+                    find: "Acceleration \\( a \\) and Tension \\( T \\).",
+                    equation: "a = \\frac{m_2 - m_1}{m_1 + m_2}g, \\quad T = \\frac{2m_1 m_2}{m_1 + m_2}g",
+                    rearrangement: "a = \\frac{5.0 - 3.0}{5.0 + 3.0}(9.8), \\quad T = \\frac{2(3.0)(5.0)}{8.0}(9.8)",
+                    solution: "1. \\( a = \\frac{2.0}{8.0} \\times 9.8 = 0.25 \\times 9.8 = 2.45\\,\\mathrm{m/s^2} \\).<br>2. \\( T = \\frac{30.0}{8.0} \\times 9.8 = 3.75 \\times 9.8 = 36.75\\,\\mathrm{N} \\).",
+                    finalAnswer: "a = 2.45\\,\\mathrm{m/s^2}, \\quad T = 36.75\\,\\mathrm{N}",
+                    explanation: "The unbalanced gravitational difference accelerates the combined inertia of both suspended masses."
+                }
+            ],
+            equations: [
+                {
+                    section: "Newton's Laws",
+                    name: "Newton's First Law (Principle of Inertia)",
+                    formula: "\\[ \\sum\\vec{F} = \\vec{0} \\implies \\vec{a} = \\vec{0}, \\quad \\vec{v} = \\text{constant} \\]",
+                    pdfPage: "PDF Page 13",
+                    explanation: "If no net external force acts on an object, its velocity remains strictly constant.",
+                    conditions: "Inertial frame of reference.",
+                    variables: [
+                        { symbol: "\\sum\\vec{F}", rep: "Net external force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\vec{a}", rep: "Acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\vec{v}", rep: "Velocity vector", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Newton's Laws",
+                    name: "Newton's Second Law (Fundamental Law)",
+                    formula: "\\[ \\sum\\vec{F} = m\\vec{a} \\]",
+                    pdfPage: "PDF Page 13",
+                    explanation: "The acceleration of a body is directly proportional to net force and inversely proportional to its mass.",
+                    conditions: "Constant mass m in an inertial reference frame.",
+                    variables: [
+                        { symbol: "\\sum\\vec{F}", rep: "Net force vector", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Inertial mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "\\vec{a}", rep: "Acceleration vector", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Newton's Laws",
+                    name: "Newton's Third Law (Action-Reaction)",
+                    formula: "\\[ \\vec{F}_{12} = -\\vec{F}_{21} \\implies F_{12} = F_{21} \\]",
+                    pdfPage: "PDF Page 13",
+                    explanation: "Whenever one body exerts a force on a second body, the second exerts an equal and opposite force on the first.",
+                    conditions: "Forces act simultaneously on two distinct interacting bodies.",
+                    variables: [
+                        { symbol: "\\vec{F}_{12}", rep: "Force exerted by object 1 on object 2", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\vec{F}_{21}", rep: "Force exerted by object 2 on object 1", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                },
+                {
+                    section: "Friction",
+                    name: "Friction Force on Incline",
+                    formula: "\\[ f_r = \\mu N = \\mu mg\\cos\\theta \\]",
+                    pdfPage: "PDF Page 14",
+                    explanation: "The friction force opposing motion on an inclined plane equals the coefficient of friction multiplied by normal force.",
+                    conditions: "Plane inclined at angle \\(\\theta\\) to horizontal.",
+                    variables: [
+                        { symbol: "f_r", rep: "Frictional force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\mu", rep: "Coefficient of friction", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "N", rep: "Normal reaction force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Object mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "\\theta", rep: "Incline angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Friction",
+                    name: "Maximum Static Friction",
+                    formula: "\\[ f_s \\le f_{s,\\max} = \\mu_s N \\]",
+                    pdfPage: "PDF Page 14",
+                    explanation: "Static friction matches applied tangential force up to a maximum threshold \\(\\mu_s N\\) before sliding begins.",
+                    conditions: "Body at rest prior to impending slippage.",
+                    variables: [
+                        { symbol: "f_{s,\\max}", rep: "Peak static friction force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\mu_s", rep: "Static friction coefficient", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "N", rep: "Normal contact force", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                },
+                {
+                    section: "Friction",
+                    name: "Kinetic Friction",
+                    formula: "\\[ f_k = \\mu_k N \\]",
+                    pdfPage: "PDF Page 14",
+                    explanation: "The constant friction resisting motion once surfaces are sliding across one another.",
+                    conditions: "Surfaces in relative motion.",
+                    variables: [
+                        { symbol: "f_k", rep: "Kinetic friction force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\mu_k", rep: "Kinetic friction coefficient", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "N", rep: "Normal reaction force", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                },
+                {
+                    section: "Inclined Plane",
+                    name: "Acceleration on Frictionless Incline",
+                    formula: "\\[ a_x = g\\sin\\theta \\]",
+                    pdfPage: "PDF Page 14",
+                    explanation: "Resolved gravitational component parallel to incline driving downward acceleration.",
+                    conditions: "Frictionless inclined plane.",
+                    variables: [
+                        { symbol: "a_x", rep: "Acceleration along incline", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "g", rep: "Acceleration due to gravity (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\theta", rep: "Angle of incline to horizontal", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Inclined Plane",
+                    name: "Normal Force on Incline",
+                    formula: "\\[ N = mg\\cos\\theta \\]",
+                    pdfPage: "PDF Page 14",
+                    explanation: "Perpendicular contact force supporting an object on an inclined plane.",
+                    conditions: "No perpendicular acceleration (\\(a_y = 0\\)).",
+                    variables: [
+                        { symbol: "N", rep: "Normal force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Mass of object", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\theta", rep: "Incline angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Inclined Plane",
+                    name: "Sliding Time Down Frictionless Incline",
+                    formula: "\\[ t = \\sqrt{\\frac{2d}{g\\sin\\theta}} \\]",
+                    pdfPage: "PDF Page 15",
+                    explanation: "Time required to slide distance d down an incline when released from rest.",
+                    conditions: "Initial speed \\(v_0 = 0\\), zero friction.",
+                    variables: [
+                        { symbol: "t", rep: "Sliding time duration", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "d", rep: "Distance along incline", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\theta", rep: "Incline angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Inclined Plane",
+                    name: "Velocity at Bottom of Frictionless Incline",
+                    formula: "\\[ v_{xf} = \\sqrt{2gd\\sin\\theta} \\]",
+                    pdfPage: "PDF Page 15",
+                    explanation: "Final velocity after sliding distance d down a frictionless ramp starting from rest.",
+                    conditions: "Released from rest (\\(v_{xi} = 0\\)).",
+                    variables: [
+                        { symbol: "v_{xf}", rep: "Final velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "d", rep: "Slide distance along incline", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Incline angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Inclined Plane",
+                    name: "Displacement Along Incline",
+                    formula: "\\[ d = \\frac{1}{2}a_x t^2 = \\frac{1}{2}g\\sin\\theta\\,t^2 \\]",
+                    pdfPage: "PDF Page 15",
+                    explanation: "Distance traveled along the ramp as a quadratic function of elapsed sliding time.",
+                    conditions: "Zero initial speed, zero friction.",
+                    variables: [
+                        { symbol: "d", rep: "Displacement along incline", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "t", rep: "Elapsed time", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "\\theta", rep: "Incline angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Atwood's Machine",
+                    name: "Atwood's Machine Acceleration",
+                    formula: "\\[ a = \\left(\\frac{m_2 - m_1}{m_1 + m_2}\\right)g \\]",
+                    pdfPage: "PDF Page 15 & 16",
+                    explanation: "Common acceleration of two masses connected by a light string over a frictionless pulley.",
+                    conditions: "Inextensible string, frictionless and massless pulley (\\(m_2 > m_1\\)).",
+                    variables: [
+                        { symbol: "a", rep: "System acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "m_1, m_2", rep: "Masses of connected objects", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Atwood's Machine",
+                    name: "Atwood's Machine String Tension",
+                    formula: "\\[ T = \\left(\\frac{2m_1 m_2}{m_1 + m_2}\\right)g \\]",
+                    pdfPage: "PDF Page 16",
+                    explanation: "Tension maintained uniformly throughout the connecting string during acceleration.",
+                    conditions: "Light inextensible string.",
+                    variables: [
+                        { symbol: "T", rep: "String tension", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m_1, m_2", rep: "Suspended masses", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Inclined Plane with Friction",
+                    name: "Acceleration Down Incline with Friction",
+                    formula: "\\[ a_x = g(\\sin\\theta - \\mu_k\\cos\\theta) \\]",
+                    pdfPage: "PDF Page 14 & 15",
+                    explanation: "Net acceleration along a rough incline resulting from the driving gravity component opposed by kinetic friction.",
+                    conditions: "Incline with kinetic friction (\\(\\tan\\theta > \\mu_k\\)).",
+                    variables: [
+                        { symbol: "a_x", rep: "Net acceleration along incline", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\theta", rep: "Incline angle with horizontal", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "\\mu_k", rep: "Kinetic friction coefficient", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Inclined Plane with Friction",
+                    name: "Velocity at Bottom of Rough Incline",
+                    formula: "\\[ v_{xf} = \\sqrt{2gd(\\sin\\theta - \\mu_k\\cos\\theta)} \\]",
+                    pdfPage: "PDF Page 15",
+                    explanation: "Final velocity of a mass sliding distance d down an inclined plane with kinetic friction.",
+                    conditions: "Released from rest (v₀ = 0) on rough slope.",
+                    variables: [
+                        { symbol: "v_{xf}", rep: "Velocity at bottom of incline", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "d", rep: "Sliding distance along incline", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Incline angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "\\mu_k", rep: "Kinetic friction coefficient", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Inclined Plane with Friction",
+                    name: "Sliding Time Down Rough Incline",
+                    formula: "\\[ t = \\sqrt{\\frac{2d}{g(\\sin\\theta - \\mu_k\\cos\\theta)}} \\]",
+                    pdfPage: "PDF Page 15",
+                    explanation: "Time duration required to slide distance d down an inclined plane in the presence of kinetic friction.",
+                    conditions: "Initial speed v₀ = 0, rough incline.",
+                    variables: [
+                        { symbol: "t", rep: "Slide duration", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "d", rep: "Distance along incline", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\theta", rep: "Incline angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "\\mu_k", rep: "Kinetic friction coefficient", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Apparent Weight",
+                    name: "Apparent Weight in an Accelerating Elevator",
+                    formula: "\\[ N = m(g \\pm a) \\quad (\\text{Upward: } +a, \\; \\text{Downward: } -a, \\; \\text{Free Fall: } N = 0) \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Normal contact force felt by an observer in an elevator: increases when accelerating upward, decreases when accelerating downward, and vanishes in free fall (weightlessness).",
+                    conditions: "Vertical linear acceleration a in a uniform gravitational field.",
+                    variables: [
+                        { symbol: "N", rep: "Normal reaction force (apparent weight)", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Mass of person or object", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "a", rep: "Elevator acceleration magnitude", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the mathematical statement of Newton's Second Law?", back: "\\( \\sum \\vec{F} = m\\vec{a} \\)" },
+                { front: "What is the acceleration of a block down a frictionless incline?", back: "\\( a_x = g\\sin\\theta \\)" },
+                { front: "What is the formula for tension in an Atwood machine?", back: "\\( T = \\frac{2m_1 m_2}{m_1 + m_2}g \\)" },
+                { front: "What is Newton's Third Law?", back: "\\( \\vec{F}_{12} = -\\vec{F}_{21} \\) (Action equals reaction in opposite direction)" }
+            ],
+            quiz: [
+                { question: "If the net force acting on a moving object is zero, the object will:", options: ["Slow down and stop", "Continue moving at constant velocity", "Accelerate indefinitely", "Turn at 90°"], correctIndex: 1, feedback: "By Newton's First Law, net force zero implies constant velocity (a = 0)." },
+                { question: "A 10 kg mass accelerates at 2.5 m/s². The net force applied is:", options: ["4 N", "12.5 N", "25 N", "250 N"], correctIndex: 2, feedback: "F = ma = 10 × 2.5 = 25 N." },
+                { question: "In an Atwood machine with m₁ = 2 kg and m₂ = 2 kg, the acceleration is:", options: ["9.8 m/s²", "4.9 m/s²", "0 m/s²", "19.6 m/s²"], correctIndex: 2, feedback: "a = (m₂ - m₁)/(m₁ + m₂)g = (2 - 2)/4 × g = 0 m/s² (balanced equilibrium)." }
+            ]
+        },
+        {
+            id: "g10-l3",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch1-l3-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Energy Skate Park Basics", url: "https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_all.html" }],
+            title: "Chapter 1 • Lesson 3: Work-Energy and Power",
+            concepts: [
+                "Work Done by a Constant Force: Scalar product of force and displacement: \\(W = \\vec{F} \\cdot \\vec{d} = Fd\\cos\\theta\\). Angle cases: \\(0^\\circ \\le \\theta < 90^\\circ \\implies W > 0\\) (force aids motion); \\(\\theta = 90^\\circ \\implies W = 0\\) (perpendicular, no work); \\(90^\\circ < \\theta \\le 180^\\circ \\implies W < 0\\) (opposes motion).",
+                "Kinetic Energy (K): Energy possessed due to motion: \\(K = \\frac{1}{2}mv^2\\). Measured in Joules (J).",
+                "Work-Energy Theorem: The net work done on an object equals the change in its kinetic energy: \\(W_{AB} = \\Delta K = \\frac{1}{2}mv_f^2 - \\frac{1}{2}mv_i^2\\).",
+                "Power: The rate at which work is done or energy transferred. Average power \\(P_{av} = \\frac{\\Delta W}{\\Delta t}\\); Instantaneous power \\(P = \\frac{dW}{dt} = \\vec{F} \\cdot \\vec{v} = Fv\\cos\\theta\\). Units: Watt (\\(1\\,\\mathrm{W} = 1\\,\\mathrm{J/s}\\)), \\(1\\,\\mathrm{kW} = 10^3\\,\\mathrm{W}\\), \\(1\\,\\mathrm{MW} = 10^6\\,\\mathrm{W}\\), \\(1\\,\\mathrm{GW} = 10^9\\,\\mathrm{W}\\).",
+                "Gravitational Potential Energy: \\(U_g = mgh\\). Work done by gravity equals negative change in potential energy: \\(W_g = -\\Delta U_g = mg(y_b - y_a)\\).",
+                "Conservation of Mechanical Energy: In conservative systems, total mechanical energy \\(E = K + U\\) is constant: \\(K_i + U_i = K_f + U_f \\iff \\frac{1}{2}mv_i^2 + mgy_i = \\frac{1}{2}mv_f^2 + mgy_f\\)."
+            ],
+            definitions: [
+                { term: "Mechanical Work", definition: "The scalar product of applied force and displacement vector.", symbol: "W", unit: "\\mathrm{J} \\;(\\mathrm{N\\cdot m})", equation: "W = Fd\\cos\\theta" },
+                { term: "Kinetic Energy", definition: "The mechanical energy stored in a moving body by virtue of its velocity.", symbol: "K", unit: "\\mathrm{J}", equation: "K = \\frac{1}{2}mv^2" },
+                { term: "Work-Energy Theorem", definition: "The principle stating that net work performed on a particle equals change in its kinetic energy.", symbol: "W = \\Delta K", unit: "\\mathrm{J}", equation: "W = \\frac{1}{2}mv_f^2 - \\frac{1}{2}mv_i^2" },
+                { term: "Power", definition: "The time rate at which mechanical work is performed or energy is delivered.", symbol: "P", unit: "\\mathrm{W} \\;(\\mathrm{J/s})", equation: "P = Fv\\cos\\theta = \\frac{W}{t}" },
+                { term: "Gravitational Potential Energy", definition: "Energy stored in a mass due to its elevated position in a gravitational field.", symbol: "U_g", unit: "\\mathrm{J}", equation: "U_g = mgh" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Work Done Pulling a Sled at an Angle",
+                    question: "A child pulls a sled across horizontal snow with a force of 40 N at an angle of 60° to the horizontal. Calculate the work done in pulling the sled through 15 m (cos 60° = 0.50).",
+                    given: "Force \\( F = 40\\,\\mathrm{N} \\), Displacement \\( d = 15\\,\\mathrm{m} \\), Angle \\( \\theta = 60^\\circ \\).",
+                    find: "Work done \\( W \\).",
+                    equation: "W = Fd\\cos\\theta",
+                    rearrangement: "W = (40)(15)\\cos 60^\\circ",
+                    solution: "1. \\( W = 40 \\times 15 \\times 0.50 = 300\\,\\mathrm{J} \\).",
+                    finalAnswer: "W = 300\\,\\mathrm{J}",
+                    explanation: "Only the force component parallel to displacement contributes to mechanical work done."
+                },
+                {
+                    title: "Example 2: Work-Energy Theorem for an Accelerating Car",
+                    question: "A 1000 kg car accelerates from 10 m/s to 30 m/s on a level highway. What is the net work done on the car?",
+                    given: "Mass \\( m = 1000\\,\\mathrm{kg} \\), \\( v_i = 10\\,\\mathrm{m/s} \\), \\( v_f = 30\\,\\mathrm{m/s} \\).",
+                    find: "Net work \\( W \\).",
+                    equation: "W = \\Delta K = \\frac{1}{2}m(v_f^2 - v_i^2)",
+                    rearrangement: "W = \\frac{1}{2}(1000)(30^2 - 10^2)",
+                    solution: "1. \\( v_f^2 - v_i^2 = 900 - 100 = 800\\,\\mathrm{m^2/s^2} \\).<br>2. \\( W = 500 \\times 800 = 400{,}000\\,\\mathrm{J} = 400\\,\\mathrm{kJ} \\).",
+                    finalAnswer: "W = 400\\,\\mathrm{kJ}",
+                    explanation: "By the Work-Energy Theorem, the net force does 400 kJ of work to increase kinetic energy."
+                }
+            ],
+            equations: [
+                {
+                    section: "Vector Work",
+                    name: "Scalar Product Formulation of Work",
+                    formula: "\\[ W = \\vec{F} \\cdot \\vec{d} = Fd\\cos\\theta \\]",
+                    pdfPage: "PDF Page 17 & 18",
+                    explanation: "Work done by a constant force is the dot product of force and displacement vectors.",
+                    conditions: "Constant force \\(\\vec{F}\\) acting over linear displacement \\(\\vec{d}\\).",
+                    variables: [
+                        { symbol: "W", rep: "Work done", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "F", rep: "Force magnitude", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "d", rep: "Displacement magnitude", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Angle between force and displacement", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Vector Work",
+                    name: "Work Cases Based on Angle",
+                    formula: "\\[ W > 0 \\;(\\theta < 90^\\circ), \\quad W = 0 \\;(\\theta = 90^\\circ), \\quad W < 0 \\;(90^\\circ < \\theta \\le 180^\\circ) \\]",
+                    pdfPage: "PDF Page 18",
+                    explanation: "Work is positive when force aids motion, zero when perpendicular, and negative when opposing motion.",
+                    conditions: "Classification by cosine sign.",
+                    variables: [
+                        { symbol: "W", rep: "Work value", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "\\theta", rep: "Force-displacement angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Kinetic Energy",
+                    name: "Kinetic Energy of a Point Mass",
+                    formula: "\\[ K = \\frac{1}{2}mv^2 \\]",
+                    pdfPage: "PDF Page 18",
+                    explanation: "Translational energy an object possesses by virtue of its mass and speed.",
+                    conditions: "Non-relativistic speeds (\\(v \\ll c\\)).",
+                    variables: [
+                        { symbol: "K", rep: "Kinetic energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "v", rep: "Speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Work-Energy Theorem",
+                    name: "Work-Kinetic Energy Theorem",
+                    formula: "\\[ W_{AB} = \\Delta K = K_f - K_i = \\frac{1}{2}mv_f^2 - \\frac{1}{2}mv_i^2 \\]",
+                    pdfPage: "PDF Page 18 & 19",
+                    explanation: "Net work done on an object by all acting forces equals the total change in its kinetic energy.",
+                    conditions: "Rigid particle model.",
+                    variables: [
+                        { symbol: "W_{AB}", rep: "Total work done from A to B", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "\\Delta K", rep: "Change in kinetic energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "v_i, v_f", rep: "Initial and final velocities", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Power",
+                    name: "Average Power",
+                    formula: "\\[ P_{av} = \\frac{\\Delta W}{\\Delta t} \\]",
+                    pdfPage: "PDF Page 19",
+                    explanation: "The average rate of doing work over a given time interval.",
+                    conditions: "Work \\(\\Delta W\\) performed over duration \\(\\Delta t\\).",
+                    variables: [
+                        { symbol: "P_{av}", rep: "Average power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "\\Delta W", rep: "Work done", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "\\Delta t", rep: "Time interval", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Power",
+                    name: "Instantaneous Power",
+                    formula: "\\[ P = \\frac{dW}{dt} = \\vec{F} \\cdot \\vec{v} = Fv\\cos\\theta \\]",
+                    pdfPage: "PDF Page 19 & 20",
+                    explanation: "The instantaneous rate of energy transfer, given by the dot product of force and instantaneous velocity.",
+                    conditions: "Force \\(\\vec{F}\\) applied to body moving at velocity \\(\\vec{v}\\).",
+                    variables: [
+                        { symbol: "P", rep: "Instantaneous power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "F", rep: "Applied force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "v", rep: "Instantaneous speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\theta", rep: "Angle between force and velocity", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Potential Energy",
+                    name: "Gravitational Potential Energy",
+                    formula: "\\[ U_g = mgh \\]",
+                    pdfPage: "PDF Page 20",
+                    explanation: "Energy stored in an object due to elevation above a chosen reference zero level.",
+                    conditions: "Uniform gravitational field near Earth's surface.",
+                    variables: [
+                        { symbol: "U_g", rep: "Gravitational potential energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Height above zero level", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Potential Energy",
+                    name: "Work Done by Gravitational Force",
+                    formula: "\\[ W_g = -\\Delta U_g = mg(y_b - y_a) \\]",
+                    pdfPage: "PDF Page 20 & 21",
+                    explanation: "Work done by gravity depends solely on vertical initial and final coordinates, independent of horizontal path.",
+                    conditions: "Conservative gravitational field.",
+                    variables: [
+                        { symbol: "W_g", rep: "Work done by gravity", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "y_b, y_a", rep: "Initial and final vertical heights", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\Delta U_g", rep: "Change in potential energy", unit: "Joule", unitSym: "\\mathrm{J}" }
+                    ]
+                },
+                {
+                    section: "Conservation of Energy",
+                    name: "Mechanical Energy Conservation",
+                    formula: "\\[ E_{\\text{mech}} = K + U = \\text{constant} \\implies \\frac{1}{2}mv_A^2 + mgy_A = \\frac{1}{2}mv_B^2 + mgy_B \\]",
+                    pdfPage: "PDF Page 21",
+                    explanation: "In an isolated system with no non-conservative work (such as friction), the sum of kinetic and potential energy remains constant.",
+                    conditions: "Conservative forces only.",
+                    variables: [
+                        { symbol: "E_{\\text{mech}}", rep: "Total mechanical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "v_A, v_B", rep: "Speeds at points A and B", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "y_A, y_B", rep: "Heights at points A and B", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Conservation of Energy",
+                    name: "Total Mechanical Energy in Free Fall",
+                    formula: "\\[ E = \\frac{1}{2}mv_0^2 + mgy_0 = \\frac{1}{2}mv^2 + mgy = \\text{constant} \\]",
+                    pdfPage: "PDF Page 21",
+                    explanation: "Mechanical energy is conserved at every elevation point throughout gravitational free fall.",
+                    conditions: "Free fall under gravity with zero drag.",
+                    variables: [
+                        { symbol: "E", rep: "Total mechanical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "v_0, v", rep: "Initial and instantaneous speeds", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "y_0, y", rep: "Initial and instantaneous elevations", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Conservation of Energy",
+                    name: "Free Fall Impact Velocity by Energy Conservation",
+                    formula: "\\[ v = \\sqrt{v_0^2 + 2g(h - y)} \\implies v = \\sqrt{2gh} \\quad (v_0 = 0) \\]",
+                    pdfPage: "PDF Page 21",
+                    explanation: "Derived by equating potential energy loss to kinetic energy gain during gravitational descent.",
+                    conditions: "Dropped from height h above reference ground (v₀ = 0).",
+                    variables: [
+                        { symbol: "v", rep: "Impact velocity at ground level", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Initial drop height", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Work-Energy Theorem",
+                    name: "Work-Energy Theorem with Friction",
+                    formula: "\\[ W_{\\text{nc}} = \\Delta E_{\\text{mech}} = (K_f + U_f) - (K_i + U_i) = -f_k d \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Non-conservative work performed by friction reduces total mechanical energy by converting it into thermal dissipation.",
+                    conditions: "Motion subject to friction force f_k over displacement d.",
+                    variables: [
+                        { symbol: "W_{\\text{nc}}", rep: "Non-conservative work of friction", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "\\Delta E_{\\text{mech}}", rep: "Change in total mechanical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "f_k", rep: "Kinetic friction force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "d", rep: "Distance slid", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Power & Efficiency",
+                    name: "Mechanical Efficiency",
+                    formula: "\\[ \\eta = \\frac{W_{\\text{useful}}}{W_{\\text{input}}} \\times 100\\% = \\frac{P_{\\text{useful}}}{P_{\\text{input}}} \\times 100\\% \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Percentage ratio of useful output mechanical work (or power) to total input energy supplied.",
+                    conditions: "Real machines with internal frictional losses (η < 100%).",
+                    variables: [
+                        { symbol: "\\eta", rep: "Mechanical efficiency percentage", unit: "Percent", unitSym: "\\%" },
+                        { symbol: "W_{\\text{useful}}", rep: "Useful output work", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "W_{\\text{input}}", rep: "Total input energy supplied", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "P_{\\text{useful}}, P_{\\text{input}}", rep: "Useful and input powers", unit: "Watt", unitSym: "\\mathrm{W}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for work done by a constant force?", back: "\\( W = Fd\\cos\\theta \\)" },
+                { front: "What is the Work-Energy Theorem?", back: "\\( W = \\Delta K = \\frac{1}{2}mv_f^2 - \\frac{1}{2}mv_i^2 \\)" },
+                { front: "How is instantaneous mechanical power calculated from force and velocity?", back: "\\( P = Fv\\cos\\theta \\)" },
+                { front: "Under what condition is mechanical work equal to zero?", back: "When force is perpendicular to displacement (\\( \\theta = 90^\\circ \\implies \\cos 90^\\circ = 0 \\))" }
+            ],
+            quiz: [
+                { question: "If a force of 10 N pushes a box 5 m in the direction of the force (θ = 0°), work done is:", options: ["0 J", "2 J", "50 J", "500 J"], correctIndex: 2, feedback: "W = Fd cos(0°) = 10 × 5 × 1 = 50 J." },
+                { question: "A crane lifts a 500 kg crate through 10 m in 5 seconds. What power does it deliver (g = 9.8 m/s²)?", options: ["1000 W", "4900 W", "9800 W", "49,000 W"], correctIndex: 2, feedback: "W = mgh = 500 × 9.8 × 10 = 49,000 J; P = W/t = 49,000 / 5 = 9800 W." },
+                { question: "When an object falls freely from height h, at the moment of impact its velocity is:", options: ["gh", "√(gh)", "√(2gh)", "2gh"], correctIndex: 2, feedback: "By energy conservation: 1/2 mv² = mgh => v = √(2gh)." }
+            ]
+        },
+        {
+            id: "g10-l4",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch1-l4-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Under Pressure Simulation", url: "https://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_all.html" }],
+            title: "Chapter 1 • Lesson 4: Fluid Mechanics & Pressure",
+            concepts: [
+                "Definition and Types of Fluids: Material that continuously deforms under shear stress. Liquids (incompressible, fixed volume) and gases (compressible, fills container).",
+                "Pressure: Force per unit area: \\(P = \\frac{F}{A}\\) in Pascals (\\(1\\,\\mathrm{Pa} = 1\\,\\mathrm{N/m^2}\\)). Standard atmospheric pressure \\(P_{atm} = 1.013 \\times 10^5\\,\\mathrm{Pa} = 760\\,\\mathrm{mmHg} = 1.013\\,\\mathrm{bar}\\).",
+                "Atmospheric Pressure Evidence: Inverted glass of water covered with paper remains in place due to upward atmospheric force \\(F = P_{atm}A\\) balancing water weight \\(W = mg\\).",
+                "Barometer & Manometer: Mercury barometer column height \\(h = 76\\,\\mathrm{cmHg}\\) at sea level: \\(P_{atm} = \\rho gh\\). U-tube manometer measures gas pressure: \\(P = P_{atm} + \\rho gh\\).",
+                "Hydrostatic Pressure with Depth: Total pressure increases linearly with liquid depth: \\(P = P_{atm} + \\rho gh\\). Pressure difference between two depths: \\(P_2 - P_1 = \\rho g(h_2 - h_1)\\).",
+                "Pascal's Hydraulic Principle: Pressure applied to enclosed liquid transmits undiminished to all portions: \\(\\frac{F_1}{A_1} = \\frac{F_2}{A_2} = \\frac{F_3}{A_3}\\).",
+                "Archimedes' Principle & Buoyancy: A body submerged in liquid experiences an upward buoyant force equal to the weight of displaced liquid: \\(F_b = \\rho g V\\).",
+                "Floating Body Equilibrium: If \\(W > F_b\\) object sinks; if \\(W = F_b\\) neutral equilibrium submerged; if \\(W < F_b\\) object floats on surface. Floating condition: \\(\\rho V = \\rho' V'\\).",
+                "Relative Density and Specific Weight: Relative density (specific gravity) \\(d = \\frac{m}{m_e} = \\frac{\\rho}{\\rho_e}\\) (relative to water). Volume weight (specific weight) \\(W_v = \\frac{W}{V} = \\rho g\\)."
+            ],
+            definitions: [
+                { term: "Pressure", definition: "The perpendicular force exerted per unit surface area.", symbol: "P", unit: "\\mathrm{Pa} \\;(\\mathrm{N/m^2})", equation: "P = \\frac{F}{A}" },
+                { term: "Atmospheric Pressure", definition: "The pressure exerted by the weight of the Earth's atmosphere at sea level (1.013 × 10⁵ Pa).", symbol: "P_{atm}", unit: "\\mathrm{Pa}", equation: "P_{atm} = \\rho gh = 760\\,\\mathrm{mmHg}" },
+                { term: "Pascal's Principle", definition: "Pressure applied to an enclosed static fluid is transmitted equally in all directions throughout the fluid.", symbol: "P_1 = P_2", unit: "\\mathrm{Pa}", equation: "\\frac{F_1}{A_1} = \\frac{F_2}{A_2}" },
+                { term: "Buoyant Force (Archimedes)", definition: "The net upward force exerted by a fluid on a submerged or floating body.", symbol: "F_b", unit: "\\mathrm{N}", equation: "F_b = \\rho g V" },
+                { term: "Floating Condition", definition: "The state of static equilibrium for a floating body where body weight balances buoyant force.", symbol: "\\rho V = \\rho' V'", unit: "\\mathrm{kg}", equation: "\\rho V = \\rho' V'" },
+                { term: "Relative Density", definition: "The dimensionless ratio of the density of a substance to the density of water.", symbol: "d", unit: "\\text{Dimensionless}", equation: "d = \\frac{\\rho}{\\rho_e}" },
+                { term: "Specific Weight", definition: "The weight of a substance per unit volume.", symbol: "W_v", unit: "\\mathrm{N/m^3}", equation: "W_v = \\rho g" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Hydraulic Press Force Multiplication",
+                    question: "A hydraulic lift has a small piston of area 0.020 m² and a large load piston of area 0.80 m². What input force F₁ on the small piston is required to lift a 16,000 N automobile on the large piston?",
+                    given: "Small area \\( A_1 = 0.020\\,\\mathrm{m^2} \\), Large area \\( A_2 = 0.80\\,\\mathrm{m^2} \\), Load \\( F_2 = 16{,}000\\,\\mathrm{N} \\).",
+                    find: "Effort force \\( F_1 \\).",
+                    equation: "\\frac{F_1}{A_1} = \\frac{F_2}{A_2} \\implies F_1 = F_2 \\left(\\frac{A_1}{A_2}\\right)",
+                    rearrangement: "F_1 = 16{,}000 \\times \\frac{0.020}{0.80}",
+                    solution: "1. \\( \\frac{A_1}{A_2} = \\frac{0.020}{0.80} = \\frac{1}{40} \\).<br>2. \\( F_1 = \\frac{16{,}000}{40} = 400\\,\\mathrm{N} \\).",
+                    finalAnswer: "F_1 = 400\\,\\mathrm{N}",
+                    explanation: "Pascal's principle multiplies applied effort by the ratio of piston cross-sectional areas (40-fold)."
+                },
+                {
+                    title: "Example 2: Archimedes' Principle and Displaced Volume",
+                    question: "A solid cube of edge length 0.10 m is completely submerged in water of density 1000 kg/m³. Calculate the buoyant force acting on the cube (g = 9.8 m/s²).",
+                    given: "Cube edge \\( L = 0.10\\,\\mathrm{m} \\), Water density \\( \\rho = 1000\\,\\mathrm{kg/m^3} \\), \\( g = 9.8\\,\\mathrm{m/s^2} \\).",
+                    find: "Buoyant force \\( F_b \\).",
+                    equation: "V = L^3, \\quad F_b = \\rho g V",
+                    rearrangement: "V = (0.10)^3 = 0.0010\\,\\mathrm{m^3}, \\quad F_b = (1000)(9.8)(0.0010)",
+                    solution: "1. Displaced volume \\( V = 10^{-3}\\,\\mathrm{m^3} \\).<br>2. \\( F_b = 1000 \\times 9.8 \\times 0.0010 = 9.8\\,\\mathrm{N} \\).",
+                    finalAnswer: "F_b = 9.8\\,\\mathrm{N}",
+                    explanation: "The upward buoyant force equals the weight of the 0.001 m³ of water displaced by the cube."
+                }
+            ],
+            equations: [
+                {
+                    section: "Fluid Pressure",
+                    name: "Pressure Definition",
+                    formula: "\\[ P = \\frac{F}{A} \\]",
+                    pdfPage: "PDF Page 22",
+                    explanation: "Normal force exerted per unit cross-sectional surface area.",
+                    conditions: "Uniform perpendicular force distribution.",
+                    variables: [
+                        { symbol: "P", rep: "Pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "F", rep: "Perpendicular force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "A", rep: "Contact area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Atmospheric Pressure",
+                    name: "Atmospheric Pressure & Standard Equivalents",
+                    formula: "\\[ P_{\\text{atm}} = \\frac{mg}{A} = 1.013 \\times 10^5\\,\\mathrm{Pa} = 760\\,\\mathrm{mmHg} = 1.013\\,\\mathrm{bar} \\]",
+                    pdfPage: "PDF Page 22 & 23",
+                    explanation: "Pressure exerted by Earth's atmospheric air column at sea level.",
+                    conditions: "Standard sea-level conditions (0 °C).",
+                    variables: [
+                        { symbol: "P_{\\text{atm}}", rep: "Standard atmospheric pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "m", rep: "Air column mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "A", rep: "Unit surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Barometer & Manometer",
+                    name: "Mercury Barometer Pressure",
+                    formula: "\\[ P_M = \\rho g h = (13.6 \\times 10^3)(9.8)(0.76) = 1.013 \\times 10^5\\,\\mathrm{Pa} \\]",
+                    pdfPage: "PDF Page 23",
+                    explanation: "Barometric balance equating atmospheric pressure to the hydrostatic weight of a 76 cm mercury column.",
+                    conditions: "Torricellian vacuum at sealed top of tube.",
+                    variables: [
+                        { symbol: "P_M", rep: "Barometric pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Mercury density (13600 kg/m³)", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Mercury column height (0.76 m)", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Barometer & Manometer",
+                    name: "Open U-Tube Manometer Gas Pressure",
+                    formula: "\\[ P_{\\text{gas}} = P_{M'} = P_{\\text{atm}} + \\rho gh \\]",
+                    pdfPage: "PDF Page 24",
+                    explanation: "Determines enclosed gas pressure by adding the differential liquid column head to atmospheric pressure.",
+                    conditions: "Continuous static liquid in U-tube.",
+                    variables: [
+                        { symbol: "P_{\\text{gas}}", rep: "Enclosed gas pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "P_{\\text{atm}}", rep: "Atmospheric pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Manometer liquid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "h", rep: "Liquid level height difference", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Hydrostatic Pressure",
+                    name: "Hydrostatic Pressure at Depth",
+                    formula: "\\[ P = P_{\\text{atm}} + \\rho gh \\]",
+                    pdfPage: "PDF Page 24",
+                    explanation: "Total absolute pressure at depth h beneath a liquid surface exposed to atmospheric pressure.",
+                    conditions: "Static incompressible liquid of uniform density.",
+                    variables: [
+                        { symbol: "P", rep: "Total absolute pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "P_{\\text{atm}}", rep: "Surface atmospheric pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Liquid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "h", rep: "Depth below surface", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Hydrostatic Pressure",
+                    name: "Pressure Difference Between Two Depths",
+                    formula: "\\[ P_2 - P_1 = \\rho g (h_2 - h_1) \\]",
+                    pdfPage: "PDF Page 24 & 25",
+                    explanation: "Differential pressure between two elevation levels in a static fluid column.",
+                    conditions: "Same homogeneous continuous fluid.",
+                    variables: [
+                        { symbol: "P_2 - P_1", rep: "Pressure difference", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Fluid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "h_2 - h_1", rep: "Vertical depth difference", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Pascal's Principle",
+                    name: "Pascal's Principle Hydraulic Ratio",
+                    formula: "\\[ \\frac{F_1}{A_1} = \\frac{F_2}{A_2} = \\frac{F_3}{A_3} \\]",
+                    pdfPage: "PDF Page 25",
+                    explanation: "Hydraulic transmission where pressure applied to one piston is transmitted undiminished across all connecting pistons.",
+                    conditions: "Enclosed, incompressible liquid.",
+                    variables: [
+                        { symbol: "F_1, F_2, F_3", rep: "Piston forces", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "A_1, A_2, A_3", rep: "Cross-sectional areas of pistons", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Buoyancy",
+                    name: "Archimedes' Buoyant Force",
+                    formula: "\\[ F_b = \\rho g A(h_2 - h_1) = \\rho g A L = \\rho V g \\]",
+                    pdfPage: "PDF Page 25 & 26",
+                    explanation: "Net upward hydrostatic force on an immersed object, equal to the weight of fluid displaced.",
+                    conditions: "Fully or partially submerged rigid object.",
+                    variables: [
+                        { symbol: "F_b", rep: "Buoyant force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\rho", rep: "Fluid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "V", rep: "Submerged volume", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Buoyancy",
+                    name: "Floating Equilibrium Condition",
+                    formula: "\\[ W = F_b \\implies \\rho V g = \\rho' V' g \\implies \\rho V = \\rho' V' \\]",
+                    pdfPage: "PDF Page 26",
+                    explanation: "A body floats in static equilibrium when its total weight equals the buoyant force of displaced fluid.",
+                    conditions: "Floating equilibrium at fluid interface.",
+                    variables: [
+                        { symbol: "\\rho", rep: "Density of object", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "V", rep: "Total volume of object", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "\\rho'", rep: "Density of liquid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "V'", rep: "Volume of displaced liquid", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" }
+                    ]
+                },
+                {
+                    section: "Density & Specific Weight",
+                    name: "Relative Density (Specific Gravity)",
+                    formula: "\\[ d = \\frac{\\rho}{\\rho_e} = \\frac{m}{m_e} \\]",
+                    pdfPage: "PDF Page 27",
+                    explanation: "Dimensionless ratio comparing the density of a substance to the density of equal-volume pure water.",
+                    conditions: "Water reference density \\(\\rho_e = 1000\\,\\mathrm{kg/m^3}\\).",
+                    variables: [
+                        { symbol: "d", rep: "Relative density", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "\\rho", rep: "Substance density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "\\rho_e", rep: "Water density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Density & Specific Weight",
+                    name: "Floating Condition with Relative Densities",
+                    formula: "\\[ dV = d'V' \\]",
+                    pdfPage: "PDF Page 27 & 28",
+                    explanation: "Equilibrium floating relation formulated directly using relative densities of object and surrounding liquid.",
+                    conditions: "Floating object in any liquid.",
+                    variables: [
+                        { symbol: "d", rep: "Relative density of object", unit: "Dimensionless", unitSym: "\\text{No unit}" },
+                        { symbol: "V", rep: "Total object volume", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "d'", rep: "Relative density of liquid", unit: "Dimensionless", unitSym: "\\text{No unit}" },
+                        { symbol: "V'", rep: "Displaced liquid volume", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" }
+                    ]
+                },
+                {
+                    section: "Density & Specific Weight",
+                    name: "Specific Weight (Volume Weight)",
+                    formula: "\\[ \\varpi = \\frac{W}{V} = \\rho g, \\quad \\varpi V = \\varpi' V' \\]",
+                    pdfPage: "PDF Page 27 & 28",
+                    explanation: "Weight per unit volume of a material, and the corresponding floating equilibrium balance.",
+                    conditions: "Static gravitational field.",
+                    variables: [
+                        { symbol: "\\varpi", rep: "Specific weight", unit: "Newton per cubic meter", unitSym: "\\mathrm{N/m^3}" },
+                        { symbol: "W", rep: "Weight of object", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "V", rep: "Volume", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "\\rho", rep: "Density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Buoyancy & Immersion",
+                    name: "Apparent Weight of a Submerged Object",
+                    formula: "\\[ W_{\\text{app}} = W - F_b = (\\rho_{\\text{obj}} - \\rho_f) V g \\]",
+                    pdfPage: "PDF Page 26",
+                    explanation: "Apparent downward weight of a submerged body measured by a spring balance, reduced by buoyant lift.",
+                    conditions: "Completely submerged solid object in static fluid.",
+                    variables: [
+                        { symbol: "W_{\\text{app}}", rep: "Apparent weight in fluid", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "W", rep: "True weight in vacuum or air", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "F_b", rep: "Buoyant upthrust force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\rho_{\\text{obj}}, \\rho_f", rep: "Densities of object and fluid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Floating Bodies",
+                    name: "Submerged Volume Fraction of Floating Body",
+                    formula: "\\[ \\frac{V_{\\text{sub}}}{V_{\\text{obj}}} = \\frac{\\rho_{\\text{obj}}}{\\rho_f} = \\frac{d_{\\text{obj}}}{d_f} \\]",
+                    pdfPage: "PDF Page 26 & 27",
+                    explanation: "The percentage or fraction of a floating body's volume submerged beneath the waterline equals the ratio of its density to fluid density.",
+                    conditions: "Stable floating equilibrium at liquid surface.",
+                    variables: [
+                        { symbol: "V_{\\text{sub}}", rep: "Submerged volume beneath surface", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "V_{\\text{obj}}", rep: "Total object volume", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "\\rho_{\\text{obj}}", rep: "Density of floating object", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "\\rho_f", rep: "Density of surrounding liquid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Manometers",
+                    name: "U-Tube Manometer with Immiscible Liquids",
+                    formula: "\\[ \\rho_1 h_1 = \\rho_2 h_2 \\implies \\frac{h_1}{h_2} = \\frac{\\rho_2}{\\rho_1} \\]",
+                    pdfPage: "PDF Page 24",
+                    explanation: "Heights of balancing liquid columns in a U-tube are inversely proportional to their respective mass densities.",
+                    conditions: "Static immiscible liquids in open U-tube.",
+                    variables: [
+                        { symbol: "h_1, h_2", rep: "Liquid column heights above interface", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\rho_1, \\rho_2", rep: "Densities of the two immiscible fluids", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Hydrostatic Thrust",
+                    name: "Total Hydrostatic Thrust on Vertical Wall",
+                    formula: "\\[ F_{\\text{thrust}} = P_{\\text{avg}} A = \\frac{1}{2}\\rho g h \\times A = \\frac{1}{2}\\rho g w h^2 \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Total horizontal hydrostatic force exerted by a liquid of depth h on a vertical rectangular submerged wall or dam of width w.",
+                    conditions: "Flat vertical wall; atmospheric pressure acts on both sides.",
+                    variables: [
+                        { symbol: "F_{\\text{thrust}}", rep: "Total hydrostatic thrust force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "P_{\\text{avg}}", rep: "Average liquid pressure at mid-depth (1/2 ρgh)", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "A", rep: "Wall surface area (w × h)", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "h", rep: "Depth of liquid against wall", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is standard atmospheric pressure at sea level in Pascals?", back: "\\( P_{atm} = 1.013 \\times 10^5\\,\\mathrm{Pa} = 760\\,\\mathrm{mmHg} \\)" },
+                { front: "What is Pascal's Principle?", back: "\\( \\frac{F_1}{A_1} = \\frac{F_2}{A_2} \\) (Pressure is transmitted equally throughout an enclosed fluid)" },
+                { front: "What is Archimedes' Principle formula?", back: "\\( F_b = \\rho g V \\) (Buoyant force equals weight of displaced fluid)" },
+                { front: "What is the equilibrium condition for a floating body?", back: "\\( \\rho V = \\rho' V' \\) (Weight of body equals weight of displaced liquid)" }
+            ],
+            quiz: [
+                { question: "At normal atmospheric pressure, the height of mercury in a barometer column is:", options: ["10 cm", "76 cm", "100 cm", "760 cm"], correctIndex: 1, feedback: "Under 1 atm, mercury rises to h = 76 cm (760 mmHg)." },
+                { question: "If the area of a hydraulic press output piston is 10 times the input piston, the force is multiplied by:", options: ["10", "1/10", "100", "Remains equal"], correctIndex: 0, feedback: "F₂ = F₁ × (A₂ / A₁) = 10 F₁." },
+                { question: "An object sinks in water if its density is:", options: ["Less than water", "Equal to water", "Greater than water", "Zero"], correctIndex: 2, feedback: "When ρ > ρ_water, body weight exceeds maximum buoyant force, causing the object to sink." }
+            ]
+        },
+        // --- Grade 10 Chapter 2: Thermodynamics ---
+        {
+            id: "g10-ch2-l1",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch2-l1-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "States of Matter Simulation", url: "https://phet.colorado.edu/sims/html/states-of-matter/latest/states-of-matter_all.html" }],
+            title: "Chapter 2 • Lesson 1: Temperature, Heat & Phase Changes",
+            concepts: [
+                "Temperature vs Heat: Temperature measures average molecular kinetic energy; heat is thermal energy transferred due to a temperature difference.",
+                "Temperature Scales: Celsius (°C), Kelvin (\\(T = t + 273\\)), Fahrenheit (\\(F = \\frac{9}{5}t + 32\\)).",
+                "Mercury Thermometer Calibration: Based on linear expansion of mercury column: \\(t = \\frac{l_t - l_0}{l_{100} - l_0} \\times 100\\,^\\circ\\mathrm{C}\\), where \\(l_0\\) is ice point and \\(l_{100}\\) steam point.",
+                "Sensible Heat Transfer: \\(Q = mc\\Delta t = mc(t_2 - t_1)\\). Heat capacity \\(C = \\frac{Q}{\\Delta T}\\); Specific heat capacity \\(c = \\frac{Q}{m\\Delta t}\\) (water \\(c \\approx 4200\\,\\mathrm{J/(kg\\cdot^\\circ C)}\\)).",
+                "Law of Heat Exchange: In isolated thermal contact, heat released by hotter body equals heat absorbed by colder body: \\(m_1 c_1 (x - t_1) = m_2 c_2 (t_2 - x)\\), where \\(x\\) is equilibrium temperature.",
+                "Latent Heat of Fusion & Evaporation: Heat required for phase change at constant temperature: \\(Q_f = mL_f\\) (ice fusion \\(L_f = 3.34 \\times 10^5\\,\\mathrm{J/kg}\\)); \\(Q_v = mL_v\\) (vaporization, \\(1\\,\\mathrm{cal} = 4.18\\,\\mathrm{J}\\)).",
+                "Phase Transformations & Boiling vs Vaporization: Boiling is rapid vaporization throughout the liquid at fixed boiling temperature; vaporization occurs slowly at the surface at any temperature.",
+                "Kinetic Theory of Matter States: Solid (tightly bound, vibrating at fixed points, fixed shape/volume), Liquid (clusters, flows, definite volume), Gas (widely separated, rapid random motion, fills container, highly compressible)."
+            ],
+            definitions: [
+                { term: "Temperature", definition: "A quantitative scalar measure of the hotness or coldness of an object, proportional to average molecular kinetic energy.", symbol: "T", unit: "\\mathrm{K} \\;(\\text{or } {^\\circ}\\mathrm{C})", equation: "T = t + 273" },
+                { term: "Specific Heat Capacity", definition: "The heat energy required to raise the temperature of 1 kg of a substance by 1 °C (or 1 K).", symbol: "c", unit: "\\mathrm{J/(kg\\cdot^\\circ C)}", equation: "c = \\frac{Q}{m\\Delta t}" },
+                { term: "Heat Capacity", definition: "The heat energy absorbed or released by an entire object to alter its temperature by 1 °C.", symbol: "C", unit: "\\mathrm{J/K} \\;(\\mathrm{J/^\\circ C})", equation: "C = \\frac{Q}{\\Delta T} = mc" },
+                { term: "Latent Heat of Fusion", definition: "Heat energy required to transform 1 kg of a solid to liquid at its melting point without temperature change.", symbol: "L_f", unit: "\\mathrm{J/kg}", equation: "Q_f = mL_f" },
+                { term: "Latent Heat of Evaporation", definition: "Heat energy required to transform 1 kg of a liquid into gas at its boiling point without temperature change.", symbol: "L_v", unit: "\\mathrm{J/kg}", equation: "Q_v = mL_v" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Mercury Thermometer Temperature Determination",
+                    question: "In a mercury thermometer, the length of the mercury column is 2.0 cm at 0 °C and 22.0 cm at 100 °C. What is the temperature when the mercury length is 10.0 cm?",
+                    given: "\\( l_0 = 2.0\\,\\mathrm{cm} \\), \\( l_{100} = 22.0\\,\\mathrm{cm} \\), \\( l_t = 10.0\\,\\mathrm{cm} \\).",
+                    find: "Temperature \\( t \\) in °C.",
+                    equation: "t = \\frac{l_t - l_0}{l_{100} - l_0} \\times 100\\,^\\circ\\mathrm{C}",
+                    rearrangement: "t = \\frac{10.0 - 2.0}{22.0 - 2.0} \\times 100",
+                    solution: "1. \\( l_t - l_0 = 8.0\\,\\mathrm{cm} \\).<br>2. \\( l_{100} - l_0 = 20.0\\,\\mathrm{cm} \\).<br>3. \\( t = \\frac{8.0}{20.0} \\times 100 = 40.0\\,^\\circ\\mathrm{C} \\).",
+                    finalAnswer: "t = 40.0\\,^\\circ\\mathrm{C}",
+                    explanation: "Linear proportionality relates mercury expansion directly to Celsius temperature."
+                },
+                {
+                    title: "Example 2: Thermal Equilibrium Temperature of Mixed Water",
+                    question: "A student mixes 0.20 kg of cold water at 15 °C with 0.30 kg of hot water at 75 °C. Assuming no heat loss to the surroundings, find the final equilibrium temperature (c = 4200 J/kg·°C).",
+                    given: "\\( m_1 = 0.20\\,\\mathrm{kg}, t_1 = 15\\,^\\circ\\mathrm{C} \\); \\( m_2 = 0.30\\,\\mathrm{kg}, t_2 = 75\\,^\\circ\\mathrm{C} \\).",
+                    find: "Equilibrium temperature \\( x \\).",
+                    equation: "m_1 c (x - t_1) = m_2 c (t_2 - x) \\implies m_1(x - t_1) = m_2(t_2 - x)",
+                    rearrangement: "0.20(x - 15) = 0.30(75 - x)",
+                    solution: "1. \\( 0.20x - 3.0 = 22.5 - 0.30x \\).<br>2. \\( 0.50x = 25.5 \\implies x = \\frac{25.5}{0.50} = 51.0\\,^\\circ\\mathrm{C} \\).",
+                    finalAnswer: "x = 51.0\\,^\\circ\\mathrm{C}",
+                    explanation: "Heat released by the hot water exactly equals heat absorbed by the cold water until equilibrium is reached."
+                }
+            ],
+            equations: [
+                {
+                    section: "Temperature Scales",
+                    name: "Celsius to Kelvin Conversion",
+                    formula: "\\[ T = t + 273 \\]",
+                    pdfPage: "PDF Page 29",
+                    explanation: "Converts temperature from the relative Celsius scale to the absolute thermodynamic Kelvin scale.",
+                    conditions: "Universal temperature scale conversion.",
+                    variables: [
+                        { symbol: "T", rep: "Absolute temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" },
+                        { symbol: "t", rep: "Celsius temperature", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" }
+                    ]
+                },
+                {
+                    section: "Temperature Scales",
+                    name: "Celsius to Fahrenheit Conversion",
+                    formula: "\\[ F = \\frac{9}{5}t + 32 \\]",
+                    pdfPage: "PDF Page 29",
+                    explanation: "Linear relation translating Celsius readings into Fahrenheit degrees.",
+                    conditions: "Standard atmospheric calibration.",
+                    variables: [
+                        { symbol: "F", rep: "Fahrenheit temperature", unit: "Degree Fahrenheit", unitSym: "{^\\circ\\mathrm{F}}" },
+                        { symbol: "t", rep: "Celsius temperature", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" }
+                    ]
+                },
+                {
+                    section: "Thermometer Calibration",
+                    name: "Mercury Thermometer Height Calibration",
+                    formula: "\\[ t = \\frac{l_t - l_0}{l_{100} - l_0} \\times 100^\\circ\\mathrm{C} \\]",
+                    pdfPage: "PDF Page 29",
+                    explanation: "Determines unknown Celsius temperature from proportional mercury column expansion between fixed points.",
+                    conditions: "Uniform capillary bore.",
+                    variables: [
+                        { symbol: "t", rep: "Calculated temperature", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" },
+                        { symbol: "l_t", rep: "Mercury height at temperature t", unit: "Meter or millimeter", unitSym: "\\mathrm{mm}" },
+                        { symbol: "l_0", rep: "Mercury height at ice point (0 °C)", unit: "Meter or millimeter", unitSym: "\\mathrm{mm}" },
+                        { symbol: "l_{100}", rep: "Mercury height at steam point (100 °C)", unit: "Meter or millimeter", unitSym: "\\mathrm{mm}" }
+                    ]
+                },
+                {
+                    section: "Calorimetry",
+                    name: "Sensible Heat Transfer",
+                    formula: "\\[ Q = mc\\Delta t = mc(t_2 - t_1) \\]",
+                    pdfPage: "PDF Page 29 & 30",
+                    explanation: "Thermal energy absorbed or released by an object during temperature change without a phase transition.",
+                    conditions: "Constant specific heat over temperature interval.",
+                    variables: [
+                        { symbol: "Q", rep: "Heat energy transferred", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass of object", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "c", rep: "Specific heat capacity", unit: "Joule per kilogram kelvin", unitSym: "\\mathrm{J/(kg\\cdot^\\circ C)}" },
+                        { symbol: "\\Delta t", rep: "Temperature change (t₂ - t₁)", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" }
+                    ]
+                },
+                {
+                    section: "Calorimetry",
+                    name: "Heat Capacity Definition",
+                    formula: "\\[ C = \\frac{Q}{\\Delta T} \\]",
+                    pdfPage: "PDF Page 30",
+                    explanation: "Total heat energy required to change the temperature of the entire body by 1 K or 1 °C.",
+                    conditions: "Whole-body thermal response.",
+                    variables: [
+                        { symbol: "C", rep: "Heat capacity", unit: "Joule per kelvin", unitSym: "\\mathrm{J/K}" },
+                        { symbol: "Q", rep: "Heat energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "\\Delta T", rep: "Temperature change", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Calorimetry",
+                    name: "Specific Heat Capacity Relation",
+                    formula: "\\[ c = \\frac{C}{m} = \\frac{Q}{m\\Delta t} \\]",
+                    pdfPage: "PDF Page 30",
+                    explanation: "Intrinsic material thermal property representing heat capacity per unit mass.",
+                    conditions: "Homogeneous material.",
+                    variables: [
+                        { symbol: "c", rep: "Specific heat capacity", unit: "Joule per kilogram kelvin", unitSym: "\\mathrm{J/(kg\\cdot^\\circ C)}" },
+                        { symbol: "C", rep: "Total heat capacity", unit: "Joule per kelvin", unitSym: "\\mathrm{J/K}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" }
+                    ]
+                },
+                {
+                    section: "Heat Exchange",
+                    name: "Law of Heat Exchange & Equilibrium",
+                    formula: "\\[ Q_1 = Q_2 \\implies m_1 c_1(x - t_1) = m_2 c_2(t_2 - x) \\]",
+                    pdfPage: "PDF Page 30 & 31",
+                    explanation: "Heat released by warmer body equals heat absorbed by colder body until common equilibrium temperature x is reached.",
+                    conditions: "Thermally isolated system (calorimeter).",
+                    variables: [
+                        { symbol: "x", rep: "Final equilibrium temperature", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" },
+                        { symbol: "m_1, m_2", rep: "Masses of cold and hot bodies", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "c_1, c_2", rep: "Specific heat capacities", unit: "Joule per kilogram degree Celsius", unitSym: "\\mathrm{J/(kg\\cdot^\\circ C)}" },
+                        { symbol: "t_1, t_2", rep: "Initial temperatures", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" }
+                    ]
+                },
+                {
+                    section: "Phase Change",
+                    name: "Latent Heat of Fusion",
+                    formula: "\\[ Q_f = m L_f \\quad (L_f = 3.34 \\times 10^5\\,\\mathrm{J/kg} \\text{ for ice}) \\]",
+                    pdfPage: "PDF Page 31",
+                    explanation: "Heat energy absorbed during solid-to-liquid melting at constant melting point.",
+                    conditions: "Isothermal melting process at melting temperature.",
+                    variables: [
+                        { symbol: "Q_f", rep: "Latent heat of fusion", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass melted", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "L_f", rep: "Specific latent heat of fusion", unit: "Joule per kilogram", unitSym: "\\mathrm{J/kg}" }
+                    ]
+                },
+                {
+                    section: "Phase Change",
+                    name: "Latent Heat of Vaporization",
+                    formula: "\\[ Q_v = m L_v \\]",
+                    pdfPage: "PDF Page 31",
+                    explanation: "Heat energy absorbed during liquid-to-vapor transformation at constant boiling temperature.",
+                    conditions: "Isothermal vaporization at boiling point.",
+                    variables: [
+                        { symbol: "Q_v", rep: "Latent heat of vaporization", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass vaporized", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "L_v", rep: "Specific latent heat of vaporization", unit: "Joule per kilogram", unitSym: "\\mathrm{J/kg}" }
+                    ]
+                },
+                {
+                    section: "Unit Conversion",
+                    name: "Calorie to Joule Equivalence",
+                    formula: "\\[ 1\\,\\mathrm{cal} = 4.18\\,\\mathrm{J} \\]",
+                    pdfPage: "PDF Page 31",
+                    explanation: "Mechanical equivalent of thermal heat energy converting calories into SI Joules.",
+                    conditions: "Standard thermochemical conversion.",
+                    variables: [
+                        { symbol: "1\\,\\mathrm{cal}", rep: "Calorie unit", unit: "Calorie", unitSym: "\\mathrm{cal}" },
+                        { symbol: "4.18\\,\\mathrm{J}", rep: "Joule mechanical equivalent", unit: "Joule", unitSym: "\\mathrm{J}" }
+                    ]
+                },
+                {
+                    section: "Gas Laws",
+                    name: "Boyle's Law (Isothermal Process)",
+                    formula: "\\[ P_1 V_1 = P_2 V_2 = \\text{constant} \\quad (T = \\text{constant}) \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "For a fixed mass of enclosed gas at constant temperature, pressure is inversely proportional to volume.",
+                    conditions: "Constant absolute temperature T and constant gas amount.",
+                    variables: [
+                        { symbol: "P_1, P_2", rep: "Initial and final gas pressures", unit: "Pascal or Atmosphere", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "V_1, V_2", rep: "Initial and final gas volumes", unit: "Cubic meter or Liter", unitSym: "\\mathrm{m^3}" }
+                    ]
+                },
+                {
+                    section: "Gas Laws",
+                    name: "Charles's Law (Isobaric Process)",
+                    formula: "\\[ \\frac{V_1}{T_1} = \\frac{V_2}{T_2} = \\text{constant} \\quad (P = \\text{constant}) \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "For a fixed mass of gas at constant pressure, volume expands in direct proportion to absolute temperature.",
+                    conditions: "Constant pressure P and absolute temperature in Kelvin.",
+                    variables: [
+                        { symbol: "V_1, V_2", rep: "Initial and final gas volumes", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "T_1, T_2", rep: "Initial and final temperatures", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Gas Laws",
+                    name: "Gay-Lussac's / Amontons' Law (Isochoric Process)",
+                    formula: "\\[ \\frac{P_1}{T_1} = \\frac{P_2}{T_2} = \\text{constant} \\quad (V = \\text{constant}) \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "In a rigid closed container of constant volume, gas pressure increases in direct proportion to absolute temperature.",
+                    conditions: "Constant volume V and temperature in Kelvin.",
+                    variables: [
+                        { symbol: "P_1, P_2", rep: "Initial and final pressures", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "T_1, T_2", rep: "Initial and final temperatures", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Gas Laws",
+                    name: "Combined Gas Law Equation",
+                    formula: "\\[ \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Combines Boyle's, Charles's, and Gay-Lussac's laws for an enclosed sample of gas transitioning between states.",
+                    conditions: "Fixed amount of ideal gas (n = constant).",
+                    variables: [
+                        { symbol: "P_1, P_2", rep: "Initial and final pressures", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "V_1, V_2", rep: "Initial and final volumes", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "T_1, T_2", rep: "Initial and final absolute temperatures", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Gas Laws",
+                    name: "Ideal Gas Equation of State",
+                    formula: "\\[ PV = nRT = \\frac{m}{M}RT = N k_B T \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Universal thermodynamic equation of state relating pressure, volume, quantity, and temperature of an ideal gas.",
+                    conditions: "Ideal gas behavior at low to moderate pressures.",
+                    variables: [
+                        { symbol: "P", rep: "Gas pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "V", rep: "Enclosed volume", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "n", rep: "Number of moles (m/M)", unit: "Mole", unitSym: "\\mathrm{mol}" },
+                        { symbol: "R", rep: "Universal gas constant (8.314 J/(mol·K))", unit: "Joule per mole kelvin", unitSym: "\\mathrm{J/(mol\\cdot K)}" },
+                        { symbol: "T", rep: "Absolute temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula relating Kelvin and Celsius?", back: "\\( T = t + 273 \\)" },
+                { front: "What is the formula for heat absorbed by an object?", back: "\\( Q = mc\\Delta t \\)" },
+                { front: "What is the Law of Heat Exchange?", back: "\\( Q_{\\text{absorbed}} = Q_{\\text{released}} \\implies m_1 c_1 (x - t_1) = m_2 c_2 (t_2 - x) \\)" },
+                { front: "What is the specific latent heat of fusion of ice?", back: "\\( L_f = 3.34 \\times 10^5\\,\\mathrm{J/kg} \\)" }
+            ],
+            quiz: [
+                { question: "How many Joules are in 1 calorie?", options: ["1.0 J", "3.14 J", "4.18 J", "1000 J"], correctIndex: 2, feedback: "1 cal = 4.184 J (mechanical equivalent of heat)." },
+                { question: "During a phase change from solid to liquid, the temperature of the substance:", options: ["Increases rapidly", "Decreases", "Remains constant", "Fluctuates"], correctIndex: 2, feedback: "Latent heat energy breaks molecular bonds without changing temperature." },
+                { question: "Water has a remarkably high specific heat capacity of approximately:", options: ["420 J/kg·°C", "4200 J/kg·°C", "2100 J/kg·°C", "334,000 J/kg·°C"], correctIndex: 1, feedback: "Water specific heat capacity is c ≈ 4190–4200 J/(kg·°C)." }
+            ]
+        },
+        // --- Grade 10 Chapter 3: Electricity and Magnetism ---
+        {
+            id: "g10-ch3-l1",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch3-l1-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Balloons and Static Electricity", url: "https://phet.colorado.edu/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_all.html" }],
+            title: "Chapter 3 • Lesson 1: Electrostatics",
+            concepts: [
+                "Two Types of Electric Charge: Positive (+) and Negative (-). Fundamental law of charges: like charges repel each other, unlike charges attract.",
+                "Electron Theory: Atoms consist of a positive nucleus (protons & neutrons) and orbiting negative electrons. Neutral atom (equal protons and electrons, \\(\\sum q = 0\\)); Cation (loses electrons, positive); Anion (gains electrons, negative).",
+                "Elementary Charge & Quantization: Electron carries charge \\(-e = -1.6 \\times 10^{-19}\\,\\mathrm{C}\\), mass \\(m_e = 9.11 \\times 10^{-31}\\,\\mathrm{kg}\\). Charge on any body is quantized: \\(q = n|e|\\).",
+                "Point Charge Concept: Charge concentrated at a point in space whose physical dimensions are negligible compared to distance.",
+                "Three Methods of Electrification: Friction (rubbing transfers electrons), Contact (touching shares charge equally between identical conductors \\(q' = \\frac{q_A + q_B}{2}\\)), and Induction (charge separation caused by nearby electric field without contact).",
+                "Electroscope & Applications: Device detecting electric charge. Charge concentrates at sharp corners and pointed tips. Applications in lightning rods, Van de Graaff generators, and industrial electrostatic dust precipitating."
+            ],
+            definitions: [
+                { term: "Electric Charge", definition: "A fundamental property of matter causing it to experience force in an electromagnetic field.", symbol: "q", unit: "\\mathrm{C} \\;(\\mathrm{Coulomb})", equation: "q = n|e|" },
+                { term: "Elementary Charge", definition: "The magnitude of electric charge carried by a single proton or electron (1.6 × 10⁻¹⁹ C).", symbol: "e", unit: "\\mathrm{C}", equation: "e = 1.6 \\times 10^{-19}\\,\\mathrm{C}" },
+                { term: "Electrification by Induction", definition: "Charging an isolated conductor by bringing a charged object nearby without physical contact.", symbol: "\\text{Induction}", unit: "\\text{No unit}", equation: "q_{\\text{induced}} \\propto E" },
+                { term: "Electroscope", definition: "An instrument with light metal leaves that diverge when electrically charged.", symbol: "\\text{Electroscope}", unit: "\\text{Charge detector}", equation: "\\theta_{\\text{leaf}} \\propto q" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Number of Electrons in a Coulomb of Charge",
+                    question: "How many electrons must be transferred to produce an electric charge of -3.2 μC (-3.2 × 10⁻⁶ C)?",
+                    given: "Total charge \\( q = 3.2\\times 10^{-6}\\,\\mathrm{C} \\), Electron charge \\( e = 1.6\\times 10^{-19}\\,\\mathrm{C} \\).",
+                    find: "Number of electrons \\( n \\).",
+                    equation: "q = n|e| \\implies n = \\frac{q}{e}",
+                    rearrangement: "n = \\frac{3.2\\times 10^{-6}}{1.6\\times 10^{-19}}",
+                    solution: "1. \\( n = \\frac{3.2}{1.6} \\times 10^{-6 - (-19)} = 2.0 \\times 10^{13} \\).",
+                    finalAnswer: "n = 2.0 \\times 10^{13} \\text{ electrons}",
+                    explanation: "Electric charge is always an integer multiple of the elementary charge e."
+                }
+            ],
+            equations: [
+                {
+                    section: "Charge Quantization",
+                    name: "Electric Charge Quantization",
+                    formula: "\\[ q = n |e| \\quad (|e| = 1.6 \\times 10^{-19}\\,\\mathrm{C}) \\]",
+                    pdfPage: "PDF Page 34",
+                    explanation: "Total electric charge is always an integer multiple of the fundamental elementary charge e.",
+                    conditions: "Discrete electronic charge transfer.",
+                    variables: [
+                        { symbol: "q", rep: "Electric charge", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "n", rep: "Number of elementary charges (electrons or protons)", unit: "Integer count", unitSym: "\\text{No unit}" },
+                        { symbol: "|e|", rep: "Elementary charge magnitude", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Atomic Charge",
+                    name: "Nuclear Charge Formula",
+                    formula: "\\[ q_{\\text{nucleus}} = Ze \\]",
+                    pdfPage: "PDF Page 34",
+                    explanation: "Calculates the positive charge of an atomic nucleus containing Z protons.",
+                    conditions: "Atomic number Z.",
+                    variables: [
+                        { symbol: "q_{\\text{nucleus}}", rep: "Nuclear charge", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "Z", rep: "Atomic number (number of protons)", unit: "Integer", unitSym: "\\text{No unit}" },
+                        { symbol: "e", rep: "Elementary charge", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Charge Sharing",
+                    name: "Conductive Contact Redistribution",
+                    formula: "\\[ q_A' = q_B' = \\frac{q_A + q_B}{2} \\]",
+                    pdfPage: "PDF Page 34",
+                    explanation: "Equal charge redistribution when two identical spherical conductors touch.",
+                    conditions: "Identical spherical conductors in contact.",
+                    variables: [
+                        { symbol: "q_A', q_B'", rep: "Final charges after contact", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "q_A, q_B", rep: "Initial charges before contact", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Coulomb's Law",
+                    name: "Coulomb's Inverse-Square Law",
+                    formula: "\\[ F = k\\frac{|q_1 q_2|}{r^2} \\quad (k = 9 \\times 10^9\\,\\mathrm{N\\cdot m^2/C^2}) \\]",
+                    pdfPage: "PDF Page 34 & 35",
+                    explanation: "Electrostatic force between two stationary point charges is directly proportional to charge product and inversely to distance squared.",
+                    conditions: "Point charges at rest in vacuum or air.",
+                    variables: [
+                        { symbol: "F", rep: "Electrostatic force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "k", rep: "Coulomb's constant", unit: "Newton meter squared per coulomb squared", unitSym: "\\mathrm{N\\cdot m^2/C^2}" },
+                        { symbol: "q_1, q_2", rep: "Interacting point charges", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "r", rep: "Distance separating charges", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Electric Field",
+                    name: "Electric Field of a Point Charge",
+                    formula: "\\[ E = \\frac{F}{|q_0|} = k\\frac{|q|}{r^2} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Magnitude of the radial electric field produced by a stationary source charge q at distance r.",
+                    conditions: "Isolated point charge in vacuum or air.",
+                    variables: [
+                        { symbol: "E", rep: "Electric field strength", unit: "Newton per coulomb or volt per meter", unitSym: "\\mathrm{N/C}" },
+                        { symbol: "F", rep: "Force on positive test charge q₀", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "q", rep: "Source electric charge", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "r", rep: "Radial distance from charge", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Electric Field",
+                    name: "Electric Force in an Electric Field",
+                    formula: "\\[ \\vec{F} = q\\vec{E} \\implies F = |q|E \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Electrostatic force experienced by an electric charge placed inside an electric field.",
+                    conditions: "Force is parallel to E for positive charge; antiparallel for negative charge.",
+                    variables: [
+                        { symbol: "\\vec{F}", rep: "Electric force vector", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "q", rep: "Electric charge value", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "\\vec{E}", rep: "Electric field vector", unit: "Volt per meter", unitSym: "\\mathrm{V/m}" }
+                    ]
+                },
+                {
+                    section: "Uniform Field",
+                    name: "Uniform Electric Field Between Plates",
+                    formula: "\\[ E = \\frac{V}{d} \\iff V = Ed \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Electric field intensity between two parallel conducting plates separated by distance d with voltage V.",
+                    conditions: "Uniform electric field between planar plates.",
+                    variables: [
+                        { symbol: "E", rep: "Uniform electric field strength", unit: "Volt per meter", unitSym: "\\mathrm{V/m}" },
+                        { symbol: "V", rep: "Potential difference between plates", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "d", rep: "Distance between plates", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Superposition",
+                    name: "Superposition of Electrostatic Forces",
+                    formula: "\\[ \\vec{F}_{\\text{net}} = \\sum_{i=1}^N \\vec{F}_i = \\vec{F}_1 + \\vec{F}_2 + \\dots + \\vec{F}_N \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "The total electrostatic force on a charge is the vector sum of individual forces exerted by all neighboring charges.",
+                    conditions: "Multiple interacting discrete point charges.",
+                    variables: [
+                        { symbol: "\\vec{F}_{\\text{net}}", rep: "Net electrostatic force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\vec{F}_i", rep: "Individual Coulomb force from i-th charge", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the magnitude of the elementary charge e?", back: "\\( e = 1.6 \\times 10^{-19}\\,\\mathrm{C} \\)" },
+                { front: "What are the three methods of electrification?", back: "1. Friction, 2. Contact (conduction), 3. Induction" },
+                { front: "Where does electric charge concentrate on an irregular conductor?", back: "At sharp edges and pointed tips (highest surface curvature)" }
+            ],
+            quiz: [
+                { question: "Two identical conducting spheres carrying charges +6 μC and -2 μC are touched together and separated. The final charge on each is:", options: ["+4 μC", "+2 μC", "-2 μC", "0 μC"], correctIndex: 1, feedback: "q' = (+6 + (-2))/2 = 4/2 = +2 μC." },
+                { question: "In metals, the mobile charge carriers responsible for electric current are:", options: ["Protons", "Neutrons", "Free electrons", "Positive ions"], correctIndex: 2, feedback: "Metallic conduction is the flow of delocalized valence electrons." }
+            ]
+        },
+        {
+            id: "g10-ch3-l2",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch3-l2-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Circuit Construction Kit: DC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" }],
+            title: "Chapter 3 • Lesson 2: Direct Current & Electromagnetism",
+            concepts: [
+                "Direct Current (DC): Unidirectional charge flow: \\(I = \\frac{Q}{t} \\iff Q = It = n|e|\\). Measured in Amperes (\\(1\\,\\mathrm{A} = 1\\,\\mathrm{C/s}\\)).",
+                "Conduction in Media: Metals (free electrons), Electrolytes (positive and negative ions), Semiconductors (electrons and holes).",
+                "Ammeter & Voltmeter Readings: \\(I = \\text{cal} \\times \\frac{n}{n_0}\\) and \\(V = \\text{cal} \\times \\frac{n}{n_0}\\), where \\(n_0\\) is total divisions and \\(n\\) is pointer division.",
+                "Series Resistors: \\(I = I_1 = I_2\\), \\(V = V_1 + V_2\\), \\(R_s = R_1 + R_2 + \\dots\\).",
+                "Parallel Resistors: \\(V = V_1 = V_2\\), \\(I = I_1 + I_2\\), \\(\\frac{1}{R_p} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\dots\\).",
+                "Kirchhoff's Laws: Loop rule (KVL: \\(V_{ac} = V_{ab} + V_{bc}\\)); Node rule (KCL: \\(\\sum I_{\\text{in}} = \\sum I_{\\text{out}}\\), charge conservation).",
+                "Magnetic Fields from Currents: Straight conductor \\(B = \\frac{\\mu_0 I}{2\\pi d}\\); Circular loop center \\(B = \\frac{\\mu_0 I}{2R}\\); Solenoid interior \\(B = \\frac{\\mu_0 NI}{l}\\) (\\(\\mu_0 = 4\\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A}\\)). Right-hand grip rule."
+            ],
+            definitions: [
+                { term: "Electric Current", definition: "The rate of flow of electric charge through a conductor's cross section.", symbol: "I", unit: "\\mathrm{A}", equation: "I = \\frac{Q}{t}" },
+                { term: "Kirchhoff's Current Law (KCL)", definition: "The sum of electric currents entering any circuit junction equals the sum of currents leaving.", symbol: "\\sum I = 0", unit: "\\mathrm{A}", equation: "\\sum I_{\\text{in}} = \\sum I_{\\text{out}}" },
+                { term: "Magnetic Permeability of Free Space", definition: "The magnetic constant representing capability of vacuum to support magnetic field lines.", symbol: "\\mu_0", unit: "\\mathrm{T\\cdot m/A}", equation: "\\mu_0 = 4\\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A}" },
+                { term: "Solenoid", definition: "A helical coil of wire whose length is large compared to radius (l ≥ 5R) producing a uniform internal magnetic field.", symbol: "B_{\\text{sol}}", unit: "\\mathrm{T}", equation: "B = \\frac{\\mu_0 NI}{l}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Magnetic Field of a Long Straight Wire",
+                    question: "A long straight wire carries a current of 5.0 A. Calculate the magnetic field strength at a distance of 0.10 m from the wire (μ₀ = 4π × 10⁻⁷ T·m/A).",
+                    given: "Current \\( I = 5.0\\,\\mathrm{A} \\), Distance \\( d = 0.10\\,\\mathrm{m} \\), \\( \\mu_0 = 4\\pi\\times 10^{-7}\\,\\mathrm{T\\cdot m/A} \\).",
+                    find: "Magnetic field \\( B \\).",
+                    equation: "B = \\frac{\\mu_0 I}{2\\pi d}",
+                    rearrangement: "B = \\frac{(4\\pi\\times 10^{-7})(5.0)}{2\\pi(0.10)}",
+                    solution: "1. Simplify \\( \\frac{4\\pi}{2\\pi} = 2 \\).<br>2. \\( B = \\frac{2 \\times 10^{-7} \\times 5.0}{0.10} = \\frac{10^{-6}}{0.10} = 1.0\\times 10^{-5}\\,\\mathrm{T} \\; (10\\,\\mu\\mathrm{T}) \\).",
+                    finalAnswer: "B = 1.0 \\times 10^{-5}\\,\\mathrm{T} \\; (10\\,\\mu\\mathrm{T})",
+                    explanation: "B-field strength decreases inversely with distance from a straight current-carrying wire."
+                }
+            ],
+            equations: [
+                {
+                    section: "Current & Charge",
+                    name: "Electric Current Definition",
+                    formula: "\\[ I = \\frac{Q}{t} \\implies Q = It = n|e| \\]",
+                    pdfPage: "PDF Page 36",
+                    explanation: "Electric current represents the time rate of electric charge flow through a conductor cross-section.",
+                    conditions: "Steady DC current.",
+                    variables: [
+                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "Q", rep: "Total charge transferred", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "t", rep: "Time duration", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "n", rep: "Number of electrons", unit: "Count", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Analog Meters",
+                    name: "Ammeter & Voltmeter Scale Reading",
+                    formula: "\\[ I = \\text{cal} \\times \\frac{n}{n_0}, \\quad V = \\text{cal} \\times \\frac{n}{n_0} \\]",
+                    pdfPage: "PDF Page 36 & 37",
+                    explanation: "Determines physical current or voltage from pointer division fraction on an analog scale.",
+                    conditions: "Linear analog galvanometer movement.",
+                    variables: [
+                        { symbol: "n", rep: "Needle division reading", unit: "Divisions", unitSym: "\\text{div}" },
+                        { symbol: "n_0", rep: "Total full-scale division count", unit: "Divisions", unitSym: "\\text{div}" },
+                        { symbol: "\\text{cal}", rep: "Calibration range factor", unit: "Ampere or Volt", unitSym: "\\mathrm{A \\text{ or } V}" }
+                    ]
+                },
+                {
+                    section: "Resistor Circuits",
+                    name: "Series Combination of Resistors",
+                    formula: "\\[ I = I_1 = I_2, \\quad V = V_1 + V_2 + \\dots, \\quad R = R_1 + R_2 + \\dots + R_n \\]",
+                    pdfPage: "PDF Page 37",
+                    explanation: "For series resistors, current is identical everywhere while total voltage and total resistance are additive sums.",
+                    conditions: "Single closed current path.",
+                    variables: [
+                        { symbol: "R", rep: "Equivalent series resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "R_1, R_2", rep: "Individual resistor values", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "V", rep: "Total circuit voltage", unit: "Volt", unitSym: "\\mathrm{V}" }
+                    ]
+                },
+                {
+                    section: "Resistor Circuits",
+                    name: "Parallel Combination of Resistors",
+                    formula: "\\[ V = V_1 = V_2, \\quad I = I_1 + I_2 + \\dots, \\quad \\frac{1}{R} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\dots + \\frac{1}{R_n} \\]",
+                    pdfPage: "PDF Page 37",
+                    explanation: "Parallel branches share identical potential difference while branch currents sum to the total supply current.",
+                    conditions: "Common parallel junction nodes.",
+                    variables: [
+                        { symbol: "R", rep: "Equivalent parallel resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "R_1, R_2", rep: "Branch resistances", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "I", rep: "Total current entering junction", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "Kirchhoff's Laws",
+                    name: "Kirchhoff's Current Law (Junction Rule)",
+                    formula: "\\[ \\sum I_{\\text{in}} = \\sum I_{\\text{out}} \\]",
+                    pdfPage: "PDF Page 37 & 38",
+                    explanation: "Conservation of charge dictates that total current entering any electrical junction must equal total current exiting.",
+                    conditions: "Electrical circuit node.",
+                    variables: [
+                        { symbol: "I_{\\text{in}}", rep: "Current entering node", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "I_{\\text{out}}", rep: "Current leaving node", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "Kirchhoff's Laws",
+                    name: "Voltage Addition (Loop Rule)",
+                    formula: "\\[ V_{ac} = V_{ab} + V_{bc} = -V_{ca} \\implies \\sum \\Delta V = 0 \\]",
+                    pdfPage: "PDF Page 37",
+                    explanation: "Algebraic sum of potential differences around any closed circuit loop is zero, reflecting energy conservation.",
+                    conditions: "Closed circuit loop.",
+                    variables: [
+                        { symbol: "V_{ab}, V_{bc}", rep: "Branch voltages", unit: "Volt", unitSym: "\\mathrm{V}" }
+                    ]
+                },
+                {
+                    section: "Electromagnetism",
+                    name: "Magnetic Field of Straight Wire",
+                    formula: "\\[ B = \\frac{\\mu_0 I}{2\\pi d} \\quad (\\mu_0 = 4\\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A}) \\]",
+                    pdfPage: "PDF Page 38",
+                    explanation: "Magnitude of the concentric circular magnetic field produced around a long straight current-carrying wire.",
+                    conditions: "Infinitely long straight conductor.",
+                    variables: [
+                        { symbol: "B", rep: "Magnetic field intensity", unit: "Tesla", unitSym: "\\mathrm{T}" },
+                        { symbol: "\\mu_0", rep: "Permeability of free space", unit: "Tesla meter per ampere", unitSym: "\\mathrm{T\\cdot m/A}" },
+                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "d", rep: "Perpendicular distance from wire", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Electromagnetism",
+                    name: "Magnetic Field at Center of Circular Loop",
+                    formula: "\\[ B = \\frac{\\mu_0 I}{2R} \\]",
+                    pdfPage: "PDF Page 38",
+                    explanation: "Calculates the central magnetic field generated by current circulating in a flat circular wire loop.",
+                    conditions: "At exact geometric center of loop.",
+                    variables: [
+                        { symbol: "B", rep: "Central magnetic field", unit: "Tesla", unitSym: "\\mathrm{T}" },
+                        { symbol: "I", rep: "Loop current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "R", rep: "Loop radius", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Electromagnetism",
+                    name: "Magnetic Field Inside Solenoid",
+                    formula: "\\[ B = \\frac{\\mu_0 N I}{l} = \\mu_0 n I \\quad (l \\ge 5R) \\]",
+                    pdfPage: "PDF Page 38 & 39",
+                    explanation: "Uniform axial magnetic field inside a cylindrical coil with N turns per length l.",
+                    conditions: "Long solenoid (\\(l \\ge 5R\\)).",
+                    variables: [
+                        { symbol: "B", rep: "Internal magnetic field", unit: "Tesla", unitSym: "\\mathrm{T}" },
+                        { symbol: "N", rep: "Total turns of wire", unit: "Count", unitSym: "\\text{No unit}" },
+                        { symbol: "l", rep: "Solenoid length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "n", rep: "Turn density (N/l)", unit: "Turns per meter", unitSym: "\\mathrm{m^{-1}}" },
+                        { symbol: "I", rep: "Current", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "Ohm's Law",
+                    name: "Ohm's Law for a Resistor",
+                    formula: "\\[ V = IR \\iff I = \\frac{V}{R} \\iff R = \\frac{V}{I} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Fundamental relationship between voltage, current, and electrical resistance in an ohmic conductor.",
+                    conditions: "Conductor at constant temperature.",
+                    variables: [
+                        { symbol: "V", rep: "Potential difference (voltage)", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "R", rep: "Electrical resistance", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Resistance",
+                    name: "Resistance and Resistivity Law",
+                    formula: "\\[ R = \\rho\\frac{L}{A} = \\rho\\frac{4L}{\\pi d^2} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Resistance of a uniform cylindrical wire directly proportional to length and inversely to cross-sectional area.",
+                    conditions: "Uniform cylindrical conducting wire.",
+                    variables: [
+                        { symbol: "R", rep: "Resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "\\rho", rep: "Material resistivity", unit: "Ohm meter", unitSym: "\\Omega\\cdot\\mathrm{m}" },
+                        { symbol: "L", rep: "Length of wire", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "A", rep: "Cross-sectional area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "d", rep: "Wire diameter", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Electric Power",
+                    name: "Electric Power in a Resistor",
+                    formula: "\\[ P = VI = I^2 R = \\frac{V^2}{R} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Rate of electrical energy dissipation in an ohmic resistor.",
+                    conditions: "Ohmic resistance.",
+                    variables: [
+                        { symbol: "P", rep: "Electrical power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "V", rep: "Potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I", rep: "Current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "R", rep: "Resistance", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Joule Heating",
+                    name: "Joule's Law of Electric Heating",
+                    formula: "\\[ Q = I^2 R t = VIt = \\frac{V^2}{R}t \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Thermal energy generated by an electric current flowing through a resistor over duration t.",
+                    conditions: "Direct conversion of electric energy to thermal heat.",
+                    variables: [
+                        { symbol: "Q", rep: "Thermal heat generated", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "I", rep: "Current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "R", rep: "Resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "t", rep: "Time elapsed", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "Magnetic Force",
+                    name: "Laplace Magnetic Force on Conductor",
+                    formula: "\\[ F = I L B \\sin\\theta \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Magnetic force exerted on a straight current-carrying wire in an external magnetic field.",
+                    conditions: "Conductor carrying current I at angle θ to magnetic field B.",
+                    variables: [
+                        { symbol: "F", rep: "Magnetic Laplace force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "I", rep: "Current in wire", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "L", rep: "Length of wire in field", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "B", rep: "Magnetic field flux density", unit: "Tesla", unitSym: "\\mathrm{T}" },
+                        { symbol: "\\theta", rep: "Angle between wire and magnetic field", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for the magnetic field of a straight wire?", back: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)" },
+                { front: "What is the formula for the magnetic field inside a solenoid?", back: "\\( B = \\frac{\\mu_0 NI}{l} \\)" },
+                { front: "What is Kirchhoff's Current Law?", back: "\\( \\sum I_{\\text{in}} = \\sum I_{\\text{out}} \\) (Conservation of electric charge)" }
+            ],
+            quiz: [
+                { question: "If the current through a solenoid is doubled, the internal magnetic field:", options: ["Halves", "Doubles", "Quadruples", "Remains unchanged"], correctIndex: 1, feedback: "B = μ₀NI/l: field is directly proportional to current." },
+                { question: "When two 6 Ω resistors are connected in parallel, their equivalent resistance is:", options: ["12 Ω", "6 Ω", "3 Ω", "1.5 Ω"], correctIndex: 2, feedback: "1/R = 1/6 + 1/6 = 2/6 = 1/3 => R = 3 Ω." }
+            ]
+        },
+        {
+            id: "g10-ch3-l3",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch3-l3-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Generator & Transformer Sim", url: "https://phet.colorado.edu/sims/html/generator/latest/generator_all.html" }],
+            title: "Chapter 3 • Lesson 3: Alternating Current & Transformers",
+            concepts: [
+                "DC vs AC: Direct current flows in one constant direction. Alternating current reverses direction periodically (demonstrated by alternately flashing anti-parallel diodes on vehicle dynamo).",
+                "AC and DC Generators: Rotating coil in magnetic field induces alternating electromotive force. Slip rings produce sinusoidal AC; split-ring commutator produces pulsating DC.",
+                "Frequency & Angular Frequency: Frequency \\(f = \\frac{1}{T}\\); Angular frequency \\(\\omega = 2\\pi f = \\frac{v}{r}\\).",
+                "Transformer Construction: Two coils wrapped on soft laminated iron core (laminations reduce eddy current heat loss). Operates on mutual electromagnetic induction.",
+                "Types of Transformers: Step-Up (\\(N_s > N_p, V_s > V_p\\)), Step-Down (\\(N_s < N_p, V_s < V_p\\)), Isolation (\\(N_s = N_p, V_s = V_p\\)).",
+                "Transformer Turn Ratio Equation: \\(\\frac{V_s}{V_p} = \\frac{N_s}{N_p} = \\frac{I_p}{I_s}\\).",
+                "Electrical Power Transmission & Joule Loss: Power transmitted \\(P_e = VI\\); Line current \\(I = \\frac{P_e}{V}\\); Joule heating loss \\(P_J = RI^2 = R\\left(\\frac{P_e}{V}\\right)^2\\). Stepping up voltage reduces transmission current and drastically cuts heat losses.",
+                "Transformer Efficiency: Energy balance \\(P_{e1} = P_{e2} + P_J\\); Efficiency \\(\\text{eff} = \\frac{P_{e2}}{P_{e1}} \\times 100\\% = \\frac{V_s I_s}{V_p I_p} \\times 100\\%\\)."
+            ],
+            definitions: [
+                { term: "Alternating Current (AC)", definition: "Electric current whose magnitude and direction fluctuate periodically with time.", symbol: "i(t)", unit: "\\mathrm{A}", equation: "f = \\frac{1}{T}, \\; \\omega = 2\\pi f" },
+                { term: "Transformer", definition: "A stationary electrical apparatus that transfers alternating current electrical power between circuits through mutual induction.", symbol: "\\text{XFMR}", unit: "\\text{No unit}", equation: "\\frac{V_s}{V_p} = \\frac{N_s}{N_p} = \\frac{I_p}{I_s}" },
+                { term: "Step-Up Transformer", definition: "A transformer with more secondary turns than primary turns (Ns > Np), producing higher secondary voltage.", symbol: "V_s > V_p", unit: "\\mathrm{V}", equation: "\\frac{N_s}{N_p} > 1" },
+                { term: "Joule Transmission Loss", definition: "Power dissipated as heat in transmission line resistance during electrical energy transport.", symbol: "P_J", unit: "\\mathrm{W}", equation: "P_J = RI^2 = R\\left(\\frac{P}{V}\\right)^2" },
+                { term: "Transformer Efficiency", definition: "The percentage ratio of secondary output power to primary input electrical power.", symbol: "\\text{eff}", unit: "\\%", equation: "\\text{eff} = \\frac{V_s I_s}{V_p I_p} \\times 100\\%" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Step-Down Transformer Calculations",
+                    question: "A step-down transformer connected to a 240 V AC supply has 1200 primary turns and 60 secondary turns. Calculate (a) the secondary output voltage, and (b) the primary current if the secondary draws 4.0 A (assume 100% efficiency).",
+                    given: "Primary voltage \\( V_p = 240\\,\\mathrm{V} \\), Turns \\( N_p = 1200, N_s = 60 \\), Secondary current \\( I_s = 4.0\\,\\mathrm{A} \\).",
+                    find: "Secondary voltage \\( V_s \\) and Primary current \\( I_p \\).",
+                    equation: "\\frac{V_s}{V_p} = \\frac{N_s}{N_p}, \\quad \\frac{I_p}{I_s} = \\frac{N_s}{N_p}",
+                    rearrangement: "V_s = V_p \\left(\\frac{N_s}{N_p}\\right), \\quad I_p = I_s \\left(\\frac{N_s}{N_p}\\right)",
+                    solution: "1. Turn ratio: \\( \\frac{N_s}{N_p} = \\frac{60}{1200} = \\frac{1}{20} \\).<br>2. \\( V_s = 240 \\times \\frac{1}{20} = 12.0\\,\\mathrm{V} \\).<br>3. \\( I_p = 4.0 \\times \\frac{1}{20} = 0.20\\,\\mathrm{A} \\).",
+                    finalAnswer: "V_s = 12.0\\,\\mathrm{V}, \\quad I_p = 0.20\\,\\mathrm{A}",
+                    explanation: "Voltage is stepped down by 20 times while current on the high-voltage side is 20 times smaller."
+                },
+                {
+                    title: "Example 2: Joule Power Loss Reduction in High-Voltage Lines",
+                    question: "A power station transmits 200 kW of electric power over transmission lines with total resistance 5.0 Ω. Calculate the Joule power loss when transmitting at (a) 1000 V, and (b) 10,000 V.",
+                    given: "Power \\( P = 200\\,\\mathrm{kW} = 200{,}000\\,\\mathrm{W} \\), Resistance \\( R = 5.0\\,\\Omega \\).",
+                    find: "Power loss \\( P_J \\) at 1000 V and 10,000 V.",
+                    equation: "I = \\frac{P}{V}, \\quad P_J = R I^2",
+                    rearrangement: "P_J = R\\left(\\frac{P}{V}\\right)^2",
+                    solution: "1. At 1000 V: \\( I = \\frac{200{,}000}{1000} = 200\\,\\mathrm{A} \\).<br>\\( P_J = 5.0 \\times (200)^2 = 5.0 \\times 40{,}000 = 200{,}000\\,\\mathrm{W} = 200\\,\\mathrm{kW} \\) (100% lost!).<br>2. At 10,000 V: \\( I = \\frac{200{,}000}{10{,}000} = 20\\,\\mathrm{A} \\).<br>\\( P_J = 5.0 \\times (20)^2 = 5.0 \\times 400 = 2000\\,\\mathrm{W} = 2.0\\,\\mathrm{kW} \\) (Only 1% lost!).",
+                    finalAnswer: "P_J(1000\\mathrm{V}) = 200\\,\\mathrm{kW}, \\quad P_J(10{,}000\\mathrm{V}) = 2.0\\,\\mathrm{kW}",
+                    explanation: "Stepping up voltage 10-fold reduces line current 10-fold and reduces Joule heat loss by a factor of 100."
+                }
+            ],
+            equations: [
+                {
+                    section: "AC Wave Parameters",
+                    name: "Frequency and Period Relation",
+                    formula: "\\[ f = \\frac{1}{T} \\]",
+                    pdfPage: "PDF Page 40",
+                    explanation: "Frequency indicates cycles completed per second, inversely proportional to period.",
+                    conditions: "Periodic sinusoidal alternating current.",
+                    variables: [
+                        { symbol: "f", rep: "Frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" },
+                        { symbol: "T", rep: "Period of cycle", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "AC Wave Parameters",
+                    name: "Angular Frequency of AC Generator",
+                    formula: "\\[ \\omega = \\frac{v}{r} = 2\\pi f \\]",
+                    pdfPage: "PDF Page 40",
+                    explanation: "Rotational rate of the alternator armature coil in radians per second.",
+                    conditions: "Uniform circular rotation.",
+                    variables: [
+                        { symbol: "\\omega", rep: "Angular frequency", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
+                        { symbol: "v", rep: "Tangential armature speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "r", rep: "Radius of rotation", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "f", rep: "Cyclic frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" }
+                    ]
+                },
+                {
+                    section: "Transformer Principles",
+                    name: "Transformer Turn-Voltage Ratio",
+                    formula: "\\[ \\frac{V_s}{V_p} = \\frac{N_s}{N_p} \\]",
+                    pdfPage: "PDF Page 41",
+                    explanation: "Induced voltage ratio equals the ratio of turns on secondary and primary coils.",
+                    conditions: "Negligible magnetic flux leakage.",
+                    variables: [
+                        { symbol: "V_s", rep: "Secondary output voltage", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "V_p", rep: "Primary input voltage", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "N_s", rep: "Secondary turns", unit: "Turns", unitSym: "\\text{turns}" },
+                        { symbol: "N_p", rep: "Primary turns", unit: "Turns", unitSym: "\\text{turns}" }
+                    ]
+                },
+                {
+                    section: "Transformer Principles",
+                    name: "Ideal Transformer Conservation of Power",
+                    formula: "\\[ P_s = P_p \\implies V_s I_s = V_p I_p \\implies \\frac{V_s}{V_p} = \\frac{N_s}{N_p} = \\frac{I_p}{I_s} \\]",
+                    pdfPage: "PDF Page 41 & 42",
+                    explanation: "In a 100% efficient transformer, power is conserved and current varies inversely with voltage.",
+                    conditions: "Ideal lossless transformer.",
+                    variables: [
+                        { symbol: "I_s", rep: "Secondary current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "I_p", rep: "Primary current", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "Power Transmission",
+                    name: "Transmission Line Current",
+                    formula: "\\[ I = \\frac{P_e}{V} \\]",
+                    pdfPage: "PDF Page 42",
+                    explanation: "Current carried across transmission grid for a given transmitted power level.",
+                    conditions: "Grid supply voltage V.",
+                    variables: [
+                        { symbol: "I", rep: "Grid line current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "P_e", rep: "Electrical power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "V", rep: "Grid transmission voltage", unit: "Volt", unitSym: "\\mathrm{V}" }
+                    ]
+                },
+                {
+                    section: "Power Transmission",
+                    name: "Joule Heating Power Loss in Lines",
+                    formula: "\\[ P_J = R I^2 = R \\left(\\frac{P_e}{V}\\right)^2 \\]",
+                    pdfPage: "PDF Page 42",
+                    explanation: "Heat dissipated by wire resistance; inversely proportional to square of transmission voltage.",
+                    conditions: "Ohmic transmission lines.",
+                    variables: [
+                        { symbol: "P_J", rep: "Joule heat loss", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "R", rep: "Total loop wire resistance", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Power Transmission",
+                    name: "Transformer Energy Balance",
+                    formula: "\\[ P_{e1} = P_{e2} + P_J \\]",
+                    pdfPage: "PDF Page 42 & 43",
+                    explanation: "Total input electrical power equals delivered useful power plus heat loss.",
+                    conditions: "Steady-state power delivery.",
+                    variables: [
+                        { symbol: "P_{e1}", rep: "Primary input power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "P_{e2}", rep: "Secondary output power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "P_J", rep: "Line heat loss", unit: "Watt", unitSym: "\\mathrm{W}" }
+                    ]
+                },
+                {
+                    section: "Power Transmission",
+                    name: "Transformer Efficiency Formula",
+                    formula: "\\[ \\text{eff} = \\frac{P_{e2}}{P_{e1}} \\times 100\\% = \\frac{V_s I_s}{V_p I_p} \\times 100\\% \\]",
+                    pdfPage: "PDF Page 43",
+                    explanation: "Percentage of supplied electrical power successfully delivered to the load.",
+                    conditions: "Real transformers with finite winding and core losses.",
+                    variables: [
+                        { symbol: "\\text{eff}", rep: "Efficiency percentage", unit: "Percent", unitSym: "\\%" }
+                    ]
+                },
+                {
+                    section: "Electromagnetic Induction",
+                    name: "Magnetic Flux through a Flat Coil",
+                    formula: "\\[ \\Phi = N B A \\cos\\theta \\]",
+                    pdfPage: "PDF Page 40",
+                    explanation: "Total magnetic flux linking a flat coil of N turns and area A in a uniform magnetic field B.",
+                    conditions: "Uniform magnetic field at angle θ to coil normal.",
+                    variables: [
+                        { symbol: "\\Phi", rep: "Magnetic flux", unit: "Weber", unitSym: "\\mathrm{Wb}" },
+                        { symbol: "N", rep: "Number of turns in coil", unit: "Count", unitSym: "\\text{No unit}" },
+                        { symbol: "B", rep: "Magnetic field flux density", unit: "Tesla", unitSym: "\\mathrm{T}" },
+                        { symbol: "A", rep: "Coil surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "\\theta", rep: "Angle between B and coil normal vector", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Electromagnetic Induction",
+                    name: "Faraday's Law of Induction",
+                    formula: "\\[ e = -N\\frac{\\Delta\\Phi}{\\Delta t} \\implies |e| = N\\frac{\\Delta\\Phi}{\\Delta t} \\]",
+                    pdfPage: "PDF Page 40",
+                    explanation: "Induced electromotive force in a circuit is directly proportional to time rate of change of magnetic flux.",
+                    conditions: "Changing magnetic flux linkage.",
+                    variables: [
+                        { symbol: "e", rep: "Induced electromotive force", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "N", rep: "Number of coil turns", unit: "Count", unitSym: "\\text{No unit}" },
+                        { symbol: "\\Delta\\Phi", rep: "Change in magnetic flux", unit: "Weber", unitSym: "\\mathrm{Wb}" },
+                        { symbol: "\\Delta t", rep: "Time interval", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "AC Waveforms",
+                    name: "Instantaneous AC Voltage and Current",
+                    formula: "\\[ v(t) = V_m \\sin\\omega t, \\quad i(t) = I_m \\sin\\omega t \\]",
+                    pdfPage: "PDF Page 40",
+                    explanation: "Time-varying sinusoidal alternating voltage and current produced by a rotating armature generator.",
+                    conditions: "Harmonic rotation at constant angular velocity ω = 2πf.",
+                    variables: [
+                        { symbol: "v(t), i(t)", rep: "Instantaneous voltage and current", unit: "Volt / Ampere", unitSym: "\\mathrm{V} / \\mathrm{A}" },
+                        { symbol: "V_m, I_m", rep: "Peak amplitude values", unit: "Volt / Ampere", unitSym: "\\mathrm{V} / \\mathrm{A}" },
+                        { symbol: "\\omega", rep: "Angular frequency (2πf)", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
+                        { symbol: "t", rep: "Time instant", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                },
+                {
+                    section: "AC Waveforms",
+                    name: "RMS / Effective AC Values",
+                    formula: "\\[ V_{\\text{eff}} = \\frac{V_m}{\\sqrt{2}} \\approx 0.707 V_m, \\quad I_{\\text{eff}} = \\frac{I_m}{\\sqrt{2}} \\approx 0.707 I_m \\]",
+                    pdfPage: "PDF Page 40 & 41",
+                    explanation: "Root mean square effective values of sinusoidal AC producing equivalent Joule heating as steady DC.",
+                    conditions: "Pure sinusoidal AC waveforms.",
+                    variables: [
+                        { symbol: "V_{\\text{eff}}", rep: "RMS effective voltage", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I_{\\text{eff}}", rep: "RMS effective current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "V_m, I_m", rep: "Peak maximum amplitudes", unit: "Volt / Ampere", unitSym: "\\mathrm{V} / \\mathrm{A}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the transformer equation?", back: "\\( \\frac{V_s}{V_p} = \\frac{N_s}{N_p} = \\frac{I_p}{I_s} \\)" },
+                { front: "Why are high voltages used in long-distance power grids?", back: "High voltage minimizes line current, reducing Joule heating loss (\\( P_J = RI^2 \\))." },
+                { front: "Why is a transformer core made of laminated soft iron sheets?", back: "To minimize eddy current heat losses." }
+            ],
+            quiz: [
+                { question: "A transformer with Ns > Np is called a:", options: ["Step-down transformer", "Step-up transformer", "Isolation transformer", "Direct current adapter"], correctIndex: 1, feedback: "When Ns > Np, secondary voltage is greater, stepping up voltage." },
+                { question: "If transmission voltage is increased by a factor of 4, Joule power loss in the lines decreases by:", options: ["4 times", "8 times", "16 times", "Does not change"], correctIndex: 2, feedback: "P_loss ∝ 1/V²: increasing voltage 4-fold reduces loss by 4² = 16 times." }
+            ]
+        },
+        // --- Grade 10 Chapter 4: Optics ---
+        {
+            id: "g10-ch4-l1",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch4-l1-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Geometric Optics Simulation", url: "https://phet.colorado.edu/sims/html/geometric-optics/latest/geometric-optics_all.html" }],
+            title: "Chapter 4 • Lesson 1: Propagation of Light & Optical Shadows",
+            concepts: [
+                "Rectilinear Propagation of Light: In a uniform, transparent, and isotropic medium, light travels in straight lines.",
+                "Shadows with a Point Source: Light blocked by an opaque object creates an umbra (completely dark center) and penumbra (partially lit boundary) and antumbra on a screen.",
+                "Shadows with Extended Light Sources: When two light sources S₁ and S₂ shine on an object, the umbra receives zero light from either source; the penumbra receives light from one source only.",
+                "Pinhole Camera: Ray crossing through a tiny aperture (O) onto a back screen forms an inverted, real image. Magnification satisfies \\(\\frac{h_i}{h_o} = \\frac{d_i}{d_o}\\)."
+            ],
+            definitions: [
+                { term: "Rectilinear Propagation", definition: "The physical principle stating that light rays propagate in straight lines in homogeneous isotropic media.", symbol: "\\text{Straight ray}", unit: "\\text{No unit}", equation: "\\text{Ray path: straight line}" },
+                { term: "Umbra", definition: "The region of total shadow where all light from the source is completely blocked by an opaque obstacle.", symbol: "\\text{Umbra}", unit: "\\text{Total darkness}", equation: "I_{\\text{light}} = 0" },
+                { term: "Penumbra", definition: "The region of partial shadow surrounding the umbra where light from an extended source is partially illuminated.", symbol: "\\text{Penumbra}", unit: "\\text{Partial shadow}", equation: "0 < I < I_0" },
+                { term: "Pinhole Camera", definition: "A light-tight enclosure with a small aperture on one side projecting an inverted real optical image on the opposite face.", symbol: "\\text{Camera}", unit: "\\text{Optical device}", equation: "\\frac{h_i}{h_o} = \\frac{d_i}{d_o}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Inverted Image Height in a Pinhole Camera",
+                    question: "A 1.8 m tall person stands 6.0 m in front of a pinhole camera. The camera depth from pinhole to screen is 0.20 m. Calculate the height of the inverted image on the screen.",
+                    given: "Object height \\( h_o = 1.8\\,\\mathrm{m} \\), Object distance \\( d_o = 6.0\\,\\mathrm{m} \\), Screen distance \\( d_i = 0.20\\,\\mathrm{m} \\).",
+                    find: "Image height \\( h_i \\).",
+                    equation: "\\frac{h_i}{h_o} = \\frac{d_i}{d_o} \\implies h_i = h_o \\left(\\frac{d_i}{d_o}\\right)",
+                    rearrangement: "h_i = 1.8 \\times \\frac{0.20}{6.0}",
+                    solution: "1. \\( \\frac{0.20}{6.0} = \\frac{1}{30} \\).<br>2. \\( h_i = \\frac{1.8}{30} = 0.060\\,\\mathrm{m} = 6.0\\,\\mathrm{cm} \\).",
+                    finalAnswer: "h_i = 6.0\\,\\mathrm{cm} \\text{ (Inverted)}",
+                    explanation: "Straight-line ray propagation creates proportional similar triangles through the pinhole."
+                }
+            ],
+            equations: [
+                {
+                    section: "Pinhole Optics",
+                    name: "Pinhole Camera Magnification",
+                    formula: "\\[ \\frac{h_i}{h_o} = \\frac{d_i}{d_o} \\]",
+                    pdfPage: "PDF Page 44",
+                    explanation: "Proportional relationship between image/object heights and screen/object distances.",
+                    conditions: "Straight-line ray geometry through a small aperture.",
+                    variables: [
+                        { symbol: "h_i", rep: "Image height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "h_o", rep: "Object height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "d_i", rep: "Distance from pinhole to screen", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "d_o", rep: "Distance from pinhole to object", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Shadow Geometry",
+                    name: "Shadow Dimension Ratio",
+                    formula: "\\[ \\frac{H}{h} = \\frac{D}{d} \\]",
+                    pdfPage: "PDF Page 44",
+                    explanation: "Similar triangle proportion determining shadow height cast by an opaque object under point source illumination.",
+                    conditions: "Point light source.",
+                    variables: [
+                        { symbol: "H", rep: "Shadow height on screen", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "h", rep: "Object height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "D", rep: "Source to screen distance", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "d", rep: "Source to object distance", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Speed of Light",
+                    name: "Light Propagation Speed in Vacuum",
+                    formula: "\\[ c = 3.0 \\times 10^8\\,\\mathrm{m/s} \\]",
+                    pdfPage: "PDF Page 44",
+                    explanation: "Fundamental constant speed of electromagnetic radiation in free space.",
+                    conditions: "Vacuum or air.",
+                    variables: [
+                        { symbol: "c", rep: "Speed of light", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Pinhole Optics",
+                    name: "Pinhole Camera Linear Magnification",
+                    formula: "\\[ m = \\frac{h_i}{h_o} = -\\frac{d_i}{d_o} \\]",
+                    pdfPage: "PDF Page 44",
+                    explanation: "Signed linear magnification of a pinhole camera where the negative sign denotes an inverted real image.",
+                    conditions: "Pinhole aperture ray tracing.",
+                    variables: [
+                        { symbol: "m", rep: "Linear magnification factor", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "h_i", rep: "Image height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "h_o", rep: "Object height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "d_i, d_o", rep: "Image and object distances", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Photometry",
+                    name: "Illuminance Inverse-Square Law",
+                    formula: "\\[ E_v = \\frac{I_v}{r^2}\\cos\\theta \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Surface illuminance produced by an isotropic point light source of luminous intensity I_v at distance r.",
+                    conditions: "Point light source at distance r, surface normal at angle θ.",
+                    variables: [
+                        { symbol: "E_v", rep: "Illuminance on surface", unit: "Lux", unitSym: "\\mathrm{lx}" },
+                        { symbol: "I_v", rep: "Luminous intensity", unit: "Candela", unitSym: "\\mathrm{cd}" },
+                        { symbol: "r", rep: "Distance from light source", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Angle of incidence to surface normal", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the Rectilinear Propagation of Light?", back: "Light travels in straight lines in a uniform, transparent, isotropic medium." },
+                { front: "What is the difference between umbra and penumbra?", back: "Umbra is completely dark (all light blocked); penumbra is partially illuminated." },
+                { front: "Is the image in a pinhole camera upright or inverted?", back: "Inverted (upside down) and real." }
+            ],
+            quiz: [
+                { question: "The region where all light from an extended source is blocked is called the:", options: ["Penumbra", "Umbra", "Antumbra", "Refraction zone"], correctIndex: 1, feedback: "The central total shadow is the umbra." },
+                { question: "In a pinhole camera, if the screen distance di is increased, the image size:", options: ["Increases", "Decreases", "Remains constant", "Disappears"], correctIndex: 0, feedback: "hi = ho × (di / do): increasing di enlarges the image." }
+            ]
+        },
+        {
+            id: "g10-ch4-l2",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch4-l2-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Bending Light Simulation", url: "https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_all.html" }],
+            title: "Chapter 4 • Lesson 2: Laws of Reflection and Refraction",
+            concepts: [
+                "Plane Mirror Properties: Flat smooth reflecting surface. Forms virtual, upright, laterally inverted image equal in size at identical perpendicular distance: \\(AH = HA'\\).",
+                "Real vs Virtual Objects & Images: Real object (rays diverge from point); Virtual object (rays converge toward point). Real image (reflected rays converge); Virtual image (reflected rays appear to originate behind mirror).",
+                "Descartes' Laws of Reflection: 1. Incident ray, reflected ray, and normal lie in the identical plane. 2. Angle of incidence equals angle of reflection: \\(i = r\\).",
+                "Rotation of Reflected Ray: Keeping the incident ray fixed, if a plane mirror rotates by angle \\(\\alpha\\), the reflected ray rotates by \\(\\beta = 2\\alpha\\).",
+                "Refraction & Descartes' (Snell's) Law: Ray crossing boundary bends according to \\(n_1 \\sin i = n_2 \\sin r\\), where \\(n = \\frac{n_2}{n_1}\\) is relative refractive index.",
+                "Refraction Conditions: If \\(n_2 > n_1\\), ray bends towards normal (\\(i > r\\)); If \\(n_2 < n_1\\), ray bends away from normal (\\(i < r\\)); If \\(n_2 = n_1\\), ray continues straight (\\(i = r\\))."
+            ],
+            definitions: [
+                { term: "Law of Reflection", definition: "The fundamental optical principle stating that the angle of incidence equals the angle of reflection (i = r).", symbol: "i = r", unit: "Degree", equation: "\\angle i = \\angle r" },
+                { term: "Rotation of Reflected Ray", definition: "A mirror rotated by angle α causes the reflected light ray to deflect by double the angle (2α).", symbol: "\\beta", unit: "Degree", equation: "\\beta = 2\\alpha" },
+                { term: "Snell's Law of Refraction", definition: "The ratio of the sine of the angle of incidence to the sine of the angle of refraction equals the relative refractive index.", symbol: "n", unit: "\\text{Dimensionless}", equation: "n_1 \\sin i = n_2 \\sin r" },
+                { term: "Refractive Index", definition: "The ratio of the speed of light in vacuum to the speed of light in a transparent material.", symbol: "n", unit: "\\text{Dimensionless}", equation: "n = \\frac{c}{v} = \\frac{n_2}{n_1}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Rotation of a Reflected Light Beam",
+                    question: "A laser beam reflects off a mirror onto a measuring scale. If the mirror rotates through an angle of 15°, by what angle does the reflected laser beam turn?",
+                    given: "Mirror rotation \\( \\alpha = 15^\\circ \\).",
+                    find: "Reflected ray deflection \\( \\beta \\).",
+                    equation: "\\beta = 2\\alpha",
+                    rearrangement: "\\beta = 2 \\times 15^\\circ",
+                    solution: "1. \\( \\beta = 2 \\times 15^\\circ = 30^\\circ \\).",
+                    finalAnswer: "\\beta = 30^\\circ",
+                    explanation: "Rotating a plane mirror by angle α doubles the deflection of the reflected ray because the normal also rotates by α."
+                },
+                {
+                    title: "Example 2: Snell's Law from Air into Glass",
+                    question: "A light ray in air (n₁ = 1.0) strikes the flat surface of a glass block (n₂ = 1.50) at an angle of incidence of 30°. Find the angle of refraction r.",
+                    given: "\\( n_1 = 1.00, n_2 = 1.50, i = 30^\\circ \\) (\\(\\sin 30^\\circ = 0.50\\)).",
+                    find: "Refracted angle \\( r \\).",
+                    equation: "n_1 \\sin i = n_2 \\sin r \\implies \\sin r = \\frac{n_1 \\sin i}{n_2}",
+                    rearrangement: "\\sin r = \\frac{1.00 \\times 0.50}{1.50} = \\frac{1}{3} \\approx 0.3333",
+                    solution: "1. \\( r = \\sin^{-1}(0.3333) \\approx 19.47^\\circ \\).",
+                    finalAnswer: "r \\approx 19.5^\\circ",
+                    explanation: "Light passing from a rarer medium into a denser medium slows down and refracts towards the normal line."
+                }
+            ],
+            equations: [
+                {
+                    section: "Reflection",
+                    name: "Descartes' Law of Reflection",
+                    formula: "\\[ \\angle i = \\angle r \\]",
+                    pdfPage: "PDF Page 45 & 46",
+                    explanation: "The angle of incidence measured from the surface normal equals the angle of reflection.",
+                    conditions: "Specular reflection on planar boundary.",
+                    variables: [
+                        { symbol: "i", rep: "Angle of incidence", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "r", rep: "Angle of reflection", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Plane Mirror",
+                    name: "Plane Mirror Image Symmetry",
+                    formula: "\\[ AH = HA' \\implies AA' = 2AH \\]",
+                    pdfPage: "PDF Page 46",
+                    explanation: "Perpendicular distance from object to mirror surface equals distance from mirror to virtual image.",
+                    conditions: "Flat planar mirror.",
+                    variables: [
+                        { symbol: "AH", rep: "Object distance to mirror", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "HA'", rep: "Virtual image distance to mirror", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Mirror Rotation",
+                    name: "Reflected Ray Deflection Theorem",
+                    formula: "\\[ \\beta = 2\\alpha \\quad (\\angle RIR' = 2\\angle NIN') \\]",
+                    pdfPage: "PDF Page 46",
+                    explanation: "When a plane mirror rotates about an axis in its plane by angle α, the reflected ray deflects by double that angle (2α).",
+                    conditions: "Fixed incident ray direction.",
+                    variables: [
+                        { symbol: "\\beta", rep: "Angular deflection of reflected ray", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "\\alpha", rep: "Rotation angle of plane mirror", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Refraction",
+                    name: "Snell's Law of Refraction",
+                    formula: "\\[ n_1 \\sin i = n_2 \\sin r \\]",
+                    pdfPage: "PDF Page 47",
+                    explanation: "Fundamental relation connecting incident and refracted angles across two transparent optical media.",
+                    conditions: "Planar interface between transparent media.",
+                    variables: [
+                        { symbol: "n_1, n_2", rep: "Refractive indices of media", unit: "Dimensionless", unitSym: "\\text{No unit}" },
+                        { symbol: "i", rep: "Angle of incidence", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "r", rep: "Angle of refraction", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Refraction",
+                    name: "Relative Refractive Index Ratio",
+                    formula: "\\[ n = \\frac{n_2}{n_1} = \\frac{v_1}{v_2} = \\frac{\\sin i}{\\sin r} = \\text{constant} \\]",
+                    pdfPage: "PDF Page 47",
+                    explanation: "The ratio of sines equals the relative index and wave velocity ratio between two media.",
+                    conditions: "Monochromatic light across boundary.",
+                    variables: [
+                        { symbol: "n", rep: "Relative refractive index", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "v_1, v_2", rep: "Light speeds in media", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Total Internal Reflection",
+                    name: "Critical Angle Formula",
+                    formula: "\\[ \\sin \\lambda = \\frac{n_2}{n_1} = \\frac{1}{n} \\quad (n_1 > n_2) \\]",
+                    pdfPage: "PDF Page 48",
+                    explanation: "Minimum incidence angle in denser medium at which refracted ray skims surface (r = 90°).",
+                    conditions: "Light traveling from denser to rarer medium (\\(n_1 > n_2\\)).",
+                    variables: [
+                        { symbol: "\\lambda", rep: "Critical angle of total reflection", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "n_1", rep: "Refractive index of denser medium", unit: "Dimensionless", unitSym: "\\text{No unit}" },
+                        { symbol: "n_2", rep: "Refractive index of rarer medium", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Reflection Deviation",
+                    name: "Angular Deviation at Plane Mirror",
+                    formula: "\\[ D_{\\text{refl}} = 180^\\circ - 2i \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "The angle through which a light ray turns away from its original path upon specular reflection at incidence angle i.",
+                    conditions: "Planar specular reflection.",
+                    variables: [
+                        { symbol: "D_{\\text{refl}}", rep: "Angle of deviation after reflection", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "i", rep: "Angle of incidence", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Refraction Deviation",
+                    name: "Angular Deviation at Single Interface",
+                    formula: "\\[ D_{\\text{refr}} = |i - r| \\]",
+                    pdfPage: "PDF Page 48",
+                    explanation: "The angular deviation between the incident ray direction and refracted ray direction at a single boundary.",
+                    conditions: "Refraction across a flat boundary between two media.",
+                    variables: [
+                        { symbol: "D_{\\text{refr}}", rep: "Angle of deviation", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "i", rep: "Angle of incidence", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "r", rep: "Angle of refraction", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Wave Optics",
+                    name: "Wavelength and Speed Across Media",
+                    formula: "\\[ \\lambda_n = \\frac{\\lambda_0}{n}, \\quad v = \\frac{c}{n} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Wavelength and phase velocity of light decrease in an optical medium in inverse proportion to its refractive index.",
+                    conditions: "Constant optical frequency f across interface (f = const).",
+                    variables: [
+                        { symbol: "\\lambda_n", rep: "Wavelength in medium", unit: "Nanometer or meter", unitSym: "\\mathrm{nm}" },
+                        { symbol: "\\lambda_0", rep: "Wavelength in vacuum", unit: "Nanometer or meter", unitSym: "\\mathrm{nm}" },
+                        { symbol: "n", rep: "Absolute refractive index", unit: "Dimensionless", unitSym: "\\text{No unit}" },
+                        { symbol: "v", rep: "Light speed in medium", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "c", rep: "Speed of light in vacuum", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the relation between angle of incidence and reflection?", back: "\\( i = r \\)" },
+                { front: "If a mirror rotates by 10°, how much does the reflected ray rotate?", back: "\\( \\beta = 2\\alpha = 20^\\circ \\)" },
+                { front: "State Snell's Law in mathematical form:", back: "\\( n_1 \\sin i = n_2 \\sin r \\)" }
+            ],
+            quiz: [
+                { question: "If the angle of incidence on a plane mirror is 40°, the reflected angle is:", options: ["20°", "40°", "50°", "80°"], correctIndex: 1, feedback: "By the Law of Reflection, i = r = 40°." },
+                { question: "When light travels from air into water (n = 1.33), the ray bends:", options: ["Towards the normal", "Away from the normal", "Backwards", "Does not bend"], correctIndex: 0, feedback: "Entering an optically denser medium slows light and bends it towards the normal." }
+            ]
+        },
+        {
+            id: "g10-ch4-l3",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g10-ch4-l3-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Prism & Refraction Sim", url: "https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_all.html" }],
+            title: "Chapter 4 • Lesson 3: Double Plane, Slab, and Prism",
+            concepts: [
+                "Apparent Depth in Double Plane: An object in a denser medium \\(n_2\\) viewed from rarer medium \\(n_1\\) appears closer to the boundary: \\(\\frac{HA'}{HA} = \\frac{n_2}{n_1}\\).",
+                "Light Passing Through a Slab: A parallel-sided slab of thickness \\(e\\) refracts light at both surfaces. Emergent ray is parallel to incident ray (\\(i' = i\\)).",
+                "Lateral Displacement and Shift: Lateral displacement \\(d = \\frac{e\\sin(i - r)}{\\cos r}\\); For small angles, lateral shift along ray \\(SS' = e\\left(1 - \\frac{1}{n}\\right)\\).",
+                "Prism Geometry: Triangular optical medium with apex angle \\(A\\). Refractions at faces: \\(\\sin i = n\\sin r\\), \\(\\sin i' = n\\sin r'\\), and apex relation \\(A = r + r'\\).",
+                "Angle of Deviation (D): Total deflection angle \\(D = i + i' - A\\).",
+                "Minimum Angle of Deviation: Symmetrical ray passage occurs when \\(i = i'\\) and \\(r = r' = A/2\\), giving \\(D_{\\min} = 2i - A\\). Refractive index: \\(n = \\frac{\\sin\\left(\\frac{D_{\\min} + A}{2}\\right)}{\\sin(A/2)}\\).",
+                "Light Escaping a Prism: If prism angle \\(A > 2\\lambda\\) (where \\(\\lambda\\) is critical angle), total internal reflection occurs and light cannot escape. Critical incidence angle: \\(\\sin i_0 = n\\sin(A - \\lambda)\\)."
+            ],
+            definitions: [
+                { term: "Optical Slab", definition: "A transparent medium bounded by two parallel planar refracting surfaces.", symbol: "e", unit: "\\mathrm{m}", equation: "i' = i" },
+                { term: "Lateral Displacement", definition: "The perpendicular distance between the original incident ray path and the emergent ray exiting a parallel slab.", symbol: "d", unit: "\\mathrm{m}", equation: "d = \\frac{e\\sin(i - r)}{\\cos r}" },
+                { term: "Prism Apex Angle", definition: "The angle A between the two non-parallel refracting faces of an optical prism.", symbol: "A", unit: "Degree", equation: "A = r + r'" },
+                { term: "Angle of Deviation (D)", definition: "The angle between the initial incident ray direction and the final emergent ray direction after passing through a prism.", symbol: "D", unit: "Degree", equation: "D = i + i' - A" },
+                { term: "Minimum Deviation (D_min)", definition: "The smallest angle of deviation occurring when light passes symmetrically through a prism.", symbol: "D_{\\min}", unit: "Degree", equation: "n = \\frac{\\sin((D_{\\min}+A)/2)}{\\sin(A/2)}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Lateral Displacement through a Glass Slab",
+                    question: "A light ray strikes a glass slab of thickness 6.0 cm (0.060 m) with refractive index n = 1.50 at an angle of incidence of 45°. If the angle of refraction is 28°, calculate the lateral displacement d (sin 17° ≈ 0.2924, cos 28° ≈ 0.8829).",
+                    given: "Thickness \\( e = 0.060\\,\\mathrm{m} \\), \\( i = 45^\\circ \\), \\( r = 28^\\circ \\), \\( i - r = 17^\\circ \\).",
+                    find: "Lateral displacement \\( d \\).",
+                    equation: "d = \\frac{e\\sin(i - r)}{\\cos r}",
+                    rearrangement: "d = \\frac{0.060 \\times \\sin 17^\\circ}{\\cos 28^\\circ}",
+                    solution: "1. \\( \\sin 17^\\circ \\approx 0.2924, \\; \\cos 28^\\circ \\approx 0.8829 \\).<br>2. \\( d = \\frac{0.060 \\times 0.2924}{0.8829} = \\frac{0.01754}{0.8829} \\approx 0.0199\\,\\mathrm{m} = 1.99\\,\\mathrm{cm} \\).",
+                    finalAnswer: "d \\approx 2.0\\,\\mathrm{cm}",
+                    explanation: "The parallel slab shifts the emergent beam sideways by 2.0 cm while keeping its exit direction parallel."
+                },
+                {
+                    title: "Example 2: Refractive Index from Minimum Deviation of a Prism",
+                    question: "An equilateral prism (A = 60°) produces a minimum deviation angle D_min = 30°. Calculate the refractive index n of the prism (sin 45° ≈ 0.7071, sin 30° = 0.50).",
+                    given: "Apex angle \\( A = 60^\\circ \\), Minimum deviation \\( D_{\\min} = 30^\\circ \\).",
+                    find: "Refractive index \\( n \\).",
+                    equation: "n = \\frac{\\sin\\left(\\frac{D_{\\min} + A}{2}\\right)}{\\sin(A/2)}",
+                    rearrangement: "n = \\frac{\\sin((30^\\circ + 60^\\circ)/2)}{\\sin(60^\\circ / 2)} = \\frac{\\sin 45^\\circ}{\\sin 30^\\circ}",
+                    solution: "1. \\( \\frac{D_{\\min} + A}{2} = \\frac{90^\\circ}{2} = 45^\\circ \\).<br>2. \\( \\frac{A}{2} = 30^\\circ \\).<br>3. \\( n = \\frac{\\sin 45^\\circ}{\\sin 30^\\circ} = \\frac{\\sqrt{2}/2}{1/2} = \\sqrt{2} \\approx 1.414 \\).",
+                    finalAnswer: "n = \\sqrt{2} \\approx 1.414",
+                    explanation: "Symmetrical ray passage through an equilateral prism yields minimum deviation and allows precise measurement of refractive index."
+                }
+            ],
+            equations: [
+                {
+                    section: "Apparent Depth",
+                    name: "Apparent Depth in Denser Medium",
+                    formula: "\\[ \\frac{HA'}{HA} = \\frac{n_2}{n_1} \\implies d' = \\frac{d}{n} \\]",
+                    pdfPage: "PDF Page 49 & 50",
+                    explanation: "Apparent position of an object viewed from a less dense medium into a denser medium appears closer to surface.",
+                    conditions: "Small angles of view near normal.",
+                    variables: [
+                        { symbol: "HA'", rep: "Apparent depth distance", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "HA", rep: "Real geometric depth", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "n", rep: "Relative refractive index", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Optical Slab",
+                    name: "Emergent Ray Parallelism in Slab",
+                    formula: "\\[ i' = i \\]",
+                    pdfPage: "PDF Page 50",
+                    explanation: "The angle of emergence from a parallel-sided transparent slab strictly equals the angle of incidence.",
+                    conditions: "Parallel opposing slab faces.",
+                    variables: [
+                        { symbol: "i'", rep: "Angle of emergence", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "i", rep: "Angle of incidence", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Optical Slab",
+                    name: "Lateral Displacement Through Slab",
+                    formula: "\\[ d = \\frac{e\\sin(i - r)}{\\cos r} \\]",
+                    pdfPage: "PDF Page 50 & 51",
+                    explanation: "Perpendicular beam shift caused by transmission through a slab of thickness e.",
+                    conditions: "Parallel flat slab of thickness e.",
+                    variables: [
+                        { symbol: "d", rep: "Lateral displacement", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "e", rep: "Slab thickness", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "i", rep: "Angle of incidence", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "r", rep: "Angle of refraction", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Optical Slab",
+                    name: "Lateral Shift Formula",
+                    formula: "\\[ SS' = e\\left(1 - \\frac{1}{n}\\right) \\]",
+                    pdfPage: "PDF Page 51 & 52",
+                    explanation: "Lateral shift along the slab surface for light rays striking close to normal.",
+                    conditions: "Small incident angles.",
+                    variables: [
+                        { symbol: "SS'", rep: "Lateral shift along surface", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "e", rep: "Thickness of slab", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "n", rep: "Refractive index of slab", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Prism Optics",
+                    name: "Prism Apex Angle Relation",
+                    formula: "\\[ A = r + r' \\]",
+                    pdfPage: "PDF Page 53",
+                    explanation: "Relates the internal angles of refraction at the first and second surfaces to apex angle A.",
+                    conditions: "Triangular optical prism.",
+                    variables: [
+                        { symbol: "A", rep: "Prism apex angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "r", rep: "Internal angle at first surface", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "r'", rep: "Internal angle at second surface", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Prism Optics",
+                    name: "Angle of Deviation of a Prism",
+                    formula: "\\[ D = (i - r) + (i' - r') = i + i' - A \\]",
+                    pdfPage: "PDF Page 53 & 54",
+                    explanation: "Total net deviation angle between incident ray and emergent ray passing through a prism.",
+                    conditions: "Triangular prism of apex angle A.",
+                    variables: [
+                        { symbol: "D", rep: "Angle of deviation", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "i", rep: "Angle of incidence", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "i'", rep: "Angle of emergence", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "A", rep: "Apex angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Prism Optics",
+                    name: "Minimum Deviation Angle",
+                    formula: "\\[ D_{\\min} = 2i - A \\quad (i = i', \\; r = r' = A/2) \\]",
+                    pdfPage: "PDF Page 54",
+                    explanation: "The minimum deviation occurs when ray path through the prism is completely symmetric.",
+                    conditions: "Symmetric transmission at minimum deviation.",
+                    variables: [
+                        { symbol: "D_{\\min}", rep: "Minimum deviation angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "i", rep: "Symmetric incident angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "A", rep: "Prism apex angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Prism Optics",
+                    name: "Prism Refractive Index Formula",
+                    formula: "\\[ n = \\frac{\\sin\\left(\\frac{D_{\\min} + A}{2}\\right)}{\\sin(A/2)} \\]",
+                    pdfPage: "PDF Page 54",
+                    explanation: "Calculates the exact refractive index of a prism material using measured minimum deviation angle.",
+                    conditions: "Prism in air at minimum deviation.",
+                    variables: [
+                        { symbol: "n", rep: "Prism refractive index", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "D_{\\min}", rep: "Minimum deviation angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "A", rep: "Apex angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Prism Transmission",
+                    name: "Critical Angle & Escape Condition",
+                    formula: "\\[ \\sin i_0 = n\\sin(A - \\lambda) \\quad (\\text{Light escapes if } A < 2\\lambda) \\]",
+                    pdfPage: "PDF Page 55",
+                    explanation: "Condition for light to emerge from prism face without undergoing total internal reflection.",
+                    conditions: "Critical angle \\(\\lambda = \\sin^{-1}(1/n)\\).",
+                    variables: [
+                        { symbol: "i_0", rep: "Critical incidence angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "\\lambda", rep: "Critical angle of material", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "A", rep: "Prism apex angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "n", rep: "Prism refractive index", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Apparent Shift",
+                    name: "Apparent Vertical Upward Shift",
+                    formula: "\\[ \\Delta h = h - h' = h\\left(1 - \\frac{1}{n}\\right) \\]",
+                    pdfPage: "PDF Page 49 & 50",
+                    explanation: "Apparent upward vertical displacement of an object submerged under a liquid or viewed through a transparent slab.",
+                    conditions: "Normal or near-normal viewing angle from rarer to denser medium.",
+                    variables: [
+                        { symbol: "\\Delta h", rep: "Apparent upward shift", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "h", rep: "Real geometric depth or thickness", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "h'", rep: "Apparent depth (h/n)", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "n", rep: "Refractive index of denser medium", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Prism Optics",
+                    name: "Small-Angle Prism Deviation Approximation",
+                    formula: "\\[ D \\approx A(n - 1) \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Linear approximation for the angle of deviation through a thin prism of small refracting angle A.",
+                    conditions: "Thin prism with small apex angle A (< 10°) and small incidence angle i.",
+                    variables: [
+                        { symbol: "D", rep: "Deviation angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "A", rep: "Small apex angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "n", rep: "Prism refractive index", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for the apex angle A of a prism?", back: "\\( A = r + r' \\)" },
+                { front: "What is the formula for the angle of deviation D in a prism?", back: "\\( D = i + i' - A \\)" },
+                { front: "What is the formula for prism refractive index at minimum deviation?", back: "\\( n = \\frac{\\sin((D_{\\min} + A)/2)}{\\sin(A/2)} \\)" },
+                { front: "Does the emergent ray from a parallel slab change direction?", back: "No; it emerges parallel to the incident ray (\\( i' = i \\)) but with lateral shift." }
+            ],
+            quiz: [
+                { question: "When light passes through a parallel-sided glass slab, the emergent ray is:", options: ["Bent at 90°", "Parallel to the incident ray", "Diffracted into a spectrum", "Reflected back to the source"], correctIndex: 1, feedback: "Refraction at the two parallel faces cancels angular bending, keeping rays parallel." },
+                { question: "In a prism with apex angle A = 60° and r = 25°, the second internal angle r' is:", options: ["25°", "35°", "60°", "85°"], correctIndex: 1, feedback: "A = r + r' => r' = A - r = 60° - 25° = 35°." }
+            ]
+        }
+    ];
+
+    // =========================================================================
+    // GRADE 11 PHYSICS CURRICULUM DATA (Authentic Content from Moeun Sokmean PDF, pp. 54-141)
+    // =========================================================================
+    const G11_LESSONS = [
+        {
+            id: "g11-l1",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch1-l1-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Projectile Motion Simulation", url: "https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_all.html" }],
+            title: "Chapter 1 • Lesson 1: Kinematics in 2D & Projectile Motion",
+            concepts: [
+                "Two-Dimensional Position, Velocity, and Acceleration: Vector representations \\(\\vec{r} = x\\hat{i} + y\\hat{j}\\), \\(\\vec{v} = v_x\\hat{i} + v_y\\hat{j}\\), and \\(\\vec{a} = a_x\\hat{i} + a_y\\hat{j}\\).",
+                "Independence of Perpendicular Motions: The horizontal motion and vertical motion of a projectile occur simultaneously and completely independently under uniform gravitational acceleration \\(g\\).",
+                "Horizontal Kinematics: Acceleration \\(a_x = 0\\), constant velocity \\(v_x = v_{0x} = v_0\\cos\\theta_0\\), and displacement \\(x(t) = (v_0\\cos\\theta_0)t\\).",
+                "Vertical Kinematics: Acceleration \\(a_y = -g\\), vertical velocity \\(v_y(t) = v_0\\sin\\theta_0 - gt\\), and vertical position \\(y(t) = (v_0\\sin\\theta_0)t - \\frac{1}{2}gt^2\\).",
+                "Parabolic Trajectory Equation: Eliminating time \\(t\\) yields the parabola \\(y = (\\tan\\theta_0)x - \\frac{g}{2v_0^2\\cos^2\\theta_0}x^2\\).",
+                "Key Trajectory Parameters: Time to peak \\(t_p = \\frac{v_0\\sin\\theta_0}{g}\\), Total time of flight \\(T = \\frac{2v_0\\sin\\theta_0}{g}\\), Maximum height \\(H_{\\max} = \\frac{v_0^2\\sin^2\\theta_0}{2g}\\), and Horizontal range \\(R = \\frac{v_0^2\\sin(2\\theta_0)}{g}\\) (maximum at \\(\\theta_0 = 45^\\circ\\)).",
+                "Relative Velocity in 2D: The velocity of body A relative to body B is given by \\(\\vec{v}_{A/B} = \\vec{v}_A - \\vec{v}_B\\)."
+            ],
+            definitions: [
+                { term: "Position Vector", definition: "A vector from the origin to a particle's instantaneous spatial coordinates in a plane.", symbol: "\\vec{r}", unit: "\\mathrm{m}", equation: "\\vec{r} = x\\hat{i} + y\\hat{j}" },
+                { term: "Projectile Motion", definition: "Two-dimensional curved motion of a particle subjected only to downward gravity without thrust.", symbol: "\\vec{a}", unit: "\\mathrm{m/s^2}", equation: "\\vec{a} = -g\\hat{j}" },
+                { term: "Time of Flight", definition: "Total duration an unpowered projectile remains airborne before returning to launch height.", symbol: "T", unit: "\\mathrm{s}", equation: "T = \\frac{2v_0\\sin\\theta_0}{g}" },
+                { term: "Maximum Height", definition: "Peak vertical displacement reached where vertical velocity component momentarily equals zero.", symbol: "H_{\\max}", unit: "\\mathrm{m}", equation: "H_{\\max} = \\frac{v_0^2\\sin^2\\theta_0}{2g}" },
+                { term: "Horizontal Range", definition: "The total horizontal ground distance traveled by a projectile landing at the launch elevation.", symbol: "R", unit: "\\mathrm{m}", equation: "R = \\frac{v_0^2\\sin(2\\theta_0)}{g}" },
+                { term: "Relative Velocity", definition: "The vector velocity of an object as observed from another moving frame of reference.", symbol: "\\vec{v}_{A/B}", unit: "\\mathrm{m/s}", equation: "\\vec{v}_{A/B} = \\vec{v}_A - \\vec{v}_B" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Projectile Trajectory, Apex Height and Horizontal Range",
+                    question: "A soccer ball is kicked with an initial speed of 25.0 m/s at an angle of 37.0° above horizontal on level ground. Taking g = 9.80 m/s², calculate: (a) Time to maximum height, (b) Maximum height reached, and (c) Total horizontal range.",
+                    given: "Initial velocity \\( v_0 = 25.0\\,\\mathrm{m/s} \\), Launch angle \\( \\theta_0 = 37.0^\\circ \\), \\( g = 9.80\\,\\mathrm{m/s^2} \\).",
+                    find: "Apex time \\( t_p \\), maximum height \\( H_{\\max} \\), horizontal range \\( R \\).",
+                    equation: "t_p = \\frac{v_0\\sin\\theta_0}{g}, \\quad H_{\\max} = \\frac{v_0^2\\sin^2\\theta_0}{2g}, \\quad R = \\frac{v_0^2\\sin(2\\theta_0)}{g}",
+                    rearrangement: "v_{0x} = v_0\\cos\\theta_0 = 19.96\\,\\mathrm{m/s}, \\quad v_{0y} = v_0\\sin\\theta_0 = 15.05\\,\\mathrm{m/s}",
+                    solution: "1. Time to peak: \\( t_p = \\frac{15.05}{9.80} \\approx 1.54\\,\\mathrm{s} \\).<br>2. Max height: \\( H_{\\max} = \\frac{(15.05)^2}{2 \\times 9.80} = \\frac{226.5}{19.60} \\approx 11.56\\,\\mathrm{m} \\).<br>3. Total range: \\( R = \\frac{25.0^2 \\times \\sin(74.0^\\circ)}{9.80} = \\frac{625 \\times 0.9613}{9.80} \\approx 61.3\\,\\mathrm{m} \\).",
+                    finalAnswer: "t_p \\approx 1.54\\,\\mathrm{s}, \\quad H_{\\max} \\approx 11.6\\,\\mathrm{m}, \\quad R \\approx 61.3\\,\\mathrm{m}",
+                    explanation: "Horizontal motion continues with constant velocity while vertical motion is under constant downward gravity."
+                },
+                {
+                    title: "Example 2: Horizontal Projectile Launched from a Cliff",
+                    question: "A rescue bundle is released horizontally at 60.0 m/s from a helicopter flying 180 m above sea level. Calculate: (a) Time to strike the water, (b) Horizontal landing distance, and (c) Impact speed. (g = 9.80 m/s²).",
+                    given: "Altitude \\( h = 180\\,\\mathrm{m} \\), Horizontal speed \\( v_{0x} = 60.0\\,\\mathrm{m/s} \\), \\( v_{0y} = 0 \\), \\( g = 9.80\\,\\mathrm{m/s^2} \\).",
+                    find: "Fall time \\( t \\), horizontal displacement \\( x \\), impact speed \\( v \\).",
+                    equation: "h = \\frac{1}{2}gt^2 \\implies t = \\sqrt{\\frac{2h}{g}}, \\quad x = v_{0x}t, \\quad v = \\sqrt{v_x^2 + v_y^2}",
+                    rearrangement: "v_y = gt, \\quad v = \\sqrt{v_{0x}^2 + (gt)^2}",
+                    solution: "1. Fall time: \\( t = \\sqrt{\\frac{2 \\times 180}{9.80}} = \\sqrt{36.73} \\approx 6.06\\,\\mathrm{s} \\).<br>2. Range: \\( x = 60.0 \\times 6.06 \\approx 363.6\\,\\mathrm{m} \\).<br>3. Vertical impact speed: \\( v_y = 9.80 \\times 6.06 \\approx 59.4\\,\\mathrm{m/s} \\).<br>4. Resultant speed: \\( v = \\sqrt{60.0^2 + 59.4^2} = \\sqrt{3600 + 3528} = \\sqrt{7128} \\approx 84.4\\,\\mathrm{m/s} \\).",
+                    finalAnswer: "t \\approx 6.06\\,\\mathrm{s}, \\quad x \\approx 364\\,\\mathrm{m}, \\quad v \\approx 84.4\\,\\mathrm{m/s}",
+                    explanation: "Initial horizontal velocity does not affect the time required for gravitational free fall to the ground."
+                }
+            ],
+            equations: [
+                {
+                    section: "3D Kinematics",
+                    name: "3D Position Vector & Magnitude",
+                    formula: "\\[ \\vec{r}(t) = x\\hat{i} + y\\hat{j} + z\\hat{k}, \\quad r = \\sqrt{x^2 + y^2 + z^2} \\]",
+                    pdfPage: "PDF Page 57 & 58",
+                    explanation: "Describes the spatial position of a particle in 3-dimensional space.",
+                    conditions: "Orthogonal Cartesian coordinates.",
+                    variables: [
+                        { symbol: "\\vec{r}", rep: "Position vector", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "x, y, z", rep: "Spatial Cartesian coordinates", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "3D Kinematics",
+                    name: "3D Instantaneous Velocity",
+                    formula: "\\[ \\vec{v} = \\frac{d\\vec{r}}{dt} = v_x\\hat{i} + v_y\\hat{j} + v_z\\hat{k}, \\quad v = \\sqrt{v_x^2 + v_y^2 + v_z^2} \\]",
+                    pdfPage: "PDF Page 58 & 59",
+                    explanation: "First time derivative of the 3D position vector giving magnitude and direction of motion.",
+                    conditions: "Continuous trajectory.",
+                    variables: [
+                        { symbol: "\\vec{v}", rep: "Velocity vector", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_x, v_y, v_z", rep: "Velocity components", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "3D Kinematics",
+                    name: "3D Instantaneous Acceleration",
+                    formula: "\\[ \\vec{a} = \\frac{d\\vec{v}}{dt} = a_x\\hat{i} + a_y\\hat{j} + a_z\\hat{k}, \\quad a = \\sqrt{a_x^2 + a_y^2 + a_z^2} \\]",
+                    pdfPage: "PDF Page 59 & 60",
+                    explanation: "Second time derivative of position describing rate of change of the 3D velocity vector.",
+                    conditions: "Differentiable velocity function.",
+                    variables: [
+                        { symbol: "\\vec{a}", rep: "Acceleration vector", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "a_x, a_y, a_z", rep: "Acceleration components", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Curvilinear Motion",
+                    name: "Tangential and Normal Acceleration",
+                    formula: "\\[ \\vec{a} = \\vec{a}_T + \\vec{a}_N \\implies a = \\sqrt{a_T^2 + a_N^2}, \\quad a_T = \\frac{dv}{dt}, \\quad a_N = \\frac{v^2}{R} = R\\omega^2 \\]",
+                    pdfPage: "PDF Page 60",
+                    explanation: "Decomposes acceleration along the tangent (speed change) and normal (direction curvature) of a curved path.",
+                    conditions: "Curved path with local radius of curvature R.",
+                    variables: [
+                        { symbol: "a_T", rep: "Tangential acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "a_N", rep: "Normal (centripetal) acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "R", rep: "Radius of curvature", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Circular Motion",
+                    name: "Angular Displacement & Arc Length",
+                    formula: "\\[ s = R\\theta \\]",
+                    pdfPage: "PDF Page 62",
+                    explanation: "Linear distance traveled along a circular path of radius R swept through angle θ.",
+                    conditions: "Angle \\(\\theta\\) in radians.",
+                    variables: [
+                        { symbol: "s", rep: "Arc length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "R", rep: "Circle radius", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Angular displacement", unit: "Radian", unitSym: "\\mathrm{rad}" }
+                    ]
+                },
+                {
+                    section: "Circular Motion",
+                    name: "Angular Velocity & Revolutions",
+                    formula: "\\[ \\omega = \\frac{d\\theta}{dt} = 2\\pi N, \\quad v = R\\omega \\]",
+                    pdfPage: "PDF Page 62 & 63",
+                    explanation: "Rate of angular rotation, related to revolutions per second N and tangential linear speed v.",
+                    conditions: "Circular trajectory.",
+                    variables: [
+                        { symbol: "\\omega", rep: "Angular velocity", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
+                        { symbol: "N", rep: "Frequency of revolutions", unit: "Revolutions per second", unitSym: "\\mathrm{rev/s}" },
+                        { symbol: "v", rep: "Tangential linear speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Circular Motion",
+                    name: "Angular Acceleration",
+                    formula: "\\[ \\alpha = \\frac{d\\omega}{dt} = \\frac{d^2\\theta}{dt^2}, \\quad a_T = R\\alpha \\]",
+                    pdfPage: "PDF Page 63",
+                    explanation: "Time rate of change of angular velocity, linked to linear tangential acceleration by factor R.",
+                    conditions: "Non-uniform circular rotation.",
+                    variables: [
+                        { symbol: "\\alpha", rep: "Angular acceleration", unit: "Radian per second squared", unitSym: "\\mathrm{rad/s^2}" },
+                        { symbol: "a_T", rep: "Tangential acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Rotational Kinematics",
+                    name: "Uniformly Accelerated Angular Motion",
+                    formula: "\\[ \\omega = \\omega_0 + \\alpha t, \\quad \\theta - \\theta_0 = \\omega_0 t + \\frac{1}{2}\\alpha t^2, \\quad \\omega^2 - \\omega_0^2 = 2\\alpha(\\theta - \\theta_0) \\]",
+                    pdfPage: "PDF Page 64 & 65",
+                    explanation: "Equations of rotational kinematics under constant angular acceleration α.",
+                    conditions: "Constant angular acceleration (\\(\\alpha = \\text{const}\\)).",
+                    variables: [
+                        { symbol: "\\omega", rep: "Final angular velocity", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
+                        { symbol: "\\omega_0", rep: "Initial angular velocity", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
+                        { symbol: "\\alpha", rep: "Angular acceleration", unit: "Radian per second squared", unitSym: "\\mathrm{rad/s^2}" },
+                        { symbol: "\\theta - \\theta_0", rep: "Angular displacement", unit: "Radian", unitSym: "\\mathrm{rad}" }
+                    ]
+                },
+                {
+                    section: "Projectile Motion",
+                    name: "Horizontal Projectile Kinematics",
+                    formula: "\\[ a_x = 0, \\quad v_x = v_0\\cos\\alpha, \\quad x = (v_0\\cos\\alpha)t \\]",
+                    pdfPage: "PDF Page 65",
+                    explanation: "Motion along horizontal axis proceeds with constant velocity due to zero horizontal acceleration.",
+                    conditions: "Negligible air resistance.",
+                    variables: [
+                        { symbol: "v_x", rep: "Horizontal velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "x", rep: "Horizontal displacement", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_0", rep: "Initial launch speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\alpha", rep: "Launch angle above horizontal", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Projectile Motion",
+                    name: "Vertical Projectile Kinematics",
+                    formula: "\\[ a_y = -g, \\quad v_y = v_0\\sin\\alpha - gt, \\quad y = (v_0\\sin\\alpha)t - \\frac{1}{2}gt^2 \\]",
+                    pdfPage: "PDF Page 65 & 66",
+                    explanation: "Motion along vertical axis is uniformly accelerated downward by gravity g.",
+                    conditions: "Uniform gravitational acceleration g.",
+                    variables: [
+                        { symbol: "v_y", rep: "Vertical velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "y", rep: "Vertical height", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Projectile Motion",
+                    name: "Parabolic Trajectory Equation",
+                    formula: "\\[ y = (\\tan\\alpha)x - \\frac{g}{2v_0^2\\cos^2\\alpha}x^2 \\]",
+                    pdfPage: "PDF Page 66",
+                    explanation: "Trajectory path of a projectile in the vertical plane, proving its path is an inverted parabola.",
+                    conditions: "Initial coordinate at origin (0, 0).",
+                    variables: [
+                        { symbol: "y", rep: "Height at horizontal distance x", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "x", rep: "Horizontal position", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\alpha", rep: "Launch angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Projectile Motion",
+                    name: "Horizontal Range & Maximum Range",
+                    formula: "\\[ x = \\frac{v_0^2\\sin(2\\alpha)}{g}, \\quad x_{\\max} = \\frac{v_0^2}{g} \\;(\\text{at } \\alpha = 45^\\circ) \\]",
+                    pdfPage: "PDF Page 66 & 67",
+                    explanation: "Horizontal distance traveled upon returning to launch height; maximized at a 45° launch angle.",
+                    conditions: "Launch and landing on same horizontal level.",
+                    variables: [
+                        { symbol: "x", rep: "Horizontal range", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "x_{\\max}", rep: "Maximum range at 45°", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_0", rep: "Launch speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Projectile Motion",
+                    name: "Instantaneous Speed & Maximum Height",
+                    formula: "\\[ v = \\sqrt{v_0^2 - 2gy}, \\quad y_{\\max} = \\frac{v_0^2\\sin^2\\alpha}{2g} \\]",
+                    pdfPage: "PDF Page 67 & 68",
+                    explanation: "Instantaneous speed as a function of height y, and peak altitude reached when vertical velocity vanishes.",
+                    conditions: "At apex: \\(v_y = 0\\).",
+                    variables: [
+                        { symbol: "v", rep: "Instantaneous projectile speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "y_{\\max}", rep: "Maximum apex height", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Curvilinear Motion",
+                    name: "Total Curvilinear Acceleration",
+                    formula: "\\[ a = \\sqrt{a_t^2 + a_n^2} = \\sqrt{\\left(\\frac{dv}{dt}\\right)^2 + \\left(\\frac{v^2}{\\rho}\\right)^2} \\]",
+                    pdfPage: "PDF Page 58 & 60",
+                    explanation: "Vector sum magnitude of tangential acceleration (rate of speed change) and normal acceleration (rate of direction change).",
+                    conditions: "Curved trajectory with radius of curvature ρ.",
+                    variables: [
+                        { symbol: "a", rep: "Total acceleration magnitude", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "a_t", rep: "Tangential acceleration component (dv/dt)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "a_n", rep: "Normal / centripetal acceleration (v²/ρ)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\rho", rep: "Instantaneous radius of curvature", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Projectile Motion",
+                    name: "Projectile Time to Apex",
+                    formula: "\\[ t_H = \\frac{v_0\\sin\\alpha}{g} \\]",
+                    pdfPage: "PDF Page 65 & 66",
+                    explanation: "Time required for a projectile launched at angle α to climb to its highest trajectory point where vertical velocity is zero.",
+                    conditions: "Uniform gravity field g.",
+                    variables: [
+                        { symbol: "t_H", rep: "Time to peak / apex", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "v_0", rep: "Initial launch speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\alpha", rep: "Launch elevation angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Projectile Motion",
+                    name: "Total Projectile Flight Time",
+                    formula: "\\[ T_{\\text{flight}} = \\frac{2v_0\\sin\\alpha}{g} = 2t_H \\]",
+                    pdfPage: "PDF Page 66 & 67",
+                    explanation: "Total airborne duration of a projectile launched and landing on the same horizontal level.",
+                    conditions: "Symmetrical level trajectory without air drag.",
+                    variables: [
+                        { symbol: "T_{\\text{flight}}", rep: "Total time of flight", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "v_0", rep: "Initial launch velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\alpha", rep: "Launch elevation angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Relative Motion",
+                    name: "Relative Velocity in Two Dimensions",
+                    formula: "\\[ \\vec{v}_{A/B} = \\vec{v}_A - \\vec{v}_B \\implies v_{A/B} = \\sqrt{v_A^2 + v_B^2 - 2v_A v_B\\cos\\theta} \\]",
+                    pdfPage: "PDF Page 56 & 57",
+                    explanation: "Vector relative velocity between two moving bodies in a 2D plane using vector subtraction and the law of cosines.",
+                    conditions: "Two arbitrary velocity vectors in common coordinate system.",
+                    variables: [
+                        { symbol: "\\vec{v}_{A/B}", rep: "Velocity of body A relative to body B", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_A, v_B", rep: "Speeds of objects A and B", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\theta", rep: "Included angle between velocity vectors", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the horizontal acceleration in ideal projectile motion?", back: "\\(a_x = 0\\,\\mathrm{m/s^2}\\); horizontal velocity \\(v_x = v_0\\cos\\theta\\) remains constant." },
+                { front: "What launch angle yields the greatest horizontal range on a flat plane?", back: "\\(\\theta_0 = 45^\\circ\\), since \\(\\sin(2\\theta) = \\sin(90^\\circ) = 1\\) reaches its absolute maximum." },
+                { front: "What is the formula for the time of flight of a level projectile?", back: "\\(T = \\frac{2v_0\\sin\\theta_0}{g}\\)" },
+                { front: "How is relative velocity \\(\\vec{v}_{A/B}\\) defined in two dimensions?", back: "\\(\\vec{v}_{A/B} = \\vec{v}_A - \\vec{v}_B\\)" }
+            ],
+            quiz: [
+                { question: "At the highest point of a projectile's flight, its velocity vector and acceleration vector are:", options: ["Parallel", "Antiparallel", "Perpendicular (90°)", "Both zero"], correctIndex: 2, feedback: "At apex, velocity is purely horizontal (v = v₀ cos θ) while acceleration is purely downward (g), making them perpendicular." },
+                { question: "If the launch speed of a projectile is doubled while keeping launch angle constant, its horizontal range:", options: ["Doubles", "Triples", "Quadruples", "Remains unchanged"], correctIndex: 2, feedback: "Range R = (v₀² sin 2θ) / g; since R ∝ v₀², doubling v₀ quadruples range." },
+                { question: "Two projectiles are launched from the ground with equal speeds at complementary angles (30° and 60°). They have the same:", options: ["Maximum height", "Flight duration", "Horizontal range", "Apex speed"], correctIndex: 2, feedback: "sin(2 × 30°) = sin(60°) and sin(2 × 60°) = sin(120°) = sin(60°), yielding identical horizontal range." }
+            ]
+        },
+        {
+            id: "g11-l2",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch1-l2-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Balancing Act & Torque", url: "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" }],
+            title: "Chapter 1 • Lesson 2: Accelerated Frames & Rotational Dynamics",
+            concepts: [
+                "Inertial vs. Non-Inertial Frames: Newton's laws are valid in inertial frames. In a frame accelerating at \\(\\vec{a}_0\\), an inertial (fictitious) force \\(\\vec{F}_{\\text{in}} = -m\\vec{a}_0\\) must be added.",
+                "Apparent Weight: In an elevator with upward acceleration \\(a\\), apparent weight is \\(N = m(g + a)\\); with downward acceleration, \\(N = m(g - a)\\); in free fall (\\(a = g\\)), apparent weight is zero (weightlessness).",
+                "Centripetal Force & Acceleration: Circular motion of radius \\(r\\) requires inward radial acceleration \\(a_c = \\frac{v^2}{r} = \\omega^2 r\\), produced by net force \\(F_c = \\frac{mv^2}{r}\\).",
+                "Frictionless Banked Curves: Tilting a roadway at angle \\(\\theta\\) allows cars to turn without lateral friction: \\(\\tan\\theta = \\frac{v^2}{rg}\\).",
+                "Vertical Circular Motion: In a vertical circle, string tension varies: bottom \\(T_{\\text{bot}} = mg + \\frac{mv^2}{r}\\); top \\(T_{\\text{top}} = \\frac{mv^2}{r} - mg\\). Critical minimum speed at top is \\(v_{\\text{crit}} = \\sqrt{gr}\\).",
+                "Torque: The rotational analog of force, \\(\\vec{\\tau} = \\vec{r} \\times \\vec{F}\\), with magnitude \\(\\tau = r F \\sin\\theta = F d_\\perp\\).",
+                "Moment of Inertia and Rotational Second Law: \\(I = \\sum m_i r_i^2\\). Rotational Newton's law states \\(\\sum \\tau = I\\alpha\\).",
+                "Rolling Without Slipping: Combines translation and rotation: \\(v_{\\text{cm}} = R\\omega\\), with total kinetic energy \\(K_{\\text{tot}} = \\frac{1}{2}mv_{\\text{cm}}^2 + \\frac{1}{2}I_{\\text{cm}}\\omega^2\\)."
+            ],
+            definitions: [
+                { term: "Inertial Force", definition: "A fictitious force introduced in an accelerating frame to apply Newton's second law.", symbol: "\\vec{F}_{\\text{in}}", unit: "\\mathrm{N}", equation: "\\vec{F}_{\\text{in}} = -m\\vec{a}_0" },
+                { term: "Centripetal Acceleration", definition: "The center-directed radial acceleration of an object moving in a circular path.", symbol: "a_c", unit: "\\mathrm{m/s^2}", equation: "a_c = \\frac{v^2}{r} = \\omega^2 r" },
+                { term: "Banked Curve Angle", definition: "The road inclination angle required for a vehicle to negotiate a turn with zero side tire friction.", symbol: "\\theta", unit: "Degree", equation: "\\tan\\theta = \\frac{v^2}{rg}" },
+                { term: "Torque", definition: "The measure of a force's effectiveness in producing rotational acceleration about a pivot.", symbol: "\\tau", unit: "\\mathrm{N\\cdot m}", equation: "\\tau = r F \\sin\\theta = F d_\\perp" },
+                { term: "Moment of Inertia", definition: "The rotational inertia of a rigid body resisting angular acceleration about a fixed axis.", symbol: "I", unit: "\\mathrm{kg\\cdot m^2}", equation: "I = \\sum m_i r_i^2" },
+                { term: "Rotational Kinetic Energy", definition: "Kinetic energy possessed by a body due to its rotational motion about an axis.", symbol: "K_{\\text{rot}}", unit: "\\mathrm{J}", equation: "K_{\\text{rot}} = \\frac{1}{2}I\\omega^2" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Apparent Weight in an Accelerating Elevator",
+                    question: "A 70.0 kg passenger stands on a scale inside an elevator. Determine the scale reading in Newtons when: (a) The elevator accelerates upward at 2.20 m/s², (b) The elevator moves upward at constant speed 4.0 m/s, (c) The elevator accelerates downward at 1.80 m/s². (g = 9.80 m/s²).",
+                    given: "Passenger mass \\( m = 70.0\\,\\mathrm{kg} \\), \\( g = 9.80\\,\\mathrm{m/s^2} \\).",
+                    find: "Scale reading \\( N \\) in each motion state.",
+                    equation: "N = m(g + a_y)",
+                    rearrangement: "\\text{Upward: } a_y = +2.20, \\quad \\text{Constant: } a_y = 0, \\quad \\text{Downward: } a_y = -1.80",
+                    solution: "1. (a) Accelerating upward: \\( N = 70.0 \\times (9.80 + 2.20) = 70.0 \\times 12.0 = 840\\,\\mathrm{N} \\).<br>2. (b) Constant velocity: \\( N = 70.0 \\times 9.80 = 686\\,\\mathrm{N} \\).<br>3. (c) Accelerating downward: \\( N = 70.0 \\times (9.80 - 1.80) = 70.0 \\times 8.00 = 560\\,\\mathrm{N} \\).",
+                    finalAnswer: "(a) 840 N, \\quad (b) 686 N, \\quad (c) 560 N",
+                    explanation: "Upward acceleration increases apparent weight; downward acceleration decreases apparent weight."
+                },
+                {
+                    title: "Example 2: Frictionless Highway Curve Banking Angle",
+                    question: "A curved highway ramp has a radius of curvature of R = 200 m and is rated for a speed of v = 72 km/h (20.0 m/s). What angle θ must the ramp be banked to eliminate lateral tire friction? (g = 9.80 m/s²).",
+                    given: "Radius \\( R = 200\\,\\mathrm{m} \\), Speed \\( v = 20.0\\,\\mathrm{m/s} \\), \\( g = 9.80\\,\\mathrm{m/s^2} \\).",
+                    find: "Banking angle \\( \\theta \\).",
+                    equation: "\\tan\\theta = \\frac{v^2}{Rg}",
+                    rearrangement: "\\theta = \\arctan\\left(\\frac{v^2}{Rg}\\right)",
+                    solution: "1. Compute tangent: \\( \\tan\\theta = \\frac{(20.0)^2}{200 \\times 9.80} = \\frac{400}{1960} \\approx 0.2041 \\).<br>2. Find angle: \\( \\theta = \\arctan(0.2041) \\approx 11.54^\\circ \\).",
+                    finalAnswer: "\\theta \\approx 11.5^\\circ",
+                    explanation: "The horizontal component of normal force N sin θ provides the necessary centripetal force."
+                }
+            ],
+            equations: [
+                {
+                    section: "Non-Inertial Frames",
+                    name: "Translational Inertial Force",
+                    formula: "\\[ \\vec{F}_{\\text{ie}} = -m\\vec{a}_e \\]",
+                    pdfPage: "PDF Page 69 & 71",
+                    explanation: "Fictitious force experienced in a reference frame accelerating with linear acceleration a_e.",
+                    conditions: "Accelerating non-inertial reference frame.",
+                    variables: [
+                        { symbol: "\\vec{F}_{\\text{ie}}", rep: "Inertial fictitious force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Mass of body", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "\\vec{a}_e", rep: "Frame acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Non-Inertial Frames",
+                    name: "Coriolis Inertial Force",
+                    formula: "\\[ \\vec{F}_{\\text{ic}} = -m\\vec{a}_c = -2m(\\vec{\\omega} \\times \\vec{v}_r) \\]",
+                    pdfPage: "PDF Page 69",
+                    explanation: "Inertial force experienced by a particle moving with relative velocity v_r in a rotating reference frame.",
+                    conditions: "Rotating frame with angular velocity \\(\\vec{\\omega}\\).",
+                    variables: [
+                        { symbol: "\\vec{F}_{\\text{ic}}", rep: "Coriolis force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\vec{\\omega}", rep: "Frame angular velocity", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
+                        { symbol: "\\vec{v}_r", rep: "Relative particle velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Non-Inertial Frames",
+                    name: "Fundamental Equation in Accelerated Frames",
+                    formula: "\\[ \\vec{F} + \\vec{F}_{\\text{ie}} + \\vec{F}_{\\text{ic}} = m\\vec{a}_r \\]",
+                    pdfPage: "PDF Page 69",
+                    explanation: "Modifies Newton's Second Law to hold in non-inertial reference frames by including fictitious inertial forces.",
+                    conditions: "Arbitrary accelerating reference frame.",
+                    variables: [
+                        { symbol: "\\vec{F}", rep: "Real external force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\vec{a}_r", rep: "Relative acceleration in frame", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Pendulums in Frames",
+                    name: "Conical Pendulum Incline Angle",
+                    formula: "\\[ \\tan\\alpha = \\frac{F_N}{P} = \\frac{r\\omega^2}{g} \\implies \\cos\\alpha = \\frac{g}{l\\omega^2} \\]",
+                    pdfPage: "PDF Page 70 & 71",
+                    explanation: "Calculates the steady cone angle α swept by a rotating suspended rod or string.",
+                    conditions: "Conical circular motion; deviation requires \\(\\omega > \\sqrt{g/l}\\).",
+                    variables: [
+                        { symbol: "\\alpha", rep: "Cone semi-apex angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "l", rep: "Pendulum string length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\omega", rep: "Angular speed of rotation", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Pendulums in Frames",
+                    name: "Pendulum Tilt in Accelerated Vehicle",
+                    formula: "\\[ \\tan\\alpha = \\frac{a}{g}, \\quad T = m\\sqrt{g^2 + a^2} \\]",
+                    pdfPage: "PDF Page 71 & 72",
+                    explanation: "Tilt angle α and string tension T of a plumb bob suspended in a vehicle accelerating with acceleration a.",
+                    conditions: "Uniform horizontal vehicle acceleration.",
+                    variables: [
+                        { symbol: "\\alpha", rep: "String deflection angle from vertical", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "a", rep: "Vehicle acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "T", rep: "String tension", unit: "Newton", unitSym: "\\mathrm{N}" }
+                    ]
+                },
+                {
+                    section: "Torque & Rotation",
+                    name: "Torque Definition & Cross Product",
+                    formula: "\\[ \\vec{\\tau} = \\vec{r} \\times \\vec{F} \\implies \\tau = Fr\\sin\\theta \\]",
+                    pdfPage: "PDF Page 72 & 73",
+                    explanation: "The rotational turning moment produced by a force applied at distance r with lever angle θ.",
+                    conditions: "Point of application at vector \\(\\vec{r}\\).",
+                    variables: [
+                        { symbol: "\\tau", rep: "Torque magnitude", unit: "Newton meter", unitSym: "\\mathrm{N\\cdot m}" },
+                        { symbol: "F", rep: "Applied force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "r", rep: "Lever arm distance", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Angle between lever arm and force", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Torque & Rotation",
+                    name: "Newton's Second Law for Rotation",
+                    formula: "\\[ \\tau = I\\alpha \\]",
+                    pdfPage: "PDF Page 73",
+                    explanation: "Net torque acting on a rigid body equals its moment of inertia multiplied by angular acceleration.",
+                    conditions: "Fixed axis of rotation.",
+                    variables: [
+                        { symbol: "\\tau", rep: "Net torque", unit: "Newton meter", unitSym: "\\mathrm{N\\cdot m}" },
+                        { symbol: "I", rep: "Moment of inertia", unit: "Kilogram meter squared", unitSym: "\\mathrm{kg\\cdot m^2}" },
+                        { symbol: "\\alpha", rep: "Angular acceleration", unit: "Radian per second squared", unitSym: "\\mathrm{rad/s^2}" }
+                    ]
+                },
+                {
+                    section: "Rotational Work & Power",
+                    name: "Work and Power in Rotational Motion",
+                    formula: "\\[ W = \\tau\\theta, \\quad P = \\tau\\omega \\]",
+                    pdfPage: "PDF Page 73 & 74",
+                    explanation: "Mechanical work done by torque through angle θ, and instantaneous power transferred during rotation.",
+                    conditions: "Rigid body rotation about fixed axis.",
+                    variables: [
+                        { symbol: "W", rep: "Rotational work done", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "P", rep: "Rotational power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "\\tau", rep: "Net torque", unit: "Newton meter", unitSym: "\\mathrm{N\\cdot m}" },
+                        { symbol: "\\theta", rep: "Angular displacement", unit: "Radian", unitSym: "\\mathrm{rad}" },
+                        { symbol: "\\omega", rep: "Angular velocity", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" }
+                    ]
+                },
+                {
+                    section: "Rotational Energy",
+                    name: "Rotational Kinetic Energy",
+                    formula: "\\[ K_{\\text{rot}} = \\frac{1}{2}I\\omega^2 \\]",
+                    pdfPage: "PDF Page 75",
+                    explanation: "Kinetic energy stored in an object rotating with angular velocity ω.",
+                    conditions: "Rotation about principal axis.",
+                    variables: [
+                        { symbol: "K_{\\text{rot}}", rep: "Rotational kinetic energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "I", rep: "Moment of inertia", unit: "Kilogram meter squared", unitSym: "\\mathrm{kg\\cdot m^2}" },
+                        { symbol: "\\omega", rep: "Angular speed", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" }
+                    ]
+                },
+                {
+                    section: "Rotational Energy",
+                    name: "Total Kinetic Energy of Rolling Body",
+                    formula: "\\[ K_{\\text{total}} = \\frac{1}{2}mv^2 + \\frac{1}{2}I\\omega^2 \\]",
+                    pdfPage: "PDF Page 76",
+                    explanation: "Total mechanical energy of a body undergoing simultaneous translation and rotation.",
+                    conditions: "Rolling without slipping (\\(v = R\\omega\\)).",
+                    variables: [
+                        { symbol: "K_{\\text{total}}", rep: "Total kinetic energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Total mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "v", rep: "Center of mass speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Moment of Inertia",
+                    name: "Moment of Inertia Integral Definition",
+                    formula: "\\[ I = \\sum m_i r_i^2 = \\int r^2 dm = \\int \\rho r^2 dV \\]",
+                    pdfPage: "PDF Page 76 & 77",
+                    explanation: "General definition of moment of inertia for discrete mass systems and continuous volume distributions.",
+                    conditions: "Perpendicular distances r from rotation axis.",
+                    variables: [
+                        { symbol: "I", rep: "Moment of inertia", unit: "Kilogram meter squared", unitSym: "\\mathrm{kg\\cdot m^2}" },
+                        { symbol: "dm", rep: "Differential mass element", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "\\rho", rep: "Material density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Moment of Inertia",
+                    name: "Moments of Inertia for Standard Geometries",
+                    formula: "\\[ I_{\\text{rod, end}} = \\frac{1}{3}ml^2, \\quad I_{\\text{rod, mid}} = \\frac{1}{12}ml^2, \\quad I_{\\text{disk}} = \\frac{1}{2}mR^2, \\quad I_{\\text{solid sphere}} = \\frac{2}{5}mR^2, \\quad I_{\\text{hollow sphere}} = \\frac{2}{3}mR^2 \\]",
+                    pdfPage: "PDF Page 77 & 78",
+                    explanation: "Exact standard moments of inertia calculated via integration for common symmetric rigid bodies.",
+                    conditions: "Uniform density rigid objects about principal symmetry axes.",
+                    variables: [
+                        { symbol: "m", rep: "Mass of rigid body", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "l", rep: "Length of rod", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "R", rep: "Radius of disk or sphere", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Parallel Axis Theorem",
+                    name: "Huygens' Parallel Axis Theorem",
+                    formula: "\\[ I_\\Delta = I_{\\text{cm}} + md^2 \\]",
+                    pdfPage: "PDF Page 79",
+                    explanation: "Calculates moment of inertia about any axis parallel to a central axis passing through the center of mass.",
+                    conditions: "Two strictly parallel axes separated by distance d.",
+                    variables: [
+                        { symbol: "I_\\Delta", rep: "Moment of inertia about arbitrary parallel axis", unit: "Kilogram meter squared", unitSym: "\\mathrm{kg\\cdot m^2}" },
+                        { symbol: "I_{\\text{cm}}", rep: "Moment of inertia about center-of-mass axis", unit: "Kilogram meter squared", unitSym: "\\mathrm{kg\\cdot m^2}" },
+                        { symbol: "d", rep: "Distance between parallel axes", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Angular Momentum",
+                    name: "Angular Momentum Vector & Form",
+                    formula: "\\[ \\vec{L} = \\vec{r} \\times \\vec{p} \\implies L = rmv = I\\omega \\]",
+                    pdfPage: "PDF Page 79 & 80",
+                    explanation: "The rotational counterpart of linear momentum for a particle or rotating rigid body.",
+                    conditions: "Direction given by right-hand thumb rule.",
+                    variables: [
+                        { symbol: "L", rep: "Angular momentum", unit: "Kilogram meter squared per second", unitSym: "\\mathrm{kg\\cdot m^2/s}" },
+                        { symbol: "I", rep: "Moment of inertia", unit: "Kilogram meter squared", unitSym: "\\mathrm{kg\\cdot m^2}" },
+                        { symbol: "\\omega", rep: "Angular velocity", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" }
+                    ]
+                },
+                {
+                    section: "Angular Momentum",
+                    name: "Angular Momentum Theorem & Conservation",
+                    formula: "\\[ \\frac{d\\vec{L}}{dt} = \\vec{\\tau}_{\\text{net}} = I\\vec{\\alpha}, \\quad \\vec{\\tau}_{\\text{ext}} = \\vec{0} \\implies I_1\\omega_1 = I_2\\omega_2 \\]",
+                    pdfPage: "PDF Page 80 & 81",
+                    explanation: "Net torque equals time rate of change of angular momentum. In the absence of external torque, angular momentum is conserved.",
+                    conditions: "Isolated rotational system.",
+                    variables: [
+                        { symbol: "\\vec{\\tau}_{\\text{net}}", rep: "Net external torque", unit: "Newton meter", unitSym: "\\mathrm{N\\cdot m}" },
+                        { symbol: "I_1, I_2", rep: "Initial and final moments of inertia", unit: "Kilogram meter squared", unitSym: "\\mathrm{kg\\cdot m^2}" },
+                        { symbol: "\\omega_1, \\omega_2", rep: "Initial and final angular speeds", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" }
+                    ]
+                },
+                {
+                    section: "Circular Dynamics",
+                    name: "Frictionless Ideal Road Banking Angle",
+                    formula: "\\[ \\tan\\theta = \\frac{v^2}{rg} \\iff v = \\sqrt{rg\\tan\\theta} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "The required roadway superelevation angle θ ensuring a vehicle navigates a circular turn solely through the horizontal normal force component.",
+                    conditions: "Frictionless cornering on curved banked track of radius r.",
+                    variables: [
+                        { symbol: "\\theta", rep: "Bank angle of roadway", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "v", rep: "Rated design speed of curve", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "r", rep: "Curve radius", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Circular Dynamics",
+                    name: "Maximum Banked Curve Speed with Friction",
+                    formula: "\\[ v_{\\max} = \\sqrt{rg\\left(\\frac{\\tan\\theta + \\mu_s}{1 - \\mu_s\\tan\\theta}\\right)} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Maximum safe speed to negotiate a banked curve before vehicle begins skidding up the incline.",
+                    conditions: "Rough banked road with static friction coefficient μ_s.",
+                    variables: [
+                        { symbol: "v_{\\max}", rep: "Maximum non-skid velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "r", rep: "Radius of circular curve", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Banking angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "\\mu_s", rep: "Static friction coefficient", unit: "Dimensionless", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Vertical Circle",
+                    name: "Vertical Circular Motion String Tension",
+                    formula: "\\[ T_{\\text{bottom}} = m\\left(g + \\frac{v_b^2}{r}\\right), \\quad T_{\\text{top}} = m\\left(\\frac{v_t^2}{r} - g\\right) \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Tension in a whirling cord at lowest and highest points of a vertical circular trajectory.",
+                    conditions: "Vertical circular path in uniform gravitational field.",
+                    variables: [
+                        { symbol: "T_{\\text{bottom}}", rep: "String tension at bottom (maximum)", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "T_{\\text{top}}", rep: "String tension at top (minimum)", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Mass of revolving particle", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "v_b, v_t", rep: "Speeds at bottom and top", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Vertical Circle",
+                    name: "Critical Speeds in Vertical Circle",
+                    formula: "\\[ v_{\\text{top, min}} = \\sqrt{gr}, \\quad v_{\\text{bottom, min}} = \\sqrt{5gr} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Threshold speeds required for a particle on a flexible string to complete a vertical loop without slackening at the apex.",
+                    conditions: "Critical condition T_top ≥ 0.",
+                    variables: [
+                        { symbol: "v_{\\text{top, min}}", rep: "Critical apex speed without slack", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_{\\text{bottom, min}}", rep: "Minimum launch speed at base of loop", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "r", rep: "Radius of vertical loop", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the critical minimum speed at the top of a vertical circular loop of radius \\(r\\)?", back: "\\(v_{\\text{crit}} = \\sqrt{gr}\\) (at this speed string tension or normal force drops to zero)." },
+                { front: "What is the rotational counterpart of Newton's second law \\(F = ma\\)?", back: "\\(\\sum \\tau = I\\alpha\\)" },
+                { front: "What is the formula for torque \\(\\tau\\) in terms of force and lever arm?", back: "\\(\\tau = r F \\sin\\theta = F d_\\perp\\)" },
+                { front: "What is the apparent weight of a person in free fall?", back: "\\(N = 0\\,\\mathrm{N}\\) (apparent weightlessness)." }
+            ],
+            quiz: [
+                { question: "When a vehicle rounds a curve too fast on a flat icy road, it skids outward because:", options: ["A centrifugal force pushes it outward", "Friction is insufficient to provide the required inward centripetal acceleration", "The normal force tilts inward", "Gravity stops acting on it"], correctIndex: 1, feedback: "Without sufficient inward friction, the car continues along its straight-line tangent by Newton's first law." },
+                { question: "A solid sphere and a thin-walled hoop of identical mass and radius roll down an incline from rest. Which reaches the bottom first?", options: ["The hoop", "The solid sphere", "Both reach at the exact same time", "Depends on incline angle"], correctIndex: 1, feedback: "The solid sphere has smaller moment of inertia (2/5 MR² vs MR²), converting more potential energy into translational motion." },
+                { question: "To double the safe speed on a frictionless banked curve of fixed radius, tan θ must be multiplied by:", options: ["2", "4", "\\(\\sqrt{2}\\)", "8"], correctIndex: 1, feedback: "tan θ = v² / (rg); doubling v quadruples v², requiring tan θ to be 4 times larger." }
+            ]
+        },
+        {
+            id: "g11-l3",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch1-l3-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Gravity and Orbits", url: "https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_all.html" }],
+            title: "Chapter 1 • Lesson 3: Universal Gravitation & Satellite Motion",
+            concepts: [
+                "Newton's Law of Universal Gravitation: Every pair of point particles attracts with force \\(F_g = G\\frac{m_1 m_2}{r^2}\\), with \\(G = 6.674 \\times 10^{-11}\\,\\mathrm{N\\cdot m^2/kg^2}\\).",
+                "Gravitational Field Strength at Altitude: \\(g(h) = \\frac{GM_E}{(R_E + h)^2} = g_0\\left(\\frac{R_E}{R_E + h}\\right)^2\\).",
+                "Orbital Velocity: For a satellite in circular orbit: \\(G\\frac{M_E m}{r^2} = \\frac{m v^2}{r} \\implies v_{\\text{orb}} = \\sqrt{\\frac{GM_E}{r}}\\). Notice speed is independent of satellite mass.",
+                "Kepler's Third Law: The square of orbital period is proportional to the cube of orbital radius: \\(T^2 = \\left(\\frac{4\\pi^2}{GM}\\right)r^3\\).",
+                "Gravitational Potential Energy: Defined with zero reference at infinite separation: \\(U(r) = -\\frac{GM_E m}{r}\\).",
+                "Total Satellite Mechanical Energy: \\(E = K + U = \\frac{1}{2}mv^2 - \\frac{GMm}{r} = -\\frac{GMm}{2r}\\).",
+                "Escape Velocity: Minimum launch speed to break completely free from Earth's gravity: \\(v_{\\text{esc}} = \\sqrt{\\frac{2GM_E}{R_E}} = \\sqrt{2g_0 R_E} \\approx 11.2\\,\\mathrm{km/s}\\)."
+            ],
+            definitions: [
+                { term: "Gravitational Constant", definition: "Empirical proportionality constant G governing universal gravitational attraction.", symbol: "G", unit: "\\mathrm{N\\cdot m^2/kg^2}", equation: "G = 6.674 \\times 10^{-11} \\; \\mathrm{N\\cdot m^2/kg^2}" },
+                { term: "Gravitational Field", definition: "The gravitational force exerted per unit mass at a point in space.", symbol: "g", unit: "\\mathrm{N/kg} \\;(\\mathrm{m/s^2})", equation: "g = \\frac{GM}{r^2}" },
+                { term: "Orbital Speed", definition: "The tangential speed required for a satellite to maintain a stable circular orbit.", symbol: "v_{\\text{orb}}", unit: "\\mathrm{m/s}", equation: "v_{\\text{orb}} = \\sqrt{\\frac{GM}{r}}" },
+                { term: "Orbital Period", definition: "The time duration required for an orbiting satellite to complete one full revolution.", symbol: "T", unit: "\\mathrm{s}", equation: "T = 2\\pi\\sqrt{\\frac{r^3}{GM}}" },
+                { term: "Escape Velocity", definition: "The minimum speed required at a planet's surface to escape to infinity without propulsion.", symbol: "v_{\\text{esc}}", unit: "\\mathrm{m/s}", equation: "v_{\\text{esc}} = \\sqrt{\\frac{2GM}{R}} = \\sqrt{2gR}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Orbital Speed and Period of a Low-Earth Satellite",
+                    question: "A satellite orbits Earth at an altitude of h = 600 km. Given Earth mass M_E = 5.97 × 10²⁴ kg, Earth radius R_E = 6370 km, and G = 6.67 × 10⁻¹¹ N·m²/kg², find: (a) Orbital radius r, (b) Orbital velocity v, (c) Orbital period T in minutes.",
+                    given: "Altitude \\( h = 600\\,\\mathrm{km} \\), \\( R_E = 6370\\,\\mathrm{km} \\), \\( M_E = 5.97 \\times 10^{24}\\,\\mathrm{kg} \\), \\( G = 6.67 \\times 10^{-11}\\,\\mathrm{N\\cdot m^2/kg^2} \\).",
+                    find: "Orbital radius \\( r \\), velocity \\( v \\), period \\( T \\).",
+                    equation: "r = R_E + h, \\quad v = \\sqrt{\\frac{GM_E}{r}}, \\quad T = \\frac{2\\pi r}{v}",
+                    rearrangement: "r = (6370 + 600) \\times 10^3 = 6.97 \\times 10^6\\,\\mathrm{m}",
+                    solution: "1. Orbital speed: \\( v = \\sqrt{\\frac{6.67 \\times 10^{-11} \\times 5.97 \\times 10^{24}}{6.97 \\times 10^6}} = \\sqrt{\\frac{3.982 \\times 10^{14}}{6.97 \\times 10^6}} = \\sqrt{5.713 \\times 10^7} \\approx 7558\\,\\mathrm{m/s} \\approx 7.56\\,\\mathrm{km/s} \\).<br>2. Orbital period: \\( T = \\frac{2\\pi \\times 6.97 \\times 10^6}{7558} \\approx \\frac{4.379 \\times 10^7}{7558} \\approx 5794\\,\\mathrm{s} \\).<br>3. In minutes: \\( T = \\frac{5794}{60} \\approx 96.6\\,\\mathrm{minutes} \\).",
+                    finalAnswer: "v \\approx 7.56\\,\\mathrm{km/s}, \\quad T \\approx 96.6\\,\\mathrm{minutes}",
+                    explanation: "Low-Earth orbit satellites orbit at ~7.6 km/s and take approximately 96 minutes per full revolution."
+                },
+                {
+                    title: "Example 2: Escape Velocity Calculation",
+                    question: "Calculate the escape velocity from Earth's surface using R_E = 6.37 × 10⁶ m and surface gravitational field g₀ = 9.80 m/s².",
+                    given: "Radius \\( R_E = 6.37 \\times 10^6\\,\\mathrm{m} \\), \\( g_0 = 9.80\\,\\mathrm{m/s^2} \\).",
+                    find: "Escape velocity \\( v_{\\text{esc}} \\).",
+                    equation: "v_{\\text{esc}} = \\sqrt{2 g_0 R_E}",
+                    rearrangement: "v_{\\text{esc}} = \\sqrt{2 \\times 9.80 \\times 6.37 \\times 10^6}",
+                    solution: "1. \\( v_{\\text{esc}} = \\sqrt{1.2485 \\times 10^8} \\approx 11,174\\,\\mathrm{m/s} \\approx 11.2\\,\\mathrm{km/s} \\).",
+                    finalAnswer: "v_{\\text{esc}} \\approx 11.2\\,\\mathrm{km/s}",
+                    explanation: "Any projectile given an initial kinetic energy equal to its gravitational binding energy can escape to infinity."
+                }
+            ],
+            equations: [
+                {
+                    section: "Kepler's Laws",
+                    name: "Kepler's First Law (Ellipse Geometry)",
+                    formula: "\\[ r_1 + r_2 = 2a = \\text{constant}, \\quad c^2 = a^2 - b^2, \\quad e = \\frac{c}{a} \\]",
+                    pdfPage: "PDF Page 82",
+                    explanation: "Planetary orbit ellipse geometry where the sum of distances from any point to two foci equals the major axis 2a.",
+                    conditions: "Elliptical orbits with eccentricity \\(0 < e < 1\\).",
+                    variables: [
+                        { symbol: "2a", rep: "Major axis length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "2b", rep: "Minor axis length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "e", rep: "Orbital eccentricity", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Kepler's Laws",
+                    name: "Kepler's Second Law (Areal Velocity)",
+                    formula: "\\[ \\frac{dS}{dt} = \\frac{c}{2} = \\text{constant}, \\quad S = \\pi ab \\]",
+                    pdfPage: "PDF Page 82",
+                    explanation: "The areal velocity of a planet remains constant due to conservation of angular momentum under central forces.",
+                    conditions: "Central gravitational force field.",
+                    variables: [
+                        { symbol: "dS/dt", rep: "Areal velocity", unit: "Square meter per second", unitSym: "\\mathrm{m^2/s}" },
+                        { symbol: "S", rep: "Total area of orbital ellipse", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Kepler's Laws",
+                    name: "Kepler's Third Law (Harmonic Law)",
+                    formula: "\\[ \\frac{T^2}{r^3} = \\frac{4\\pi^2}{GM} = \\text{constant} \\implies \\left(\\frac{T_A}{T_B}\\right)^2 = \\left(\\frac{r_A}{r_B}\\right)^3 \\]",
+                    pdfPage: "PDF Page 83",
+                    explanation: "The square of orbital period is proportional to the cube of the semi-major axis.",
+                    conditions: "Planetary systems orbiting central star of mass M.",
+                    variables: [
+                        { symbol: "T", rep: "Orbital period", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "r", rep: "Semi-major axis / orbit radius", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "M", rep: "Mass of central body (Sun)", unit: "Kilogram", unitSym: "\\mathrm{kg}" }
+                    ]
+                },
+                {
+                    section: "Gravitation",
+                    name: "Newton's Law of Universal Gravitation",
+                    formula: "\\[ F = G\\frac{m_1 m_2}{r^2} \\quad (G = 6.67 \\times 10^{-11}\\,\\mathrm{N\\cdot m^2/kg^2}) \\]",
+                    pdfPage: "PDF Page 83 & 84",
+                    explanation: "Universal attractive gravitational force between any two masses in the universe.",
+                    conditions: "Point masses or spherically symmetric mass distributions.",
+                    variables: [
+                        { symbol: "F", rep: "Gravitational force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "G", rep: "Gravitational constant", unit: "Newton meter squared per kilogram squared", unitSym: "\\mathrm{N\\cdot m^2/kg^2}" },
+                        { symbol: "m_1, m_2", rep: "Masses of interacting bodies", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "r", rep: "Distance between centers of mass", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Orbital Mechanics",
+                    name: "Circular Orbital Speed",
+                    formula: "\\[ v_{\\text{orb}} = \\sqrt{\\frac{GM}{r}} \\]",
+                    pdfPage: "PDF Page 83",
+                    explanation: "Linear velocity of a stable circular orbit around central body of mass M at radius r.",
+                    conditions: "Circular orbit.",
+                    variables: [
+                        { symbol: "v_{\\text{orb}}", rep: "Orbital speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "M", rep: "Central body mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "r", rep: "Orbital radius", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Gravitational Field",
+                    name: "Gravitational Field Strength",
+                    formula: "\\[ g = \\frac{F}{m} = \\frac{GM}{r^2} \\]",
+                    pdfPage: "PDF Page 84",
+                    explanation: "Gravitational force per unit mass exerted by a body of mass M at distance r.",
+                    conditions: "Static spherically symmetric field.",
+                    variables: [
+                        { symbol: "g", rep: "Gravitational field strength", unit: "Newton per kilogram or m/s²", unitSym: "\\mathrm{N/kg}" },
+                        { symbol: "M", rep: "Source mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "r", rep: "Distance from source center", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Gravitational Field",
+                    name: "Earth Surface Gravity",
+                    formula: "\\[ g_0 = \\frac{G M_E}{R_E^2} \\quad (M_E = 5.97 \\times 10^{24}\\,\\mathrm{kg}, \\; R_E = 6400\\,\\mathrm{km}) \\]",
+                    pdfPage: "PDF Page 84 & 85",
+                    explanation: "Theoretical acceleration due to gravity on the surface of the Earth.",
+                    conditions: "Earth sea level radius.",
+                    variables: [
+                        { symbol: "g_0", rep: "Surface gravitational acceleration (~9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "M_E", rep: "Earth mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "R_E", rep: "Earth mean radius", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Gravitational Field",
+                    name: "Altitude Variation of Gravity",
+                    formula: "\\[ g(h) = \\frac{G M_E}{(R_E + h)^2} = g_0 \\left(\\frac{R_E}{R_E + h}\\right)^2 \\]",
+                    pdfPage: "PDF Page 84 & 85",
+                    explanation: "Acceleration due to gravity at altitude h above the surface of the Earth.",
+                    conditions: "Altitude h relative to Earth radius R_E.",
+                    variables: [
+                        { symbol: "g(h)", rep: "Gravity at altitude h", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Altitude above sea level", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "R_E", rep: "Earth radius (6400 km)", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Orbital Mechanics",
+                    name: "Satellite Orbital Period",
+                    formula: "\\[ T = 2\\pi\\sqrt{\\frac{r^3}{GM}} = \\frac{2\\pi r}{v_{\\text{orb}}} \\]",
+                    pdfPage: "PDF Page 83",
+                    explanation: "Time required for an orbiting satellite or planet to complete one full revolution.",
+                    conditions: "Circular planetary orbit.",
+                    variables: [
+                        { symbol: "T", rep: "Orbital period", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "r", rep: "Orbital radius", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "M", rep: "Central body mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" }
+                    ]
+                },
+                {
+                    section: "Gravitational Potential",
+                    name: "Gravitational Potential Energy",
+                    formula: "\\[ U_g = -G\\frac{M m}{r} \\]",
+                    pdfPage: "PDF Page 83 & 84",
+                    explanation: "Gravitational potential energy of a two-body system with zero reference potential at infinite separation.",
+                    conditions: "Spherical mass distributions separated by distance r.",
+                    variables: [
+                        { symbol: "U_g", rep: "Gravitational potential energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "G", rep: "Universal gravitational constant", unit: "Newton meter squared per kilogram squared", unitSym: "\\mathrm{N\\cdot m^2/kg^2}" },
+                        { symbol: "M, m", rep: "Interacting masses", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "r", rep: "Radial separation", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Escape Velocity",
+                    name: "Second Cosmic Velocity (Escape Velocity)",
+                    formula: "\\[ v_{\\text{esc}} = \\sqrt{\\frac{2GM}{R_E}} = \\sqrt{2g_0 R_E} = \\sqrt{2}\\,v_{\\text{orb}} \\]",
+                    pdfPage: "PDF Page 83 & 85",
+                    explanation: "Minimum initial speed required for an unpowered projectile to completely escape a celestial body's gravitational pull.",
+                    conditions: "Launched from surface of body with radius R_E without atmosphere.",
+                    variables: [
+                        { symbol: "v_{\\text{esc}}", rep: "Escape velocity (~11.2 km/s on Earth)", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g_0", rep: "Surface gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "R_E", rep: "Radius of planet", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Orbital Energy",
+                    name: "Total Mechanical Energy of Orbiting Satellite",
+                    formula: "\\[ E = K + U_g = \\frac{1}{2}m v_{\\text{orb}}^2 - G\\frac{M m}{r} = -\\frac{G M m}{2r} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Total energy of a bound satellite in circular orbit is negative, equaling half its gravitational potential energy.",
+                    conditions: "Bound circular gravitational orbit.",
+                    variables: [
+                        { symbol: "E", rep: "Total mechanical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "M, m", rep: "Central and satellite masses", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "r", rep: "Orbital radius", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Kepler's Laws",
+                    name: "Kepler's Solar Constant of Proportionality",
+                    formula: "\\[ K_s = \\frac{T^2}{r^3} = \\frac{4\\pi^2}{G M_{\\text{Sun}}} \\]",
+                    pdfPage: "PDF Page 83",
+                    explanation: "Constant ratio of squared period to cubed distance for all planetary orbits around the Sun.",
+                    conditions: "Helio-centric solar system planetary orbits.",
+                    variables: [
+                        { symbol: "K_s", rep: "Kepler orbital constant", unit: "Second squared per cubic meter", unitSym: "\\mathrm{s^2/m^3}" },
+                        { symbol: "M_{\\text{Sun}}", rep: "Mass of the Sun (1.989 × 10³⁰ kg)", unit: "Kilogram", unitSym: "\\mathrm{kg}" }
+                    ]
+                },
+                {
+                    section: "Earth Gravity",
+                    name: "Polar vs Equatorial Gravitational Strength",
+                    formula: "\\[ g_p > g_e \\quad (g_p \\approx 9.832\\,\\mathrm{m/s^2}, \\; g_e \\approx 9.780\\,\\mathrm{m/s^2}) \\]",
+                    pdfPage: "PDF Page 85 & 86",
+                    explanation: "Earth's oblate spheroid shape and rotational centrifugal effect cause gravitational field strength to be larger at poles than at equator.",
+                    conditions: "Earth's oblate rotational ellipsoid.",
+                    variables: [
+                        { symbol: "g_p", rep: "Gravity at geographic pole", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "g_e", rep: "Gravity at equator", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Gravitational Field",
+                    name: "Vector Gravitational Field",
+                    formula: "\\[ \\vec{g} = -G\\frac{M}{r^2}\\hat{r} \\]",
+                    pdfPage: "PDF Page 84",
+                    explanation: "Inward radial vector field representing gravitational force per unit test mass.",
+                    conditions: "Radial gravitational field in spherical coordinates.",
+                    variables: [
+                        { symbol: "\\vec{g}", rep: "Gravitational field vector", unit: "Newton per kilogram", unitSym: "\\mathrm{N/kg}" },
+                        { symbol: "\\hat{r}", rep: "Outward radial unit vector", unit: "Dimensionless", unitSym: "\\text{unit vector}" }
+                    ]
+                },
+                {
+                    section: "Orbital Mechanics",
+                    name: "Geostationary Satellite Orbital Radius",
+                    formula: "\\[ r_{\\text{geo}} = \\sqrt[3]{\\frac{G M_E T^2}{4\\pi^2}} \\approx 42{,}200\\,\\mathrm{km} \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Orbital distance at which a satellite's period matches Earth's 24-hour sidereal day, hovering over the same equatorial location.",
+                    conditions: "Equatorial circular orbit with period T = 86,164 s.",
+                    variables: [
+                        { symbol: "r_{\\text{geo}}", rep: "Geostationary orbit radius", unit: "Meter or kilometer", unitSym: "\\mathrm{km}" },
+                        { symbol: "T", rep: "Earth rotation period (24 h)", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is Kepler's Third Law mathematical relation?", back: "\\(T^2 = \\left(\\frac{4\\pi^2}{GM}\\right)r^3\\) or \\(T^2 \\propto r^3\\)" },
+                { front: "What is the relation between orbital velocity \\(v_{\\text{orb}}\\) and escape velocity \\(v_{\\text{esc}}\\) at the same radius?", back: "\\(v_{\\text{esc}} = \\sqrt{2} \\cdot v_{\\text{orb}} \\approx 1.414 \\cdot v_{\\text{orb}}\\)" },
+                { front: "What is the total mechanical energy of an orbiting satellite of mass \\(m\\)?", back: "\\(E = -\\frac{GMm}{2r}\\) (bound state with negative total energy)." },
+                { front: "Why do astronauts float inside the orbiting space station?", back: "The astronauts and station are both in free fall around Earth with the exact same gravitational acceleration." }
+            ],
+            quiz: [
+                { question: "If the separation distance between two planets is doubled, the gravitational attraction between them:", options: ["Halves", "Decreases to 1/4", "Decreases to 1/8", "Remains unchanged"], correctIndex: 1, feedback: "Inverse-square law: F ∝ 1/r²; doubling r reduces gravitational attraction to (1/2)² = 1/4." },
+                { question: "If a satellite moves to a higher circular orbit, its orbital period:", options: ["Increases", "Decreases", "Remains unchanged", "Becomes zero"], correctIndex: 0, feedback: "By Kepler's Third Law (T² ∝ r³), a higher orbit requires a longer orbital period and slower orbital speed." },
+                { question: "The escape velocity from Earth's surface is approximately:", options: ["7.9 km/s", "11.2 km/s", "16.7 km/s", "30.0 km/s"], correctIndex: 1, feedback: "v_esc = √(2 g R_E) ≈ 11.2 km/s." }
+            ]
+        },
+        {
+            id: "g11-l4",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch1-l4-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Collision Lab", url: "https://phet.colorado.edu/sims/html/collision-lab/latest/collision-lab_all.html" }],
+            title: "Chapter 1 • Lesson 4: Impulse, Momentum & Collisions",
+            concepts: [
+                "Linear Momentum: Vector quantity \\(\\vec{p} = m\\vec{v}\\) pointing in the direction of velocity.",
+                "Impulse-Momentum Theorem: The impulse of net external force equals the change in momentum: \\(\\vec{J} = \\int \\vec{F}_{\\text{net}}dt = \\vec{F}_{\\text{avg}}\\Delta t = \\Delta\\vec{p} = m\\vec{v}_f - m\\vec{v}_i\\).",
+                "Conservation of Linear Momentum: In an isolated system (\\(\\sum \\vec{F}_{\\text{ext}} = 0\\)), total momentum is constant: \\(\\sum \\vec{p}_i = \\sum \\vec{p}_f\\).",
+                "Elastic Collisions: Both total linear momentum and total mechanical kinetic energy are conserved: \\(\\sum K_i = \\sum K_f\\). For 1D head-on collisions: \\(v_{1f} = \\frac{m_1 - m_2}{m_1 + m_2}v_{1i} + \\frac{2m_2}{m_1 + m_2}v_{2i}\\).",
+                "Inelastic and Completely Inelastic Collisions: Momentum is conserved, but kinetic energy is partially converted into internal thermal/deformation energy. In completely inelastic collisions, colliding bodies stick together: \\(v_f = \\frac{m_1 v_{1i} + m_2 v_{2i}}{m_1 + m_2}\\).",
+                "Coefficient of Restitution: \\(e = \\frac{v_{2f} - v_{1f}}{v_{1i} - v_{2i}}\\). \\(e = 1\\) (elastic), \\(0 < e < 1\\) (inelastic), \\(e = 0\\) (completely inelastic)."
+            ],
+            definitions: [
+                { term: "Linear Momentum", definition: "The product of an object's mass and its velocity vector.", symbol: "\\vec{p}", unit: "\\mathrm{kg\\cdot m/s}", equation: "\\vec{p} = m\\vec{v}" },
+                { term: "Impulse", definition: "The time integral of a force acting over a duration \\(\\Delta t\\), equal to change in momentum.", symbol: "\\vec{J}", unit: "\\mathrm{N\\cdot s}", equation: "\\vec{J} = \\vec{F}_{\\text{avg}}\\Delta t = \\Delta \\vec{p}" },
+                { term: "Isolated System", definition: "A physical system free from net external forces, ensuring conservation of total momentum.", symbol: "\\sum \\vec{p}", unit: "\\mathrm{kg\\cdot m/s}", equation: "\\sum \\vec{p}_i = \\sum \\vec{p}_f" },
+                { term: "Elastic Collision", definition: "A collision wherein mechanical kinetic energy is conserved without dissipation.", symbol: "e", unit: "Dimensionless", equation: "e = 1, \\quad \\sum K_i = \\sum K_f" },
+                { term: "Completely Inelastic Collision", definition: "A collision wherein interacting bodies stick together with maximum kinetic energy conversion to heat.", symbol: "e", unit: "Dimensionless", equation: "e = 0, \\quad v_f = \\frac{m_1 v_{1i} + m_2 v_{2i}}{m_1 + m_2}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Ballistic Pendulum Bullet Speed",
+                    question: "A bullet of mass m = 10.0 g (0.010 kg) is fired into a ballistic pendulum block of mass M = 1.990 kg suspended by light cords. The block with embedded bullet swings upward to a maximum vertical height of h = 12.5 cm (0.125 m). Find: (a) Speed of block + bullet immediately after impact, (b) Initial speed v_b of the bullet. (g = 9.80 m/s²).",
+                    given: "Bullet mass \\( m = 0.010\\,\\mathrm{kg} \\), Block mass \\( M = 1.990\\,\\mathrm{kg} \\), Height \\( h = 0.125\\,\\mathrm{m} \\), \\( g = 9.80\\,\\mathrm{m/s^2} \\).",
+                    find: "Combined speed \\( V \\), bullet initial speed \\( v_b \\).",
+                    equation: "V = \\sqrt{2gh}, \\quad m v_b = (m + M)V",
+                    rearrangement: "v_b = \\frac{m + M}{m}V",
+                    solution: "1. Combined speed from energy conservation during swing: \\( V = \\sqrt{2 \\times 9.80 \\times 0.125} = \\sqrt{2.45} \\approx 1.565\\,\\mathrm{m/s} \\).<br>2. Total mass: \\( m + M = 0.010 + 1.990 = 2.000\\,\\mathrm{kg} \\).<br>3. Bullet initial speed from momentum conservation during impact: \\( v_b = \\frac{2.000}{0.010} \\times 1.565 = 200 \\times 1.565 = 313\\,\\mathrm{m/s} \\).",
+                    finalAnswer: "V \\approx 1.57\\,\\mathrm{m/s}, \\quad v_b \\approx 313\\,\\mathrm{m/s}",
+                    explanation: "Momentum is conserved during the rapid impact; energy is conserved during the subsequent swing."
+                },
+                {
+                    title: "Example 2: 1D Elastic Collision Between Unequal Masses",
+                    question: "A 0.50 kg cart moving at +4.0 m/s on a frictionless track collides elastically with a stationary 0.30 kg cart. Calculate the final velocities of both carts after the collision.",
+                    given: "Masses \\( m_1 = 0.50\\,\\mathrm{kg} \\), \\( m_2 = 0.30\\,\\mathrm{kg} \\), \\( v_{1i} = +4.0\\,\\mathrm{m/s} \\), \\( v_{2i} = 0 \\).",
+                    find: "Final velocities \\( v_{1f} \\) and \\( v_{2f} \\).",
+                    equation: "v_{1f} = \\frac{m_1 - m_2}{m_1 + m_2}v_{1i}, \\quad v_{2f} = \\frac{2m_1}{m_1 + m_2}v_{1i}",
+                    rearrangement: "m_1 + m_2 = 0.80\\,\\mathrm{kg}, \\quad m_1 - m_2 = 0.20\\,\\mathrm{kg}",
+                    solution: "1. Cart 1 final velocity: \\( v_{1f} = \\frac{0.20}{0.80} \\times 4.0 = +1.0\\,\\mathrm{m/s} \\).<br>2. Cart 2 final velocity: \\( v_{2f} = \\frac{2(0.50)}{0.80} \\times 4.0 = \\frac{1.0}{0.80} \\times 4.0 = +5.0\\,\\mathrm{m/s} \\).<br>3. Verify kinetic energy: \\( K_i = \\frac{1}{2}(0.50)(4.0)^2 = 4.0\\,\\mathrm{J} \\); \\( K_f = \\frac{1}{2}(0.50)(1.0)^2 + \\frac{1}{2}(0.30)(5.0)^2 = 0.25 + 3.75 = 4.0\\,\\mathrm{J} \\) (perfectly conserved!).",
+                    finalAnswer: "v_{1f} = +1.0\\,\\mathrm{m/s}, \\quad v_{2f} = +5.0\\,\\mathrm{m/s}",
+                    explanation: "In an elastic collision, relative velocity of separation equals relative velocity of approach."
+                }
+            ],
+            equations: [
+                {
+                    section: "Linear Momentum",
+                    name: "Linear Momentum Definition",
+                    formula: "\\[ \\vec{p} = m\\vec{v} \\]",
+                    pdfPage: "PDF Page 87",
+                    explanation: "Measure of the quantity of translational motion possessed by a moving particle.",
+                    conditions: "Classical non-relativistic mechanics (\\(v \\ll c\\)).",
+                    variables: [
+                        { symbol: "\\vec{p}", rep: "Linear momentum", unit: "Kilogram meter per second", unitSym: "\\mathrm{kg\\cdot m/s}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "\\vec{v}", rep: "Velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Impulse Theorem",
+                    name: "Impulse-Momentum Theorem",
+                    formula: "\\[ \\vec{I} = \\vec{F}\\Delta t = \\Delta\\vec{p} = m\\vec{v}_2 - m\\vec{v}_1 \\]",
+                    pdfPage: "PDF Page 87",
+                    explanation: "Impulse delivered by net force equals the total change in linear momentum of the particle.",
+                    conditions: "Average net force acting over duration \\(\\Delta t\\).",
+                    variables: [
+                        { symbol: "\\vec{I}", rep: "Impulse vector", unit: "Newton second", unitSym: "\\mathrm{N\\cdot s}" },
+                        { symbol: "\\vec{F}", rep: "Average force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\Delta t", rep: "Time duration", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "\\Delta\\vec{p}", rep: "Change in momentum", unit: "Kilogram meter per second", unitSym: "\\mathrm{kg\\cdot m/s}" }
+                    ]
+                },
+                {
+                    section: "Conservation of Momentum",
+                    name: "Conservation of Linear Momentum",
+                    formula: "\\[ \\sum \\vec{p}_f = \\sum \\vec{p}_i \\implies m_1\\vec{v}_1' + m_2\\vec{v}_2' = m_1\\vec{v}_1 + m_2\\vec{v}_2 \\]",
+                    pdfPage: "PDF Page 87 & 88",
+                    explanation: "Total momentum of an isolated system before and after interaction remains invariant.",
+                    conditions: "Zero net external force (\\(\\sum\\vec{F}_{\\text{ext}} = \\vec{0}\\)).",
+                    variables: [
+                        { symbol: "m_1, m_2", rep: "Masses of interacting bodies", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "v_1, v_2", rep: "Velocities before collision", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_1', v_2'", rep: "Velocities after collision", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Collisions",
+                    name: "Perfect Inelastic Collision",
+                    formula: "\\[ m_1 v_1 + m_2 v_2 = (m_1 + m_2)V' \\quad (\\Delta K < 0) \\]",
+                    pdfPage: "PDF Page 88",
+                    explanation: "Colliding bodies stick together moving with common velocity; maximum kinetic energy loss.",
+                    conditions: "Bodies couple together upon impact.",
+                    variables: [
+                        { symbol: "V'", rep: "Common combined velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\Delta K", rep: "Change in kinetic energy (loss)", unit: "Joule", unitSym: "\\mathrm{J}" }
+                    ]
+                },
+                {
+                    section: "Collisions",
+                    name: "Coefficient of Restitution",
+                    formula: "\\[ e = \\left|\\frac{v_{2f} - v_{1f}}{v_{2i} - v_{1i}}\\right| \\quad (e = 1 \\text{ elastic}, \\; 0 < e < 1 \\text{ inelastic}, \\; e = 0 \\text{ plastic}) \\]",
+                    pdfPage: "PDF Page 88",
+                    explanation: "Ratio measuring the elasticity of a collision based on relative approach and separation speeds.",
+                    conditions: "Collinear collision.",
+                    variables: [
+                        { symbol: "e", rep: "Coefficient of restitution", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Collisions",
+                    name: "Elastic Collision Relative Speed Relation",
+                    formula: "\\[ v_{1i} - v_{2i} = -(v_{1f} - v_{2f}) \\]",
+                    pdfPage: "PDF Page 89",
+                    explanation: "In an elastic collision, relative velocity of approach equals negative relative velocity of separation.",
+                    conditions: "Perfect elastic collision (\\(e = 1\\)).",
+                    variables: [
+                        { symbol: "v_{1i}, v_{2i}", rep: "Initial velocities", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_{1f}, v_{2f}", rep: "Final velocities", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Recoil & Propulsion",
+                    name: "Recoil Velocity of Gun",
+                    formula: "\\[ m_1 v_1' + m_2 v_2' = 0 \\implies v_2' = -\\frac{m_1}{m_2}v_1' \\]",
+                    pdfPage: "PDF Page 89",
+                    explanation: "Backward kick velocity of a gun firing a bullet from rest.",
+                    conditions: "System initially at rest before discharge.",
+                    variables: [
+                        { symbol: "v_2'", rep: "Recoil velocity of gun", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "m_1", rep: "Mass of bullet", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "m_2", rep: "Mass of gun", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "v_1'", rep: "Muzzle velocity of bullet", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Recoil & Propulsion",
+                    name: "Rocket Thrust and Acceleration",
+                    formula: "\\[ F_{\\text{thrust}} = \\mu v_e, \\quad a = \\frac{\\mu v_e}{m} \\quad \\left(\\mu = \\frac{dm}{dt}\\right) \\]",
+                    pdfPage: "PDF Page 89 & 90",
+                    explanation: "Forward reaction force and acceleration produced by fuel mass flow rate \\(\\mu\\) and exhaust speed \\(v_e\\).",
+                    conditions: "Continuous mass ejection in vacuum.",
+                    variables: [
+                        { symbol: "F_{\\text{thrust}}", rep: "Rocket thrust force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\mu", rep: "Mass burn rate (dm/dt)", unit: "Kilogram per second", unitSym: "\\mathrm{kg/s}" },
+                        { symbol: "v_e", rep: "Exhaust velocity relative to rocket", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "m", rep: "Instantaneous rocket mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" }
+                    ]
+                },
+                {
+                    section: "Elastic Collisions",
+                    name: "1D Head-on Elastic Collision Velocity 1",
+                    formula: "\\[ v_{1f} = \\left(\\frac{m_1 - m_2}{m_1 + m_2}\\right)v_{1i} + \\left(\\frac{2m_2}{m_1 + m_2}\\right)v_{2i} \\]",
+                    pdfPage: "PDF Page 89",
+                    explanation: "Final velocity of mass m₁ after a perfectly elastic one-dimensional collision with mass m₂.",
+                    conditions: "Perfect 1D elastic collision (e = 1).",
+                    variables: [
+                        { symbol: "v_{1f}", rep: "Post-collision velocity of body 1", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_{1i}, v_{2i}", rep: "Initial velocities before impact", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "m_1, m_2", rep: "Masses of interacting bodies", unit: "Kilogram", unitSym: "\\mathrm{kg}" }
+                    ]
+                },
+                {
+                    section: "Elastic Collisions",
+                    name: "1D Head-on Elastic Collision Velocity 2",
+                    formula: "\\[ v_{2f} = \\left(\\frac{2m_1}{m_1 + m_2}\\right)v_{1i} + \\left(\\frac{m_2 - m_1}{m_1 + m_2}\\right)v_{2i} \\]",
+                    pdfPage: "PDF Page 89",
+                    explanation: "Final velocity of mass m₂ after a perfectly elastic one-dimensional collision with mass m₁.",
+                    conditions: "Perfect 1D elastic collision (e = 1).",
+                    variables: [
+                        { symbol: "v_{2f}", rep: "Post-collision velocity of body 2", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_{1i}, v_{2i}", rep: "Initial velocities before impact", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "m_1, m_2", rep: "Masses of interacting bodies", unit: "Kilogram", unitSym: "\\mathrm{kg}" }
+                    ]
+                },
+                {
+                    section: "Inelastic Collisions",
+                    name: "Kinetic Energy Dissipation in Inelastic Collision",
+                    formula: "\\[ \\Delta K = K_f - K_i = \\frac{1}{2}\\left(\\frac{m_1 m_2}{m_1 + m_2}\\right)(v_1 - v_2)^2(e^2 - 1) \\]",
+                    pdfPage: "PDF Page 88",
+                    explanation: "Mechanical kinetic energy lost as thermal deformation energy during an inelastic collision.",
+                    conditions: "Collinear collision with restitution coefficient e (0 ≤ e < 1).",
+                    variables: [
+                        { symbol: "\\Delta K", rep: "Loss of mechanical energy (negative)", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "e", rep: "Coefficient of restitution", unit: "Dimensionless", unitSym: "\\text{No unit}" },
+                        { symbol: "v_1, v_2", rep: "Initial velocities before impact", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Rocket Propulsion",
+                    name: "Tsiolkovsky Rocket Equation",
+                    formula: "\\[ \\Delta v = v_e \\ln\\left(\\frac{m_0}{m_f}\\right) \\]",
+                    pdfPage: "PDF Page 90",
+                    explanation: "Calculates the maximum change in rocket velocity achieved by expelling reaction propellant from initial mass m₀ to final burnout mass m_f.",
+                    conditions: "Gravitation-free vacuum flight.",
+                    variables: [
+                        { symbol: "\\Delta v", rep: "Ideal velocity increase", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_e", rep: "Effective propellant exhaust speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "m_0", rep: "Initial rocket wet mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "m_f", rep: "Final burnout dry mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" }
+                    ]
+                },
+                {
+                    section: "2D Momentum",
+                    name: "2D Oblique Collision Conservation",
+                    formula: "\\[ m_1 v_{1x} + m_2 v_{2x} = m_1 v_{1x}' + m_2 v_{2x}', \\quad m_1 v_{1y} + m_2 v_{2y} = m_1 v_{1y}' + m_2 v_{2y}' \\]",
+                    pdfPage: "Textbook & Formula Sheet",
+                    explanation: "Vector conservation of momentum decomposed along mutually perpendicular Cartesian axes for oblique planar collisions.",
+                    conditions: "Isolated two-body collision in xy-plane.",
+                    variables: [
+                        { symbol: "v_{1x}, v_{1y}", rep: "Components of velocity before impact", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_{1x}', v_{1y}'", rep: "Components of velocity after impact", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the relationship between force and linear momentum?", back: "\\(\\vec{F}_{\\text{net}} = \\frac{d\\vec{p}}{dt}\\) (force is the time rate of change of linear momentum)." },
+                { front: "Why do vehicle airbags and crash zones reduce fatal injuries?", back: "They prolong the collision duration \\(\\Delta t\\), which substantially reduces the average impact force \\(F = \\frac{\\Delta p}{\\Delta t}\\)." },
+                { front: "What is conserved in every collision of an isolated system?", back: "Total linear momentum \\(\\sum \\vec{p}\\) is ALWAYS conserved." },
+                { front: "What is the coefficient of restitution \\(e\\) for a completely inelastic collision?", back: "\\(e = 0\\) (the bodies stick together)." }
+            ],
+            quiz: [
+                { question: "An impulse of 40 N·s is delivered to an initially stationary 4.0 kg cart. Its final speed is:", options: ["4.0 m/s", "10 m/s", "40 m/s", "160 m/s"], correctIndex: 1, feedback: "J = Δp = m·v_f → v_f = J / m = 40 / 4.0 = 10 m/s." },
+                { question: "In a completely inelastic collision between two objects:", options: ["Both momentum and kinetic energy are conserved", "Momentum is conserved, but kinetic energy is lost", "Kinetic energy is conserved, but momentum is lost", "Neither is conserved"], correctIndex: 1, feedback: "Total momentum is conserved in all isolated collisions, but maximum kinetic energy is dissipated into thermal and deformation energy." },
+                { question: "Two identical billiard balls of mass m collide elastically in 1D. Ball 1 moves at speed v toward stationary Ball 2. After collision:", options: ["Ball 1 stops and Ball 2 moves forward at speed v", "Both move forward at speed v/2", "Ball 1 rebounds at speed v", "Ball 2 rebounds backwards"], correctIndex: 0, feedback: "In 1D elastic collisions between equal masses, velocities are completely exchanged." }
+            ]
+        },
+        {
+            id: "g11-ch1-l5",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch1-l5-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Energy Skate Park & Pendulum", url: "https://phet.colorado.edu/sims/html/energy-skate-park/latest/energy-skate-park_all.html" }],
+            title: "Chapter 1 • Lesson 5: Energy Conservation, Pendulum & Moduli",
+            concepts: [
+                "Conservative Forces & Potential Energy: A force is conservative if work around any closed loop is zero (\\(\\oint \\vec{F}\\cdot d\\vec{r} = 0\\)). Force is the negative gradient of potential energy: \\(F_x = -\\frac{dU}{dx}\\).",
+                "Work-Energy Theorem with Friction: \\(W_{\\text{nc}} = \\Delta E_{\\text{mech}} = (K_f + U_f) - (K_i + U_i) = -f_k d\\).",
+                "Simple Pendulum Dynamics: Released from angle \\(\\theta_0\\), speed at angle \\(\\theta\\) is \\(v = \\sqrt{2gL(\\cos\\theta - \\cos\\theta_0)}\\). String tension is \\(T = mg(3\\cos\\theta - 2\\cos\\theta_0)\\); at bottom (\\(\\theta = 0\\)), \\(T_{\\max} = mg(3 - 2\\cos\\theta_0)\\).",
+                "Complete Static Equilibrium: A rigid body is in complete equilibrium if and only if \\(\\sum \\vec{F} = 0\\) (translational) and \\(\\sum \\vec{\\tau} = 0\\) (rotational about any arbitrary pivot).",
+                "Center of Gravity & Center of Mass: \\(\\vec{r}_{\\text{cm}} = \\frac{\\sum m_i \\vec{r}_i}{\\sum m_i}\\). In uniform gravity, center of gravity coincides with center of mass.",
+                "Elastic Moduli of Matter: Tensile stress \\(\\sigma = \\frac{F}{A}\\), tensile strain \\(\\epsilon = \\frac{\\Delta L}{L_0}\\). Young's Modulus \\(Y = \\frac{\\sigma}{\\epsilon} = \\frac{FL_0}{A\\Delta L}\\). Shear Modulus \\(S = \\frac{F/A}{\\Delta x / h}\\). Bulk Modulus \\(B = -\\frac{\\Delta P}{\\Delta V / V_0}\\)."
+            ],
+            definitions: [
+                { term: "Conservative Force", definition: "A force for which work done on a particle depends purely on initial and final positions, independent of path.", symbol: "\\vec{F}_c", unit: "\\mathrm{N}", equation: "W_c = -\\Delta U" },
+                { term: "Young's Modulus", definition: "The ratio of tensile stress to tensile strain within the elastic proportional limit.", symbol: "Y", unit: "\\mathrm{Pa} \\;(\\mathrm{N/m^2})", equation: "Y = \\frac{F/A}{\\Delta L/L_0}" },
+                { term: "Shear Modulus", definition: "Material stiffness parameter measuring resistance to shape deformation under shear stress.", symbol: "S", unit: "\\mathrm{Pa}", equation: "S = \\frac{F_{\\parallel}/A}{\\Delta x/h}" },
+                { term: "Bulk Modulus", definition: "Material parameter quantifying resistance to uniform volumetric compression under hydrostatic pressure.", symbol: "B", unit: "\\mathrm{Pa}", equation: "B = -\\frac{\\Delta P}{\\Delta V/V_0}" },
+                { term: "Static Equilibrium", definition: "State of a rigid body experiencing zero net external force and zero net external torque.", symbol: "\\sum \\vec{F}, \\sum \\vec{\\tau}", unit: "\\mathrm{N}, \\mathrm{N\\cdot m}", equation: "\\sum \\vec{F} = 0, \\quad \\sum \\vec{\\tau} = 0" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Pendulum Bob Speed and String Tension at Bottom",
+                    question: "A simple pendulum of mass m = 0.40 kg and length L = 1.50 m is released from rest at an angle θ₀ = 60.0° from the vertical. Taking g = 9.80 m/s², find: (a) Speed v at the lowest point, (b) String tension T at the lowest point.",
+                    given: "Mass \\( m = 0.40\\,\\mathrm{kg} \\), Length \\( L = 1.50\\,\\mathrm{m} \\), \\( \\theta_0 = 60.0^\\circ \\), \\( g = 9.80\\,\\mathrm{m/s^2} \\).",
+                    find: "Bottom speed \\( v \\), Bottom tension \\( T \\).",
+                    equation: "v = \\sqrt{2gL(1 - \\cos\\theta_0)}, \\quad T = mg(3 - 2\\cos\\theta_0)",
+                    rearrangement: "\\cos(60.0^\\circ) = 0.50, \\quad 1 - \\cos\\theta_0 = 0.50",
+                    solution: "1. Speed at lowest point: \\( v = \\sqrt{2 \\times 9.80 \\times 1.50 \\times 0.50} = \\sqrt{14.70} \\approx 3.834\\,\\mathrm{m/s} \\).<br>2. String tension at bottom: \\( T = mg + \\frac{mv^2}{L} = 0.40 \\times 9.80 + \\frac{0.40 \\times 14.70}{1.50} = 3.92 + 3.92 = 7.84\\,\\mathrm{N} \\).<br>Notice: \\( T = mg(3 - 2(0.50)) = 2mg = 2 \\times 3.92 = 7.84\\,\\mathrm{N} \\) (exactly double the bob's resting weight!).",
+                    finalAnswer: "v \\approx 3.83\\,\\mathrm{m/s}, \\quad T = 7.84\\,\\mathrm{N}",
+                    explanation: "At the bottom, string tension must balance gravity and provide the centripetal acceleration."
+                },
+                {
+                    title: "Example 2: Steel Cable Stretch Under Load",
+                    question: "A steel cable of length L₀ = 3.0 m and cross-sectional area A = 2.0 × 10⁻⁵ m² supports a load of mass m = 800 kg. If Young's modulus for steel is Y = 2.0 × 10¹¹ Pa, calculate: (a) Tensile stress, (b) Tensile strain, and (c) Cable elongation ΔL. (g = 9.80 m/s²).",
+                    given: "Length \\( L_0 = 3.0\\,\\mathrm{m} \\), Area \\( A = 2.0 \\times 10^{-5}\\,\\mathrm{m^2} \\), Mass \\( m = 800\\,\\mathrm{kg} \\), \\( Y = 2.0 \\times 10^{11}\\,\\mathrm{Pa} \\).",
+                    find: "Stress \\( \\sigma \\), Strain \\( \\epsilon \\), Elongation \\( \\Delta L \\).",
+                    equation: "\\sigma = \\frac{F}{A}, \\quad \\epsilon = \\frac{\\sigma}{Y}, \\quad \\Delta L = \\epsilon L_0",
+                    rearrangement: "F = mg = 800 \\times 9.80 = 7840\\,\\mathrm{N}",
+                    solution: "1. Tensile stress: \\( \\sigma = \\frac{7840}{2.0 \\times 10^{-5}} = 3.92 \\times 10^8\\,\\mathrm{Pa} = 392\\,\\mathrm{MPa} \\).<br>2. Tensile strain: \\( \\epsilon = \\frac{3.92 \\times 10^8}{2.0 \\times 10^{11}} = 1.96 \\times 10^{-3} \\).<br>3. Elongation: \\( \\Delta L = (1.96 \\times 10^{-3}) \\times 3.0 = 5.88 \\times 10^{-3}\\,\\mathrm{m} = 5.88\\,\\mathrm{mm} \\).",
+                    finalAnswer: "\\sigma = 3.92 \\times 10^8\\,\\mathrm{Pa}, \\quad \\epsilon = 1.96 \\times 10^{-3}, \\quad \\Delta L \\approx 5.88\\,\\mathrm{mm}",
+                    explanation: "Young's modulus quantifies how much a material elastically stretches under a tensile load."
+                }
+            ],
+            equations: [
+                {
+                    section: "Mechanical Energy",
+                    name: "Work-Kinetic Energy Theorem",
+                    formula: "\\[ W = \\Delta K = \\frac{1}{2}mv_2^2 - \\frac{1}{2}mv_1^2 \\]",
+                    pdfPage: "PDF Page 91",
+                    explanation: "Net work done on a mass equals its change in translational kinetic energy.",
+                    conditions: "Rigid particle model.",
+                    variables: [
+                        { symbol: "W", rep: "Net work done", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "v_1, v_2", rep: "Initial and final velocities", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Potential Energy",
+                    name: "Gravitational Work & Potential Energy",
+                    formula: "\\[ U_g = mgh, \\quad W_g = -\\Delta U_g = mg(h_A - h_B) \\]",
+                    pdfPage: "PDF Page 92",
+                    explanation: "Gravitational potential energy stored in an elevated mass and work performed during descent.",
+                    conditions: "Uniform gravitational field.",
+                    variables: [
+                        { symbol: "U_g", rep: "Gravitational potential energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "W_g", rep: "Work done by gravity", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "h_A, h_B", rep: "Initial and final heights", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Spring Energy",
+                    name: "Hooke's Law & Elastic Potential Energy",
+                    formula: "\\[ F = kx, \\quad U_s = \\frac{1}{2}kx^2 \\]",
+                    pdfPage: "PDF Page 92 & 93",
+                    explanation: "Restoring force in an elastic spring and mechanical energy stored upon stretching or compressing.",
+                    conditions: "Within proportional elastic limit.",
+                    variables: [
+                        { symbol: "F", rep: "Restoring spring force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "k", rep: "Spring stiffness constant", unit: "Newton per meter", unitSym: "\\mathrm{N/m}" },
+                        { symbol: "x", rep: "Displacement from equilibrium", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "U_s", rep: "Elastic potential energy", unit: "Joule", unitSym: "\\mathrm{J}" }
+                    ]
+                },
+                {
+                    section: "Conservation of Energy",
+                    name: "Conservation of Mechanical Energy",
+                    formula: "\\[ E = K + U = \\text{constant} \\implies K_i + U_i = K_f + U_f \\]",
+                    pdfPage: "PDF Page 93",
+                    explanation: "Total mechanical energy is strictly conserved under conservative forces.",
+                    conditions: "Isolated system with zero friction dissipation.",
+                    variables: [
+                        { symbol: "E", rep: "Total mechanical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "K", rep: "Kinetic energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "U", rep: "Potential energy (gravitational + elastic)", unit: "Joule", unitSym: "\\mathrm{J}" }
+                    ]
+                },
+                {
+                    section: "Pendulum Dynamics",
+                    name: "Simple Pendulum Velocity at Lowest Point",
+                    formula: "\\[ v_B = \\sqrt{2gL(1 - \\cos\\theta)} \\]",
+                    pdfPage: "PDF Page 93 & 94",
+                    explanation: "Calculates the maximum velocity of a simple pendulum at its lowest equilibrium position.",
+                    conditions: "Released from rest at angle \\(\\theta\\).",
+                    variables: [
+                        { symbol: "v_B", rep: "Velocity at lowest point", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "L", rep: "Length of pendulum string", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Release angle from vertical", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Pendulum Dynamics",
+                    name: "Simple Pendulum Velocity at Any Angle",
+                    formula: "\\[ v = \\sqrt{2gL(\\cos\\alpha - \\cos\\theta)} \\]",
+                    pdfPage: "PDF Page 94",
+                    explanation: "Instantaneous velocity of pendulum bob passing through intermediate angle α.",
+                    conditions: "General angular position during swing.",
+                    variables: [
+                        { symbol: "v", rep: "Instantaneous speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\alpha", rep: "Current swing angle", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "\\theta", rep: "Maximum release angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Pendulum Dynamics",
+                    name: "String Tension at Lowest Point",
+                    formula: "\\[ T = mg(3 - 2\\cos\\theta) \\]",
+                    pdfPage: "PDF Page 94",
+                    explanation: "String tension at the lowest swing point, combining static weight and centripetal force.",
+                    conditions: "At bottom equilibrium point.",
+                    variables: [
+                        { symbol: "T", rep: "String tension", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Bob mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "\\theta", rep: "Maximum release angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Equilibrium",
+                    name: "Rigid Body Static Equilibrium Conditions",
+                    formula: "\\[ \\sum F_x = 0, \\quad \\sum F_y = 0, \\quad \\sum \\tau = 0 \\]",
+                    pdfPage: "PDF Page 96 & 97",
+                    explanation: "Conditions required for complete translational and rotational static equilibrium.",
+                    conditions: "Rigid body at rest.",
+                    variables: [
+                        { symbol: "\\sum F_x, \\sum F_y", rep: "Net force components", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\sum \\tau", rep: "Net torque about any chosen pivot", unit: "Newton meter", unitSym: "\\mathrm{N\\cdot m}" }
+                    ]
+                },
+                {
+                    section: "Center of Mass",
+                    name: "Center of Mass Coordinates",
+                    formula: "\\[ x_{\\text{cm}} = \\frac{\\sum m_i x_i}{\\sum m_i}, \\quad y_{\\text{cm}} = \\frac{\\sum m_i y_i}{\\sum m_i} \\]",
+                    pdfPage: "PDF Page 97",
+                    explanation: "Barycenter coordinates representing the mean position of mass in a multi-particle system.",
+                    conditions: "Discrete mass distribution.",
+                    variables: [
+                        { symbol: "x_{\\text{cm}}, y_{\\text{cm}}", rep: "Center of mass coordinates", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "m_i", rep: "Mass of i-th particle", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "x_i, y_i", rep: "Coordinates of i-th particle", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Elastic Moduli",
+                    name: "Young's Modulus (Tensile Elasticity)",
+                    formula: "\\[ Y = \\frac{\\text{Stress}}{\\text{Strain}} = \\frac{F/A}{\\Delta L / L_i} = \\frac{F L_i}{A \\Delta L} \\]",
+                    pdfPage: "PDF Page 98",
+                    explanation: "Measures resistance of a solid material to longitudinal stretching or compression.",
+                    conditions: "Uniaxial loading within elastic limit.",
+                    variables: [
+                        { symbol: "Y", rep: "Young's modulus", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "F", rep: "Tensile or compressive force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "A", rep: "Cross-sectional area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "\\Delta L", rep: "Elongation or compression", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "L_i", rep: "Original length", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Elastic Moduli",
+                    name: "Shear Modulus (Modulus of Rigidity)",
+                    formula: "\\[ S = \\frac{F/A}{\\Delta x / h} \\]",
+                    pdfPage: "PDF Page 98",
+                    explanation: "Measures material resistance to shearing angular distortion without change in volume.",
+                    conditions: "Tangential shearing force F applied across surface area A.",
+                    variables: [
+                        { symbol: "S", rep: "Shear modulus", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\Delta x", rep: "Horizontal shear deformation", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "h", rep: "Height of material block", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Elastic Moduli",
+                    name: "Bulk Modulus (Volume Elasticity)",
+                    formula: "\\[ B = -\\frac{\\Delta P}{\\Delta V / V_i} = -\\frac{\\Delta F / A}{\\Delta V / V_i} \\]",
+                    pdfPage: "PDF Page 99",
+                    explanation: "Quantifies material resistance to uniform hydrostatic compression from all directions.",
+                    conditions: "Uniform hydrostatic pressure applied to solids or liquids.",
+                    variables: [
+                        { symbol: "B", rep: "Bulk modulus", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\Delta P", rep: "Pressure increase", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\Delta V / V_i", rep: "Fractional volume compression", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Pendulum Dynamics",
+                    name: "Simple Pendulum Tension at Any Angle",
+                    formula: "\\[ T = mg(3\\cos\\alpha - 2\\cos\\theta) \\]",
+                    pdfPage: "PDF Page 94",
+                    explanation: "General tension in the pendulum cord when swinging through intermediate angle alpha, released from maximum angle theta.",
+                    conditions: "Oscillating pendulum bob at angle \\(\\alpha \\le \\theta\\).",
+                    variables: [
+                        { symbol: "T", rep: "Cord tension", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "m", rep: "Bob mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\alpha", rep: "Instantaneous angle from vertical", unit: "Degree", unitSym: "{^\\circ}" },
+                        { symbol: "\\theta", rep: "Initial release amplitude angle", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Pendulum Dynamics",
+                    name: "Tangential Restoring Force of Simple Pendulum",
+                    formula: "\\[ F_t = -mg\\sin\\theta \\approx -mg\\frac{s}{L} \\]",
+                    pdfPage: "PDF Page 94",
+                    explanation: "Tangential restoring component of gravity pulling the pendulum bob toward its lowest equilibrium position.",
+                    conditions: "Small angle approximation (\\(\\sin\\theta \\approx \\theta = s/L\\)).",
+                    variables: [
+                        { symbol: "F_t", rep: "Tangential restoring force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "s", rep: "Arc displacement from equilibrium", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "L", rep: "Length of pendulum string", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Pendulum Dynamics",
+                    name: "Simple Pendulum Small-Angle Period",
+                    formula: "\\[ T = 2\\pi\\sqrt{\\frac{L}{g}}, \\quad f = \\frac{1}{2\\pi}\\sqrt{\\frac{g}{L}} \\]",
+                    pdfPage: "PDF Page 95",
+                    explanation: "Natural oscillation period and frequency of a simple pendulum under small angle approximations.",
+                    conditions: "Small angular displacements (\\(\\theta < 10^\\circ\\)).",
+                    variables: [
+                        { symbol: "T", rep: "Oscillation period", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "f", rep: "Oscillation frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" },
+                        { symbol: "L", rep: "String length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Rotational Torque",
+                    name: "Torque of a Force About Pivot",
+                    formula: "\\[ \\tau = F \\cdot d = F r \\sin\\theta \\]",
+                    pdfPage: "PDF Page 96",
+                    explanation: "Rotational turning effectiveness of a force F acting at lever arm distance d perpendicular to pivot.",
+                    conditions: "Rigid body rotation about a fixed pivot.",
+                    variables: [
+                        { symbol: "\\tau", rep: "Torque / Moment of force", unit: "Newton meter", unitSym: "\\mathrm{N\\cdot m}" },
+                        { symbol: "F", rep: "Applied force magnitude", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "d", rep: "Perpendicular moment arm", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "r", rep: "Distance from pivot to application point", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\theta", rep: "Angle between position vector and force", unit: "Degree", unitSym: "{^\\circ}" }
+                    ]
+                },
+                {
+                    section: "Rotational Torque",
+                    name: "Moment of a Couple of Forces",
+                    formula: "\\[ M = F \\cdot d \\]",
+                    pdfPage: "PDF Page 96",
+                    explanation: "Net torque produced by two equal, opposite, and non-collinear forces separated by perpendicular distance d.",
+                    conditions: "Two parallel opposite forces of equal magnitude F.",
+                    variables: [
+                        { symbol: "M", rep: "Moment of the couple", unit: "Newton meter", unitSym: "\\mathrm{N\\cdot m}" },
+                        { symbol: "F", rep: "Magnitude of each force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "d", rep: "Perpendicular distance between force lines", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Elastic Moduli",
+                    name: "Compressibility of Matter",
+                    formula: "\\[ k = \\frac{1}{B} = -\\frac{1}{V_i}\\frac{\\Delta V}{\\Delta P} \\]",
+                    pdfPage: "PDF Page 99",
+                    explanation: "Fractional volume decrease per unit increase in hydrostatic pressure, defined as reciprocal of Bulk Modulus.",
+                    conditions: "Hydrostatic compression of fluids or isotropic solids.",
+                    variables: [
+                        { symbol: "k", rep: "Compressibility", unit: "Inverse Pascal", unitSym: "\\mathrm{Pa^{-1}}" },
+                        { symbol: "B", rep: "Bulk modulus", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\Delta V / V_i", rep: "Relative fractional volume change", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "\\Delta P", rep: "Applied hydrostatic pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What are the two equilibrium conditions for a rigid body?", back: "1. \\(\\sum \\vec{F} = 0\\) (zero net force)\n2. \\(\\sum \\vec{\\tau} = 0\\) (zero net torque about any pivot)" },
+                { front: "What is the relation between force \\(F_x\\) and potential energy \\(U(x)\\)?", back: "\\(F_x = -\\frac{dU}{dx}\\)" },
+                { front: "What is the formula for Young's Modulus \\(Y\\)?", back: "\\(Y = \\frac{\\text{Stress}}{\\text{Strain}} = \\frac{F/A}{\\Delta L/L_0}\\)" },
+                { front: "What is the tension in a pendulum string released from \\(\\theta_0 = 60^\\circ\\) at bottom?", back: "\\(T_{\\max} = mg(3 - 2\\cos 60^\\circ) = mg(3 - 1) = 2mg\\)" }
+            ],
+            quiz: [
+                { question: "If the radius of a wire is doubled while keeping load and length constant, its elongation ΔL:", options: ["Doubles", "Halves", "Decreases to 1/4", "Decreases to 1/8"], correctIndex: 2, feedback: "Area A = πr² quadruples, and ΔL = FL₀ / (AY) is inversely proportional to A, so ΔL reduces to 1/4." },
+                { question: "A force is conservative if and only if:", options: ["The work done around any closed path is zero", "It always points downwards", "It increases total kinetic energy", "Its magnitude is constant"], correctIndex: 0, feedback: "By definition, conservative forces do zero net work along any closed loop (path independence)." },
+                { question: "Bulk modulus measures an object's resistance to:", options: ["Shear deformation", "Linear stretching", "Volumetric compression under pressure", "Torsional twisting"], correctIndex: 2, feedback: "Bulk Modulus B = -ΔP / (ΔV / V₀) characterizes uniform volume change under hydrostatic pressure." }
+            ]
+        },
+        {
+            id: "g11-ch1-l6",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch1-l6-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Fluid Pressure and Flow", url: "https://phet.colorado.edu/sims/html/fluid-pressure-and-flow/latest/fluid-pressure-and-flow_all.html" }],
+            title: "Chapter 1 • Lesson 6: Fluid Dynamics, Continuity & Viscosity",
+            concepts: [
+                "Ideal Fluid Characteristics: Steady (laminar), incompressible (constant density \\(\\rho\\)), non-viscous (zero internal friction), and irrotational flow.",
+                "Equation of Continuity: Mass conservation in incompressible fluid flow requires volume flow rate \\(Q\\) to remain constant: \\(Q = A_1 v_1 = A_2 v_2 = \\text{constant}\\). Where area decreases, flow speed increases.",
+                "Bernoulli's Principle: Mechanical energy conservation for ideal fluids: \\(P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho g y_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho g y_2 = \\text{constant}\\). High speed flow regions exhibit lower static pressure.",
+                "Torricelli's Law: Efflux speed from an orifice at depth \\(h\\) below the open surface of an open tank: \\(v = \\sqrt{2gh}\\).",
+                "Venturi Tube: Fluid passing through a constriction accelerates (\\(v_2 > v_1\\)), creating pressure difference \\(\\Delta P = P_1 - P_2 = \\frac{1}{2}\\rho (v_2^2 - v_1^2)\\).",
+                "Viscosity & Poiseuille's Law: Laminar flow of a viscous fluid through a pipe of radius \\(R\\) and length \\(L\\): \\(Q = \\frac{\\pi R^4 (P_1 - P_2)}{8\\eta L}\\). Flow rate is intensely sensitive to radius (\\(Q \\propto R^4\\)).",
+                "Stokes' Law & Terminal Velocity: Viscous drag on a sphere of radius \\(r\\): \\(F_d = 6\\pi \\eta r v\\). Equilibrium with gravity and buoyancy yields terminal velocity \\(v_t = \\frac{2r^2(\\rho_{\\text{obj}} - \\rho_{\\text{fluid}})g}{9\\eta}\\)."
+            ],
+            definitions: [
+                { term: "Volume Flow Rate", definition: "The volume of fluid crossing a given cross-section per unit time.", symbol: "Q", unit: "\\mathrm{m^3/s}", equation: "Q = A v = \\frac{\\Delta V}{\\Delta t}" },
+                { term: "Bernoulli's Equation", definition: "Energy conservation equation governing steady, non-viscous incompressible fluid flow.", symbol: "P + \\frac{1}{2}\\rho v^2 + \\rho gy", unit: "\\mathrm{Pa}", equation: "P + \\frac{1}{2}\\rho v^2 + \\rho g y = \\text{constant}" },
+                { term: "Torricelli's Law", definition: "Efflux speed from an open container orifice equals free-fall speed from the surface height.", symbol: "v", unit: "\\mathrm{m/s}", equation: "v = \\sqrt{2gh}" },
+                { term: "Dynamic Viscosity", definition: "A fluid's internal friction resisting shear deformation during flow.", symbol: "\\eta", unit: "\\mathrm{Pa\\cdot s}", equation: "\\tau = \\eta \\frac{dv}{dy}" },
+                { term: "Poiseuille's Law", definition: "Equation describing laminar volumetric flow rate through a cylindrical tube under pressure differential.", symbol: "Q", unit: "\\mathrm{m^3/s}", equation: "Q = \\frac{\\pi R^4 \\Delta P}{8\\eta L}" },
+                { term: "Stokes' Drag Force", definition: "Viscous resistive drag force exerted on small spherical particles moving in laminar flow.", symbol: "F_d", unit: "\\mathrm{N}", equation: "F_d = 6\\pi \\eta r v" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Venturi Tube Flow Speed and Pressure Drop",
+                    question: "Water (ρ = 1000 kg/m³) flows through a horizontal pipe. Section 1 has area A₁ = 20.0 cm² and pressure P₁ = 1.80 × 10⁵ Pa. Section 2 narrows to area A₂ = 5.0 cm² where speed is v₂ = 6.0 m/s. Calculate: (a) Flow speed v₁ in section 1, (b) Water pressure P₂ in the throat.",
+                    given: "Densities \\( \\rho = 1000\\,\\mathrm{kg/m^3} \\), \\( A_1 = 20.0\\,\\mathrm{cm^2} \\), \\( A_2 = 5.0\\,\\mathrm{cm^2} \\), \\( P_1 = 1.80 \\times 10^5\\,\\mathrm{Pa} \\), \\( v_2 = 6.0\\,\\mathrm{m/s} \\).",
+                    find: "Speed \\( v_1 \\), Pressure \\( P_2 \\).",
+                    equation: "A_1 v_1 = A_2 v_2, \\quad P_1 + \\frac{1}{2}\\rho v_1^2 = P_2 + \\frac{1}{2}\\rho v_2^2",
+                    rearrangement: "v_1 = \\frac{A_2}{A_1}v_2, \\quad P_2 = P_1 + \\frac{1}{2}\\rho (v_1^2 - v_2^2)",
+                    solution: "1. Flow speed: \\( v_1 = \\frac{5.0}{20.0} \\times 6.0 = 1.50\\,\\mathrm{m/s} \\).<br>2. Pressure calculation: \\( P_2 = 1.80 \\times 10^5 + \\frac{1}{2}(1000)(1.50^2 - 6.0^2) \\).<br>3. \\( P_2 = 180,000 + 500 \\times (2.25 - 36.0) = 180,000 + 500 \\times (-33.75) = 180,000 - 16,875 = 163,125\\,\\mathrm{Pa} \\approx 1.63 \\times 10^5\\,\\mathrm{Pa} \\).",
+                    finalAnswer: "v_1 = 1.50\\,\\mathrm{m/s}, \\quad P_2 \\approx 1.63 \\times 10^5\\,\\mathrm{Pa}",
+                    explanation: "In horizontal flow, fluid pressure drops significantly where flow speed increases."
+                },
+                {
+                    title: "Example 2: Poiseuille Flow Rate Reduction in Constricted Artery",
+                    question: "An artery radius is reduced by 15% due to arteriosclerosis (so R₂ = 0.85 R₁). By what percentage does the volume flow rate decrease under the same blood pressure difference?",
+                    given: "Radius ratio \\( R_2 / R_1 = 0.85 \\), Constant pressure gradient \\( \\Delta P \\).",
+                    find: "Percentage decrease in flow rate \\( Q \\).",
+                    equation: "Q \\propto R^4 \\implies \\frac{Q_2}{Q_1} = \\left(\\frac{R_2}{R_1}\\right)^4",
+                    rearrangement: "\\frac{Q_2}{Q_1} = (0.85)^4",
+                    solution: "1. Ratio: \\( (0.85)^4 = 0.522 \\approx 52.2\\% \\).<br>2. Percentage reduction: \\( 100\\% - 52.2\\% = 47.8\\% \\).",
+                    finalAnswer: "\\text{Reduction of } \\approx 48\\%",
+                    explanation: "Because flow rate depends on R⁴, a mere 15% narrowing cuts flow rate by nearly half."
+                }
+            ],
+            equations: [
+                {
+                    section: "Flow Rate",
+                    name: "Volume Flow Rate",
+                    formula: "\\[ Q_V = \\frac{\\Delta V}{\\Delta t} = Av \\]",
+                    pdfPage: "PDF Page 100",
+                    explanation: "Rate of fluid volume transport passing through a conduit of cross-sectional area A at mean speed v.",
+                    conditions: "Uniform velocity across area A.",
+                    variables: [
+                        { symbol: "Q_V", rep: "Volume flow rate", unit: "Cubic meter per second", unitSym: "\\mathrm{m^3/s}" },
+                        { symbol: "A", rep: "Pipe cross-sectional area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "v", rep: "Fluid flow speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Flow Rate",
+                    name: "Mass Flow Rate",
+                    formula: "\\[ Q_m = \\frac{\\Delta m}{\\Delta t} = \\rho Q_V = \\rho Av \\]",
+                    pdfPage: "PDF Page 100 & 101",
+                    explanation: "Rate of fluid mass transported per unit time, directly proportional to fluid density.",
+                    conditions: "Steady fluid flow.",
+                    variables: [
+                        { symbol: "Q_m", rep: "Mass flow rate", unit: "Kilogram per second", unitSym: "\\mathrm{kg/s}" },
+                        { symbol: "\\rho", rep: "Fluid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Continuity",
+                    name: "Equation of Continuity",
+                    formula: "\\[ A_1 v_1 = A_2 v_2 \\implies Q_V = \\text{constant} \\]",
+                    pdfPage: "PDF Page 101 & 102",
+                    explanation: "Conservation of mass for steady incompressible fluid flow through varying pipe cross-sections.",
+                    conditions: "Incompressible fluid (\\(\\rho = \\text{const}\\)).",
+                    variables: [
+                        { symbol: "A_1, A_2", rep: "Cross-sectional areas", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "v_1, v_2", rep: "Flow velocities", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Bernoulli's Principle",
+                    name: "Bernoulli's General Equation",
+                    formula: "\\[ P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho gz_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho gz_2 = \\text{constant} \\]",
+                    pdfPage: "PDF Page 102 & 103",
+                    explanation: "Conservation of energy along an ideal streamline connecting pressure, dynamic kinetic energy, and gravitational potential.",
+                    conditions: "Inviscid, incompressible, irrotational steady flow.",
+                    variables: [
+                        { symbol: "P", rep: "Static fluid pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Fluid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "v", rep: "Flow velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "z", rep: "Elevation above reference level", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Bernoulli's Principle",
+                    name: "Bernoulli for Horizontal Conduit",
+                    formula: "\\[ P_1 + \\frac{1}{2}\\rho v_1^2 = P_2 + \\frac{1}{2}\\rho v_2^2 = \\text{constant} \\]",
+                    pdfPage: "PDF Page 103",
+                    explanation: "Shows that for horizontal flow (z₁ = z₂), regions of higher fluid velocity experience lower static pressure.",
+                    conditions: "Horizontal pipeline.",
+                    variables: [
+                        { symbol: "P_1, P_2", rep: "Static pressures", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "v_1, v_2", rep: "Flow velocities", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Torricelli's Law",
+                    name: "Torricelli's Efflux Theorem",
+                    formula: "\\[ v = \\sqrt{2gh} = \\sqrt{\\frac{2P}{\\rho}} \\]",
+                    pdfPage: "PDF Page 103 & 104",
+                    explanation: "Speed of liquid discharging through a small orifice situated at depth h beneath an open liquid surface.",
+                    conditions: "Small orifice compared to tank surface area.",
+                    variables: [
+                        { symbol: "v", rep: "Exit velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Height of liquid above orifice", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "P", rep: "Hydrostatic column pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" }
+                    ]
+                },
+                {
+                    section: "Viscous Flow",
+                    name: "Pressure Head Loss & Average Speed",
+                    formula: "\\[ \\Delta P = P_1 - P_2, \\quad v_{av} = \\frac{v_{\\max}}{2} \\]",
+                    pdfPage: "PDF Page 104 & 105",
+                    explanation: "In viscous flow, boundary drag gives a parabolic profile with average speed equal to half the centerline maximum.",
+                    conditions: "Laminar viscous flow in circular pipe.",
+                    variables: [
+                        { symbol: "\\Delta P", rep: "Pressure drop across pipe length", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "v_{\\max}", rep: "Maximum velocity at pipe axis", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Viscous Flow",
+                    name: "Poiseuille's Volume Flow Rate Law",
+                    formula: "\\[ Q_V = \\frac{\\pi R^4 (P_1 - P_2)}{8\\eta l} \\]",
+                    pdfPage: "PDF Page 105 & 106",
+                    explanation: "Volume rate of laminar flow through a cylindrical pipe of radius R, length l, and viscosity η.",
+                    conditions: "Laminar Newtonian fluid flow.",
+                    variables: [
+                        { symbol: "Q_V", rep: "Volume flow rate", unit: "Cubic meter per second", unitSym: "\\mathrm{m^3/s}" },
+                        { symbol: "R", rep: "Pipe internal radius", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "P_1 - P_2", rep: "Pressure difference", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\eta", rep: "Dynamic viscosity", unit: "Pascal second", unitSym: "\\mathrm{Pa\\cdot s}" },
+                        { symbol: "l", rep: "Pipe length", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Venturi Tube",
+                    name: "Venturi Tube Differential Pressure & Flow Speed",
+                    formula: "\\[ \\Delta P = P_1 - P_2 = \\frac{1}{2}\\rho v_1^2 \\left[\\left(\\frac{A_1}{A_2}\\right)^2 - 1\\right] \\implies v_1 = \\sqrt{\\frac{2\\Delta P}{\\rho \\left[ (A_1/A_2)^2 - 1 \\right]}} \\]",
+                    pdfPage: "PDF Page 103",
+                    explanation: "Relates pressure drop across a Venturi constriction to fluid flow speed and area ratio.",
+                    conditions: "Steady horizontal inviscid fluid flow.",
+                    variables: [
+                        { symbol: "\\Delta P", rep: "Pressure differential between wide and narrow sections", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "v_1", rep: "Flow velocity in wide section", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\rho", rep: "Fluid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "A_1, A_2", rep: "Cross-sectional areas of pipe and throat", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Viscous Flow",
+                    name: "Newton's Viscosity Law (Internal Shearing Friction)",
+                    formula: "\\[ F = \\eta A \\frac{\\Delta v}{\\Delta z} \\]",
+                    pdfPage: "PDF Page 104",
+                    explanation: "Tangential drag force between adjacent fluid layers moving with velocity gradient Δv/Δz.",
+                    conditions: "Laminar flow of Newtonian fluid.",
+                    variables: [
+                        { symbol: "F", rep: "Internal viscous shear force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\eta", rep: "Dynamic viscosity coefficient", unit: "Pascal second", unitSym: "\\mathrm{Pa\\cdot s}" },
+                        { symbol: "A", rep: "Shear contact surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "\\Delta v / \\Delta z", rep: "Transverse velocity gradient", unit: "Per second", unitSym: "\\mathrm{s^{-1}}" }
+                    ]
+                },
+                {
+                    section: "Viscous Flow",
+                    name: "Stokes' Drag Force on Falling Sphere",
+                    formula: "\\[ F_d = 6\\pi \\eta R v \\]",
+                    pdfPage: "PDF Page 105",
+                    explanation: "Viscous resistive drag force exerted by a laminar fluid on a small submerged moving spherical body.",
+                    conditions: "Spherical object at low Reynolds number (laminar regime).",
+                    variables: [
+                        { symbol: "F_d", rep: "Stokes viscous drag force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\eta", rep: "Fluid dynamic viscosity", unit: "Pascal second", unitSym: "\\mathrm{Pa\\cdot s}" },
+                        { symbol: "R", rep: "Radius of the sphere", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v", rep: "Instantaneous velocity of sphere", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Terminal Velocity",
+                    name: "Terminal Velocity in Viscous Fluid",
+                    formula: "\\[ v_t = \\frac{2 R^2 (\\rho_s - \\rho_f) g}{9 \\eta} \\]",
+                    pdfPage: "PDF Page 106",
+                    explanation: "Constant terminal falling velocity reached when gravitational weight balances buoyant force and Stokes' drag.",
+                    conditions: "Small sphere falling under gravity in viscous fluid.",
+                    variables: [
+                        { symbol: "v_t", rep: "Terminal settling speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "R", rep: "Sphere radius", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\rho_s", rep: "Density of sphere material", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "\\rho_f", rep: "Density of surrounding fluid", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "\\eta", rep: "Dynamic viscosity", unit: "Pascal second", unitSym: "\\mathrm{Pa\\cdot s}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What does the equation of continuity \\(A_1 v_1 = A_2 v_2\\) represent?", back: "Conservation of mass for steady incompressible fluid flow." },
+                { front: "What is Torricelli's Law for orifice exit speed at depth \\(h\\)?", back: "\\(v = \\sqrt{2gh}\\)" },
+                { front: "According to Bernoulli's principle, what occurs to static pressure when flow speed increases?", back: "Static pressure decreases." },
+                { front: "How does volume flow rate depend on pipe radius in Poiseuille's law?", back: "\\(Q \\propto R^4\\) (proportional to the fourth power of radius)." }
+            ],
+            quiz: [
+                { question: "A pipe of diameter 4.0 cm narrows to 2.0 cm. The speed of water in the narrow section is:", options: ["Half as great", "Twice as great", "4 times greater", "8 times greater"], correctIndex: 2, feedback: "A ∝ d²; halving diameter reduces area to 1/4, so continuity requires speed to quadruple (4×)." },
+                { question: "Water flows horizontally through a pipe with a narrow throat. At the throat, compared to the wide section:", options: ["Speed is greater and pressure is lower", "Speed is lower and pressure is greater", "Both speed and pressure are greater", "Both speed and pressure are lower"], correctIndex: 0, feedback: "Continuity gives higher speed in constriction; Bernoulli gives lower static pressure." },
+                { question: "Stokes' law calculates the viscous resistive drag force on:", options: ["A wide flat plate", "A moving sphere", "A turbulent wake", "An airfoil wing"], correctIndex: 1, feedback: "Stokes' Law F_d = 6πηrv applies specifically to spherical bodies in laminar viscous flow." }
+            ]
+        },
+        {
+            id: "g11-ch2-l1",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch2-l1-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Gas Properties & Kinetic Theory", url: "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" }],
+            title: "Chapter 2 • Lesson 1: Thermal Physics, Expansion & Heat",
+            concepts: [
+                "Thermal Expansion of Matter: Linear expansion \\(\\Delta L = \\alpha L_0 \\Delta T\\); Areal expansion \\(\\Delta A = \\gamma A_0 \\Delta T \\approx 2\\alpha A_0 \\Delta T\\); Volumetric expansion \\(\\Delta V = \\beta V_0 \\Delta T \\approx 3\\alpha V_0 \\Delta T\\).",
+                "Thermal Stress: If an expanding rod is rigidly clamped between fixed supports, mechanical compressive stress develops: \\(\\sigma = \\frac{F}{A} = -Y \\alpha \\Delta T\\).",
+                "Specific Heat Capacity & Calorimetry: \\(Q = m c \\Delta T\\). In an isolated calorimeter: \\(\\sum Q_{\\text{gained}} + \\sum Q_{\\text{lost}} = 0\\).",
+                "Latent Heat and Phase Change: Isothermal heat exchange during phase transition: \\(Q = m L_f\\) (melting/fusion) or \\(Q = m L_v\\) (vaporization/boiling).",
+                "Heat Transfer Mechanisms: Conduction: \\(H = k A \\frac{T_H - T_C}{L}\\); Convection: \\(H = h A \\Delta T\\); Radiation (Stefan-Boltzmann law): \\(P = e \\sigma A T^4\\), net transfer \\(P_{\\text{net}} = e \\sigma A (T^4 - T_0^4)\\).",
+                "Ideal Gas Law: \\(P V = n R T = N k_B T\\), with \\(R = 8.314\\,\\mathrm{J/(mol\\cdot K)}\\) and \\(k_B = 1.381 \\times 10^{-23}\\,\\mathrm{J/K}\\).",
+                "Kinetic Theory of Gases: Temperature is a direct measure of average molecular translational kinetic energy: \\(\\bar{K} = \\frac{3}{2} k_B T\\). Root-mean-square speed \\(v_{\\text{rms}} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3k_B T}{m}}\\)."
+            ],
+            definitions: [
+                { term: "Linear Expansion Coefficient", definition: "The fractional change in length per Kelvin change in temperature.", symbol: "\\alpha", unit: "\\mathrm{K^{-1}} \\;({^\\circ}\\mathrm{C^{-1}})", equation: "\\alpha = \\frac{\\Delta L}{L_0 \\Delta T}" },
+                { term: "Specific Heat Capacity", definition: "Heat needed to raise the temperature of 1 kg of a substance by 1 Kelvin.", symbol: "c", unit: "\\mathrm{J/(kg\\cdot K)}", equation: "Q = mc\\Delta T" },
+                { term: "Latent Heat of Fusion", definition: "Heat required to convert 1 kg of a solid to liquid at its melting point without temperature change.", symbol: "L_f", unit: "\\mathrm{J/kg}", equation: "Q = m L_f" },
+                { term: "Thermal Conductivity", definition: "Material property characterizing rate of heat transfer through a unit area per temperature gradient.", symbol: "k", unit: "\\mathrm{W/(m\\cdot K)}", equation: "H = \\frac{kA\\Delta T}{L}" },
+                { term: "Stefan-Boltzmann Constant", definition: "Physical constant in blackbody radiation law \\(\\sigma = 5.670 \\times 10^{-8}\\,\\mathrm{W/(m^2\\cdot K^4)}\\).", symbol: "\\sigma", unit: "\\mathrm{W/(m^2\\cdot K^4)}", equation: "P = \\sigma A T^4" },
+                { term: "RMS Molecular Speed", definition: "Square root of the average of the squared speeds of gas molecules.", symbol: "v_{\\text{rms}}", unit: "\\mathrm{m/s}", equation: "v_{\\text{rms}} = \\sqrt{\\frac{3RT}{M}}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Railway Track Thermal Expansion and Gap",
+                    question: "A steel railroad rail is L₀ = 25.0 m long at T₁ = -10°C. In summer, temperatures reach T₂ = +40°C. If α_steel = 1.2 × 10⁻⁵ K⁻¹, calculate: (a) Length expansion ΔL, (b) Minimum expansion gap needed to avoid track buckling.",
+                    given: "Length \\( L_0 = 25.0\\,\\mathrm{m} \\), \\( \\Delta T = 40 - (-10) = 50\\,\\mathrm{K} \\), \\( \\alpha = 1.2 \\times 10^{-5}\\,\\mathrm{K^{-1}} \\).",
+                    find: "Thermal expansion \\( \\Delta L \\).",
+                    equation: "\\Delta L = \\alpha L_0 \\Delta T",
+                    rearrangement: "\\Delta L = (1.2 \\times 10^{-5}) \\times 25.0 \\times 50",
+                    solution: "1. \\( \\Delta L = 1.2 \\times 10^{-5} \\times 1250 = 0.015\\,\\mathrm{m} = 15\\,\\mathrm{mm} \\).<br>2. Minimum gap required between adjacent rails is \\( 15\\,\\mathrm{mm} = 1.5\\,\\mathrm{cm} \\).",
+                    finalAnswer: "\\Delta L = 15\\,\\mathrm{mm} \\; (1.5\\,\\mathrm{cm})",
+                    explanation: "Without an expansion gap, huge thermal compressive stresses develop that buckle railway tracks."
+                },
+                {
+                    title: "Example 2: RMS Speed of O₂ Molecules at Room Temperature",
+                    question: "Determine the root-mean-square speed of oxygen molecules O₂ (molar mass M = 32.0 g/mol = 0.032 kg/mol) at room temperature T = 27°C = 300 K. (R = 8.314 J/(mol·K)).",
+                    given: "Molar mass \\( M = 0.032\\,\\mathrm{kg/mol} \\), Temperature \\( T = 300\\,\\mathrm{K} \\), \\( R = 8.314\\,\\mathrm{J/(mol\\cdot K)} \\).",
+                    find: "RMS speed \\( v_{\\text{rms}} \\).",
+                    equation: "v_{\\text{rms}} = \\sqrt{\\frac{3RT}{M}}",
+                    rearrangement: "v_{\\text{rms}} = \\sqrt{\\frac{3 \\times 8.314 \\times 300}{0.032}}",
+                    solution: "1. \\( v_{\\text{rms}} = \\sqrt{\\frac{7482.6}{0.032}} = \\sqrt{233,831} \\approx 483.6\\,\\mathrm{m/s} \\).",
+                    finalAnswer: "v_{\\text{rms}} \\approx 484\\,\\mathrm{m/s}",
+                    explanation: "At room temperature, oxygen molecules move at an average speed of nearly 500 m/s."
+                }
+            ],
+            equations: [
+                {
+                    section: "Thermal Expansion",
+                    name: "Linear Expansion of Solids",
+                    formula: "\\[ \\Delta L = L_0\\alpha\\Delta T \\implies L = L_0(1 + \\alpha\\Delta T) \\]",
+                    pdfPage: "PDF Page 107",
+                    explanation: "Change in length of a solid rod directly proportional to original length and temperature change.",
+                    conditions: "Uniform solid material under moderate temperature range.",
+                    variables: [
+                        { symbol: "\\Delta L", rep: "Change in length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "L_0", rep: "Original length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "\\alpha", rep: "Linear expansion coefficient", unit: "Per kelvin or per degree Celsius", unitSym: "\\mathrm{K^{-1}}" },
+                        { symbol: "\\Delta T", rep: "Temperature change", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" }
+                    ]
+                },
+                {
+                    section: "Thermal Expansion",
+                    name: "Areal Expansion of Solids",
+                    formula: "\\[ \\Delta A = A_0\\eta\\Delta T = 2\\alpha A_0\\Delta T \\]",
+                    pdfPage: "PDF Page 107",
+                    explanation: "Change in surface area of a solid plate; areal coefficient η equals twice the linear coefficient (2α).",
+                    conditions: "Isotropic solid plate.",
+                    variables: [
+                        { symbol: "\\Delta A", rep: "Area change", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "A_0", rep: "Initial surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "\\eta", rep: "Area expansion coefficient (2α)", unit: "Per degree Celsius", unitSym: "\\mathrm{K^{-1}}" }
+                    ]
+                },
+                {
+                    section: "Thermal Expansion",
+                    name: "Volumetric Expansion of Solids",
+                    formula: "\\[ \\Delta V = V_0\\beta\\Delta T = 3\\alpha V_0\\Delta T \\]",
+                    pdfPage: "PDF Page 107",
+                    explanation: "Change in volume of a 3D solid; volumetric coefficient β equals three times linear coefficient (3α).",
+                    conditions: "Isotropic solid body.",
+                    variables: [
+                        { symbol: "\\Delta V", rep: "Volume change", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "V_0", rep: "Initial volume", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "\\beta", rep: "Volume expansion coefficient (3α)", unit: "Per degree Celsius", unitSym: "\\mathrm{K^{-1}}" }
+                    ]
+                },
+                {
+                    section: "Thermal Expansion",
+                    name: "Volumetric Expansion of Liquids",
+                    formula: "\\[ \\Delta V = \\beta V_0\\Delta T \\implies V = V_0(1 + \\beta T) \\]",
+                    pdfPage: "PDF Page 108",
+                    explanation: "Volumetric expansion of liquids over temperature T measured relative to 0 °C.",
+                    conditions: "Enclosed liquid.",
+                    variables: [
+                        { symbol: "\\Delta V", rep: "Liquid volume expansion", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "\\beta", rep: "Liquid volume coefficient", unit: "Per degree Celsius", unitSym: "\\mathrm{K^{-1}}" }
+                    ]
+                },
+                {
+                    section: "Thermal Expansion",
+                    name: "Gas Expansion at Constant Pressure",
+                    formula: "\\[ \\Delta V = \\gamma V_0\\Delta T \\implies V = V_0(1 + \\gamma T) \\quad \\left(\\gamma = \\frac{1}{273^\\circ\\mathrm{C}}\\right) \\]",
+                    pdfPage: "PDF Page 108",
+                    explanation: "Volume expansion of gases at constant pressure following Charles's Law with coefficient 1/273.",
+                    conditions: "Constant pressure process (isobaric).",
+                    variables: [
+                        { symbol: "\\gamma", rep: "Gas expansion coefficient (1/273 °C⁻¹)", unit: "Per degree Celsius", unitSym: "{^\\circ\\mathrm{C^{-1}}}" },
+                        { symbol: "V_0", rep: "Gas volume at 0 °C", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" }
+                    ]
+                },
+                {
+                    section: "Thermal Stress",
+                    name: "Thermal Stress from Constrained Expansion",
+                    formula: "\\[ \\sigma = \\frac{F}{A} = Y\\frac{\\Delta L}{L_0} = Y\\alpha\\Delta T \\]",
+                    pdfPage: "PDF Page 108 & 109",
+                    explanation: "Stress built up inside a rigid material when thermal expansion is prevented by rigid boundaries.",
+                    conditions: "Fixed boundaries preventing length change.",
+                    variables: [
+                        { symbol: "\\sigma", rep: "Thermal stress", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "Y", rep: "Young's modulus", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\alpha", rep: "Linear expansion coefficient", unit: "Per degree Celsius", unitSym: "\\mathrm{K^{-1}}" }
+                    ]
+                },
+                {
+                    section: "Heat Transfer",
+                    name: "Fourier's Law of Heat Conduction",
+                    formula: "\\[ H = \\frac{\\Delta Q}{\\Delta t} = -kA\\frac{\\Delta T}{\\Delta x} \\]",
+                    pdfPage: "PDF Page 110",
+                    explanation: "Rate of heat conduction through a material plate of thickness Δx and area A.",
+                    conditions: "Steady-state linear conduction.",
+                    variables: [
+                        { symbol: "H", rep: "Heat conduction rate", unit: "Watt (J/s)", unitSym: "\\mathrm{W}" },
+                        { symbol: "k", rep: "Thermal conductivity", unit: "Watt per meter kelvin", unitSym: "\\mathrm{W/(m\\cdot K)}" },
+                        { symbol: "A", rep: "Plate cross-sectional area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "\\Delta T", rep: "Temperature difference", unit: "Degree Celsius or Kelvin", unitSym: "\\mathrm{K}" },
+                        { symbol: "\\Delta x", rep: "Plate thickness", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Heat Transfer",
+                    name: "Stefan-Boltzmann Radiation Law",
+                    formula: "\\[ R = \\frac{P}{A} = e\\sigma T^4 \\quad (\\sigma = 5.67 \\times 10^{-8}\\,\\mathrm{W/(m^2\\cdot K^4)}) \\]",
+                    pdfPage: "PDF Page 110",
+                    explanation: "Radiant heat energy emitted per second per unit area, proportional to absolute temperature to the fourth power.",
+                    conditions: "Thermal radiative emission.",
+                    variables: [
+                        { symbol: "R", rep: "Radiant heat intensity", unit: "Watt per square meter", unitSym: "\\mathrm{W/m^2}" },
+                        { symbol: "P", rep: "Total power radiated", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "e", rep: "Surface emissivity (0 ≤ e ≤ 1)", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "\\sigma", rep: "Stefan-Boltzmann constant", unit: "Watt per square meter kelvin⁴", unitSym: "\\mathrm{W/(m^2\\cdot K^4)}" },
+                        { symbol: "T", rep: "Absolute temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Calorimetry",
+                    name: "Heat Capacity & Specific Heat Capacity",
+                    formula: "\\[ Q = m c \\Delta T \\implies C = \\frac{Q}{\\Delta T} = m c \\]",
+                    pdfPage: "PDF Page 111",
+                    explanation: "Heat energy absorbed or released by a substance of mass m undergoing temperature change ΔT.",
+                    conditions: "No phase change occurring during heating or cooling.",
+                    variables: [
+                        { symbol: "Q", rep: "Thermal heat energy transferred", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass of the substance", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "c", rep: "Specific heat capacity", unit: "Joule per kilogram kelvin", unitSym: "\\mathrm{J/(kg\\cdot K)}" },
+                        { symbol: "C", rep: "Total thermal heat capacity", unit: "Joule per kelvin", unitSym: "\\mathrm{J/K}" },
+                        { symbol: "\\Delta T", rep: "Temperature change (T_f - T_i)", unit: "Kelvin or degree Celsius", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Calorimetry",
+                    name: "Calorimetric Thermal Equilibrium (Heat Balance)",
+                    formula: "\\[ Q_{\\text{lost}} = Q_{\\text{gained}} \\implies m_1 c_1 (T_1 - T_f) = m_2 c_2 (T_f - T_2) \\]",
+                    pdfPage: "PDF Page 111 & 112",
+                    explanation: "Conservation of thermal energy in an isolated calorimeter where heat lost by warmer body equals heat gained by cooler body.",
+                    conditions: "Thermally isolated system with negligible container loss.",
+                    variables: [
+                        { symbol: "m_1, m_2", rep: "Masses of hot and cold substances", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "c_1, c_2", rep: "Specific heat capacities", unit: "Joule per kilogram kelvin", unitSym: "\\mathrm{J/(kg\\cdot K)}" },
+                        { symbol: "T_1, T_2", rep: "Initial temperatures", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" },
+                        { symbol: "T_f", rep: "Final equilibrium mixture temperature", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" }
+                    ]
+                },
+                {
+                    section: "Phase Change",
+                    name: "Latent Heat of Fusion and Vaporization",
+                    formula: "\\[ Q_f = m L_f, \\quad Q_v = m L_v \\]",
+                    pdfPage: "PDF Page 112 & 113",
+                    explanation: "Heat required for isothermal phase transitions: melting/solidification (L_f) and boiling/condensation (L_v).",
+                    conditions: "Constant temperature phase transition at standard pressure.",
+                    variables: [
+                        { symbol: "Q_f, Q_v", rep: "Latent heat exchanged during phase change", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass undergoing transformation", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "L_f", rep: "Specific latent heat of fusion", unit: "Joule per kilogram", unitSym: "\\mathrm{J/kg}" },
+                        { symbol: "L_v", rep: "Specific latent heat of vaporization", unit: "Joule per kilogram", unitSym: "\\mathrm{J/kg}" }
+                    ]
+                },
+                {
+                    section: "Heat Transfer",
+                    name: "Net Radiative Heat Exchange",
+                    formula: "\\[ P_{\\text{net}} = e \\sigma A (T^4 - T_0^4) \\]",
+                    pdfPage: "PDF Page 114",
+                    explanation: "Net rate of radiant heat transfer between an object at absolute temperature T and surroundings at temperature T₀.",
+                    conditions: "Thermal radiative exchange with environment.",
+                    variables: [
+                        { symbol: "P_{\\text{net}}", rep: "Net radiated power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "e", rep: "Surface emissivity (0 ≤ e ≤ 1)", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "\\sigma", rep: "Stefan-Boltzmann constant (5.67 × 10⁻⁸ W/(m²·K⁴))", unit: "Watt per square meter kelvin⁴", unitSym: "\\mathrm{W/(m^2\\cdot K^4)}" },
+                        { symbol: "A", rep: "Radiating surface area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "T", rep: "Object absolute temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" },
+                        { symbol: "T_0", rep: "Surroundings absolute temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the relationship between linear expansion coefficient \\(\\alpha\\) and volumetric coefficient \\(\\beta\\)?", back: "\\(\\beta \\approx 3\\alpha\\)" },
+                { front: "What is the average kinetic energy of an ideal gas molecule?", back: "\\(\\bar{K} = \\frac{3}{2}k_B T\\) (depends strictly on absolute temperature \\(T\\))." },
+                { front: "What is the Stefan-Boltzmann radiation law?", back: "\\(P = e \\sigma A T^4\\) (radiated power is proportional to \\(T^4\\))." },
+                { front: "What is latent heat?", back: "The heat absorbed or released per unit mass during a constant-temperature phase change (\\(Q = mL\\))." }
+            ],
+            quiz: [
+                { question: "If the absolute temperature of an ideal gas is quadrupled, its molecular RMS speed increases by a factor of:", options: ["2", "4", "8", "16"], correctIndex: 0, feedback: "v_rms ∝ √T; quadrupling T multiplies speed by √4 = 2." },
+                { question: "When a metal washer with a central hole is uniformly heated, the hole diameter:", options: ["Decreases", "Increases", "Remains unchanged", "Becomes oval"], correctIndex: 1, feedback: "Thermal expansion acts like a photographic enlargement; all linear dimensions expand proportionately." },
+                { question: "If the absolute temperature of a thermal radiator is doubled, its radiated power increases by a factor of:", options: ["2", "4", "8", "16"], correctIndex: 3, feedback: "Stefan-Boltzmann Law: P ∝ T⁴; 2⁴ = 16 times increase." }
+            ]
+        },
+        {
+            id: "g11-ch2-l2",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch2-l2-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Wave on a String & Pendulum", url: "https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_all.html" }],
+            title: "Chapter 2 • Lesson 2: Periodic Motion, Oscillations & Waves",
+            concepts: [
+                "Simple Harmonic Motion (SHM): Restoring force \\(F = -kx\\). Position equation \\(x(t) = A\\cos(\\omega t + \\phi)\\), velocity \\(v(t) = -A\\omega\\sin(\\omega t + \\phi)\\), acceleration \\(a(t) = -\\omega^2 x(t)\\).",
+                "Mass-Spring Oscillator: Angular frequency \\(\\omega = \\sqrt{\\frac{k}{m}}\\), frequency \\(f = \\frac{1}{2\\pi}\\sqrt{\\frac{k}{m}}\\), period \\(T = 2\\pi\\sqrt{\\frac{m}{k}}\\).",
+                "Pendulums: Simple pendulum for small angles: \\(T = 2\\pi\\sqrt{\\frac{L}{g}}\\). Physical pendulum of moment of inertia \\(I\\): \\(T = 2\\pi\\sqrt{\\frac{I}{mgd}}\\).",
+                "Energy in SHM: Total mechanical energy is constant: \\(E = \\frac{1}{2}kA^2 = \\frac{1}{2}mv^2 + \\frac{1}{2}kx^2 = \\frac{1}{2}mv_{\\max}^2\\).",
+                "Harmonic Waves: Wave equation \\(y(x,t) = A\\sin(kx - \\omega t + \\phi)\\), wave number \\(k = \\frac{2\\pi}{\\lambda}\\), \\(\\omega = 2\\pi f\\), wave speed \\(v = \\frac{\\omega}{k} = \\lambda f\\).",
+                "Speed of Waves on a String: \\(v = \\sqrt{\\frac{T_s}{\\mu}}\\), where \\(T_s\\) is string tension and \\(\\mu = \\frac{m}{L}\\) is linear mass density.",
+                "Standing Waves on Fixed Strings: Harmonics \\(f_n = n\\frac{v}{2L} = n f_1\\) (\\(n = 1, 2, 3, \\dots\\)).",
+                "Doppler Effect: Frequency shift due to relative motion: \\(f_o = f_s \\left(\\frac{v \\pm v_o}{v \\mp v_s}\\right)\\)."
+            ],
+            definitions: [
+                { term: "Simple Harmonic Motion", definition: "Periodic oscillation wherein restoring force is proportional to displacement from equilibrium.", symbol: "x(t)", unit: "\\mathrm{m}", equation: "a = -\\omega^2 x" },
+                { term: "Angular Frequency", definition: "Rate of oscillation in radians per unit time.", symbol: "\\omega", unit: "\\mathrm{rad/s}", equation: "\\omega = 2\\pi f = \\frac{2\\pi}{T}" },
+                { term: "Linear Mass Density", definition: "Mass per unit length of a flexible string or cable.", symbol: "\\mu", unit: "\\mathrm{kg/m}", equation: "\\mu = \\frac{m}{L}" },
+                { term: "Wave Number", definition: "Spatial frequency of a wave per unit distance.", symbol: "k", unit: "\\mathrm{rad/m}", equation: "k = \\frac{2\\pi}{\\lambda}" },
+                { term: "Fundamental Frequency", definition: "The lowest resonant frequency of a standing wave system.", symbol: "f_1", unit: "\\mathrm{Hz}", equation: "f_1 = \\frac{v}{2L}" },
+                { term: "Doppler Effect", definition: "Shift in observed frequency resulting from relative motion between source and observer.", symbol: "f_o", unit: "\\mathrm{Hz}", equation: "f_o = f_s \\left(\\frac{v \\pm v_o}{v \\mp v_s}\\right)" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Mass-Spring Oscillator Energy and Max Speed",
+                    question: "A block of mass m = 0.40 kg attached to a spring of spring constant k = 160 N/m oscillates with amplitude A = 0.15 m. Calculate: (a) Total mechanical energy E, (b) Maximum speed v_max, (c) Speed when displacement x = 0.09 m, and (d) Oscillation period T.",
+                    given: "Mass \\( m = 0.40\\,\\mathrm{kg} \\), Constant \\( k = 160\\,\\mathrm{N/m} \\), Amplitude \\( A = 0.15\\,\\mathrm{m} \\).",
+                    find: "Total energy \\( E \\), max speed \\( v_{\\max} \\), speed \\( v(0.09) \\), period \\( T \\).",
+                    equation: "E = \\frac{1}{2}kA^2, \\quad v_{\\max} = A\\sqrt{\\frac{k}{m}}, \\quad v(x) = \\sqrt{\\frac{k}{m}(A^2 - x^2)}, \\quad T = 2\\pi\\sqrt{\\frac{m}{k}}",
+                    rearrangement: "\\omega = \\sqrt{\\frac{k}{m}} = \\sqrt{\\frac{160}{0.40}} = \\sqrt{400} = 20.0\\,\\mathrm{rad/s}",
+                    solution: "1. (a) Total energy: \\( E = \\frac{1}{2}(160)(0.15)^2 = 80 \\times 0.0225 = 1.80\\,\\mathrm{J} \\).<br>2. (b) Maximum velocity: \\( v_{\\max} = A\\omega = 0.15 \\times 20.0 = 3.00\\,\\mathrm{m/s} \\).<br>3. (c) Speed at x = 0.09 m: \\( v = 20.0 \\times \\sqrt{0.15^2 - 0.09^2} = 20.0 \\times \\sqrt{0.0225 - 0.0081} = 20.0 \\times \\sqrt{0.0144} = 20.0 \\times 0.12 = 2.40\\,\\mathrm{m/s} \\).<br>4. (d) Period: \\( T = \\frac{2\\pi}{\\omega} = \\frac{2\\pi}{20.0} \\approx 0.314\\,\\mathrm{s} \\).",
+                    finalAnswer: "E = 1.80\\,\\mathrm{J}, \\quad v_{\\max} = 3.00\\,\\mathrm{m/s}, \\quad v = 2.40\\,\\mathrm{m/s}, \\quad T \\approx 0.314\\,\\mathrm{s}",
+                    explanation: "Energy continuously oscillates between potential spring energy and kinetic motion energy."
+                },
+                {
+                    title: "Example 2: Doppler Frequency Shift of a Moving Horn",
+                    question: "A train sounds its horn at f_s = 400 Hz while approaching a stationary station platform at v_s = 25.0 m/s. Speed of sound in air is v = 343 m/s. Calculate the frequency heard by an observer on the platform: (a) As the train approaches, (b) After it passes and recedes.",
+                    given: "Source frequency \\( f_s = 400\\,\\mathrm{Hz} \\), Train speed \\( v_s = 25.0\\,\\mathrm{m/s} \\), Sound speed \\( v = 343\\,\\mathrm{m/s} \\).",
+                    find: "Approaching frequency \\( f_{\\text{app}} \\), Receding frequency \\( f_{\\text{rec}} \\).",
+                    equation: "f_{\\text{app}} = f_s\\left(\\frac{v}{v - v_s}\\right), \\quad f_{\\text{rec}} = f_s\\left(\\frac{v}{v + v_s}\\right)",
+                    rearrangement: "v - v_s = 343 - 25 = 318\\,\\mathrm{m/s}, \\quad v + v_s = 343 + 25 = 368\\,\\mathrm{m/s}",
+                    solution: "1. Approaching: \\( f_{\\text{app}} = 400 \\times \\frac{343}{318} \\approx 400 \\times 1.0786 = 431.4\\,\\mathrm{Hz} \\).<br>2. Receding: \\( f_{\\text{rec}} = 400 \\times \\frac{343}{368} \\approx 400 \\times 0.9321 = 372.8\\,\\mathrm{Hz} \\).",
+                    finalAnswer: "f_{\\text{app}} \\approx 431\\,\\mathrm{Hz}, \\quad f_{\\text{rec}} \\approx 373\\,\\mathrm{Hz}",
+                    explanation: "Wavefront compression during approach raises detected pitch; expansion during recession lowers pitch."
+                }
+            ],
+            equations: [
+                {
+                    section: "Gas Laws",
+                    name: "Ideal Gas State Equation",
+                    formula: "\\[ PV = nRT = \\frac{m}{M}RT = N k_B T \\]",
+                    pdfPage: "PDF Page 111 & 112",
+                    explanation: "Equation of state connecting pressure, volume, temperature, and quantity of an ideal gas.",
+                    conditions: "Ideal gas at low density and high temperature.",
+                    variables: [
+                        { symbol: "P", rep: "Gas pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "V", rep: "Gas volume", unit: "Cubic meter", unitSym: "\\mathrm{m^3}" },
+                        { symbol: "n", rep: "Number of moles", unit: "Mole", unitSym: "\\mathrm{mol}" },
+                        { symbol: "R", rep: "Gas constant (8.31 J/(mol·K))", unit: "Joule per mole kelvin", unitSym: "\\mathrm{J/(mol\\cdot K)}" },
+                        { symbol: "T", rep: "Absolute temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Kinetic Theory",
+                    name: "Average Molecular Kinetic Energy",
+                    formula: "\\[ K_{av} = \\frac{3}{2}k_B T \\quad (k_B = 1.38 \\times 10^{-23}\\,\\mathrm{J/K}) \\]",
+                    pdfPage: "PDF Page 113 & 114",
+                    explanation: "Translational kinetic energy per molecule depends solely on absolute temperature.",
+                    conditions: "Ideal gas with 3 translational degrees of freedom.",
+                    variables: [
+                        { symbol: "K_{av}", rep: "Average molecular kinetic energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "k_B", rep: "Boltzmann constant", unit: "Joule per kelvin", unitSym: "\\mathrm{J/K}" },
+                        { symbol: "T", rep: "Absolute temperature", unit: "Kelvin", unitSym: "\\mathrm{K}" }
+                    ]
+                },
+                {
+                    section: "Kinetic Theory",
+                    name: "Root-Mean-Square Speed",
+                    formula: "\\[ v_{rms} = \\sqrt{\\frac{3k_B T}{m_0}} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3P}{\\rho}} \\]",
+                    pdfPage: "PDF Page 113 & 114",
+                    explanation: "Root-mean-square molecular velocity expressed in terms of temperature, molar mass, and macroscopic density.",
+                    conditions: "Ideal gas equilibrium distribution.",
+                    variables: [
+                        { symbol: "v_{rms}", rep: "RMS speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "M", rep: "Molar mass", unit: "Kilogram per mole", unitSym: "\\mathrm{kg/mol}" },
+                        { symbol: "\\rho", rep: "Gas mass density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" }
+                    ]
+                },
+                {
+                    section: "Simple Pendulum",
+                    name: "Simple Pendulum Period & Frequency",
+                    formula: "\\[ \\omega = \\sqrt{\\frac{g}{l}}, \\quad T = 2\\pi\\sqrt{\\frac{l}{g}}, \\quad f = \\frac{1}{2\\pi}\\sqrt{\\frac{g}{l}} \\]",
+                    pdfPage: "PDF Page 116",
+                    explanation: "Natural frequency, period, and cyclic frequency of a simple pendulum under small-angle approximations.",
+                    conditions: "Small amplitude swing (\\(\\sin\\theta \\approx \\theta\\)).",
+                    variables: [
+                        { symbol: "T", rep: "Period of swing", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "l", rep: "Pendulum string length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" }
+                    ]
+                },
+                {
+                    section: "Physical Pendulum",
+                    name: "Physical Pendulum Period",
+                    formula: "\\[ T = 2\\pi\\sqrt{\\frac{I}{mgd}} \\]",
+                    pdfPage: "PDF Page 116 & 117",
+                    explanation: "Period of a rigid body oscillating about a pivot axis located distance d from its center of mass.",
+                    conditions: "Small angular oscillations.",
+                    variables: [
+                        { symbol: "T", rep: "Period", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "I", rep: "Moment of inertia about pivot", unit: "Kilogram meter squared", unitSym: "\\mathrm{kg\\cdot m^2}" },
+                        { symbol: "d", rep: "Distance from pivot to center of mass", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Spring-Mass Oscillator",
+                    name: "Spring-Mass Period & Frequency",
+                    formula: "\\[ \\omega = \\sqrt{\\frac{k}{m}}, \\quad T = 2\\pi\\sqrt{\\frac{m}{k}}, \\quad f = \\frac{1}{2\\pi}\\sqrt{\\frac{k}{m}} \\]",
+                    pdfPage: "PDF Page 117 & 118",
+                    explanation: "Period and frequency of horizontal or vertical harmonic oscillations of a spring-loaded mass.",
+                    conditions: "Ideal massless spring obeying Hooke's law.",
+                    variables: [
+                        { symbol: "T", rep: "Period of oscillation", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "m", rep: "Attached mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "k", rep: "Spring stiffness constant", unit: "Newton per meter", unitSym: "\\mathrm{N/m}" }
+                    ]
+                },
+                {
+                    section: "Wave Kinematics",
+                    name: "Wave Speed & Traveling Wave Function",
+                    formula: "\\[ v = \\lambda f = \\frac{\\lambda}{T}, \\quad y = A\\sin 2\\pi\\left(\\frac{t}{T} - \\frac{x}{\\lambda}\\right) = A\\sin(\\omega t - kx) \\]",
+                    pdfPage: "PDF Page 120 & 121",
+                    explanation: "Basic wave equation connecting velocity, frequency, and wavelength, and sinusoidal space-time propagation function.",
+                    conditions: "Harmonic traveling wave in uniform medium.",
+                    variables: [
+                        { symbol: "v", rep: "Wave propagation speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "\\lambda", rep: "Wavelength", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "f", rep: "Frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" },
+                        { symbol: "k", rep: "Wave number (2π/λ)", unit: "Radian per meter", unitSym: "\\mathrm{rad/m}" }
+                    ]
+                },
+                {
+                    section: "Wave on String",
+                    name: "Transverse Wave Speed on a String",
+                    formula: "\\[ v = \\sqrt{\\frac{F_T}{\\mu}} \\quad \\left(\\mu = \\frac{m}{l}\\right) \\]",
+                    pdfPage: "PDF Page 122",
+                    explanation: "Velocity of transverse waves on a flexible string under tension F_T with linear mass density μ.",
+                    conditions: "Uniform stretched string.",
+                    variables: [
+                        { symbol: "v", rep: "Wave speed on string", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "F_T", rep: "String tension", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\mu", rep: "Linear mass density", unit: "Kilogram per meter", unitSym: "\\mathrm{kg/m}" }
+                    ]
+                },
+                {
+                    section: "Speed of Sound",
+                    name: "Speed of Sound in Solids, Liquids & Gases",
+                    formula: "\\[ v_{\\text{solid}} = \\sqrt{\\frac{Y}{\\rho}}, \\quad v_{\\text{liquid}} = \\sqrt{\\frac{B}{\\rho}}, \\quad v_{\\text{gas}} = v_0\\sqrt{\\frac{T}{273}} \\]",
+                    pdfPage: "PDF Page 122",
+                    explanation: "Mechanical sound speeds determined by elastic moduli and density, and temperature scaling in gases.",
+                    conditions: "Acoustic longitudinal pressure waves.",
+                    variables: [
+                        { symbol: "Y", rep: "Young's modulus of solid", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "B", rep: "Bulk modulus of liquid", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "v_0", rep: "Speed of sound at 0 °C (~331 m/s)", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Sound Intensity",
+                    name: "Sound Intensity & Decibel Level",
+                    formula: "\\[ I = \\frac{P}{A}, \\quad \\beta = 10\\log_{10}\\left(\\frac{I}{I_0}\\right) \\quad (I_0 = 10^{-12}\\,\\mathrm{W/m^2}) \\]",
+                    pdfPage: "PDF Page 122 & 123",
+                    explanation: "Energy flux carried by sound waves, and logarithmic sound intensity level measured in decibels.",
+                    conditions: "Isotropic sound emission.",
+                    variables: [
+                        { symbol: "I", rep: "Sound intensity", unit: "Watt per square meter", unitSym: "\\mathrm{W/m^2}" },
+                        { symbol: "\\beta", rep: "Sound intensity level", unit: "Decibel", unitSym: "\\mathrm{dB}" },
+                        { symbol: "I_0", rep: "Hearing threshold intensity", unit: "Watt per square meter", unitSym: "\\mathrm{W/m^2}" }
+                    ]
+                },
+                {
+                    section: "Doppler Effect",
+                    name: "Doppler Frequency Shift Equation",
+                    formula: "\\[ f' = f\\left(\\frac{v \\pm v_o}{v \\mp v_s}\\right) \\]",
+                    pdfPage: "PDF Page 123 & 124",
+                    explanation: "Apparent frequency heard by an observer when source and observer move relative to each other in air.",
+                    conditions: "Collinear source and observer motion in air.",
+                    variables: [
+                        { symbol: "f'", rep: "Observed frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" },
+                        { symbol: "f", rep: "Source emitted frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" },
+                        { symbol: "v", rep: "Speed of sound in air", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_o", rep: "Observer speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "v_s", rep: "Source speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Spring-Mass Oscillator",
+                    name: "Vertical Spring Static Stretch & Oscillation Period",
+                    formula: "\\[ k\\Delta l_0 = mg \\implies T = 2\\pi\\sqrt{\\frac{\\Delta l_0}{g}} \\]",
+                    pdfPage: "PDF Page 118",
+                    explanation: "Connects static elongation Δl₀ of a vertically suspended spring to its dynamic oscillation period.",
+                    conditions: "Vertical linear elastic spring obeying Hooke's law.",
+                    variables: [
+                        { symbol: "T", rep: "Vertical oscillation period", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "\\Delta l_0", rep: "Static equilibrium elongation", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "g", rep: "Gravitational acceleration", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "k", rep: "Spring constant", unit: "Newton per meter", unitSym: "\\mathrm{N/m}" },
+                        { symbol: "m", rep: "Suspended mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" }
+                    ]
+                },
+                {
+                    section: "Torsional Pendulum",
+                    name: "Torsional Pendulum Oscillation Period",
+                    formula: "\\[ \\tau = -\\kappa\\theta \\implies T = 2\\pi\\sqrt{\\frac{I}{\\kappa}} \\]",
+                    pdfPage: "PDF Page 119",
+                    explanation: "Period of rotational angular oscillations of a body suspended by a wire with torsional constant κ.",
+                    conditions: "Small angle torsional oscillations within elastic shear limit.",
+                    variables: [
+                        { symbol: "T", rep: "Torsional oscillation period", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "I", rep: "Moment of inertia about suspension axis", unit: "Kilogram meter squared", unitSym: "\\mathrm{kg\\cdot m^2}" },
+                        { symbol: "\\kappa", rep: "Torsion constant of wire", unit: "Newton meter per radian", unitSym: "\\mathrm{N\\cdot m/rad}" },
+                        { symbol: "\\theta", rep: "Angular twist displacement", unit: "Radian", unitSym: "\\mathrm{rad}" }
+                    ]
+                },
+                {
+                    section: "Standing Waves",
+                    name: "Standing Waves on Stretched String (Fixed Ends)",
+                    formula: "\\[ \\lambda_n = \\frac{2L}{n}, \\quad f_n = n\\frac{v}{2L} = n f_1 \\quad (n = 1, 2, 3, \\dots) \\]",
+                    pdfPage: "PDF Page 121",
+                    explanation: "Resonant wavelengths and harmonic frequencies for standing waves on a string clamped at both ends.",
+                    conditions: "String fixed at both boundaries.",
+                    variables: [
+                        { symbol: "\\lambda_n", rep: "Harmonic wavelength", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "f_n", rep: "Harmonic resonant frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" },
+                        { symbol: "n", rep: "Harmonic mode number (1 = fundamental)", unit: "Integer", unitSym: "\\text{No unit}" },
+                        { symbol: "L", rep: "String length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v", rep: "Wave speed on string", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Standing Waves",
+                    name: "Standing Waves in Pipe Closed at One End",
+                    formula: "\\[ \\lambda_n = \\frac{4L}{2n-1}, \\quad f_n = (2n-1)\\frac{v}{4L} = (2n-1)f_1 \\quad (n = 1, 2, 3, \\dots) \\]",
+                    pdfPage: "PDF Page 122",
+                    explanation: "Acoustic resonance in an air column closed at one end and open at the other, producing only odd harmonics.",
+                    conditions: "Acoustic organ pipe closed at one terminus.",
+                    variables: [
+                        { symbol: "\\lambda_n", rep: "Resonant wavelength", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "f_n", rep: "Harmonic frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" },
+                        { symbol: "L", rep: "Length of acoustic tube", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v", rep: "Speed of sound in air", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "n", rep: "Odd harmonic index (1, 3, 5...)", unit: "Integer", unitSym: "\\text{No unit}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the period of a simple pendulum of length \\(L\\)?", back: "\\(T = 2\\pi\\sqrt{\\frac{L}{g}}\\) (completely independent of mass)." },
+                { front: "What happens to the period of a mass-spring oscillator if mass is quadrupled?", back: "The period doubles: \\(T = 2\\pi\\sqrt{\\frac{4m}{k}} = 2 T_0\\)." },
+                { front: "What is the wave speed formula?", back: "\\(v = \\lambda f = \\frac{\\omega}{k}\\)" },
+                { front: "How does string tension affect wave speed on a stretched string?", back: "\\(v = \\sqrt{\\frac{T_s}{\\mu}}\\) (speed is proportional to square root of tension)." }
+            ],
+            quiz: [
+                { question: "In simple harmonic motion, the acceleration magnitude is greatest when:", options: ["Velocity is maximum", "Displacement is zero", "Displacement is maximum", "Kinetic energy is maximum"], correctIndex: 2, feedback: "a(t) = -ω² x(t); acceleration reaches its maximum magnitude at the extreme turning points (maximum displacement)." },
+                { question: "If the tension in a violin string is quadrupled, the speed of transverse waves on it:", options: ["Doubles", "Quadruples", "Halves", "Remains unchanged"], correctIndex: 0, feedback: "v = √(T_s / μ); quadrupling T_s multiplies wave speed by √4 = 2." },
+                { question: "When a sound source moves toward a stationary observer, the observed sound has:", options: ["Higher speed and higher pitch", "Same speed and higher pitch", "Lower speed and lower pitch", "Same speed and lower pitch"], correctIndex: 1, feedback: "Sound speed is dictated strictly by the air medium, but wavefront crowding increases detected frequency (pitch)." }
+            ]
+        },
+        {
+            id: "g11-ch3-l1",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch3-l1-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Charges and Fields / Capacitor Lab", url: "https://phet.colorado.edu/sims/html/capacitor-lab-basics/latest/capacitor-lab-basics_all.html" }],
+            title: "Chapter 3 • Lesson 1: Electrostatics, Fields & Capacitors",
+            concepts: [
+                "Coulomb's Law: Electrostatic force between two point charges: \\(F = k_e\\frac{|q_1 q_2|}{r^2}\\), with \\(k_e = \\frac{1}{4\\pi\\varepsilon_0} \\approx 8.988 \\times 10^9\\,\\mathrm{N\\cdot m^2/C^2}\\).",
+                "Electric Field Vector: \\(\\vec{E} = \\frac{\\vec{F}_0}{q_0}\\). Point charge field \\(E = k_e\\frac{q}{r^2}\\).",
+                "Gauss's Law: Net electric flux through any closed Gaussian surface equals enclosed charge divided by \\(\\varepsilon_0\\): \\(\\Phi_E = \\oint \\vec{E}\\cdot d\\vec{A} = \\frac{Q_{\\text{encl}}}{\\varepsilon_0}\\).",
+                "Electric Potential: Potential difference \\(\\Delta V = -\\int \\vec{E}\\cdot d\\vec{s}\\). In uniform electric field, \\(\\Delta V = -Ed\\). Point charge potential \\(V = k_e\\frac{q}{r}\\).",
+                "Capacitance: Charge stored per unit potential difference: \\(C = \\frac{Q}{V}\\). For parallel plates of area \\(A\\) and separation \\(d\\): \\(C_0 = \\varepsilon_0\\frac{A}{d}\\).",
+                "Dielectrics in Capacitors: Introducing dielectric material of constant \\(\\kappa\\) increases capacitance: \\(C = \\kappa C_0 = \\varepsilon\\frac{A}{d}\\).",
+                "Capacitor Combinations: Parallel: \\(C_{\\text{eq}} = C_1 + C_2 + \\dots\\); Series: \\(\\frac{1}{C_{\\text{eq}}} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\dots\\).",
+                "Stored Electrostatic Energy: \\(U = \\frac{1}{2}CV^2 = \\frac{1}{2}\\frac{Q^2}{C} = \\frac{1}{2}QV\\)."
+            ],
+            definitions: [
+                { term: "Coulomb's Law", definition: "Fundamental law stating electric force between point charges is inversely proportional to square of separation.", symbol: "F", unit: "\\mathrm{N}", equation: "F = k_e\\frac{|q_1 q_2|}{r^2}" },
+                { term: "Electric Field", definition: "Electrostatic force exerted per unit positive test charge.", symbol: "\\vec{E}", unit: "\\mathrm{N/C} \\;(\\mathrm{V/m})", equation: "\\vec{E} = \\frac{\\vec{F}}{q_0}" },
+                { term: "Electric Potential", definition: "Electric potential energy per unit charge at a point in an electric field.", symbol: "V", unit: "\\mathrm{Volt (V)}", equation: "V = \\frac{U}{q}" },
+                { term: "Capacitance", definition: "Ratio of stored electric charge magnitude on either plate to the potential difference between them.", symbol: "C", unit: "\\mathrm{Farad (F)}", equation: "C = \\frac{Q}{V}" },
+                { term: "Dielectric Constant", definition: "The factor by which capacitance increases when the space between plates is filled with a dielectric.", symbol: "\\kappa", unit: "Dimensionless", equation: "\\kappa = \\frac{C}{C_0}" },
+                { term: "Capacitor Stored Energy", definition: "Total electrostatic energy stored in the electric field between charged capacitor plates.", symbol: "U", unit: "\\mathrm{J}", equation: "U = \\frac{1}{2}CV^2" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Parallel-Plate Capacitor and Dielectric Insertion",
+                    question: "A parallel-plate capacitor has plate area A = 0.020 m² separated by distance d = 1.0 mm (1.0 × 10⁻³ m). (a) Calculate vacuum capacitance C₀. (b) Find stored charge Q when connected to a V = 120 V battery. (c) If the battery is disconnected and a dielectric slab (κ = 3.5) is inserted, what are the new capacitance C and voltage V_f? (ε₀ = 8.85 × 10⁻¹² F/m).",
+                    given: "Area \\( A = 0.020\\,\\mathrm{m^2} \\), \\( d = 1.0 \\times 10^{-3}\\,\\mathrm{m} \\), \\( V_0 = 120\\,\\mathrm{V} \\), \\( \\kappa = 3.5 \\), \\( \\varepsilon_0 = 8.85 \\times 10^{-12}\\,\\mathrm{F/m} \\).",
+                    find: "Capacitance \\( C_0 \\), charge \\( Q \\), new capacitance \\( C \\), new voltage \\( V_f \\).",
+                    equation: "C_0 = \\varepsilon_0\\frac{A}{d}, \\quad Q = C_0 V_0, \\quad C = \\kappa C_0, \\quad V_f = \\frac{V_0}{\\kappa}",
+                    rearrangement: "C_0 = 8.85 \\times 10^{-12} \\times \\frac{0.020}{1.0 \\times 10^{-3}}",
+                    solution: "1. Vacuum capacitance: \\( C_0 = 8.85 \\times 10^{-12} \\times 20 = 1.77 \\times 10^{-10}\\,\\mathrm{F} = 177\\,\\mathrm{pF} \\).<br>2. Stored charge: \\( Q = 1.77 \\times 10^{-10} \\times 120 = 2.124 \\times 10^{-8}\\,\\mathrm{C} = 21.24\\,\\mathrm{nC} \\).<br>3. With dielectric inserted (battery disconnected):<br>   - New capacitance: \\( C = 3.5 \\times 177\\,\\mathrm{pF} \\approx 620\\,\\mathrm{pF} \\).<br>   - Charge remains trapped and constant: \\( Q = 21.24\\,\\mathrm{nC} \\).<br>   - Voltage drops: \\( V_f = \\frac{120}{3.5} \\approx 34.3\\,\\mathrm{V} \\).",
+                    finalAnswer: "C_0 = 177\\,\\mathrm{pF}, \\quad Q \\approx 21.2\\,\\mathrm{nC}, \\quad C \\approx 620\\,\\mathrm{pF}, \\quad V_f \\approx 34.3\\,\\mathrm{V}",
+                    explanation: "Inserting a dielectric weakens internal field, reducing voltage while capacitance increases."
+                },
+                {
+                    title: "Example 2: Equivalent Capacitance and Energy in Series/Parallel",
+                    question: "Two capacitors C₁ = 4.0 μF and C₂ = 12.0 μF are connected across a 24.0 V DC power supply. Find the equivalent capacitance and total stored energy: (a) In parallel, (b) In series.",
+                    given: "Capacitors \\( C_1 = 4.0\\,\\mu\\mathrm{F} \\), \\( C_2 = 12.0\\,\\mu\\mathrm{F} \\), Supply \\( V = 24.0\\,\\mathrm{V} \\).",
+                    find: "Equivalent capacitance \\( C_{\\text{eq}} \\) and stored energy \\( U \\) for both connections.",
+                    equation: "C_p = C_1 + C_2, \\quad \\frac{1}{C_s} = \\frac{1}{C_1} + \\frac{1}{C_2}, \\quad U = \\frac{1}{2}C_{\\text{eq}}V^2",
+                    rearrangement: "C_s = \\frac{C_1 C_2}{C_1 + C_2}",
+                    solution: "1. (a) In parallel: \\( C_p = 4.0 + 12.0 = 16.0\\,\\mu\\mathrm{F} \\).<br>   \\( U_p = \\frac{1}{2}(16.0 \\times 10^{-6})(24.0)^2 = 8.0 \\times 10^{-6} \\times 576 = 4.61 \\times 10^{-3}\\,\\mathrm{J} = 4.61\\,\\mathrm{mJ} \\).<br>2. (b) In series: \\( C_s = \\frac{4.0 \\times 12.0}{4.0 + 12.0} = \\frac{48.0}{16.0} = 3.0\\,\\mu\\mathrm{F} \\).<br>   \\( U_s = \\frac{1}{2}(3.0 \\times 10^{-6})(24.0)^2 = 1.5 \\times 10^{-6} \\times 576 = 8.64 \\times 10^{-4}\\,\\mathrm{J} = 0.864\\,\\mathrm{mJ} \\).",
+                    finalAnswer: "\\text{Parallel: } C_p = 16.0\\,\\mu\\mathrm{F}, \\; U_p = 4.61\\,\\mathrm{mJ}; \\quad \\text{Series: } C_s = 3.0\\,\\mu\\mathrm{F}, \\; U_s = 0.864\\,\\mathrm{mJ}",
+                    explanation: "Parallel connection provides higher total capacitance and stores much more electrical energy."
+                }
+            ],
+            equations: [
+                {
+                    section: "Coulomb & Field",
+                    name: "Coulomb's Law with Permittivity",
+                    formula: "\\[ F = k\\frac{|q_1 q_2|}{r^2} = \\frac{1}{4\\pi\\varepsilon_0\\varepsilon_r}\\frac{|q_1 q_2|}{r^2} \\]",
+                    pdfPage: "PDF Page 126",
+                    explanation: "Calculates the electrostatic interaction force between two charges immersed in a dielectric medium.",
+                    conditions: "Static point charges.",
+                    variables: [
+                        { symbol: "F", rep: "Electrostatic force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "\\varepsilon_0", rep: "Permittivity of vacuum (8.85 × 10⁻¹² F/m)", unit: "Farad per meter", unitSym: "\\mathrm{F/m}" },
+                        { symbol: "\\varepsilon_r", rep: "Relative permittivity (dielectric constant)", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Coulomb & Field",
+                    name: "Electric Field of Point Charge",
+                    formula: "\\[ E = \\frac{F}{|q_0|} = k\\frac{|q|}{r^2} \\]",
+                    pdfPage: "PDF Page 127 & 128",
+                    explanation: "Electric field strength generated by source charge q at distance r.",
+                    conditions: "Radial field from point charge.",
+                    variables: [
+                        { symbol: "E", rep: "Electric field strength", unit: "Newton per coulomb or volt per meter", unitSym: "\\mathrm{V/m}" },
+                        { symbol: "q", rep: "Source charge", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Uniform E-Field",
+                    name: "Uniform Electric Field Between Plates",
+                    formula: "\\[ E = \\frac{V}{d} \\]",
+                    pdfPage: "PDF Page 129",
+                    explanation: "Constant electric field intensity existing between two oppositely charged parallel plates.",
+                    conditions: "Uniform electric field.",
+                    variables: [
+                        { symbol: "E", rep: "Electric field strength", unit: "Volt per meter", unitSym: "\\mathrm{V/m}" },
+                        { symbol: "V", rep: "Potential difference between plates", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "d", rep: "Plate separation distance", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Particle Deflection",
+                    name: "Parabolic Trajectory in Electric Field",
+                    formula: "\\[ y = \\frac{|q|E}{2m v_0^2}x^2 = \\frac{|q|V}{2m d v_0^2}x^2 \\]",
+                    pdfPage: "PDF Page 130 & 131",
+                    explanation: "Parabolic deflection path followed by a charged particle entering perpendicularly into an electric field.",
+                    conditions: "Uniform transverse electric field.",
+                    variables: [
+                        { symbol: "y", rep: "Vertical deflection distance", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "x", rep: "Horizontal distance traversed", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_0", rep: "Initial perpendicular velocity", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Particle Deflection",
+                    name: "Electric Deflection Angle & Screen Deflection",
+                    formula: "\\[ \\tan\\alpha = \\frac{|q|El}{m v_0^2}, \\quad Y = D\\tan\\alpha = \\frac{|q|l D}{m v_0^2 d}V \\]",
+                    pdfPage: "PDF Page 131",
+                    explanation: "Deflection angle α upon plate exit and amplified screen displacement Y at viewing distance D.",
+                    conditions: "Electrostatic deflection cathode ray tube setup.",
+                    variables: [
+                        { symbol: "\\alpha", rep: "Angular deflection", unit: "Degree or radian", unitSym: "{^\\circ}" },
+                        { symbol: "Y", rep: "Total screen deflection", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "l", rep: "Deflection plate length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "D", rep: "Distance to viewing screen", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Electric Potential",
+                    name: "Electric Potential and Work Done",
+                    formula: "\\[ V_{AB} = V_A - V_B = \\frac{W_{AB}}{q} = Ed, \\quad V = k\\frac{q}{r} \\]",
+                    pdfPage: "PDF Page 133",
+                    explanation: "Potential difference defined as work done per unit positive charge moved between points A and B.",
+                    conditions: "Electrostatic conservative field.",
+                    variables: [
+                        { symbol: "V_{AB}", rep: "Potential difference (voltage)", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "W_{AB}", rep: "Work done on charge", unit: "Joule", unitSym: "\\mathrm{J}" }
+                    ]
+                },
+                {
+                    section: "Capacitors",
+                    name: "Parallel-Plate Capacitance Formula",
+                    formula: "\\[ C = \\frac{q}{V} = \\varepsilon_0 \\varepsilon_r \\frac{A}{d} \\]",
+                    pdfPage: "PDF Page 135 & 136",
+                    explanation: "Capacitance of a parallel-plate capacitor, proportional to overlap area A and dielectric constant ε_r.",
+                    conditions: "Uniform dielectric slab filling plate gap.",
+                    variables: [
+                        { symbol: "C", rep: "Capacitance", unit: "Farad", unitSym: "\\mathrm{F}" },
+                        { symbol: "A", rep: "Plate overlap area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "d", rep: "Plate separation", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                },
+                {
+                    section: "Capacitors",
+                    name: "Capacitor Combinations (Series & Parallel)",
+                    formula: "\\[ C_p = \\sum C_i = C_1 + C_2 + \\dots, \\quad \\frac{1}{C_s} = \\sum \\frac{1}{C_i} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\dots \\]",
+                    pdfPage: "PDF Page 136 & 137",
+                    explanation: "Formulas for equivalent capacitance in parallel and series circuit configurations.",
+                    conditions: "Capacitor networks.",
+                    variables: [
+                        { symbol: "C_p", rep: "Equivalent parallel capacitance", unit: "Farad", unitSym: "\\mathrm{F}" },
+                        { symbol: "C_s", rep: "Equivalent series capacitance", unit: "Farad", unitSym: "\\mathrm{F}" }
+                    ]
+                },
+                {
+                    section: "Capacitors",
+                    name: "Stored Electrostatic Energy in Capacitor",
+                    formula: "\\[ E_C = \\frac{1}{2}CV^2 = \\frac{1}{2}\\frac{q^2}{C} = \\frac{1}{2}qV \\]",
+                    pdfPage: "PDF Page 137",
+                    explanation: "Total electrical potential energy stored in the electric field of a charged capacitor.",
+                    conditions: "Charged capacitor.",
+                    variables: [
+                        { symbol: "E_C", rep: "Stored electrical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "q", rep: "Stored charge", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "V", rep: "Potential difference", unit: "Volt", unitSym: "\\mathrm{V}" }
+                    ]
+                },
+                {
+                    section: "RC Circuits",
+                    name: "RC Dipole Time Constant & Current",
+                    formula: "\\[ \\tau = RC, \\quad i = \\frac{dq}{dt} = C\\frac{dV}{dt} \\]",
+                    pdfPage: "PDF Page 137",
+                    explanation: "Characteristic response time τ of an RC charging/discharging circuit.",
+                    conditions: "Series RC circuit.",
+                    variables: [
+                        { symbol: "\\tau", rep: "Time constant", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "R", rep: "Circuit resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "C", rep: "Circuit capacitance", unit: "Farad", unitSym: "\\mathrm{F}" }
+                    ]
+                },
+                {
+                    section: "Coulomb & Field",
+                    name: "Charge Redistribution upon Contact",
+                    formula: "\\[ q'_1 = q'_2 = \\frac{q_1 + q_2}{2} \\]",
+                    pdfPage: "PDF Page 125",
+                    explanation: "Equal electrostatic charge sharing when two identical conducting spheres touch each other and separate.",
+                    conditions: "Two identical conducting spheres.",
+                    variables: [
+                        { symbol: "q'_1, q'_2", rep: "Final charge on each sphere after contact", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "q_1, q_2", rep: "Initial charges before contact", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Coulomb & Field",
+                    name: "Charge Quantization & Carrier Count",
+                    formula: "\\[ q = \\pm N e \\quad (e = 1.6 \\times 10^{-19}\\,\\mathrm{C}) \\]",
+                    pdfPage: "PDF Page 125",
+                    explanation: "Total electric charge is quantized as an integer multiple N of the fundamental elementary charge e.",
+                    conditions: "Any macroscopic or microscopic electric charge.",
+                    variables: [
+                        { symbol: "q", rep: "Total electric charge", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "N", rep: "Number of elementary charges (electrons/protons)", unit: "Integer count", unitSym: "\\text{Count}" },
+                        { symbol: "e", rep: "Elementary electric charge (1.6 × 10⁻¹⁹ C)", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Particle Deflection",
+                    name: "Electron Transit Time in Deflecting Plates",
+                    formula: "\\[ t = \\frac{l}{v_0} \\]",
+                    pdfPage: "PDF Page 130",
+                    explanation: "Time required for a charged particle of horizontal velocity v₀ to traverse deflection plates of length l.",
+                    conditions: "Constant horizontal velocity component.",
+                    variables: [
+                        { symbol: "t", rep: "Transit time between plates", unit: "Second", unitSym: "\\mathrm{s}" },
+                        { symbol: "l", rep: "Deflecting plate length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "v_0", rep: "Initial entrance horizontal speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" }
+                    ]
+                },
+                {
+                    section: "Capacitors",
+                    name: "Electrostatic Energy Density of Electric Field",
+                    formula: "\\[ u_E = \\frac{U_E}{\\text{Volume}} = \\frac{1}{2}\\varepsilon_0 \\varepsilon_r E^2 \\]",
+                    pdfPage: "PDF Page 136",
+                    explanation: "Electrostatic potential energy stored per unit volume within an electric field.",
+                    conditions: "Uniform electric field region.",
+                    variables: [
+                        { symbol: "u_E", rep: "Electric field energy density", unit: "Joule per cubic meter", unitSym: "\\mathrm{J/m^3}" },
+                        { symbol: "\\varepsilon_0", rep: "Vacuum permittivity (8.85 × 10⁻¹² F/m)", unit: "Farad per meter", unitSym: "\\mathrm{F/m}" },
+                        { symbol: "\\varepsilon_r", rep: "Relative permittivity", unit: "Dimensionless ratio", unitSym: "\\text{No unit}" },
+                        { symbol: "E", rep: "Electric field strength", unit: "Volt per meter", unitSym: "\\mathrm{V/m}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the equivalent capacitance of capacitors in parallel?", back: "\\(C_{\\text{eq}} = C_1 + C_2 + \\dots\\) (capacitances add directly)." },
+                { front: "What is the equivalent capacitance of two capacitors in series?", back: "\\(C_{\\text{eq}} = \\frac{C_1 C_2}{C_1 + C_2}\\)" },
+                { front: "How does inserting a dielectric material of constant \\(\\kappa\\) affect capacitance?", back: "It increases capacitance by the factor \\(\\kappa\\) (\\(C = \\kappa C_0\\))." },
+                { front: "What are the formulas for electrostatic energy stored in a capacitor?", back: "\\(U = \\frac{1}{2}CV^2 = \\frac{1}{2}\\frac{Q^2}{C} = \\frac{1}{2}QV\\)" }
+            ],
+            quiz: [
+                { question: "If the separation distance d between parallel capacitor plates is halved at constant voltage, the stored energy:", options: ["Halves", "Doubles", "Quadruples", "Remains unchanged"], correctIndex: 1, feedback: "C = ε₀ A / d doubles when d is halved; at constant V, U = 1/2 C V² doubles." },
+                { question: "The SI unit of capacitance is the Farad (F), which is equivalent to:", options: ["Volt per Coulomb", "Coulomb per Volt", "Joule per Volt", "Coulomb·Volt"], correctIndex: 1, feedback: "C = Q / V, so 1 Farad = 1 Coulomb per Volt (C/V)." },
+                { question: "When capacitors are connected in series, which quantity is identical for all capacitors in the chain?", options: ["Voltage", "Capacitance", "Electric charge Q", "Stored energy"], correctIndex: 2, feedback: "In a series connection, charge conservation guarantees each capacitor carries the exact same charge Q." }
+            ]
+        },
+        {
+            id: "g11-ch3-l2",
+            gifUrl: "",
+            worksheetUrl: "worksheets/g11-ch3-l2-worksheet.pdf",
+            ebookUrl: "",
+            ebooks: [],
+            games: [{ topic: "Circuit Construction Kit (DC)", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" }],
+            title: "Chapter 3 • Lesson 2: Electric Current, Resistance & DC Circuits",
+            concepts: [
+                "Electric Current and Drift Velocity: Current is the net rate of charge flow: \\(I = \\frac{dQ}{dt} = n q v_d A\\), where \\(n\\) is carrier density and \\(v_d\\) is drift speed.",
+                "Current Density and Ohm's Law: \\(\\vec{J} = \\sigma \\vec{E} = \\frac{1}{\\rho}\\vec{E}\\). Macroscopic Ohm's law: \\(V = I R\\).",
+                "Resistance and Resistivity: \\(R = \\rho\\frac{L}{A}\\), where \\(\\rho\\) is intrinsic resistivity, \\(L\\) is length, and \\(A\\) is cross-sectional area.",
+                "Temperature Dependence of Resistance: \\(R(T) = R_0 [1 + \\alpha(T - T_0)]\\), where \\(\\alpha\\) is temperature coefficient of resistivity.",
+                "Electromotive Force (EMF) & Internal Resistance: A real battery of emf \\(\\mathcal{E}\\) and internal resistance \\(r\\) delivers terminal voltage \\(V_{\\text{term}} = \\mathcal{E} - Ir\\).",
+                "Resistor Combinations: Series: \\(R_{\\text{eq}} = R_1 + R_2 + \\dots\\); Parallel: \\(\\frac{1}{R_{\\text{eq}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\dots\\).",
+                "Kirchhoff's Rules: Junction Rule (Charge Conservation): \\(\\sum I_{\\text{in}} = \\sum I_{\\text{out}}\\); Loop Rule (Energy Conservation): \\(\\sum \\Delta V = 0\\) along any closed loop.",
+                "Electric Power & Joule Heating: \\(P = V I = I^2 R = \\frac{V^2}{R}\\)."
+            ],
+            definitions: [
+                { term: "Electric Current", definition: "Net rate of electric charge flow passing through a cross-section.", symbol: "I", unit: "\\mathrm{Ampere (A)} \\;(\\mathrm{C/s})", equation: "I = \\frac{dQ}{dt} = n q v_d A" },
+                { term: "Resistivity", definition: "Intrinsic material property quantifying opposition to electric current flow.", symbol: "\\rho", unit: "\\Omega\\cdot\\mathrm{m}", equation: "R = \\rho \\frac{L}{A}" },
+                { term: "Electromotive Force (EMF)", definition: "Energy supplied by a voltage source per unit electric charge passing through it.", symbol: "\\mathcal{E}", unit: "\\mathrm{Volt (V)}", equation: "\\mathcal{E} = V_{\\text{term}} + Ir" },
+                { term: "Kirchhoff's Junction Rule", definition: "Sum of currents entering any electrical node equals sum of currents leaving (charge conservation).", symbol: "\\sum I", unit: "\\mathrm{A}", equation: "\\sum I_{\\text{in}} = \\sum I_{\\text{out}}" },
+                { term: "Kirchhoff's Loop Rule", definition: "Algebraic sum of potential differences around any closed circuit loop is zero (energy conservation).", symbol: "\\sum \\Delta V", unit: "\\mathrm{V}", equation: "\\sum \\Delta V = 0" },
+                { term: "Joule Heating Power", definition: "Rate at which electrical energy is dissipated as heat in a resistive circuit element.", symbol: "P", unit: "\\mathrm{Watt (W)}", equation: "P = I^2 R = VI" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Battery Terminal Voltage and Internal Resistance",
+                    question: "A battery with open-circuit EMF of E = 12.0 V is connected across an external load resistor of R = 5.5 Ω. A voltmeter measures the terminal voltage under load as V_term = 11.0 V. Calculate: (a) Circuit current I, (b) Battery internal resistance r, and (c) Power wasted inside the battery.",
+                    given: "EMF \\( \\mathcal{E} = 12.0\\,\\mathrm{V} \\), Load \\( R = 5.5\\,\\Omega \\), Terminal voltage \\( V_{\\text{term}} = 11.0\\,\\mathrm{V} \\).",
+                    find: "Current \\( I \\), Internal resistance \\( r \\), Internal power dissipation \\( P_{\\text{int}} \\).",
+                    equation: "I = \\frac{V_{\\text{term}}}{R}, \\quad V_{\\text{term}} = \\mathcal{E} - Ir \\implies r = \\frac{\\mathcal{E} - V_{\\text{term}}}{I}, \\quad P_{\\text{int}} = I^2 r",
+                    rearrangement: "r = \\frac{12.0 - 11.0}{I}",
+                    solution: "1. Current: \\( I = \\frac{11.0\\,\\mathrm{V}}{5.5\\,\\Omega} = 2.0\\,\\mathrm{A} \\).<br>2. Internal resistance: \\( r = \\frac{12.0 - 11.0}{2.0} = \\frac{1.0\\,\\mathrm{V}}{2.0\\,\\mathrm{A}} = 0.50\\,\\Omega \\).<br>3. Wasted internal power: \\( P_{\\text{int}} = I^2 r = (2.0)^2 \\times 0.50 = 4.0 \\times 0.50 = 2.0\\,\\mathrm{W} \\).",
+                    finalAnswer: "I = 2.0\\,\\mathrm{A}, \\quad r = 0.50\\,\\Omega, \\quad P_{\\text{int}} = 2.0\\,\\mathrm{W}",
+                    explanation: "Real batteries have internal resistance causing terminal voltage to decrease as load current increases."
+                },
+                {
+                    title: "Example 2: Multi-Loop Circuit Analysis with Kirchhoff's Rules",
+                    question: "A two-loop circuit has battery E₁ = 18.0 V with series resistor R₁ = 3.0 Ω in the left branch, and battery E₂ = 12.0 V with series resistor R₂ = 6.0 Ω in the right branch. Both branches connect across a central common resistor R₃ = 4.0 Ω. Calculate the branch currents.",
+                    given: "EMFs \\( \\mathcal{E}_1 = 18.0\\,\\mathrm{V} \\), \\( \\mathcal{E}_2 = 12.0\\,\\mathrm{V} \\), \\( R_1 = 3.0\\,\\Omega \\), \\( R_2 = 6.0\\,\\Omega \\), \\( R_3 = 4.0\\,\\Omega \\).",
+                    find: "Currents \\( I_1, I_2, I_3 \\).",
+                    equation: "I_3 = I_1 + I_2, \\quad \\text{Loop 1: } \\mathcal{E}_1 - I_1 R_1 - I_3 R_3 = 0, \\quad \\text{Loop 2: } \\mathcal{E}_2 - I_2 R_2 - I_3 R_3 = 0",
+                    rearrangement: "(1) \\; 7I_1 + 4I_2 = 18.0, \\quad (2) \\; 4I_1 + 10I_2 = 12.0",
+                    solution: "1. Multiply (1) by 2.5: \\( 17.5I_1 + 10I_2 = 45.0 \\).<br>2. Subtract (2): \\( 13.5I_1 = 33.0 \\implies I_1 = \\frac{33.0}{13.5} \\approx 2.44\\,\\mathrm{A} \\).<br>3. From (1): \\( 4I_2 = 18.0 - 7(2.44) = 18.0 - 17.08 = 0.92 \\implies I_2 = 0.23\\,\\mathrm{A} \\).<br>4. Central current: \\( I_3 = I_1 + I_2 = 2.44 + 0.23 = 2.67\\,\\mathrm{A} \\).",
+                    finalAnswer: "I_1 \\approx 2.44\\,\\mathrm{A}, \\quad I_2 \\approx 0.23\\,\\mathrm{A}, \\quad I_3 \\approx 2.67\\,\\mathrm{A}",
+                    explanation: "Kirchhoff's rules allow systematic solution of multi-loop circuits with multiple power sources."
+                }
+            ],
+            equations: [
+                {
+                    section: "Conductor Resistance",
+                    name: "Conductor Resistance Formula",
+                    formula: "\\[ R = \\rho\\frac{l}{A} \\quad \\left(A = \\frac{\\pi d^2}{4}, \\; l = \\pi D N\\right) \\]",
+                    pdfPage: "PDF Page 138",
+                    explanation: "Resistance of a uniform cylindrical conducting wire or solenoid winding in terms of geometry and material resistivity.",
+                    conditions: "Uniform cylindrical conductor.",
+                    variables: [
+                        { symbol: "R", rep: "Resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "\\rho", rep: "Material resistivity", unit: "Ohm meter", unitSym: "\\Omega\\cdot\\mathrm{m}" },
+                        { symbol: "l", rep: "Total wire length", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "A", rep: "Cross-sectional area", unit: "Square meter", unitSym: "\\mathrm{m^2}" },
+                        { symbol: "d", rep: "Wire diameter", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "D", rep: "Solenoid coil diameter", unit: "Meter", unitSym: "\\mathrm{m}" },
+                        { symbol: "N", rep: "Number of turns", unit: "Count", unitSym: "\\text{No unit}" }
+                    ]
+                },
+                {
+                    section: "Temperature Effect",
+                    name: "Temperature Dependence of Resistance",
+                    formula: "\\[ R_t = R_0(1 + \\alpha t) \\implies \\alpha = \\frac{R_t - R_0}{R_0 t} \\]",
+                    pdfPage: "PDF Page 138",
+                    explanation: "Linear resistance variation of metallic conductors as temperature increases.",
+                    conditions: "Moderate temperature ranges.",
+                    variables: [
+                        { symbol: "R_t", rep: "Resistance at temperature t", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "R_0", rep: "Resistance at 0 °C reference", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "\\alpha", rep: "Temperature coefficient of resistance", unit: "Per degree Celsius", unitSym: "{^\\circ\\mathrm{C^{-1}}}" },
+                        { symbol: "t", rep: "Temperature", unit: "Degree Celsius", unitSym: "{^\\circ\\mathrm{C}}" }
+                    ]
+                },
+                {
+                    section: "Ohm's Law & Power",
+                    name: "Electric Power and Joule Energy",
+                    formula: "\\[ P = VI = RI^2 = \\frac{V^2}{R}, \\quad W = VIt = RI^2 t \\]",
+                    pdfPage: "PDF Page 138",
+                    explanation: "Instantaneous electrical power dissipation and cumulative heat energy delivered across an ohmic resistance.",
+                    conditions: "Ohmic conductors.",
+                    variables: [
+                        { symbol: "P", rep: "Electric power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "W", rep: "Electric energy / Joule heat", unit: "Joule", unitSym: "\\mathrm{J}" }
+                    ]
+                },
+                {
+                    section: "Electrical Receiver",
+                    name: "Ohm's Law for Motor & Receiver",
+                    formula: "\\[ V' = E' + r'I \\]",
+                    pdfPage: "PDF Page 138",
+                    explanation: "Operating voltage across an electric motor or electrolytic cell accounting for back emf and internal resistance.",
+                    conditions: "Active receiving electrical device.",
+                    variables: [
+                        { symbol: "V'", rep: "Applied terminal voltage", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "E'", rep: "Back electromotive force", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "r'", rep: "Internal receiver resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "I", rep: "Operating current", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "Electrical Receiver",
+                    name: "Receiver Power Balance & Efficiency",
+                    formula: "\\[ P_e = P_u + P_J \\implies V'I = E'I + r'I^2, \\quad \\text{eff} = \\frac{P_u}{P_e} = \\frac{E'}{V'} \\]",
+                    pdfPage: "PDF Page 139",
+                    explanation: "Total supplied power partitions into useful mechanical conversion (E'I) and internal Joule dissipation (r'I²).",
+                    conditions: "Operating motor with mechanical load.",
+                    variables: [
+                        { symbol: "P_e", rep: "Total supplied electrical power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "P_u", rep: "Useful mechanical power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "P_J", rep: "Internal Joule loss", unit: "Watt", unitSym: "\\mathrm{W}" }
+                    ]
+                },
+                {
+                    section: "DC Source (Battery)",
+                    name: "Battery Terminal Voltage Formula",
+                    formula: "\\[ V = E - rI \\quad (I_{\\text{sc}} = E/r) \\]",
+                    pdfPage: "PDF Page 139",
+                    explanation: "Terminal voltage delivered by a DC battery under load, reduced by internal resistance drop rI.",
+                    conditions: "Discharging DC battery.",
+                    variables: [
+                        { symbol: "V", rep: "Terminal voltage", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "E", rep: "Electromotive force (EMF)", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "r", rep: "Battery internal resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "I_{\\text{sc}}", rep: "Short-circuit current (V = 0)", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "DC Source (Battery)",
+                    name: "Battery Power Balance & Efficiency",
+                    formula: "\\[ P_g = P_e + P_J \\implies EI = VI + rI^2, \\quad \\text{eff} = \\frac{P_e}{P_g} = \\frac{V}{E} \\]",
+                    pdfPage: "PDF Page 139 & 140",
+                    explanation: "Chemical energy generation rate EI equals external delivered electrical power VI plus internal heating rI².",
+                    conditions: "Operating DC source.",
+                    variables: [
+                        { symbol: "P_g", rep: "Total chemical generation power", unit: "Watt", unitSym: "\\mathrm{W}" },
+                        { symbol: "P_e", rep: "Useful external power output", unit: "Watt", unitSym: "\\mathrm{W}" }
+                    ]
+                },
+                {
+                    section: "General Ohm's Law",
+                    name: "General Closed-Circuit Ohm's Law",
+                    formula: "\\[ I = \\frac{\\sum E - \\sum E'}{\\sum R + \\sum r + \\sum r'} \\]",
+                    pdfPage: "PDF Page 140",
+                    explanation: "Comprehensive current formulation for any single-loop circuit containing multiple sources, receivers, and resistors.",
+                    conditions: "Complete closed electrical loop.",
+                    variables: [
+                        { symbol: "I", rep: "Loop current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "\\sum E", rep: "Sum of source electromotive forces", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "\\sum E'", rep: "Sum of receiver counter electromotive forces", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "\\sum R", rep: "Total external load resistances", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Microscopic Current",
+                    name: "Drift Velocity & Current Density",
+                    formula: "\\[ I = n A v_d e, \\quad J = \\frac{I}{A} = n v_d e \\quad \\left(n = \\frac{\\rho_{\\text{mass}} N_A}{M}\\right) \\]",
+                    pdfPage: "PDF Page 140",
+                    explanation: "Connects macroscopic current to microscopic electron density n, charge e, and mean drift velocity v_d.",
+                    conditions: "Conduction electron flow in metal lattice.",
+                    variables: [
+                        { symbol: "n", rep: "Free electron number density", unit: "Electrons per cubic meter", unitSym: "\\mathrm{m^{-3}}" },
+                        { symbol: "v_d", rep: "Electron drift speed", unit: "Meter per second", unitSym: "\\mathrm{m/s}" },
+                        { symbol: "J", rep: "Current density", unit: "Ampere per square meter", unitSym: "\\mathrm{A/m^2}" },
+                        { symbol: "e", rep: "Electron charge (1.6 × 10⁻¹⁹ C)", unit: "Coulomb", unitSym: "\\mathrm{C}" }
+                    ]
+                },
+                {
+                    section: "Complex Networks",
+                    name: "Circuit with Opposing Cells and Motor",
+                    formula: "\\[ I = \\frac{E_1 - (E' + E_2)}{r' + r_1 + r_2} \\]",
+                    pdfPage: "PDF Page 142 & 143",
+                    explanation: "Calculates current in a circuit having two opposing electrochemical cells and an inline DC motor.",
+                    conditions: "Two opposed batteries with \\(E_1 > E_2\\).",
+                    variables: [
+                        { symbol: "E_1, E_2", rep: "EMFs of opposed cells", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "E'", rep: "Motor back EMF", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "r_1, r_2, r'", rep: "Internal resistances", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "General Ohm's Law",
+                    name: "Pouillet's Law for Simple Closed Circuit",
+                    formula: "\\[ I = \\frac{E}{R + r} \\]",
+                    pdfPage: "PDF Page 140",
+                    explanation: "Current flowing in a single closed loop containing a source of EMF E, internal resistance r, and external load R.",
+                    conditions: "Single-source simple closed circuit.",
+                    variables: [
+                        { symbol: "I", rep: "Circuit current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "E", rep: "Electromotive force of source", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "R", rep: "External circuit resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "r", rep: "Internal resistance of source", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "General Ohm's Law",
+                    name: "Circuit with Source, Motor & Resistor",
+                    formula: "\\[ I = \\frac{E - E'}{R + r + r'} \\]",
+                    pdfPage: "PDF Page 140 & 141",
+                    explanation: "Determines current in a loop containing a DC generator E, electric motor E', external load R, and respective internal resistances.",
+                    conditions: "Closed loop where generator drives motor (\\(E > E'\\)).",
+                    variables: [
+                        { symbol: "I", rep: "Operating loop current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "E", rep: "Generator electromotive force", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "E'", rep: "Motor counter electromotive force", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "R", rep: "External resistance", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "r, r'", rep: "Internal resistances of generator and motor", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "General Ohm's Law",
+                    name: "Circuit with Two Opposing Sources & Resistor",
+                    formula: "\\[ I = \\frac{E_1 - E_2}{R + r_1 + r_2} \\quad (E_1 > E_2) \\]",
+                    pdfPage: "PDF Page 141",
+                    explanation: "Current in a series circuit containing two opposing electrochemical batteries connected against each other.",
+                    conditions: "Two opposed DC sources connected in series opposition.",
+                    variables: [
+                        { symbol: "I", rep: "Loop current directed by dominant cell", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "E_1", rep: "Dominant battery EMF", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "E_2", rep: "Opposing battery EMF", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "R", rep: "External resistor", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "r_1, r_2", rep: "Internal resistances of both batteries", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Complex Networks",
+                    name: "Parallel Source Branches (Millman's Node Formula)",
+                    formula: "\\[ V_{AB} = \\frac{\\frac{E_1}{r_1} + \\frac{E_2}{r_2}}{\\frac{1}{R} + \\frac{1}{r_1} + \\frac{1}{r_2}} \\]",
+                    pdfPage: "PDF Page 142",
+                    explanation: "Calculates the common terminal node voltage across parallel branches containing active DC sources feeding a load R.",
+                    conditions: "Parallel branches connected across common nodes A and B.",
+                    variables: [
+                        { symbol: "V_{AB}", rep: "Common terminal node voltage", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "E_1, E_2", rep: "Branch EMFs", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "r_1, r_2", rep: "Branch internal resistances", unit: "Ohm", unitSym: "\\Omega" },
+                        { symbol: "R", rep: "Common external load resistance", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                },
+                {
+                    section: "Kirchhoff's Laws",
+                    name: "Kirchhoff's Current Law (Junction Rule)",
+                    formula: "\\[ \\sum I_{\\text{in}} = \\sum I_{\\text{out}} \\implies \\sum I = 0 \\]",
+                    pdfPage: "PDF Page 142",
+                    explanation: "Algebraic sum of all electric currents meeting at any circuit junction node must equal zero due to charge conservation.",
+                    conditions: "Any electrical junction node.",
+                    variables: [
+                        { symbol: "\\sum I_{\\text{in}}", rep: "Sum of currents entering node", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "\\sum I_{\\text{out}}", rep: "Sum of currents leaving node", unit: "Ampere", unitSym: "\\mathrm{A}" }
+                    ]
+                },
+                {
+                    section: "Kirchhoff's Laws",
+                    name: "Kirchhoff's Voltage Law (Loop Rule)",
+                    formula: "\\[ \\sum \\mathcal{E} = \\sum IR \\implies \\sum \\Delta V = 0 \\]",
+                    pdfPage: "PDF Page 143",
+                    explanation: "Algebraic sum of all EMF sources around any closed loop equals the algebraic sum of all potential drops across resistances.",
+                    conditions: "Any closed conducting circuit loop.",
+                    variables: [
+                        { symbol: "\\sum \\mathcal{E}", rep: "Sum of source EMFs around loop", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "\\sum IR", rep: "Sum of ohmic voltage drops", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "\\sum \\Delta V", rep: "Net potential change around closed path", unit: "Volt", unitSym: "\\mathrm{V}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What conservation law underlies Kirchhoff's Junction Rule (KCL)?", back: "Conservation of electric charge (\\(\\sum I_{\\text{in}} = \\sum I_{\\text{out}}\\))." },
+                { front: "What conservation law underlies Kirchhoff's Loop Rule (KVL)?", back: "Conservation of energy (\\(\\sum \\Delta V = 0\\))." },
+                { front: "What is the formula for the resistance of a cylindrical conductor?", back: "\\(R = \\rho\\frac{L}{A}\\)" },
+                { front: "What happens to the terminal voltage of a real battery when load current increases?", back: "Terminal voltage decreases: \\(V_{\\text{term}} = \\mathcal{E} - Ir\\)." }
+            ],
+            quiz: [
+                { question: "If the length of a wire is doubled and its diameter is halved, its electrical resistance:", options: ["Doubles", "Quadruples", "Increases by a factor of 8", "Increases by a factor of 16"], correctIndex: 2, feedback: "R = ρ L / A; length doubles (×2), area reduces to 1/4 (×4), so resistance increases by 2 × 4 = 8 times." },
+                { question: "Kirchhoff's loop rule is a direct consequence of the conservation of:", options: ["Charge", "Energy", "Linear momentum", "Angular momentum"], correctIndex: 1, feedback: "Kirchhoff's Loop Rule states that the net work done per unit charge moving around any closed loop is zero." },
+                { question: "Three identical 60 W bulbs are connected in parallel across 120 V. If one bulb burns out, the brightness of the other two bulbs:", options: ["Increases", "Decreases", "Remains unchanged", "Drops to zero"], correctIndex: 2, feedback: "In parallel circuits, each branch is connected across the full 120 V supply independently." }
+            ]
+        }
+    ];
+
     const PHYSICS_DATA = {
+        "7": G7_LESSONS,
+        "8": G8_LESSONS,
         "9": G9_LESSONS,
+        "10": G10_LESSONS,
+        "11": G11_LESSONS,
         "12": G12_LESSONS
     };
 

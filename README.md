@@ -40,7 +40,7 @@ A modern, interactive Physics formula companion and learning web app designed fo
 
 ```text
 Summarize formula_web/
-├── index.html          # Main application page & curriculum interface
+├── index.html          # Main application page & curriculum interface (Direct access)
 ├── styles.css          # Styling & modern dark/light responsive UI theme
 ├── physics-data.js     # Master educational curriculum data (154 formulas & worked examples)
 ├── app.js              # Application interactivity, tabs, quizzes & routing
@@ -48,9 +48,7 @@ Summarize formula_web/
 ├── worksheets.json     # PDF worksheet routing & metadata configuration
 ├── .gitignore          # Git ignore rules for OS and editor artifacts
 ├── README.md           # Project documentation and deployment guide
-├── worksheets/         # PDF practice worksheets (all 15 chapters)
-│   ├── g9-ch1-worksheet.pdf ... g9-ch5-worksheet.pdf
-│   └── ch4-l1-worksheet.pdf, etc.
+├── worksheets/         # PDF practice worksheets
 └── images/             # Vector diagrams & figures (if applicable)
 ```
 
@@ -58,9 +56,10 @@ Summarize formula_web/
 
 ## 🚀 How to Run Locally
 
-You can run this project directly by opening `index.html` in any web browser:
+You can run this project directly by opening `index.html` in any web browser without any login:
 1. Double-click `index.html` or open it with your browser (Chrome, Edge, Firefox, Safari).
-2. Or use a local web server (e.g. VS Code Live Server, Python `python -m http.server 8000`).
+2. Or use a local web server (e.g. VS Code Live Server, or `npx serve .`, or Python `python -m http.server 8000`).
+3. Or run `npm start` (or `node server.js`) to launch on `http://localhost:3000`.
 
 ---
 
@@ -70,4 +69,5 @@ You can run this project directly by opening `index.html` in any web browser:
 2. In your repository, go to **Settings** > **Pages**.
 3. Under **Build and deployment**, select **Source: Deploy from a branch**.
 4. Choose the `main` branch and `/ (root)` folder, then click **Save**.
-5. Your website will be live in seconds!
+5. Your website will be live in seconds with direct, instant access for all your students!
+
