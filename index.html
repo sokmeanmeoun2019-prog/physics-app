@@ -40,21 +40,25 @@
             try {
                 var lib = window.pdfjsLib || window['pdfjs-dist/build/pdf'] || window.PDFJS;
                 if (lib && lib.GlobalWorkerOptions) {
-                    var blobCode = 'importScripts("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js");';
-                    var workerBlob = new Blob([blobCode], { type: 'application/javascript' });
-                    lib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
-                }
-            } catch(e) {
-                try {
-                    if (window.pdfjsLib && window.pdfjsLib.GlobalWorkerOptions) {
-                        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                    if (!isIOS) {
+                        try {
+                            var blobCode = 'importScripts("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js");';
+                            var workerBlob = new Blob([blobCode], { type: 'application/javascript' });
+                            lib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
+                        } catch(e) {
+                            lib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                        }
+                    } else {
+                        // On iOS/iPad Safari, use direct CDN worker to prevent opaque origin SecurityError inside blob worker
+                        lib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
                     }
-                } catch(err) {}
-            }
+                }
+            } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=4.0"></script>
-    <script src="physics-data.js?v=4.0"></script>
+    <script src="physics-figures.js?v=4.1"></script>
+    <script src="physics-data.js?v=4.1"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "9": [], "12": [] };
         window.appData = window.physicsData;
@@ -64,6 +68,10 @@
                 id: "g9-l1",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Torque_animation.gif",
                 worksheetUrl: "worksheets/g9-ch1-worksheet.pdf",
+                ebookUrl: "ebooks/g9-ch1-ebook.pdf.pdf",
+                ebooks: [
+                    { title: "Chapter 1: Turning Effect of Force (pp. 1–12)", url: "ebooks/g9-ch1-ebook.pdf.pdf", altUrl: "ebooks/g9-ch1-ebook.pdf" }
+                ],
                 games: [
                     { topic: "Turning Effect", url: "https://g.co/gemini/share/da86f09d1c05" },
                     { topic: "PhET: Balancing Act (Torque & Balance)", url: "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" }
@@ -246,6 +254,14 @@
                 id: "g9-l2",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",
                 worksheetUrl: "worksheets/g9-ch2-worksheet.pdf",
+                ebookUrl: "ebooks/g9-ch2-1-levers.pdf.pdf",
+                ebooks: [
+                    { title: "1. Levers (pp. 13–19)", url: "ebooks/g9-ch2-1-levers.pdf.pdf", altUrl: "ebooks/g9-ch2-1-levers.pdf" },
+                    { title: "2. Inclined Plane (pp. 20–22)", url: "ebooks/g9-ch2-2-incline.pdf.pdf", altUrl: "ebooks/g9-ch2-2-incline.pdf" },
+                    { title: "3. Pulleys (pp. 23–26)", url: "ebooks/g9-ch2-3-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-3-pulley.pdf" },
+                    { title: "4. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-4-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-4-gears.pdf" },
+                    { title: "5. Wheel & Axle (p. 30)", url: "ebooks/g9-ch2-5-wheel-axle.pdf.pdf", altUrl: "ebooks/g9-ch2-5-wheel-axle.pdf" }
+                ],
                 games: [
                     { topic: "Levers", url: "https://g.co/gemini/share/0b9242977d1a" },
                     { topic: "Inclined Plane", url: "https://g.co/gemini/share/a0f83fb13666" },
@@ -409,6 +425,11 @@
                 id: "g9-l3",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",
                 worksheetUrl: "worksheets/g9-ch3-worksheet.pdf",
+                ebookUrl: "ebooks/g9-ch3-part1.pdf.pdf",
+                ebooks: [
+                    { title: "Part 1: Electric Energy (pp. 31–38)", url: "ebooks/g9-ch3-part1.pdf.pdf", altUrl: "ebooks/g9-ch3-part1.pdf" },
+                    { title: "Part 2: Household Wiring Systems (pp. 39–47)", url: "ebooks/g9-ch3-part2.pdf.pdf", altUrl: "ebooks/g9-ch3-part2.pdf" }
+                ],
                 games: [
                     { topic: "Electricity", url: "https://gemini.google.com/share/e1def1ea44ff" },
                     { topic: "Household Wiring System", url: "https://gemini.google.com/share/b1b0af13b130" },
@@ -545,6 +566,11 @@
                 id: "g9-l4",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/VFPt_solenoid-field-animation.gif",
                 worksheetUrl: "worksheets/g9-ch4-worksheet.pdf",
+                ebookUrl: "ebooks/g9-ch4-part1.pdf.pdf",
+                ebooks: [
+                    { title: "Part 1: Magnetic Field (pp. 48–54)", url: "ebooks/g9-ch4-part1.pdf.pdf", altUrl: "ebooks/g9-ch4-part1.pdf" },
+                    { title: "Part 2: Magnetic Force & Transformers (pp. 55–65)", url: "ebooks/g9-ch4-part2.pdf.pdf", altUrl: "ebooks/g9-ch4-part2.pdf" }
+                ],
                 games: [
                     { topic: "Magnetic Field due to a straight wire", url: "https://gemini.google.com/share/4e08057d8f02" },
                     { topic: "Magnetic due to a circular loop", url: "https://gemini.google.com/share/d3ff81a78225" },
@@ -680,6 +706,14 @@
                 id: "g9-l5",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Refraction_animation.gif",
                 worksheetUrl: "worksheets/g9-ch5-worksheet.pdf",
+                ebookUrl: "ebooks/g9-ch5-1-light-ray.pdf.pdf",
+                ebooks: [
+                    { title: "1. Light Ray (pp. 66–68)", url: "ebooks/g9-ch5-1-light-ray.pdf.pdf", altUrl: "ebooks/g9-ch5-1-light-ray.pdf" },
+                    { title: "2. Reflection of Light (pp. 69–71)", url: "ebooks/g9-ch5-2-reflection.pdf.pdf", altUrl: "ebooks/g9-ch5-2-reflection.pdf" },
+                    { title: "3. Mirrors (pp. 72–79)", url: "ebooks/g9-ch5-3-mirrors.pdf.pdf", altUrl: "ebooks/g9-ch5-3-mirrors.pdf" },
+                    { title: "4. Refraction of Light (pp. 80–85)", url: "ebooks/g9-ch5-4-refraction.pdf.pdf", altUrl: "ebooks/g9-ch5-4-refraction.pdf" },
+                    { title: "5. Lenses (pp. 86–97)", url: "ebooks/g9-ch5-5-lenses.pdf.pdf", altUrl: "ebooks/g9-ch5-5-lenses.pdf" }
+                ],
                 games: [
                     { topic: "Light Rays", url: "https://gemini.google.com/share/2ac63456c976" },
                     { topic: "Reflection of light", url: "https://gemini.google.com/share/01abdd9ea9aa" },
@@ -854,6 +888,10 @@
                 id: "g12-l1",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",
                 worksheetUrl: "worksheets/ch1-l1-worksheet.pdf",
+                ebookUrl: "ebooks/g12-ch1-l1-ebook.pdf.pdf",
+                ebooks: [
+                    { title: "Thermal Physics (pp. 1–18)", url: "ebooks/g12-ch1-l1-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l1-ebook.pdf" }
+                ],
                 games: [
                     { topic: "Kinetic Theory of Ideal Gases", url: "https://gemini.google.com/share/acfae742b2c0" },
                     { topic: "PhET: Gas Properties (Ideal Gas Laws)", url: "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" },
@@ -920,6 +958,10 @@
                 id: "g12-l2",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",
                 worksheetUrl: "worksheets/ch1-l2-worksheet.pdf",
+                ebookUrl: "ebooks/g12-ch1-l2-ebook.pdf.pdf",
+                ebooks: [
+                    { title: "The Laws of Thermodynamics (pp. 19–48)", url: "ebooks/g12-ch1-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l2-ebook.pdf" }
+                ],
                 games: [
                     { topic: "First Law of Thermodynamics", url: "https://gemini.google.com/share/9e34579d87cd" },
                     { topic: "PhET: Energy Forms and Changes", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" },
@@ -992,6 +1034,10 @@
                 id: "g12-l3",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",
                 worksheetUrl: "worksheets/ch1-l3-worksheet.pdf",
+                ebookUrl: "ebooks/g12-ch1-l3-ebook.pdf.pdf",
+                ebooks: [
+                    { title: "Thermodynamics & Heat Engines (pp. 19–48)", url: "ebooks/g12-ch1-l3-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l3-ebook.pdf" }
+                ],
                 games: [
                     { topic: "Heat Engine", url: "https://gemini.google.com/share/a6cfadc258e4" },
                     { topic: "PhET: Energy Forms and Changes (Systems)", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" }
@@ -1049,6 +1095,10 @@
                 id: "g12-l4",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",
                 worksheetUrl: "worksheets/ch2-l1-worksheet.pdf",
+                ebookUrl: "ebooks/g12-ch2-l1-ebook.pdf.pdf",
+                ebooks: [
+                    { title: "Superposition & Standing Waves (pp. 49–63)", url: "ebooks/g12-ch2-l1-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l1-ebook.pdf" }
+                ],
                 games: [
                     { topic: "Superposition and Waves", url: "https://gemini.google.com/share/2e83761df9b7" },
                     { topic: "Mechanical Waves", url: "https://gemini.google.com/share/2e83761df9b7" },
@@ -1122,6 +1172,10 @@
                 id: "g12-interf",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",
                 worksheetUrl: "worksheets/ch2-l2-worksheet.pdf",
+                ebookUrl: "ebooks/g12-ch2-l2-ebook.pdf.pdf",
+                ebooks: [
+                    { title: "Interference & Diffraction of Light (pp. 64–78)", url: "ebooks/g12-ch2-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l2-ebook.pdf" }
+                ],
                 games: [
                     { topic: "Interference and Diffraction", url: "https://gemini.google.com/share/14c6c1b23c4d" },
                     { topic: "PhET: Wave Interference (Slits & Diffraction)", url: "https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_all.html" }
@@ -1217,6 +1271,11 @@
                 id: "g12-l5",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electromagnetic_induction.gif",
                 worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+                ebookUrl: "ebooks/g12-ch3-l1-part1.pdf.pdf",
+                ebooks: [
+                    { title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" },
+                    { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+                ],
                 games: [
                     { topic: "Magnetic Field", url: "https://gemini.google.com/share/8a653df6b614" },
                     { topic: "Faraday’s Law", url: "https://gemini.google.com/share/a36b992c1d6d" },
@@ -1269,6 +1328,10 @@
                 id: "g12-l6",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",
                 worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
+                ebookUrl: "ebooks/g12-ch3-l2-ebook.pdf.pdf",
+                ebooks: [
+                    { title: "AC Circuits & Electromagnetic Waves (pp. 131–159)", url: "ebooks/g12-ch3-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch3-l2-ebook.pdf" }
+                ],
                 games: [
                     { topic: "Alternating Current", url: "https://gemini.google.com/share/0c850ab5a53b" },
                     { topic: "Alternating Current & RLC Circuits", url: "https://gemini.google.com/share/b5177259161a" },
@@ -3918,43 +3981,774 @@
             return { primary: primary, alt: alt };
         }
 
+        var EBOOK_FALLBACK_CATALOG = {
+            'g9-l1': [{ title: "Chapter 1: Turning Effect of Force (pp. 1–12)", url: "ebooks/g9-ch1-ebook.pdf.pdf", altUrl: "ebooks/g9-ch1-ebook.pdf" }],
+            'g9-l2': [
+                { title: "1. Levers (pp. 13–19)", url: "ebooks/g9-ch2-1-levers.pdf.pdf", altUrl: "ebooks/g9-ch2-1-levers.pdf" },
+                { title: "2. Inclined Plane (pp. 20–22)", url: "ebooks/g9-ch2-2-incline.pdf.pdf", altUrl: "ebooks/g9-ch2-2-incline.pdf" },
+                { title: "3. Pulleys (pp. 23–26)", url: "ebooks/g9-ch2-3-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-3-pulley.pdf" },
+                { title: "4. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-4-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-4-gears.pdf" },
+                { title: "5. Wheel & Axle (p. 30)", url: "ebooks/g9-ch2-5-wheel-axle.pdf.pdf", altUrl: "ebooks/g9-ch2-5-wheel-axle.pdf" }
+            ],
+            'g9-l3': [
+                { title: "Part 1: Electric Energy (pp. 31–38)", url: "ebooks/g9-ch3-part1.pdf.pdf", altUrl: "ebooks/g9-ch3-part1.pdf" },
+                { title: "Part 2: Household Wiring Systems (pp. 39–47)", url: "ebooks/g9-ch3-part2.pdf.pdf", altUrl: "ebooks/g9-ch3-part2.pdf" }
+            ],
+            'g9-l4': [
+                { title: "Part 1: Magnetic Field (pp. 48–54)", url: "ebooks/g9-ch4-part1.pdf.pdf", altUrl: "ebooks/g9-ch4-part1.pdf" },
+                { title: "Part 2: Magnetic Force & Transformers (pp. 55–65)", url: "ebooks/g9-ch4-part2.pdf.pdf", altUrl: "ebooks/g9-ch4-part2.pdf" }
+            ],
+            'g9-l5': [
+                { title: "1. Light Ray (pp. 66–68)", url: "ebooks/g9-ch5-1-light-ray.pdf.pdf", altUrl: "ebooks/g9-ch5-1-light-ray.pdf" },
+                { title: "2. Reflection of Light (pp. 69–71)", url: "ebooks/g9-ch5-2-reflection.pdf.pdf", altUrl: "ebooks/g9-ch5-2-reflection.pdf" },
+                { title: "3. Mirrors (pp. 72–79)", url: "ebooks/g9-ch5-3-mirrors.pdf.pdf", altUrl: "ebooks/g9-ch5-3-mirrors.pdf" },
+                { title: "4. Refraction of Light (pp. 80–85)", url: "ebooks/g9-ch5-4-refraction.pdf.pdf", altUrl: "ebooks/g9-ch5-4-refraction.pdf" },
+                { title: "5. Lenses (pp. 86–97)", url: "ebooks/g9-ch5-5-lenses.pdf.pdf", altUrl: "ebooks/g9-ch5-5-lenses.pdf" }
+            ],
+            'g12-l1': [{ title: "Thermal Physics (pp. 1–18)", url: "ebooks/g12-ch1-l1-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l1-ebook.pdf" }],
+            'g12-l2': [{ title: "The Laws of Thermodynamics (pp. 19–48)", url: "ebooks/g12-ch1-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l2-ebook.pdf" }],
+            'g12-l3': [{ title: "Thermodynamics & Heat Engines (pp. 19–48)", url: "ebooks/g12-ch1-l3-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l3-ebook.pdf" }],
+            'g12-l4': [{ title: "Superposition & Standing Waves (pp. 49–63)", url: "ebooks/g12-ch2-l1-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l1-ebook.pdf" }],
+            'g12-interf': [{ title: "Interference & Diffraction of Light (pp. 64–78)", url: "ebooks/g12-ch2-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l2-ebook.pdf" }],
+            'g12-ch2-l2': [{ title: "Interference & Diffraction of Light (pp. 64–78)", url: "ebooks/g12-ch2-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l2-ebook.pdf" }],
+            'g12-l5': [
+                { title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" },
+                { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+            ],
+            'g12-l6': [{ title: "AC Circuits & Electromagnetic Waves (pp. 131–159)", url: "ebooks/g12-ch3-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch3-l2-ebook.pdf" }]
+        };
+
+        var activeEbookSession = null;
+        var activeLoadedEbookLessonId = null;
+        var activeLoadedEbookSectionIdx = null;
+
+        function cleanupEbookSession() {
+            if (activeEbookSession && typeof activeEbookSession.cleanup === 'function') {
+                try { activeEbookSession.cleanup(); } catch(e) {}
+            }
+            activeEbookSession = null;
+        }
+
         function initEbookUI(lesson) {
             if (!lesson) return;
-            if (typeof window.appRenderEbook === 'function') {
-                try {
-                    window.appRenderEbook(lesson);
-                    return;
-                } catch(e) {
-                    console.warn('appRenderEbook error:', e);
-                }
-            }
             var ebContainer = document.getElementById('lesson-ebook');
             if (!ebContainer) return;
 
-            // Render interactive multi-page container shell with loading indicator
-            ebContainer.innerHTML = '<div class="ebook-header" style="user-select:none;">' +
-                '<h2><i class="fa-solid fa-book-open"></i> ' + (lesson.title || 'Lesson') + ' - E-Book / Textbook</h2>' +
-                '<p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>' +
-            '</div>' +
-            '<div class="pdf-viewer-wrapper" id="pdf-viewer-wrapper">' +
-                '<div class="pdf-scroll-container" style="display:flex; align-items:center; justify-content:center; min-height:480px;">' +
-                    '<div class="pdf-loading-card">' +
-                        '<i class="fa-solid fa-circle-notch fa-spin"></i>' +
-                        '<span>Loading interactive textbook reader...</span>' +
+            var ebooksList = [];
+            if (lesson.ebooks && Array.isArray(lesson.ebooks) && lesson.ebooks.length > 0) {
+                ebooksList = lesson.ebooks.map(function(e) { return (typeof e === 'string' ? { title: 'Lesson E-Book', url: e } : e); });
+            } else if (lesson.ebookUrl) {
+                ebooksList = [{ title: lesson.title || 'Lesson E-Book', url: lesson.ebookUrl }];
+            } else if (lesson.id) {
+                var lid = String(lesson.id).toLowerCase();
+                if (EBOOK_FALLBACK_CATALOG[lid]) {
+                    ebooksList = EBOOK_FALLBACK_CATALOG[lid];
+                }
+            }
+
+            if (!ebooksList || ebooksList.length === 0) {
+                cleanupEbookSession();
+                activeLoadedEbookLessonId = null;
+                activeLoadedEbookSectionIdx = null;
+                ebContainer.innerHTML = '<div class="ebook-empty">' +
+                    '<i class="fa-solid fa-book-open"></i>' +
+                    '<h3>Ebook Coming Soon</h3>' +
+                    '<p>The electronic textbook / lesson PDF for this topic will be available soon.</p>' +
+                '</div>';
+                return;
+            }
+
+            var existingMount = document.getElementById('pdf-pages-mount');
+            if (activeLoadedEbookLessonId === lesson.id && existingMount && existingMount.children.length > 0 && activeEbookSession && typeof activeEbookSession.fitWidth === 'function') {
+                activeEbookSession.fitWidth();
+                return;
+            }
+
+            function buildDirectEbookUI(selectedIndex) {
+                cleanupEbookSession();
+                activeLoadedEbookLessonId = lesson.id;
+                activeLoadedEbookSectionIdx = selectedIndex;
+
+                var currentEbook = ebooksList[selectedIndex];
+                var pair = resolveEbookCandidates(currentEbook);
+                var activeUrl = pair.primary || pair.alt || '';
+                var altUrl = pair.alt || '';
+                var currentTitle = currentEbook.title || lesson.title || 'Ebook';
+
+                var topicsSelectorHtml = '';
+                if (ebooksList.length > 1) {
+                    topicsSelectorHtml = '<div class="ebook-topic-selector">' +
+                        '<span class="ebook-topic-label"><i class="fa-solid fa-layer-group"></i> Select Section / Topic (' + ebooksList.length + ' Files):</span>' +
+                        '<div class="ebook-topic-pills">' +
+                            ebooksList.map(function(eb, idx) {
+                                return '<button type="button" class="ebook-topic-pill ' + (idx === selectedIndex ? 'active' : '') + '" data-index="' + idx + '">' +
+                                    '<i class="fa-solid fa-file-pdf"></i> ' + eb.title +
+                                '</button>';
+                            }).join('') +
+                        '</div>' +
+                    '</div>';
+                }
+
+                var subtitleHtml = ebooksList.length > 1
+                    ? '<div class="ebook-current-topic"><i class="fa-solid fa-book-bookmark"></i> Viewing Section: <span>' + currentTitle + '</span></div>'
+                    : '';
+
+                if (!activeUrl) {
+                    ebContainer.innerHTML = '<div class="ebook-header" style="user-select: none;">' +
+                        '<h2><i class="fa-solid fa-book-open"></i> ' + (lesson.title || 'Lesson') + ' - E-Book / Textbook</h2>' +
+                        '<p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>' +
+                    '</div>' +
+                    topicsSelectorHtml +
+                    '<div class="ebook-empty"><i class="fa-solid fa-book-open"></i><h3>Ebook File Not Available</h3><p>The electronic textbook file could not be located.</p></div>';
+                    wireDirectTopicPills();
+                    return;
+                }
+
+                ebContainer.innerHTML = '<div class="ebook-header" style="user-select: none;">' +
+                    '<h2><i class="fa-solid fa-book-open"></i> ' + (lesson.title || 'Lesson') + ' - E-Book / Textbook</h2>' +
+                    subtitleHtml +
+                    '<p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>' +
+                '</div>' +
+                '<div class="ebook-actions">' +
+                    '<button type="button" class="ebook-btn primary" id="ebook-fullscreen-action-btn" title="Toggle Fullscreen Reading View">' +
+                        '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>' +
+                    '</button>' +
+                '</div>' +
+                topicsSelectorHtml +
+                '<div class="pdf-viewer-wrapper" id="pdf-viewer-wrapper" oncontextmenu="return false;">' +
+                    '<div class="pdf-toolbar">' +
+                        '<div class="pdf-toolbar-group">' +
+                            '<button type="button" class="pdf-btn" id="pdf-prev-btn" title="Previous Page (Left Arrow)"><i class="fa-solid fa-chevron-left"></i></button>' +
+                            '<div class="pdf-page-indicator">' +
+                                '<span>Page</span>' +
+                                '<input type="number" id="pdf-page-input" class="pdf-page-input" value="1" min="1" max="1" aria-label="Current Page">' +
+                                '<span>/ <span id="pdf-total-pages">-</span></span>' +
+                            '</div>' +
+                            '<button type="button" class="pdf-btn" id="pdf-next-btn" title="Next Page (Right Arrow)"><i class="fa-solid fa-chevron-right"></i></button>' +
+                        '</div>' +
+                        '<div class="pdf-toolbar-group">' +
+                            '<button type="button" class="pdf-btn" id="pdf-zoom-out-btn" title="Zoom Out (-)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>' +
+                            '<span class="pdf-zoom-label" id="pdf-zoom-label">100%</span>' +
+                            '<button type="button" class="pdf-btn" id="pdf-zoom-in-btn" title="Zoom In (+)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>' +
+                            '<button type="button" class="pdf-btn" id="pdf-fit-width-btn" title="Fit to Screen Width"><i class="fa-solid fa-arrows-left-right"></i> <span class="btn-text">Fit</span></button>' +
+                        '</div>' +
+                        '<div class="pdf-toolbar-group">' +
+                            '<button type="button" class="pdf-btn pdf-btn-fullscreen" id="pdf-fullscreen-btn" title="Toggle Fullscreen Reading View (Esc)">' +
+                                '<i class="fa-solid fa-expand" id="pdf-fs-icon"></i> <span class="btn-text" id="pdf-fs-text">Fullscreen</span>' +
+                            '</button>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="pdf-scroll-container" id="pdf-scroll-container">' +
+                        '<button type="button" class="pdf-floating-exit-btn" id="pdf-floating-exit-btn" title="Exit Fullscreen Reading Mode">' +
+                            '<i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>' +
+                        '</button>' +
+                        '<div class="pdf-loading-card" id="pdf-loading-card">' +
+                            '<i class="fa-solid fa-circle-notch fa-spin"></i>' +
+                            '<span id="pdf-loading-status">Loading textbook pages...</span>' +
+                        '</div>' +
+                        '<div id="pdf-pages-mount" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>' +
                     '</div>' +
                 '</div>' +
-            '</div>';
+                '<div class="ebook-notice" style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 8px; padding: 0.75rem 1.25rem; margin-top: 1rem;">' +
+                    '<i class="fa-solid fa-shield-halved" style="color: #15803d; font-size: 1.15rem; margin-right: 8px;"></i>' +
+                    '<div><span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, and exporting are restricted for this electronic textbook. Students can scroll up and down smoothly across all pages on iPad, phone, or laptop.</span></div>' +
+                '</div>';
 
-            var retries = 0;
-            var timer = setInterval(function() {
-                retries++;
-                if (typeof window.appRenderEbook === 'function') {
-                    clearInterval(timer);
-                    try { window.appRenderEbook(lesson); } catch(e) {}
-                } else if (retries >= 80) {
-                    clearInterval(timer);
+                wireDirectTopicPills();
+                startDirectPdfReader(activeUrl, altUrl, currentTitle);
+            }
+
+            function wireDirectTopicPills() {
+                if (ebooksList.length > 1) {
+                    var pills = ebContainer.querySelectorAll('.ebook-topic-pill');
+                    pills.forEach(function(pill) {
+                        pill.addEventListener('click', function() {
+                            var idx = parseInt(pill.getAttribute('data-index'), 10);
+                            buildDirectEbookUI(idx);
+                        });
+                    });
                 }
-            }, 60);
+            }
+
+            function startDirectPdfReader(primaryUrl, altUrl, title) {
+                function fallbackToIframe(url, errInfo) {
+                    console.warn('Using in-page fallback for ebook:', errInfo);
+                    var wrapper = document.getElementById('pdf-viewer-wrapper');
+                    if (!wrapper) return;
+                    var protectedViewerSrc = url ? (url.indexOf('#') !== -1 ? url : (url + '#toolbar=0&navpanes=0')) : '';
+                    var isTouchIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || isTouchIOS;
+                    var isOnline = window.location.protocol.startsWith('http');
+                    var absolutePdfUrl = url;
+                    try { absolutePdfUrl = new URL(url, window.location.href).href; } catch(e) {}
+
+                    var googleDocsViewerUrl = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(absolutePdfUrl);
+                    var currentViewerSrc = (isMobile && isOnline) ? googleDocsViewerUrl : protectedViewerSrc;
+
+                    var iosBanner = '';
+                    if (isTouchIOS || isMobile) {
+                        iosBanner = '<div style="background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #0284c7; border-radius: 12px; padding: 1.25rem; margin: 1rem auto; max-width: 640px; text-align: center; color: #f8fafc; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">' +
+                            '<div style="font-size: 1.15rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.5rem;"><i class="fa-solid fa-tablet-screen-button"></i> Mobile & iPad Continuous Multi-Page Reading Mode</div>' +
+                            '<p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem;">Open all 18 curriculum textbook pages directly with smooth touch continuous scrolling and pinch-to-zoom:</p>' +
+                            '<div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">' +
+                                '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="ebook-btn primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 0.95rem; padding: 0.75rem 1.4rem; background: #0284c7; color: #fff; border-radius: 8px; font-weight: 600;">' +
+                                    '<i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full Multi-Page PDF in New Tab' +
+                                '</a>' +
+                                '<button type="button" class="ebook-btn secondary" id="retry-direct-btn" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; padding: 0.75rem 1.4rem; background: #334155; color: #fff; border: 1px solid #475569; border-radius: 8px; font-weight: 600; cursor: pointer;">' +
+                                    '<i class="fa-solid fa-arrows-rotate"></i> Reload Reader' +
+                                '</button>' +
+                            '</div>' +
+                        '</div>';
+                    }
+
+                    wrapper.innerHTML = '<div class="pdf-toolbar" style="position: sticky; top: 0; z-index: 25;">' +
+                        '<div class="pdf-toolbar-group"><span style="font-size: 0.88rem; color: #cbd5e1; font-weight: 600;"><i class="fa-solid fa-book-open" style="color: #38bdf8; margin-right: 6px;"></i> Curriculum Reader</span></div>' +
+                        '<div class="pdf-toolbar-group">' +
+                            '<button type="button" class="pdf-btn pdf-btn-fullscreen" id="fallback-fs-btn" title="Toggle Fullscreen Reading View"><i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span></button>' +
+                            '<button type="button" class="pdf-btn" id="retry-pdf-load-btn" style="padding: 0.45rem 0.85rem;"><i class="fa-solid fa-arrows-rotate"></i> <span>Reload Reader</span></button>' +
+                        '</div>' +
+                    '</div>' +
+                    iosBanner +
+                    '<div class="ebook-preview-wrapper" id="fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch;">' +
+                        '<button type="button" class="pdf-floating-exit-btn" id="fallback-floating-exit-btn" title="Exit Fullscreen Reading Mode"><i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span></button>' +
+                        '<iframe src="' + currentViewerSrc + '" class="ebook-preview" id="ebook-iframe" title="' + title + ' Preview" style="width: 100%; height: 100%; border: none;"></iframe>' +
+                    '</div>';
+
+                    var rBtn = document.getElementById('retry-pdf-load-btn');
+                    if (rBtn) rBtn.onclick = function() { buildDirectEbookUI(activeLoadedEbookSectionIdx || 0); };
+                    var rBtn2 = document.getElementById('retry-direct-btn');
+                    if (rBtn2) rBtn2.onclick = function() { buildDirectEbookUI(activeLoadedEbookSectionIdx || 0); };
+
+                    function toggleFallbackFs(force) {
+                        var isFs = (typeof force === 'boolean') ? force : !wrapper.classList.contains('pdf-fullscreen-active');
+                        wrapper.classList.toggle('pdf-fullscreen-active', isFs);
+                        document.body.classList.toggle('pdf-modal-open', isFs);
+                        var fbBtn = document.getElementById('fallback-fs-btn');
+                        var topAction = document.getElementById('ebook-fullscreen-action-btn');
+                        if (fbBtn) {
+                            fbBtn.classList.toggle('pdf-btn-exit-fullscreen', isFs);
+                            fbBtn.innerHTML = isFs ? '<i class="fa-solid fa-xmark"></i> <span class="btn-text">Exit</span>' : '<i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>';
+                        }
+                        if (topAction) {
+                            topAction.classList.toggle('pdf-btn-exit-fullscreen', isFs);
+                            topAction.innerHTML = isFs ? '<i class="fa-solid fa-xmark"></i> <span id="ebook-fs-btn-text">Exit Fullscreen</span>' : '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                        }
+                    }
+
+                    var fbFsBtn = document.getElementById('fallback-fs-btn');
+                    var topActionBtn = document.getElementById('ebook-fullscreen-action-btn');
+                    var fbFloatingBtn = document.getElementById('fallback-floating-exit-btn');
+                    if (fbFsBtn) fbFsBtn.onclick = function() { toggleFallbackFs(); };
+                    if (topActionBtn) topActionBtn.onclick = function() { toggleFallbackFs(); };
+                    if (fbFloatingBtn) fbFloatingBtn.onclick = function() { toggleFallbackFs(false); };
+                }
+
+                function getPdfJs() {
+                    return window.pdfjsLib || window['pdfjs-dist/build/pdf'] || window.PDFJS || null;
+                }
+
+                async function ensurePdfJs(maxWaitMs) {
+                    var pLib = getPdfJs();
+                    if (pLib) return pLib;
+                    var start = Date.now();
+                    while (Date.now() - start < (maxWaitMs || 4000)) {
+                        await new Promise(function(r) { setTimeout(r, 60); });
+                        pLib = getPdfJs();
+                        if (pLib) return pLib;
+                    }
+                    return getPdfJs();
+                }
+
+                ensurePdfJs(3000).then(async function(pdfjs) {
+                    if (!pdfjs) {
+                        fallbackToIframe(primaryUrl, 'PDF.js library not available');
+                        return;
+                    }
+
+                    var isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                    if (!pdfjs.GlobalWorkerOptions || !pdfjs.GlobalWorkerOptions.workerSrc) {
+                        if (!isIOSDevice) {
+                            try {
+                                var blobCode = 'importScripts("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js");';
+                                var workerBlob = new Blob([blobCode], { type: 'application/javascript' });
+                                pdfjs.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
+                            } catch(e) {
+                                pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                            }
+                        } else {
+                            pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                        }
+                    }
+
+                    var candidateUrls = [primaryUrl];
+                    if (altUrl && candidateUrls.indexOf(altUrl) === -1) candidateUrls.push(altUrl);
+                    if (primaryUrl.toLowerCase().endsWith('.pdf.pdf')) {
+                        var singlePdf = primaryUrl.slice(0, -4);
+                        if (candidateUrls.indexOf(singlePdf) === -1) candidateUrls.push(singlePdf);
+                    } else if (primaryUrl.toLowerCase().endsWith('.pdf')) {
+                        var doublePdf = primaryUrl + '.pdf';
+                        if (candidateUrls.indexOf(doublePdf) === -1) candidateUrls.push(doublePdf);
+                    }
+
+                    function withTimeout(prom, ms, label) {
+                        var tId = null;
+                        var timeoutPromise = new Promise(function(_, reject) {
+                            tId = setTimeout(function() {
+                                reject(new Error(label + ' timed out (' + ms + 'ms)'));
+                            }, ms);
+                        });
+                        return Promise.race([prom, timeoutPromise]).finally(function() {
+                            if (tId) clearTimeout(tId);
+                        });
+                    }
+
+                    async function fetchPdfDoc() {
+                        var pdfBuffer = null;
+                        var lastErr = null;
+                        for (var u = 0; u < candidateUrls.length; u++) {
+                            try {
+                                var res = await fetch(candidateUrls[u]);
+                                if (res.ok) {
+                                    pdfBuffer = await res.arrayBuffer();
+                                    break;
+                                }
+                            } catch(e) {
+                                lastErr = e;
+                            }
+                        }
+                        if (!pdfBuffer) {
+                            throw lastErr || new Error('Could not fetch PDF from candidates: ' + candidateUrls.join(', '));
+                        }
+                        var docParams = {
+                            data: new Uint8Array(pdfBuffer),
+                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                            cMapPacked: true,
+                            disableAutoFetch: false,
+                            disableStream: false
+                        };
+
+                        // 1. Try standard PDF.js parse with 3500ms safety timeout
+                        try {
+                            return await withTimeout(pdfjs.getDocument(docParams).promise, 3500, 'Standard Worker parse');
+                        } catch(firstErr) {
+                            console.warn('Worker PDF parse timed out or rejected, falling back to main-thread fake worker:', firstErr);
+                            // 2. Fallback to main-thread fake worker (bypasses all Web Worker / blob / cross-origin iOS Safari restrictions)
+                            try {
+                                var fakeWorkerParams = Object.assign({}, docParams, { disableWorker: true, stopAtErrors: false });
+                                return await withTimeout(pdfjs.getDocument(fakeWorkerParams).promise, 3500, 'Fake worker parse');
+                            } catch(secondErr) {
+                                console.warn('Fake worker timed out or rejected, falling back to direct URL fetch:', secondErr);
+                                // 3. Fallback to URL with fake worker
+                                var urlParams = { url: primaryUrl, cMapUrl: docParams.cMapUrl, cMapPacked: true, disableWorker: true };
+                                return await withTimeout(pdfjs.getDocument(urlParams).promise, 3500, 'Direct URL parse');
+                            }
+                        }
+                    }
+
+                    try {
+                        var pdfDoc = await fetchPdfDoc();
+                        var numPages = pdfDoc.numPages;
+                        var totalPagesEl = document.getElementById('pdf-total-pages');
+                        var pageInput = document.getElementById('pdf-page-input');
+                        var zoomLabel = document.getElementById('pdf-zoom-label');
+                        var scrollContainer = document.getElementById('pdf-scroll-container');
+                        var mount = document.getElementById('pdf-pages-mount');
+                        var mainLoading = document.getElementById('pdf-loading-card');
+                        var wrapper = document.getElementById('pdf-viewer-wrapper');
+                        var fsBtn = document.getElementById('pdf-fullscreen-btn');
+                        var fsIcon = document.getElementById('pdf-fs-icon');
+                        var fsText = document.getElementById('pdf-fs-text');
+                        var floatingExitBtn = document.getElementById('pdf-floating-exit-btn');
+                        var prevBtn = document.getElementById('pdf-prev-btn');
+                        var nextBtn = document.getElementById('pdf-next-btn');
+                        var zoomInBtn = document.getElementById('pdf-zoom-in-btn');
+                        var zoomOutBtn = document.getElementById('pdf-zoom-out-btn');
+                        var fitWidthBtn = document.getElementById('pdf-fit-width-btn');
+
+                        if (!scrollContainer || !mount) return;
+
+                        if (totalPagesEl) totalPagesEl.textContent = numPages;
+                        if (pageInput) {
+                            pageInput.max = numPages;
+                            pageInput.value = 1;
+                        }
+
+                        var page1 = await pdfDoc.getPage(1);
+                        var vp1 = page1.getViewport({ scale: 1 });
+                        var baseW = vp1.width;
+                        var baseH = vp1.height;
+
+                        function getOptimalFitScale() {
+                            var w = scrollContainer.clientWidth;
+                            if (!w || w <= 0) {
+                                w = window.innerWidth > 900 ? 820 : window.innerWidth;
+                            }
+                            var padding = w < 600 ? 16 : 28;
+                            var avail = Math.max(w - padding, 280);
+                            return Math.min(Math.max(avail / baseW, 0.35), 2.5);
+                        }
+
+                        var currentScale = getOptimalFitScale();
+
+                        function updateZoomDisplay() {
+                            if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
+                        }
+                        updateZoomDisplay();
+
+                        var renderedPages = new Set();
+                        var activeTasks = {};
+                        var observer = null;
+
+                        mount.innerHTML = '';
+                        for (var p = 1; p <= numPages; p++) {
+                            var card = document.createElement('div');
+                            card.className = 'pdf-page-card';
+                            card.id = 'pdf-page-' + p;
+                            card.dataset.page = p;
+                            card.style.width = Math.floor(baseW * currentScale) + 'px';
+                            card.style.height = Math.floor(baseH * currentScale) + 'px';
+                            card.style.margin = '0 auto 1.25rem auto';
+                            card.style.display = 'block';
+                            card.style.touchAction = 'pan-y pinch-zoom';
+                            card.style.pointerEvents = 'auto';
+
+                            var placeholder = document.createElement('div');
+                            placeholder.className = 'pdf-loading-card';
+                            placeholder.id = 'pdf-placeholder-' + p;
+                            placeholder.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i><span>Page ' + p + '</span>';
+                            placeholder.style.pointerEvents = 'none';
+
+                            var canvas = document.createElement('canvas');
+                            canvas.className = 'pdf-page-canvas';
+                            canvas.id = 'pdf-canvas-' + p;
+                            canvas.style.display = 'none';
+                            canvas.style.pointerEvents = 'none';
+
+                            var badge = document.createElement('span');
+                            badge.className = 'pdf-page-number-badge';
+                            badge.textContent = 'Page ' + p + ' / ' + numPages;
+                            badge.style.pointerEvents = 'none';
+
+                            card.appendChild(placeholder);
+                            card.appendChild(canvas);
+                            card.appendChild(badge);
+                            mount.appendChild(card);
+                        }
+
+                        async function renderPage(pageNum) {
+                            if (pageNum < 1 || pageNum > numPages || renderedPages.has(pageNum)) return;
+                            renderedPages.add(pageNum);
+
+                            var card = document.getElementById('pdf-page-' + pageNum);
+                            var canvas = document.getElementById('pdf-canvas-' + pageNum);
+                            var placeholder = document.getElementById('pdf-placeholder-' + pageNum);
+                            if (!card || !canvas) return;
+
+                            try {
+                                var page = await pdfDoc.getPage(pageNum);
+                                var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+                                var renderScale = currentScale * dpr;
+                                var viewport = page.getViewport({ scale: renderScale });
+
+                                canvas.width = Math.floor(viewport.width);
+                                canvas.height = Math.floor(viewport.height);
+                                canvas.style.width = Math.floor(baseW * currentScale) + 'px';
+                                canvas.style.height = Math.floor(baseH * currentScale) + 'px';
+
+                                var ctx = canvas.getContext('2d', { alpha: false });
+                                if (activeTasks[pageNum]) {
+                                    try { activeTasks[pageNum].cancel(); } catch(e) {}
+                                }
+
+                                var renderTask = page.render({ canvasContext: ctx, viewport: viewport });
+                                activeTasks[pageNum] = renderTask;
+                                await renderTask.promise;
+                                delete activeTasks[pageNum];
+
+                                if (placeholder) placeholder.style.display = 'none';
+                                canvas.style.display = 'block';
+                            } catch(err) {
+                                if (err && err.name === 'RenderingCancelledException') return;
+                                renderedPages.delete(pageNum);
+                            }
+                        }
+
+                        if ('IntersectionObserver' in window) {
+                            observer = new IntersectionObserver(function(entries) {
+                                entries.forEach(function(entry) {
+                                    if (entry.isIntersecting) {
+                                        var pNum = parseInt(entry.target.dataset.page, 10);
+                                        renderPage(pNum);
+                                        if (pNum < numPages) renderPage(pNum + 1);
+                                    }
+                                });
+                            }, {
+                                root: scrollContainer,
+                                rootMargin: '800px 0px',
+                                threshold: 0.01
+                            });
+                            mount.querySelectorAll('.pdf-page-card').forEach(function(c) { observer.observe(c); });
+                        } else {
+                            for (var i = 1; i <= Math.min(numPages, 3); i++) renderPage(i);
+                        }
+
+                        renderPage(1);
+                        if (numPages >= 2) renderPage(2);
+
+                        if (mainLoading) mainLoading.style.display = 'none';
+
+                        var scrollDebounce = null;
+                        var onScrollUpdate = function() {
+                            clearTimeout(scrollDebounce);
+                            scrollDebounce = setTimeout(function() {
+                                var cards = mount.querySelectorAll('.pdf-page-card');
+                                var containerTop = scrollContainer.getBoundingClientRect().top;
+                                var closestPage = 1;
+                                var minDiff = Infinity;
+
+                                cards.forEach(function(c) {
+                                    var r = c.getBoundingClientRect();
+                                    var diff = Math.abs(r.top - containerTop - 20);
+                                    if (diff < minDiff) {
+                                        minDiff = diff;
+                                        closestPage = parseInt(c.dataset.page, 10);
+                                    }
+                                });
+
+                                if (pageInput && document.activeElement !== pageInput) {
+                                    pageInput.value = closestPage;
+                                }
+                            }, 50);
+                        };
+                        scrollContainer.addEventListener('scroll', onScrollUpdate, { passive: true });
+
+                        function scrollToPage(pNum) {
+                            var target = Math.max(1, Math.min(pNum, numPages));
+                            var targetCard = document.getElementById('pdf-page-' + target);
+                            if (targetCard) {
+                                renderPage(target);
+                                targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                if (pageInput) pageInput.value = target;
+                            }
+                        }
+
+                        if (prevBtn) prevBtn.addEventListener('click', function() {
+                            var cur = parseInt(pageInput.value, 10) || 1;
+                            scrollToPage(cur - 1);
+                        });
+                        if (nextBtn) nextBtn.addEventListener('click', function() {
+                            var cur = parseInt(pageInput.value, 10) || 1;
+                            scrollToPage(cur + 1);
+                        });
+
+                        if (pageInput) {
+                            pageInput.addEventListener('change', function() {
+                                var val = parseInt(pageInput.value, 10);
+                                if (!isNaN(val)) scrollToPage(val);
+                            });
+                            pageInput.addEventListener('keydown', function(e) {
+                                if (e.key === 'Enter') {
+                                    var val = parseInt(pageInput.value, 10);
+                                    if (!isNaN(val)) scrollToPage(val);
+                                }
+                            });
+                        }
+
+                        function applyZoom(newScale) {
+                            currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
+                            updateZoomDisplay();
+
+                            Object.values(activeTasks).forEach(function(t) {
+                                try { t.cancel(); } catch(e) {}
+                            });
+                            renderedPages.clear();
+
+                            mount.querySelectorAll('.pdf-page-card').forEach(function(c) {
+                                c.style.width = Math.floor(baseW * currentScale) + 'px';
+                                c.style.height = Math.floor(baseH * currentScale) + 'px';
+                                var cv = c.querySelector('.pdf-page-canvas');
+                                if (cv) cv.style.display = 'none';
+                                var ph = c.querySelector('.pdf-loading-card');
+                                if (ph) ph.style.display = 'flex';
+                            });
+
+                            var cur = parseInt(pageInput.value, 10) || 1;
+                            renderPage(cur);
+                            if (cur < numPages) renderPage(cur + 1);
+                            if (cur > 1) renderPage(cur - 1);
+                        }
+
+                        if (zoomInBtn) zoomInBtn.addEventListener('click', function() { applyZoom(currentScale + 0.15); });
+                        if (zoomOutBtn) zoomOutBtn.addEventListener('click', function() { applyZoom(currentScale - 0.15); });
+                        if (fitWidthBtn) {
+                            fitWidthBtn.addEventListener('click', function() {
+                                applyZoom(getOptimalFitScale());
+                            });
+                        }
+
+                        var touchStartDist = 0;
+                        var isPinching = false;
+                        scrollContainer.addEventListener('touchstart', function(e) {
+                            if (e.touches && e.touches.length === 2) {
+                                isPinching = true;
+                                touchStartDist = Math.hypot(
+                                    e.touches[0].clientX - e.touches[1].clientX,
+                                    e.touches[0].clientY - e.touches[1].clientY
+                                );
+                            } else {
+                                isPinching = false;
+                            }
+                        }, { passive: true });
+
+                        scrollContainer.addEventListener('touchmove', function(e) {
+                            if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
+                                var curDist = Math.hypot(
+                                    e.touches[0].clientX - e.touches[1].clientX,
+                                    e.touches[0].clientY - e.touches[1].clientY
+                                );
+                                var ratio = curDist / touchStartDist;
+                                if (Math.abs(ratio - 1) > 0.08) {
+                                    applyZoom(currentScale * ratio);
+                                    touchStartDist = curDist;
+                                }
+                            }
+                        }, { passive: true });
+
+                        scrollContainer.addEventListener('touchend', function() {
+                            isPinching = false;
+                        }, { passive: true });
+
+                        var resizeDebounce = null;
+                        var onViewportResize = function() {
+                            clearTimeout(resizeDebounce);
+                            resizeDebounce = setTimeout(function() {
+                                if (!scrollContainer || !baseW) return;
+                                applyZoom(getOptimalFitScale());
+                            }, 120);
+                        };
+                        window.addEventListener('resize', onViewportResize);
+                        window.addEventListener('orientationchange', onViewportResize);
+
+                        function toggleFullscreen(forceState) {
+                            var isCurrentlyActive = wrapper.classList.contains('pdf-fullscreen-active');
+                            var targetState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyActive;
+
+                            var topFsBtn = document.getElementById('ebook-fullscreen-action-btn');
+
+                            if (targetState) {
+                                wrapper.classList.add('pdf-fullscreen-active');
+                                document.body.classList.add('pdf-modal-open');
+                                if (fsIcon) fsIcon.className = 'fa-solid fa-xmark';
+                                if (fsText) fsText.textContent = 'Exit Fullscreen';
+                                if (fsBtn) {
+                                    fsBtn.classList.add('pdf-btn-exit-fullscreen');
+                                    fsBtn.title = 'Exit Fullscreen (Esc)';
+                                }
+                                if (topFsBtn) {
+                                    topFsBtn.classList.add('pdf-btn-exit-fullscreen');
+                                    topFsBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> <span id="ebook-fs-btn-text">Exit Fullscreen</span>';
+                                }
+
+                                try {
+                                    var reqFs = wrapper.requestFullscreen ||
+                                                  wrapper.webkitRequestFullscreen ||
+                                                  wrapper.mozRequestFullScreen ||
+                                                  wrapper.msRequestFullscreen ||
+                                                  document.documentElement.requestFullscreen;
+                                    if (reqFs && !document.fullscreenElement && !document.webkitFullscreenElement) {
+                                        var p = reqFs.call(wrapper);
+                                        if (p && p.catch) p.catch(function() {});
+                                    }
+                                } catch (e) {}
+
+                                setTimeout(function() { applyZoom(getOptimalFitScale()); }, 120);
+                            } else {
+                                wrapper.classList.remove('pdf-fullscreen-active');
+                                document.body.classList.remove('pdf-modal-open');
+                                if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
+                                if (fsText) fsText.textContent = 'Fullscreen';
+                                if (fsBtn) {
+                                    fsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                                    fsBtn.title = 'Toggle Fullscreen Reading View (Esc)';
+                                }
+                                if (topFsBtn) {
+                                    topFsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                                    topFsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                                }
+
+                                try {
+                                    var exitFs = document.exitFullscreen ||
+                                                   document.webkitExitFullscreen ||
+                                                   document.mozCancelFullScreen ||
+                                                   document.msExitFullscreen;
+                                    if ((document.fullscreenElement || document.webkitFullscreenElement) && exitFs) {
+                                        var p2 = exitFs.call(document);
+                                        if (p2 && p2.catch) p2.catch(function() {});
+                                    }
+                                } catch (e) {}
+
+                                setTimeout(function() { applyZoom(getOptimalFitScale()); }, 120);
+                            }
+                        }
+
+                        if (fsBtn) fsBtn.addEventListener('click', function() { toggleFullscreen(); });
+                        var topActionBtn = document.getElementById('ebook-fullscreen-action-btn');
+                        if (topActionBtn) topActionBtn.addEventListener('click', function() { toggleFullscreen(); });
+                        if (floatingExitBtn) floatingExitBtn.addEventListener('click', function() { toggleFullscreen(false); });
+
+                        var onNativeFsChange = function() {
+                            var isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+                            if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
+                                toggleFullscreen(false);
+                            }
+                        };
+                        document.addEventListener('fullscreenchange', onNativeFsChange);
+                        document.addEventListener('webkitfullscreenchange', onNativeFsChange);
+
+                        var keyHandler = function(e) {
+                            if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
+                                toggleFullscreen(false);
+                            } else if (document.activeElement !== pageInput && !document.activeElement.matches('input, textarea')) {
+                                if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                                    var cur = parseInt(pageInput.value, 10) || 1;
+                                    if (cur < numPages) scrollToPage(cur + 1);
+                                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                                    var cur = parseInt(pageInput.value, 10) || 1;
+                                    if (cur > 1) scrollToPage(cur - 1);
+                                }
+                            }
+                        };
+                        window.addEventListener('keydown', keyHandler);
+
+                        activeEbookSession = {
+                            pdfDoc: pdfDoc,
+                            observer: observer,
+                            activeTasks: activeTasks,
+                            fitWidth: function() { applyZoom(getOptimalFitScale()); },
+                            cleanup: function() {
+                                window.removeEventListener('keydown', keyHandler);
+                                window.removeEventListener('resize', onViewportResize);
+                                window.removeEventListener('orientationchange', onViewportResize);
+                                document.removeEventListener('fullscreenchange', onNativeFsChange);
+                                document.removeEventListener('webkitfullscreenchange', onNativeFsChange);
+                                scrollContainer.removeEventListener('scroll', onScrollUpdate);
+                                document.body.classList.remove('pdf-modal-open');
+                                document.body.style.overflow = '';
+                                var topBtn = document.getElementById('ebook-fullscreen-action-btn');
+                                if (topBtn) {
+                                    topBtn.classList.remove('pdf-btn-exit-fullscreen');
+                                    topBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                                }
+                            }
+                        };
+                    } catch(fatalErr) {
+                        console.error('Fatal error initializing PDF.js viewer:', fatalErr);
+                        fallbackToIframe(primaryUrl, fatalErr.message || 'PDF.js load failure');
+                    }
+                });
+            }
+
+            buildDirectEbookUI(0);
         }
 
         function initWorksheetUI(lesson) {
@@ -4085,10 +4879,10 @@
             }
 
             if (targetName === 'ebook' && activeLesson) {
-                if (typeof window.appRenderEbook === 'function') {
-                    try { window.appRenderEbook(activeLesson); } catch(e) { initEbookUI(activeLesson); }
-                } else {
+                if (typeof initEbookUI === 'function') {
                     initEbookUI(activeLesson);
+                } else if (typeof window.appRenderEbook === 'function') {
+                    try { window.appRenderEbook(activeLesson); } catch(e) {}
                 }
             } else if (targetName === 'worksheet' && activeLesson) {
                 initWorksheetUI(activeLesson);
@@ -4646,8 +5440,8 @@
             </div>
         </div>
     </div>
-    <script src="physics-figures.js?v=4.0"></script>
-    <script src="physics-data.js?v=4.0"></script>
-    <script src="app.js?v=4.0" onerror="onAppJsError()"></script>
+    <script src="physics-figures.js?v=4.1"></script>
+    <script src="physics-data.js?v=4.1"></script>
+    <script src="app.js?v=4.1" onerror="onAppJsError()"></script>
 </body>
 </html>

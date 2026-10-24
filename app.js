@@ -314,7 +314,7 @@ equations:[
 ]}
 ],
 "12": [
-{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",worksheetUrl:"worksheets/ch1-l1-worksheet.pdf",games:[{topic:"Kinetic Theory of Ideal Gases",url:"https://gemini.google.com/share/acfae742b2c0"}],title:"Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",concepts:["Ideal Gas Model: Molecules are treated as point masses in continuous random motion undergoing perfectly elastic collisions.","Microscopic Pressure: Arises from momentum transfer during wall collisions, \\( P = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av} \\).","Ideal Gas Law: Combines Boyle's, Charles's, and Gay-Lussac's laws into \\( PV = nRT = Nk_B T \\).","Average Kinetic Energy: Depends solely on absolute temperature \\( T \\), with \\( K_{av} = \\frac{3}{2}k_B T \\) per molecule.","Root-Mean-Square Speed: Statistical measure of particle speed, \\( v_{rms} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3k_B T}{m_0}} \\)."],definitions:[
+{id:"g12-l1",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Translational_motion.gif",worksheetUrl:"worksheets/ch1-l1-worksheet.pdf",ebookUrl:"ebooks/g12-ch1-l1-ebook.pdf.pdf",ebooks:[{title:"Thermal Physics (pp. 1–18)",url:"ebooks/g12-ch1-l1-ebook.pdf.pdf",altUrl:"ebooks/g12-ch1-l1-ebook.pdf"}],games:[{topic:"Kinetic Theory of Ideal Gases",url:"https://gemini.google.com/share/acfae742b2c0"}],title:"Chapter 1 Lesson 1: Kinetic Theory of Ideal Gases",concepts:["Ideal Gas Model: Molecules are treated as point masses in continuous random motion undergoing perfectly elastic collisions.","Microscopic Pressure: Arises from momentum transfer during wall collisions, \\( P = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av} \\).","Ideal Gas Law: Combines Boyle's, Charles's, and Gay-Lussac's laws into \\( PV = nRT = Nk_B T \\).","Average Kinetic Energy: Depends solely on absolute temperature \\( T \\), with \\( K_{av} = \\frac{3}{2}k_B T \\) per molecule.","Root-Mean-Square Speed: Statistical measure of particle speed, \\( v_{rms} = \\sqrt{\\frac{3RT}{M}} = \\sqrt{\\frac{3k_B T}{m_0}} \\)."],definitions:[
 {term:"Ideal Gas",definition:"A theoretical model of gas consisting of identical, randomly moving point-like molecules with negligible volume that exert no forces on each other except during perfectly elastic collisions.",symbol:"\\text{Ideal Gas}",unit:"\\text{No unit}",equation:"PV = nRT = N k_B T"},
 {term:"Gas Pressure",definition:"The macroscopic normal force exerted per unit area on the container walls resulting from countless microscopic collisions of gas molecules.",symbol:"P",unit:"\\mathrm{Pa} \\;(\\mathrm{N/m^2})",equation:"P = \\frac{F}{A} = \\frac{2}{3}\\left(\\frac{N}{V}\\right)K_{av}"},
 {term:"Elastic Collision with Container Wall",definition:"A rebound collision where total mechanical kinetic energy is conserved; a molecule of mass \\(m_0\\) strikes perpendicularly at velocity \\(v\\) and rebounds at \\(-v\\), transferring momentum \\(\\Delta p = 2m_0 v\\).",symbol:"\\Delta p = 2m_0 v",unit:"\\mathrm{kg\\cdot m/s}",equation:"P = \\frac{2 N m_0 v}{A \\Delta t}"},
@@ -388,7 +388,7 @@ equations:[
 {question:"Which equation represents the Combined Gas Law?", options:["\\( PV = nRT \\)","\\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)","\\( P_1 T_1 = P_2 T_2 \\)","\\( V_1 / P_1 = V_2 / P_2 \\)"], correctIndex:1, feedback:"The Combined Gas Law is \\( \\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} \\)."},
 {question:"Total kinetic energy \\( K \\) of \\( N \\) molecules is given by:", options:["\\( \\frac{3}{2} N k_B T \\)","\\( \\frac{1}{2} N k_B T \\)","\\( N m_0 v^2 \\)","\\( P V^2 \\)"], correctIndex:0, feedback:"Total kinetic energy is the average energy per molecule multiplied by \\( N \\): \\( \\frac{3}{2} N k_B T \\)."}
 ]},
-{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",worksheetUrl:"worksheets/ch1-l2-worksheet.pdf",games:[{topic:"First Law of Thermodynamics",url:"https://gemini.google.com/share/9e34579d87cd"}],title:"Chapter 1 Lesson 2: First Law of Thermodynamics",concepts:["First Law of Thermodynamics: Conservation of energy in thermodynamic systems, \\( Q = W + \\Delta U \\).","Internal Energy (\\( U \\)): Depends solely on temperature for an ideal gas, \\( \\Delta U = \\frac{3}{2}nR\\Delta T \\).","Thermodynamic Work (\\( W \\)): Work done by expanding gas against external pressure, \\( W = P\\Delta V \\) (isobaric).","Special Processes: Isobaric (constant \\( P \\)), Isochoric (constant \\( V, W = 0 \\)), Isothermal (constant \\( T, \\Delta U = 0 \\)), and Adiabatic (\\( Q = 0 \\))."],definitions:[
+{id:"g12-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Boyles_Law_animated.gif",worksheetUrl:"worksheets/ch1-l2-worksheet.pdf",ebookUrl:"ebooks/g12-ch1-l2-ebook.pdf.pdf",ebooks:[{title:"The Laws of Thermodynamics (pp. 19–48)",url:"ebooks/g12-ch1-l2-ebook.pdf.pdf",altUrl:"ebooks/g12-ch1-l2-ebook.pdf"}],games:[{topic:"First Law of Thermodynamics",url:"https://gemini.google.com/share/9e34579d87cd"}],title:"Chapter 1 Lesson 2: First Law of Thermodynamics",concepts:["First Law of Thermodynamics: Conservation of energy in thermodynamic systems, \\( Q = W + \\Delta U \\).","Internal Energy (\\( U \\)): Depends solely on temperature for an ideal gas, \\( \\Delta U = \\frac{3}{2}nR\\Delta T \\).","Thermodynamic Work (\\( W \\)): Work done by expanding gas against external pressure, \\( W = P\\Delta V \\) (isobaric).","Special Processes: Isobaric (constant \\( P \\)), Isochoric (constant \\( V, W = 0 \\)), Isothermal (constant \\( T, \\Delta U = 0 \\)), and Adiabatic (\\( Q = 0 \\))."],definitions:[
 {term:"First Law of Thermodynamics",definition:"The principle of conservation of energy applied to thermodynamic systems, stating that the heat added to a system equals the work done by the system plus the increase in its internal energy.",symbol:"Q = W + \\Delta U",unit:"\\mathrm{J}",equation:"Q = W + \\Delta U"},
 {term:"Internal Energy",definition:"The total microscopic kinetic and potential energy associated with the random thermal motions and bonds of all molecules within the system.",symbol:"U",unit:"\\mathrm{J}",equation:"U = \\frac{3}{2}nRT \\quad (\\text{monatomic ideal gas})"},
 {term:"Change in Internal Energy",definition:"The net increase or decrease of the system's thermal energy store between initial and final thermodynamic states, depending solely on temperature change.",symbol:"\\Delta U",unit:"\\mathrm{J}",equation:"\\Delta U = U_f - U_i = \\frac{3}{2}nR\\Delta T"},
@@ -453,7 +453,7 @@ equations:[
 {question:"The internal energy \\( U \\) of an ideal gas is directly proportional to:", options:["Pressure","Volume","Temperature","Density"], correctIndex:2, feedback:"\\( U = \\frac{3}{2} nRT \\), making it directly proportional to absolute temperature."},
 {question:"If a gas expands such that its pressure changes linearly with volume, the work done is:", options:["\\( W = 0 \\)","\\( W = P \\Delta V \\)","\\( W = P_{av} \\Delta V \\)","\\( W = nRT \\)"], correctIndex:2, feedback:"You can use the average pressure for a linear process: \\( W = P_{av} \\Delta V \\)."}
 ]},
-{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",worksheetUrl:"worksheets/ch1-l3-worksheet.pdf",games:[{topic:"Heat Engine",url:"https://gemini.google.com/share/a6cfadc258e4"}],title:"Chapter 1 Lesson 3: Heat Engine",concepts:["Heat Engine: Converts thermal energy absorbed from a hot reservoir into mechanical work, releasing waste heat to a cold reservoir.","Energy Conservation: Heat absorbed equals mechanical work plus rejected heat: \\( Q_h = W_M + Q_c \\).","Carnot Cycle: An idealized reversible cycle giving the maximum theoretical efficiency: \\( e_c = 1 - \\frac{T_c}{T_h} \\).","Overall Efficiency: Combines Carnot efficiency and mechanical efficiency: \\( e = e_c \\times e_M = \\frac{W_U}{Q_h} \\)."],definitions:[
+{id:"g12-l3",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Carnot_cycle.gif",worksheetUrl:"worksheets/ch1-l3-worksheet.pdf",ebookUrl:"ebooks/g12-ch1-l3-ebook.pdf.pdf",ebooks:[{title:"Thermodynamics & Heat Engines (pp. 19–48)",url:"ebooks/g12-ch1-l3-ebook.pdf.pdf",altUrl:"ebooks/g12-ch1-l3-ebook.pdf"}],games:[{topic:"Heat Engine",url:"https://gemini.google.com/share/a6cfadc258e4"}],title:"Chapter 1 Lesson 3: Heat Engine",concepts:["Heat Engine: Converts thermal energy absorbed from a hot reservoir into mechanical work, releasing waste heat to a cold reservoir.","Energy Conservation: Heat absorbed equals mechanical work plus rejected heat: \\( Q_h = W_M + Q_c \\).","Carnot Cycle: An idealized reversible cycle giving the maximum theoretical efficiency: \\( e_c = 1 - \\frac{T_c}{T_h} \\).","Overall Efficiency: Combines Carnot efficiency and mechanical efficiency: \\( e = e_c \\times e_M = \\frac{W_U}{Q_h} \\)."],definitions:[
 {term:"Heat Engine",definition:"A thermodynamic system that operates continuously in a repeating thermodynamic cycle, absorbing heat from a high-temperature reservoir, converting part into mechanical work, and rejecting waste heat to a low-temperature sink.",symbol:"\\text{Engine}",unit:"\\text{No unit}",equation:"Q_h = W_M + Q_c"},
 {term:"Hot Reservoir (Source)",definition:"A thermal energy reservoir at constant elevated temperature \\(T_h\\) from which the working substance extracts heat energy \\(Q_h\\).",symbol:"Q_h, T_h",unit:"\\mathrm{J}, \\; \\mathrm{K}",equation:"Q_h = W_M + Q_c"},
 {term:"Cold Reservoir (Sink)",definition:"A low-temperature environment or coolant at temperature \\(T_c\\) that absorbs waste heat \\(Q_c\\) discharged by the engine.",symbol:"Q_c, T_c",unit:"\\mathrm{J}, \\; \\mathrm{K}",equation:"Q_c = Q_h - W_M"},
@@ -498,7 +498,7 @@ equations:[
 {question:"Why is a Carnot engine's efficiency always less than 100%?", options:["Because \\( T_h \\) is finite","Because \\( T_c \\) is always greater than 0 K","Because friction exists","Because \\( Q_c \\) is zero"], correctIndex:1, feedback:"Reaching 100% would require \\( T_c = 0\\text{K} \\), which violates the third law of thermodynamics."},
 {question:"If an engine absorbs 1000J of heat from the hot reservoir and does 400J of work, how much heat is rejected?", options:["400J","600J","1000J","1400J"], correctIndex:1, feedback:"Using \\( Q_h = W_M + Q_c \\), we find \\( 1000 = 400 + Q_c \\Rightarrow Q_c = 600\\text{J} \\)."}
 ]},
-{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",worksheetUrl:"worksheets/ch2-l1-worksheet.pdf",games:[{topic:"Superposition and Waves",url:"https://gemini.google.com/share/2e83761df9b7"}],title:"Chapter 2 Lesson 1: Superposition and Standing Waves",concepts:["Sinusoidal Wave: Propagates disturbances through space described by \\( y = a \\sin(\\omega t \\pm kx) \\).","Wave Characteristics: Wavelength (\\( \\lambda \\)), Period (\\( T \\)), Angular Frequency (\\( \\omega = 2\\pi/T \\)), and Wave Number (\\( k = 2\\pi/\\lambda \\)).","Wave Speed: Linear rate of propagation, \\( v = f\\lambda = \\frac{\\omega}{k} \\).","Superposition Principle: Net displacement equals the algebraic sum of individual wave displacements.","Standing Waves: Interference of identical opposite-traveling waves producing nodes (zero motion) and antinodes (maximum amplitude)."],definitions:[
+{id:"g12-l4",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Standing_wave_2.gif",worksheetUrl:"worksheets/ch2-l1-worksheet.pdf",ebookUrl:"ebooks/g12-ch2-l1-ebook.pdf.pdf",ebooks:[{title:"Superposition & Standing Waves (pp. 49–63)",url:"ebooks/g12-ch2-l1-ebook.pdf.pdf",altUrl:"ebooks/g12-ch2-l1-ebook.pdf"}],games:[{topic:"Superposition and Waves",url:"https://gemini.google.com/share/2e83761df9b7"}],title:"Chapter 2 Lesson 1: Superposition and Standing Waves",concepts:["Sinusoidal Wave: Propagates disturbances through space described by \\( y = a \\sin(\\omega t \\pm kx) \\).","Wave Characteristics: Wavelength (\\( \\lambda \\)), Period (\\( T \\)), Angular Frequency (\\( \\omega = 2\\pi/T \\)), and Wave Number (\\( k = 2\\pi/\\lambda \\)).","Wave Speed: Linear rate of propagation, \\( v = f\\lambda = \\frac{\\omega}{k} \\).","Superposition Principle: Net displacement equals the algebraic sum of individual wave displacements.","Standing Waves: Interference of identical opposite-traveling waves producing nodes (zero motion) and antinodes (maximum amplitude)."],definitions:[
 {term:"Sinusoidal Wave",definition:"A smooth periodic travelling disturbance that propagates through space described by a sinusoidal function of space and time.",symbol:"y(x, t)",unit:"\\mathrm{m}",equation:"y = a \\sin(\\omega t \\pm kx)"},
 {term:"Displacement",definition:"The instantaneous position offset of a medium particle from its undisturbed central equilibrium position.",symbol:"y",unit:"\\mathrm{m}",equation:"y = a \\sin(\\omega t \\pm kx)"},
 {term:"Wave Amplitude",definition:"The maximum absolute displacement of a wave oscillation measured from the center line of equilibrium.",symbol:"a",unit:"\\mathrm{m}",equation:"y_{max} = a"},
@@ -554,6 +554,8 @@ equations:[
 id: "g12-interf",
 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Two_sources_interference.gif",
 worksheetUrl: "worksheets/ch2-l2-worksheet.pdf",
+ebookUrl: "ebooks/g12-ch2-l2-ebook.pdf.pdf",
+ebooks: [{ title: "Interference & Diffraction of Light (pp. 64–78)", url: "ebooks/g12-ch2-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l2-ebook.pdf" }],
 games: [{ topic: "Interference and Diffraction", url: "https://gemini.google.com/share/14c6c1b23c4d" }],
 title: "Chapter 2 Lesson 2: Interference and Diffraction",
 concepts: [
@@ -641,7 +643,7 @@ quiz: [
     { question: "For a single slit of width a = 0.10 mm with light of wavelength λ = 500 nm on a screen L = 2.0 m away, what is the width of the central diffraction maximum?", options: ["10 mm", "20 mm", "5 mm", "40 mm"], correctIndex: 1, feedback: "W = 2λL / a = 2(5.0 × 10⁻⁷ m)(2.0 m) / (1.0 × 10⁻⁴ m) = 2.0 × 10⁻² m = 20 mm." }
 ]
 },
-{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",worksheetUrl:"worksheets/ch3-l1-worksheet.pdf",games:[{topic:"Magnetic Field",url:"https://gemini.google.com/share/8a653df6b614"},{topic:"Faraday’s Law",url:"https://gemini.google.com/share/a36b992c1d6d"},{topic:"Self Induction",url:"https://gemini.google.com/share/ae9787424975"}],title:"Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",concepts:[
+{id:"g12-l5",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Electric-generator-animation.gif",worksheetUrl:"worksheets/ch3-l1-worksheet.pdf",ebookUrl:"ebooks/g12-ch3-l1-part1.pdf.pdf",ebooks:[{title:"Part 1: Magnetism & Magnetic Fields (pp. 79–109)",url:"ebooks/g12-ch3-l1-part1.pdf.pdf",altUrl:"ebooks/g12-ch3-l1-part1.pdf"},{title:"Part 2: Induced EMF & Self-Induction (pp. 110–130)",url:"ebooks/g12-ch3-l1-part2.pdf.pdf",altUrl:"ebooks/g12-ch3-l1-part2.pdf"}],games:[{topic:"Magnetic Field",url:"https://gemini.google.com/share/8a653df6b614"},{topic:"Faraday’s Law",url:"https://gemini.google.com/share/a36b992c1d6d"},{topic:"Self Induction",url:"https://gemini.google.com/share/ae9787424975"}],title:"Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",concepts:[
 "Magnetic Fields: Generated by moving electric charges, long straight wires, circular coils, and solenoids.",
 "Lorentz & Laplace Forces: Magnetic forces exerted on individual moving charges (\\( F = |q|vB\\sin\\theta \\)) and straight conductors (\\( F = IBl\\sin\\theta \\)).",
 "Electromagnetic Induction: Faraday's law states that an induced emf is produced by a changing magnetic flux (\\( e = -\\frac{d\\Phi}{dt} \\)), with Lenz's law opposing the flux change.",
@@ -740,7 +742,7 @@ equations:[
 {question:"The resonant angular frequency of an LC circuit is:", options:["\\( \\sqrt{CL} \\)","\\( \\frac{1}{CL} \\)","\\( \\frac{1}{\\sqrt{CL}} \\)","\\( \\frac{C}{L} \\)"], correctIndex:2, feedback:"The frequency is given by \\( \\omega_0 = \\frac{1}{\\sqrt{CL}} \\)."},
 {question:"The force between two parallel current-carrying wires depends inversely on:", options:["The length of the wires","The currents \\(I_1\\) and \\(I_2\\)","The permeability \\(\\mu_0\\)","The distance between them \\(a\\)"], correctIndex:3, feedback:"\\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\), so it is inversely proportional to distance \\(a\\)."}
 ]},
-{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",worksheetUrl:"worksheets/ch3-l2-worksheet.pdf",games:[{topic:"Alternating Current",url:"https://gemini.google.com/share/0c850ab5a53b"}],title:"Chapter 3 Lesson 2: Alternating Currents",concepts:["Alternating Current & Voltage: Sinusoidal waveforms characterized by peak and RMS values: \\( I = \\frac{I_m}{\\sqrt{2}} \\), \\( V = \\frac{V_m}{\\sqrt{2}} \\).","Reactance in AC Circuits: Inductors resist AC via inductive reactance \\( Z_L = L\\omega \\); capacitors resist via capacitive reactance \\( Z_C = \\frac{1}{C\\omega} \\).","RLC Series Impedance: Total opposition to current given by \\( Z = \\sqrt{R^2 + (Z_L - Z_C)^2} \\), with Ohm's law \\( I = \\frac{V}{Z} \\).","Phase Angle & Power Factor: Phase difference \\( \\tan\\phi = \\frac{Z_L - Z_C}{R} \\), with true average power \\( P = VI\\cos\\phi \\).","RLC Series Circuit Diagram<br><img src='images/ch3-l2-rlc-circuit.png' style='width:100%; border-radius:8px; margin-top:10px;'>"],definitions:[
+{id:"g12-l6",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",worksheetUrl:"worksheets/ch3-l2-worksheet.pdf",ebookUrl:"ebooks/g12-ch3-l2-ebook.pdf.pdf",ebooks:[{title:"AC Circuits & Electromagnetic Waves (pp. 131–159)",url:"ebooks/g12-ch3-l2-ebook.pdf.pdf",altUrl:"ebooks/g12-ch3-l2-ebook.pdf"}],games:[{topic:"Alternating Current",url:"https://gemini.google.com/share/0c850ab5a53b"}],title:"Chapter 3 Lesson 2: Alternating Currents",concepts:["Alternating Current & Voltage: Sinusoidal waveforms characterized by peak and RMS values: \\( I = \\frac{I_m}{\\sqrt{2}} \\), \\( V = \\frac{V_m}{\\sqrt{2}} \\).","Reactance in AC Circuits: Inductors resist AC via inductive reactance \\( Z_L = L\\omega \\); capacitors resist via capacitive reactance \\( Z_C = \\frac{1}{C\\omega} \\).","RLC Series Impedance: Total opposition to current given by \\( Z = \\sqrt{R^2 + (Z_L - Z_C)^2} \\), with Ohm's law \\( I = \\frac{V}{Z} \\).","Phase Angle & Power Factor: Phase difference \\( \\tan\\phi = \\frac{Z_L - Z_C}{R} \\), with true average power \\( P = VI\\cos\\phi \\).","RLC Series Circuit Diagram<br><img src='images/ch3-l2-rlc-circuit.png' style='width:100%; border-radius:8px; margin-top:10px;'>"],definitions:[
 {term:"Alternating Current (AC)",definition:"Electric current that periodically reverses its direction and continuously fluctuates in magnitude sinusoidally with time.",symbol:"i(t)",unit:"\\mathrm{A}",equation:"i = i_m \\sin(\\omega t + \\phi_0)"},
 {term:"Peak Current (Current Amplitude)",definition:"The maximum instantaneous current magnitude reached in either half-cycle of an AC waveform.",symbol:"i_m \\text{ or } I_m",unit:"\\mathrm{A}",equation:"I_m = \\sqrt{2} \\times I"},
 {term:"Root Mean Square Current (RMS Current)",definition:"The effective DC-equivalent value of alternating current that produces the identical heating power in a given resistor.",symbol:"I",unit:"\\mathrm{A}",equation:"I = \\frac{I_m}{\\sqrt{2}} \\approx 0.7071 \\, I_m"},
@@ -4252,20 +4254,34 @@ function renderEbook(lesson) {
             const protectedViewerSrc = url ? (url.includes('#') ? url : `${url}#toolbar=0&navpanes=0`) : '';
             const isTouchIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || isTouchIOS;
+            const isOnline = window.location.protocol.startsWith('http');
+            let absolutePdfUrl = url;
+            try {
+                absolutePdfUrl = new URL(url, window.location.href).href;
+            } catch (e) {}
+
+            const googleDocsViewerUrl = `https://docs.google.com/viewer?embedded=true&url=${encodeURIComponent(absolutePdfUrl)}`;
+            let currentViewerSrc = (isMobile && isOnline) ? googleDocsViewerUrl : protectedViewerSrc;
 
             let iosBanner = '';
-            if (isTouchIOS) {
+            if (isTouchIOS || isMobile) {
                 iosBanner = `
-                    <div style="background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #0284c7; border-radius: 10px; padding: 1.25rem; margin: 1rem auto; max-width: 600px; text-align: center; color: #f8fafc; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
-                        <div style="font-size: 1.1rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.5rem;">
-                            <i class="fa-solid fa-tablet-screen-button"></i> iPad Continuous Multi-Page Reading Mode
+                    <div style="background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #0284c7; border-radius: 12px; padding: 1.25rem; margin: 1rem auto; max-width: 640px; text-align: center; color: #f8fafc; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <div style="font-size: 1.15rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.5rem;">
+                            <i class="fa-solid fa-tablet-screen-button"></i> Mobile & iPad Continuous Multi-Page Reading Mode
                         </div>
-                        <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem;">
-                            On iPad, you can open all pages (1–12) with smooth touch continuous scrolling:
+                        <p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem;">
+                            Open all curriculum textbook pages directly with smooth touch continuous scrolling and pinch-to-zoom:
                         </p>
-                        <a href="${url}" target="_blank" rel="noopener noreferrer" class="ebook-btn primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 0.95rem; padding: 0.75rem 1.4rem;">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full Multi-Page PDF on iPad
-                        </a>
+                        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                            <a href="${url}" target="_blank" rel="noopener noreferrer" class="ebook-btn primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 0.95rem; padding: 0.75rem 1.4rem; background: #0284c7; color: #fff; border-radius: 8px; font-weight: 600;">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full Multi-Page PDF in New Tab
+                            </a>
+                            <button type="button" class="ebook-btn secondary" id="retry-direct-btn" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; padding: 0.75rem 1.4rem; background: #334155; color: #fff; border: 1px solid #475569; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                                <i class="fa-solid fa-arrows-rotate"></i> Reload Reader
+                            </button>
+                        </div>
                     </div>
                 `;
             }
@@ -4274,7 +4290,7 @@ function renderEbook(lesson) {
                 <div class="pdf-toolbar" style="position: sticky; top: 0; z-index: 25;">
                     <div class="pdf-toolbar-group">
                         <span style="font-size: 0.88rem; color: #cbd5e1; font-weight: 600;">
-                            <i class="fa-solid fa-book-open" style="color: #38bdf8; margin-right: 6px;"></i> Standard Curriculum Reader
+                            <i class="fa-solid fa-book-open" style="color: #38bdf8; margin-right: 6px;"></i> Curriculum Reader
                         </span>
                     </div>
                     <div class="pdf-toolbar-group">
@@ -4291,11 +4307,13 @@ function renderEbook(lesson) {
                     <button type="button" class="pdf-floating-exit-btn" id="fallback-floating-exit-btn" title="Exit Fullscreen Reading Mode">
                         <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
                     </button>
-                    <iframe src="${protectedViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
+                    <iframe src="${currentViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
                 </div>
             `;
             const retryBtn = document.getElementById('retry-pdf-load-btn');
             if (retryBtn) retryBtn.addEventListener('click', () => buildEbookUI(currentSelectedIndex));
+            const retryDirectBtn = document.getElementById('retry-direct-btn');
+            if (retryDirectBtn) retryDirectBtn.addEventListener('click', () => buildEbookUI(currentSelectedIndex));
 
             const fbFsBtn = document.getElementById('fallback-fs-btn');
             const topActionBtn = document.getElementById('ebook-fullscreen-action-btn');
@@ -4393,9 +4411,16 @@ function renderEbook(lesson) {
             }
 
             const cdnWorker = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            if (isIOS) {
+                pdfjs.GlobalWorkerOptions.workerSrc = cdnWorker;
+                return;
+            }
+
             try {
                 // Instantly construct inline worker script that loads the CDN worker via importScripts!
-                // This eliminates cross-origin restrictions and avoids network timeouts on mobile/iPad.
+                // This eliminates cross-origin restrictions on desktop Chrome/Firefox/Edge.
                 const blobCode = `importScripts("${cdnWorker}");`;
                 const workerBlob = new Blob([blobCode], { type: 'application/javascript' });
                 cachedWorkerBlobUrl = URL.createObjectURL(workerBlob);
@@ -4416,6 +4441,18 @@ function renderEbook(lesson) {
             }
 
             setupPdfWorker(pdfjs);
+
+            function withTimeout(prom, ms, label) {
+                let tId = null;
+                const timeoutPromise = new Promise((_, reject) => {
+                    tId = setTimeout(() => {
+                        reject(new Error(`${label} timed out (${ms}ms)`));
+                    }, ms);
+                });
+                return Promise.race([prom, timeoutPromise]).finally(() => {
+                    if (tId) clearTimeout(tId);
+                });
+            }
 
             async function fetchPdfDoc() {
                 let pdfBuffer = null;
@@ -4454,16 +4491,20 @@ function renderEbook(lesson) {
                     disableStream: false
                 };
 
+                // 1. Try standard PDF.js parse with 3500ms safety timeout
                 try {
-                    return await pdfjs.getDocument(docParams).promise;
+                    return await withTimeout(pdfjs.getDocument(docParams).promise, 3500, 'Standard Worker parse');
                 } catch (firstErr) {
-                    console.warn('Initial getDocument promise rejected, retrying with fallback options:', firstErr);
+                    console.warn('Worker PDF parse timed out or rejected, falling back to main-thread fake worker:', firstErr);
+                    // 2. Fallback to main-thread fake worker (bypasses all Web Worker / blob / cross-origin iOS Safari restrictions)
                     try {
-                        const fallbackDocParams = Object.assign({}, docParams, { stopAtErrors: false });
-                        return await pdfjs.getDocument(fallbackDocParams).promise;
+                        const fallbackDocParams = Object.assign({}, docParams, { disableWorker: true, stopAtErrors: false });
+                        return await withTimeout(pdfjs.getDocument(fallbackDocParams).promise, 3500, 'Fake worker parse');
                     } catch (secondErr) {
-                        console.warn('Fallback getDocument promise rejected, retrying with URL:', secondErr);
-                        return await pdfjs.getDocument({ url: primaryUrl, cMapUrl: docParams.cMapUrl, cMapPacked: true }).promise;
+                        console.warn('Fake worker timed out or rejected, falling back to direct URL fetch:', secondErr);
+                        // 3. Fallback to URL with fake worker
+                        const urlParams = { url: primaryUrl, cMapUrl: docParams.cMapUrl, cMapPacked: true, disableWorker: true };
+                        return await withTimeout(pdfjs.getDocument(urlParams).promise, 3500, 'Direct URL parse');
                     }
                 }
             }
@@ -4839,9 +4880,10 @@ function renderEbook(lesson) {
                             fsBtn.classList.remove('pdf-btn-exit-fullscreen');
                             fsBtn.title = 'Toggle Fullscreen Reading View (Esc)';
                         }
-                        if (topFsBtn) {
-                            topFsBtn.classList.remove('pdf-btn-exit-fullscreen');
-                            topFsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                        const curTopFs = document.getElementById('ebook-fullscreen-action-btn');
+                        if (curTopFs) {
+                            curTopFs.classList.remove('pdf-btn-exit-fullscreen');
+                            curTopFs.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
                         }
 
                         // Exit native fullscreen if active
@@ -4910,9 +4952,10 @@ function renderEbook(lesson) {
                         scrollContainer.removeEventListener('scroll', onScrollUpdate);
                         document.body.classList.remove('pdf-modal-open');
                         document.body.style.overflow = '';
-                        if (topFsBtn) {
-                            topFsBtn.classList.remove('pdf-btn-exit-fullscreen');
-                            topFsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                        const curTopFs = document.getElementById('ebook-fullscreen-action-btn');
+                        if (curTopFs) {
+                            curTopFs.classList.remove('pdf-btn-exit-fullscreen');
+                            curTopFs.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
                         }
                     }
                 };
