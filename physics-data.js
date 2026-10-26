@@ -13512,6 +13512,909 @@
         }
     ];
 
+    // =========================================================================
+    // GRADE 7 CURRICULUM DATA
+    // Textbook: Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf
+    // =========================================================================
+    const G7_LESSONS = [
+        {
+            id: "g7-l1",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf",
+            ebooks: [
+                { title: "Grade 7 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }
+            ],
+            games: [],
+            title: "Chapter 1: Heat and Temperature",
+            concepts: [
+                "Temperature measures the average kinetic energy of particles in a substance.",
+                "Heat is thermal energy transferring from higher to lower temperature.",
+                "Thermal expansion causes solids, liquids, and gases to expand when heated.",
+                "Heat transfer mechanisms include conduction, convection, and radiation."
+            ],
+            definitions: [
+                { term: "Temperature", definition: "A physical measure of the thermal agitation of particles in a body.", symbol: "T", unit: "{^\\circ}\\mathrm{C} \\text{ or } \\mathrm{K}", equation: "T(\\mathrm{K}) = t({^\\circ}\\mathrm{C}) + 273.15" },
+                { term: "Quantity of Heat", definition: "Thermal energy transferred to change temperature.", symbol: "Q", unit: "\\mathrm{J}", equation: "Q = mc\\Delta T" },
+                { term: "Specific Heat Capacity", definition: "Heat needed to raise 1 kg of substance by 1 °C.", symbol: "c", unit: "\\mathrm{J/(kg\\cdot K)}", equation: "c = \\frac{Q}{m\\Delta T}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Heat Required to Warm Water",
+                    question: "Calculate the heat needed to raise the temperature of 2.0 kg of water from 20 °C to 70 °C (c = 4200 J/(kg·°C)).",
+                    given: "m = 2.0 kg, ΔT = 50 °C, c = 4200 J/(kg·°C).",
+                    find: "Heat Q in kJ.",
+                    equation: "Q = mc\\Delta T",
+                    rearrangement: "Q = mc\\Delta T",
+                    solution: "Q = 2.0 × 4200 × 50 = 420,000 J = 420 kJ.",
+                    finalAnswer: "Q = 420\\,\\mathrm{kJ}",
+                    explanation: "Heat absorbed is directly proportional to mass, specific heat, and temperature change."
+                }
+            ],
+            equations: [
+                {
+                    section: "Thermal Physics",
+                    name: "Heat Energy Equation",
+                    formula: "\\[ Q = mc\\Delta T \\]",
+                    pdfPage: "Grade 7 Textbook",
+                    explanation: "Calculates thermal energy transferred during temperature change.",
+                    conditions: "Single phase with constant specific heat.",
+                    variables: [
+                        { symbol: "Q", rep: "Heat energy", unit: "Joule", unitSym: "\\mathrm{J}" },
+                        { symbol: "m", rep: "Mass", unit: "Kilogram", unitSym: "\\mathrm{kg}" },
+                        { symbol: "c", rep: "Specific heat capacity", unit: "Joule per kilogram Kelvin", unitSym: "\\mathrm{J/(kg\\cdot K)}" },
+                        { symbol: "\\Delta T", rep: "Temperature change", unit: "Kelvin or degree Celsius", unitSym: "\\mathrm{K}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for heat absorbed?", back: "\\( Q = mc\\Delta T \\)" },
+                { front: "What is the SI unit of heat?", back: "Joule (J)" }
+            ],
+            quiz: [
+                { question: "When a substance is heated, its particles generally:", options: ["Move faster and spread apart", "Stop moving", "Contract together", "Lose energy"], correctIndex: 0, feedback: "Thermal energy increases molecular kinetic energy." }
+            ]
+        },
+        {
+            id: "g7-l2",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf",
+            ebooks: [
+                { title: "Grade 7 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }
+            ],
+            games: [],
+            title: "Chapter 2: Static Electricity",
+            concepts: [
+                "Two types of electric charges exist: positive (+) and negative (-).",
+                "Law of electrostatics: Like charges repel; opposite charges attract.",
+                "Objects can be charged by friction, contact, or induction.",
+                "Conductors allow charge to flow freely; insulators do not."
+            ],
+            definitions: [
+                { term: "Electric Charge", definition: "A property of subatomic particles giving rise to electrostatic forces.", symbol: "Q", unit: "\\mathrm{C}", equation: "Q = I t" },
+                { term: "Electrostatic Force", definition: "Attractive or repulsive force between charged bodies.", symbol: "F", unit: "\\mathrm{N}", equation: "F \\propto \\frac{q_1 q_2}{r^2}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Total Charge Transferred",
+                    question: "A steady current of 0.50 A flows for 40 seconds. Calculate the total charge transferred.",
+                    given: "I = 0.50 A, t = 40 s.",
+                    find: "Total charge Q in C.",
+                    equation: "Q = I t",
+                    rearrangement: "Q = I t",
+                    solution: "Q = 0.50 A × 40 s = 20 C.",
+                    finalAnswer: "Q = 20\\,\\mathrm{C}",
+                    explanation: "Electric charge equals current multiplied by time."
+                }
+            ],
+            equations: [
+                {
+                    section: "Electrostatics",
+                    name: "Charge and Current Equation",
+                    formula: "\\[ Q = I \\times t \\]",
+                    pdfPage: "Grade 7 Textbook",
+                    explanation: "Cumulative charge transported by steady current.",
+                    conditions: "Constant current.",
+                    variables: [
+                        { symbol: "Q", rep: "Electric charge", unit: "Coulomb", unitSym: "\\mathrm{C}" },
+                        { symbol: "I", rep: "Current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "t", rep: "Time", unit: "Second", unitSym: "\\mathrm{s}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What do like charges do?", back: "Like charges repel each other." },
+                { front: "What is the unit of electric charge?", back: "Coulomb (C)" }
+            ],
+            quiz: [
+                { question: "Two negatively charged objects brought close will:", options: ["Repel each other", "Attract each other", "Neutralize", "Have no interaction"], correctIndex: 0, feedback: "Like charges repel." }
+            ]
+        },
+        {
+            id: "g7-l3",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf",
+            ebooks: [
+                { title: "Grade 7 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }
+            ],
+            games: [],
+            title: "Chapter 3: Electric Current, Potential Difference & Resistance",
+            concepts: [
+                "Electric current is the rate of flow of electric charges.",
+                "Potential difference (voltage) drives electric charges through a closed circuit.",
+                "Resistance quantifies how strongly a material opposes electric current.",
+                "Ohm's Law: Voltage equals current multiplied by resistance (V = IR)."
+            ],
+            definitions: [
+                { term: "Ohm's Law", definition: "Current in an ohmic conductor is proportional to potential difference.", symbol: "V = IR", unit: "\\mathrm{V}", equation: "V = I R" },
+                { term: "Resistance", definition: "Opposition to current flow in an electric conductor.", symbol: "R", unit: "\\Omega", equation: "R = \\frac{V}{I}" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Applying Ohm's Law",
+                    question: "A 24 Ω resistor is connected across a 12 V battery. Calculate the current.",
+                    given: "V = 12 V, R = 24 Ω.",
+                    find: "Current I in A.",
+                    equation: "I = \\frac{V}{R}",
+                    rearrangement: "I = \\frac{V}{R}",
+                    solution: "I = 12 V / 24 Ω = 0.50 A.",
+                    finalAnswer: "I = 0.50\\,\\mathrm{A}",
+                    explanation: "Current is inversely proportional to resistance."
+                }
+            ],
+            equations: [
+                {
+                    section: "Circuits",
+                    name: "Ohm's Law",
+                    formula: "\\[ V = IR \\iff I = \\frac{V}{R} \\iff R = \\frac{V}{I} \\]",
+                    pdfPage: "Grade 7 Textbook",
+                    explanation: "Core circuit equation relating voltage, current, and resistance.",
+                    conditions: "Ohmic conductors at constant temperature.",
+                    variables: [
+                        { symbol: "V", rep: "Voltage", unit: "Volt", unitSym: "\\mathrm{V}" },
+                        { symbol: "I", rep: "Current", unit: "Ampere", unitSym: "\\mathrm{A}" },
+                        { symbol: "R", rep: "Resistance", unit: "Ohm", unitSym: "\\Omega" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is Ohm's Law?", back: "\\( V = IR \\)" },
+                { front: "What is the SI unit of resistance?", back: "Ohm (\\(\\Omega\\))" }
+            ],
+            quiz: [
+                { question: "If resistance is doubled for a fixed voltage, the current will:", options: ["Halve", "Double", "Stay constant", "Quadruple"], correctIndex: 0, feedback: "I = V/R means current is inversely proportional to resistance." }
+            ]
+        },
+        {
+            id: "g7-l4",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf",
+            ebooks: [
+                { title: "Grade 7 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }
+            ],
+            games: [],
+            title: "Chapter 4: Pressure in Solids, Liquids & Gases",
+            concepts: [
+                "Pressure is perpendicular thrust force per unit contact area (P = F/A).",
+                "Smaller contact area creates higher pressure for the same force.",
+                "Hydrostatic pressure increases with liquid depth and density (P = ρgh).",
+                "Pascal's Principle: Pressure applied to an enclosed fluid is transmitted equally."
+            ],
+            definitions: [
+                { term: "Pressure", definition: "Normal force applied per unit area.", symbol: "P", unit: "\\mathrm{Pa}", equation: "P = \\frac{F}{A}" },
+                { term: "Liquid Pressure", definition: "Hydrostatic pressure exerted at depth h in a fluid.", symbol: "P", unit: "\\mathrm{Pa}", equation: "P = \\rho g h" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Pressure on Small Area",
+                    question: "A force of 600 N acts over an area of 0.0002 m². Find the pressure.",
+                    given: "F = 600 N, A = 0.0002 m².",
+                    find: "Pressure P in kPa.",
+                    equation: "P = \\frac{F}{A}",
+                    rearrangement: "P = \\frac{F}{A}",
+                    solution: "P = 600 / 0.0002 = 3,000,000 Pa = 3000 kPa.",
+                    finalAnswer: "P = 3000\\,\\mathrm{kPa}",
+                    explanation: "Concentrating force onto small area produces high pressure."
+                }
+            ],
+            equations: [
+                {
+                    section: "Pressure",
+                    name: "Solid Pressure Formula",
+                    formula: "\\[ P = \\frac{F}{A} \\]",
+                    pdfPage: "Grade 7 Textbook",
+                    explanation: "Force distributed over contact area.",
+                    conditions: "Uniform perpendicular force.",
+                    variables: [
+                        { symbol: "P", rep: "Pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "F", rep: "Perpendicular force", unit: "Newton", unitSym: "\\mathrm{N}" },
+                        { symbol: "A", rep: "Area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
+                    ]
+                },
+                {
+                    section: "Pressure",
+                    name: "Hydrostatic Pressure Formula",
+                    formula: "\\[ P = \\rho g h \\]",
+                    pdfPage: "Grade 7 Textbook",
+                    explanation: "Pressure due to fluid weight at depth h.",
+                    conditions: "Incompressible fluid.",
+                    variables: [
+                        { symbol: "P", rep: "Pressure", unit: "Pascal", unitSym: "\\mathrm{Pa}" },
+                        { symbol: "\\rho", rep: "Fluid density", unit: "Kilogram per cubic meter", unitSym: "\\mathrm{kg/m^3}" },
+                        { symbol: "g", rep: "Gravity (9.8 m/s²)", unit: "Meter per second squared", unitSym: "\\mathrm{m/s^2}" },
+                        { symbol: "h", rep: "Depth", unit: "Meter", unitSym: "\\mathrm{m}" }
+                    ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for pressure?", back: "\\( P = \\frac{F}{A} \\)" },
+                { front: "What is the formula for liquid pressure?", back: "\\( P = \\rho g h \\)" }
+            ],
+            quiz: [
+                { question: "To walk safely on deep snow without sinking, one should wear snowshoes to:", options: ["Increase area and decrease pressure", "Decrease area and increase pressure", "Increase weight", "Reduce friction"], correctIndex: 0, feedback: "Larger area decreases pressure (P = F/A)." }
+            ]
+        }
+    ];
+
+    // =========================================================================
+    // GRADE 8 CURRICULUM DATA
+    // Textbook: Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf
+    // =========================================================================
+    const G8_LESSONS = [
+        {
+            id: "g8-l1",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 1: Speed, Velocity and Acceleration",
+            concepts: ["Speed is distance per unit time (scalar).", "Velocity is displacement per unit time (vector).", "Acceleration is the rate of change of velocity: a = (v - u)/t."],
+            definitions: [
+                { term: "Speed", definition: "Rate of covering distance.", symbol: "v", unit: "\\mathrm{m/s}", equation: "v = \\frac{s}{t}" },
+                { term: "Acceleration", definition: "Rate of change of velocity.", symbol: "a", unit: "\\mathrm{m/s^2}", equation: "a = \\frac{v - u}{t}" }
+            ],
+            examples: [
+                {
+                    title: "Example: Calculating Acceleration",
+                    question: "A car accelerates from 10 m/s to 30 m/s in 5.0 s. Find its acceleration.",
+                    given: "u = 10 m/s, v = 30 m/s, t = 5.0 s.",
+                    find: "Acceleration a.",
+                    equation: "a = \\frac{v - u}{t}",
+                    rearrangement: "a = \\frac{v - u}{t}",
+                    solution: "a = (30 - 10) / 5 = 4.0 m/s².",
+                    finalAnswer: "a = 4.0\\,\\mathrm{m/s^2}",
+                    explanation: "Uniform acceleration over 5 seconds."
+                }
+            ],
+            equations: [
+                { section: "Kinematics", name: "Acceleration Equation", formula: "\\[ a = \\frac{v - u}{t} \\]", pdfPage: "Grade 8 Textbook", explanation: "Defines linear acceleration.", conditions: "Uniform acceleration.", variables: [{ symbol: "a", rep: "Acceleration", unit: "m/s²", unitSym: "\\mathrm{m/s^2}" }] }
+            ],
+            flashcards: [{ front: "Formula for acceleration?", back: "\\( a = \\frac{v - u}{t} \\)" }],
+            quiz: [{ question: "The SI unit of acceleration is:", options: ["m/s²", "m/s", "km/h", "N"], correctIndex: 0, feedback: "Acceleration is measured in meters per second squared." }]
+        },
+        {
+            id: "g8-l2",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 2: Graphs of Equations",
+            concepts: ["Gradient of a displacement-time graph gives velocity.", "Gradient of a velocity-time graph gives acceleration.", "Area under a velocity-time graph gives distance traveled."],
+            definitions: [{ term: "Velocity-Time Slope", definition: "Gradient equals acceleration.", symbol: "a", unit: "\\mathrm{m/s^2}", equation: "a = \\frac{\\Delta v}{\\Delta t}" }],
+            examples: [{ title: "Example: Distance from v-t Graph", question: "A train moves at constant 20 m/s for 15 s. Find distance.", given: "v = 20 m/s, t = 15 s.", find: "Distance s.", equation: "s = v \\times t", rearrangement: "s = vt", solution: "s = 20 × 15 = 300 m.", finalAnswer: "s = 300\\,\\mathrm{m}", explanation: "Area of rectangle on v-t graph." }],
+            equations: [{ section: "Motion Graphs", name: "Distance from v-t Area", formula: "\\[ s = v \\times t \\]", pdfPage: "Grade 8 Textbook", explanation: "Calculates displacement from v-t plot.", conditions: "Constant velocity.", variables: [{ symbol: "s", rep: "Displacement", unit: "m", unitSym: "\\mathrm{m}" }] }],
+            flashcards: [{ front: "What does slope of v-t graph represent?", back: "Acceleration" }],
+            quiz: [{ question: "Area under a velocity-time graph represents:", options: ["Distance traveled", "Acceleration", "Force", "Speed"], correctIndex: 0, feedback: "Integral of velocity over time is displacement." }]
+        },
+        {
+            id: "g8-l3",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 3: Free Falling Bodies",
+            concepts: ["All objects in free fall near Earth experience constant downward acceleration g ≈ 9.8 m/s².", "Air resistance reduces net downward acceleration until terminal velocity is reached."],
+            definitions: [{ term: "Free Fall Acceleration", definition: "Acceleration due to Earth's gravity.", symbol: "g", unit: "\\mathrm{m/s^2}", equation: "g \\approx 9.8\\,\\mathrm{m/s^2}" }],
+            examples: [{ title: "Example: Speed after 3 Seconds of Free Fall", question: "A dropped stone falls freely for 3.0 s. Find its speed (g = 9.8 m/s²).", given: "u = 0, t = 3.0 s, g = 9.8 m/s².", find: "v in m/s.", equation: "v = gt", rearrangement: "v = gt", solution: "v = 9.8 × 3.0 = 29.4 m/s.", finalAnswer: "v = 29.4\\,\\mathrm{m/s}", explanation: "Velocity increases linearly with time in free fall." }],
+            equations: [{ section: "Free Fall", name: "Free Fall Velocity", formula: "\\[ v = gt \\]", pdfPage: "Grade 8 Textbook", explanation: "Velocity acquired from rest under gravity.", conditions: "Negligible air drag.", variables: [{ symbol: "v", rep: "Velocity", unit: "m/s", unitSym: "\\mathrm{m/s}" }] }],
+            flashcards: [{ front: "Acceleration of free fall on Earth?", back: "\\( g \\approx 9.8\\,\\mathrm{m/s^2} \\)" }],
+            quiz: [{ question: "In vacuum, a feather and a rock dropped together will:", options: ["Fall with the same acceleration", "Rock falls faster", "Feather floats", "Both stop moving"], correctIndex: 0, feedback: "Without air resistance, all masses accelerate at g." }]
+        },
+        {
+            id: "g8-l4",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 4: Weight and Stretching",
+            concepts: ["Weight is the gravitational force acting on an object: W = mg.", "Hooke's Law: Extension of a spring is directly proportional to stretching force up to elastic limit: F = kx."],
+            definitions: [
+                { term: "Weight", definition: "Gravitational force on mass m.", symbol: "W", unit: "\\mathrm{N}", equation: "W = mg" },
+                { term: "Hooke's Law", definition: "Spring restoring force proportional to extension.", symbol: "F = kx", unit: "\\mathrm{N}", equation: "F = k x" }
+            ],
+            examples: [{ title: "Example: Spring Extension", question: "A spring with spring constant k = 200 N/m is stretched by force F = 50 N. Find extension x.", given: "F = 50 N, k = 200 N/m.", find: "Extension x.", equation: "x = \\frac{F}{k}", rearrangement: "x = \\frac{F}{k}", solution: "x = 50 / 200 = 0.25 m = 25 cm.", finalAnswer: "x = 0.25\\,\\mathrm{m}", explanation: "Linear elastic extension." }],
+            equations: [{ section: "Elasticity", name: "Hooke's Law", formula: "\\[ F = kx \\]", pdfPage: "Grade 8 Textbook", explanation: "Force proportional to spring extension.", conditions: "Within elastic limit.", variables: [{ symbol: "F", rep: "Force", unit: "N", unitSym: "\\mathrm{N}" }, { symbol: "k", rep: "Spring constant", unit: "N/m", unitSym: "\\mathrm{N/m}" }, { symbol: "x", rep: "Extension", unit: "m", unitSym: "\\mathrm{m}" }] }],
+            flashcards: [{ front: "State Hooke's Law formula:", back: "\\( F = kx \\)" }],
+            quiz: [{ question: "The spring constant k measures a spring's:", options: ["Stiffness", "Mass", "Length", "Density"], correctIndex: 0, feedback: "Higher k requires more force per unit extension." }]
+        },
+        {
+            id: "g8-l5",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 5: Adding Forces & Vectors",
+            concepts: ["Forces are vectors having both magnitude and direction.", "Resultant force can be found using collinear addition, subtraction, or the Parallelogram Law."],
+            definitions: [{ term: "Resultant Force", definition: "Single net force equivalent to multiple combined forces.", symbol: "R", unit: "\\mathrm{N}", equation: "R = \\sqrt{F_1^2 + F_2^2}" }],
+            examples: [{ title: "Example: Perpendicular Forces", question: "Two perpendicular forces of 6 N and 8 N pull a box. Find the resultant.", given: "F1 = 6 N, F2 = 8 N.", find: "Resultant R.", equation: "R = \\sqrt{F_1^2 + F_2^2}", rearrangement: "R = \\sqrt{F_1^2 + F_2^2}", solution: "R = √(36 + 64) = √100 = 10 N.", finalAnswer: "R = 10\\,\\mathrm{N}", explanation: "Pythagorean vector addition." }],
+            equations: [{ section: "Vectors", name: "Perpendicular Forces Resultant", formula: "\\[ R = \\sqrt{F_1^2 + F_2^2} \\]", pdfPage: "Grade 8 Textbook", explanation: "Resultant of 90° forces.", conditions: "Perpendicular vectors.", variables: [{ symbol: "R", rep: "Resultant", unit: "N", unitSym: "\\mathrm{N}" }] }],
+            flashcards: [{ front: "Resultant of 3 N and 4 N at 90°?", back: "5 N (Pythagoras)" }],
+            quiz: [{ question: "Forces of 5 N East and 3 N West have a resultant of:", options: ["2 N East", "8 N East", "2 N West", "15 N"], correctIndex: 0, feedback: "Opposing collinear forces subtract: 5 - 3 = 2 N East." }]
+        },
+        {
+            id: "g8-l6",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 6: Force and Acceleration",
+            concepts: ["Newton's Second Law: Net force equals mass multiplied by acceleration: F_net = ma.", "Inertia is an object's resistance to change in motion, quantified by its mass."],
+            definitions: [{ term: "Newton's Second Law", definition: "Acceleration is directly proportional to net force and inversely proportional to mass.", symbol: "F = ma", unit: "\\mathrm{N}", equation: "F = m a" }],
+            examples: [{ title: "Example: Accelerating a Sled", question: "A net force of 150 N pushes a 50 kg sled. Find acceleration.", given: "F = 150 N, m = 50 kg.", find: "Acceleration a.", equation: "a = \\frac{F}{m}", rearrangement: "a = \\frac{F}{m}", solution: "a = 150 / 50 = 3.0 m/s².", finalAnswer: "a = 3.0\\,\\mathrm{m/s^2}", explanation: "Newton's second law." }],
+            equations: [{ section: "Dynamics", name: "Newton's Second Law", formula: "\\[ F = ma \\iff a = \\frac{F}{m} \\]", pdfPage: "Grade 8 Textbook", explanation: "Relates force, mass, and acceleration.", conditions: "Constant mass.", variables: [{ symbol: "F", rep: "Net force", unit: "N", unitSym: "\\mathrm{N}" }, { symbol: "m", rep: "Mass", unit: "kg", unitSym: "\\mathrm{kg}" }, { symbol: "a", rep: "Acceleration", unit: "m/s²", unitSym: "\\mathrm{m/s^2}" }] }],
+            flashcards: [{ front: "State Newton's Second Law equation:", back: "\\( F = ma \\)" }],
+            quiz: [{ question: "If the net force on an object triples while mass stays constant, acceleration:", options: ["Triples", "Stays the same", "Decreases by 3", "Drops to zero"], correctIndex: 0, feedback: "a = F/m means acceleration is directly proportional to force." }]
+        },
+        {
+            id: "g8-l7",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 7: Energy, Work and Power",
+            concepts: ["Mechanical work is done when a force moves an object through distance d in its direction: W = Fd.", "Power is the rate of doing work or transferring energy: P = W/t."],
+            definitions: [
+                { term: "Work Done", definition: "Energy transferred by force acting over distance.", symbol: "W", unit: "\\mathrm{J}", equation: "W = F d" },
+                { term: "Power", definition: "Rate of doing work.", symbol: "P", unit: "\\mathrm{W}", equation: "P = \\frac{W}{t}" }
+            ],
+            examples: [{ title: "Example: Work and Power", question: "A force of 200 N pushes a cart 10 m in 5.0 s. Find work done and power.", given: "F = 200 N, d = 10 m, t = 5.0 s.", find: "W in J, P in W.", equation: "W = Fd, \\quad P = \\frac{W}{t}", rearrangement: "W = Fd, \\quad P = W/t", solution: "W = 200 × 10 = 2000 J; P = 2000 / 5 = 400 W.", finalAnswer: "W = 2000\\,\\mathrm{J}, \\quad P = 400\\,\\mathrm{W}", explanation: "Work and power definitions." }],
+            equations: [
+                { section: "Work & Energy", name: "Work Formula", formula: "\\[ W = F \\times d \\]", pdfPage: "Grade 8 Textbook", explanation: "Work done by constant force along displacement.", conditions: "Collinear force and motion.", variables: [{ symbol: "W", rep: "Work", unit: "Joule", unitSym: "\\mathrm{J}" }] },
+                { section: "Work & Energy", name: "Power Formula", formula: "\\[ P = \\frac{W}{t} \\]", pdfPage: "Grade 8 Textbook", explanation: "Rate of energy expenditure.", conditions: "Constant power.", variables: [{ symbol: "P", rep: "Power", unit: "Watt", unitSym: "\\mathrm{W}" }] }
+            ],
+            flashcards: [{ front: "Formula for mechanical power?", back: "\\( P = \\frac{W}{t} \\)" }],
+            quiz: [{ question: "One Watt (1 W) is equal to:", options: ["1 Joule per second (1 J/s)", "1 Newton per meter", "1 Joule-second", "1 kg·m/s"], correctIndex: 0, feedback: "Power is energy per unit time: 1 W = 1 J/s." }]
+        },
+        {
+            id: "g8-l8",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 8: Kinetic and Potential Energy",
+            concepts: ["Kinetic energy is energy of motion: Ek = 1/2 m v².", "Gravitational potential energy is stored energy of elevation: Ep = mgh.", "Total mechanical energy is conserved in the absence of friction: E = Ek + Ep."],
+            definitions: [
+                { term: "Kinetic Energy", definition: "Energy possessed due to velocity.", symbol: "E_k", unit: "\\mathrm{J}", equation: "E_k = \\frac{1}{2}mv^2" },
+                { term: "Gravitational Potential Energy", definition: "Energy stored due to vertical height in gravity.", symbol: "E_p", unit: "\\mathrm{J}", equation: "E_p = mgh" }
+            ],
+            examples: [{ title: "Example: Kinetic Energy of Runner", question: "A 60 kg athlete runs at 6.0 m/s. Find kinetic energy.", given: "m = 60 kg, v = 6.0 m/s.", find: "Ek in J.", equation: "E_k = \\frac{1}{2}mv^2", rearrangement: "E_k = 0.5 m v^2", solution: "Ek = 0.5 × 60 × 6² = 30 × 36 = 1080 J.", finalAnswer: "E_k = 1080\\,\\mathrm{J}", explanation: "Kinetic energy depends on velocity squared." }],
+            equations: [
+                { section: "Energy", name: "Kinetic Energy", formula: "\\[ E_k = \\frac{1}{2}mv^2 \\]", pdfPage: "Grade 8 Textbook", explanation: "Translational kinetic energy.", conditions: "Non-relativistic motion.", variables: [{ symbol: "E_k", rep: "Kinetic energy", unit: "Joule", unitSym: "\\mathrm{J}" }] },
+                { section: "Energy", name: "Potential Energy", formula: "\\[ E_p = mgh \\]", pdfPage: "Grade 8 Textbook", explanation: "Gravitational potential energy.", conditions: "Near Earth surface.", variables: [{ symbol: "E_p", rep: "Potential energy", unit: "Joule", unitSym: "\\mathrm{J}" }] }
+            ],
+            flashcards: [{ front: "Kinetic energy formula?", back: "\\( E_k = \\frac{1}{2}mv^2 \\)" }, { front: "Potential energy formula?", back: "\\( E_p = mgh \\)" }],
+            quiz: [{ question: "If speed doubles, an object's kinetic energy increases by a factor of:", options: ["4", "2", "8", "16"], correctIndex: 0, feedback: "Ek is proportional to v², so 2² = 4." }]
+        },
+        {
+            id: "g8-l9",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 9: Pressure and Liquid Pressure",
+            concepts: ["Pressure in fluids acts equally in all directions at a given depth.", "Liquid column pressure is calculated using P = ρgh.", "Hydraulic lifts use Pascal's principle to achieve mechanical advantage."],
+            definitions: [{ term: "Hydraulic Advantage", definition: "Force multiplication by ratio of piston areas.", symbol: "\\text{Hydraulics}", unit: "\\text{No unit}", equation: "\\frac{F_1}{A_1} = \\frac{F_2}{A_2}" }],
+            examples: [{ title: "Example: Hydrostatic Pressure at 10m", question: "Find pressure at depth 10 m in water (ρ = 1000 kg/m³, g = 9.8 m/s²).", given: "h = 10 m, ρ = 1000 kg/m³, g = 9.8 m/s².", find: "P in kPa.", equation: "P = \\rho g h", rearrangement: "P = \\rho g h", solution: "P = 1000 × 9.8 × 10 = 98,000 Pa = 98 kPa.", finalAnswer: "P = 98\\,\\mathrm{kPa}", explanation: "Hydrostatic column pressure." }],
+            equations: [{ section: "Hydrostatics", name: "Liquid Pressure", formula: "\\[ P = \\rho g h \\]", pdfPage: "Grade 8 Textbook", explanation: "Depth pressure formula.", conditions: "Incompressible liquid.", variables: [{ symbol: "P", rep: "Pressure", unit: "Pa", unitSym: "\\mathrm{Pa}" }] }],
+            flashcards: [{ front: "Pressure formula at depth h?", back: "\\( P = \\rho g h \\)" }],
+            quiz: [{ question: "Pressure in a liquid depends on depth and:", options: ["Liquid density", "Container shape", "Atmospheric volume", "Container color"], correctIndex: 0, feedback: "P = ρgh depends only on density, gravity, and depth." }]
+        },
+        {
+            id: "g8-l10",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 10: Conduction and Convection",
+            concepts: ["Conduction is thermal energy transfer through direct particle collisions and free electron movement in solids.", "Convection is thermal transfer via bulk movement of heated fluid currents."],
+            definitions: [
+                { term: "Conduction", definition: "Heat transfer in solids via atomic vibrations.", symbol: "\\text{Conduction}", unit: "\\text{No unit}", equation: "Q \\propto \\frac{A\\Delta T}{d}" },
+                { term: "Convection", definition: "Heat transfer through circulation of warmer, less dense fluid.", symbol: "\\text{Convection}", unit: "\\text{No unit}", equation: "\\Delta\\rho \\implies \\text{buoyant circulation}" }
+            ],
+            examples: [{ title: "Example: Thermal Conductivity", question: "Why are metals much better thermal conductors than wood?", given: "Metallic crystal structure.", find: "Explanation.", equation: "\\text{Free electrons transfer energy rapidly}", rearrangement: "", solution: "Metals possess free electrons that rapidly transport kinetic energy through the lattice.", finalAnswer: "\\text{Free conduction electrons}", explanation: "Electron diffusion dominates metallic thermal conduction." }],
+            equations: [{ section: "Heat Transfer", name: "Conduction Mechanism", formula: "\\[ \\text{Heat Flow Rate } \\propto \\frac{A \\Delta T}{d} \\]", pdfPage: "Grade 8 Textbook", explanation: "Fourier conduction proportionality.", conditions: "Steady state.", variables: [{ symbol: "A", rep: "Cross-sectional area", unit: "m²", unitSym: "\\mathrm{m^2}" }] }],
+            flashcards: [{ front: "Which state of matter exhibits convection?", back: "Fluids (liquids and gases)" }],
+            quiz: [{ question: "Convection cannot occur in:", options: ["Solids", "Liquids", "Gases", "Air"], correctIndex: 0, feedback: "Particles in solids cannot flow in bulk currents." }]
+        },
+        {
+            id: "g8-l11",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 11: Thermal Radiation",
+            concepts: ["Radiation is heat transfer by electromagnetic infrared waves without needing any physical medium.", "Matte black surfaces are the best emitters and absorbers of infrared radiation.", "Shiny, silvered surfaces are good reflectors and poor emitters."],
+            definitions: [{ term: "Infrared Radiation", definition: "Electromagnetic radiation emitted by warm objects.", symbol: "\\text{IR}", unit: "\\mathrm{W/m^2}", equation: "P \\propto T^4" }],
+            examples: [{ title: "Example: Vacuum Flask Insulation", question: "Why is a vacuum flask silvered inside?", given: "Silvered glass walls.", find: "Physical mechanism.", equation: "\\text{Reflects infrared radiation}", rearrangement: "", solution: "Silvered surfaces reflect radiant heat back, preventing heat loss by radiation.", finalAnswer: "\\text{Reflects radiation}", explanation: "Minimizes radiative energy exchange." }],
+            equations: [{ section: "Radiation", name: "Radiant Energy Emission", formula: "\\[ P = \\varepsilon \\sigma A T^4 \\]", pdfPage: "Grade 8 Textbook", explanation: "Stefan-Boltzmann radiation law.", conditions: "Thermal radiation.", variables: [{ symbol: "P", rep: "Radiant power", unit: "W", unitSym: "\\mathrm{W}" }] }],
+            flashcards: [{ front: "Best absorbers of thermal radiation?", back: "Dull, matte black surfaces" }],
+            quiz: [{ question: "Thermal radiation can travel through:", options: ["A complete vacuum", "Only dense metals", "Only liquids", "Only through conduction wires"], correctIndex: 0, feedback: "Electromagnetic waves do not require a medium." }]
+        },
+        {
+            id: "g8-l12",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 12: DC Circuits",
+            concepts: ["In series circuits, current is constant throughout: R_total = R1 + R2 + ...", "In parallel circuits, voltage is identical across all branches: 1/R_total = 1/R1 + 1/R2 + ..."],
+            definitions: [
+                { term: "Series Resistance", definition: "Sum of resistances in single loop.", symbol: "R_s", unit: "\\Omega", equation: "R_s = R_1 + R_2" },
+                { term: "Parallel Resistance", definition: "Equivalent resistance of branch network.", symbol: "R_p", unit: "\\Omega", equation: "\\frac{1}{R_p} = \\frac{1}{R_1} + \\frac{1}{R_2}" }
+            ],
+            examples: [{ title: "Example: Parallel Resistors", question: "Two resistors of 6 Ω and 3 Ω are connected in parallel. Find equivalent resistance.", given: "R1 = 6 Ω, R2 = 3 Ω.", find: "Rp.", equation: "R_p = \\frac{R_1 R_2}{R_1 + R_2}", rearrangement: "R_p = \\frac{R_1 R_2}{R_1 + R_2}", solution: "Rp = (6 × 3) / (6 + 3) = 18 / 9 = 2.0 Ω.", finalAnswer: "R_p = 2.0\\,\\Omega", explanation: "Parallel resistance is always smaller than the smallest branch resistor." }],
+            equations: [{ section: "Circuits", name: "Parallel Equivalent Resistance", formula: "\\[ \\frac{1}{R_p} = \\frac{1}{R_1} + \\frac{1}{R_2} \\iff R_p = \\frac{R_1 R_2}{R_1 + R_2} \\]", pdfPage: "Grade 8 Textbook", explanation: "Equivalent parallel resistance.", conditions: "Two parallel resistors.", variables: [{ symbol: "R_p", rep: "Equivalent resistance", unit: "Ohm", unitSym: "\\Omega" }] }],
+            flashcards: [{ front: "Equivalent of two identical resistors R in parallel?", back: "\\( R / 2 \\)" }],
+            quiz: [{ question: "Two 10 Ω resistors in series give a total resistance of:", options: ["20 Ω", "5 Ω", "10 Ω", "100 Ω"], correctIndex: 0, feedback: "Series resistances add directly: 10 + 10 = 20 Ω." }]
+        },
+        {
+            id: "g8-l13",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 13: Electrical Power & Domestic Safety",
+            concepts: ["Electrical power dissipated is P = IV = I²R = V²/R.", "Electrical energy consumed is E = Pt.", "Domestic safety devices include fuses, circuit breakers, and earth wires."],
+            definitions: [
+                { term: "Electrical Power", definition: "Rate of electrical energy dissipation.", symbol: "P", unit: "\\mathrm{W}", equation: "P = IV = I^2 R = \\frac{V^2}{R}" },
+                { term: "Kilowatt-Hour", definition: "Commercial unit of electrical energy.", symbol: "1\\,\\mathrm{kWh}", unit: "\\mathrm{J}", equation: "1\\,\\mathrm{kWh} = 3.6 \\times 10^6\\,\\mathrm{J}" }
+            ],
+            examples: [{ title: "Example: Electric Kettle Power", question: "A 240 V kettle draws 10 A of current. Find its power and energy used in 3 minutes.", given: "V = 240 V, I = 10 A, t = 180 s.", find: "P in W, E in kJ.", equation: "P = IV, \\quad E = Pt", rearrangement: "P = IV, \\quad E = Pt", solution: "P = 240 × 10 = 2400 W; E = 2400 × 180 = 432,000 J = 432 kJ.", finalAnswer: "P = 2400\\,\\mathrm{W}, \\quad E = 432\\,\\mathrm{kJ}", explanation: "Power and cumulative electrical energy." }],
+            equations: [{ section: "Electric Power", name: "Joule Electrical Power", formula: "\\[ P = IV = I^2 R = \\frac{V^2}{R} \\]", pdfPage: "Grade 8 Textbook", explanation: "Dissipated electrical power.", conditions: "Ohmic conductor.", variables: [{ symbol: "P", rep: "Power", unit: "Watt", unitSym: "\\mathrm{W}" }] }],
+            flashcards: [{ front: "How many Joules in 1 kWh?", back: "\\( 3.6 \\times 10^6\\,\\mathrm{J} \\; (3.6\\,\\mathrm{MJ}) \\)" }],
+            quiz: [{ question: "A fuse is always connected in the:", options: ["Live wire", "Neutral wire", "Earth wire", "Casing"], correctIndex: 0, feedback: "Connecting in the live wire disconnects high voltage upon blowing." }]
+        },
+        {
+            id: "g8-l14",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            games: [],
+            title: "Lesson 14: General Properties of Waves",
+            concepts: ["Waves transfer energy without transferring matter.", "Transverse waves oscillate perpendicular to travel; longitudinal waves oscillate parallel.", "Wave equation relates wave speed, frequency, and wavelength: v = fλ."],
+            definitions: [
+                { term: "Wave Speed Equation", definition: "Relationship connecting speed, frequency, and wavelength.", symbol: "v", unit: "\\mathrm{m/s}", equation: "v = f \\lambda" },
+                { term: "Wave Frequency", definition: "Number of complete oscillations per second.", symbol: "f", unit: "\\mathrm{Hz}", equation: "f = \\frac{1}{T}" }
+            ],
+            examples: [{ title: "Example: Calculating Wave Speed", question: "A sound wave has frequency f = 256 Hz and wavelength λ = 1.30 m. Find wave speed.", given: "f = 256 Hz, λ = 1.30 m.", find: "Speed v.", equation: "v = f\\lambda", rearrangement: "v = f\\lambda", solution: "v = 256 × 1.30 = 332.8 m/s.", finalAnswer: "v \\approx 333\\,\\mathrm{m/s}", explanation: "Standard acoustic wave speed in air." }],
+            equations: [{ section: "Waves", name: "Universal Wave Equation", formula: "\\[ v = f \\lambda \\iff f = \\frac{v}{\\lambda} \\iff \\lambda = \\frac{v}{f} \\]", pdfPage: "Grade 8 Textbook", explanation: "Universal equation for all periodic wave phenomena.", conditions: "Periodic wave in uniform medium.", variables: [{ symbol: "v", rep: "Wave speed", unit: "m/s", unitSym: "\\mathrm{m/s}" }, { symbol: "f", rep: "Frequency", unit: "Hertz", unitSym: "\\mathrm{Hz}" }, { symbol: "\\lambda", rep: "Wavelength", unit: "Meter", unitSym: "\\mathrm{m}" }] }],
+            flashcards: [{ front: "Universal wave equation?", back: "\\( v = f \\lambda \\)" }, { front: "Relation between period T and frequency f?", back: "\\( T = \\frac{1}{f} \\)" }],
+            quiz: [{ question: "In a transverse wave, particles oscillate:", options: ["Perpendicular to wave direction", "Parallel to wave direction", "In circles", "Only in one spot without moving"], correctIndex: 0, feedback: "Transverse wave oscillations are at 90° to wave propagation." }]
+        }
+    ];
+
+    // =========================================================================
+    // GRADE 10 CURRICULUM DATA
+    // Textbook: Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf
+    // =========================================================================
+    const G10_LESSONS = [
+        {
+            id: "g10-l1",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 1: Rectilinear Motion & Kinematics",
+            concepts: ["Uniform rectilinear motion: x = x0 + vt.", "Uniformly accelerated rectilinear motion (UAM): v = v0 + at, x = x0 + v0t + 1/2 at².", "Torricelli's formula: v² - v0² = 2a(x - x0)."],
+            definitions: [
+                { term: "Instantaneous Velocity", definition: "Rate of change of position at a specific instant.", symbol: "v", unit: "\\mathrm{m/s}", equation: "v = \\frac{dx}{dt}" },
+                { term: "Uniform Acceleration", definition: "Constant rate of change of velocity.", symbol: "a", unit: "\\mathrm{m/s^2}", equation: "a = \\frac{v - v_0}{t}" }
+            ],
+            examples: [{ title: "Example: Torricelli Kinematics", question: "A vehicle accelerates from rest at 2.5 m/s² over 80 m. Find its final speed.", given: "v0 = 0, a = 2.5 m/s², Δx = 80 m.", find: "v in m/s.", equation: "v^2 = v_0^2 + 2a\\Delta x", rearrangement: "v = \\sqrt{2a\\Delta x}", solution: "v² = 0 + 2(2.5)(80) = 400 ⇒ v = 20 m/s.", finalAnswer: "v = 20\\,\\mathrm{m/s}", explanation: "Torricelli equation without time." }],
+            equations: [{ section: "Kinematics", name: "Torricelli Equation", formula: "\\[ v^2 = v_0^2 + 2a\\Delta x \\]", pdfPage: "Grade 10 Textbook", explanation: "Relates velocity and displacement.", conditions: "Constant acceleration.", variables: [{ symbol: "v", rep: "Final speed", unit: "m/s", unitSym: "\\mathrm{m/s}" }] }],
+            flashcards: [{ front: "Torricelli's kinematics formula?", back: "\\( v^2 - v_0^2 = 2a\\Delta x \\)" }],
+            quiz: [{ question: "In uniform motion, the acceleration is:", options: ["Zero", "Constant positive", "Constant negative", "Variable"], correctIndex: 0, feedback: "Uniform motion implies constant velocity, so a = 0." }]
+        },
+        {
+            id: "g10-l2",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 2: Dynamics: Newton's Laws of Motion",
+            concepts: ["Newton I: Law of Inertia (ΣF = 0 ⇒ v = const).", "Newton II: Fundamental Law of Dynamics (ΣF = ma).", "Newton III: Action-Reaction (Fab = -Fba).", "Friction force: f_k = μ_k N."],
+            definitions: [
+                { term: "Newton's Second Law", definition: "Net vector force equals mass times acceleration.", symbol: "\\Sigma F", unit: "\\mathrm{N}", equation: "\\sum\\vec{F} = m\\vec{a}" },
+                { term: "Kinetic Friction", definition: "Resistive force opposing relative surface sliding.", symbol: "f_k", unit: "\\mathrm{N}", equation: "f_k = \\mu_k N" }
+            ],
+            examples: [{ title: "Example: Friction on Box", question: "A 10 kg box is pushed along a floor with μk = 0.30 (g = 9.8 m/s²). Find friction force.", given: "m = 10 kg, μk = 0.30, g = 9.8 m/s².", find: "fk in N.", equation: "f_k = \\mu_k mg", rearrangement: "f_k = \\mu_k mg", solution: "fk = 0.30 × 10 × 9.8 = 29.4 N.", finalAnswer: "f_k = 29.4\\,\\mathrm{N}", explanation: "Frictional resistance force." }],
+            equations: [{ section: "Dynamics", name: "Kinetic Friction Formula", formula: "\\[ f_k = \\mu_k N = \\mu_k mg \\]", pdfPage: "Grade 10 Textbook", explanation: "Sliding friction on horizontal surface.", conditions: "Horizontal contact surface.", variables: [{ symbol: "f_k", rep: "Friction force", unit: "N", unitSym: "\\mathrm{N}" }] }],
+            flashcards: [{ front: "Formula for kinetic friction?", back: "\\( f_k = \\mu_k N \\)" }],
+            quiz: [{ question: "If the net force on an object is zero, the object:", options: ["Remains at rest or moves with constant velocity", "Must be at rest", "Accelerates uniformly", "Curves in circular path"], correctIndex: 0, feedback: "Newton's First Law (Inertia)." }]
+        },
+        {
+            id: "g10-l3",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 3: Work, Kinetic Energy & Power",
+            concepts: ["Work of a constant force: W = Fd cos θ.", "Work-Energy Theorem: Total work done on a body equals change in kinetic energy: W_net = ΔK.", "Power is the rate of work done: P = W/t = Fv."],
+            definitions: [
+                { term: "Work of a Force", definition: "Scalar product of force vector and displacement.", symbol: "W", unit: "\\mathrm{J}", equation: "W = F d \\cos\\theta" },
+                { term: "Work-Energy Theorem", definition: "Net work equals variation in kinetic energy.", symbol: "W_{net}", unit: "\\mathrm{J}", equation: "W_{net} = \\Delta K = K_f - K_i" }
+            ],
+            examples: [{ title: "Example: Work Done by Applied Force", question: "A force of 50 N acts at 60° to the horizontal moving an object 10 m. Find work.", given: "F = 50 N, d = 10 m, θ = 60° (cos 60° = 0.50).", find: "W in J.", equation: "W = Fd\\cos\\theta", rearrangement: "W = Fd\\cos\\theta", solution: "W = 50 × 10 × 0.50 = 250 J.", finalAnswer: "W = 250\\,\\mathrm{J}", explanation: "Only horizontal force component does work." }],
+            equations: [{ section: "Work & Energy", name: "Work of Constant Force", formula: "\\[ W = F d \\cos\\theta \\]", pdfPage: "Grade 10 Textbook", explanation: "Work evaluated with directional angle.", conditions: "Constant force vector.", variables: [{ symbol: "W", rep: "Work", unit: "Joule", unitSym: "\\mathrm{J}" }] }],
+            flashcards: [{ front: "Work-Energy Theorem equation?", back: "\\( W_{net} = \\Delta K = \\frac{1}{2}mv_f^2 - \\frac{1}{2}mv_i^2 \\)" }],
+            quiz: [{ question: "A force perpendicular to displacement (θ = 90°) performs work equal to:", options: ["Zero", "Maximum positive work", "Negative work", "Infinite work"], correctIndex: 0, feedback: "cos 90° = 0, so W = 0." }]
+        },
+        {
+            id: "g10-l4",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 4: Fluids & Atmospheric Pressure",
+            concepts: ["Hydrostatic fundamental law: P = P0 + ρgh.", "Pascal's Principle: Pressure applied to enclosed fluid transmits undiminished.", "Archimedes' Principle: Buoyant force equals weight of displaced fluid: Fb = ρ_fluid V_sub g."],
+            definitions: [
+                { term: "Archimedes' Principle", definition: "Upward buoyant force equals weight of displaced fluid volume.", symbol: "F_b", unit: "\\mathrm{N}", equation: "F_b = \\rho_f V_{sub} g" },
+                { term: "Hydrostatic Equation", definition: "Absolute pressure at depth h.", symbol: "P", unit: "\\mathrm{Pa}", equation: "P = P_0 + \\rho g h" }
+            ],
+            examples: [{ title: "Example: Buoyant Force on Submerged Cylinder", question: "A 0.005 m³ metal block is immersed in water (ρ = 1000 kg/m³, g = 9.8 m/s²). Find buoyant force.", given: "V = 0.005 m³, ρ = 1000 kg/m³, g = 9.8 m/s².", find: "Fb in N.", equation: "F_b = \\rho V g", rearrangement: "F_b = \\rho V g", solution: "Fb = 1000 × 0.005 × 9.8 = 49 N.", finalAnswer: "F_b = 49\\,\\mathrm{N}", explanation: "Archimedes' buoyant lift." }],
+            equations: [{ section: "Fluids", name: "Archimedes' Buoyancy Formula", formula: "\\[ F_b = \\rho_f V_{\\text{sub}} g \\]", pdfPage: "Grade 10 Textbook", explanation: "Buoyant force on submerged object.", conditions: "Static fluid.", variables: [{ symbol: "F_b", rep: "Buoyant force", unit: "N", unitSym: "\\mathrm{N}" }] }],
+            flashcards: [{ front: "Formula for buoyant force?", back: "\\( F_b = \\rho_f V_{\\text{sub}} g \\)" }],
+            quiz: [{ question: "An object floats when its average density is:", options: ["Less than fluid density", "Greater than fluid density", "Infinite", "Equal to atmospheric density"], correctIndex: 0, feedback: "Lower density generates sufficient buoyant force before complete submersion." }]
+        },
+        {
+            id: "g10-ch2-l1",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 2 • Lesson 1: Heat, Temperature & Gas Model",
+            concepts: ["Heat transfer in calorimetry: Q_lost + Q_gained = 0.", "Ideal Gas Equation of State: PV = nRT.", "Thermal expansion of solids: ΔL = α L0 ΔT."],
+            definitions: [
+                { term: "Ideal Gas Law", definition: "Unified thermodynamic equation of state for ideal gas.", symbol: "PV = nRT", unit: "\\text{No unit}", equation: "PV = nRT" },
+                { term: "Linear Expansion", definition: "Fractional length change per degree temperature rise.", symbol: "\\Delta L", unit: "\\mathrm{m}", equation: "\\Delta L = \\alpha L_0 \\Delta T" }
+            ],
+            examples: [{ title: "Example: Gas Volume at New Pressure", question: "At constant T, gas volume is 4.0 L at 1.0 atm. Find volume at 2.5 atm (Boyle's Law).", given: "P1 = 1.0 atm, V1 = 4.0 L, P2 = 2.5 atm.", find: "V2 in L.", equation: "P_1 V_1 = P_2 V_2", rearrangement: "V_2 = \\frac{P_1 V_1}{P_2}", solution: "V2 = (1.0 × 4.0) / 2.5 = 1.6 L.", finalAnswer: "V_2 = 1.6\\,\\mathrm{L}", explanation: "Isothermal compression." }],
+            equations: [{ section: "Thermodynamics", name: "Ideal Gas Law", formula: "\\[ PV = nRT \\]", pdfPage: "Grade 10 Textbook", explanation: "Ideal gas state relationship.", conditions: "Low to moderate pressure.", variables: [{ symbol: "P", rep: "Pressure", unit: "Pa", unitSym: "\\mathrm{Pa}" }] }],
+            flashcards: [{ front: "Ideal Gas equation?", back: "\\( PV = nRT \\)" }],
+            quiz: [{ question: "At constant temperature, doubling the pressure of an ideal gas will:", options: ["Halve its volume", "Double its volume", "Double its temperature", "Cause condensation"], correctIndex: 0, feedback: "Boyle's Law: P is inversely proportional to V." }]
+        },
+        {
+            id: "g10-ch3-l1",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 3 • Lesson 1: Electrostatics & Coulomb's Law",
+            concepts: ["Coulomb's Law: Electrostatic force between point charges: F = k|q1 q2|/r².", "Electric field is the force per unit positive test charge: E = F/q0 = k|q|/r².", "Electric field lines point away from positive charges toward negative charges."],
+            definitions: [
+                { term: "Coulomb's Law", definition: "Electrostatic inverse-square interaction between point charges.", symbol: "F", unit: "\\mathrm{N}", equation: "F = k\\frac{|q_1 q_2|}{r^2}" },
+                { term: "Electric Field Strength", definition: "Electrostatic force exerted per unit positive test charge.", symbol: "E", unit: "\\mathrm{N/C} \\; (\\mathrm{V/m})", equation: "E = \\frac{F}{q}" }
+            ],
+            examples: [{ title: "Example: Coulomb Force Between Two Charges", question: "Two charges of +2.0 µC and +3.0 µC are separated by 0.30 m in vacuum (k = 9.0 × 10⁹ N·m²/C²). Find force.", given: "q1 = 2.0 × 10⁻⁶ C, q2 = 3.0 × 10⁻⁶ C, r = 0.30 m.", find: "F in N.", equation: "F = k\\frac{q_1 q_2}{r^2}", rearrangement: "F = k\\frac{q_1 q_2}{r^2}", solution: "F = (9.0 × 10⁹ × 2.0 × 10⁻⁶ × 3.0 × 10⁻⁶) / (0.30)² = 0.054 / 0.09 = 0.60 N.", finalAnswer: "F = 0.60\\,\\mathrm{N} \\text{ (Repulsive)}", explanation: "Coulomb repulsion between like charges." }],
+            equations: [{ section: "Electrostatics", name: "Coulomb's Law", formula: "\\[ F = k\\frac{|q_1 q_2|}{r^2} \\]", pdfPage: "Grade 10 Textbook", explanation: "Force between point charges in vacuum.", conditions: "Point charges.", variables: [{ symbol: "F", rep: "Electrostatic force", unit: "N", unitSym: "\\mathrm{N}" }, { symbol: "k", rep: "Coulomb constant (9×10⁹ N·m²/C²)", unit: "N·m²/C²", unitSym: "\\mathrm{N\\cdot m^2/C^2}" }] }],
+            flashcards: [{ front: "Coulomb's Law formula?", back: "\\( F = k\\frac{|q_1 q_2|}{r^2} \\)" }],
+            quiz: [{ question: "If the distance between two charges is doubled, the electrostatic force:", options: ["Decreases to 1/4", "Halves", "Doubles", "Quadruples"], correctIndex: 0, feedback: "Inverse-square dependence: F ∝ 1/r²." }]
+        },
+        {
+            id: "g10-ch3-l2",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 3 • Lesson 2: DC Circuits & Magnetic Fields",
+            concepts: ["Ohm's Law across multi-resistor DC circuits.", "Magnetic field produced by electric current: Right-Hand Rule.", "Magnetic force on a current-carrying wire in magnetic field: F = IlB sin θ (Laplace force)."],
+            definitions: [
+                { term: "Laplace Force", definition: "Magnetic deflecting force on current-carrying conductor.", symbol: "F", unit: "\\mathrm{N}", equation: "F = I l B \\sin\\theta" },
+                { term: "Magnetic Flux Density", definition: "Magnitude of magnetic field B.", symbol: "B", unit: "\\mathrm{T}", equation: "B = \\frac{F}{I l}" }
+            ],
+            examples: [{ title: "Example: Wire in Magnetic Field", question: "A 0.50 m wire carries 4.0 A perpendicular to a 0.20 T magnetic field. Find magnetic force.", given: "l = 0.50 m, I = 4.0 A, B = 0.20 T, θ = 90°.", find: "F in N.", equation: "F = IlB\\sin\\theta", rearrangement: "F = IlB", solution: "F = 4.0 × 0.50 × 0.20 × 1.0 = 0.40 N.", finalAnswer: "F = 0.40\\,\\mathrm{N}", explanation: "Laplace magnetic force." }],
+            equations: [{ section: "Magnetism", name: "Laplace Magnetic Force", formula: "\\[ F = IlB \\sin\\theta \\]", pdfPage: "Grade 10 Textbook", explanation: "Deflecting force on current in magnetic field.", conditions: "Conductor in uniform field.", variables: [{ symbol: "F", rep: "Magnetic force", unit: "N", unitSym: "\\mathrm{N}" }] }],
+            flashcards: [{ front: "Formula for force on current wire in B-field?", back: "\\( F = IlB \\sin\\theta \\)" }],
+            quiz: [{ question: "A wire carrying current parallel to magnetic field lines (θ = 0°) experiences:", options: ["Zero force", "Maximum force", "Repulsion", "Rotation"], correctIndex: 0, feedback: "sin 0° = 0, so F = 0." }]
+        },
+        {
+            id: "g10-ch3-l3",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 3 • Lesson 3: AC & Transformer Systems",
+            concepts: ["Electromagnetic induction: changing magnetic flux induces an electromotive force (Faraday's Law).", "Transformer voltage and turns relationship: Vs/Vp = Ns/Np = Ip/Is.", "Root-mean-square (RMS) values for AC: V_rms = V0 / √2."],
+            definitions: [
+                { term: "Transformer Equation", definition: "Ratio of secondary to primary voltages equals turns ratio.", symbol: "\\text{Turns Ratio}", unit: "\\text{No unit}", equation: "\\frac{V_s}{V_p} = \\frac{N_s}{N_p} = \\frac{I_p}{I_s}" },
+                { term: "RMS Voltage", definition: "Equivalent DC effective heating voltage.", symbol: "V_{\\text{rms}}", unit: "\\mathrm{V}", equation: "V_{\\text{rms}} = \\frac{V_0}{\\sqrt{2}} \\approx 0.707 V_0" }
+            ],
+            examples: [{ title: "Example: Transformer Turns Ratio", question: "A transformer steps down 240 V to 12 V. If primary has 1200 turns, find secondary turns.", given: "Vp = 240 V, Vs = 12 V, Np = 1200.", find: "Ns.", equation: "\\frac{V_s}{V_p} = \\frac{N_s}{N_p}", rearrangement: "N_s = N_p \\frac{V_s}{V_p}", solution: "Ns = 1200 × (12 / 240) = 1200 × 0.05 = 60 turns.", finalAnswer: "N_s = 60\\,\\text{turns}", explanation: "Step-down voltage conversion." }],
+            equations: [{ section: "Transformers", name: "Transformer Ratio Formula", formula: "\\[ \\frac{V_s}{V_p} = \\frac{N_s}{N_p} = \\frac{I_p}{I_s} \\]", pdfPage: "Grade 10 Textbook", explanation: "Ideal transformer conservation law.", conditions: "Ideal transformer.", variables: [{ symbol: "V_s", rep: "Secondary voltage", unit: "V", unitSym: "\\mathrm{V}" }] }],
+            flashcards: [{ front: "Transformer turns ratio formula?", back: "\\( \\frac{V_s}{V_p} = \\frac{N_s}{N_p} = \\frac{I_p}{I_s} \\)" }],
+            quiz: [{ question: "A step-up transformer increases voltage and:", options: ["Decreases current proportionally", "Increases current proportionally", "Increases power", "Changes AC to DC"], correctIndex: 0, feedback: "Conservation of power (VpIp = VsIs) means stepping up voltage reduces current." }]
+        },
+        {
+            id: "g10-ch4-l1",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 4 • Lesson 1: Light Propagation & Reflection",
+            concepts: ["Law of Reflection: Angle of incidence equals angle of reflection (i = r).", "Spherical mirrors: Focal length is half radius of curvature: f = R/2.", "Mirror equation: 1/f = 1/do + 1/di, with magnification M = -di/do = hi/ho."],
+            definitions: [
+                { term: "Law of Reflection", definition: "Incident angle equals reflected angle measured from normal.", symbol: "i = r", unit: "{^\\circ}", equation: "i = r" },
+                { term: "Mirror Formula", definition: "Gaussian optics equation for spherical mirrors.", symbol: "f", unit: "\\mathrm{m}", equation: "\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}" }
+            ],
+            examples: [{ title: "Example: Concave Mirror Image", question: "An object is placed 30 cm from a concave mirror with focal length f = 20 cm. Find image distance di.", given: "f = 20 cm, do = 30 cm.", find: "di in cm.", equation: "\\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i}", rearrangement: "d_i = \\frac{f d_o}{d_o - f}", solution: "di = (20 × 30) / (30 - 20) = 600 / 10 = 60 cm.", finalAnswer: "d_i = 60\\,\\mathrm{cm}", explanation: "Real, inverted image located at 60 cm." }],
+            equations: [{ section: "Optics", name: "Mirror Formula", formula: "\\[ \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i} \\iff d_i = \\frac{f d_o}{d_o - f} \\]", pdfPage: "Grade 10 Textbook", explanation: "Gaussian mirror relationship.", conditions: "Paraxial light rays.", variables: [{ symbol: "f", rep: "Focal length", unit: "m", unitSym: "\\mathrm{m}" }] }],
+            flashcards: [{ front: "Spherical mirror formula?", back: "\\( \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i} \\)" }],
+            quiz: [{ question: "A plane mirror always produces an image that is:", options: ["Virtual, upright, and same size", "Real, inverted, and magnified", "Virtual, inverted, and diminished", "Real, upright, and diminished"], correctIndex: 0, feedback: "Plane mirrors form virtual images of identical size." }]
+        },
+        {
+            id: "g10-ch4-l2",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 4 • Lesson 2: Refraction & Snell's Law",
+            concepts: ["Refraction is the bending of light as it passes between different optical media.", "Snell's Law: n1 sin i = n2 sin r, where refractive index n = c/v.", "Critical angle and Total Internal Reflection (TIR): sin θc = n2/n1 when traveling from denser to rarer medium."],
+            definitions: [
+                { term: "Snell's Law", definition: "Mathematical law governing refraction at planar boundaries.", symbol: "n_1 \\sin i = n_2 \\sin r", unit: "\\text{No unit}", equation: "n_1 \\sin i = n_2 \\sin r" },
+                { term: "Critical Angle", definition: "Incident angle in denser medium yielding 90° refraction.", symbol: "\\theta_c", unit: "{^\\circ}", equation: "\\sin\\theta_c = \\frac{n_2}{n_1}" }
+            ],
+            examples: [{ title: "Example: Critical Angle Glass-to-Air", question: "Calculate the critical angle for crown glass (n1 = 1.50) to air (n2 = 1.00).", given: "n1 = 1.50, n2 = 1.00.", find: "θc in degrees.", equation: "\\sin\\theta_c = \\frac{n_2}{n_1}", rearrangement: "\\theta_c = \\sin^{-1}(n_2/n_1)", solution: "sin θc = 1.00 / 1.50 = 0.6667 ⇒ θc = sin⁻¹(0.6667) ≈ 41.8°.", finalAnswer: "\\theta_c \\approx 41.8^\\circ", explanation: "Angles exceeding 41.8° result in total internal reflection." }],
+            equations: [{ section: "Refraction", name: "Snell's Law", formula: "\\[ n_1 \\sin i = n_2 \\sin r \\iff \\sin r = \\frac{n_1 \\sin i}{n_2} \\]", pdfPage: "Grade 10 Textbook", explanation: "Refractive deviation relationship.", conditions: "Planar interface.", variables: [{ symbol: "n", rep: "Refractive index", unit: "Dimensionless", unitSym: "\\text{No unit}" }] }],
+            flashcards: [{ front: "Snell's Law formula?", back: "\\( n_1 \\sin i = n_2 \\sin r \\)" }, { front: "Critical angle condition?", back: "\\( \\sin\\theta_c = \\frac{n_2}{n_1} \\)" }],
+            quiz: [{ question: "Total internal reflection can only occur when light travels from:", options: ["An optically denser to a rarer medium", "A rarer to a denser medium", "Air into glass", "Vacuum into water"], correctIndex: 0, feedback: "TIR requires light traveling from higher to lower refractive index." }]
+        },
+        {
+            id: "g10-ch4-l3",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            games: [],
+            title: "Chapter 4 • Lesson 3: Double Plane, Slab, and Prism",
+            concepts: ["Light ray through parallel plate slab experiences lateral displacement d without angular deviation.", "Prism optics: Angle of deviation D = i1 + i2 - A, where A is the prism apex angle.", "At minimum deviation Dm, ray passes symmetrically: n = sin((A + Dm)/2) / sin(A/2)."],
+            definitions: [
+                { term: "Lateral Displacement", definition: "Perpendicular separation between incident and emergent parallel rays.", symbol: "d", unit: "\\mathrm{m}", equation: "d = \\frac{e \\sin(i - r)}{\\cos r}" },
+                { term: "Prism Deviation Formula", definition: "Refractive index determined by minimum prism deviation.", symbol: "n", unit: "\\text{No unit}", equation: "n = \\frac{\\sin\\left(\\frac{A + D_m}{2}\\right)}{\\sin\\left(\\frac{A}{2}\\right)}" }
+            ],
+            examples: [{ title: "Example: Prism Refractive Index", question: "An equilateral prism (A = 60°) has minimum deviation Dm = 38°. Find its refractive index n.", given: "A = 60°, Dm = 38°.", find: "n.", equation: "n = \\frac{\\sin((A+D_m)/2)}{\\sin(A/2)}", rearrangement: "n = \\frac{\\sin(49^\\circ)}{\\sin(30^\\circ)}", solution: "n = sin(49°) / sin(30°) = 0.7547 / 0.5000 = 1.51.", finalAnswer: "n \\approx 1.51", explanation: "Standard glass prism refractive index." }],
+            equations: [{ section: "Prism Optics", name: "Minimum Deviation Index Formula", formula: "\\[ n = \\frac{\\sin\\left(\\frac{A + D_m}{2}\\right)}{\\sin\\left(\\frac{A}{2}\\right)} \\]", pdfPage: "Grade 10 Textbook", explanation: "Calculates prism refractive index from apex and minimum deviation angles.", conditions: "Symmetric minimum deviation.", variables: [{ symbol: "n", rep: "Refractive index", unit: "Dimensionless", unitSym: "\\text{No unit}" }] }],
+            flashcards: [{ front: "Prism minimum deviation formula?", back: "\\( n = \\frac{\\sin\\left(\\frac{A + D_m}{2}\\right)}{\\sin\\left(\\frac{A}{2}\\right)} \\)" }],
+            quiz: [{ question: "After passing through a parallel-sided glass slab, an emergent ray is:", options: ["Parallel to the incident ray but laterally shifted", "Deviated at 90°", "Converged to a focal point", "Completely absorbed"], correctIndex: 0, feedback: "Opposing parallel faces cancel angular deviation, leaving only lateral displacement." }]
+        }
+    ];
+
+    // =========================================================================
+    // GRADE 11 CURRICULUM DATA
+    // Textbook: Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf
+    // =========================================================================
+    const G11_LESSONS = [
+        {
+            id: "g11-l1",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 1: Kinematics in 2D & Projectile Motion",
+            concepts: ["2D projectile motion decomposes into uniform horizontal motion and accelerated vertical motion under gravity.", "Initial velocity components: v0x = v0 cos θ, v0y = v0 sin θ.", "Horizontal range: R = (v0² sin 2θ) / g; Maximum height: H = (v0² sin² θ) / (2g)."],
+            definitions: [
+                { term: "Horizontal Range", definition: "Total horizontal distance traveled by projectile on level ground.", symbol: "R", unit: "\\mathrm{m}", equation: "R = \\frac{v_0^2 \\sin 2\\theta}{g}" },
+                { term: "Maximum Apex Height", definition: "Peak vertical displacement achieved along trajectory.", symbol: "H", unit: "\\mathrm{m}", equation: "H = \\frac{v_0^2 \\sin^2\\theta}{2g}" }
+            ],
+            examples: [{ title: "Example: Maximum Height of Projectile", question: "A ball is launched at v0 = 20 m/s at 30° to horizontal (g = 9.8 m/s²). Find maximum height H.", given: "v0 = 20 m/s, θ = 30° (sin 30° = 0.50), g = 9.8 m/s².", find: "H in m.", equation: "H = \\frac{v_0^2 \\sin^2\\theta}{2g}", rearrangement: "H = \\frac{v_0^2 \\sin^2\\theta}{2g}", solution: "H = (400 × 0.25) / (2 × 9.8) = 100 / 19.6 ≈ 5.10 m.", finalAnswer: "H \\approx 5.10\\,\\mathrm{m}", explanation: "Vertical kinetic energy converted to gravitational potential energy." }],
+            equations: [{ section: "2D Kinematics", name: "Projectile Range Formula", formula: "\\[ R = \\frac{v_0^2 \\sin 2\\theta}{g} \\]", pdfPage: "Grade 11 Textbook", explanation: "Calculates level horizontal flight range.", conditions: "Level ground and negligible air drag.", variables: [{ symbol: "R", rep: "Range", unit: "m", unitSym: "\\mathrm{m}" }] }],
+            flashcards: [{ front: "Projectile horizontal range formula?", back: "\\( R = \\frac{v_0^2 \\sin 2\\theta}{g} \\)" }],
+            quiz: [{ question: "At what launch angle is horizontal projectile range maximized?", options: ["45°", "30°", "60°", "90°"], correctIndex: 0, feedback: "sin(2θ) reaches its maximum value of 1 when 2θ = 90°, so θ = 45°." }]
+        },
+        {
+            id: "g11-l2",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 2: Accelerated Frames & Rotational Dynamics",
+            concepts: ["Torque: τ = r F sin θ measures rotational effort about an axis.", "Newton's Second Law for Rotation: τ_net = I α, where I is moment of inertia.", "Road banking angle without friction: tan θ = v² / (rg)."],
+            definitions: [
+                { term: "Torque", definition: "Rotational turning moment of force about axis.", symbol: "\\tau", unit: "\\mathrm{N\\cdot m}", equation: "\\tau = r F \\sin\\theta" },
+                { term: "Moment of Inertia", definition: "Rotational mass quantifying resistance to angular acceleration.", symbol: "I", unit: "\\mathrm{kg\\cdot m^2}", equation: "I = \\sum m_i r_i^2" }
+            ],
+            examples: [{ title: "Example: Frictionless Banking Angle", question: "Find banking angle for highway curve of radius 100 m at speed 20 m/s (g = 9.8 m/s²).", given: "r = 100 m, v = 20 m/s, g = 9.8 m/s².", find: "θ in degrees.", equation: "\\tan\\theta = \\frac{v^2}{rg}", rearrangement: "\\theta = \\tan^{-1}(v^2/(rg))", solution: "tan θ = (400) / (100 × 9.8) = 400 / 980 ≈ 0.4082 ⇒ θ ≈ 22.2°.", finalAnswer: "\\theta \\approx 22.2^\\circ", explanation: "Normal force horizontal component provides required centripetal acceleration." }],
+            equations: [{ section: "Rotation", name: "Rotational Newton II", formula: "\\[ \\tau = I \\alpha \\]", pdfPage: "Grade 11 Textbook", explanation: "Angular acceleration from applied net torque.", conditions: "Fixed axis rotation.", variables: [{ symbol: "\\tau", rep: "Torque", unit: "N·m", unitSym: "\\mathrm{N\\cdot m}" }] }],
+            flashcards: [{ front: "Rotational equivalent of F = ma?", back: "\\( \\tau = I \\alpha \\)" }],
+            quiz: [{ question: "A torque produces an angular acceleration that is inversely proportional to:", options: ["Moment of inertia", "Force", "Radius", "Angular velocity"], correctIndex: 0, feedback: "α = τ / I means angular acceleration is inversely proportional to moment of inertia." }]
+        },
+        {
+            id: "g11-l3",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 3: Universal Gravitation & Satellite Motion",
+            concepts: ["Newton's Law of Universal Gravitation: F = G m1 m2 / r².", "Orbital speed of circular satellite: v_orb = √(GM / r).", "Escape velocity from spherical mass: v_esc = √(2GM / R).", "Kepler's Third Law: T² / r³ = 4π² / (GM)."],
+            definitions: [
+                { term: "Universal Gravitation", definition: "Attractive force between any two masses.", symbol: "F_g", unit: "\\mathrm{N}", equation: "F_g = G\\frac{m_1 m_2}{r^2}" },
+                { term: "Orbital Speed", definition: "Tangential speed required for stable circular orbit.", symbol: "v_{\\text{orb}}", unit: "\\mathrm{m/s}", equation: "v_{\\text{orb}} = \\sqrt{\\frac{GM}{r}}" }
+            ],
+            examples: [{ title: "Example: Satellite Orbital Speed", question: "Calculate orbital speed of low Earth satellite at r = 6.6 × 10⁶ m (M = 5.98 × 10²⁴ kg, G = 6.67 × 10⁻¹¹ N·m²/kg²).", given: "r = 6.6 × 10⁶ m, M = 5.98 × 10²⁴ kg, G = 6.67 × 10⁻¹¹ N·m²/kg².", find: "vorb in m/s.", equation: "v = \\sqrt{\\frac{GM}{r}}", rearrangement: "v = \\sqrt{\\frac{GM}{r}}", solution: "GM = 3.988 × 10¹⁴ ⇒ v = √(3.988 × 10¹⁴ / 6.6 × 10⁶) = √(6.04 × 10⁷) ≈ 7770 m/s.", finalAnswer: "v \\approx 7.77\\,\\mathrm{km/s}", explanation: "Gravity provides centripetal acceleration." }],
+            equations: [{ section: "Gravitation", name: "Newton's Gravitational Law", formula: "\\[ F = G\\frac{m_1 m_2}{r^2} \\]", pdfPage: "Grade 11 Textbook", explanation: "Universal gravitational attraction.", conditions: "Spherical point masses.", variables: [{ symbol: "F", rep: "Gravitational force", unit: "N", unitSym: "\\mathrm{N}" }] }],
+            flashcards: [{ front: "Formula for satellite orbital velocity?", back: "\\( v = \\sqrt{\\frac{GM}{r}} \\)" }],
+            quiz: [{ question: "If the orbital radius of a satellite is quadrupled (×4), its orbital speed will:", options: ["Halve (1/2)", "Double (×2)", "Quarter (1/4)", "Stay constant"], correctIndex: 0, feedback: "v ∝ 1/√r, so √4 = 2 in denominator." }]
+        },
+        {
+            id: "g11-l4",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 4: Impulse, Momentum & Collisions",
+            concepts: ["Linear momentum: p = mv (conserved in isolated systems).", "Impulse-Momentum Theorem: J = F Δt = Δp = mv_f - mv_i.", "Collisions: Perfectly elastic (kinetic energy conserved) vs inelastic (kinetic energy dissipated)."],
+            definitions: [
+                { term: "Linear Momentum", definition: "Vector quantity of motion defined as mass times velocity.", symbol: "p", unit: "\\mathrm{kg\\cdot m/s}", equation: "p = m v" },
+                { term: "Impulse", definition: "Integral of force over time interval, equal to momentum change.", symbol: "J", unit: "\\mathrm{N\\cdot s}", equation: "J = F \\Delta t = \\Delta p" }
+            ],
+            examples: [{ title: "Example: Impulse on Tennis Ball", question: "A 0.060 kg tennis ball traveling at 20 m/s is struck back at 30 m/s. Find the impulse delivered.", given: "m = 0.060 kg, vi = +20 m/s, vf = -30 m/s.", find: "Impulse J in N·s.", equation: "J = m(v_f - v_i)", rearrangement: "J = m\\Delta v", solution: "J = 0.060 × (-30 - 20) = 0.060 × (-50) = -3.0 N·s.", finalAnswer: "|J| = 3.0\\,\\mathrm{N\\cdot s}", explanation: "Opposite direction change creates large velocity differential." }],
+            equations: [{ section: "Momentum", name: "Impulse-Momentum Theorem", formula: "\\[ J = F \\Delta t = \\Delta p = m v_f - m v_i \\]", pdfPage: "Grade 11 Textbook", explanation: "Relates impulse to change in linear momentum.", conditions: "Constant or average force.", variables: [{ symbol: "J", rep: "Impulse", unit: "N·s", unitSym: "\\mathrm{N\\cdot s}" }] }],
+            flashcards: [{ front: "Impulse-Momentum Theorem formula?", back: "\\( J = F\\Delta t = \\Delta p \\)" }],
+            quiz: [{ question: "In all collisions in an isolated system, which quantity is always conserved?", options: ["Total linear momentum", "Total kinetic energy", "Mechanical potential energy", "Temperature"], correctIndex: 0, feedback: "Conservation of momentum holds for all isolated collisions." }]
+        },
+        {
+            id: "g11-ch1-l5",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 5: Energy Conservation, Pendulum & Moduli",
+            concepts: ["Simple pendulum period for small angles: T = 2π √(L/g).", "Mechanical energy conservation: E = K + U = constant.", "Elasticity moduli: Young's Modulus Y = (F/A) / (ΔL/L0)."],
+            definitions: [
+                { term: "Pendulum Period", definition: "Time for one complete oscillation cycle.", symbol: "T", unit: "\\mathrm{s}", equation: "T = 2\\pi\\sqrt{\\frac{L}{g}}" },
+                { term: "Young's Modulus", definition: "Ratio of tensile stress to tensile strain.", symbol: "Y", unit: "\\mathrm{Pa}", equation: "Y = \\frac{F/A}{\\Delta L / L_0}" }
+            ],
+            examples: [{ title: "Example: Period of 1m Pendulum", question: "Find period of a 1.0 m simple pendulum (g = 9.8 m/s²).", given: "L = 1.0 m, g = 9.8 m/s².", find: "T in s.", equation: "T = 2\\pi\\sqrt{\\frac{L}{g}}", rearrangement: "T = 2\\pi\\sqrt{L/g}", solution: "T = 2π √(1.0 / 9.8) = 2π × 0.3194 ≈ 2.01 s.", finalAnswer: "T \\approx 2.01\\,\\mathrm{s}", explanation: "Standard seconds pendulum has roughly 1m length." }],
+            equations: [{ section: "Oscillations", name: "Simple Pendulum Period", formula: "\\[ T = 2\\pi\\sqrt{\\frac{L}{g}} \\]", pdfPage: "Grade 11 Textbook", explanation: "Small amplitude pendulum oscillation period.", conditions: "Small angle approximation (θ < 10°).", variables: [{ symbol: "T", rep: "Period", unit: "s", unitSym: "\\mathrm{s}" }] }],
+            flashcards: [{ front: "Simple pendulum period formula?", back: "\\( T = 2\\pi\\sqrt{\\frac{L}{g}} \\)" }],
+            quiz: [{ question: "Doubling the mass of a simple pendulum bob will:", options: ["Keep the period unchanged", "Double the period", "Halve the period", "Increase period by √2"], correctIndex: 0, feedback: "Period T = 2π√(L/g) is independent of bob mass." }]
+        },
+        {
+            id: "g11-ch1-l6",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 1 • Lesson 6: Fluid Dynamics, Continuity & Viscosity",
+            concepts: ["Continuity equation for incompressible fluid: A1 v1 = A2 v2.", "Bernoulli's Principle: P + 1/2 ρ v² + ρgh = constant.", "Viscous drag force: Stokes' Law F_drag = 6πηrv."],
+            definitions: [
+                { term: "Continuity Equation", definition: "Conservation of mass in steady fluid flow.", symbol: "A v = \\text{const}", unit: "\\mathrm{m^3/s}", equation: "A_1 v_1 = A_2 v_2" },
+                { term: "Bernoulli Equation", definition: "Conservation of energy in streamline fluid flow.", symbol: "\\text{Bernoulli}", unit: "\\mathrm{Pa}", equation: "P + \\frac{1}{2}\\rho v^2 + \\rho g h = \\text{constant}" }
+            ],
+            examples: [{ title: "Example: Fluid Speed in Constricted Pipe", question: "Water flows at 2.0 m/s in pipe of area 0.04 m². Area narrows to 0.01 m². Find new speed v2.", given: "A1 = 0.04 m², v1 = 2.0 m/s, A2 = 0.01 m².", find: "v2 in m/s.", equation: "A_1 v_1 = A_2 v_2", rearrangement: "v_2 = \\frac{A_1 v_1}{A_2}", solution: "v2 = (0.04 × 2.0) / 0.01 = 8.0 m/s.", finalAnswer: "v_2 = 8.0\\,\\mathrm{m/s}", explanation: "Narrowing channel quadruples flow velocity." }],
+            equations: [{ section: "Fluid Dynamics", name: "Continuity Equation", formula: "\\[ A_1 v_1 = A_2 v_2 \\iff v_2 = v_1 \\frac{A_1}{A_2} \\]", pdfPage: "Grade 11 Textbook", explanation: "Mass conservation in incompressible tube flow.", conditions: "Incompressible steady flow.", variables: [{ symbol: "A", rep: "Cross-sectional area", unit: "m²", unitSym: "\\mathrm{m^2}" }] }],
+            flashcards: [{ front: "Continuity equation formula?", back: "\\( A_1 v_1 = A_2 v_2 \\)" }, { front: "Bernoulli's equation?", back: "\\( P + \\frac{1}{2}\\rho v^2 + \\rho gh = \\text{const} \\)" }],
+            quiz: [{ question: "According to Bernoulli's principle, where fluid speed increases, fluid pressure:", options: ["Decreases", "Increases", "Remains unchanged", "Becomes negative"], correctIndex: 0, feedback: "Conservation of energy requires pressure to drop when velocity increases." }]
+        },
+        {
+            id: "g11-ch2-l1",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 2 • Lesson 1: Thermal Physics, Expansion & Heat",
+            concepts: ["Linear and volumetric thermal expansion: ΔL = α L0 ΔT, ΔV = β V0 ΔT (β ≈ 3α).", "Calorimetry: Heat exchange between hot and cold bodies until thermal equilibrium is established.", "Latent heat of phase transitions: Q = mL."],
+            definitions: [
+                { term: "Linear Expansion", definition: "Length change per unit initial length per degree.", symbol: "\\alpha", unit: "\\mathrm{K^{-1}}", equation: "\\Delta L = \\alpha L_0 \\Delta T" },
+                { term: "Latent Heat", definition: "Thermal energy transferred during phase change at constant temperature.", symbol: "L", unit: "\\mathrm{J/kg}", equation: "Q = m L" }
+            ],
+            examples: [{ title: "Example: Expansion of Steel Rail", question: "A 50 m steel rail experiences a temperature increase of 40 °C (α = 1.2 × 10⁻⁵ K⁻¹). Find expansion ΔL.", given: "L0 = 50 m, ΔT = 40 °C, α = 1.2 × 10⁻⁵ K⁻¹.", find: "ΔL in mm.", equation: "\\Delta L = \\alpha L_0 \\Delta T", rearrangement: "\\Delta L = \\alpha L_0 \\Delta T", solution: "ΔL = 1.2 × 10⁻⁵ × 50 × 40 = 0.024 m = 24 mm.", finalAnswer: "\\Delta L = 24\\,\\mathrm{mm}", explanation: "Thermal expansion in long structures." }],
+            equations: [{ section: "Thermal Expansion", name: "Linear Expansion Formula", formula: "\\[ \\Delta L = \\alpha L_0 \\Delta T \\]", pdfPage: "Grade 11 Textbook", explanation: "Calculates thermal length elongation.", conditions: "Moderate temperature range.", variables: [{ symbol: "\\Delta L", rep: "Length change", unit: "m", unitSym: "\\mathrm{m}" }] }],
+            flashcards: [{ front: "Formula for linear thermal expansion?", back: "\\( \\Delta L = \\alpha L_0 \\Delta T \\)" }],
+            quiz: [{ question: "During a solid-to-liquid melting phase transition, temperature:", options: ["Remains constant", "Increases linearly", "Decreases", "Fluctuates randomly"], correctIndex: 0, feedback: "Latent heat breaks molecular bonds without changing kinetic temperature." }]
+        },
+        {
+            id: "g11-ch2-l2",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 2 • Lesson 2: Periodic Motion, Oscillations & Waves",
+            concepts: ["Simple Harmonic Motion (SHM): Restoring force F = -kx gives acceleration a = -ω²x.", "Angular frequency of spring oscillator: ω = √(k/m), Period T = 2π √(m/k).", "Doppler Effect: Frequency shift due to relative motion between source and observer."],
+            definitions: [
+                { term: "Simple Harmonic Motion", definition: "Periodic motion where restoring force is directly proportional to displacement.", symbol: "\\text{SHM}", unit: "\\text{No unit}", equation: "a = -\\omega^2 x" },
+                { term: "Spring Period", definition: "Period of mass m on spring of stiffness k.", symbol: "T", unit: "\\mathrm{s}", equation: "T = 2\\pi\\sqrt{\\frac{m}{k}}" }
+            ],
+            examples: [{ title: "Example: Spring Oscillator Period", question: "A 0.50 kg mass hangs on a spring with k = 200 N/m. Find oscillation period T.", given: "m = 0.50 kg, k = 200 N/m.", find: "T in s.", equation: "T = 2\\pi\\sqrt{\\frac{m}{k}}", rearrangement: "T = 2\\pi\\sqrt{m/k}", solution: "T = 2π √(0.50 / 200) = 2π √(0.0025) = 2π × 0.050 ≈ 0.314 s.", finalAnswer: "T \\approx 0.314\\,\\mathrm{s}", explanation: "Mass-spring harmonic period." }],
+            equations: [{ section: "SHM", name: "Spring-Mass Period Formula", formula: "\\[ T = 2\\pi\\sqrt{\\frac{m}{k}} \\]", pdfPage: "Grade 11 Textbook", explanation: "Period of linear elastic oscillator.", conditions: "Ideal Hookean spring.", variables: [{ symbol: "T", rep: "Period", unit: "s", unitSym: "\\mathrm{s}" }] }],
+            flashcards: [{ front: "Period formula for spring-mass oscillator?", back: "\\( T = 2\\pi\\sqrt{\\frac{m}{k}} \\)" }],
+            quiz: [{ question: "In simple harmonic motion, maximum acceleration occurs at:", options: ["The extreme amplitude positions", "The central equilibrium position", "Halfway between center and extreme", "Randomly"], correctIndex: 0, feedback: "a = -ω²x is maximal when displacement x = ±A." }]
+        },
+        {
+            id: "g11-ch3-l1",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 3 • Lesson 1: Electrostatics, Fields & Capacitors",
+            concepts: ["Electric potential difference: V = W / q = E d in uniform field.", "Capacitance of parallel plate capacitor: C = ε0 A / d.", "Energy stored in charged capacitor: U = 1/2 C V² = 1/2 Q V = Q² / (2C)."],
+            definitions: [
+                { term: "Capacitance", definition: "Ratio of stored electric charge to potential difference.", symbol: "C", unit: "\\mathrm{F}", equation: "C = \\frac{Q}{V} = \\varepsilon_0 \\frac{A}{d}" },
+                { term: "Capacitor Stored Energy", definition: "Electrostatic potential energy stored in capacitor electric field.", symbol: "U", unit: "\\mathrm{J}", equation: "U = \\frac{1}{2} C V^2" }
+            ],
+            examples: [{ title: "Example: Energy Stored in Capacitor", question: "A 100 µF capacitor is charged to 50 V. Calculate stored electrostatic energy.", given: "C = 100 × 10⁻⁶ F, V = 50 V.", find: "U in J.", equation: "U = \\frac{1}{2} C V^2", rearrangement: "U = 0.5 C V^2", solution: "U = 0.5 × (100 × 10⁻⁶) × (50)² = 0.5 × 10⁻⁴ × 2500 = 0.125 J.", finalAnswer: "U = 0.125\\,\\mathrm{J}", explanation: "Energy stored in electric field." }],
+            equations: [{ section: "Capacitance", name: "Capacitor Energy Formula", formula: "\\[ U = \\frac{1}{2}CV^2 = \\frac{1}{2}QV = \\frac{Q^2}{2C} \\]", pdfPage: "Grade 11 Textbook", explanation: "Stored electrostatic energy.", conditions: "Linear capacitor.", variables: [{ symbol: "U", rep: "Stored energy", unit: "Joule", unitSym: "\\mathrm{J}" }] }],
+            flashcards: [{ front: "Parallel plate capacitor formula?", back: "\\( C = \\varepsilon_0 \\frac{A}{d} \\)" }, { front: "Energy stored in capacitor?", back: "\\( U = \\frac{1}{2} C V^2 \\)" }],
+            quiz: [{ question: "Halving the plate separation d of a parallel plate capacitor will:", options: ["Double its capacitance", "Halve its capacitance", "Quadruple its capacitance", "Leave it unchanged"], correctIndex: 0, feedback: "C = ε0 A / d means C is inversely proportional to separation d." }]
+        },
+        {
+            id: "g11-ch3-l2",
+            gifUrl: "",
+            worksheetUrl: "",
+            ebookUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf",
+            ebooks: [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            games: [],
+            title: "Chapter 3 • Lesson 2: Electric Current, Resistance & DC Circuits",
+            concepts: ["Kirchhoff's Current Law (Junction Rule): Σ I_in = Σ I_out (charge conservation).", "Kirchhoff's Voltage Law (Loop Rule): Σ E = Σ IR (energy conservation).", "Conductor resistance: R = ρ L / A."],
+            definitions: [
+                { term: "Kirchhoff's Current Law", definition: "Sum of electric currents entering any junction equals sum leaving.", symbol: "\\text{KCL}", unit: "\\mathrm{A}", equation: "\\sum I_{\\text{in}} = \\sum I_{\\text{out}}" },
+                { term: "Kirchhoff's Voltage Law", definition: "Sum of potential drops around any closed loop equals sum of EMFs.", symbol: "\\text{KVL}", unit: "\\mathrm{V}", equation: "\\sum E = \\sum IR" }
+            ],
+            examples: [{ title: "Example: Resistance of Copper Wire", question: "Find resistance of a 100 m copper wire with area 1.0 × 10⁻⁶ m² (ρ = 1.7 × 10⁻⁸ Ω·m).", given: "L = 100 m, A = 1.0 × 10⁻⁶ m², ρ = 1.7 × 10⁻⁸ Ω·m.", find: "R in Ω.", equation: "R = \\rho\\frac{L}{A}", rearrangement: "R = \\rho\\frac{L}{A}", solution: "R = (1.7 × 10⁻⁸ × 100) / 1.0 × 10⁻⁶ = 1.7 × 10⁻⁶ / 10⁻⁶ = 1.70 Ω.", finalAnswer: "R = 1.70\\,\\Omega", explanation: "Resistance depends directly on length and resistivity." }],
+            equations: [{ section: "Circuits", name: "Conductor Resistance Formula", formula: "\\[ R = \\rho\\frac{L}{A} \\]", pdfPage: "Grade 11 Textbook", explanation: "Calculates ohmic resistance from geometry.", conditions: "Uniform conductor.", variables: [{ symbol: "R", rep: "Resistance", unit: "Ohm", unitSym: "\\Omega" }] }],
+            flashcards: [{ front: "Kirchhoff's Current Law represents conservation of:", back: "Electric Charge" }, { front: "Kirchhoff's Voltage Law represents conservation of:", back: "Energy" }],
+            quiz: [{ question: "Kirchhoff's loop rule is a direct statement of:", options: ["Conservation of energy", "Conservation of charge", "Newton's third law", "Coulomb's law"], correctIndex: 0, feedback: "Work done moving around a closed potential loop is zero." }]
+        }
+    ];
+
+
+
+
     const PHYSICS_DATA = {
         "7": G7_LESSONS,
         "8": G8_LESSONS,

@@ -4046,6 +4046,29 @@ function renderEbook(lesson) {
     } else if (lesson.id) {
         const lid = lesson.id.toLowerCase();
         const fallbackMap = {
+            // Grade 7 (Official Curriculum Textbook)
+            'g7-l1': [{ title: "Grade 7 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
+            'g7-l2': [{ title: "Grade 7 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
+            'g7-l3': [{ title: "Grade 7 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
+            'g7-l4': [{ title: "Grade 7 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
+
+            // Grade 8 (Official Curriculum Textbook)
+            'g8-l1': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l2': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l3': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l4': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l5': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l6': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l7': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l8': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l9': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l10': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l11': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l12': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l13': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l14': [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+
+            // Grade 9
             'g9-l1': [{ title: "Chapter 1: Turning Effect of Force (pp. 1–12)", url: "ebooks/g9-ch1-ebook.pdf.pdf", altUrl: "ebooks/g9-ch1-ebook.pdf" }],
             'g9-l2': [
                 { title: "1. Levers (pp. 13–19)", url: "ebooks/g9-ch2-1-levers.pdf.pdf", altUrl: "ebooks/g9-ch2-1-levers.pdf" },
@@ -4069,6 +4092,33 @@ function renderEbook(lesson) {
                 { title: "4. Refraction of Light (pp. 80–85)", url: "ebooks/g9-ch5-4-refraction.pdf.pdf", altUrl: "ebooks/g9-ch5-4-refraction.pdf" },
                 { title: "5. Lenses (pp. 86–97)", url: "ebooks/g9-ch5-5-lenses.pdf.pdf", altUrl: "ebooks/g9-ch5-5-lenses.pdf" }
             ],
+
+            // Grade 10 (Official Curriculum Textbook)
+            'g10-l1': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-l2': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-l3': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-l4': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch2-l1': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch3-l1': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch3-l2': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch3-l3': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch4-l1': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch4-l2': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch4-l3': [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+
+            // Grade 11 (Official Curriculum Textbook)
+            'g11-l1': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-l2': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-l3': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-l4': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch1-l5': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch1-l6': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch2-l1': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch2-l2': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch3-l1': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch3-l2': [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+
+            // Grade 12
             'g12-l1': [{ title: "Thermal Physics (pp. 1–18)", url: "ebooks/g12-ch1-l1-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l1-ebook.pdf" }],
             'g12-l2': [{ title: "The Laws of Thermodynamics (pp. 19–48)", url: "ebooks/g12-ch1-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l2-ebook.pdf" }],
             'g12-l3': [{ title: "Thermodynamics & Heat Engines (pp. 19–48)", url: "ebooks/g12-ch1-l3-ebook.pdf.pdf", altUrl: "ebooks/g12-ch1-l3-ebook.pdf" }],
@@ -4083,6 +4133,20 @@ function renderEbook(lesson) {
         };
         if (fallbackMap[lid]) {
             ebooksList = fallbackMap[lid];
+        }
+    }
+
+    // Universal Grade-level fallback for Grade 7, 8, 10, and 11 official curriculum textbooks
+    if (!ebooksList.length && lesson) {
+        const lid = String(lesson.id || '').toLowerCase();
+        if (lid.startsWith('g7-')) {
+            ebooksList = [{ title: "Grade 7 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }];
+        } else if (lid.startsWith('g8-')) {
+            ebooksList = [{ title: "Grade 8 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }];
+        } else if (lid.startsWith('g10-')) {
+            ebooksList = [{ title: "Grade 10 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }];
+        } else if (lid.startsWith('g11-')) {
+            ebooksList = [{ title: "Grade 11 Physics Textbook (Official Curriculum)", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }];
         }
     }
 
