@@ -5334,44 +5334,35 @@
         },
 
         // =====================================================================
-        // CHAPTER 3 LESSON 1: Magnetism, Induced EMF & Self-Induction (PDF Pages 15 - 28)
+        // CHAPTER 3 LESSON 1: Magnetism (PDF Pages 15 - 20)
         // =====================================================================
         {
-            id: "g12-l5",
+            id: "g12-ch3-l1",
             gifUrl: "",
             worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
             ebookUrl: "ebooks/g12-ch3-l1-part1.pdf.pdf",
             ebooks: [
-                { title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" },
-                { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+                { title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" }
             ],
             games: [
                 { topic: "Magnetic Field", url: "https://gemini.google.com/share/8a653df6b614" },
-                { topic: "Faraday’s Law", url: "https://gemini.google.com/share/a36b992c1d6d" },
-                { topic: "Self Induction", url: "https://gemini.google.com/share/ae9787424975" },
-                { topic: "Electromagnetic Induction & RL Circuits", url: "https://gemini.google.com/share/5bdf25595304" },
-                { topic: "PhET: Faraday's Law (Induction)", url: "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html" },
-                { topic: "PhET: Faraday's Electromagnetic Lab", url: "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" },
                 { topic: "PhET: Charges and Fields", url: "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_all.html" }
             ],
-            title: "Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",
+            title: "Chapter 3, Lesson 1: Magnetism",
             concepts: [
                 "Magnetic Fields of Currents: Straight wire \\( B = \\frac{\\mu_0 I}{2\\pi d} \\), circular coil \\( B = \\frac{\\mu_0 NI}{2R} \\), solenoid \\( B = \\frac{\\mu_0 NI}{l} \\).",
                 "Magnetic Permeability: Material permeability \\( \\mu = \\mu_0 \\mu_r \\) with \\( \\mu_0 = 4\\pi\\times 10^{-7}\\,\\mathrm{T\\cdot m/A} \\).",
                 "Magnetic Forces: Lorentz force on charge \\( F = |q|vB\\sin\\theta \\), Laplace force on wire \\( F = IlB\\sin\\theta \\), parallel wires \\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\).",
-                "Charge in Magnetic Field: Circular trajectory \\( R = \\frac{mv}{|q|B} \\), period \\( T = \\frac{2\\pi m}{|q|B} \\).",
-                "Electromagnetic Induction: Magnetic flux \\( \\Phi = NBA\\cos\\theta \\), Faraday's law \\( e = -\\frac{d\\Phi}{dt} \\), motional EMF \\( E = vBl\\sin\\theta \\).",
-                "Self-Induction & Solenoid Inductance: \\( \\Phi = LI \\), \\( L = \\mu_0\\frac{N^2 A}{l} \\), self-induced EMF \\( e = -L\\frac{di}{dt} \\).",
-                "RL Circuit Transients: Growth \\( i(t) = I_p(1 - e^{-t/\\tau}) \\), decay \\( i(t) = I_p e^{-t/\\tau} \\) with time constant \\( \\tau = \\frac{L}{R} \\).",
-                "LC Oscillations: Conservation of energy \\( E_{CL} = \\frac{1}{2}CV^2 + \\frac{1}{2}Li^2 = \\text{constant} \\), frequency \\( \\omega_0 = \\frac{1}{\\sqrt{LC}} \\), \\( T_0 = 2\\pi\\sqrt{LC} \\)."
+                "Charge in Magnetic Field: Circular trajectory \\( R = \\frac{mv}{|q|B} \\), cyclotron period \\( T = \\frac{2\\pi m}{|q|B} \\).",
+                "Solenoid Dimensions & Resistance: Turns \\( N = \\frac{l}{d} \\), length \\( l' = \\pi D N \\), resistance \\( R = \\rho\\frac{l'}{A'} \\)."
             ],
             definitions: [
                 { term: "Magnetic Field (B)", definition: "Vector field describing magnetic influence of electric currents and magnetized materials.", symbol: "B", unit: "\\mathrm{T}", equation: "B = \\frac{\\mu_0 I}{2\\pi d}" },
+                { term: "Magnetic Permeability (μ)", definition: "Property of a material quantifying its ability to support and concentrate magnetic lines of force.", symbol: "\\mu", unit: "\\mathrm{T\\cdot m/A}", equation: "\\mu = \\mu_0 \\mu_r" },
                 { term: "Lorentz Force", definition: "Deflecting magnetic force acting on a charged particle moving through a magnetic field.", symbol: "F", unit: "\\mathrm{N}", equation: "F = |q|vB\\sin\\theta" },
-                { term: "Magnetic Flux", definition: "Surface integral of normal magnetic field component across an enclosed loop area.", symbol: "\\Phi", unit: "\\mathrm{Wb}", equation: "\\Phi = NBA\\cos\\theta" },
-                { term: "Faraday's Law", definition: "Induced electromotive force in a circuit equals the negative rate of change of magnetic flux linked through it.", symbol: "e", unit: "\\mathrm{V}", equation: "e = -\\frac{d\\Phi}{dt}" },
-                { term: "Self-Inductance (L)", definition: "Property of an electric conductor by which a change in current induces an electromotive force in itself.", symbol: "L", unit: "\\mathrm{H}", equation: "L = \\frac{\\Phi}{I} = \\mu_0\\frac{N^2 A}{l}" },
-                { term: "Inductive Time Constant", definition: "Time required for current in an RL circuit to rise to 63% of steady-state value.", symbol: "\\tau", unit: "\\mathrm{s}", equation: "\\tau = \\frac{L}{R}" }
+                { term: "Laplace Force", definition: "Macroscopic magnetic force exerted on a straight current-carrying conductor placed in an external magnetic field.", symbol: "F", unit: "\\mathrm{N}", equation: "F = IlB\\sin\\theta" },
+                { term: "Cyclotron Radius", definition: "Radius of the circular path of a charged particle executing uniform motion perpendicular to a uniform magnetic field.", symbol: "R", unit: "\\mathrm{m}", equation: "R = \\frac{mv}{|q|B}" },
+                { term: "Solenoid DC Resistance", definition: "Ohmic resistance of the conducting copper wire wound onto the solenoid.", symbol: "R", unit: "\\Omega", equation: "R = \\rho\\frac{l'}{A'}" }
             ],
             examples: [
                 {
@@ -5483,116 +5474,6 @@
                     solution: "1. <strong>Orbit Radius:</strong><br>\\[ R = \\frac{(9.1 \\times 10^{-31}\\,\\mathrm{kg})(4.0 \\times 10^6\\,\\mathrm{m/s})}{(1.6 \\times 10^{-19}\\,\\mathrm{C})(2.0 \\times 10^{-3}\\,\\mathrm{T})} = \\frac{3.64 \\times 10^{-24}}{3.2 \\times 10^{-22}} = 1.1375 \\times 10^{-2}\\,\\mathrm{m} \\approx 11.4\\,\\mathrm{mm} \\]<br>2. <strong>Revolution Period:</strong><br>\\[ T = \\frac{2\\pi(9.1 \\times 10^{-31})}{(1.6 \\times 10^{-19})(2.0 \\times 10^{-3})} = \\frac{5.718 \\times 10^{-30}}{3.2 \\times 10^{-22}} \\approx 1.79 \\times 10^{-8}\\,\\mathrm{s} = 17.9\\,\\mathrm{ns} \\]",
                     finalAnswer: "R \\approx 11.4\\,\\mathrm{mm}, \\quad T \\approx 17.9\\,\\mathrm{ns} \\; (1.79 \\times 10^{-8}\\,\\mathrm{s})",
                     explanation: "The Lorentz force supplies the exact centripetal force required for uniform circular motion. The period is independent of speed (the cyclotron principle)."
-                },
-                {
-                    title: "Example 11: Magnetic Flux Linked Through a Coil",
-                    question: "A coil with N = 200 turns and rectangular cross-section area A = 0.015 m² is placed in a uniform magnetic field of B = 0.20 T. Find the magnetic flux linking the coil when the field is perpendicular to the loop plane (θ = 0°) and when inclined at 60° to the surface normal.",
-                    given: "Turns \\( N = 200 \\), Area \\( A = 0.015\\,\\mathrm{m^2} \\), Field \\( B = 0.20\\,\\mathrm{T} \\).",
-                    find: "Flux at \\( \\theta = 0^\\circ \\) (\\( \\Phi_0 \\)) and at \\( \\theta = 60^\\circ \\) (\\( \\Phi_{60} \\)) in \\( \\mathrm{Wb} \\).",
-                    equation: "\\Phi = N B A \\cos\\theta",
-                    rearrangement: "\\Phi = N B A \\cos\\theta",
-                    solution: "1. <strong>Perpendicular (θ = 0°, cos 0° = 1.0):</strong><br>\\[ \\Phi_0 = (200)(0.20\\,\\mathrm{T})(0.015\\,\\mathrm{m^2})(1.0) = 0.60\\,\\mathrm{Wb} \\]<br>2. <strong>Inclined at 60° (cos 60° = 0.50):</strong><br>\\[ \\Phi_{60} = (200)(0.20)(0.015)(0.50) = 0.30\\,\\mathrm{Wb} \\]",
-                    finalAnswer: "\\Phi_0 = 0.60\\,\\mathrm{Wb}, \\quad \\Phi_{60} = 0.30\\,\\mathrm{Wb}",
-                    explanation: "Magnetic flux measures the total number of field lines threading through the surface, maximizing when the field is aligned with the normal vector."
-                },
-                {
-                    title: "Example 12: Faraday's Law and Average Induced Electromotive Force",
-                    question: "The magnetic flux linking a 150-turn coil decreases steadily from Φ₁ = 0.060 Wb to Φ₂ = 0.015 Wb over a time duration of Δt = 0.090 s. Calculate the average induced electromotive force in the coil.",
-                    given: "Turns \\( N = 150 \\), Initial flux \\( \\Phi_1 = 0.060\\,\\mathrm{Wb} \\), Final flux \\( \\Phi_2 = 0.015\\,\\mathrm{Wb} \\), Duration \\( \\Delta t = 0.090\\,\\mathrm{s} \\).",
-                    find: "Average induced EMF (\\( E_{av} \\)) in \\( \\mathrm{V} \\).",
-                    equation: "E_{av} = -N\\frac{\\Delta\\Phi}{\\Delta t} = -N\\frac{\\Phi_2 - \\Phi_1}{\\Delta t}",
-                    rearrangement: "E_{av} = -N\\frac{\\Phi_2 - \\Phi_1}{\\Delta t}",
-                    solution: "1. <strong>Flux Change:</strong> \\( \\Delta\\Phi = 0.015 - 0.060 = -0.045\\,\\mathrm{Wb} \\)<br>2. <strong>EMF Calculation:</strong><br>\\[ E_{av} = -150 \\times \\left(\\frac{-0.045\\,\\mathrm{Wb}}{0.090\\,\\mathrm{s}}\\right) = -150(-0.50\\,\\mathrm{V}) = +75.0\\,\\mathrm{V} \\]",
-                    finalAnswer: "E_{av} = +75.0\\,\\mathrm{V}",
-                    explanation: "By Lenz's law, a decreasing magnetic flux induces a positive EMF to drive current in a direction that attempts to sustain the collapsing flux."
-                },
-                {
-                    title: "Example 13: Motional Electromotive Force on a Moving Rod",
-                    question: "A metal bar of length l = 0.40 m slides with steady velocity v = 5.0 m/s perpendicular across a uniform magnetic field B = 0.60 T along frictionless rails. Find the induced motional EMF between the bar ends.",
-                    given: "Conductor length \\( l = 0.40\\,\\mathrm{m} \\), Velocity \\( v = 5.0\\,\\mathrm{m/s} \\), Field \\( B = 0.60\\,\\mathrm{T} \\), Angle \\( \\theta = 90^\\circ \\).",
-                    find: "Induced motional EMF (\\( E \\)) in \\( \\mathrm{V} \\).",
-                    equation: "E = v B l \\sin\\theta",
-                    rearrangement: "E = v B l",
-                    solution: "1. <strong>Formula:</strong> \\( E = v B l \\sin(90^\\circ) = vBl \\)<br>2. <strong>Substitution:</strong><br>\\[ E = (5.0\\,\\mathrm{m/s})(0.60\\,\\mathrm{T})(0.40\\,\\mathrm{m}) = 1.20\\,\\mathrm{V} \\]",
-                    finalAnswer: "E = 1.20\\,\\mathrm{V}",
-                    explanation: "As the rod sweeps through the field, charge carriers experience a Lorentz deflecting force along the rod length, separating positive and negative charges to generate a voltage."
-                },
-                {
-                    title: "Example 14: Induced Current in a Closed Circuit Loop",
-                    question: "The moving rod in Example 13 (generating E = 1.20 V) completes a closed circuit with conductive rails having a total loop resistance of R = 0.80 Ω. Calculate the induced electric current flowing through the circuit.",
-                    given: "Induced EMF \\( |E| = 1.20\\,\\mathrm{V} \\), Loop resistance \\( R = 0.80\\,\\Omega \\).",
-                    find: "Induced current (\\( I \\)) in \\( \\mathrm{A} \\).",
-                    equation: "I = \\frac{|E|}{R}",
-                    rearrangement: "I = \\frac{|E|}{R}",
-                    solution: "1. <strong>Formula:</strong> \\( I = \\frac{|E|}{R} \\)<br>2. <strong>Substitution:</strong><br>\\[ I = \\frac{1.20\\,\\mathrm{V}}{0.80\\,\\Omega} = 1.50\\,\\mathrm{A} \\]",
-                    finalAnswer: "I = 1.50\\,\\mathrm{A}",
-                    explanation: "According to Ohm's law, the induced electromotive force acts like a battery, driving current inversely proportional to the circuit's total resistance."
-                },
-                {
-                    title: "Example 15: AC Generator Peak and Instantaneous Induced EMF",
-                    question: "An alternating current generator consists of a rectangular armature coil with N = 100 turns, each of area A = 0.020 m², rotating at angular speed ω = 100π rad/s (50 Hz) in a uniform magnetic field B = 0.50 T. Calculate the peak induced EMF (Em) and write the expression for the instantaneous EMF.",
-                    given: "Turns \\( N = 100 \\), Loop area \\( A = 0.020\\,\\mathrm{m^2} \\), Field \\( B = 0.50\\,\\mathrm{T} \\), Angular frequency \\( \\omega = 100\\pi\\,\\mathrm{rad/s} \\).",
-                    find: "Peak EMF (\\( E_m \\)) in \\( \\mathrm{V} \\) and waveform \\( e(t) \\).",
-                    equation: "E_m = N B A \\omega, \\quad e(t) = E_m \\sin(\\omega t)",
-                    rearrangement: "E_m = N B A \\omega",
-                    solution: "1. <strong>Peak EMF Calculation:</strong><br>\\[ E_m = (100)(0.50\\,\\mathrm{T})(0.020\\,\\mathrm{m^2})(100\\pi\\,\\mathrm{rad/s}) = 1.0 \\times 100\\pi = 100\\pi\\,\\mathrm{V} \\approx 314.16\\,\\mathrm{V} \\]<br>2. <strong>Waveform Expression:</strong><br>\\[ e(t) = 314\\sin(100\\pi t)\\,\\mathrm{V} \\]",
-                    finalAnswer: "E_m \\approx 314\\,\\mathrm{V}, \\quad e(t) = 314\\sin(100\\pi t)\\,\\mathrm{V}",
-                    explanation: "As the coil rotates, the rate of change of intersecting magnetic flux varies sinusoidally, producing an alternating voltage."
-                },
-                {
-                    title: "Example 16: Self-Inductance from Flux Linkage and Current",
-                    question: "When a steady current of I = 4.0 A passes through an air-core inductor coil, a total magnetic flux of Φ = 0.080 Wb links the coil. Calculate the self-inductance L of the inductor coil.",
-                    given: "Current \\( I = 4.0\\,\\mathrm{A} \\), Total flux linkage \\( \\Phi = 0.080\\,\\mathrm{Wb} \\).",
-                    find: "Self-inductance (\\( L \\)) in henries (\\( \\mathrm{H} \\)) and millihenries (\\( \\mathrm{mH} \\)).",
-                    equation: "\\Phi = L I",
-                    rearrangement: "L = \\frac{\\Phi}{I}",
-                    solution: "1. <strong>Rearranged Formula:</strong> \\( L = \\frac{\\Phi}{I} \\)<br>2. <strong>Substitution:</strong><br>\\[ L = \\frac{0.080\\,\\mathrm{Wb}}{4.0\\,\\mathrm{A}} = 0.020\\,\\mathrm{H} = 20\\,\\mathrm{mH} \\]",
-                    finalAnswer: "L = 0.020\\,\\mathrm{H} = 20\\,\\mathrm{mH}",
-                    explanation: "Self-inductance measures the ability of a circuit to generate magnetic flux per unit electric current passing through its windings."
-                },
-                {
-                    title: "Example 17: Self-Inductance of an Air-Core and Iron-Core Solenoid",
-                    question: "A solenoid of length l = 0.50 m and cross-sectional area A = 2.0 × 10⁻³ m² has N = 1000 turns. Calculate its self-inductance L₀ in air, and its inductance L_core when fitted with an iron core of relative permeability μ_r = 800.",
-                    given: "Length \\( l = 0.50\\,\\mathrm{m} \\), Area \\( A = 2.0 \\times 10^{-3}\\,\\mathrm{m^2} \\), Turns \\( N = 1000 \\), \\( \\mu_0 = 4\\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A} \\), \\( \\mu_r = 800 \\).",
-                    find: "Air-core inductance (\\( L_0 \\)) and iron-core inductance (\\( L_{\\text{core}} \\)) in \\( \\mathrm{H} \\).",
-                    equation: "L_0 = \\mu_0\\frac{N^2 A}{l}, \\quad L_{\\text{core}} = \\mu_r L_0",
-                    rearrangement: "L_0 = \\mu_0\\frac{N^2 A}{l}, \\quad L_{\\text{core}} = \\mu_r L_0",
-                    solution: "1. <strong>Air-Core Inductance:</strong><br>\\[ L_0 = \\frac{(4\\pi \\times 10^{-7})(1000)^2(2.0 \\times 10^{-3}\\,\\mathrm{m^2})}{0.50\\,\\mathrm{m}} = \\frac{8\\pi \\times 10^{-4}}{0.50} \\approx 5.027 \\times 10^{-3}\\,\\mathrm{H} = 5.03\\,\\mathrm{mH} \\]<br>2. <strong>Iron-Core Inductance:</strong><br>\\[ L_{\\text{core}} = \\mu_r L_0 = 800 \\times (5.027 \\times 10^{-3}\\,\\mathrm{H}) \\approx 4.02\\,\\mathrm{H} \\]",
-                    finalAnswer: "L_0 \\approx 5.03\\,\\mathrm{mH}, \\quad L_{\\text{core}} \\approx 4.02\\,\\mathrm{H}",
-                    explanation: "Self-inductance scales with the square of the turn count (N²) and is multiplied by μ_r when filled with a ferromagnetic core."
-                },
-                {
-                    title: "Example 18: Self-Induced Counter EMF (Back EMF)",
-                    question: "An inductor with self-inductance L = 0.25 H carries a current that decreases uniformly from I₁ = 8.0 A to I₂ = 2.0 A in a time interval of Δt = 0.050 s. Calculate the induced back electromotive force.",
-                    given: "Inductance \\( L = 0.25\\,\\mathrm{H} \\), Initial current \\( I_1 = 8.0\\,\\mathrm{A} \\), Final current \\( I_2 = 2.0\\,\\mathrm{A} \\), Time duration \\( \\Delta t = 0.050\\,\\mathrm{s} \\).",
-                    find: "Self-induced EMF (\\( E_{av} \\)) in \\( \\mathrm{V} \\).",
-                    equation: "E_{av} = -L\\frac{\\Delta I}{\\Delta t} = -L\\frac{I_2 - I_1}{\\Delta t}",
-                    rearrangement: "E_{av} = -L\\frac{I_2 - I_1}{\\Delta t}",
-                    solution: "1. <strong>Current Change:</strong> \\( \\Delta I = I_2 - I_1 = 2.0 - 8.0 = -6.0\\,\\mathrm{A} \\)<br>2. <strong>Rate of Change:</strong> \\( \\frac{\\Delta I}{\\Delta t} = \\frac{-6.0\\,\\mathrm{A}}{0.050\\,\\mathrm{s}} = -120\\,\\mathrm{A/s} \\)<br>3. <strong>Self-Induced EMF:</strong><br>\\[ E_{av} = -L\\left(\\frac{\\Delta I}{\\Delta t}\\right) = -(0.25\\,\\mathrm{H})(-120\\,\\mathrm{A/s}) = +30.0\\,\\mathrm{V} \\]",
-                    finalAnswer: "E_{av} = +30.0\\,\\mathrm{V}",
-                    explanation: "As current decreases, the inductor opposes the collapse by producing a positive self-induced voltage of +30 V to sustain the current."
-                },
-                {
-                    title: "Example 19: RL Circuit Current Growth and Time Constant",
-                    question: "A coil with inductance L = 0.60 H and internal resistance R = 15 Ω is connected across a 30 V DC power supply. Calculate the inductive time constant τ, the steady-state current Ip, and the instantaneous current at t = τ (one time constant after closing the switch).",
-                    given: "Inductance \\( L = 0.60\\,\\mathrm{H} \\), Resistance \\( R = 15\\,\\Omega \\), DC voltage \\( E = 30\\,\\mathrm{V} \\). (Note: \\( 1 - e^{-1} \\approx 0.6321 \\)).",
-                    find: "Time constant (\\( \\tau \\)), steady-state current (\\( I_p \\)), and current at \\( t = \\tau \\) (\\( i(\\tau) \\)).",
-                    equation: "\\tau = \\frac{L}{R}, \\quad I_p = \\frac{E}{R}, \\quad i(t) = I_p(1 - e^{-t/\\tau})",
-                    rearrangement: "\\tau = \\frac{L}{R}, \\quad i(\\tau) = I_p(1 - e^{-1}) \\approx 0.632 I_p",
-                    solution: "1. <strong>Time Constant:</strong><br>\\[ \\tau = \\frac{L}{R} = \\frac{0.60\\,\\mathrm{H}}{15\\,\\Omega} = 0.040\\,\\mathrm{s} = 40\\,\\mathrm{ms} \\]<br>2. <strong>Steady-State Current:</strong><br>\\[ I_p = \\frac{E}{R} = \\frac{30\\,\\mathrm{V}}{15\\,\\Omega} = 2.0\\,\\mathrm{A} \\]<br>3. <strong>Current at t = τ:</strong><br>\\[ i(\\tau) = 2.0\\,\\mathrm{A}(1 - e^{-1}) = 2.0 \\times 0.6321 \\approx 1.26\\,\\mathrm{A} \\]",
-                    finalAnswer: "\\tau = 0.040\\,\\mathrm{s} \\; (40\\,\\mathrm{ms}), \\quad I_p = 2.0\\,\\mathrm{A}, \\quad i(\\tau) \\approx 1.26\\,\\mathrm{A}",
-                    explanation: "In an inductive circuit, back EMF slows current rise; after one time constant t = τ, current reaches 63.2% of its maximum steady-state value."
-                },
-                {
-                    title: "Example 20: LC Circuit Natural Frequency and Energy Conservation",
-                    question: "An ideal LC tank circuit consists of a capacitor C = 2.5 μF charged to Vm = 20 V connected to an inductor L = 10 mH. Calculate the natural resonant frequency f₀, the total stored electromagnetic energy, and the peak oscillating current Im.",
-                    given: "Capacitance \\( C = 2.5 \\times 10^{-6}\\,\\mathrm{F} \\), Inductance \\( L = 10 \\times 10^{-3}\\,\\mathrm{H} = 0.010\\,\\mathrm{H} \\), Peak voltage \\( V_m = 20\\,\\mathrm{V} \\).",
-                    find: "Resonant frequency (\\( f_0 \\)) in \\( \\mathrm{Hz} \\), total energy (\\( E_{CL} \\)) in \\( \\mathrm{mJ} \\), and peak current (\\( I_m \\)) in \\( \\mathrm{A} \\).",
-                    equation: "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}, \\quad E_{CL} = \\frac{1}{2}CV_m^2 = \\frac{1}{2}LI_m^2",
-                    rearrangement: "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}, \\quad I_m = V_m\\sqrt{\\frac{C}{L}}",
-                    solution: "1. <strong>Resonant Frequency:</strong><br>\\[ \\sqrt{LC} = \\sqrt{(0.010\\,\\mathrm{H})(2.5 \\times 10^{-6}\\,\\mathrm{F})} = \\sqrt{2.5 \\times 10^{-8}} = 1.581 \\times 10^{-4}\\,\\mathrm{s} \\]<br>\\[ f_0 = \\frac{1}{2\\pi(1.581 \\times 10^{-4})} \\approx \\frac{1}{9.935 \\times 10^{-4}} \\approx 1006.6\\,\\mathrm{Hz} \\approx 1.01\\,\\mathrm{kHz} \\]<br>2. <strong>Total Stored Energy:</strong><br>\\[ E_{CL} = \\frac{1}{2}CV_m^2 = 0.5 \\times (2.5 \\times 10^{-6}\\,\\mathrm{F}) \\times (20\\,\\mathrm{V})^2 = 0.5 \\times 2.5 \\times 10^{-6} \\times 400 = 5.0 \\times 10^{-4}\\,\\mathrm{J} = 0.50\\,\\mathrm{mJ} \\]<br>3. <strong>Peak Current Im:</strong><br>\\[ \\frac{1}{2}LI_m^2 = E_{CL} \\implies I_m = \\sqrt{\\frac{2E_{CL}}{L}} = \\sqrt{\\frac{2(5.0 \\times 10^{-4})}{0.010}} = \\sqrt{0.10} \\approx 0.316\\,\\mathrm{A} \\]",
-                    finalAnswer: "f_0 \\approx 1.01\\,\\mathrm{kHz}, \\quad E_{CL} = 0.50\\,\\mathrm{mJ}, \\quad I_m \\approx 0.316\\,\\mathrm{A} \\; (316\\,\\mathrm{mA})",
-                    explanation: "Energy is perfectly conserved in an ideal LC circuit, oscillating back and forth between electric energy in the capacitor and magnetic energy in the inductor."
                 }
             ],
             equations: [
@@ -5756,7 +5637,213 @@
                         { symbol: "B", rep: "Magnetic field induction", unit: "Tesla", unitSym: "\\mathrm{T}" },
                         { symbol: "T", rep: "Cyclotron revolution period", unit: "Second", unitSym: "\\mathrm{s}" }
                     ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for the magnetic field of a long straight current-carrying wire?", back: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\), where \\( d \\) is the perpendicular distance from the wire axis." },
+                { front: "What is the formula for the magnetic field at the center of a flat circular coil?", back: "\\( B = \\frac{\\mu_0 N I}{2R} \\), where \\( N \\) is the number of turns and \\( R \\) is the radius of the coil." },
+                { front: "What is the formula for the magnetic field inside an ideal air-core solenoid?", back: "\\( B = \\frac{\\mu_0 N I}{l} = \\mu_0 n I \\), where \\( n = \\frac{N}{l} \\) is the linear turn density." },
+                { front: "How is the absolute permeability of a magnetic core related to free space permeability?", back: "\\( \\mu = \\mu_0 \\mu_r \\), where \\( \\mu_0 = 4\\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A} \\) and \\( \\mu_r \\) is relative permeability." },
+                { front: "What is the Lorentz force formula on a moving charged particle in a magnetic field?", back: "\\( \\vec{F} = q(\\vec{v}\\times\\vec{B}) \\implies F = |q|vB\\sin\\theta \\), directed perpendicular to both \\( \\vec{v} \\) and \\( \\vec{B} \\)." },
+                { front: "What is the Laplace force formula on a straight current-carrying wire in a magnetic field?", back: "\\( \\vec{F} = I(\\vec{l}\\times\\vec{B}) \\implies F = IlB\\sin\\theta \\), where \\( \\theta \\) is the angle between the wire and the field." },
+                { front: "What is the magnetic interaction force between two parallel current-carrying wires?", back: "\\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\) (attractive for currents in the same direction, repulsive for opposite directions)." },
+                { front: "What are the orbital radius and period of a charged particle moving perpendicular to a magnetic field?", back: "Circular path with radius \\( R = \\frac{mv}{|q|B} \\) and orbital period \\( T = \\frac{2\\pi m}{|q|B} \\) (cyclotron motion)." },
+                { front: "What are the formulas for total unwound wire length and single-layer turns of a solenoid?", back: "\\( l' = \\pi D N \\) and \\( N = \\frac{l}{d} \\), where \\( D \\) is cylinder diameter, \\( l \\) is solenoid length, and \\( d \\) is bare wire diameter." },
+                { front: "What is the formula for the DC electrical resistance of a solenoid copper winding?", back: "\\( R = \\rho\\frac{l'}{A'} \\), where \\( \\rho \\) is resistivity, \\( l' = \\pi D N \\) is total wire length, and \\( A' = \\frac{\\pi d^2}{4} \\) is wire cross-section." }
+            ],
+            quiz: [
+                {
+                    question: "A long straight transmission cable carries a DC current of 25 A. What is the magnetic field induction B at a perpendicular distance of 0.050 m from the wire axis? (μ₀ = 4π × 10⁻⁷ T·m/A)",
+                    options: ["50 μT", "100 μT", "150 μT", "200 μT"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Current I = 25 A, distance d = 0.050 m, μ₀ = 4π × 10⁻⁷ T·m/A.\n2. Find: Magnetic field induction B.\n3. Equation: B = μ₀I / (2πd).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: B = (4π × 10⁻⁷ T·m/A)(25 A) / (2π × 0.050 m) = (2 × 10⁻⁷)(25) / 0.050.\n7. Calculation: B = (5.0 × 10⁻⁶) / 0.050 = 1.0 × 10⁻⁴ T = 100 μT.\n8. Final answer: 100 μT (1.0 × 10⁻⁴ T).\n9. Explanation: The magnetic field around a long straight wire forms concentric circles and diminishes inversely with distance from the wire."
                 },
+                {
+                    question: "A flat circular coil with N = 100 turns has a radius of R = 0.050 m and carries a current of 2.0 A. What is the magnetic field induction at the geometric center of the coil?",
+                    options: ["1.26 mT", "2.51 mT", "5.03 mT", "0.63 mT"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Turns N = 100, radius R = 0.050 m, current I = 2.0 A, μ₀ = 4π × 10⁻⁷ T·m/A.\n2. Find: Magnetic field B at center.\n3. Equation: B = μ₀NI / (2R).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: B = (4π × 10⁻⁷)(100)(2.0 A) / (2 × 0.050 m).\n7. Calculation: B = (8.0π × 10⁻⁵) / 0.10 = 8.0π × 10⁻⁴ T ≈ 2.513 × 10⁻³ T = 2.51 mT.\n8. Final answer: 2.51 mT (2.51 × 10⁻³ T).\n9. Explanation: Each turn of the coil contributes equally to the axial magnetic field at the center, multiplying the single-loop field by N."
+                },
+                {
+                    question: "An air-core solenoid of length l = 0.25 m contains N = 500 turns and carries a current of 4.0 A. What is the magnetic field strength B along the axis inside the core?",
+                    options: ["5.03 mT", "10.1 mT", "20.1 mT", "2.51 mT"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Solenoid length l = 0.25 m, turns N = 500, current I = 4.0 A, μ₀ = 4π × 10⁻⁷ T·m/A.\n2. Find: Internal magnetic field B.\n3. Equation: B = μ₀(N / l)I = μ₀nI.\n4. Unit conversion: None required.\n5. Rearrangement: Turn density n = N / l = 500 / 0.25 = 2000 m⁻¹.\n6. Substitution: B = (4π × 10⁻⁷ T·m/A)(2000 m⁻¹)(4.0 A).\n7. Calculation: B = 3.2π × 10⁻³ T ≈ 10.053 × 10⁻³ T ≈ 10.1 mT.\n8. Final answer: 10.1 mT (1.01 × 10⁻² T).\n9. Explanation: The internal field of a long solenoid is uniform and directly proportional to the turn density (turns per unit length) and the current."
+                },
+                {
+                    question: "An air-core solenoid has an internal magnetic field of B₀ = 5.0 mT. When a soft iron core with relative permeability μ_r = 800 is inserted, what are the core absolute permeability μ and the enhanced magnetic field B?",
+                    options: [
+                        "μ = 1.01 × 10⁻³ T·m/A, B = 4.0 T",
+                        "μ = 4.0 × 10⁻⁴ T·m/A, B = 0.40 T",
+                        "μ = 1.01 × 10⁻³ T·m/A, B = 40.0 T",
+                        "μ = 8.0 × 10⁻⁴ T·m/A, B = 2.5 T"
+                    ],
+                    correctIndex: 0,
+                    feedback: "1. Given: Air-core field B₀ = 5.0 mT = 5.0 × 10⁻³ T, relative permeability μ_r = 800, μ₀ = 4π × 10⁻⁷ T·m/A.\n2. Find: Absolute permeability μ and enhanced magnetic field B.\n3. Equation: μ = μ₀μ_r; B = μ_r B₀.\n4. Unit conversion: B₀ = 5.0 × 10⁻³ T.\n5. Rearrangement: Direct evaluation.\n6. Substitution: μ = (4π × 10⁻⁷)(800); B = 800 × (5.0 × 10⁻³ T).\n7. Calculation: μ = 3.2π × 10⁻⁴ ≈ 1.005 × 10⁻³ T·m/A; B = 4.0 T.\n8. Final answer: μ = 1.01 × 10⁻³ T·m/A, B = 4.0 T.\n9. Explanation: Ferromagnetic cores multiply magnetic field strength by their relative permeability μ_r, creating powerful electromagnets."
+                },
+                {
+                    question: "An electron (q = -1.60 × 10⁻¹⁹ C) enters a uniform magnetic field B = 0.50 T at speed v = 2.0 × 10⁶ m/s perpendicular to the field lines (θ = 90°). What is the magnitude of the Lorentz deflecting force acting on the electron?",
+                    options: ["0.80 × 10⁻¹³ N", "1.60 × 10⁻¹³ N", "3.20 × 10⁻¹³ N", "6.40 × 10⁻¹⁴ N"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Charge |q| = 1.60 × 10⁻¹⁹ C, speed v = 2.0 × 10⁶ m/s, field B = 0.50 T, angle θ = 90°.\n2. Find: Lorentz magnetic force magnitude F.\n3. Equation: F = |q|vB sin θ.\n4. Unit conversion: None required.\n5. Rearrangement: For θ = 90°, sin θ = 1 ⟹ F = |q|vB.\n6. Substitution: F = (1.60 × 10⁻¹⁹ C)(2.0 × 10⁶ m/s)(0.50 T)(1).\n7. Calculation: F = 1.60 × 10⁻¹³ N.\n8. Final answer: 1.60 × 10⁻¹³ N.\n9. Explanation: The Lorentz force acts as a centripetal deflecting force perpendicular to both particle velocity and magnetic field."
+                },
+                {
+                    question: "A straight wire segment of length l = 0.40 m carrying a current of I = 5.0 A lies in a uniform magnetic field B = 0.30 T at an angle of θ = 30° to the field. What is the magnitude of the Laplace magnetic force on the wire?",
+                    options: ["0.15 N", "0.30 N", "0.60 N", "1.20 N"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Wire length l = 0.40 m, current I = 5.0 A, field B = 0.30 T, angle θ = 30°.\n2. Find: Laplace magnetic force F.\n3. Equation: F = IlB sin θ.\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: F = (5.0 A)(0.40 m)(0.30 T) sin(30°).\n7. Calculation: sin(30°) = 0.50; F = (0.60)(0.50) = 0.30 N.\n8. Final answer: 0.30 N.\n9. Explanation: The magnetic force on a current-carrying wire depends on the sine of the angle between current flow and the magnetic field vector."
+                },
+                {
+                    question: "Two long, parallel conductors each of length l = 2.0 m are separated in air by distance a = 0.040 m and carry currents I₁ = 10 A and I₂ = 20 A in the same direction. What is the mutual magnetic force between them?",
+                    options: ["1.0 mN (repulsive)", "2.0 mN (attractive)", "4.0 mN (attractive)", "2.0 mN (repulsive)"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Length l = 2.0 m, separation a = 0.040 m, I₁ = 10 A, I₂ = 20 A, μ₀ = 4π × 10⁻⁷ T·m/A, currents in same direction.\n2. Find: Magnitude and nature of mutual interaction force F.\n3. Equation: F = μ₀I₁I₂l / (2πa).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: F = (4π × 10⁻⁷)(10)(20)(2.0) / (2π × 0.040) = (2 × 10⁻⁷)(400) / 0.040.\n7. Calculation: F = (8.0 × 10⁻⁵) / 0.040 = 2.0 × 10⁻³ N = 2.0 mN; parallel currents attract.\n8. Final answer: 2.0 mN (attractive).\n9. Explanation: Parallel currents flowing in the same direction attract each other due to the interaction of their concentric magnetic field lines."
+                },
+                {
+                    question: "A solenoid of cylinder diameter D = 0.040 m has N = 500 closely wound turns of bare copper wire with diameter d = 0.50 mm (cross-sectional area A' = 1.963 × 10⁻⁷ m²). If the resistivity of copper is ρ = 1.70 × 10⁻⁸ Ω·m, what is the total DC electrical resistance of the winding?",
+                    options: ["2.72 Ω", "5.44 Ω", "10.88 Ω", "1.36 Ω"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Solenoid diameter D = 0.040 m, N = 500, wire diameter d = 0.50 mm = 5.0 × 10⁻⁴ m, A' = 1.963 × 10⁻⁷ m², ρ = 1.70 × 10⁻⁸ Ω·m.\n2. Find: Total winding wire length l' and DC resistance R.\n3. Equation: l' = πDN; R = ρl' / A'.\n4. Unit conversion: d = 5.0 × 10⁻⁴ m.\n5. Rearrangement: l' = πDN; R = ρ(πDN) / A'.\n6. Substitution: l' = π(0.040 m)(500) = 20π m ≈ 62.83 m; R = (1.70 × 10⁻⁸ Ω·m)(62.83 m) / (1.963 × 10⁻⁷ m²).\n7. Calculation: R = (1.068 × 10⁻⁶) / (1.963 × 10⁻⁷) ≈ 5.44 Ω.\n8. Final answer: 5.44 Ω.\n9. Explanation: Total solenoid resistance is proportional to total unwound wire length and inversely proportional to wire cross-sectional area."
+                },
+                {
+                    question: "A proton (m = 1.67 × 10⁻²⁷ kg, q = 1.60 × 10⁻¹⁹ C) enters a uniform magnetic field B = 0.20 T at velocity v = 3.0 × 10⁶ m/s perpendicular to the field. What is the radius R of its circular trajectory?",
+                    options: ["7.8 cm", "15.7 cm", "31.4 cm", "5.2 cm"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Mass m = 1.67 × 10⁻²⁷ kg, charge q = 1.60 × 10⁻¹⁹ C, field B = 0.20 T, speed v = 3.0 × 10⁶ m/s.\n2. Find: Orbit radius R.\n3. Equation: R = mv / (|q|B).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: R = (1.67 × 10⁻²⁷ kg)(3.0 × 10⁶ m/s) / [(1.60 × 10⁻¹⁹ C)(0.20 T)].\n7. Calculation: R = (5.01 × 10⁻²¹) / (3.20 × 10⁻²⁰) = 0.1566 m ≈ 15.7 cm.\n8. Final answer: 15.7 cm (0.157 m).\n9. Explanation: The Lorentz magnetic force provides the required centripetal force (mv²/R = qvB), giving cyclotron radius R = mv / (qB)."
+                },
+                {
+                    question: "For the proton in the previous question (m = 1.67 × 10⁻²⁷ kg, q = 1.60 × 10⁻¹⁹ C, B = 0.20 T), what is the period T of its circular orbit?",
+                    options: ["0.164 μs", "0.328 μs", "0.656 μs", "1.31 μs"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Mass m = 1.67 × 10⁻²⁷ kg, charge q = 1.60 × 10⁻¹⁹ C, field B = 0.20 T.\n2. Find: Cyclotron period T.\n3. Equation: T = 2πm / (|q|B).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: T = 2π(1.67 × 10⁻²⁷ kg) / [(1.60 × 10⁻¹⁹ C)(0.20 T)].\n7. Calculation: T = (1.0493 × 10⁻²⁶) / (3.20 × 10⁻²⁰) ≈ 3.28 × 10⁻⁷ s = 0.328 μs.\n8. Final answer: 0.328 μs (3.28 × 10⁻⁷ s).\n9. Explanation: The revolution period in cyclotron motion is independent of particle speed and orbit radius, depending only on mass, charge, and field strength."
+                }
+            ]
+        },
+
+        // =====================================================================
+        // CHAPTER 3 LESSON 2: Electromagnetic Induction (PDF Pages 21 - 23)
+        // =====================================================================
+        {
+            id: "g12-ch3-l2",
+            gifUrl: "",
+            worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+            ebookUrl: "ebooks/g12-ch3-l1-part2.pdf.pdf",
+            ebooks: [
+                { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+            ],
+            games: [
+                { topic: "Faraday’s Law", url: "https://gemini.google.com/share/a36b992c1d6d" },
+                { topic: "PhET: Faraday's Law (Induction)", url: "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html" },
+                { topic: "PhET: Faraday's Electromagnetic Lab", url: "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" }
+            ],
+            title: "Chapter 3, Lesson 2: Electromagnetic Induction",
+            concepts: [
+                "Magnetic Flux Linkage: \\( \\Phi = NBA\\cos\\theta \\), maximum when magnetic field is perpendicular to loop plane (\\( \\theta = 0^\\circ \\)).",
+                "Faraday's Law of Induction: Induced electromotive force equals the negative time rate of change of magnetic flux: \\( e(t) = -\\frac{d\\Phi}{dt} \\), \\( E_{av} = -\\frac{\\Delta\\Phi}{\\Delta t} \\).",
+                "Lenz's Law: The direction of any induced electromotive force and current opposes the change in magnetic flux that produces it.",
+                "Motional Electromotive Force: Conductor of length \\( l \\) cutting field lines at velocity \\( v \\): \\( E = vBl\\sin\\theta \\).",
+                "Induced Current: Closed loop of resistance \\( R \\) carries induced current \\( I = \\frac{|E|}{R} \\).",
+                "AC Generator Principle: Rotating armature coil generates sinusoidal alternating EMF: \\( e(t) = NBA\\omega\\sin(\\omega t) = E_m\\sin(\\omega t) \\)."
+            ],
+            definitions: [
+                { term: "Magnetic Flux (Φ)", definition: "Surface integral of normal magnetic field component across an enclosed loop area.", symbol: "\\Phi", unit: "\\mathrm{Wb}", equation: "\\Phi = NBA\\cos\\theta" },
+                { term: "Magnetic Flux Variation (ΔΦ)", definition: "Net change in magnetic flux linkage between final and initial states.", symbol: "\\Delta\\Phi", unit: "\\mathrm{Wb}", equation: "\\Delta\\Phi = \\Phi_f - \\Phi_i" },
+                { term: "Faraday's Law", definition: "Induced electromotive force in a circuit equals the negative rate of change of magnetic flux linked through it.", symbol: "e", unit: "\\mathrm{V}", equation: "e = -\\frac{d\\Phi}{dt}" },
+                { term: "Lenz's Law", definition: "Principle that an induced current always flows in a direction such that its magnetic field opposes the change in flux that induced it.", symbol: "\\text{Lenz's Law}", unit: "Directional principle", equation: "e = -\\frac{d\\Phi}{dt}" },
+                { term: "Motional Electromotive Force", definition: "Voltage generated across a conductor translating through a magnetic field.", symbol: "E", unit: "\\mathrm{V}", equation: "E = vBl\\sin\\theta" },
+                { term: "Peak Generator EMF (Em)", definition: "Maximum instantaneous voltage amplitude produced by a rotating armature in an AC generator.", symbol: "E_m", unit: "\\mathrm{V}", equation: "E_m = NBA\\omega" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Magnetic Flux Linked Through a Coil",
+                    question: "A coil with N = 200 turns and rectangular cross-section area A = 0.015 m² is placed in a uniform magnetic field of B = 0.20 T. Find the magnetic flux linking the coil when the field is perpendicular to the loop plane (θ = 0°) and when inclined at 60° to the surface normal.",
+                    given: "Turns \\( N = 200 \\), Area \\( A = 0.015\\,\\mathrm{m^2} \\), Field \\( B = 0.20\\,\\mathrm{T} \\).",
+                    find: "Flux at \\( \\theta = 0^\\circ \\) (\\( \\Phi_0 \\)) and at \\( \\theta = 60^\\circ \\) (\\( \\Phi_{60} \\)) in \\( \\mathrm{Wb} \\).",
+                    equation: "\\Phi = N B A \\cos\\theta",
+                    rearrangement: "\\Phi = N B A \\cos\\theta",
+                    solution: "1. <strong>Perpendicular (θ = 0°, cos 0° = 1.0):</strong><br>\\[ \\Phi_0 = (200)(0.20\\,\\mathrm{T})(0.015\\,\\mathrm{m^2})(1.0) = 0.60\\,\\mathrm{Wb} \\]<br>2. <strong>Inclined at 60° (cos 60° = 0.50):</strong><br>\\[ \\Phi_{60} = (200)(0.20)(0.015)(0.50) = 0.30\\,\\mathrm{Wb} \\]",
+                    finalAnswer: "\\Phi_0 = 0.60\\,\\mathrm{Wb}, \\quad \\Phi_{60} = 0.30\\,\\mathrm{Wb}",
+                    explanation: "Magnetic flux measures the total number of field lines threading through the surface, maximizing when the field is aligned with the normal vector."
+                },
+                {
+                    title: "Example 2: Faraday's Law and Average Induced Electromotive Force",
+                    question: "The magnetic flux linking a 150-turn coil decreases steadily from Φ₁ = 0.060 Wb to Φ₂ = 0.015 Wb over a time duration of Δt = 0.090 s. Calculate the average induced electromotive force in the coil.",
+                    given: "Turns \\( N = 150 \\), Initial flux \\( \\Phi_1 = 0.060\\,\\mathrm{Wb} \\), Final flux \\( \\Phi_2 = 0.015\\,\\mathrm{Wb} \\), Duration \\( \\Delta t = 0.090\\,\\mathrm{s} \\).",
+                    find: "Average induced EMF (\\( E_{av} \\)) in \\( \\mathrm{V} \\).",
+                    equation: "E_{av} = -N\\frac{\\Delta\\Phi}{\\Delta t} = -N\\frac{\\Phi_2 - \\Phi_1}{\\Delta t}",
+                    rearrangement: "E_{av} = -N\\frac{\\Phi_2 - \\Phi_1}{\\Delta t}",
+                    solution: "1. <strong>Flux Change:</strong> \\( \\Delta\\Phi = 0.015 - 0.060 = -0.045\\,\\mathrm{Wb} \\)<br>2. <strong>EMF Calculation:</strong><br>\\[ E_{av} = -150 \\times \\left(\\frac{-0.045\\,\\mathrm{Wb}}{0.090\\,\\mathrm{s}}\\right) = -150(-0.50\\,\\mathrm{V}) = +75.0\\,\\mathrm{V} \\]",
+                    finalAnswer: "E_{av} = +75.0\\,\\mathrm{V}",
+                    explanation: "By Lenz's law, a decreasing magnetic flux induces a positive EMF to drive current in a direction that attempts to sustain the collapsing flux."
+                },
+                {
+                    title: "Example 3: Motional Electromotive Force on a Moving Rod",
+                    question: "A metal bar of length l = 0.40 m slides with steady velocity v = 5.0 m/s perpendicular across a uniform magnetic field B = 0.60 T along frictionless rails. Find the induced motional EMF between the bar ends.",
+                    given: "Conductor length \\( l = 0.40\\,\\mathrm{m} \\), Velocity \\( v = 5.0\\,\\mathrm{m/s} \\), Field \\( B = 0.60\\,\\mathrm{T} \\), Angle \\( \\theta = 90^\\circ \\).",
+                    find: "Induced motional EMF (\\( E \\)) in \\( \\mathrm{V} \\).",
+                    equation: "E = v B l \\sin\\theta",
+                    rearrangement: "E = v B l",
+                    solution: "1. <strong>Formula:</strong> \\( E = v B l \\sin(90^\\circ) = vBl \\)<br>2. <strong>Substitution:</strong><br>\\[ E = (5.0\\,\\mathrm{m/s})(0.60\\,\\mathrm{T})(0.40\\,\\mathrm{m}) = 1.20\\,\\mathrm{V} \\]",
+                    finalAnswer: "E = 1.20\\,\\mathrm{V}",
+                    explanation: "As the rod sweeps through the field, charge carriers experience a Lorentz deflecting force along the rod length, separating positive and negative charges to generate a voltage."
+                },
+                {
+                    title: "Example 4: Induced Current in a Closed Circuit Loop",
+                    question: "The moving rod in Example 3 (generating E = 1.20 V) completes a closed circuit with conductive rails having a total loop resistance of R = 0.80 Ω. Calculate the induced electric current flowing through the circuit.",
+                    given: "Induced EMF \\( |E| = 1.20\\,\\mathrm{V} \\), Loop resistance \\( R = 0.80\\,\\Omega \\).",
+                    find: "Induced current (\\( I \\)) in \\( \\mathrm{A} \\).",
+                    equation: "I = \\frac{|E|}{R}",
+                    rearrangement: "I = \\frac{|E|}{R}",
+                    solution: "1. <strong>Formula:</strong> \\( I = \\frac{|E|}{R} \\)<br>2. <strong>Substitution:</strong><br>\\[ I = \\frac{1.20\\,\\mathrm{V}}{0.80\\,\\Omega} = 1.50\\,\\mathrm{A} \\]",
+                    finalAnswer: "I = 1.50\\,\\mathrm{A}",
+                    explanation: "According to Ohm's law, the induced electromotive force acts like a battery, driving current inversely proportional to the circuit's total resistance."
+                },
+                {
+                    title: "Example 5: AC Generator Peak and Instantaneous Induced EMF",
+                    question: "An alternating current generator consists of a rectangular armature coil with N = 100 turns, each of area A = 0.020 m², rotating at angular speed ω = 100π rad/s (50 Hz) in a uniform magnetic field B = 0.50 T. Calculate the peak induced EMF (Em) and write the expression for the instantaneous EMF.",
+                    given: "Turns \\( N = 100 \\), Loop area \\( A = 0.020\\,\\mathrm{m^2} \\), Field \\( B = 0.50\\,\\mathrm{T} \\), Angular frequency \\( \\omega = 100\\pi\\,\\mathrm{rad/s} \\).",
+                    find: "Peak EMF (\\( E_m \\)) in \\( \\mathrm{V} \\) and waveform \\( e(t) \\).",
+                    equation: "E_m = N B A \\omega, \\quad e(t) = E_m \\sin(\\omega t)",
+                    rearrangement: "E_m = N B A \\omega",
+                    solution: "1. <strong>Peak EMF Calculation:</strong><br>\\[ E_m = (100)(0.50\\,\\mathrm{T})(0.020\\,\\mathrm{m^2})(100\\pi\\,\\mathrm{rad/s}) = 1.0 \\times 100\\pi = 100\\pi\\,\\mathrm{V} \\approx 314.16\\,\\mathrm{V} \\]<br>2. <strong>Waveform Expression:</strong><br>\\[ e(t) = 314\\sin(100\\pi t)\\,\\mathrm{V} \\]",
+                    finalAnswer: "E_m \\approx 314\\,\\mathrm{V}, \\quad e(t) = 314\\sin(100\\pi t)\\,\\mathrm{V}",
+                    explanation: "As the coil rotates, the rate of change of intersecting magnetic flux varies sinusoidally, producing an alternating voltage."
+                },
+                {
+                    title: "Example 6: Magnetic Flux Variation in a Rotating Loop",
+                    question: "A square loop of side length s = 0.10 m (area A = 0.010 m²) with N = 50 turns is perpendicular to a uniform magnetic field B = 0.30 T. The loop is rotated through 90° so that its plane becomes parallel to the field lines. Calculate the initial flux Φ_i, final flux Φ_f, and the flux variation ΔΦ.",
+                    given: "Turns \\( N = 50 \\), Area \\( A = 0.010\\,\\mathrm{m^2} \\), Field \\( B = 0.30\\,\\mathrm{T} \\), Initial angle \\( \\theta_i = 0^\\circ \\), Final angle \\( \\theta_f = 90^\\circ \\).",
+                    find: "Initial flux (\\( \\Phi_i \\)), final flux (\\( \\Phi_f \\)), and flux variation (\\( \\Delta\\Phi \\)) in \\( \\mathrm{Wb} \\).",
+                    equation: "\\Phi = N B A \\cos\\theta, \\quad \\Delta\\Phi = \\Phi_f - \\Phi_i",
+                    rearrangement: "\\Delta\\Phi = N B A (\\cos\\theta_f - \\cos\\theta_i)",
+                    solution: "1. <strong>Initial Flux:</strong><br>\\[ \\Phi_i = (50)(0.30\\,\\mathrm{T})(0.010\\,\\mathrm{m^2})\\cos(0^\\circ) = 0.150\\,\\mathrm{Wb} \\]<br>2. <strong>Final Flux:</strong><br>\\[ \\Phi_f = (50)(0.30\\,\\mathrm{T})(0.010\\,\\mathrm{m^2})\\cos(90^\\circ) = 0\\,\\mathrm{Wb} \\]<br>3. <strong>Flux Variation:</strong><br>\\[ \\Delta\\Phi = \\Phi_f - \\Phi_i = 0 - 0.150\\,\\mathrm{Wb} = -0.150\\,\\mathrm{Wb} \\]",
+                    finalAnswer: "\\Phi_i = 0.150\\,\\mathrm{Wb}, \\quad \\Phi_f = 0\\,\\mathrm{Wb}, \\quad \\Delta\\Phi = -0.150\\,\\mathrm{Wb}",
+                    explanation: "Rotating a coil in a magnetic field alters the projected cross-sectional area intercepting field lines, generating magnetic flux variation."
+                },
+                {
+                    title: "Example 7: Total Induced Electrical Charge Flow",
+                    question: "A closed circular coil of 100 turns and total circuit resistance R = 5.0 Ω is oriented perpendicular to a magnetic field. When the magnetic field is abruptly switched off, the magnetic flux linking each turn drops from 0.020 Wb to 0 Wb. Calculate the total electric charge that flows through the coil cross-section.",
+                    given: "Turns \\( N = 100 \\), Resistance \\( R = 5.0\\,\\Omega \\), Total flux change \\( |\\Delta\\Phi| = N|\\Delta\\Phi_{\\text{single}}| = 100 \\times 0.020\\,\\mathrm{Wb} = 2.0\\,\\mathrm{Wb} \\).",
+                    find: "Total electric charge (\\( q \\)) in \\( \\mathrm{C} \\).",
+                    equation: "q = \\frac{|\\Delta\\Phi|}{R}",
+                    rearrangement: "q = \\frac{|\\Delta\\Phi|}{R}",
+                    solution: "1. <strong>Formula:</strong> \\( q = \\int I\\,dt = \\frac{1}{R}\\int |e|\\,dt = \\frac{|\\Delta\\Phi|}{R} \\)<br>2. <strong>Substitution:</strong><br>\\[ q = \\frac{2.0\\,\\mathrm{Wb}}{5.0\\,\\Omega} = 0.40\\,\\mathrm{C} \\]",
+                    finalAnswer: "q = 0.40\\,\\mathrm{C}",
+                    explanation: "The total charge induced during an induction event depends strictly on the net change in flux and the circuit resistance, completely independent of the duration Δt."
+                },
+                {
+                    title: "Example 8: Mechanical Power Required to Move a Conductor in a Magnetic Field",
+                    question: "A conducting rod of length l = 0.50 m slides at constant velocity v = 4.0 m/s perpendicular to a magnetic field B = 0.60 T along rails closed with resistance R = 2.0 Ω. Calculate the induced current, the opposing magnetic Laplace force, and the mechanical pulling power required to keep the rod moving at steady speed.",
+                    given: "Length \\( l = 0.50\\,\\mathrm{m} \\), Speed \\( v = 4.0\\,\\mathrm{m/s} \\), Field \\( B = 0.60\\,\\mathrm{T} \\), Resistance \\( R = 2.0\\,\\Omega \\).",
+                    find: "Current (\\( I \\)), Laplace force (\\( F \\)), and mechanical power (\\( P \\)).",
+                    equation: "E = vBl, \\quad I = \\frac{E}{R}, \\quad F = IlB, \\quad P = F v = I^2 R",
+                    rearrangement: "P = F v = \\frac{B^2 l^2 v^2}{R}",
+                    solution: "1. <strong>Motional EMF:</strong> \\( E = (4.0)(0.60)(0.50) = 1.20\\,\\mathrm{V} \\).<br>2. <strong>Induced Current:</strong> \\( I = \\frac{1.20\\,\\mathrm{V}}{2.0\\,\\Omega} = 0.60\\,\\mathrm{A} \\).<br>3. <strong>Opposing Laplace Force:</strong><br>\\[ F = I l B = (0.60\\,\\mathrm{A})(0.50\\,\\mathrm{m})(0.60\\,\\mathrm{T}) = 0.180\\,\\mathrm{N} \\]<br>4. <strong>Mechanical Power:</strong><br>\\[ P = F v = (0.180\\,\\mathrm{N})(4.0\\,\\mathrm{m/s}) = 0.720\\,\\mathrm{W} \\]<br>5. <strong>Verification via Joule Heating:</strong> \\( P_J = I^2 R = (0.60)^2(2.0) = 0.36 \\times 2.0 = 0.720\\,\\mathrm{W} \\).",
+                    finalAnswer: "I = 0.60\\,\\mathrm{A}, \\quad F = 0.180\\,\\mathrm{N}, \\quad P = 0.720\\,\\mathrm{W}",
+                    explanation: "By conservation of energy, the mechanical work rate input to pull the rod exactly equals the electric Joule heat dissipated in the resistor."
+                }
+            ],
+            equations: [
                 {
                     section: "Electromagnetic Induction",
                     name: "Magnetic Flux Across Surface",
@@ -5849,7 +5936,200 @@
                         { symbol: "\\omega", rep: "Rotational angular speed", unit: "Radian per second", unitSym: "\\mathrm{rad/s}" },
                         { symbol: "t", rep: "Time", unit: "Second", unitSym: "\\mathrm{s}" }
                     ]
+                }
+            ],
+            flashcards: [
+                { front: "What is the formula for magnetic flux linkage through a planar coil of N turns?", back: "\\( \\Phi = N B A \\cos\\theta \\), where \\( \\theta \\) is the angle between the magnetic field and the surface normal vector \\( \\vec{n} \\)." },
+                { front: "What is Faraday's law of electromagnetic induction?", back: "\\( e(t) = -\\frac{d\\Phi}{dt} \\) (average \\( E_{av} = -\\frac{\\Delta\\Phi}{\\Delta t} \\)); the negative sign represents Lenz's law." },
+                { front: "What is the physical meaning and significance of Lenz's law?", back: "The induced current always flows in such a direction that its magnetic effect opposes the change in magnetic flux that produced it (conservation of energy)." },
+                { front: "What is the formula for motional EMF induced in a conductor moving through a magnetic field?", back: "\\( E = v B l \\sin\\theta \\), where \\( l \\) is active length, \\( v \\) is velocity, and \\( \\theta \\) is the angle between \\( \\vec{v} \\) and \\( \\vec{B} \\)." },
+                { front: "What is the formula for induced current in a closed loop of resistance R?", back: "\\( I = \\frac{|E|}{R} = \\frac{1}{R}\\left|\\frac{d\\Phi}{dt}\\right| \\), based on Ohm's law applied to the induced circuit." },
+                { front: "What is the peak EMF produced by an AC generator armature rotating in a magnetic field?", back: "\\( E_m = N B A \\omega \\), producing instantaneous alternating EMF \\( e(t) = E_m\\sin(\\omega t) \\)." },
+                { front: "What is the SI unit of magnetic flux and its physical equivalence?", back: "The Weber (\\( \\mathrm{Wb} \\)); \\( 1\\,\\mathrm{Wb} = 1\\,\\mathrm{T\\cdot m^2} = 1\\,\\mathrm{V\\cdot s} \\)." },
+                { front: "Under what conditions is magnetic flux through a planar loop maximized or zero?", back: "Maximized (\\( \\Phi_m = NBA \\)) when field lines are perpendicular to the loop plane (\\( \\theta = 0^\\circ \\)); zero (\\( \\Phi = 0 \\)) when parallel to the plane (\\( \\theta = 90^\\circ \\))." }
+            ],
+            quiz: [
+                {
+                    question: "A flat coil of N = 200 turns and area A = 0.025 m² is placed in a uniform magnetic field B = 0.40 T. The normal vector to the coil makes an angle of θ = 60° with the magnetic field lines. What is the total magnetic flux linkage Φ through the coil?",
+                    options: ["0.50 Wb", "1.00 Wb", "1.73 Wb", "2.00 Wb"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Turns N = 200, area A = 0.025 m², field B = 0.40 T, angle θ = 60°.\n2. Find: Total magnetic flux linkage Φ.\n3. Equation: Φ = NBA cos θ.\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: Φ = (200)(0.40 T)(0.025 m²) cos(60°).\n7. Calculation: cos(60°) = 0.50; Φ = (200 × 0.40 × 0.025) × 0.50 = 2.0 × 0.50 = 1.00 Wb.\n8. Final answer: 1.00 Wb (1.00 T·m²).\n9. Explanation: Magnetic flux measures the number of magnetic field lines passing normally through the surface enclosed by the coil turns."
                 },
+                {
+                    question: "The magnetic flux linking a coil decreases uniformly from Φ_i = 0.80 Wb to Φ_f = 0.20 Wb in a time interval of Δt = 0.050 s. What is the average induced electromotive force E_av?",
+                    options: ["-12.0 V", "+12.0 V", "-6.0 V", "+6.0 V"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Initial flux Φ_i = 0.80 Wb, final flux Φ_f = 0.20 Wb, time interval Δt = 0.050 s.\n2. Find: Average induced EMF E_av.\n3. Equation: E_av = -ΔΦ / Δt = -(Φ_f - Φ_i) / Δt.\n4. Unit conversion: None required.\n5. Rearrangement: ΔΦ = 0.20 - 0.80 = -0.60 Wb.\n6. Substitution: E_av = -(-0.60 Wb) / (0.050 s).\n7. Calculation: E_av = +0.60 / 0.050 = +12.0 V.\n8. Final answer: +12.0 V.\n9. Explanation: By Faraday's and Lenz's laws, a decrease in magnetic flux induces a positive EMF that acts to oppose the reduction in flux."
+                },
+                {
+                    question: "A metal rod of active length l = 0.50 m slides at velocity v = 6.0 m/s perpendicular to a uniform magnetic field B = 0.80 T (θ = 90°). What is the motional EMF induced across the ends of the rod?",
+                    options: ["1.20 V", "2.40 V", "3.60 V", "4.80 V"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Length l = 0.50 m, speed v = 6.0 m/s, field B = 0.80 T, angle θ = 90°.\n2. Find: Motional EMF E.\n3. Equation: E = vBl sin θ.\n4. Unit conversion: None required.\n5. Rearrangement: For θ = 90°, sin θ = 1 ⟹ E = vBl.\n6. Substitution: E = (6.0 m/s)(0.80 T)(0.50 m)(1).\n7. Calculation: E = 2.40 V.\n8. Final answer: 2.40 V.\n9. Explanation: As the rod moves through the field, free conduction electrons experience Lorentz forces, separating charges and generating motional EMF."
+                },
+                {
+                    question: "If the sliding conducting rod from the previous question (E = 2.40 V) moves along frictionless conducting rails connected to a closed resistor of R = 4.0 Ω (rail resistance negligible), what induced current flows through the circuit?",
+                    options: ["0.30 A", "0.60 A", "1.20 A", "2.40 A"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Induced EMF E = 2.40 V, loop resistance R = 4.0 Ω.\n2. Find: Induced current I.\n3. Equation: I = |E| / R (Ohm's Law for induced circuits).\n4. Unit conversion: None required.\n5. Rearrangement: I = |E| / R.\n6. Substitution: I = 2.40 V / 4.0 Ω.\n7. Calculation: I = 0.60 A.\n8. Final answer: 0.60 A (600 mA).\n9. Explanation: The induced motional EMF acts as a battery driving current through the closed conducting loop according to Ohm's law."
+                },
+                {
+                    question: "An AC generator has an armature coil with N = 400 turns, each with area A = 0.015 m². The coil rotates at an angular frequency of ω = 100π rad/s (50 Hz) in a uniform magnetic field B = 0.20 T. What is the peak generated EMF E_m?",
+                    options: ["188 V", "377 V", "754 V", "120 V"],
+                    correctIndex: 1,
+                    feedback: "1. Given: Turns N = 400, area A = 0.015 m², field B = 0.20 T, angular speed ω = 100π rad/s.\n2. Find: Peak induced EMF E_m.\n3. Equation: E_m = NBAω.\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: E_m = (400)(0.20 T)(0.015 m²)(100π rad/s).\n7. Calculation: E_m = (1.20) × (100π) = 120π ≈ 376.99 V ≈ 377 V.\n8. Final answer: 377 V (120π V).\n9. Explanation: The peak EMF generated by a rotating armature equals the product of turn count, magnetic field, loop area, and angular velocity."
+                },
+                {
+                    question: "When the North pole of a permanent bar magnet is pushed toward a closed conductive ring, what is the magnetic behavior and direction of the induced current?",
+                    options: [
+                        "An attractive South pole is induced, pulling the magnet in faster",
+                        "A repulsive North pole is induced, opposing the approach of the magnet",
+                        "No magnetic field is induced because the ring has no battery",
+                        "A constant DC current flows clockwise indefinitely"
+                    ],
+                    correctIndex: 1,
+                    feedback: "Correct Answer: A repulsive North pole is induced, opposing the approach of the magnet. According to Lenz's law, the induced current creates an opposing magnetic flux that resists the motion of the incoming magnet, requiring mechanical work to push the magnet forward."
+                },
+                {
+                    question: "A coil with total resistance R = 8.0 Ω undergoes a magnetic flux change of ΔΦ = 0.40 Wb in Δt = 0.020 s. What is the total electric charge q that flows through the coil windings during this process?",
+                    options: ["0.050 C", "0.100 C", "0.200 C", "0.400 C"],
+                    correctIndex: 0,
+                    feedback: "1. Given: Circuit resistance R = 8.0 Ω, flux variation ΔΦ = 0.40 Wb, time duration Δt = 0.020 s.\n2. Find: Total electric charge q.\n3. Equation: q = ΔΦ / R.\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: q = (0.40 Wb) / (8.0 Ω).\n7. Calculation: q = 0.050 C (50 mC).\n8. Final answer: 0.050 C (50 mC).\n9. Explanation: Induced charge flow equals net flux change divided by total loop resistance, independent of how fast or slow the flux change occurs."
+                },
+                {
+                    question: "A metal bar of length l = 0.40 m moves at constant speed v = 5.0 m/s perpendicular to a uniform magnetic field B = 0.50 T along closed frictionless rails of total resistance R = 2.0 Ω. What mechanical power P is required to maintain the steady motion of the bar?",
+                    options: ["0.50 W", "1.00 W", "1.50 W", "2.00 W"],
+                    correctIndex: 0,
+                    feedback: "1. Given: Length l = 0.40 m, speed v = 5.0 m/s, field B = 0.50 T, resistance R = 2.0 Ω.\n2. Find: Required mechanical pulling power P.\n3. Equation: E = vBl; I = E / R; F = IlB; P = Fv = (B²l²v²) / R.\n4. Unit conversion: None required.\n5. Rearrangement: E = (5.0)(0.50)(0.40) = 1.0 V; I = 1.0 / 2.0 = 0.50 A.\n6. Substitution: F = (0.50 A)(0.40 m)(0.50 T) = 0.10 N; P = (0.10 N)(5.0 m/s).\n7. Calculation: P = 0.50 W.\n8. Final answer: 0.50 W.\n9. Explanation: By conservation of energy, mechanical work done against the magnetic Lorentz braking force is entirely converted into electrical Joule heating (I²R = (0.50)² × 2.0 = 0.50 W)."
+                }
+            ]
+        },
+
+        // =====================================================================
+        // CHAPTER 3 LESSON 3: Self Induction (PDF Pages 24 - 28)
+        // =====================================================================
+        {
+            id: "g12-ch3-l3",
+            gifUrl: "",
+            worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+            ebookUrl: "ebooks/g12-ch3-l1-part2.pdf.pdf",
+            ebooks: [
+                { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+            ],
+            games: [
+                { topic: "Self Induction", url: "https://gemini.google.com/share/ae9787424975" },
+                { topic: "Electromagnetic Induction & RL Circuits", url: "https://gemini.google.com/share/5bdf25595304" }
+            ],
+            title: "Chapter 3, Lesson 3: Self Induction",
+            concepts: [
+                "Self-Inductance & Flux Linkage: Magnetic flux linked through an inductor is proportional to current: \\( \\Phi = LI \\), \\( \\Delta\\Phi = L\\Delta I \\).",
+                "Solenoid Inductance: Geometric formula \\( L = \\mu_0\\frac{N^2 A}{l} \\); enhanced by core to \\( L = \\mu_r \\mu_0\\frac{N^2 A}{l} \\).",
+                "Self-Induced Counter EMF (Back EMF): Opposes change in current: \\( e(t) = -L\\frac{di}{dt} \\), \\( E_{av} = -L\\frac{\\Delta I}{\\Delta t} \\).",
+                "RL Circuit Growth: Current rise \\( i(t) = I_p(1 - e^{-t/\\tau}) \\) with \\( I_p = \\frac{E}{R} \\) and inductive time constant \\( \\tau = \\frac{L}{R} \\).",
+                "RL Circuit Decay: Current discharge \\( i(t) = I_p e^{-t/\\tau} \\); drops to 37% at \\( t = \\tau \\).",
+                "LC Tank Circuit Oscillations: Undamped harmonic exchange between electric and magnetic energies: \\( E_{CL} = \\frac{1}{2}CV^2 + \\frac{1}{2}Li^2 = \\text{constant} \\).",
+                "LC Resonance Frequency: Natural angular frequency \\( \\omega_0 = \\frac{1}{\\sqrt{LC}} \\), cyclic frequency \\( f_0 = \\frac{1}{2\\pi\\sqrt{LC}} \\), period \\( T_0 = 2\\pi\\sqrt{LC} \\).",
+                "LC Harmonic Waveforms: Current leads capacitor voltage by \\( \\frac{\\pi}{2} \\) rad (90°)."
+            ],
+            definitions: [
+                { term: "Self-Inductance (L)", definition: "Property of an electric conductor by which a change in current induces an electromotive force in itself.", symbol: "L", unit: "\\mathrm{H}", equation: "L = \\frac{\\Phi}{I} = \\mu_0\\frac{N^2 A}{l}" },
+                { term: "Self-Induced Back EMF", definition: "Counter electromotive force generated across an inductor that opposes variations in its own current.", symbol: "e", unit: "\\mathrm{V}", equation: "e = -L\\frac{di}{dt}" },
+                { term: "Inductive Time Constant (τ)", definition: "Characteristic time parameter governing exponential current growth and decay in an RL circuit: τ = L / R.", symbol: "\\tau", unit: "\\mathrm{s}", equation: "\\tau = \\frac{L}{R}" },
+                { term: "Steady-State RL Current (Ip)", definition: "Maximum DC saturation current attained by an RL circuit as t → ∞: Ip = E / R.", symbol: "I_p", unit: "\\mathrm{A}", equation: "I_p = \\frac{E}{R}" },
+                { term: "LC Natural Resonant Frequency (f0)", definition: "Natural undamped frequency of electromagnetic oscillation in an LC tank circuit.", symbol: "f_0", unit: "\\mathrm{Hz}", equation: "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}" },
+                { term: "Total Stored Electromagnetic Energy (E_CL)", definition: "Constant sum of electric field energy in capacitor and magnetic field energy in inductor in an ideal LC circuit.", symbol: "E_{CL}", unit: "\\mathrm{J}", equation: "E_{CL} = \\frac{1}{2}CV^2 + \\frac{1}{2}Li^2" }
+            ],
+            examples: [
+                {
+                    title: "Example 1: Self-Inductance from Flux Linkage and Current",
+                    question: "When a steady current of I = 4.0 A passes through an air-core inductor coil, a total magnetic flux of Φ = 0.080 Wb links the coil. Calculate the self-inductance L of the inductor coil.",
+                    given: "Current \\( I = 4.0\\,\\mathrm{A} \\), Total flux linkage \\( \\Phi = 0.080\\,\\mathrm{Wb} \\).",
+                    find: "Self-inductance (\\( L \\)) in henries (\\( \\mathrm{H} \\)) and millihenries (\\( \\mathrm{mH} \\)).",
+                    equation: "\\Phi = L I",
+                    rearrangement: "L = \\frac{\\Phi}{I}",
+                    solution: "1. <strong>Rearranged Formula:</strong> \\( L = \\frac{\\Phi}{I} \\)<br>2. <strong>Substitution:</strong><br>\\[ L = \\frac{0.080\\,\\mathrm{Wb}}{4.0\\,\\mathrm{A}} = 0.020\\,\\mathrm{H} = 20\\,\\mathrm{mH} \\]",
+                    finalAnswer: "L = 0.020\\,\\mathrm{H} = 20\\,\\mathrm{mH}",
+                    explanation: "Self-inductance measures the ability of a circuit to generate magnetic flux per unit electric current passing through its windings."
+                },
+                {
+                    title: "Example 2: Self-Inductance of an Air-Core and Iron-Core Solenoid",
+                    question: "A solenoid of length l = 0.50 m and cross-sectional area A = 2.0 × 10⁻³ m² has N = 1000 turns. Calculate its self-inductance L₀ in air, and its inductance L_core when fitted with an iron core of relative permeability μ_r = 800.",
+                    given: "Length \\( l = 0.50\\,\\mathrm{m} \\), Area \\( A = 2.0 \\times 10^{-3}\\,\\mathrm{m^2} \\), Turns \\( N = 1000 \\), \\( \\mu_0 = 4\\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A} \\), \\( \\mu_r = 800 \\).",
+                    find: "Air-core inductance (\\( L_0 \\)) and iron-core inductance (\\( L_{\\text{core}} \\)) in \\( \\mathrm{H} \\).",
+                    equation: "L_0 = \\mu_0\\frac{N^2 A}{l}, \\quad L_{\\text{core}} = \\mu_r L_0",
+                    rearrangement: "L_0 = \\mu_0\\frac{N^2 A}{l}, \\quad L_{\\text{core}} = \\mu_r L_0",
+                    solution: "1. <strong>Air-Core Inductance:</strong><br>\\[ L_0 = \\frac{(4\\pi \\times 10^{-7})(1000)^2(2.0 \\times 10^{-3}\\,\\mathrm{m^2})}{0.50\\,\\mathrm{m}} = \\frac{8\\pi \\times 10^{-4}}{0.50} \\approx 5.027 \\times 10^{-3}\\,\\mathrm{H} = 5.03\\,\\mathrm{mH} \\]<br>2. <strong>Iron-Core Inductance:</strong><br>\\[ L_{\\text{core}} = \\mu_r L_0 = 800 \\times (5.027 \\times 10^{-3}\\,\\mathrm{H}) \\approx 4.02\\,\\mathrm{H} \\]",
+                    finalAnswer: "L_0 \\approx 5.03\\,\\mathrm{mH}, \\quad L_{\\text{core}} \\approx 4.02\\,\\mathrm{H}",
+                    explanation: "Self-inductance scales with the square of the turn count (N²) and is multiplied by μ_r when filled with a ferromagnetic core."
+                },
+                {
+                    title: "Example 3: Self-Induced Counter EMF (Back EMF)",
+                    question: "An inductor with self-inductance L = 0.25 H carries a current that decreases uniformly from I₁ = 8.0 A to I₂ = 2.0 A in a time interval of Δt = 0.050 s. Calculate the induced back electromotive force.",
+                    given: "Inductance \\( L = 0.25\\,\\mathrm{H} \\), Initial current \\( I_1 = 8.0\\,\\mathrm{A} \\), Final current \\( I_2 = 2.0\\,\\mathrm{A} \\), Time duration \\( \\Delta t = 0.050\\,\\mathrm{s} \\).",
+                    find: "Self-induced EMF (\\( E_{av} \\)) in \\( \\mathrm{V} \\).",
+                    equation: "E_{av} = -L\\frac{\\Delta I}{\\Delta t} = -L\\frac{I_2 - I_1}{\\Delta t}",
+                    rearrangement: "E_{av} = -L\\frac{I_2 - I_1}{\\Delta t}",
+                    solution: "1. <strong>Current Change:</strong> \\( \\Delta I = I_2 - I_1 = 2.0 - 8.0 = -6.0\\,\\mathrm{A} \\)<br>2. <strong>Rate of Change:</strong> \\( \\frac{\\Delta I}{\\Delta t} = \\frac{-6.0\\,\\mathrm{A}}{0.050\\,\\mathrm{s}} = -120\\,\\mathrm{A/s} \\)<br>3. <strong>Self-Induced EMF:</strong><br>\\[ E_{av} = -L\\left(\\frac{\\Delta I}{\\Delta t}\\right) = -(0.25\\,\\mathrm{H})(-120\\,\\mathrm{A/s}) = +30.0\\,\\mathrm{V} \\]",
+                    finalAnswer: "E_{av} = +30.0\\,\\mathrm{V}",
+                    explanation: "As current decreases, the inductor opposes the collapse by producing a positive self-induced voltage of +30 V to sustain the current."
+                },
+                {
+                    title: "Example 4: RL Circuit Current Growth and Time Constant",
+                    question: "A coil with inductance L = 0.60 H and internal resistance R = 15 Ω is connected across a 30 V DC power supply. Calculate the inductive time constant τ, the steady-state current Ip, and the instantaneous current at t = τ (one time constant after closing the switch).",
+                    given: "Inductance \\( L = 0.60\\,\\mathrm{H} \\), Resistance \\( R = 15\\,\\Omega \\), DC voltage \\( E = 30\\,\\mathrm{V} \\). (Note: \\( 1 - e^{-1} \\approx 0.6321 \\)).",
+                    find: "Time constant (\\( \\tau \\)), steady-state current (\\( I_p \\)), and current at \\( t = \\tau \\) (\\( i(\\tau) \\)).",
+                    equation: "\\tau = \\frac{L}{R}, \\quad I_p = \\frac{E}{R}, \\quad i(t) = I_p(1 - e^{-t/\\tau})",
+                    rearrangement: "\\tau = \\frac{L}{R}, \\quad i(\\tau) = I_p(1 - e^{-1}) \\approx 0.632 I_p",
+                    solution: "1. <strong>Time Constant:</strong><br>\\[ \\tau = \\frac{L}{R} = \\frac{0.60\\,\\mathrm{H}}{15\\,\\Omega} = 0.040\\,\\mathrm{s} = 40\\,\\mathrm{ms} \\]<br>2. <strong>Steady-State Current:</strong><br>\\[ I_p = \\frac{E}{R} = \\frac{30\\,\\mathrm{V}}{15\\,\\Omega} = 2.0\\,\\mathrm{A} \\]<br>3. <strong>Current at t = τ:</strong><br>\\[ i(\\tau) = 2.0\\,\\mathrm{A}(1 - e^{-1}) = 2.0 \\times 0.6321 \\approx 1.26\\,\\mathrm{A} \\]",
+                    finalAnswer: "\\tau = 0.040\\,\\mathrm{s} \\; (40\\,\\mathrm{ms}), \\quad I_p = 2.0\\,\\mathrm{A}, \\quad i(\\tau) \\approx 1.26\\,\\mathrm{A}",
+                    explanation: "In an inductive circuit, back EMF slows current rise; after one time constant t = τ, current reaches 63.2% of its maximum steady-state value."
+                },
+                {
+                    title: "Example 5: LC Circuit Natural Frequency and Energy Conservation",
+                    question: "An ideal LC tank circuit consists of a capacitor C = 2.5 μF charged to Vm = 20 V connected to an inductor L = 10 mH. Calculate the natural resonant frequency f₀, the total stored electromagnetic energy, and the peak oscillating current Im.",
+                    given: "Capacitance \\( C = 2.5 \\times 10^{-6}\\,\\mathrm{F} \\), Inductance \\( L = 10 \\times 10^{-3}\\,\\mathrm{H} = 0.010\\,\\mathrm{H} \\), Peak voltage \\( V_m = 20\\,\\mathrm{V} \\).",
+                    find: "Resonant frequency (\\( f_0 \\)) in \\( \\mathrm{Hz} \\), total energy (\\( E_{CL} \\)) in \\( \\mathrm{mJ} \\), and peak current (\\( I_m \\)) in \\( \\mathrm{A} \\).",
+                    equation: "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}, \\quad E_{CL} = \\frac{1}{2}CV_m^2 = \\frac{1}{2}LI_m^2",
+                    rearrangement: "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}, \\quad I_m = V_m\\sqrt{\\frac{C}{L}}",
+                    solution: "1. <strong>Resonant Frequency:</strong><br>\\[ \\sqrt{LC} = \\sqrt{(0.010\\,\\mathrm{H})(2.5 \\times 10^{-6}\\,\\mathrm{F})} = \\sqrt{2.5 \\times 10^{-8}} = 1.581 \\times 10^{-4}\\,\\mathrm{s} \\]<br>\\[ f_0 = \\frac{1}{2\\pi(1.581 \\times 10^{-4})} \\approx \\frac{1}{9.935 \\times 10^{-4}} \\approx 1006.6\\,\\mathrm{Hz} \\approx 1.01\\,\\mathrm{kHz} \\]<br>2. <strong>Total Stored Energy:</strong><br>\\[ E_{CL} = \\frac{1}{2}CV_m^2 = 0.5 \\times (2.5 \\times 10^{-6}\\,\\mathrm{F}) \\times (20\\,\\mathrm{V})^2 = 0.5 \\times 2.5 \\times 10^{-6} \\times 400 = 5.0 \\times 10^{-4}\\,\\mathrm{J} = 0.50\\,\\mathrm{mJ} \\]<br>3. <strong>Peak Current Im:</strong><br>\\[ \\frac{1}{2}LI_m^2 = E_{CL} \\implies I_m = \\sqrt{\\frac{2E_{CL}}{L}} = \\sqrt{\\frac{2(5.0 \\times 10^{-4})}{0.010}} = \\sqrt{0.10} \\approx 0.316\\,\\mathrm{A} \\]",
+                    finalAnswer: "f_0 \\approx 1.01\\,\\mathrm{kHz}, \\quad E_{CL} = 0.50\\,\\mathrm{mJ}, \\quad I_m \\approx 0.316\\,\\mathrm{A} \\; (316\\,\\mathrm{mA})",
+                    explanation: "Energy is perfectly conserved in an ideal LC circuit, oscillating back and forth between electric energy in the capacitor and magnetic energy in the inductor."
+                },
+                {
+                    title: "Example 6: RL Circuit Current Decay and Time Evolution",
+                    question: "An RL circuit with inductance L = 0.50 H and resistance R = 10 Ω carries an initial steady current of I_p = 3.0 A. At t = 0, the voltage source is shorted and removed. Calculate the circuit time constant τ, the decay current at t = 0.10 s (t = 2τ), and the total magnetic energy initially stored in the inductor.",
+                    given: "Inductance \\( L = 0.50\\,\\mathrm{H} \\), Resistance \\( R = 10\\,\\Omega \\), Initial current \\( I_p = 3.0\\,\\mathrm{A} \\), \\( t = 0.10\\,\\mathrm{s} \\). (Note: \\( e^{-2} \\approx 0.1353 \\)).",
+                    find: "Time constant (\\( \\tau \\)), current at \\( t = 2\\tau \\) (\\( i(2\\tau) \\)), and stored energy (\\( E_L \\)).",
+                    equation: "\\tau = \\frac{L}{R}, \\quad i(t) = I_p e^{-t/\\tau}, \\quad E_L = \\frac{1}{2}L I_p^2",
+                    rearrangement: "\\tau = \\frac{L}{R}, \\quad i(2\\tau) = I_p e^{-2}, \\quad E_L = \\frac{1}{2}L I_p^2",
+                    solution: "1. <strong>Time Constant:</strong><br>\\[ \\tau = \\frac{0.50\\,\\mathrm{H}}{10\\,\\Omega} = 0.050\\,\\mathrm{s} = 50\\,\\mathrm{ms} \\]<br>2. <strong>Current at t = 2τ = 0.10 s:</strong><br>\\[ i(0.10\\,\\mathrm{s}) = (3.0\\,\\mathrm{A})e^{-0.10 / 0.050} = 3.0 \\times e^{-2} = 3.0 \\times 0.1353 \\approx 0.406\\,\\mathrm{A} \\]<br>3. <strong>Initial Stored Magnetic Energy:</strong><br>\\[ E_L = \\frac{1}{2}(0.50\\,\\mathrm{H})(3.0\\,\\mathrm{A})^2 = 0.5 \\times 0.50 \\times 9.0 = 2.25\\,\\mathrm{J} \\]",
+                    finalAnswer: "\\tau = 0.050\\,\\mathrm{s} \\; (50\\,\\mathrm{ms}), \\quad i(2\\tau) \\approx 0.41\\,\\mathrm{A}, \\quad E_L = 2.25\\,\\mathrm{J}",
+                    explanation: "When discharging, stored magnetic energy in the inductor is gradually dissipated as thermal Joule heat in the circuit resistance as current decays exponentially."
+                },
+                {
+                    title: "Example 7: Magnetic Energy Stored in an Inductor Coil",
+                    question: "A solenoid of self-inductance L = 80 mH carries a DC current of I = 2.5 A. Calculate the magnetic energy stored in its magnetic field. If the current is doubled to 5.0 A, what is the new stored magnetic energy?",
+                    given: "Inductance \\( L = 80 \\times 10^{-3}\\,\\mathrm{H} = 0.080\\,\\mathrm{H} \\), Initial current \\( I_1 = 2.5\\,\\mathrm{A} \\), Doubled current \\( I_2 = 5.0\\,\\mathrm{A} \\).",
+                    find: "Initial magnetic energy (\\( E_{L1} \\)) and doubled-current energy (\\( E_{L2} \\)) in \\( \\mathrm{J} \\).",
+                    equation: "E_L = \\frac{1}{2}L I^2",
+                    rearrangement: "E_{L2} = E_{L1} \\times \\left(\\frac{I_2}{I_1}\\right)^2 = 4 E_{L1}",
+                    solution: "1. <strong>Initial Energy:</strong><br>\\[ E_{L1} = \\frac{1}{2}(0.080\\,\\mathrm{H})(2.5\\,\\mathrm{A})^2 = 0.040 \\times 6.25 = 0.250\\,\\mathrm{J} \\]<br>2. <strong>Doubled-Current Energy:</strong><br>\\[ E_{L2} = \\frac{1}{2}(0.080\\,\\mathrm{H})(5.0\\,\\mathrm{A})^2 = 0.040 \\times 25.0 = 1.00\\,\\mathrm{J} \\]",
+                    finalAnswer: "E_{L1} = 0.250\\,\\mathrm{J}, \\quad E_{L2} = 1.00\\,\\mathrm{J}",
+                    explanation: "Magnetic energy stored in an inductor is proportional to the square of the current (E_L ∝ I²); doubling the current quadruples the stored energy."
+                },
+                {
+                    title: "Example 8: LC Instantaneous Voltage, Charge and Current Dynamics",
+                    question: "An LC circuit has C = 4.0 μF and L = 0.25 H. The capacitor is initially charged to peak voltage V_m = 50 V. Calculate the peak charge q_m, the natural angular frequency ω₀, the peak oscillating current I_m, and the instantaneous current when capacitor voltage is zero.",
+                    given: "Capacitance \\( C = 4.0 \\times 10^{-6}\\,\\mathrm{F} \\), Inductance \\( L = 0.25\\,\\mathrm{H} \\), Peak voltage \\( V_m = 50\\,\\mathrm{V} \\).",
+                    find: "Peak charge (\\( q_m \\)), angular frequency (\\( \\omega_0 \\)), peak current (\\( I_m \\)), and current when \\( V_C = 0 \\).",
+                    equation: "q_m = C V_m, \\quad \\omega_0 = \\frac{1}{\\sqrt{LC}}, \\quad I_m = \\omega_0 q_m, \\quad \\frac{1}{2}CV^2 + \\frac{1}{2}Li^2 = E_{\\text{total}}",
+                    rearrangement: "I_m = \\omega_0 C V_m = V_m\\sqrt{\\frac{C}{L}}",
+                    solution: "1. <strong>Peak Charge:</strong><br>\\[ q_m = (4.0 \\times 10^{-6}\\,\\mathrm{F})(50\\,\\mathrm{V}) = 2.0 \\times 10^{-4}\\,\\mathrm{C} = 200\\,\\mu\\mathrm{C} \\]<br>2. <strong>Angular Frequency:</strong><br>\\[ \\omega_0 = \\frac{1}{\\sqrt{(0.25)(4.0 \\times 10^{-6})}} = \\frac{1}{\\sqrt{1.0 \\times 10^{-6}}} = 1000\\,\\mathrm{rad/s} \\]<br>3. <strong>Peak Current:</strong><br>\\[ I_m = \\omega_0 q_m = (1000\\,\\mathrm{rad/s})(2.0 \\times 10^{-4}\\,\\mathrm{C}) = 0.20\\,\\mathrm{A} = 200\\,\\mathrm{mA} \\]<br>4. <strong>Current when VC = 0:</strong> When capacitor voltage drops to zero, all energy is magnetic, so current reaches its maximum value: \\( i = I_m = 0.20\\,\\mathrm{A} \\).",
+                    finalAnswer: "q_m = 200\\,\\mu\\mathrm{C}, \\quad \\omega_0 = 1000\\,\\mathrm{rad/s}, \\quad I_m = 0.20\\,\\mathrm{A} \\; (200\\,\\mathrm{mA})",
+                    explanation: "In an LC tank, current and voltage are in quadrature (90° phase difference); current is maximum when voltage crosses zero and vice-versa."
+                }
+            ],
+            equations: [
                 {
                     section: "Self-Induction",
                     name: "Self-Inductance & Flux Linkage",
@@ -5990,18 +6270,6 @@
                 }
             ],
             flashcards: [
-                { front: "What is the formula for the magnetic field of a long straight current-carrying wire?", back: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\), where \\( d \\) is the perpendicular distance from the wire axis." },
-                { front: "What is the formula for the magnetic field at the center of a flat circular coil?", back: "\\( B = \\frac{\\mu_0 N I}{2R} \\), where \\( N \\) is the number of turns and \\( R \\) is the radius of the coil." },
-                { front: "What is the formula for the magnetic field inside an ideal air-core solenoid?", back: "\\( B = \\frac{\\mu_0 N I}{l} = \\mu_0 n I \\), where \\( n = \\frac{N}{l} \\) is the linear turn density." },
-                { front: "How is the absolute permeability of a magnetic core related to free space permeability?", back: "\\( \\mu = \\mu_0 \\mu_r \\), where \\( \\mu_0 = 4\\pi \\times 10^{-7}\\,\\mathrm{T\\cdot m/A} \\) and \\( \\mu_r \\) is relative permeability." },
-                { front: "What is the Lorentz force formula on a moving charged particle in a magnetic field?", back: "\\( \\vec{F} = q(\\vec{v}\\times\\vec{B}) \\implies F = |q|vB\\sin\\theta \\), directed perpendicular to both \\( \\vec{v} \\) and \\( \\vec{B} \\)." },
-                { front: "What is the Laplace force formula on a straight current-carrying wire in a magnetic field?", back: "\\( \\vec{F} = I(\\vec{l}\\times\\vec{B}) \\implies F = IlB\\sin\\theta \\), where \\( \\theta \\) is the angle between the wire and the field." },
-                { front: "What is the magnetic interaction force between two parallel current-carrying wires?", back: "\\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\) (attractive for currents in the same direction, repulsive for opposite directions)." },
-                { front: "What are the orbital radius and period of a charged particle moving perpendicular to a magnetic field?", back: "Circular path with radius \\( R = \\frac{mv}{|q|B} \\) and orbital period \\( T = \\frac{2\\pi m}{|q|B} \\) (cyclotron motion)." },
-                { front: "What is the formula for magnetic flux linkage through a planar coil of N turns?", back: "\\( \\Phi = N B A \\cos\\theta \\), where \\( \\theta \\) is the angle between the magnetic field and the surface normal vector \\( \\vec{n} \\)." },
-                { front: "What is Faraday's law of electromagnetic induction?", back: "\\( e(t) = -\\frac{d\\Phi}{dt} \\) (average \\( E_{av} = -\\frac{\\Delta\\Phi}{\\Delta t} \\)); the negative sign represents Lenz's law." },
-                { front: "What is the formula for motional EMF induced in a conductor moving through a magnetic field?", back: "\\( E = v B l \\sin\\theta \\), where \\( l \\) is active length, \\( v \\) is velocity, and \\( \\theta \\) is the angle between \\( \\vec{v} \\) and \\( \\vec{B} \\)." },
-                { front: "What is the peak EMF produced by an AC generator armature rotating in a magnetic field?", back: "\\( E_m = N B A \\omega \\), producing instantaneous alternating EMF \\( e(t) = E_m\\sin(\\omega t) \\)." },
                 { front: "How is self-inductance L defined in terms of magnetic flux linkage?", back: "\\( \\Phi = L I \\implies L = \\frac{\\Phi}{I} \\), measured in henries (\\( \\mathrm{H} = \\mathrm{Wb/A} \\))." },
                 { front: "What is the formula for the self-inductance of a long cylindrical solenoid?", back: "\\( L = \\mu_0 \\frac{N^2 A}{l} \\) for air-core, and \\( L = \\mu_r \\mu_0 \\frac{N^2 A}{l} \\) for a ferromagnetic core." },
                 { front: "What is the formula for self-induced electromotive force (back EMF)?", back: "\\( e(t) = -L\\frac{di}{dt} \\) (average \\( E_{av} = -L\\frac{\\Delta I}{\\Delta t} \\)), opposing any change in circuit current." },
@@ -6009,106 +6277,9 @@
                 { front: "What is the current growth equation in an RL circuit after switch closure?", back: "\\( i(t) = I_p\\left(1 - e^{-t/\\tau}\\right) \\), where steady-state current \\( I_p = \\frac{E}{R} \\) and \\( \\tau = \\frac{L}{R} \\)." },
                 { front: "What is the current decay equation in an RL circuit after the power source is removed?", back: "\\( i(t) = I_p e^{-t/\\tau} \\), dropping to 36.8% of \\( I_p \\) at \\( t = \\tau \\) and practically zero at \\( t \\ge 5\\tau \\)." },
                 { front: "What is the expression for total electromagnetic energy stored in an ideal LC tank circuit?", back: "\\( E_{CL} = \\frac{1}{2}CV^2 + \\frac{1}{2}Li^2 = \\frac{1}{2}CV_m^2 = \\frac{1}{2}LI_m^2 = \\text{constant} \\)." },
-                { front: "What are the natural resonant angular frequency and frequency of an ideal LC circuit?", back: "\\( \\omega_0 = \\frac{1}{\\sqrt{LC}} \\) and \\( f_0 = \\frac{1}{2\\pi\\sqrt{LC}} \\), with period \\( T_0 = 2\\pi\\sqrt{LC} \\)." },
-                { front: "What is the phase relationship between current and capacitor voltage in an ideal LC circuit?", back: "The oscillating current \\( i(t) \\) leads the capacitor voltage \\( V_C(t) \\) and charge \\( q(t) \\) by a phase difference of \\( \\frac{\\pi}{2} \\) rad (90°)." },
-                { front: "What are the formulas for total unwound wire length and single-layer turns of a solenoid?", back: "\\( l' = \\pi D N \\) and \\( N = \\frac{l}{d} \\), where \\( D \\) is cylinder diameter, \\( l \\) is solenoid length, and \\( d \\) is bare wire diameter." }
+                { front: "What are the natural resonant angular frequency and cyclic frequency of an ideal LC circuit?", back: "\\( \\omega_0 = \\frac{1}{\\sqrt{LC}} \\) and \\( f_0 = \\frac{1}{2\\pi\\sqrt{LC}} \\), with period \\( T_0 = 2\\pi\\sqrt{LC} \\)." }
             ],
             quiz: [
-                {
-                    question: "A long straight transmission cable carries a DC current of 25 A. What is the magnetic field induction B at a perpendicular distance of 0.050 m from the wire axis? (μ₀ = 4π × 10⁻⁷ T·m/A)",
-                    options: ["50 μT", "100 μT", "150 μT", "200 μT"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Current I = 25 A, distance d = 0.050 m, μ₀ = 4π × 10⁻⁷ T·m/A.\n2. Find: Magnetic field induction B.\n3. Equation: B = μ₀I / (2πd).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: B = (4π × 10⁻⁷ T·m/A)(25 A) / (2π × 0.050 m) = (2 × 10⁻⁷)(25) / 0.050.\n7. Calculation: B = (5.0 × 10⁻⁶) / 0.050 = 1.0 × 10⁻⁴ T = 100 μT.\n8. Final answer: 100 μT (1.0 × 10⁻⁴ T).\n9. Explanation: The magnetic field around a long straight wire forms concentric circles and diminishes inversely with distance from the wire."
-                },
-                {
-                    question: "A flat circular coil with N = 100 turns has a radius of R = 0.050 m and carries a current of 2.0 A. What is the magnetic field induction at the geometric center of the coil?",
-                    options: ["1.26 mT", "2.51 mT", "5.03 mT", "0.63 mT"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Turns N = 100, radius R = 0.050 m, current I = 2.0 A, μ₀ = 4π × 10⁻⁷ T·m/A.\n2. Find: Magnetic field B at center.\n3. Equation: B = μ₀NI / (2R).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: B = (4π × 10⁻⁷)(100)(2.0 A) / (2 × 0.050 m).\n7. Calculation: B = (8.0π × 10⁻⁵) / 0.10 = 8.0π × 10⁻⁴ T ≈ 2.513 × 10⁻³ T = 2.51 mT.\n8. Final answer: 2.51 mT (2.51 × 10⁻³ T).\n9. Explanation: Each turn of the coil contributes equally to the axial magnetic field at the center, multiplying the single-loop field by N."
-                },
-                {
-                    question: "An air-core solenoid of length l = 0.25 m contains N = 500 turns and carries a current of 4.0 A. What is the magnetic field strength B along the axis inside the core?",
-                    options: ["5.03 mT", "10.1 mT", "20.1 mT", "2.51 mT"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Solenoid length l = 0.25 m, turns N = 500, current I = 4.0 A, μ₀ = 4π × 10⁻⁷ T·m/A.\n2. Find: Internal magnetic field B.\n3. Equation: B = μ₀(N / l)I = μ₀nI.\n4. Unit conversion: None required.\n5. Rearrangement: Turn density n = N / l = 500 / 0.25 = 2000 m⁻¹.\n6. Substitution: B = (4π × 10⁻⁷ T·m/A)(2000 m⁻¹)(4.0 A).\n7. Calculation: B = 3.2π × 10⁻³ T ≈ 10.053 × 10⁻³ T ≈ 10.1 mT.\n8. Final answer: 10.1 mT (1.01 × 10⁻² T).\n9. Explanation: The internal field of a long solenoid is uniform and directly proportional to the turn density (turns per unit length) and the current."
-                },
-                {
-                    question: "An air-core solenoid has an internal magnetic field of B₀ = 5.0 mT. When a soft iron core with relative permeability μ_r = 800 is inserted, what are the core absolute permeability μ and the enhanced magnetic field B?",
-                    options: [
-                        "μ = 1.01 × 10⁻³ T·m/A, B = 4.0 T",
-                        "μ = 4.0 × 10⁻⁴ T·m/A, B = 0.40 T",
-                        "μ = 1.01 × 10⁻³ T·m/A, B = 40.0 T",
-                        "μ = 8.0 × 10⁻⁴ T·m/A, B = 2.5 T"
-                    ],
-                    correctIndex: 0,
-                    feedback: "1. Given: Air-core field B₀ = 5.0 mT = 5.0 × 10⁻³ T, relative permeability μ_r = 800, μ₀ = 4π × 10⁻⁷ T·m/A.\n2. Find: Absolute permeability μ and enhanced magnetic field B.\n3. Equation: μ = μ₀μ_r; B = μ_r B₀.\n4. Unit conversion: B₀ = 5.0 × 10⁻³ T.\n5. Rearrangement: Direct evaluation.\n6. Substitution: μ = (4π × 10⁻⁷)(800); B = 800 × (5.0 × 10⁻³ T).\n7. Calculation: μ = 3.2π × 10⁻⁴ ≈ 1.005 × 10⁻³ T·m/A; B = 4.0 T.\n8. Final answer: μ = 1.01 × 10⁻³ T·m/A, B = 4.0 T.\n9. Explanation: Ferromagnetic cores multiply magnetic field strength by their relative permeability μ_r, creating powerful electromagnets."
-                },
-                {
-                    question: "An electron (q = -1.60 × 10⁻¹⁹ C) enters a uniform magnetic field B = 0.50 T at speed v = 2.0 × 10⁶ m/s perpendicular to the field lines (θ = 90°). What is the magnitude of the Lorentz deflecting force acting on the electron?",
-                    options: ["0.80 × 10⁻¹³ N", "1.60 × 10⁻¹³ N", "3.20 × 10⁻¹³ N", "6.40 × 10⁻¹⁴ N"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Charge |q| = 1.60 × 10⁻¹⁹ C, speed v = 2.0 × 10⁶ m/s, field B = 0.50 T, angle θ = 90°.\n2. Find: Lorentz magnetic force magnitude F.\n3. Equation: F = |q|vB sin θ.\n4. Unit conversion: None required.\n5. Rearrangement: For θ = 90°, sin θ = 1 ⟹ F = |q|vB.\n6. Substitution: F = (1.60 × 10⁻¹⁹ C)(2.0 × 10⁶ m/s)(0.50 T)(1).\n7. Calculation: F = 1.60 × 10⁻¹³ N.\n8. Final answer: 1.60 × 10⁻¹³ N.\n9. Explanation: The Lorentz force acts as a centripetal deflecting force perpendicular to both particle velocity and magnetic field."
-                },
-                {
-                    question: "A straight wire segment of length l = 0.40 m carrying a current of I = 5.0 A lies in a uniform magnetic field B = 0.30 T at an angle of θ = 30° to the field. What is the magnitude of the Laplace magnetic force on the wire?",
-                    options: ["0.15 N", "0.30 N", "0.60 N", "1.20 N"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Wire length l = 0.40 m, current I = 5.0 A, field B = 0.30 T, angle θ = 30°.\n2. Find: Laplace magnetic force F.\n3. Equation: F = IlB sin θ.\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: F = (5.0 A)(0.40 m)(0.30 T) sin(30°).\n7. Calculation: sin(30°) = 0.50; F = (0.60)(0.50) = 0.30 N.\n8. Final answer: 0.30 N.\n9. Explanation: The magnetic force on a current-carrying wire depends on the sine of the angle between current flow and the magnetic field vector."
-                },
-                {
-                    question: "Two long, parallel conductors each of length l = 2.0 m are separated in air by distance a = 0.040 m and carry currents I₁ = 10 A and I₂ = 20 A in the same direction. What is the mutual magnetic force between them?",
-                    options: ["1.0 mN (repulsive)", "2.0 mN (attractive)", "4.0 mN (attractive)", "2.0 mN (repulsive)"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Length l = 2.0 m, separation a = 0.040 m, I₁ = 10 A, I₂ = 20 A, μ₀ = 4π × 10⁻⁷ T·m/A, currents in same direction.\n2. Find: Magnitude and nature of mutual interaction force F.\n3. Equation: F = μ₀I₁I₂l / (2πa).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: F = (4π × 10⁻⁷)(10)(20)(2.0) / (2π × 0.040) = (2 × 10⁻⁷)(400) / 0.040.\n7. Calculation: F = (8.0 × 10⁻⁵) / 0.040 = 2.0 × 10⁻³ N = 2.0 mN; parallel currents attract.\n8. Final answer: 2.0 mN (attractive).\n9. Explanation: Parallel currents flowing in the same direction attract each other due to the interaction of their concentric magnetic field lines."
-                },
-                {
-                    question: "A solenoid of cylinder diameter D = 0.040 m has N = 500 closely wound turns of bare copper wire with diameter d = 0.50 mm (cross-sectional area A' = 1.963 × 10⁻⁷ m²). If the resistivity of copper is ρ = 1.70 × 10⁻⁸ Ω·m, what is the total DC electrical resistance of the winding?",
-                    options: ["2.72 Ω", "5.44 Ω", "10.88 Ω", "1.36 Ω"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Solenoid diameter D = 0.040 m, N = 500, wire diameter d = 0.50 mm = 5.0 × 10⁻⁴ m, A' = 1.963 × 10⁻⁷ m², ρ = 1.70 × 10⁻⁸ Ω·m.\n2. Find: Total winding wire length l' and DC resistance R.\n3. Equation: l' = πDN; R = ρl' / A'.\n4. Unit conversion: d = 5.0 × 10⁻⁴ m.\n5. Rearrangement: l' = πDN; R = ρ(πDN) / A'.\n6. Substitution: l' = π(0.040 m)(500) = 20π m ≈ 62.83 m; R = (1.70 × 10⁻⁸ Ω·m)(62.83 m) / (1.963 × 10⁻⁷ m²).\n7. Calculation: R = (1.068 × 10⁻⁶) / (1.963 × 10⁻⁷) ≈ 5.44 Ω.\n8. Final answer: 5.44 Ω.\n9. Explanation: Total solenoid resistance is proportional to total unwound wire length and inversely proportional to wire cross-sectional area."
-                },
-                {
-                    question: "A proton (m = 1.67 × 10⁻²⁷ kg, q = 1.60 × 10⁻¹⁹ C) enters a uniform magnetic field B = 0.20 T at velocity v = 3.0 × 10⁶ m/s perpendicular to the field. What is the radius R of its circular trajectory?",
-                    options: ["7.8 cm", "15.7 cm", "31.4 cm", "5.2 cm"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Mass m = 1.67 × 10⁻²⁷ kg, charge q = 1.60 × 10⁻¹⁹ C, field B = 0.20 T, speed v = 3.0 × 10⁶ m/s.\n2. Find: Orbit radius R.\n3. Equation: R = mv / (|q|B).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: R = (1.67 × 10⁻²⁷ kg)(3.0 × 10⁶ m/s) / [(1.60 × 10⁻¹⁹ C)(0.20 T)].\n7. Calculation: R = (5.01 × 10⁻²¹) / (3.20 × 10⁻²⁰) = 0.1566 m ≈ 15.7 cm.\n8. Final answer: 15.7 cm (0.157 m).\n9. Explanation: The Lorentz magnetic force provides the required centripetal force (mv²/R = qvB), giving cyclotron radius R = mv / (qB)."
-                },
-                {
-                    question: "For the proton in the previous question (m = 1.67 × 10⁻²⁷ kg, q = 1.60 × 10⁻¹⁹ C, B = 0.20 T), what is the period T of its circular orbit?",
-                    options: ["0.164 μs", "0.328 μs", "0.656 μs", "1.31 μs"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Mass m = 1.67 × 10⁻²⁷ kg, charge q = 1.60 × 10⁻¹⁹ C, field B = 0.20 T.\n2. Find: Cyclotron period T.\n3. Equation: T = 2πm / (|q|B).\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: T = 2π(1.67 × 10⁻²⁷ kg) / [(1.60 × 10⁻¹⁹ C)(0.20 T)].\n7. Calculation: T = (1.0493 × 10⁻²⁶) / (3.20 × 10⁻²⁰) ≈ 3.28 × 10⁻⁷ s = 0.328 μs.\n8. Final answer: 0.328 μs (3.28 × 10⁻⁷ s).\n9. Explanation: The revolution period in cyclotron motion is independent of particle speed and orbit radius, depending only on mass, charge, and field strength."
-                },
-                {
-                    question: "A flat coil of N = 200 turns and area A = 0.025 m² is placed in a uniform magnetic field B = 0.40 T. The normal vector to the coil makes an angle of θ = 60° with the magnetic field lines. What is the total magnetic flux linkage Φ through the coil?",
-                    options: ["0.50 Wb", "1.00 Wb", "1.73 Wb", "2.00 Wb"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Turns N = 200, area A = 0.025 m², field B = 0.40 T, angle θ = 60°.\n2. Find: Total magnetic flux linkage Φ.\n3. Equation: Φ = NBA cos θ.\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: Φ = (200)(0.40 T)(0.025 m²) cos(60°).\n7. Calculation: cos(60°) = 0.50; Φ = (200 × 0.40 × 0.025) × 0.50 = 2.0 × 0.50 = 1.00 Wb.\n8. Final answer: 1.00 Wb (1.00 T·m²).\n9. Explanation: Magnetic flux measures the number of magnetic field lines passing normally through the surface enclosed by the coil turns."
-                },
-                {
-                    question: "The magnetic flux linking a coil decreases uniformly from Φ_i = 0.80 Wb to Φ_f = 0.20 Wb in a time interval of Δt = 0.050 s. What is the average induced electromotive force E_av?",
-                    options: ["-12.0 V", "+12.0 V", "-6.0 V", "+6.0 V"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Initial flux Φ_i = 0.80 Wb, final flux Φ_f = 0.20 Wb, time interval Δt = 0.050 s.\n2. Find: Average induced EMF E_av.\n3. Equation: E_av = -ΔΦ / Δt = -(Φ_f - Φ_i) / Δt.\n4. Unit conversion: None required.\n5. Rearrangement: ΔΦ = 0.20 - 0.80 = -0.60 Wb.\n6. Substitution: E_av = -(-0.60 Wb) / (0.050 s).\n7. Calculation: E_av = +0.60 / 0.050 = +12.0 V.\n8. Final answer: +12.0 V.\n9. Explanation: By Faraday's and Lenz's laws, a decrease in magnetic flux induces a positive EMF that acts to oppose the reduction in flux."
-                },
-                {
-                    question: "A metal rod of active length l = 0.50 m slides at velocity v = 6.0 m/s perpendicular to a uniform magnetic field B = 0.80 T (θ = 90°). What is the motional EMF induced across the ends of the rod?",
-                    options: ["1.20 V", "2.40 V", "3.60 V", "4.80 V"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Length l = 0.50 m, speed v = 6.0 m/s, field B = 0.80 T, angle θ = 90°.\n2. Find: Motional EMF E.\n3. Equation: E = vBl sin θ.\n4. Unit conversion: None required.\n5. Rearrangement: For θ = 90°, sin θ = 1 ⟹ E = vBl.\n6. Substitution: E = (6.0 m/s)(0.80 T)(0.50 m)(1).\n7. Calculation: E = 2.40 V.\n8. Final answer: 2.40 V.\n9. Explanation: As the rod moves through the field, free conduction electrons experience Lorentz forces, separating charges and generating motional EMF."
-                },
-                {
-                    question: "If the sliding conducting rod from the previous question (E = 2.40 V) moves along frictionless conducting rails connected to a closed resistor of R = 4.0 Ω (rail resistance negligible), what induced current flows through the circuit?",
-                    options: ["0.30 A", "0.60 A", "1.20 A", "2.40 A"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Induced EMF E = 2.40 V, loop resistance R = 4.0 Ω.\n2. Find: Induced current I.\n3. Equation: I = |E| / R (Ohm's Law for induced circuits).\n4. Unit conversion: None required.\n5. Rearrangement: I = |E| / R.\n6. Substitution: I = 2.40 V / 4.0 Ω.\n7. Calculation: I = 0.60 A.\n8. Final answer: 0.60 A (600 mA).\n9. Explanation: The induced motional EMF acts as a battery driving current through the closed conducting loop according to Ohm's law."
-                },
-                {
-                    question: "An AC generator has an armature coil with N = 400 turns, each with area A = 0.015 m². The coil rotates at an angular frequency of ω = 100π rad/s (50 Hz) in a uniform magnetic field B = 0.20 T. What is the peak generated EMF E_m?",
-                    options: ["188 V", "377 V", "754 V", "120 V"],
-                    correctIndex: 1,
-                    feedback: "1. Given: Turns N = 400, area A = 0.015 m², field B = 0.20 T, angular speed ω = 100π rad/s.\n2. Find: Peak induced EMF E_m.\n3. Equation: E_m = NBAω.\n4. Unit conversion: None required.\n5. Rearrangement: Direct evaluation.\n6. Substitution: E_m = (400)(0.20 T)(0.015 m²)(100π rad/s).\n7. Calculation: E_m = (1.20) × (100π) = 120π ≈ 376.99 V ≈ 377 V.\n8. Final answer: 377 V (120π V).\n9. Explanation: The peak EMF generated by a rotating armature equals the product of turn count, magnetic field, loop area, and angular velocity."
-                },
                 {
                     question: "An air-core solenoid of length l = 0.50 m has a cross-sectional area A = 1.0 × 10⁻³ m² and contains N = 1000 turns. What is the self-inductance L of this solenoid? (μ₀ = 4π × 10⁻⁷ T·m/A)",
                     options: ["1.26 mH", "2.51 mH", "5.03 mH", "0.63 mH"],
@@ -6167,17 +6338,6 @@
                     feedback: "1. Given: Capacitance C = 5.0 × 10⁻⁶ F, inductance L = 0.020 H, peak voltage V_m = 12 V.\n2. Find: Total stored energy E_CL and peak current I_m.\n3. Equation: E_CL = (1/2)CV_m² = (1/2)LI_m² ⟹ I_m = √(2E_CL / L).\n4. Unit conversion: None required.\n5. Rearrangement: E_CL = 0.5 CV_m²; I_m = √(2E_CL / L).\n6. Substitution: E_CL = 0.5(5.0 × 10⁻⁶ F)(12 V)²; I_m = √[2(3.60 × 10⁻⁴ J) / 0.020 H].\n7. Calculation: E_CL = 0.5 × 5.0 × 10⁻⁶ × 144 = 3.60 × 10⁻⁴ J = 0.36 mJ; I_m = √(0.036) ≈ 0.1897 A ≈ 0.190 A = 190 mA.\n8. Final answer: E_CL = 0.36 mJ, I_m = 0.190 A (190 mA).\n9. Explanation: In an ideal LC circuit, total electromagnetic energy is conserved, sloshing back and forth completely between electric and magnetic forms."
                 },
                 {
-                    question: "When the North pole of a permanent bar magnet is pushed toward a closed conductive ring, what is the magnetic behavior and direction of the induced current?",
-                    options: [
-                        "An attractive South pole is induced, pulling the magnet in faster",
-                        "A repulsive North pole is induced, opposing the approach of the magnet",
-                        "No magnetic field is induced because the ring has no battery",
-                        "A constant DC current flows clockwise indefinitely"
-                    ],
-                    correctIndex: 1,
-                    feedback: "Correct Answer: A repulsive North pole is induced, opposing the approach of the magnet. According to Lenz's law, the induced current creates an opposing magnetic flux that resists the motion of the incoming magnet, requiring mechanical work to push the magnet forward."
-                },
-                {
                     question: "In an ideal oscillating LC tank circuit, what is the phase relationship between the capacitor voltage V_C(t) and the circuit current i(t)?",
                     options: [
                         "Current and voltage are in phase (phase difference 0°)",
@@ -6192,10 +6352,10 @@
         },
 
         // =====================================================================
-        // CHAPTER 3 LESSON 2: Alternating Currents (PDF Pages 29 - 39)
+        // CHAPTER 3 LESSON 4: Alternating Currents (PDF Pages 29 - 39)
         // =====================================================================
         {
-            id: "g12-l6",
+            id: "g12-ch3-l4",
             gifUrl: "",
             worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
             ebookUrl: "ebooks/g12-ch3-l2-ebook.pdf.pdf",
@@ -6208,7 +6368,7 @@
                 { topic: "PhET: Circuit Construction Kit: AC (Virtual Lab)", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_all.html" },
                 { topic: "PhET: Circuit Construction Kit: AC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac/latest/circuit-construction-kit-ac_all.html" }
             ],
-            title: "Chapter 3 Lesson 2: Alternating Currents",
+            title: "Chapter 3, Lesson 4: Alternating Currents",
             concepts: [
                 "Sinusoidal AC: Current reversing direction twice per cycle: \\( i(t) = I_m\\sin(\\omega t + \\phi_0) \\).",
                 "RMS Values: Root-Mean-Square (effective) values: \\( I = \\frac{I_m}{\\sqrt{2}} \\), \\( V = \\frac{V_m}{\\sqrt{2}} \\).",

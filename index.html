@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=4.2">
+    <link rel="stylesheet" href="styles.css?v=4.4">
     <style>
         .view.active {
             display: block !important;
@@ -57,8 +57,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=4.2"></script>
-    <script src="physics-data.js?v=4.2"></script>
+    <script src="physics-figures.js?v=4.4"></script>
+    <script src="physics-data.js?v=4.4"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -1266,66 +1266,151 @@
                     { question: "For a single slit of width a = 0.10 mm with light of wavelength λ = 500 nm on a screen L = 2.0 m away, what is the width of the central diffraction maximum?", options: ["10 mm", "20 mm", "5 mm", "40 mm"], correctIndex: 1, feedback: "W = 2λL / a = 2(5.0 × 10⁻⁷ m)(2.0 m) / (1.0 × 10⁻⁴ m) = 2.0 × 10⁻² m = 20 mm." }
                 ]
             },
-            // Chapter 3 Lesson 1
+            // Chapter 3, Lesson 1: Magnetism
             {
-                id: "g12-l5",
+                id: "g12-ch3-l1",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electromagnetic_induction.gif",
                 worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
                 ebookUrl: "ebooks/g12-ch3-l1-part1.pdf.pdf",
                 ebooks: [
-                    { title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" },
-                    { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+                    { title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" }
                 ],
                 games: [
                     { topic: "Magnetic Field", url: "https://gemini.google.com/share/8a653df6b614" },
-                    { topic: "Faraday’s Law", url: "https://gemini.google.com/share/a36b992c1d6d" },
-                    { topic: "Self Induction", url: "https://gemini.google.com/share/ae9787424975" },
-                    { topic: "Electromagnetic Induction & RL Circuits", url: "https://gemini.google.com/share/5bdf25595304" },
                     { topic: "Magnetism & Biot-Savart", url: "https://gemini.google.com/share/b034179373cf" },
                     { topic: "Lorentz Force & Deflection", url: "https://gemini.google.com/share/b034179373cf" },
-                    { topic: "Electromagnetic Induction & RL", url: "https://gemini.google.com/share/b034179373cf" },
-                    { topic: "PhET: Faraday's Law (Induction)", url: "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html" },
-                    { topic: "PhET: Faraday's Electromagnetic Lab", url: "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" },
                     { topic: "PhET: Charges and Fields", url: "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_all.html" }
                 ],
-                title: "Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",
+                title: "Chapter 3, Lesson 1: Magnetism",
                 concepts: [
-                    "Biot-Savart Law: Current elements create magnetic fields: \\( B = \\frac{\\mu_0 I}{2\\pi d} \\) (wire) and \\( B = \\frac{\\mu_0 NI}{l} \\) (solenoid).",
+                    "Biot-Savart Law: Current elements create magnetic fields: \\( B = \\frac{\\mu_0 I}{2\\pi d} \\) (wire), \\( B = \\frac{\\mu_0 NI}{2R} \\) (coil), and \\( B = \\frac{\\mu_0 NI}{l} \\) (solenoid).",
                     "Lorentz Force: Force on moving charge in magnetic field: \\( F = |q|vB\\sin\\theta \\). Charged particles follow circular orbits: \\( R = \\frac{mv}{|q|B} \\).",
-                    "Electromagnetic Induction: Faraday's law states \\( e = -\\frac{d\\Phi}{dt} \\) with magnetic flux \\( \\Phi = NBA\\cos\\theta \\).",
-                    "Self-Induction & RL Circuit: Coil induces back-emf \\( e = -L\\frac{dI}{dt} \\) with time constant \\( \\tau = \\frac{L}{R} \\)."
+                    "Laplace Force: Magnetic force on straight current-carrying wire: \\( F = IlB\\sin\\theta \\); parallel currents attract via \\( F = \\frac{\\mu_0 I_1 I_2 l}{2\\pi a} \\)."
                 ],
                 definitions: [
                     { term: "Lorentz Force", definition: "Force experienced by a moving electric charge inside a magnetic field.", symbol: "F", unit: "\\mathrm{N}", equation: "F = |q|vB\\sin\\theta" },
                     { term: "Cyclotron Radius", definition: "Orbital radius of a charged particle in a magnetic field.", symbol: "R", unit: "\\mathrm{m}", equation: "R = \\frac{mv}{|q|B}" },
-                    { term: "Magnetic Flux", definition: "Measure of total magnetic field threading an area.", symbol: "\\Phi", unit: "\\mathrm{Wb}", equation: "\\Phi = NBA\\cos\\theta" },
-                    { term: "Faraday's Law", definition: "Electromotive force induced by time-varying magnetic flux.", symbol: "e", unit: "\\mathrm{V}", equation: "e = -\\frac{d\\Phi}{dt}" },
-                    { term: "Self-Inductance", definition: "Back-emf induced by time-varying current in a coil.", symbol: "L", unit: "\\mathrm{H}", equation: "e = -L\\frac{dI}{dt}" },
-                    { term: "RL Time Constant", definition: "Time for current to build to 63.2% or decay to 36.8%.", symbol: "\\tau", unit: "\\mathrm{s}", equation: "\\tau = \\frac{L}{R}" }
+                    { term: "Magnetic Field (B)", definition: "Vector field describing magnetic influence of electric currents.", symbol: "B", unit: "\\mathrm{T}", equation: "B = \\frac{\\mu_0 I}{2\\pi d}" },
+                    { term: "Laplace Force", definition: "Force on a current-carrying conductor in a magnetic field.", symbol: "F", unit: "\\mathrm{N}", equation: "F = IlB\\sin\\theta" }
                 ],
                 examples: [
                     { title: "Lorentz Force on a Proton", given: "Charge \\( q = 1.6\\times 10^{-19}\\,\\mathrm{C} \\), velocity \\( v = 2.5\\times 10^6\\,\\mathrm{m/s} \\), field \\( B = 0.80\\,\\mathrm{T} \\), \\( \\theta = 30^\\circ \\).", find: "Deflecting magnetic force (\\( F \\)) in \\( \\mathrm{N} \\).", equation: "F = qvB\\sin\\theta", solution: "\\[ F = qvB\\sin\\theta = (1.6\\times 10^{-19}\\,\\mathrm{C})(2.5\\times 10^6\\,\\mathrm{m/s})(0.80\\,\\mathrm{T})\\sin(30^\\circ) = 1.6\\times 10^{-13}\\,\\mathrm{N} \\]", finalAnswer: "F = 1.6\\times 10^{-13}\\,\\mathrm{N}", explanation: "The magnetic force acts perpendicular to both velocity and magnetic field vectors." },
-                    { title: "RL Circuit Time Constant", given: "Battery \\( V = 24\\,\\mathrm{V} \\), Resistance \\( R = 12\\,\\Omega \\), Inductance \\( L = 0.060\\,\\mathrm{H} \\).", find: "Time constant (\\( \\tau \\)) in \\( \\mathrm{ms} \\).", equation: "\\tau = \\frac{L}{R}", solution: "\\[ \\tau = \\frac{L}{R} = \\frac{0.060\\,\\mathrm{H}}{12\\,\\Omega} = 0.0050\\,\\mathrm{s} = 5.0\\,\\mathrm{ms} \\]", finalAnswer: "\\tau = 5.0\\,\\mathrm{ms}", explanation: "The inductor opposes immediate current change, allowing current to reach 63.2% after one time constant of 5 ms." }
+                    { title: "Magnetic Field of a Straight Wire", given: "Current \\( I = 40\\,\\mathrm{A} \\), distance \\( d = 0.080\\,\\mathrm{m} \\), \\( \\mu_0 = 4\\pi\\times 10^{-7}\\,\\mathrm{T\\cdot m/A} \\).", find: "Field \\( B \\) in \\( \\mathrm{T} \\).", equation: "B = \\frac{\\mu_0 I}{2\\pi d}", solution: "\\[ B = \\frac{(4\\pi\\times 10^{-7})(40)}{2\\pi(0.080)} = 1.0\\times 10^{-4}\\,\\mathrm{T} = 100\\,\\mu\\mathrm{T} \\]", finalAnswer: "B = 1.0\\times 10^{-4}\\,\\mathrm{T}", explanation: "The field diminishes inversely with distance from the wire axis." }
                 ],
                 equations: [
                     { section: "Magnetic Fields", name: "Biot-Savart Straight Wire", formula: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)", symbols: [{ symbol: "B", desc: "Field (T)" }, { symbol: "I", desc: "Current (A)" }, { symbol: "d", desc: "Distance (m)" }] },
                     { section: "Magnetic Forces", name: "Lorentz Force", formula: "\\( F = |q|vB\\sin\\theta \\)", symbols: [{ symbol: "F", desc: "Force (N)" }, { symbol: "q", desc: "Charge (C)" }] },
-                    { section: "Induction", name: "Faraday's Law", formula: "\\( e = -\\frac{d\\Phi}{dt}, \\quad \\Phi = NBA\\cos\\theta \\)", symbols: [{ symbol: "e", desc: "Induced emf (V)" }, { symbol: "Φ", desc: "Flux (Wb)" }] },
-                    { section: "Self-Induction", name: "Back-EMF & RL Constant", formula: "\\( e = -L\\frac{dI}{dt}, \\quad \\tau = \\frac{L}{R} \\)", symbols: [{ symbol: "L", desc: "Inductance (H)" }, { symbol: "τ", desc: "Time constant (s)" }] }
+                    { section: "Cyclotron Motion", name: "Cyclotron Radius", formula: "\\( R = \\frac{mv}{|q|B} \\)", symbols: [{ symbol: "R", desc: "Radius (m)" }, { symbol: "m", desc: "Mass (kg)" }] },
+                    { section: "Laplace Force", name: "Laplace Force on Wire", formula: "\\( F = IlB\\sin\\theta \\)", symbols: [{ symbol: "F", desc: "Force (N)" }, { symbol: "l", desc: "Length (m)" }] }
+                ],
+                flashcards: [
+                    { front: "What is the Lorentz force formula?", back: "\\( F = |q|vB\\sin\\theta \\)" },
+                    { front: "What is the formula for the cyclotron radius?", back: "\\( R = \\frac{mv}{|q|B} \\)" },
+                    { front: "What is the Biot-Savart formula for a long straight wire?", back: "\\( B = \\frac{\\mu_0 I}{2\\pi d} \\)" }
+                ],
+                quiz: [
+                    { question: "The Lorentz force on a moving charge is maximum when the angle between velocity and field is:", options: ["0°", "45°", "90°", "180°"], correctIndex: 2, feedback: "F = |q|vB sin θ is maximum when sin θ = 1, which occurs at θ = 90°." },
+                    { question: "In a cyclotron, the orbital radius R of a charged particle is proportional to:", options: ["1/v", "v", "B", "1/m"], correctIndex: 1, feedback: "R = mv / (|q|B), so radius is directly proportional to speed v." }
+                ]
+            },
+            // Chapter 3, Lesson 2: Electromagnetic Induction
+            {
+                id: "g12-ch3-l2",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electromagnetic_induction.gif",
+                worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+                ebookUrl: "ebooks/g12-ch3-l1-part2.pdf.pdf",
+                ebooks: [
+                    { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+                ],
+                games: [
+                    { topic: "Faraday’s Law", url: "https://gemini.google.com/share/a36b992c1d6d" },
+                    { topic: "PhET: Faraday's Law (Induction)", url: "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html" },
+                    { topic: "PhET: Faraday's Electromagnetic Lab", url: "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" }
+                ],
+                title: "Chapter 3, Lesson 2: Electromagnetic Induction",
+                concepts: [
+                    "Magnetic Flux: Total magnetic field threading a loop area: \\( \\Phi = NBA\\cos\\theta \\).",
+                    "Faraday's Law of Induction: Induced electromotive force equals rate of change of magnetic flux: \\( e = -\\frac{d\\Phi}{dt} \\).",
+                    "Lenz's Law: Induced current creates a magnetic field that opposes the change in flux producing it.",
+                    "Motional EMF: Conductor translating through magnetic field generates voltage: \\( E = vBl\\sin\\theta \\).",
+                    "AC Generator: Rotating coil produces sinusoidal EMF: \\( e = E_m\\sin(\\omega t) \\) with \\( E_m = NBA\\omega \\)."
+                ],
+                definitions: [
+                    { term: "Magnetic Flux", definition: "Measure of total magnetic field threading an area.", symbol: "\\Phi", unit: "\\mathrm{Wb}", equation: "\\Phi = NBA\\cos\\theta" },
+                    { term: "Faraday's Law", definition: "Electromotive force induced by time-varying magnetic flux.", symbol: "e", unit: "\\mathrm{V}", equation: "e = -\\frac{d\\Phi}{dt}" },
+                    { term: "Lenz's Law", definition: "Induced emf always opposes the flux change that causes it.", symbol: "\\text{Lenz}", unit: "\\text{Principle}", equation: "e = -\\frac{d\\Phi}{dt}" },
+                    { term: "Motional EMF", definition: "Voltage generated across a conductor translating through a magnetic field.", symbol: "E", unit: "\\mathrm{V}", equation: "E = vBl\\sin\\theta" }
+                ],
+                examples: [
+                    { title: "Magnetic Flux Linked Through a Coil", given: "Coil \\( N = 200 \\) turns, \\( A = 0.015\\,\\mathrm{m^2} \\), field \\( B = 0.20\\,\\mathrm{T} \\), \\( \\theta = 0^\\circ \\).", find: "Magnetic flux \\( \\Phi \\) in \\( \\mathrm{Wb} \\).", equation: "\\Phi = NBA\\cos\\theta", solution: "\\[ \\Phi = (200)(0.20\\,\\mathrm{T})(0.015\\,\\mathrm{m^2})(1.0) = 0.60\\,\\mathrm{Wb} \\]", finalAnswer: "\\Phi = 0.60\\,\\mathrm{Wb}", explanation: "Flux is maximum when the field is aligned with the loop normal vector." },
+                    { title: "Faraday's Law Induced EMF", given: "Flux drops from \\( \\Phi_1 = 0.060\\,\\mathrm{Wb} \\) to \\( \\Phi_2 = 0.015\\,\\mathrm{Wb} \\) in \\( \\Delta t = 0.090\\,\\mathrm{s} \\) for \\( N = 150 \\) turns.", find: "Induced EMF \\( E_{av} \\).", equation: "E_{av} = -N\\frac{\\Delta\\Phi}{\\Delta t}", solution: "\\[ E_{av} = -150 \\times \\frac{0.015 - 0.060}{0.090} = -150(-0.50) = +75.0\\,\\mathrm{V} \\]", finalAnswer: "E_{av} = +75.0\\,\\mathrm{V}", explanation: "A decreasing flux produces an induced EMF driving current to sustain the magnetic field." }
+                ],
+                equations: [
+                    { section: "Induction", name: "Magnetic Flux", formula: "\\( \\Phi = NBA\\cos\\theta \\)", symbols: [{ symbol: "Φ", desc: "Flux (Wb)" }, { symbol: "B", desc: "Field (T)" }, { symbol: "A", desc: "Area (m²)" }] },
+                    { section: "Induction", name: "Faraday's Law", formula: "\\( e = -\\frac{d\\Phi}{dt} \\)", symbols: [{ symbol: "e", desc: "Induced emf (V)" }, { symbol: "Φ", desc: "Flux (Wb)" }] },
+                    { section: "Motional EMF", name: "Motional EMF Formula", formula: "\\( E = vBl\\sin\\theta \\)", symbols: [{ symbol: "E", desc: "EMF (V)" }, { symbol: "v", desc: "Velocity (m/s)" }, { symbol: "l", desc: "Length (m)" }] },
+                    { section: "AC Generator", name: "Peak Generator EMF", formula: "\\( E_m = NBA\\omega \\)", symbols: [{ symbol: "E_m", desc: "Peak EMF (V)" }, { symbol: "ω", desc: "Angular speed (rad/s)" }] }
                 ],
                 flashcards: [
                     { front: "What is Faraday's law of electromagnetic induction?", back: "\\( e = -\\frac{d\\Phi}{dt} \\)" },
-                    { front: "What is the formula for the time constant in an RL circuit?", back: "\\( \\tau = \\frac{L}{R} \\)" },
-                    { front: "What is the Lorentz force formula?", back: "\\( F = |q|vB\\sin\\theta \\)" }
+                    { front: "What is the formula for magnetic flux linkage?", back: "\\( \\Phi = NBA\\cos\\theta \\)" },
+                    { front: "What is motional EMF generated across a translating rod?", back: "\\( E = vBl\\sin\\theta \\)" }
                 ],
                 quiz: [
-                    { question: "Self-induced emf in an inductor is directly proportional to:", options: ["Current I", "Voltage V", "Rate of current change dI/dt", "Resistance R"], correctIndex: 2, feedback: "e = -L (dI/dt)." },
+                    { question: "Faraday's law states that induced emf is proportional to:", options: ["Magnetic flux Φ", "Rate of change of magnetic flux dΦ/dt", "Magnetic field B", "Circuit resistance R"], correctIndex: 1, feedback: "e = -dΦ/dt; emf depends on the time rate of change of magnetic flux." },
+                    { question: "A conducting rod of length l moves with velocity v perpendicular to field B. The induced motional EMF is:", options: ["vB / l", "vBl", "v / (Bl)", "B / (vl)"], correctIndex: 1, feedback: "Motional EMF is E = vBl sin 90° = vBl." }
+                ]
+            },
+            // Chapter 3, Lesson 3: Self Induction
+            {
+                id: "g12-ch3-l3",
+                gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electromagnetic_induction.gif",
+                worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+                ebookUrl: "ebooks/g12-ch3-l1-part2.pdf.pdf",
+                ebooks: [
+                    { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+                ],
+                games: [
+                    { topic: "Self Induction", url: "https://gemini.google.com/share/ae9787424975" },
+                    { topic: "Electromagnetic Induction & RL Circuits", url: "https://gemini.google.com/share/5bdf25595304" }
+                ],
+                title: "Chapter 3, Lesson 3: Self Induction",
+                concepts: [
+                    "Self-Induction: Time-varying current in an inductor induces opposing back-emf: \\( e = -L\\frac{di}{dt} \\).",
+                    "Inductance of a Solenoid: \\( L = \\mu_0\\frac{N^2 A}{l} \\), multiplied by \\( \\mu_r \\) with magnetic core.",
+                    "RL Circuit Growth & Decay: Growth \\( i(t) = I_p(1 - e^{-t/\\tau}) \\); Decay \\( i(t) = I_p e^{-t/\\tau} \\) with \\( \\tau = \\frac{L}{R} \\).",
+                    "LC Oscillations: Energy alternates between capacitor electric field and inductor magnetic field: \\( E = \\frac{1}{2}CV^2 + \\frac{1}{2}Li^2 \\).",
+                    "LC Resonance: Natural resonant frequency \\( f_0 = \\frac{1}{2\\pi\\sqrt{LC}} \\), \\( \\omega_0 = \\frac{1}{\\sqrt{LC}} \\)."
+                ],
+                definitions: [
+                    { term: "Self-Inductance", definition: "Back-emf induced by time-varying current in a coil.", symbol: "L", unit: "\\mathrm{H}", equation: "e = -L\\frac{di}{dt}" },
+                    { term: "RL Time Constant", definition: "Time for current to build to 63.2% or decay to 36.8%.", symbol: "\\tau", unit: "\\mathrm{s}", equation: "\\tau = \\frac{L}{R}" },
+                    { term: "Magnetic Stored Energy", definition: "Energy stored in the magnetic field of an energized inductor.", symbol: "E_L", unit: "\\mathrm{J}", equation: "E_L = \\frac{1}{2}LI^2" },
+                    { term: "LC Resonant Frequency", definition: "Natural undamped frequency of electromagnetic oscillation in an LC circuit.", symbol: "f_0", unit: "\\mathrm{Hz}", equation: "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}" }
+                ],
+                examples: [
+                    { title: "RL Circuit Time Constant", given: "Battery \\( V = 24\\,\\mathrm{V} \\), Resistance \\( R = 12\\,\\Omega \\), Inductance \\( L = 0.060\\,\\mathrm{H} \\).", find: "Time constant (\\( \\tau \\)) in \\( \\mathrm{ms} \\).", equation: "\\tau = \\frac{L}{R}", solution: "\\[ \\tau = \\frac{L}{R} = \\frac{0.060\\,\\mathrm{H}}{12\\,\\Omega} = 0.0050\\,\\mathrm{s} = 5.0\\,\\mathrm{ms} \\]", finalAnswer: "\\tau = 5.0\\,\\mathrm{ms}", explanation: "The inductor opposes immediate current change, reaching 63.2% after one time constant of 5 ms." },
+                    { title: "Self-Induced Counter EMF", given: "Inductance \\( L = 0.25\\,\\mathrm{H} \\), current drops by \\( \\Delta I = -6.0\\,\\mathrm{A} \\) in \\( \\Delta t = 0.050\\,\\mathrm{s} \\).", find: "Self-induced EMF \\( E_{av} \\).", equation: "E_{av} = -L\\frac{\\Delta I}{\\Delta t}", solution: "\\[ E_{av} = -(0.25\\,\\mathrm{H})\\left(\\frac{-6.0\\,\\mathrm{A}}{0.050\\,\\mathrm{s}}\\right) = -(0.25)(-120) = +30.0\\,\\mathrm{V} \\]", finalAnswer: "E_{av} = +30.0\\,\\mathrm{V}", explanation: "The inductor generates positive back-EMF to oppose the decrease in current." }
+                ],
+                equations: [
+                    { section: "Self-Induction", name: "Back-EMF & RL Constant", formula: "\\( e = -L\\frac{di}{dt}, \\quad \\tau = \\frac{L}{R} \\)", symbols: [{ symbol: "L", desc: "Inductance (H)" }, { symbol: "τ", desc: "Time constant (s)" }] },
+                    { section: "Self-Induction", name: "Solenoid Inductance", formula: "\\( L = \\mu_0\\frac{N^2 A}{l} \\)", symbols: [{ symbol: "L", desc: "Inductance (H)" }, { symbol: "N", desc: "Turns" }, { symbol: "A", desc: "Area (m²)" }, { symbol: "l", desc: "Length (m)" }] },
+                    { section: "Inductor Energy", name: "Stored Magnetic Energy", formula: "\\( E_L = \\frac{1}{2}LI^2 \\)", symbols: [{ symbol: "E_L", desc: "Energy (J)" }, { symbol: "I", desc: "Current (A)" }] },
+                    { section: "LC Tank", name: "LC Resonant Frequency", formula: "\\( f_0 = \\frac{1}{2\\pi\\sqrt{LC}} \\)", symbols: [{ symbol: "f_0", desc: "Frequency (Hz)" }, { symbol: "C", desc: "Capacitance (F)" }] }
+                ],
+                flashcards: [
+                    { front: "What is the formula for self-induced EMF in an inductor?", back: "\\( e = -L\\frac{di}{dt} \\)" },
+                    { front: "What is the formula for the time constant in an RL circuit?", back: "\\( \\tau = \\frac{L}{R} \\)" },
+                    { front: "What is the natural resonant frequency of an LC tank circuit?", back: "\\( f_0 = \\frac{1}{2\\pi\\sqrt{LC}} \\)" }
+                ],
+                quiz: [
+                    { question: "Self-induced emf in an inductor is directly proportional to:", options: ["Current I", "Voltage V", "Rate of current change di/dt", "Resistance R"], correctIndex: 2, feedback: "e = -L (di/dt); back-emf opposes the time rate of change of current." },
                     { question: "The time constant τ of an RL circuit is given by:", options: ["R / L", "L / R", "L × R", "1 / (LR)"], correctIndex: 1, feedback: "τ = L / R." }
                 ]
             },
-            // Chapter 3 Lesson 2
+            // Chapter 3, Lesson 4: Alternating Currents
             {
-                id: "g12-l6",
+                id: "g12-ch3-l4",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",
                 worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
                 ebookUrl: "ebooks/g12-ch3-l2-ebook.pdf.pdf",
@@ -1338,7 +1423,7 @@
                     { topic: "PhET: Circuit Construction Kit: AC (Virtual Lab)", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_all.html" },
                     { topic: "PhET: Circuit Construction Kit: AC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac/latest/circuit-construction-kit-ac_all.html" }
                 ],
-                title: "Chapter 3 Lesson 2: Alternating Currents",
+                title: "Chapter 3, Lesson 4: Alternating Currents",
                 concepts: [
                     "AC Waveforms: Sinusoidal current and voltage with RMS values \\( I = \\frac{I_m}{\\sqrt{2}} \\), \\( V = \\frac{V_m}{\\sqrt{2}} \\).",
                     "Reactance: Inductive reactance \\( Z_L = L\\omega \\); capacitive reactance \\( Z_C = \\frac{1}{C\\omega} \\).",
@@ -2909,27 +2994,77 @@
                     hasQuiz: true
                 },
                 {
-                    id: "g12-l5",
+                    id: "g12-ch3-l1",
                     chapterNum: "Chapter 3 • Lesson 1",
-                    chapterName: "Magnetism, Electromagnetic Induction and Self Induction",
-                    subtitle: "Biot-Savart, Lorentz Force, Faraday's Law, RL Circuit & Self-Inductance",
+                    chapterName: "Magnetism",
+                    subtitle: "Biot-Savart Law, Lorentz Force, Laplace Force & Cyclotron Motion",
                     icon: "fa-compass",
                     color: "#be123c",
                     gradient: "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)",
                     bgLight: "#ffe4e6",
                     borderLight: "#fecdd3",
                     shadow: "rgba(190, 18, 60, 0.22)",
-                    chips: ["B-Fields", "Lorentz Force", "Induction", "RL Circuit"],
-                    formulas: 20,
-                    terms: 16,
-                    examples: 20,
-                    sims: 3,
+                    chips: ["B-Fields", "Lorentz Force", "Laplace Force", "Cyclotron"],
+                    formulas: 9,
+                    terms: 10,
+                    examples: 9,
+                    sims: 4,
                     hasPdf: true,
-                    hasQuiz: true
+                    hasQuiz: true,
+                    worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+                    ebooks: [
+                        { title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" }
+                    ]
                 },
                 {
-                    id: "g12-l6",
+                    id: "g12-ch3-l2",
                     chapterNum: "Chapter 3 • Lesson 2",
+                    chapterName: "Electromagnetic Induction",
+                    subtitle: "Magnetic Flux, Faraday's Law, Lenz's Law, Motional EMF & AC Generators",
+                    icon: "fa-bolt-lightning",
+                    color: "#ea580c",
+                    gradient: "linear-gradient(135deg, #f97316 0%, #c2410c 100%)",
+                    bgLight: "#ffedd5",
+                    borderLight: "#fed7aa",
+                    shadow: "rgba(234, 88, 12, 0.22)",
+                    chips: ["Magnetic Flux", "Faraday's Law", "Lenz's Law", "Motional EMF"],
+                    formulas: 5,
+                    terms: 5,
+                    examples: 5,
+                    sims: 3,
+                    hasPdf: true,
+                    hasQuiz: true,
+                    worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+                    ebooks: [
+                        { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+                    ]
+                },
+                {
+                    id: "g12-ch3-l3",
+                    chapterNum: "Chapter 3 • Lesson 3",
+                    chapterName: "Self Induction",
+                    subtitle: "Self-Inductance, Back EMF, RL Transients & LC Tank Circuit Resonance",
+                    icon: "fa-arrows-rotate",
+                    color: "#7c3aed",
+                    gradient: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
+                    bgLight: "#ede9fe",
+                    borderLight: "#ddd6fe",
+                    shadow: "rgba(124, 58, 237, 0.22)",
+                    chips: ["Self-Induction", "Back EMF", "RL Circuit", "LC Oscillator"],
+                    formulas: 6,
+                    terms: 8,
+                    examples: 6,
+                    sims: 2,
+                    hasPdf: true,
+                    hasQuiz: true,
+                    worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+                    ebooks: [
+                        { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
+                    ]
+                },
+                {
+                    id: "g12-ch3-l4",
+                    chapterNum: "Chapter 3 • Lesson 4",
                     chapterName: "Alternating Currents",
                     subtitle: "AC Waveforms, RMS Values, RLC Series Impedance & Power Factor",
                     icon: "fa-wave-square",
@@ -2939,12 +3074,16 @@
                     borderLight: "#bfdbfe",
                     shadow: "rgba(37, 99, 235, 0.22)",
                     chips: ["AC Waveforms", "RMS Values", "RLC Impedance", "Power Factor"],
-                    formulas: 14,
-                    terms: 14,
-                    examples: 14,
+                    formulas: 10,
+                    terms: 13,
+                    examples: 11,
                     sims: 1,
                     hasPdf: true,
-                    hasQuiz: true
+                    hasQuiz: true,
+                    worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
+                    ebooks: [
+                        { title: "AC Circuits & Electromagnetic Waves (pp. 131–159)", url: "ebooks/g12-ch3-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch3-l2-ebook.pdf" }
+                    ]
                 },
                 {
                     id: "g12-ch4-l1",
@@ -3105,9 +3244,9 @@
             } else {
                 if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-atom"></i> Grade 12 • Advanced & Modern Physics';
                 if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g12">Grade 12</span> Physics';
-                if (subtitleEl) subtitleEl.innerText = '4 Comprehensive Chapters • 10 Core Lessons: Ideal Gases, Waves, Magnetism & AC, and Modern Physics';
+                if (subtitleEl) subtitleEl.innerText = '4 Comprehensive Chapters • 12 Core Lessons: Ideal Gases, Waves, Electromagnetism & AC, and Modern Physics';
                 if (statsBar) {
-                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters (10 Lessons)</span>' +
+                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters (12 Lessons)</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 115 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
@@ -3221,12 +3360,12 @@
             // Canonical ID alias mapping
             var canonicalId = id;
             if (canonicalId === 'g12-waves' || canonicalId === 'g12-standing' || canonicalId === 'g12-ch2-l1') canonicalId = 'g12-l4';
-            else if (canonicalId === 'g12-mag' || canonicalId === 'g12-ch3-l1') canonicalId = 'g12-l5';
+            else if (canonicalId === 'g12-mag' || canonicalId === 'g12-l5') canonicalId = 'g12-ch3-l1';
             else if (canonicalId === 'g12-ch1-l1') canonicalId = 'g12-l1';
             else if (canonicalId === 'g12-ch1-l2') canonicalId = 'g12-l2';
             else if (canonicalId === 'g12-ch1-l3') canonicalId = 'g12-l3';
             else if (canonicalId === 'g12-ch2-l2') canonicalId = 'g12-interf';
-            else if (canonicalId === 'g12-ac' || canonicalId === 'g12-ch3-l2') canonicalId = 'g12-l6';
+            else if (canonicalId === 'g12-ac' || canonicalId === 'g12-l6') canonicalId = 'g12-ch3-l4';
 
             // Set Title from Catalog or Lesson object
             var titleEl = document.getElementById('lesson-detail-title');
@@ -4061,6 +4200,10 @@
             'g12-l4': [{ title: "Superposition & Standing Waves (pp. 49–63)", url: "ebooks/g12-ch2-l1-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l1-ebook.pdf" }],
             'g12-interf': [{ title: "Interference & Diffraction of Light (pp. 64–78)", url: "ebooks/g12-ch2-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l2-ebook.pdf" }],
             'g12-ch2-l2': [{ title: "Interference & Diffraction of Light (pp. 64–78)", url: "ebooks/g12-ch2-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch2-l2-ebook.pdf" }],
+            'g12-ch3-l1': [{ title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" }],
+            'g12-ch3-l2': [{ title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }],
+            'g12-ch3-l3': [{ title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }],
+            'g12-ch3-l4': [{ title: "AC Circuits & Electromagnetic Waves (pp. 131–159)", url: "ebooks/g12-ch3-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch3-l2-ebook.pdf" }],
             'g12-l5': [
                 { title: "Part 1: Magnetism & Magnetic Fields (pp. 79–109)", url: "ebooks/g12-ch3-l1-part1.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part1.pdf" },
                 { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
@@ -4815,47 +4958,819 @@
             buildDirectEbookUI(0);
         }
 
+        var WORKSHEET_FALLBACK_CATALOG = {
+            // Grade 7 (Official Curriculum Book containing all practice exercises & worksheets)
+            'g7-l1': [{ title: "Grade 7 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
+            'g7-l2': [{ title: "Grade 7 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
+            'g7-l3': [{ title: "Grade 7 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
+            'g7-l4': [{ title: "Grade 7 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
+
+            // Grade 8 (Official Curriculum Book containing all practice exercises & worksheets)
+            'g8-l1': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l2': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l3': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l4': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l5': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l6': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l7': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l8': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l9': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l10': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l11': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l12': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l13': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+            'g8-l14': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
+
+            // Grade 9 (Official Dedicated Practice Worksheets)
+            'g9-l1': [{ title: "Chapter 1: Turning Effect of Force Practice Worksheet", url: "worksheets/g9-ch1-worksheet.pdf", altUrl: "worksheets/g9-ch1-worksheet.pdf.pdf" }],
+            'g9-l2': [{ title: "Chapter 2: Simple Machines Practice Worksheet", url: "worksheets/g9-ch2-worksheet.pdf", altUrl: "worksheets/g9-ch2-worksheet.pdf.pdf" }],
+            'g9-l3': [{ title: "Chapter 3: Electricity Practice Worksheet", url: "worksheets/g9-ch3-worksheet.pdf", altUrl: "worksheets/g9-ch3-worksheet.pdf.pdf" }],
+            'g9-l4': [{ title: "Chapter 4: Magnetic Field Practice Worksheet", url: "worksheets/g9-ch4-worksheet.pdf", altUrl: "worksheets/g9-ch4-worksheet.pdf.pdf" }],
+            'g9-l5': [{ title: "Chapter 5: Light Practice Worksheet", url: "worksheets/g9-ch5-worksheet.pdf", altUrl: "worksheets/g9-ch5-worksheet.pdf.pdf" }],
+
+            // Grade 10 (Official Curriculum Book containing all practice exercises & worksheets)
+            'g10-l1': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-l2': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-l3': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-l4': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch1-l5': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch1-l6': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch2-l1': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch2-l2': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch3-l1': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch3-l2': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch4-l1': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch4-l2': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            'g10-ch4-l3': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+
+            // Grade 11 (Official Curriculum Book containing all practice exercises & worksheets)
+            'g11-l1': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-l2': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-l3': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-l4': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch1-l5': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch1-l6': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch2-l1': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch2-l2': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch3-l1': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch3-l2': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch3-l3': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            'g11-ch3-l4': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+
+            // Grade 12 (Official Dedicated Practice Worksheets)
+            'g12-l1': [{ title: "Chapter 1 Lesson 1: Kinetic Theory Practice Worksheet", url: "worksheets/ch1-l1-worksheet.pdf", altUrl: "worksheets/ch1-l1-worksheet.pdf.pdf" }],
+            'g12-l2': [{ title: "Chapter 1 Lesson 2: First Law of Thermodynamics Practice Worksheet", url: "worksheets/ch1-l2-worksheet.pdf", altUrl: "worksheets/ch1-l2-worksheet.pdf.pdf" }],
+            'g12-l3': [{ title: "Chapter 1 Lesson 3: Heat Engine Practice Worksheet", url: "worksheets/ch1-l3-worksheet.pdf", altUrl: "worksheets/ch1-l3-worksheet.pdf.pdf" }],
+            'g12-l4': [{ title: "Chapter 2 Lesson 1: Superposition & Standing Waves Practice Worksheet", url: "worksheets/ch2-l1-worksheet.pdf", altUrl: "worksheets/ch2-l1-worksheet.pdf.pdf" }],
+            'g12-interf': [{ title: "Chapter 2 Lesson 2: Interference & Diffraction Practice Worksheet", url: "worksheets/ch2-l2-worksheet.pdf", altUrl: "worksheets/ch2-l2-worksheet.pdf.pdf" }],
+            'g12-ch3-l1': [{ title: "Chapter 3 Lesson 1: Magnetism Practice Worksheet", url: "worksheets/ch3-l1-worksheet.pdf", altUrl: "worksheets/ch3-l1-worksheet.pdf.pdf" }],
+            'g12-ch3-l2': [{ title: "Chapter 3 Lesson 2: Electromagnetic Induction Practice Worksheet", url: "worksheets/ch3-l1-worksheet.pdf", altUrl: "worksheets/ch3-l1-worksheet.pdf.pdf" }],
+            'g12-ch3-l3': [{ title: "Chapter 3 Lesson 3: Self Induction Practice Worksheet", url: "worksheets/ch3-l1-worksheet.pdf", altUrl: "worksheets/ch3-l1-worksheet.pdf.pdf" }],
+            'g12-ch3-l4': [{ title: "Chapter 3 Lesson 4: Alternating Current Practice Worksheet", url: "worksheets/ch3-l2-worksheet.pdf", altUrl: "worksheets/ch3-l2-worksheet.pdf.pdf" }],
+            'g12-l5': [{ title: "Chapter 3 Lessons 1–3: Electromagnetism Practice Worksheet", url: "worksheets/ch3-l1-worksheet.pdf", altUrl: "worksheets/ch3-l1-worksheet.pdf.pdf" }],
+            'g12-l6': [{ title: "Chapter 3 Lesson 4: Alternating Current Practice Worksheet", url: "worksheets/ch3-l2-worksheet.pdf", altUrl: "worksheets/ch3-l2-worksheet.pdf.pdf" }],
+            'g12-ch4-l1': [{ title: "Chapter 4 Lesson 1: Semiconductors & Transistors Practice Worksheet", url: "worksheets/ch4-l1-worksheet.pdf", altUrl: "worksheets/ch4-l1-worksheet.pdf.pdf" }],
+            'g12-ch4-l2': [{ title: "Chapter 4 Lesson 2: Special Theory of Relativity Practice Worksheet", url: "worksheets/ch4-l2-worksheet.pdf", altUrl: "worksheets/ch4-l2-worksheet.pdf.pdf" }],
+            'g12-ch4-l3': [{ title: "Chapter 4 Lesson 3: Atomic Structure Practice Worksheet", url: "worksheets/ch4-l3-worksheet.pdf", altUrl: "worksheets/ch4-l3-worksheet.pdf.pdf" }]
+        };
+
+        var activeWorksheetSession = null;
+        var activeLoadedWorksheetLessonId = null;
+        var activeLoadedWorksheetSectionIdx = null;
+
+        function cleanupWorksheetSession() {
+            if (activeWorksheetSession && typeof activeWorksheetSession.cleanup === 'function') {
+                try { activeWorksheetSession.cleanup(); } catch(e) {}
+            }
+            activeWorksheetSession = null;
+        }
+
+        function resolveWorksheetCandidates(item) {
+            var primary = (item && item.url) ? item.url : (typeof item === 'string' ? item : '');
+            var alt = (item && item.altUrl) ? item.altUrl : '';
+            if (!alt && primary) {
+                if (primary.toLowerCase().endsWith('.pdf.pdf')) {
+                    alt = primary.slice(0, -4);
+                } else if (primary.toLowerCase().endsWith('.pdf')) {
+                    alt = primary + '.pdf';
+                } else {
+                    alt = primary + '.pdf';
+                }
+            }
+            return { primary: primary, alt: alt };
+        }
+
         function initWorksheetUI(lesson) {
+            if (!lesson) return;
             var wsContainer = document.getElementById('lesson-worksheet');
             if (!wsContainer) return;
-            if (lesson.worksheetUrl) {
-                var wsUrl = lesson.worksheetUrl;
-                var wsAltUrl = wsUrl.endsWith('.pdf.pdf') ? wsUrl.slice(0, -4) : (wsUrl + '.pdf');
-                wsContainer.innerHTML = '<div class="worksheet-header">' +
-                    '<h2><i class="fa-solid fa-file-pdf"></i> ' + (lesson.title || 'Lesson') + ' - Practice Worksheet</h2>' +
-                    '<p>Open, download, or print the worksheet for practice exercises.</p>' +
+
+            var worksheetsList = [];
+            if (lesson.worksheets && Array.isArray(lesson.worksheets) && lesson.worksheets.length > 0) {
+                worksheetsList = lesson.worksheets.map(function(w) { return (typeof w === 'string' ? { title: 'Practice Worksheet', url: w } : w); });
+            } else if (lesson.worksheetUrl) {
+                worksheetsList = [{ title: (lesson.title ? lesson.title + ' Worksheet' : 'Practice Worksheet'), url: lesson.worksheetUrl }];
+            } else if (lesson.id) {
+                var lid = String(lesson.id).toLowerCase();
+                if (WORKSHEET_FALLBACK_CATALOG[lid]) {
+                    worksheetsList = WORKSHEET_FALLBACK_CATALOG[lid];
+                }
+            }
+
+            // Universal Grade-level fallback for Grade 7, 8, 9, 10, 11, and 12
+            if (!worksheetsList || worksheetsList.length === 0) {
+                var lessonKey = String((lesson && lesson.id) || '').toLowerCase();
+                if (lessonKey.startsWith('g7-')) {
+                    worksheetsList = [{ title: "Grade 7 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }];
+                } else if (lessonKey.startsWith('g8-')) {
+                    worksheetsList = [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }];
+                } else if (lessonKey.startsWith('g9-')) {
+                    worksheetsList = [{ title: "Grade 9 Physics Practice Worksheet", url: "worksheets/g9-ch1-worksheet.pdf", altUrl: "worksheets/g9-ch1-worksheet.pdf.pdf" }];
+                } else if (lessonKey.startsWith('g10-')) {
+                    worksheetsList = [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }];
+                } else if (lessonKey.startsWith('g11-')) {
+                    worksheetsList = [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }];
+                } else if (lessonKey.startsWith('g12-')) {
+                    worksheetsList = [{ title: "Grade 12 Physics Practice Worksheet", url: "worksheets/ch1-l1-worksheet.pdf", altUrl: "worksheets/ch1-l1-worksheet.pdf.pdf" }];
+                }
+            }
+
+            if (!worksheetsList || worksheetsList.length === 0) {
+                cleanupWorksheetSession();
+                activeLoadedWorksheetLessonId = null;
+                activeLoadedWorksheetSectionIdx = null;
+                wsContainer.innerHTML = '<div class="worksheet-empty">' +
+                    '<i class="fa-solid fa-file-circle-question"></i>' +
+                    '<h3>Worksheet Coming Soon</h3>' +
+                    '<p>Practice exercises for this lesson will be available soon.</p>' +
+                '</div>';
+                return;
+            }
+
+            var existingWsMount = document.getElementById('ws-pdf-pages-mount');
+            if (activeLoadedWorksheetLessonId === lesson.id && existingWsMount && existingWsMount.children.length > 0 && activeWorksheetSession && typeof activeWorksheetSession.fitWidth === 'function') {
+                activeWorksheetSession.fitWidth();
+                return;
+            }
+
+            function buildDirectWorksheetUI(selectedIndex) {
+                cleanupWorksheetSession();
+                activeLoadedWorksheetLessonId = lesson.id;
+                activeLoadedWorksheetSectionIdx = selectedIndex;
+
+                var currentWs = worksheetsList[selectedIndex];
+                var pair = resolveWorksheetCandidates(currentWs);
+                var activeUrl = pair.primary || pair.alt || '';
+                var altUrl = pair.alt || '';
+                var currentTitle = currentWs.title || (lesson.title ? lesson.title + ' Worksheet' : 'Practice Worksheet');
+
+                var topicsSelectorHtml = '';
+                if (worksheetsList.length > 1) {
+                    topicsSelectorHtml = '<div class="worksheet-topic-selector">' +
+                        '<span class="worksheet-topic-label"><i class="fa-solid fa-layer-group"></i> Select Worksheet (' + worksheetsList.length + ' Files):</span>' +
+                        '<div class="worksheet-topic-pills">' +
+                            worksheetsList.map(function(ws, idx) {
+                                return '<button type="button" class="worksheet-topic-pill ' + (idx === selectedIndex ? 'active' : '') + '" data-index="' + idx + '">' +
+                                    '<i class="fa-solid fa-file-pdf"></i> ' + ws.title +
+                                '</button>';
+                            }).join('') +
+                        '</div>' +
+                    '</div>';
+                }
+
+                var subtitleHtml = worksheetsList.length > 1
+                    ? '<div class="worksheet-current-topic"><i class="fa-solid fa-file-lines"></i> Viewing: <span>' + currentTitle + '</span></div>'
+                    : '';
+
+                if (!activeUrl) {
+                    wsContainer.innerHTML = '<div class="worksheet-header" style="user-select: none;">' +
+                        '<h2><i class="fa-solid fa-file-lines"></i> ' + (lesson.title || 'Lesson') + ' - Practice Worksheet</h2>' +
+                        '<p>Practice problems and review exercises in the interactive viewer (Read-Only).</p>' +
+                    '</div>' +
+                    topicsSelectorHtml +
+                    '<div class="worksheet-empty"><i class="fa-solid fa-file-circle-question"></i><h3>Worksheet File Not Available</h3><p>The practice worksheet file could not be located.</p></div>';
+                    wireDirectWsTopicPills();
+                    return;
+                }
+
+                wsContainer.innerHTML = '<div class="worksheet-header" style="user-select: none;">' +
+                    '<h2><i class="fa-solid fa-file-lines"></i> ' + (lesson.title || 'Lesson') + ' - Practice Worksheet</h2>' +
+                    subtitleHtml +
+                    '<p>Practice problems and review exercises directly in the interactive viewer (Read-Only).</p>' +
                 '</div>' +
                 '<div class="worksheet-actions">' +
-                    '<a href="' + wsUrl + '" target="_blank" class="worksheet-btn primary" id="open-worksheet-btn">' +
-                        '<i class="fa-solid fa-arrow-up-right-from-square"></i> Open / Download PDF' +
-                    '</a>' +
-                    '<button type="button" class="worksheet-btn secondary" id="toggle-worksheet-ext-btn">' +
-                        '<i class="fa-solid fa-file-signature"></i> Toggle Extension' +
+                    '<button type="button" class="worksheet-btn primary" id="worksheet-fullscreen-action-btn" title="Toggle Fullscreen Practice View">' +
+                        '<i class="fa-solid fa-expand"></i> <span id="worksheet-fs-btn-text">Fullscreen Practice View</span>' +
                     '</button>' +
                 '</div>' +
-                '<iframe src="' + wsUrl + '" class="worksheet-preview" id="worksheet-iframe" title="Worksheet Preview"></iframe>' +
-                '<div class="worksheet-notice">' +
-                    '<span>Direct Links: </span>' +
-                    '<a href="' + wsUrl + '" target="_blank" style="color: var(--primary-blue); font-weight: 600; margin-right: 12px;"><i class="fa-solid fa-download"></i> Primary (' + wsUrl.split('/').pop() + ')</a>' +
-                    '<a href="' + wsAltUrl + '" target="_blank" style="color: var(--primary-blue); font-weight: 600;"><i class="fa-solid fa-download"></i> Alternate (' + wsAltUrl.split('/').pop() + ')</a>' +
+                topicsSelectorHtml +
+                '<div class="pdf-viewer-wrapper" id="ws-pdf-viewer-wrapper" oncontextmenu="return false;">' +
+                    '<div class="pdf-toolbar">' +
+                        '<div class="pdf-toolbar-group">' +
+                            '<button type="button" class="pdf-btn" id="ws-pdf-prev-btn" title="Previous Page (Left Arrow)"><i class="fa-solid fa-chevron-left"></i></button>' +
+                            '<div class="pdf-page-indicator">' +
+                                '<span>Page</span>' +
+                                '<input type="number" id="ws-pdf-page-input" class="pdf-page-input" value="1" min="1" max="1" aria-label="Current Page">' +
+                                '<span>/ <span id="ws-pdf-total-pages">-</span></span>' +
+                            '</div>' +
+                            '<button type="button" class="pdf-btn" id="ws-pdf-next-btn" title="Next Page (Right Arrow)"><i class="fa-solid fa-chevron-right"></i></button>' +
+                        '</div>' +
+                        '<div class="pdf-toolbar-group">' +
+                            '<button type="button" class="pdf-btn" id="ws-pdf-zoom-out-btn" title="Zoom Out (-)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>' +
+                            '<span class="pdf-zoom-label" id="ws-pdf-zoom-label">100%</span>' +
+                            '<button type="button" class="pdf-btn" id="ws-pdf-zoom-in-btn" title="Zoom In (+)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>' +
+                            '<button type="button" class="pdf-btn" id="ws-pdf-fit-width-btn" title="Fit to Screen Width"><i class="fa-solid fa-arrows-left-right"></i> <span class="btn-text">Fit</span></button>' +
+                        '</div>' +
+                        '<div class="pdf-toolbar-group">' +
+                            '<button type="button" class="pdf-btn pdf-btn-fullscreen" id="ws-pdf-fullscreen-btn" title="Toggle Fullscreen Practice View (Esc)">' +
+                                '<i class="fa-solid fa-expand" id="ws-pdf-fs-icon"></i> <span class="btn-text" id="ws-pdf-fs-text">Fullscreen</span>' +
+                            '</button>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="pdf-scroll-container" id="ws-pdf-scroll-container">' +
+                        '<button type="button" class="pdf-floating-exit-btn" id="ws-pdf-floating-exit-btn" title="Exit Fullscreen Practice Mode">' +
+                            '<i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>' +
+                        '</button>' +
+                        '<div class="pdf-loading-card" id="ws-pdf-loading-card">' +
+                            '<i class="fa-solid fa-circle-notch fa-spin"></i>' +
+                            '<span id="ws-pdf-loading-status">Loading worksheet pages...</span>' +
+                        '</div>' +
+                        '<div id="ws-pdf-pages-mount" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="worksheet-notice" style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 8px; padding: 0.75rem 1.25rem; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem;">' +
+                    '<i class="fa-solid fa-shield-halved" style="color: #15803d; font-size: 1.15rem; flex-shrink: 0;"></i>' +
+                    '<div><span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, and exporting are restricted for this practice worksheet. Students can practice problems and scroll up and down smoothly across all pages on iPad, phone, or laptop.</span></div>' +
                 '</div>';
 
-                var wsToggleBtn = document.getElementById('toggle-worksheet-ext-btn');
-                var wsIframe = document.getElementById('worksheet-iframe');
-                var wsOpenBtn = document.getElementById('open-worksheet-btn');
-                if (wsToggleBtn && wsIframe && wsOpenBtn) {
-                    var usingAlt = false;
-                    wsToggleBtn.onclick = function() {
-                        usingAlt = !usingAlt;
-                        var target = usingAlt ? wsAltUrl : wsUrl;
-                        wsIframe.src = target;
-                        wsOpenBtn.href = target;
-                        wsToggleBtn.innerHTML = '<i class="fa-solid fa-file-signature"></i> ' + (usingAlt ? 'Using .pdf.pdf' : 'Using .pdf');
-                    };
-                }
-            } else {
-                wsContainer.innerHTML = '<div class="worksheet-empty"><i class="fa-solid fa-file-circle-question"></i><h3>Worksheet Coming Soon</h3><p>Practice exercises for this lesson will be available soon.</p></div>';
+                wireDirectWsTopicPills();
+                startDirectWorksheetPdfReader(activeUrl, altUrl, currentTitle);
             }
+
+            function wireDirectWsTopicPills() {
+                if (worksheetsList.length > 1) {
+                    var pills = wsContainer.querySelectorAll('.worksheet-topic-pill');
+                    pills.forEach(function(pill) {
+                        pill.addEventListener('click', function() {
+                            var idx = parseInt(pill.getAttribute('data-index'), 10);
+                            buildDirectWorksheetUI(idx);
+                        });
+                    });
+                }
+            }
+
+            function startDirectWorksheetPdfReader(primaryUrl, altUrl, title) {
+                function fallbackToIframe(url, errInfo) {
+                    console.warn('Using in-page fallback for worksheet:', errInfo);
+                    var wrapper = document.getElementById('ws-pdf-viewer-wrapper');
+                    if (!wrapper) return;
+                    var protectedViewerSrc = url ? (url.indexOf('#') !== -1 ? url : (url + '#toolbar=0&navpanes=0')) : '';
+                    var isTouchIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || isTouchIOS;
+                    var isOnline = window.location.protocol.startsWith('http');
+                    var absolutePdfUrl = url;
+                    try { absolutePdfUrl = new URL(url, window.location.href).href; } catch(e) {}
+
+                    var googleDocsViewerUrl = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(absolutePdfUrl);
+                    var currentViewerSrc = (isMobile && isOnline) ? googleDocsViewerUrl : protectedViewerSrc;
+
+                    wrapper.innerHTML = '<div class="pdf-toolbar" style="position: sticky; top: 0; z-index: 25;">' +
+                        '<div class="pdf-toolbar-group"><span style="font-size: 0.88rem; color: #cbd5e1; font-weight: 600;"><i class="fa-solid fa-file-lines" style="color: #38bdf8; margin-right: 6px;"></i> Practice Viewer</span></div>' +
+                        '<div class="pdf-toolbar-group">' +
+                            '<button type="button" class="pdf-btn pdf-btn-fullscreen" id="ws-fallback-fs-btn" title="Toggle Fullscreen Practice View"><i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span></button>' +
+                            '<button type="button" class="pdf-btn" id="ws-retry-pdf-load-btn" style="padding: 0.45rem 0.85rem;"><i class="fa-solid fa-arrows-rotate"></i> <span>Reload Reader</span></button>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="ebook-preview-wrapper" id="ws-fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch;">' +
+                        '<button type="button" class="pdf-floating-exit-btn" id="ws-fallback-floating-exit-btn" title="Exit Fullscreen Practice Mode"><i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span></button>' +
+                        '<iframe src="' + currentViewerSrc + '" class="worksheet-preview" id="worksheet-iframe" title="' + title + ' Preview" style="width: 100%; height: 100%; border: none;"></iframe>' +
+                    '</div>';
+
+                    var rBtn = document.getElementById('ws-retry-pdf-load-btn');
+                    if (rBtn) rBtn.onclick = function() { buildDirectWorksheetUI(activeLoadedWorksheetSectionIdx || 0); };
+
+                    function toggleFallbackFs(force) {
+                        var isFs = (typeof force === 'boolean') ? force : !wrapper.classList.contains('pdf-fullscreen-active');
+                        wrapper.classList.toggle('pdf-fullscreen-active', isFs);
+                        document.body.classList.toggle('pdf-modal-open', isFs);
+                        var fbBtn = document.getElementById('ws-fallback-fs-btn');
+                        var topAction = document.getElementById('worksheet-fullscreen-action-btn');
+                        if (fbBtn) {
+                            fbBtn.classList.toggle('pdf-btn-exit-fullscreen', isFs);
+                            fbBtn.innerHTML = isFs ? '<i class="fa-solid fa-xmark"></i> <span class="btn-text">Exit</span>' : '<i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>';
+                        }
+                        if (topAction) {
+                            topAction.classList.toggle('pdf-btn-exit-fullscreen', isFs);
+                            topAction.innerHTML = isFs ? '<i class="fa-solid fa-xmark"></i> <span id="worksheet-fs-btn-text">Exit Fullscreen</span>' : '<i class="fa-solid fa-expand"></i> <span id="worksheet-fs-btn-text">Fullscreen Practice View</span>';
+                        }
+                    }
+
+                    var fbFsBtn = document.getElementById('ws-fallback-fs-btn');
+                    var topActionBtn = document.getElementById('worksheet-fullscreen-action-btn');
+                    var fbFloatingBtn = document.getElementById('ws-fallback-floating-exit-btn');
+                    if (fbFsBtn) fbFsBtn.onclick = function() { toggleFallbackFs(); };
+                    if (topActionBtn) topActionBtn.onclick = function() { toggleFallbackFs(); };
+                    if (fbFloatingBtn) fbFloatingBtn.onclick = function() { toggleFallbackFs(false); };
+                }
+
+                function getPdfJs() {
+                    return window.pdfjsLib || window['pdfjs-dist/build/pdf'] || window.PDFJS || null;
+                }
+
+                async function ensurePdfJs(maxWaitMs) {
+                    var pLib = getPdfJs();
+                    if (pLib) return pLib;
+                    var start = Date.now();
+                    while (Date.now() - start < (maxWaitMs || 4000)) {
+                        await new Promise(function(r) { setTimeout(r, 60); });
+                        pLib = getPdfJs();
+                        if (pLib) return pLib;
+                    }
+                    return getPdfJs();
+                }
+
+                ensurePdfJs(3000).then(async function(pdfjs) {
+                    if (!pdfjs) {
+                        fallbackToIframe(primaryUrl, 'PDF.js library not available');
+                        return;
+                    }
+
+                    var isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                    if (!pdfjs.GlobalWorkerOptions || !pdfjs.GlobalWorkerOptions.workerSrc) {
+                        if (!isIOSDevice) {
+                            try {
+                                var blobCode = 'importScripts("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js");';
+                                var workerBlob = new Blob([blobCode], { type: 'application/javascript' });
+                                pdfjs.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
+                            } catch(e) {
+                                pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                            }
+                        } else {
+                            pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                        }
+                    }
+
+                    var candidateUrls = [primaryUrl];
+                    if (altUrl && candidateUrls.indexOf(altUrl) === -1) candidateUrls.push(altUrl);
+                    if (primaryUrl.toLowerCase().endsWith('.pdf.pdf')) {
+                        var singlePdf = primaryUrl.slice(0, -4);
+                        if (candidateUrls.indexOf(singlePdf) === -1) candidateUrls.push(singlePdf);
+                    } else if (primaryUrl.toLowerCase().endsWith('.pdf')) {
+                        var doublePdf = primaryUrl + '.pdf';
+                        if (candidateUrls.indexOf(doublePdf) === -1) candidateUrls.push(doublePdf);
+                    }
+
+                    // Seamless Grade-level fallback if a standalone file is missing on server
+                    var lKey = String((lesson && lesson.id) || '').toLowerCase();
+                    if (lKey.startsWith('g7-')) {
+                        candidateUrls.push('Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf', 'Physics_Grade7,8,10,11/Grade7_Physics.pdf');
+                    } else if (lKey.startsWith('g8-')) {
+                        candidateUrls.push('Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf', 'Physics_Grade7,8,10,11/Grade8_Physics.pdf');
+                    } else if (lKey.startsWith('g9-')) {
+                        candidateUrls.push('worksheets/g9-ch1-worksheet.pdf', 'worksheets/g9-ch1-worksheet.pdf.pdf');
+                    } else if (lKey.startsWith('g10-')) {
+                        candidateUrls.push('Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf', 'Physics_Grade7,8,10,11/Grade10_Physics.pdf');
+                    } else if (lKey.startsWith('g11-')) {
+                        candidateUrls.push('Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf', 'Physics_Grade7,8,10,11/Grade11_Physics.pdf');
+                    } else if (lKey.startsWith('g12-')) {
+                        candidateUrls.push('worksheets/ch1-l1-worksheet.pdf', 'worksheets/ch1-l1-worksheet.pdf.pdf');
+                    }
+
+                    function withTimeout(prom, ms, label) {
+                        var tId = null;
+                        var timeoutPromise = new Promise(function(_, reject) {
+                            tId = setTimeout(function() {
+                                reject(new Error(label + ' timed out (' + ms + 'ms)'));
+                            }, ms);
+                        });
+                        return Promise.race([prom, timeoutPromise]).finally(function() {
+                            if (tId) clearTimeout(tId);
+                        });
+                    }
+
+                    async function fetchPdfDoc() {
+                        var pdfBuffer = null;
+                        var lastErr = null;
+                        for (var u = 0; u < candidateUrls.length; u++) {
+                            try {
+                                var res = await fetch(candidateUrls[u]);
+                                if (res.ok) {
+                                    pdfBuffer = await res.arrayBuffer();
+                                    break;
+                                }
+                            } catch(e) {
+                                lastErr = e;
+                            }
+                        }
+                        if (!pdfBuffer) {
+                            throw lastErr || new Error('Could not fetch PDF from candidates: ' + candidateUrls.join(', '));
+                        }
+                        var docParams = {
+                            data: new Uint8Array(pdfBuffer),
+                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                            cMapPacked: true,
+                            disableAutoFetch: false,
+                            disableStream: false
+                        };
+
+                        try {
+                            return await withTimeout(pdfjs.getDocument(docParams).promise, 3500, 'Standard Worker parse');
+                        } catch(firstErr) {
+                            console.warn('Worker PDF parse timed out or rejected, falling back to main-thread fake worker:', firstErr);
+                            try {
+                                var fakeWorkerParams = Object.assign({}, docParams, { disableWorker: true, stopAtErrors: false });
+                                return await withTimeout(pdfjs.getDocument(fakeWorkerParams).promise, 3500, 'Fake worker parse');
+                            } catch(secondErr) {
+                                console.warn('Fake worker timed out or rejected, falling back to direct URL fetch:', secondErr);
+                                var urlParams = { url: primaryUrl, cMapUrl: docParams.cMapUrl, cMapPacked: true, disableWorker: true };
+                                return await withTimeout(pdfjs.getDocument(urlParams).promise, 3500, 'Direct URL parse');
+                            }
+                        }
+                    }
+
+                    try {
+                        var pdfDoc = await fetchPdfDoc();
+                        var numPages = pdfDoc.numPages;
+                        var totalPagesEl = document.getElementById('ws-pdf-total-pages');
+                        var pageInput = document.getElementById('ws-pdf-page-input');
+                        var zoomLabel = document.getElementById('ws-pdf-zoom-label');
+                        var scrollContainer = document.getElementById('ws-pdf-scroll-container');
+                        var mount = document.getElementById('ws-pdf-pages-mount');
+                        var mainLoading = document.getElementById('ws-pdf-loading-card');
+                        var wrapper = document.getElementById('ws-pdf-viewer-wrapper');
+                        var fsBtn = document.getElementById('ws-pdf-fullscreen-btn');
+                        var fsIcon = document.getElementById('ws-pdf-fs-icon');
+                        var fsText = document.getElementById('ws-pdf-fs-text');
+                        var floatingExitBtn = document.getElementById('ws-pdf-floating-exit-btn');
+                        var prevBtn = document.getElementById('ws-pdf-prev-btn');
+                        var nextBtn = document.getElementById('ws-pdf-next-btn');
+                        var zoomInBtn = document.getElementById('ws-pdf-zoom-in-btn');
+                        var zoomOutBtn = document.getElementById('ws-pdf-zoom-out-btn');
+                        var fitWidthBtn = document.getElementById('ws-pdf-fit-width-btn');
+
+                        if (!scrollContainer || !mount) return;
+
+                        if (totalPagesEl) totalPagesEl.textContent = numPages;
+                        if (pageInput) {
+                            pageInput.max = numPages;
+                            pageInput.value = 1;
+                        }
+
+                        var firstPage = await pdfDoc.getPage(1);
+                        var defaultVp = firstPage.getViewport({ scale: 1.0 });
+                        var baseW = defaultVp.width;
+                        var baseH = defaultVp.height;
+
+                        function getOptimalFitScale() {
+                            if (!scrollContainer) return 1.0;
+                            var contW = scrollContainer.clientWidth || 800;
+                            var pad = (contW <= 640) ? 14 : 32;
+                            var targetW = Math.max(contW - pad, 260);
+                            var scale = targetW / baseW;
+                            return Math.min(Math.max(scale, 0.4), 2.2);
+                        }
+
+                        var currentScale = getOptimalFitScale();
+                        if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
+
+                        mount.innerHTML = '';
+                        var renderedPages = new Set();
+                        var activeTasks = {};
+                        var observer = null;
+
+                        for (var p = 1; p <= numPages; p++) {
+                            var card = document.createElement('div');
+                            card.className = 'pdf-page-card';
+                            card.id = 'ws-pdf-page-' + p;
+                            card.dataset.page = p;
+                            card.style.width = Math.floor(baseW * currentScale) + 'px';
+                            card.style.height = Math.floor(baseH * currentScale) + 'px';
+
+                            card.innerHTML = '<div class="pdf-loading-card" id="ws-pdf-placeholder-' + p + '" style="position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; background: #1e293b; color: #94a3b8; border-radius: 6px;">' +
+                                '<i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.4rem; color: #38bdf8; margin-right: 8px;"></i>' +
+                                '<span>Rendering page ' + p + '...</span>' +
+                            '</div>' +
+                            '<canvas id="ws-pdf-canvas-' + p + '" class="pdf-page-canvas" style="display: none; width: 100%; height: 100%;"></canvas>' +
+                            '<span class="pdf-page-badge">Page ' + p + ' / ' + numPages + '</span>';
+
+                            mount.appendChild(card);
+                        }
+
+                        async function renderPage(pageNum) {
+                            if (renderedPages.has(pageNum)) return;
+                            renderedPages.add(pageNum);
+
+                            var card = document.getElementById('ws-pdf-page-' + pageNum);
+                            var canvas = document.getElementById('ws-pdf-canvas-' + pageNum);
+                            var placeholder = document.getElementById('ws-pdf-placeholder-' + pageNum);
+                            if (!card || !canvas) return;
+
+                            try {
+                                var page = await pdfDoc.getPage(pageNum);
+                                var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+                                var renderScale = currentScale * dpr;
+                                var viewport = page.getViewport({ scale: renderScale });
+
+                                canvas.width = Math.floor(viewport.width);
+                                canvas.height = Math.floor(viewport.height);
+                                canvas.style.width = Math.floor(baseW * currentScale) + 'px';
+                                canvas.style.height = Math.floor(baseH * currentScale) + 'px';
+
+                                var ctx = canvas.getContext('2d', { alpha: false });
+                                if (activeTasks[pageNum]) {
+                                    try { activeTasks[pageNum].cancel(); } catch(e) {}
+                                }
+
+                                var renderTask = page.render({ canvasContext: ctx, viewport: viewport });
+                                activeTasks[pageNum] = renderTask;
+                                await renderTask.promise;
+                                delete activeTasks[pageNum];
+
+                                if (placeholder) placeholder.style.display = 'none';
+                                canvas.style.display = 'block';
+                            } catch(err) {
+                                if (err && err.name === 'RenderingCancelledException') return;
+                                renderedPages.delete(pageNum);
+                            }
+                        }
+
+                        if ('IntersectionObserver' in window) {
+                            observer = new IntersectionObserver(function(entries) {
+                                entries.forEach(function(entry) {
+                                    if (entry.isIntersecting) {
+                                        var pNum = parseInt(entry.target.dataset.page, 10);
+                                        renderPage(pNum);
+                                        if (pNum < numPages) renderPage(pNum + 1);
+                                    }
+                                });
+                            }, {
+                                root: scrollContainer,
+                                rootMargin: '800px 0px',
+                                threshold: 0.01
+                            });
+                            mount.querySelectorAll('.pdf-page-card').forEach(function(c) { observer.observe(c); });
+                        } else {
+                            for (var i = 1; i <= Math.min(numPages, 3); i++) renderPage(i);
+                        }
+
+                        renderPage(1);
+                        if (numPages >= 2) renderPage(2);
+
+                        if (mainLoading) mainLoading.style.display = 'none';
+
+                        var scrollDebounce = null;
+                        var onScrollUpdate = function() {
+                            clearTimeout(scrollDebounce);
+                            scrollDebounce = setTimeout(function() {
+                                var cards = mount.querySelectorAll('.pdf-page-card');
+                                var containerTop = scrollContainer.getBoundingClientRect().top;
+                                var closestPage = 1;
+                                var minDiff = Infinity;
+                                cards.forEach(function(c) {
+                                    var r = c.getBoundingClientRect();
+                                    var diff = Math.abs(r.top - containerTop);
+                                    if (diff < minDiff) {
+                                        minDiff = diff;
+                                        closestPage = parseInt(c.dataset.page, 10);
+                                    }
+                                });
+                                if (pageInput && document.activeElement !== pageInput) {
+                                    pageInput.value = closestPage;
+                                }
+                            }, 60);
+                        };
+                        scrollContainer.addEventListener('scroll', onScrollUpdate, { passive: true });
+
+                        function scrollToPage(pageNum) {
+                            var p = Math.min(Math.max(pageNum, 1), numPages);
+                            var card = document.getElementById('ws-pdf-page-' + p);
+                            if (card) {
+                                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                if (pageInput) pageInput.value = p;
+                                renderPage(p);
+                                if (p < numPages) renderPage(p + 1);
+                            }
+                        }
+
+                        if (prevBtn) {
+                            prevBtn.onclick = function() {
+                                var cur = parseInt(pageInput.value, 10) || 1;
+                                if (cur > 1) scrollToPage(cur - 1);
+                            };
+                        }
+                        if (nextBtn) {
+                            nextBtn.onclick = function() {
+                                var cur = parseInt(pageInput.value, 10) || 1;
+                                if (cur < numPages) scrollToPage(cur + 1);
+                            };
+                        }
+                        if (pageInput) {
+                            pageInput.onchange = function() {
+                                scrollToPage(parseInt(pageInput.value, 10) || 1);
+                            };
+                        }
+
+                        function applyZoom(newScale) {
+                            currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
+                            if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
+
+                            for (var pKey in activeTasks) {
+                                try { activeTasks[pKey].cancel(); } catch(e) {}
+                            }
+                            activeTasks = {};
+                            renderedPages.clear();
+
+                            mount.querySelectorAll('.pdf-page-card').forEach(function(c) {
+                                c.style.width = Math.floor(baseW * currentScale) + 'px';
+                                c.style.height = Math.floor(baseH * currentScale) + 'px';
+                                var cv = c.querySelector('canvas');
+                                if (cv) cv.style.display = 'none';
+                                var ph = c.querySelector('.pdf-loading-card');
+                                if (ph) ph.style.display = 'flex';
+                            });
+
+                            var cur = parseInt(pageInput.value, 10) || 1;
+                            renderPage(cur);
+                            if (cur < numPages) renderPage(cur + 1);
+                            if (cur > 1) renderPage(cur - 1);
+                        }
+
+                        if (zoomInBtn) zoomInBtn.onclick = function() { applyZoom(currentScale + 0.15); };
+                        if (zoomOutBtn) zoomOutBtn.onclick = function() { applyZoom(currentScale - 0.15); };
+                        if (fitWidthBtn) fitWidthBtn.onclick = function() { applyZoom(getOptimalFitScale()); };
+
+                        var touchStartDist = 0;
+                        var touchStartScale = currentScale;
+                        var isPinching = false;
+                        var lastPinchRatio = 1;
+
+                        scrollContainer.addEventListener('touchstart', function(e) {
+                            if (e.touches && e.touches.length === 2) {
+                                isPinching = true;
+                                touchStartDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                                touchStartScale = currentScale;
+                                lastPinchRatio = 1;
+                            } else {
+                                isPinching = false;
+                            }
+                        }, { passive: true });
+
+                        scrollContainer.addEventListener('touchmove', function(e) {
+                            if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
+                                var curDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                                lastPinchRatio = curDist / touchStartDist;
+                                var candidate = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
+                                if (zoomLabel) zoomLabel.textContent = Math.round(candidate * 100) + '%';
+                                mount.style.transform = 'scale(' + lastPinchRatio + ')';
+                                mount.style.transformOrigin = 'center top';
+                            }
+                        }, { passive: true });
+
+                        scrollContainer.addEventListener('touchend', function(e) {
+                            if (isPinching) {
+                                isPinching = false;
+                                mount.style.transform = '';
+                                mount.style.transformOrigin = '';
+                                if (!e.touches || e.touches.length < 2) {
+                                    var candidate = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
+                                    if (Math.abs(candidate - currentScale) > 0.05) {
+                                        applyZoom(candidate);
+                                    }
+                                }
+                            }
+                        }, { passive: true });
+
+                        var resizeDebounce = null;
+                        var onViewportResize = function() {
+                            clearTimeout(resizeDebounce);
+                            resizeDebounce = setTimeout(function() {
+                                if (!scrollContainer || !baseW) return;
+                                applyZoom(getOptimalFitScale());
+                            }, 120);
+                        };
+                        window.addEventListener('resize', onViewportResize);
+                        window.addEventListener('orientationchange', onViewportResize);
+
+                        function toggleFullscreen(forceState) {
+                            var isCurrentlyActive = wrapper.classList.contains('pdf-fullscreen-active');
+                            var targetState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyActive;
+
+                            var topFsBtn = document.getElementById('worksheet-fullscreen-action-btn');
+
+                            if (targetState) {
+                                wrapper.classList.add('pdf-fullscreen-active');
+                                document.body.classList.add('pdf-modal-open');
+                                if (fsIcon) fsIcon.className = 'fa-solid fa-xmark';
+                                if (fsText) fsText.textContent = 'Exit Fullscreen';
+                                if (fsBtn) {
+                                    fsBtn.classList.add('pdf-btn-exit-fullscreen');
+                                    fsBtn.title = 'Exit Fullscreen (Esc)';
+                                }
+                                if (topFsBtn) {
+                                    topFsBtn.classList.add('pdf-btn-exit-fullscreen');
+                                    topFsBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> <span id="worksheet-fs-btn-text">Exit Fullscreen</span>';
+                                }
+
+                                try {
+                                    var reqFs = wrapper.requestFullscreen ||
+                                                  wrapper.webkitRequestFullscreen ||
+                                                  wrapper.mozRequestFullScreen ||
+                                                  wrapper.msRequestFullscreen ||
+                                                  document.documentElement.requestFullscreen;
+                                    if (reqFs && !document.fullscreenElement && !document.webkitFullscreenElement) {
+                                        var p = reqFs.call(wrapper);
+                                        if (p && p.catch) p.catch(function() {});
+                                    }
+                                } catch (e) {}
+
+                                setTimeout(function() { applyZoom(getOptimalFitScale()); }, 120);
+                            } else {
+                                wrapper.classList.remove('pdf-fullscreen-active');
+                                document.body.classList.remove('pdf-modal-open');
+                                if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
+                                if (fsText) fsText.textContent = 'Fullscreen';
+                                if (fsBtn) {
+                                    fsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                                    fsBtn.title = 'Toggle Fullscreen Practice View (Esc)';
+                                }
+                                if (topFsBtn) {
+                                    topFsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                                    topFsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="worksheet-fs-btn-text">Fullscreen Practice View</span>';
+                                }
+
+                                try {
+                                    var exitFs = document.exitFullscreen ||
+                                                 document.webkitExitFullscreen ||
+                                                 document.mozCancelFullScreen ||
+                                                 document.msExitFullscreen;
+                                    if ((document.fullscreenElement || document.webkitFullscreenElement) && exitFs) {
+                                        var p2 = exitFs.call(document);
+                                        if (p2 && p2.catch) p2.catch(function() {});
+                                    }
+                                } catch (e) {}
+
+                                setTimeout(function() { applyZoom(getOptimalFitScale()); }, 120);
+                            }
+                        }
+
+                        if (fsBtn) fsBtn.onclick = function() { toggleFullscreen(); };
+                        var topAction = document.getElementById('worksheet-fullscreen-action-btn');
+                        if (topAction) topAction.onclick = function() { toggleFullscreen(); };
+                        if (floatingExitBtn) floatingExitBtn.onclick = function() { toggleFullscreen(false); };
+
+                        var onNativeFsChange = function() {
+                            var isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+                            if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
+                                toggleFullscreen(false);
+                            }
+                        };
+                        document.addEventListener('fullscreenchange', onNativeFsChange);
+                        document.addEventListener('webkitfullscreenchange', onNativeFsChange);
+
+                        var keyHandler = function(e) {
+                            if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
+                                toggleFullscreen(false);
+                            } else if (document.activeElement !== pageInput && !document.activeElement.matches('input, textarea')) {
+                                if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                                    var cur = parseInt(pageInput.value, 10) || 1;
+                                    if (cur < numPages) scrollToPage(cur + 1);
+                                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                                    var cur = parseInt(pageInput.value, 10) || 1;
+                                    if (cur > 1) scrollToPage(cur - 1);
+                                }
+                            }
+                        };
+                        window.addEventListener('keydown', keyHandler);
+
+                        activeWorksheetSession = {
+                            pdfDoc: pdfDoc,
+                            observer: observer,
+                            activeTasks: activeTasks,
+                            fitWidth: function() { applyZoom(getOptimalFitScale()); },
+                            cleanup: function() {
+                                window.removeEventListener('keydown', keyHandler);
+                                window.removeEventListener('resize', onViewportResize);
+                                window.removeEventListener('orientationchange', onViewportResize);
+                                document.removeEventListener('fullscreenchange', onNativeFsChange);
+                                document.removeEventListener('webkitfullscreenchange', onNativeFsChange);
+                                scrollContainer.removeEventListener('scroll', onScrollUpdate);
+                                document.body.classList.remove('pdf-modal-open');
+                                document.body.style.overflow = '';
+                                var topBtn = document.getElementById('worksheet-fullscreen-action-btn');
+                                if (topBtn) {
+                                    topBtn.classList.remove('pdf-btn-exit-fullscreen');
+                                    topBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="worksheet-fs-btn-text">Fullscreen Practice View</span>';
+                                }
+                            }
+                        };
+                    } catch(fatalErr) {
+                        console.error('Fatal error initializing PDF.js worksheet viewer:', fatalErr);
+                        fallbackToIframe(primaryUrl, fatalErr.message || 'PDF.js load failure');
+                    }
+                });
+            }
+
+            buildDirectWorksheetUI(0);
         }
 
         function initGameUI(lesson) {
@@ -4949,7 +5864,11 @@
                     try { window.appRenderEbook(activeLesson); } catch(e) {}
                 }
             } else if (targetName === 'worksheet' && activeLesson) {
-                initWorksheetUI(activeLesson);
+                if (typeof initWorksheetUI === 'function') {
+                    initWorksheetUI(activeLesson);
+                } else if (typeof window.appRenderWorksheet === 'function') {
+                    try { window.appRenderWorksheet(activeLesson); } catch(e) {}
+                }
             } else if (targetName === 'game' && activeLesson) {
                 initGameUI(activeLesson);
             }
@@ -5071,6 +5990,7 @@
         window.initEbookUI = initEbookUI;
         window.renderEbook = initEbookUI;
         window.initWorksheetUI = initWorksheetUI;
+        window.renderWorksheet = initWorksheetUI;
         window.initGameUI = initGameUI;
         window.onAppJsError = onAppJsError;
         window.CURRICULUM_CATALOG = CURRICULUM_CATALOG;
@@ -5079,8 +5999,11 @@
 
         window.addEventListener('app-engine-ready', function() {
             var ebPane = document.getElementById('tab-ebook');
+            var wsPane = document.getElementById('tab-worksheet');
             if (ebPane && !ebPane.classList.contains('hidden') && window.currentLesson && typeof window.appRenderEbook === 'function') {
                 try { window.appRenderEbook(window.currentLesson); } catch(e) {}
+            } else if (wsPane && !wsPane.classList.contains('hidden') && window.currentLesson && typeof window.appRenderWorksheet === 'function') {
+                try { window.appRenderWorksheet(window.currentLesson); } catch(e) {}
             }
         });
     </script>
@@ -5089,7 +6012,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v4.2 Live</span>
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v4.4 Live</span>
         </div>
         <div class="nav-links">
             <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
@@ -5287,7 +6210,7 @@
                     </div>
 
                     <div class="card-footer-info">
-                        <span><i class="fa-solid fa-layer-group"></i> 4 Chapters • 10 Lessons</span>
+                        <span><i class="fa-solid fa-layer-group"></i> 4 Chapters • 12 Lessons</span>
                         <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                         <span><i class="fa-solid fa-brain"></i> Quizzes</span>
                     </div>
@@ -5504,8 +6427,6 @@
             </div>
         </div>
     </div>
-    <script src="physics-figures.js?v=4.2"></script>
-    <script src="physics-data.js?v=4.2"></script>
-    <script src="app.js?v=4.2" onerror="onAppJsError()"></script>
+    <script src="app.js?v=4.4" onerror="onAppJsError()"></script>
 </body>
 </html>

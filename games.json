@@ -203,6 +203,37 @@
         { "topic": "PhET: Wave Interference (Slits & Diffraction)", "url": "https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_all.html" }
       ]
     },
+    "g12-ch3-l1": {
+      "chapter": "Chapter 3, Lesson 1: Magnetism",
+      "games": [
+        { "topic": "Magnetic Field", "url": "https://gemini.google.com/share/8a653df6b614" },
+        { "topic": "PhET: Charges and Fields", "url": "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_all.html" }
+      ]
+    },
+    "g12-ch3-l2": {
+      "chapter": "Chapter 3, Lesson 2: Electromagnetic Induction",
+      "games": [
+        { "topic": "Faraday’s Law", "url": "https://gemini.google.com/share/a36b992c1d6d" },
+        { "topic": "PhET: Faraday's Law (Induction)", "url": "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html" },
+        { "topic": "PhET: Faraday's Electromagnetic Lab", "url": "https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_all.html" }
+      ]
+    },
+    "g12-ch3-l3": {
+      "chapter": "Chapter 3, Lesson 3: Self Induction",
+      "games": [
+        { "topic": "Self Induction", "url": "https://gemini.google.com/share/ae9787424975" },
+        { "topic": "Electromagnetic Induction & RL Circuits", "url": "https://gemini.google.com/share/5bdf25595304" }
+      ]
+    },
+    "g12-ch3-l4": {
+      "chapter": "Chapter 3, Lesson 4: Alternating Currents",
+      "games": [
+        { "topic": "Alternating Current", "url": "https://gemini.google.com/share/0c850ab5a53b" },
+        { "topic": "Alternating Current & RLC Circuits", "url": "https://gemini.google.com/share/b5177259161a" },
+        { "topic": "PhET: Circuit Construction Kit: AC (Virtual Lab)", "url": "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_all.html" },
+        { "topic": "PhET: Circuit Construction Kit: AC", "url": "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac/latest/circuit-construction-kit-ac_all.html" }
+      ]
+    },
     "g12-l5": {
       "chapter": "Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",
       "games": [
@@ -215,7 +246,7 @@
       ]
     },
     "g12-l6": {
-      "chapter": "Chapter 3 Lesson 2: Alternating Currents",
+      "chapter": "Chapter 3, Lesson 4: Alternating Currents",
       "games": [
         { "topic": "Alternating Current", "url": "https://gemini.google.com/share/0c850ab5a53b" },
         { "topic": "PhET: Circuit Construction Kit: AC (Virtual Lab)", "url": "https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_all.html" },

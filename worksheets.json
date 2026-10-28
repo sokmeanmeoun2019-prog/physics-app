@@ -115,12 +115,28 @@
       "chapter": "Chapter 2 Lesson 2: Interference and Diffraction",
       "worksheet": "worksheets/ch2-l2-worksheet.pdf"
     },
+    "g12-ch3-l1": {
+      "chapter": "Chapter 3, Lesson 1: Magnetism",
+      "worksheet": "worksheets/ch3-l1-worksheet.pdf"
+    },
+    "g12-ch3-l2": {
+      "chapter": "Chapter 3, Lesson 2: Electromagnetic Induction",
+      "worksheet": "worksheets/ch3-l1-worksheet.pdf"
+    },
+    "g12-ch3-l3": {
+      "chapter": "Chapter 3, Lesson 3: Self Induction",
+      "worksheet": "worksheets/ch3-l1-worksheet.pdf"
+    },
+    "g12-ch3-l4": {
+      "chapter": "Chapter 3, Lesson 4: Alternating Currents",
+      "worksheet": "worksheets/ch3-l2-worksheet.pdf"
+    },
     "g12-l5": {
       "chapter": "Chapter 3 Lesson 1: Magnetism, Electromagnetic Induction and Self Induction",
       "worksheet": "worksheets/ch3-l1-worksheet.pdf"
     },
     "g12-l6": {
-      "chapter": "Chapter 3 Lesson 2: Alternating Currents",
+      "chapter": "Chapter 3, Lesson 4: Alternating Currents",
       "worksheet": "worksheets/ch3-l2-worksheet.pdf"
     },
     "g12-ch4-l1": {

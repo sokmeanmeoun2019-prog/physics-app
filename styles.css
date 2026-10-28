@@ -2391,7 +2391,10 @@ body.pdf-modal-open .lesson-header,
 body.pdf-modal-open .lesson-tabs,
 body.pdf-modal-open .ebook-actions,
 body.pdf-modal-open .ebook-topic-selector,
-body.pdf-modal-open .ebook-notice {
+body.pdf-modal-open .ebook-notice,
+body.pdf-modal-open .worksheet-actions,
+body.pdf-modal-open .worksheet-topic-selector,
+body.pdf-modal-open .worksheet-notice {
     display: none !important;
 }
 
@@ -2401,7 +2404,8 @@ body.pdf-modal-open .view,
 body.pdf-modal-open #view-lesson-detail,
 body.pdf-modal-open .tab-content,
 body.pdf-modal-open .tab-pane,
-body.pdf-modal-open .ebook-container {
+body.pdf-modal-open .ebook-container,
+body.pdf-modal-open .worksheet-container {
     margin: 0 !important;
     padding: 0 !important;
     max-width: none !important;
@@ -2740,7 +2744,7 @@ body.pdf-modal-open .ebook-container {
 }
 
 .worksheet-header h2 {
-    color: var(--primary-blue);
+    color: #1d4ed8;
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
     display: flex;
@@ -2754,46 +2758,138 @@ body.pdf-modal-open .ebook-container {
     font-size: 0.95rem;
 }
 
+.worksheet-current-topic {
+    font-size: 1.15rem;
+    color: #1d4ed8;
+    margin-top: 0.35rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.worksheet-current-topic span {
+    color: #0284c7;
+}
+
+.worksheet-topic-selector {
+    background: #f0f7ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.worksheet-topic-label {
+    font-weight: 700;
+    color: #1d4ed8;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.worksheet-topic-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.worksheet-topic-pill {
+    background: var(--white);
+    border: 1.5px solid #bfdbfe;
+    border-radius: 20px;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: var(--transition);
+}
+
+.worksheet-topic-pill i {
+    color: #2563eb;
+}
+
+.worksheet-topic-pill:hover {
+    border-color: #1d4ed8;
+    color: #1d4ed8;
+    background: #eff6ff;
+    transform: translateY(-1px);
+}
+
+.worksheet-topic-pill.active {
+    background: #1d4ed8;
+    color: var(--white);
+    border-color: #1d4ed8;
+    box-shadow: 0 2px 6px rgba(29, 78, 216, 0.25);
+}
+
+.worksheet-topic-pill.active i {
+    color: var(--white);
+}
+
 .worksheet-actions {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin: 1rem 0 1.35rem 0;
     flex-wrap: wrap;
 }
 
 .worksheet-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 10px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: var(--transition);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    transition: all 0.22s ease;
     cursor: pointer;
+    box-shadow: 0 4px 14px rgba(29, 78, 216, 0.28);
 }
 
 .worksheet-btn.primary {
-    background: var(--primary-blue);
-    color: var(--white);
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border: none;
 }
 
 .worksheet-btn.primary:hover {
-    background: var(--primary-blue-hover);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 6px 20px rgba(29, 78, 216, 0.38);
+}
+
+.worksheet-btn.pdf-btn-exit-fullscreen {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.38) !important;
+}
+
+.worksheet-btn.pdf-btn-exit-fullscreen:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+    transform: translateY(-2px);
 }
 
 .worksheet-btn.secondary {
     background: var(--white);
-    color: var(--primary-blue);
-    border: 2px solid var(--primary-blue);
+    color: #1d4ed8;
+    border: 2px solid #1d4ed8;
 }
 
 .worksheet-btn.secondary:hover {
-    background: #e8f0fe;
+    background: #eff6ff;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
@@ -2816,15 +2912,16 @@ body.pdf-modal-open .ebook-container {
 .worksheet-notice {
     margin-top: 0.85rem;
     font-size: 0.88rem;
-    color: #495057;
+    color: #166534;
     text-align: center;
-    background: #e9ecef;
-    border-radius: 6px;
-    padding: 0.6rem 1rem;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
 }
 
 .worksheet-empty {
