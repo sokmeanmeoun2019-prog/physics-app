@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=4.4">
+    <link rel="stylesheet" href="styles.css?v=4.7">
     <style>
         .view.active {
             display: block !important;
@@ -57,8 +57,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=4.4"></script>
-    <script src="physics-data.js?v=4.4"></script>
+    <script src="physics-figures.js?v=4.6"></script>
+    <script src="physics-data.js?v=4.6"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -5958,6 +5958,10 @@
         }
 
         function handleRouteHash() {
+            if (document.body && document.body.classList.contains('is-locked')) {
+                window.pendingAuthTargetRoute = window.location.hash || window.location.search || '';
+                return;
+            }
             var hash = (window.location.hash || '').toLowerCase().replace(/^#\/?/, '');
             var params = new URLSearchParams(window.location.search);
             var qGrade = params.get('grade');
@@ -5981,6 +5985,8 @@
         window.addEventListener('popstate', handleRouteHash);
         window.addEventListener('hashchange', handleRouteHash);
 
+        window.handleRouteHash = handleRouteHash;
+        window.handleRoute = handleRouteHash;
         window.showDashboard = showDashboard;
         window.showLessonsView = showLessonsView;
         window.loadLessons = loadLessons;
@@ -6008,14 +6014,209 @@
         });
     </script>
 </head>
-<body>
+<body class="is-locked">
+    <!-- Website Access Password Screen -->
+    <div id="website-auth-gate" class="auth-gate-wrapper">
+        <div class="auth-gate-card">
+            <div class="auth-gate-badge">
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub
+            </div>
+            <div class="auth-gate-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h1 class="auth-gate-title">Protected Learning Hub</h1>
+            <p class="auth-gate-desc">Please enter the shared website access password to access all physics lessons, formulas, simulations, and practice worksheets.</p>
+
+            <form id="shared-login-form" class="auth-form" onsubmit="event.preventDefault();">
+                <div class="auth-input-group">
+                    <label for="shared-password-input">Shared Access Password</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-solid fa-key auth-input-icon"></i>
+                        <input type="password" id="shared-password-input" class="auth-input" placeholder="Enter access password..." autocomplete="current-password" required>
+                        <button type="button" id="toggle-shared-pw-btn" class="auth-pw-toggle" title="Show or hide password" aria-label="Toggle password visibility">
+                            <i class="fa-solid fa-eye" id="shared-pw-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="shared-login-alert" class="auth-alert error hidden" role="alert">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span id="shared-login-alert-text">Incorrect password. Please try again.</span>
+                </div>
+
+                <button type="submit" id="shared-login-btn" class="auth-submit-btn">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <span id="shared-login-btn-text">Enter Website</span>
+                </button>
+            </form>
+
+            <div class="auth-gate-footer">
+                <button type="button" id="open-admin-login-btn" class="auth-admin-link">
+                    <i class="fa-solid fa-lock"></i> Administrator Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Administrator Management Modal -->
+    <div id="admin-auth-modal" class="admin-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+        <div class="admin-modal-card">
+            <div class="admin-modal-header">
+                <div class="admin-modal-header-left">
+                    <div class="admin-modal-icon">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <h2 id="admin-modal-title">Administrator Portal</h2>
+                        <p class="admin-modal-subtitle">Manage shared access credentials</p>
+                    </div>
+                </div>
+                <button type="button" class="admin-modal-close" id="admin-modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- View 1: Admin Login (When Admin is NOT yet authenticated) -->
+            <div id="admin-login-view" class="admin-modal-body">
+                <div class="admin-view-badge">
+                    <i class="fa-solid fa-lock"></i> Admin Authentication Required
+                </div>
+                <p class="admin-view-desc">Enter your administrator credentials to manage the shared website access password.</p>
+
+                <form id="admin-login-form" onsubmit="event.preventDefault();">
+                    <div class="auth-input-group">
+                        <label for="admin-username-input">Administrator Username</label>
+                        <div class="auth-input-wrapper">
+                            <i class="fa-solid fa-user auth-input-icon"></i>
+                            <input type="text" id="admin-username-input" class="auth-input" value="admin" placeholder="Username" autocomplete="username" required>
+                        </div>
+                    </div>
+
+                    <div class="auth-input-group">
+                        <label for="admin-password-input">Administrator Password</label>
+                        <div class="auth-input-wrapper">
+                            <i class="fa-solid fa-key auth-input-icon"></i>
+                            <input type="password" id="admin-password-input" class="auth-input" placeholder="Administrator password..." autocomplete="current-password" required>
+                            <button type="button" id="toggle-admin-pw-btn" class="auth-pw-toggle" title="Show or hide password">
+                                <i class="fa-solid fa-eye" id="admin-pw-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="admin-login-alert" class="auth-alert error hidden" role="alert">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span id="admin-login-alert-text">Invalid administrator credentials.</span>
+                    </div>
+
+                    <button type="submit" id="admin-login-btn" class="auth-submit-btn admin-btn">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span id="admin-login-btn-text">Authenticate as Administrator</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- View 2: Admin Dashboard & Password Management (When Admin IS authenticated) -->
+            <div id="admin-dashboard-view" class="admin-modal-body hidden">
+                <div class="admin-status-banner">
+                    <div class="admin-status-info">
+                        <span class="admin-status-pill"><i class="fa-solid fa-circle-check"></i> Administrator Authenticated</span>
+                        <span class="admin-version-pill" id="admin-pw-version-pill">Version 1 (Active)</span>
+                    </div>
+                    <div class="admin-last-updated" id="admin-pw-updated-text">Last Updated: Active</div>
+                </div>
+
+                <div class="admin-panel-section">
+                    <h3><i class="fa-solid fa-key"></i> Update Shared Website Access Password</h3>
+                    <p class="admin-section-desc">Change the password required for all visitors to enter the website. Source code modification is not required.</p>
+
+                    <form id="admin-change-pw-form" onsubmit="event.preventDefault();">
+                        <div class="auth-input-group">
+                            <label for="new-shared-pw-input">New Shared Access Password</label>
+                            <div class="auth-input-wrapper">
+                                <i class="fa-solid fa-lock auth-input-icon"></i>
+                                <input type="password" id="new-shared-pw-input" class="auth-input" placeholder="Enter new shared password (min 4 chars)..." required minlength="4">
+                                <button type="button" id="toggle-new-shared-pw-btn" class="auth-pw-toggle" title="Show or hide password">
+                                    <i class="fa-solid fa-eye" id="new-shared-pw-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="auth-input-group">
+                            <label for="confirm-shared-pw-input">Confirm New Shared Access Password</label>
+                            <div class="auth-input-wrapper">
+                                <i class="fa-solid fa-lock-open auth-input-icon"></i>
+                                <input type="password" id="confirm-shared-pw-input" class="auth-input" placeholder="Re-type new shared password..." required minlength="4">
+                                <button type="button" id="toggle-confirm-shared-pw-btn" class="auth-pw-toggle" title="Show or hide password">
+                                    <i class="fa-solid fa-eye" id="confirm-shared-pw-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="admin-checkbox-group">
+                            <label class="admin-checkbox-label">
+                                <input type="checkbox" id="admin-invalidate-sessions-chk" checked>
+                                <span><strong>Invalidate all existing student sessions immediately.</strong> (Recommended: Anyone currently logged in with the old password will be required to enter the new password on their next page load).</span>
+                            </label>
+                        </div>
+
+                        <div id="admin-change-pw-alert" class="auth-alert hidden" role="alert">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span id="admin-change-pw-alert-text"></span>
+                        </div>
+
+                        <button type="submit" id="admin-save-pw-btn" class="auth-submit-btn success-btn">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span id="admin-save-pw-btn-text">Save and Apply New Shared Password</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Admin Credential Management Sub-Section -->
+                <div class="admin-panel-section admin-secondary-section">
+                    <div class="admin-accordion-toggle" id="toggle-admin-self-pw-section">
+                        <span><i class="fa-solid fa-user-gear"></i> Change Administrator Password (Optional)</span>
+                        <i class="fa-solid fa-chevron-down" id="admin-self-pw-chevron"></i>
+                    </div>
+                    <div id="admin-self-pw-container" class="hidden" style="margin-top: 1rem;">
+                        <form id="admin-change-self-pw-form" onsubmit="event.preventDefault();">
+                            <div class="auth-input-group">
+                                <label for="current-admin-pw-input">Current Administrator Password</label>
+                                <input type="password" id="current-admin-pw-input" class="auth-input" placeholder="Current admin password..." required>
+                            </div>
+                            <div class="auth-input-group">
+                                <label for="new-admin-pw-input">New Administrator Password</label>
+                                <input type="password" id="new-admin-pw-input" class="auth-input" placeholder="New admin password (min 6 chars)..." required minlength="6">
+                            </div>
+                            <div class="auth-input-group">
+                                <label for="confirm-admin-pw-input">Confirm New Administrator Password</label>
+                                <input type="password" id="confirm-admin-pw-input" class="auth-input" placeholder="Confirm new admin password..." required minlength="6">
+                            </div>
+                            <div id="admin-self-pw-alert" class="auth-alert hidden" role="alert">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span id="admin-self-pw-alert-text"></span>
+                            </div>
+                            <button type="submit" id="admin-self-pw-save-btn" class="auth-submit-btn" style="background: #475569;">
+                                <i class="fa-solid fa-check"></i> Update Admin Password
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="admin-modal-footer">
+                    <button type="button" id="admin-logout-btn" class="admin-btn-secondary"><i class="fa-solid fa-right-from-bracket"></i> Logout Admin</button>
+                    <button type="button" id="admin-done-btn" class="admin-btn-primary"><i class="fa-solid fa-check"></i> Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v4.4 Live</span>
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v4.6 Live</span>
         </div>
         <div class="nav-links">
             <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
+            <button id="nav-admin-btn" class="nav-btn nav-btn-admin" title="Administrator Settings"><i class="fa-solid fa-shield-halved"></i> Admin</button>
+            <button id="nav-logout-btn" class="nav-btn nav-btn-logout" title="Exit / Logout Website"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
         </div>
     </nav>
 
@@ -6427,6 +6628,7 @@
             </div>
         </div>
     </div>
-    <script src="app.js?v=4.4" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=4.7&build=202610292300"></script>
+    <script src="app.js?v=4.7" onerror="onAppJsError()"></script>
 </body>
 </html>

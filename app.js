@@ -6645,6 +6645,10 @@ window.filterLessonEquations = window.filterLessonEquations || function(query) {
 
 // --- Client-Side Routing & Deep Linking ---
 function handleRoute() {
+    if (document.body && document.body.classList.contains('is-locked')) {
+        window.pendingAuthTargetRoute = window.location.hash || window.location.search || '';
+        return;
+    }
     const rawHash = (window.location.hash || '').trim();
     const hash = rawHash.replace(/^#\/?/, '').toLowerCase();
     const urlParams = new URLSearchParams(window.location.search);
@@ -6696,7 +6700,9 @@ window.addEventListener('hashchange', handleRoute);
 
 // Resolve pending user action or active route on startup
 const pendingId = window.pendingLessonId || window.currentSelectedLessonId;
-if (pendingId) {
+if (document.body && document.body.classList.contains('is-locked')) {
+    window.pendingAuthTargetRoute = window.location.hash || window.location.search || '';
+} else if (pendingId) {
     window.pendingLessonId = null;
     loadLessonDetail(pendingId, false);
 } else if (window.pendingGrade) {
