@@ -18,7 +18,7 @@
     const CURRENT_CUSTOM_SHARED_PW = '@Physics2026!';
     const DEFAULT_ADMIN_USER = 'admin';
     const DEFAULT_ADMIN_PW = 'Admin@Physics2026!';
-    const SALT_PEPPER = 'WIS_PHYSICS_SALT_v4_9';
+    const SALT_PEPPER = 'WIS_PHYSICS_SALT_v5_0';
 
     // Application Auth State
     const authState = {
@@ -293,8 +293,17 @@
         if (adminPwUpdatedText) {
             adminPwUpdatedText.textContent = `Last Changed: ${formatDate(authState.lastUpdated)}`;
         }
-        if (navAdminBtn) {
-            navAdminBtn.title = authState.isAdmin ? 'Administrator Settings (Authenticated)' : 'Administrator Login';
+        if (authState.isAdmin) {
+            document.body.classList.add('is-admin');
+            if (navAdminBtn) {
+                navAdminBtn.classList.remove('hidden');
+                navAdminBtn.title = 'Administrator Settings (Authenticated)';
+            }
+        } else {
+            document.body.classList.remove('is-admin');
+            if (navAdminBtn) {
+                navAdminBtn.classList.add('hidden');
+            }
         }
     }
 
@@ -828,6 +837,51 @@
                 closeAdminModal();
             }
         });
+
+        // --- Secret Administrator Triggers ---
+        // 1. Triple-Tap on Logo (Mobile & Desktop)
+        let logoTapCount = 0;
+        let lastLogoTapTime = 0;
+        const logoElements = document.querySelectorAll('.logo, .auth-gate-logo, #site-logo');
+
+        logoElements.forEach(logoEl => {
+            if (!logoEl) return;
+            logoEl.addEventListener('click', function (e) {
+                const now = Date.now();
+                if (now - lastLogoTapTime < 700) {
+                    logoTapCount++;
+                } else {
+                    logoTapCount = 1;
+                }
+                lastLogoTapTime = now;
+
+                if (logoTapCount >= 3) {
+                    logoTapCount = 0;
+                    if (navigator.vibrate) {
+                        try { navigator.vibrate([40, 60, 40]); } catch(err) {}
+                    }
+                    openAdminModal();
+                }
+            });
+        });
+
+        // 2. Keyboard Shortcut: Ctrl + Shift + A or Cmd + Shift + A
+        window.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+                e.preventDefault();
+                openAdminModal();
+            }
+        });
+
+        // 3. Secret URL Hash: #admin or #/admin
+        function checkAdminHash() {
+            const h = (window.location.hash || '').toLowerCase();
+            if (h === '#admin' || h === '#/admin' || h === '#admin-portal') {
+                openAdminModal();
+            }
+        }
+        checkAdminHash();
+        window.addEventListener('hashchange', checkAdminHash);
     }
 
     // Initialize on DOM Ready
