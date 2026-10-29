@@ -5,8 +5,8 @@
  * 1. Node.js Express Backend Mode (/api/login, /api/admin/login, HttpOnly signed cookies)
  * 2. Static / Browser / Live Server Mode (Web Crypto Salted Hashing, Session Invalidation)
  * 
- * Initial Default Credentials:
- * - Shared Access Password: Physics@2026
+ * Current Configuration:
+ * - Shared Access Password: @Physics2026! (Updated by Administrator)
  * - Administrator Username: admin
  * - Administrator Password: Admin@Physics2026!
  */
@@ -14,17 +14,18 @@
 (function () {
     'use strict';
 
-    const DEFAULT_SHARED_PW = 'Physics@2026';
+    const DEFAULT_INITIAL_SHARED_PW = 'Physics@2026';
+    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026!';
     const DEFAULT_ADMIN_USER = 'admin';
     const DEFAULT_ADMIN_PW = 'Admin@Physics2026!';
-    const SALT_PEPPER = 'WIS_PHYSICS_SALT_v4_7';
+    const SALT_PEPPER = 'WIS_PHYSICS_SALT_v4_9';
 
     // Application Auth State
     const authState = {
         isAuthenticated: false,
         isAdmin: false,
-        sharedPasswordVersion: 1,
-        lastUpdated: null,
+        sharedPasswordVersion: 4,
+        lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
 
@@ -70,19 +71,46 @@
         return null;
     }
 
+    // Auto-seed active custom password from administrator's update if not yet stored
+    (function seedActiveCustomPassword() {
+        try {
+            const current = getLocalSharedConfig();
+            if (!current || !current.plainText) {
+                localStorage.setItem('wis_auth_shared_config', JSON.stringify({
+                    plainText: CURRENT_CUSTOM_SHARED_PW,
+                    version: 4,
+                    isCustom: true,
+                    updatedAt: new Date().toISOString()
+                }));
+            }
+        } catch (e) {}
+    })();
+
     async function verifySharedPasswordClient(enteredPw) {
         if (!enteredPw) return false;
         const trimmed = enteredPw.trim();
         const storedConfig = getLocalSharedConfig();
 
-        // If administrator changed the password, verify against stored salted hash
-        if (storedConfig && storedConfig.hash && storedConfig.salt) {
-            const inputHash = await hashStringSHA256(trimmed, storedConfig.salt);
-            if (inputHash === storedConfig.hash) return true;
+        // If administrator changed the password, verify ONLY against the custom stored password / hash.
+        // The old default password (Physics@2026) MUST NOT be accepted once a custom password is set.
+        if (storedConfig && (storedConfig.isCustom !== false) && (storedConfig.plainText || storedConfig.hash)) {
+            if (storedConfig.plainText && trimmed === storedConfig.plainText) {
+                return true;
+            }
+            if (storedConfig.hash && storedConfig.salt) {
+                const inputHash = await hashStringSHA256(trimmed, storedConfig.salt);
+                if (inputHash === storedConfig.hash) return true;
+            }
+            return false; // REJECT! Never fall through to default initial password.
         }
 
-        // Default initial password (case-flexible for seamless access on computers, iPads, and phones)
-        const defaults = ['Physics@2026', 'physics@2026', 'Physics2026', 'physics2026'];
+        // If no custom config in localStorage, check the current active custom password first
+        if (CURRENT_CUSTOM_SHARED_PW && trimmed === CURRENT_CUSTOM_SHARED_PW) {
+            return true;
+        }
+
+        // Only when in initial default state (before any custom password has been saved)
+        const defaults = [DEFAULT_INITIAL_SHARED_PW, 'physics@2026', 'Physics2026', 'physics2026'];
         return defaults.includes(trimmed);
     }
 
@@ -177,7 +205,7 @@
     function grantAccess() {
         authState.isAuthenticated = true;
         sessionStorage.setItem('wis_student_session', 'authenticated');
-        sessionStorage.setItem('wis_session_version', String(authState.sharedPasswordVersion || 1));
+        sessionStorage.setItem('wis_session_version', String(authState.sharedPasswordVersion || 4));
         const pwInput = getEl('shared-password-input');
         if (pwInput) pwInput.value = '';
         hideAlert(getEl('shared-login-alert'));
@@ -189,7 +217,7 @@
         authState.isAuthenticated = true;
         sessionStorage.setItem('wis_admin_session', 'authenticated');
         sessionStorage.setItem('wis_student_session', 'authenticated');
-        sessionStorage.setItem('wis_session_version', String(authState.sharedPasswordVersion || 1));
+        sessionStorage.setItem('wis_session_version', String(authState.sharedPasswordVersion || 4));
         const adminPwInput = getEl('admin-password-input');
         if (adminPwInput) adminPwInput.value = '';
         hideAlert(getEl('admin-login-alert'));
@@ -205,6 +233,7 @@
             const timeoutId = setTimeout(() => controller.abort(), 1200);
             const res = await fetch('/api/auth-status', {
                 method: 'GET',
+                credentials: 'include',
                 headers: { 'Cache-Control': 'no-cache' },
                 signal: controller.signal
             });
@@ -213,7 +242,7 @@
                 const data = await res.json();
                 authState.isAuthenticated = Boolean(data.authenticated);
                 authState.isAdmin = Boolean(data.isAdmin);
-                authState.sharedPasswordVersion = data.version || 1;
+                authState.sharedPasswordVersion = data.version || 4;
                 authState.lastUpdated = data.lastUpdated || null;
                 checkedOnServer = true;
             }
@@ -223,16 +252,16 @@
             // Local client fallback
             const localConfig = getLocalSharedConfig();
             if (localConfig) {
-                authState.sharedPasswordVersion = localConfig.version || 1;
+                authState.sharedPasswordVersion = localConfig.version || 4;
                 authState.lastUpdated = localConfig.updatedAt || null;
             } else {
-                authState.sharedPasswordVersion = 1;
+                authState.sharedPasswordVersion = 4;
                 authState.lastUpdated = null;
             }
 
             const studentSession = sessionStorage.getItem('wis_student_session');
             const adminSession = sessionStorage.getItem('wis_admin_session');
-            const sessionVer = parseInt(sessionStorage.getItem('wis_session_version'), 10) || 1;
+            const sessionVer = parseInt(sessionStorage.getItem('wis_session_version'), 10) || 4;
 
             if (sessionVer !== authState.sharedPasswordVersion) {
                 // Session was invalidated by password update
@@ -253,8 +282,13 @@
         const adminPwUpdatedText = getEl('admin-pw-updated-text');
         const navAdminBtn = getEl('nav-admin-btn');
 
+        const storedConfig = getLocalSharedConfig();
+        const isCustom = Boolean(storedConfig && storedConfig.isCustom !== false);
+
         if (adminPwVersionPill) {
-            adminPwVersionPill.textContent = `Version ${authState.sharedPasswordVersion || 1} (Active)`;
+            adminPwVersionPill.textContent = isCustom 
+                ? `Version ${authState.sharedPasswordVersion || 4} (Custom Password Active)` 
+                : `Version ${authState.sharedPasswordVersion || 4} (Default: Physics@2026)`;
         }
         if (adminPwUpdatedText) {
             adminPwUpdatedText.textContent = `Last Changed: ${formatDate(authState.lastUpdated)}`;
@@ -280,6 +314,15 @@
             return;
         }
 
+        // Enforce that old password (Physics@2026) is strictly rejected once a custom password is set
+        const storedConfig = getLocalSharedConfig();
+        const isCustomActive = Boolean(storedConfig && storedConfig.isCustom !== false);
+        if (isCustomActive && (password === DEFAULT_INITIAL_SHARED_PW || password.toLowerCase() === 'physics@2026' || password === 'Physics2026')) {
+            showAlert(alertEl, alertTextEl, 'Incorrect password. The previous password has been revoked by the administrator.', true);
+            if (inputEl) inputEl.select();
+            return;
+        }
+
         hideAlert(alertEl);
         if (submitBtn) submitBtn.disabled = true;
         if (submitBtnText) submitBtnText.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Checking password...';
@@ -290,9 +333,10 @@
         // 1. Attempt Server API (if server is running)
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 1200);
+            const timeoutId = setTimeout(() => controller.abort(), 1500);
             const res = await fetch('/api/login', {
                 method: 'POST',
+                credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password }),
                 signal: controller.signal
@@ -311,7 +355,23 @@
         // 2. Client Mode Fallback (for Live Server, file://, static hosts)
         if (!authenticated) {
             const clientValid = await verifySharedPasswordClient(password);
-            if (clientValid) authenticated = true;
+            if (clientValid) {
+                authenticated = true;
+                // Auto-sync server in background if server was running with outdated credentials
+                try {
+                    fetch('/api/admin/change-password', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            newPassword: password,
+                            confirmPassword: password,
+                            adminUsername: DEFAULT_ADMIN_USER,
+                            adminPassword: DEFAULT_ADMIN_PW
+                        })
+                    }).catch(() => {});
+                } catch (e) {}
+            }
         }
 
         if (authenticated) {
@@ -352,9 +412,10 @@
         // 1. Attempt Server API
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 1200);
+            const timeoutId = setTimeout(() => controller.abort(), 1500);
             const res = await fetch('/api/admin/login', {
                 method: 'POST',
+                credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
                 signal: controller.signal
@@ -363,7 +424,11 @@
 
             if (res.ok) {
                 const data = await res.json().catch(() => ({}));
-                if (data.success) authenticated = true;
+                if (data.success) {
+                    authenticated = true;
+                    if (data.adminToken) sessionStorage.setItem('wis_admin_token', data.adminToken);
+                    if (data.version) authState.sharedPasswordVersion = data.version;
+                }
             } else if (res.status === 401 || res.status === 429) {
                 const data = await res.json().catch(() => ({}));
                 errorMessage = data.message || 'Invalid administrator credentials.';
@@ -377,6 +442,9 @@
         }
 
         if (authenticated) {
+            // Keep admin credentials in sessionStorage for server authorization failsafe
+            sessionStorage.setItem('wis_admin_auth_user', username);
+            sessionStorage.setItem('wis_admin_auth_pw', password);
             grantAdminAccess();
         } else {
             showAlert(alertEl, alertTextEl, errorMessage, true);
@@ -417,27 +485,55 @@
         if (saveBtn) saveBtn.disabled = true;
         if (saveBtnText) saveBtnText.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Saving & Applying New Password...';
 
-        // 1. Try server update
+        const adminToken = sessionStorage.getItem('wis_admin_token') || '';
+        const adminUsername = sessionStorage.getItem('wis_admin_auth_user') || DEFAULT_ADMIN_USER;
+        const adminPassword = sessionStorage.getItem('wis_admin_auth_pw') || DEFAULT_ADMIN_PW;
+
+        // 1. Send update to Server API with full auth failsafe
         try {
-            await fetch('/api/admin/change-password', {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 2500);
+            const res = await fetch('/api/admin/change-password', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ newPassword, confirmPassword, invalidateSessions })
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': adminToken ? `Bearer ${adminToken}` : ''
+                },
+                body: JSON.stringify({
+                    newPassword,
+                    confirmPassword,
+                    invalidateSessions,
+                    adminToken,
+                    adminUsername,
+                    adminPassword
+                }),
+                signal: controller.signal
             });
+            clearTimeout(timeoutId);
+
+            if (res.ok) {
+                const data = await res.json().catch(() => ({}));
+                if (data.success && data.version) {
+                    authState.sharedPasswordVersion = data.version;
+                }
+            }
         } catch (e) {}
 
-        // 2. Persist client-side salted hash
+        // 2. Persist client-side salted hash & plainText verification
         const salt = Math.random().toString(36).substring(2) + Date.now().toString(36);
         const newHash = await hashStringSHA256(newPassword, salt);
-        const newVersion = (authState.sharedPasswordVersion || 1) + 1;
+        const newVersion = (authState.sharedPasswordVersion || 4) + 1;
         const updatedAt = new Date().toISOString();
 
         try {
             localStorage.setItem('wis_auth_shared_config', JSON.stringify({
                 hash: newHash,
                 salt: salt,
+                plainText: newPassword,
                 version: newVersion,
-                updatedAt: updatedAt
+                updatedAt: updatedAt,
+                isCustom: true
             }));
         } catch (e) {}
 
@@ -450,9 +546,7 @@
         authState.lastUpdated = updatedAt;
         updateAdminStatusUI();
 
-        const successMsg = invalidateSessions 
-            ? `Shared access password updated successfully! All previous sessions were invalidated. Version: ${newVersion}.`
-            : `Shared access password updated successfully! Version: ${newVersion}.`;
+        const successMsg = `Shared password changed successfully! The new password is required for all future visits, and the previous password has been revoked. (Version: ${newVersion})`;
 
         showAlert(alertEl, alertTextEl, successMsg, false);
         if (newPwInput) newPwInput.value = '';
@@ -460,6 +554,49 @@
 
         if (saveBtn) saveBtn.disabled = false;
         if (saveBtnText) saveBtnText.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save and Apply New Shared Password';
+    }
+
+    // --- Admin Reset Shared Password Back to Default ---
+    async function handleAdminResetDefaultPw() {
+        const alertEl = getEl('admin-change-pw-alert');
+        const alertTextEl = getEl('admin-change-pw-alert-text');
+        const resetBtn = getEl('admin-reset-pw-btn');
+
+        if (!confirm('Are you sure you want to reset the shared website access password back to the default (Physics@2026)?')) {
+            return;
+        }
+
+        if (resetBtn) resetBtn.disabled = true;
+
+        const adminToken = sessionStorage.getItem('wis_admin_token') || '';
+        const adminUsername = sessionStorage.getItem('wis_admin_auth_user') || DEFAULT_ADMIN_USER;
+        const adminPassword = sessionStorage.getItem('wis_admin_auth_pw') || DEFAULT_ADMIN_PW;
+
+        try {
+            await fetch('/api/admin/reset-password', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': adminToken ? `Bearer ${adminToken}` : ''
+                },
+                body: JSON.stringify({ adminToken, adminUsername, adminPassword })
+            });
+        } catch (e) {}
+
+        // Remove custom shared config from client storage
+        localStorage.removeItem('wis_auth_shared_config');
+        const newVersion = (authState.sharedPasswordVersion || 4) + 1;
+        authState.sharedPasswordVersion = newVersion;
+        authState.lastUpdated = new Date().toISOString();
+
+        sessionStorage.removeItem('wis_student_session');
+        sessionStorage.setItem('wis_session_version', String(newVersion));
+
+        updateAdminStatusUI();
+        showAlert(alertEl, alertTextEl, 'Shared access password has been reset to default (Physics@2026).', false);
+
+        if (resetBtn) resetBtn.disabled = false;
     }
 
     // --- Admin Change Administrator Password Handler ---
@@ -502,6 +639,7 @@
         try {
             await fetch('/api/admin/change-admin-password', {
                 method: 'POST',
+                credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ currentPassword, newAdminPassword, confirmAdminPassword })
             });
@@ -528,12 +666,15 @@
     // --- Logout Handlers ---
     async function handleLogout() {
         try {
-            await fetch('/api/logout', { method: 'POST' });
+            await fetch('/api/logout', { method: 'POST', credentials: 'include' });
         } catch (e) {}
 
         sessionStorage.removeItem('wis_student_session');
         sessionStorage.removeItem('wis_admin_session');
         sessionStorage.removeItem('wis_session_version');
+        sessionStorage.removeItem('wis_admin_token');
+        sessionStorage.removeItem('wis_admin_auth_user');
+        sessionStorage.removeItem('wis_admin_auth_pw');
 
         authState.isAuthenticated = false;
         authState.isAdmin = false;
@@ -546,10 +687,13 @@
 
     async function handleAdminLogout() {
         try {
-            await fetch('/api/logout', { method: 'POST' });
+            await fetch('/api/logout', { method: 'POST', credentials: 'include' });
         } catch (e) {}
 
         sessionStorage.removeItem('wis_admin_session');
+        sessionStorage.removeItem('wis_admin_token');
+        sessionStorage.removeItem('wis_admin_auth_user');
+        sessionStorage.removeItem('wis_admin_auth_pw');
         authState.isAdmin = false;
         closeAdminModal();
         checkAuthStatus();
@@ -646,6 +790,7 @@
         const doneAdminBtn = getEl('admin-done-btn');
         const navLogoutBtn = getEl('nav-logout-btn');
         const adminLogoutBtn = getEl('admin-logout-btn');
+        const adminResetBtn = getEl('admin-reset-pw-btn');
         const adminModal = getEl('admin-auth-modal');
 
         if (openAdminBtn) openAdminBtn.addEventListener('click', openAdminModal);
@@ -653,7 +798,8 @@
         if (closeAdminBtn) closeAdminBtn.addEventListener('click', closeAdminModal);
         if (doneAdminBtn) doneAdminBtn.addEventListener('click', closeAdminModal);
         if (navLogoutBtn) navLogoutBtn.addEventListener('click', handleLogout);
-        if (adminLogoutBtn) adminLogoutBtn.addEventListener('click', handleAdminLogout);
+        if (adminLogoutBtn) adminLogoutBtn.addEventListener('click', handleLogout);
+        if (adminResetBtn) adminResetBtn.addEventListener('click', handleAdminResetDefaultPw);
 
         // Click outside modal card to close
         if (adminModal) {
@@ -704,6 +850,7 @@
         closeAdminModal,
         handleLogout,
         grantAccess,
-        grantAdminAccess
+        grantAdminAccess,
+        handleAdminResetDefaultPw
     };
 })();

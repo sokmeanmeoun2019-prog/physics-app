@@ -1,1 +1,14 @@
-{}
+{
+  "sharedPassword": {
+    "plainText": "@Physics2026!",
+    "version": 4,
+    "isCustom": true,
+    "updatedAt": "2026-10-29T23:25:00.000Z"
+  },
+  "admin": {
+    "username": "admin",
+    "plainText": "Admin@Physics2026!",
+    "updatedAt": "2026-10-29T23:25:00.000Z"
+  },
+  "sessionSecret": "e9b5f3a1c7d8e2b4f6a0c8e2b4f6a0c8e2b4f6a0c8e2b4f6a0c8e2b4f6a0c8e2"
+}
