@@ -4525,142 +4525,69 @@ function renderEbook(lesson) {
     }
 
     function initPdfReader(primaryUrl, altUrl, title) {
-        function fallbackToIframe(url, errInfo) {
-            console.warn('Using safe in-page fallback for ebook:', errInfo);
+        function renderProtectedErrorCard(msg) {
+            console.warn('Protected PDF reader fallback to embed:', msg);
             const wrapper = document.getElementById('pdf-viewer-wrapper');
             if (!wrapper) return;
-            const protectedViewerSrc = url ? (url.includes('#') ? url : `${url}#toolbar=0&navpanes=0`) : '';
-            const isTouchIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || isTouchIOS;
-            const isOnline = window.location.protocol.startsWith('http');
-            let absolutePdfUrl = url;
-            try {
-                absolutePdfUrl = new URL(url, window.location.href).href;
-            } catch (e) {}
-
-            const googleDocsViewerUrl = `https://docs.google.com/viewer?embedded=true&url=${encodeURIComponent(absolutePdfUrl)}`;
-            let currentViewerSrc = (isMobile && isOnline) ? googleDocsViewerUrl : protectedViewerSrc;
-
-            let iosBanner = '';
-            if (isTouchIOS || isMobile) {
-                iosBanner = `
-                    <div style="background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #0284c7; border-radius: 12px; padding: 1.25rem; margin: 1rem auto; max-width: 640px; text-align: center; color: #f8fafc; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
-                        <div style="font-size: 1.15rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.5rem;">
-                            <i class="fa-solid fa-tablet-screen-button"></i> Mobile & iPad Continuous Multi-Page Reading Mode
-                        </div>
-                        <p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem;">
-                            Open all curriculum textbook pages directly with smooth touch continuous scrolling and pinch-to-zoom:
-                        </p>
-                        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                            <a href="${url}" target="_blank" rel="noopener noreferrer" class="ebook-btn primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 0.95rem; padding: 0.75rem 1.4rem; background: #0284c7; color: #fff; border-radius: 8px; font-weight: 600;">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full Multi-Page PDF in New Tab
-                            </a>
-                            <button type="button" class="ebook-btn secondary" id="retry-direct-btn" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; padding: 0.75rem 1.4rem; background: #334155; color: #fff; border: 1px solid #475569; border-radius: 8px; font-weight: 600; cursor: pointer;">
-                                <i class="fa-solid fa-arrows-rotate"></i> Reload Reader
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }
-
+            const targetUrl = primaryUrl || altUrl;
+            const encodedSrc = `${encodeURI(targetUrl)}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`;
             wrapper.innerHTML = `
-                <div class="pdf-toolbar" style="position: sticky; top: 0; z-index: 25;">
-                    <div class="pdf-toolbar-group">
-                        <span style="font-size: 0.88rem; color: #cbd5e1; font-weight: 600;">
-                            <i class="fa-solid fa-book-open" style="color: #38bdf8; margin-right: 6px;"></i> Curriculum Reader
-                        </span>
+                <div class="pdf-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; padding:0.6rem 1rem; border-radius:8px 8px 0 0; border-bottom:1px solid #334155;">
+                    <div style="font-size:0.88rem; font-weight:600; color:#cbd5e1; display:flex; align-items:center; gap:8px;">
+                        <span class="badge-diploma" style="background:rgba(14,165,233,0.2); color:#38bdf8; font-size:0.75rem; padding:2px 8px; border-radius:4px;"><i class="fa-solid fa-lock"></i> Protected View-Only</span>
+                        <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:320px;">${title || 'E-Book Textbook'}</span>
                     </div>
-                    <div class="pdf-toolbar-group">
-                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="fallback-fs-btn" title="Toggle Fullscreen Reading View">
-                            <i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>
-                        </button>
-                        <button type="button" class="pdf-btn" id="retry-pdf-load-btn" style="padding: 0.45rem 0.85rem;">
-                            <i class="fa-solid fa-arrows-rotate"></i> <span>Reload Reader</span>
-                        </button>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="ebook-app-fallback-fs-btn" style="display:inline-flex; align-items:center; gap:6px; padding:0.4rem 0.9rem; border-radius:6px; font-size:0.85rem; font-weight:600; cursor:pointer;"><i class="fa-solid fa-expand"></i> Fullscreen</button>
                     </div>
                 </div>
-                ${iosBanner}
-                <div class="ebook-preview-wrapper" id="fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
-                    <button type="button" class="pdf-floating-exit-btn" id="fallback-floating-exit-btn" title="Exit Fullscreen Reading Mode">
-                        <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
-                    </button>
-                    <iframe src="${currentViewerSrc}" class="ebook-preview" id="ebook-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
+                <div class="pdf-scroll-container pdf-frame-container" style="height:750px; max-height:80vh; padding:0; background:#0f172a; position:relative; overflow:hidden;">
+                    <iframe src="${encodedSrc}" class="pdf-protected-frame" style="width:100%; height:100%; min-height:750px; border:none; display:block;" title="${title || 'Ebook'}" allowfullscreen></iframe>
+                    <button type="button" class="pdf-floating-exit-btn" id="ebook-app-fallback-floating-exit" style="display:none;"><i class="fa-solid fa-xmark"></i> Exit Fullscreen</button>
                 </div>
             `;
-            const retryBtn = document.getElementById('retry-pdf-load-btn');
-            if (retryBtn) retryBtn.addEventListener('click', () => buildEbookUI(currentSelectedIndex));
-            const retryDirectBtn = document.getElementById('retry-direct-btn');
-            if (retryDirectBtn) retryDirectBtn.addEventListener('click', () => buildEbookUI(currentSelectedIndex));
 
-            const fbFsBtn = document.getElementById('fallback-fs-btn');
-            const topActionBtn = document.getElementById('ebook-fullscreen-action-btn');
-            const fbFloatingBtn = document.getElementById('fallback-floating-exit-btn');
+            const fsBtn = document.getElementById('ebook-app-fallback-fs-btn');
+            const flExit = document.getElementById('ebook-app-fallback-floating-exit');
+            const topFsBtn = document.getElementById('ebook-fullscreen-action-btn');
 
             function toggleFallbackFs(force) {
-                const isFs = (typeof force === 'boolean') ? force : !wrapper.classList.contains('pdf-fullscreen-active');
-                wrapper.classList.toggle('pdf-fullscreen-active', isFs);
-                document.body.classList.toggle('pdf-modal-open', isFs);
-                if (fbFsBtn) {
-                    fbFsBtn.classList.toggle('pdf-btn-exit-fullscreen', isFs);
-                    fbFsBtn.innerHTML = isFs 
-                        ? '<i class="fa-solid fa-xmark"></i> <span class="btn-text">Exit</span>' 
-                        : '<i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>';
-                }
-                if (topActionBtn) {
-                    topActionBtn.classList.toggle('pdf-btn-exit-fullscreen', isFs);
-                    topActionBtn.innerHTML = isFs 
-                        ? '<i class="fa-solid fa-xmark"></i> <span id="ebook-fs-btn-text">Exit Fullscreen</span>' 
-                        : '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
-                }
-
-                if (isFs) {
-                    // Laptop, desktop, Android native fullscreen
-                    try {
-                        const req = wrapper.requestFullscreen ||
-                                    wrapper.webkitRequestFullscreen ||
-                                    wrapper.mozRequestFullScreen ||
-                                    wrapper.msRequestFullscreen ||
-                                    document.documentElement.requestFullscreen;
-                        if (req && !document.fullscreenElement && !document.webkitFullscreenElement) {
-                            const p = req.call(wrapper);
-                            if (p && p.catch) p.catch(() => {});
-                        }
-                    } catch (e) {}
+                const isActive = wrapper.classList.contains('pdf-fullscreen-active');
+                const target = (typeof force === 'boolean') ? force : !isActive;
+                if (target) {
+                    wrapper.classList.add('pdf-fullscreen-active');
+                    document.body.classList.add('pdf-modal-open');
+                    if (fsBtn) {
+                        fsBtn.classList.add('pdf-btn-exit-fullscreen');
+                        fsBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Exit Fullscreen';
+                    }
+                    if (flExit) flExit.style.display = 'inline-flex';
+                    if (topFsBtn) {
+                        topFsBtn.classList.add('pdf-btn-exit-fullscreen');
+                        topFsBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> <span id="ebook-fs-btn-text">Exit Fullscreen</span>';
+                    }
                 } else {
-                    // Exit native fullscreen if active
-                    try {
-                        const exit = document.exitFullscreen ||
-                                     document.webkitExitFullscreen ||
-                                     document.mozCancelFullScreen ||
-                                     document.msExitFullscreen;
-                        if (exit && (document.fullscreenElement || document.webkitFullscreenElement)) {
-                            const p2 = exit.call(document);
-                            if (p2 && p2.catch) p2.catch(() => {});
-                        }
-                    } catch (e) {}
+                    wrapper.classList.remove('pdf-fullscreen-active');
+                    document.body.classList.remove('pdf-modal-open');
+                    if (fsBtn) {
+                        fsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                        fsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> Fullscreen';
+                    }
+                    if (flExit) flExit.style.display = 'none';
+                    if (topFsBtn) {
+                        topFsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                        topFsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                    }
                 }
             }
+            if (fsBtn) fsBtn.onclick = () => toggleFallbackFs();
+            if (flExit) flExit.onclick = () => toggleFallbackFs(false);
+            if (topFsBtn) topFsBtn.onclick = () => toggleFallbackFs();
 
-            const onFallbackNativeFsChange = () => {
-                const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
-                if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
-                    toggleFallbackFs(false);
-                }
+            currentPdfSession = {
+                pdfDoc: null,
+                cleanup: () => toggleFallbackFs(false)
             };
-            document.addEventListener('fullscreenchange', onFallbackNativeFsChange);
-            document.addEventListener('webkitfullscreenchange', onFallbackNativeFsChange);
-
-            const onFallbackEscapeKey = (e) => {
-                if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
-                    toggleFallbackFs(false);
-                }
-            };
-            window.addEventListener('keydown', onFallbackEscapeKey);
-
-            if (fbFsBtn) fbFsBtn.addEventListener('click', () => toggleFallbackFs());
-            if (topActionBtn) topActionBtn.addEventListener('click', () => toggleFallbackFs());
-            if (fbFloatingBtn) fbFloatingBtn.addEventListener('click', () => toggleFallbackFs(false));
         }
 
         function getPdfJsLib() {
@@ -4714,26 +4641,51 @@ function renderEbook(lesson) {
 
         waitForPdfJs().then(async (pdfjs) => {
             if (!pdfjs) {
-                fallbackToIframe(primaryUrl, 'PDF.js library not available after timeout');
+                renderProtectedErrorCard('PDF.js library not available after timeout');
                 return;
             }
 
             setupPdfWorker(pdfjs);
 
-            function withTimeout(prom, ms, label) {
-                let tId = null;
-                const timeoutPromise = new Promise((_, reject) => {
-                    tId = setTimeout(() => {
-                        reject(new Error(`${label} timed out (${ms}ms)`));
-                    }, ms);
-                });
-                return Promise.race([prom, timeoutPromise]).finally(() => {
-                    if (tId) clearTimeout(tId);
+            function fetchBinaryArrayBuffer(url) {
+                return new Promise((resolve, reject) => {
+                    if (typeof fetch === 'function') {
+                        fetch(url)
+                            .then(res => {
+                                if (res.ok) return res.arrayBuffer();
+                                throw new Error('HTTP ' + res.status);
+                            })
+                            .then(buf => {
+                                if (buf && buf.byteLength > 100) resolve(buf);
+                                else throw new Error('Empty buffer');
+                            })
+                            .catch(() => loadWithXhr(url, resolve, reject));
+                    } else {
+                        loadWithXhr(url, resolve, reject);
+                    }
                 });
             }
 
+            function loadWithXhr(url, resolve, reject) {
+                try {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, true);
+                    xhr.responseType = 'arraybuffer';
+                    xhr.onload = function() {
+                        if ((xhr.status >= 200 && xhr.status < 300) || (xhr.status === 0 && xhr.response && xhr.response.byteLength > 100)) {
+                            resolve(xhr.response);
+                        } else {
+                            reject(new Error('XHR status ' + xhr.status));
+                        }
+                    };
+                    xhr.onerror = function(err) { reject(err || new Error('XHR error')); };
+                    xhr.send();
+                } catch(xhrErr) {
+                    reject(xhrErr);
+                }
+            }
+
             async function fetchPdfDoc() {
-                let pdfBuffer = null;
                 const candidateUrls = [primaryUrl];
                 if (altUrl && !candidateUrls.includes(altUrl)) candidateUrls.push(altUrl);
                 if (primaryUrl.toLowerCase().endsWith('.pdf.pdf')) {
@@ -4743,48 +4695,42 @@ function renderEbook(lesson) {
                     const doublePdf = primaryUrl + '.pdf';
                     if (!candidateUrls.includes(doublePdf)) candidateUrls.push(doublePdf);
                 }
+                candidateUrls.push('./' + primaryUrl.replace(/^\.\//, ''));
+                candidateUrls.push('/' + primaryUrl.replace(/^\//, ''));
+                try {
+                    const abs = new URL(primaryUrl, window.location.href).href;
+                    if (!candidateUrls.includes(abs)) candidateUrls.push(abs);
+                } catch(e) {}
 
-                let lastErr = null;
+                let doc = null;
                 for (const u of candidateUrls) {
                     try {
-                        const res = await fetch(u);
-                        if (res.ok) {
-                            pdfBuffer = await res.arrayBuffer();
-                            break;
+                        const buf = await fetchBinaryArrayBuffer(u);
+                        if (buf) {
+                            doc = await pdfjs.getDocument({
+                                data: new Uint8Array(buf),
+                                cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                cMapPacked: true,
+                                disableWorker: true
+                            }).promise;
+                            if (doc) return doc;
                         }
-                    } catch (e) {
-                        lastErr = e;
-                    }
+                    } catch (e) {}
                 }
 
-                if (!pdfBuffer) {
-                    throw lastErr || new Error(`Could not fetch PDF from candidates: ${candidateUrls.join(', ')}`);
-                }
-
-                const docParams = {
-                    data: new Uint8Array(pdfBuffer),
-                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
-                    cMapPacked: true,
-                    disableAutoFetch: false,
-                    disableStream: false
-                };
-
-                // 1. Try standard PDF.js parse with 3500ms safety timeout
-                try {
-                    return await withTimeout(pdfjs.getDocument(docParams).promise, 3500, 'Standard Worker parse');
-                } catch (firstErr) {
-                    console.warn('Worker PDF parse timed out or rejected, falling back to main-thread fake worker:', firstErr);
-                    // 2. Fallback to main-thread fake worker (bypasses all Web Worker / blob / cross-origin iOS Safari restrictions)
+                for (const u of candidateUrls) {
                     try {
-                        const fallbackDocParams = Object.assign({}, docParams, { disableWorker: true, stopAtErrors: false });
-                        return await withTimeout(pdfjs.getDocument(fallbackDocParams).promise, 3500, 'Fake worker parse');
-                    } catch (secondErr) {
-                        console.warn('Fake worker timed out or rejected, falling back to direct URL fetch:', secondErr);
-                        // 3. Fallback to URL with fake worker
-                        const urlParams = { url: primaryUrl, cMapUrl: docParams.cMapUrl, cMapPacked: true, disableWorker: true };
-                        return await withTimeout(pdfjs.getDocument(urlParams).promise, 3500, 'Direct URL parse');
-                    }
+                        doc = await pdfjs.getDocument({
+                            url: u,
+                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                            cMapPacked: true,
+                            disableWorker: true
+                        }).promise;
+                        if (doc) return doc;
+                    } catch (e2) {}
                 }
+
+                throw new Error(`Could not fetch PDF from candidates: ${candidateUrls.join(', ')}`);
             }
 
             try {
@@ -5244,7 +5190,7 @@ function renderEbook(lesson) {
                 };
             } catch (fatalErr) {
                 console.error('Fatal error initializing PDF.js viewer:', fatalErr);
-                fallbackToIframe(primaryUrl, fatalErr.message || 'PDF.js load failure');
+                renderProtectedErrorCard(fatalErr.message || 'PDF.js load failure');
             }
         });
     }
@@ -5568,115 +5514,69 @@ function renderWorksheet(lesson) {
     }
 
     function initWorksheetPdfReader(primaryUrl, altUrl, title) {
-        function fallbackToIframe(url, errInfo) {
-            console.warn('Using safe in-page fallback for worksheet:', errInfo);
+        function renderProtectedWorksheetErrorCard(msg) {
+            console.warn('Protected Worksheet PDF fallback to embed:', msg);
             const wrapper = document.getElementById('ws-pdf-viewer-wrapper');
             if (!wrapper) return;
-            const protectedViewerSrc = url ? (url.includes('#') ? url : `${url}#toolbar=0&navpanes=0`) : '';
-            const isTouchIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || isTouchIOS;
-            const isOnline = window.location.protocol.startsWith('http');
-            let absolutePdfUrl = url;
-            try {
-                absolutePdfUrl = new URL(url, window.location.href).href;
-            } catch (e) {}
-
-            const googleDocsViewerUrl = `https://docs.google.com/viewer?embedded=true&url=${encodeURIComponent(absolutePdfUrl)}`;
-            let currentViewerSrc = (isMobile && isOnline) ? googleDocsViewerUrl : protectedViewerSrc;
-
+            const targetUrl = primaryUrl || altUrl;
+            const encodedSrc = `${encodeURI(targetUrl)}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`;
             wrapper.innerHTML = `
-                <div class="pdf-toolbar" style="position: sticky; top: 0; z-index: 25;">
-                    <div class="pdf-toolbar-group">
-                        <span style="font-size: 0.88rem; color: #cbd5e1; font-weight: 600;">
-                            <i class="fa-solid fa-file-lines" style="color: #38bdf8; margin-right: 6px;"></i> Practice Viewer
-                        </span>
+                <div class="pdf-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; padding:0.6rem 1rem; border-radius:8px 8px 0 0; border-bottom:1px solid #334155;">
+                    <div style="font-size:0.88rem; font-weight:600; color:#cbd5e1; display:flex; align-items:center; gap:8px;">
+                        <span class="badge-diploma" style="background:rgba(14,165,233,0.2); color:#38bdf8; font-size:0.75rem; padding:2px 8px; border-radius:4px;"><i class="fa-solid fa-lock"></i> Protected View-Only</span>
+                        <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:320px;">${title || 'Worksheet Practice'}</span>
                     </div>
-                    <div class="pdf-toolbar-group">
-                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="ws-fallback-fs-btn" title="Toggle Fullscreen Practice View">
-                            <i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>
-                        </button>
-                        <button type="button" class="pdf-btn" id="ws-retry-pdf-load-btn" style="padding: 0.45rem 0.85rem;">
-                            <i class="fa-solid fa-arrows-rotate"></i> <span>Reload Reader</span>
-                        </button>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="ws-app-fallback-fs-btn" style="display:inline-flex; align-items:center; gap:6px; padding:0.4rem 0.9rem; border-radius:6px; font-size:0.85rem; font-weight:600; cursor:pointer;"><i class="fa-solid fa-expand"></i> Fullscreen</button>
                     </div>
                 </div>
-                <div class="ebook-preview-wrapper" id="ws-fallback-iframe-wrapper" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;" ondragstart="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch; -webkit-user-select: none; user-select: none;">
-                    <button type="button" class="pdf-floating-exit-btn" id="ws-fallback-floating-exit-btn" title="Exit Fullscreen Practice Mode">
-                        <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
-                    </button>
-                    <iframe src="${currentViewerSrc}" class="worksheet-preview" id="worksheet-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none; pointer-events: auto;"></iframe>
+                <div class="pdf-scroll-container pdf-frame-container" style="height:750px; max-height:80vh; padding:0; background:#0f172a; position:relative; overflow:hidden;">
+                    <iframe src="${encodedSrc}" class="pdf-protected-frame" style="width:100%; height:100%; min-height:750px; border:none; display:block;" title="${title || 'Worksheet'}" allowfullscreen></iframe>
+                    <button type="button" class="pdf-floating-exit-btn" id="ws-app-fallback-floating-exit" style="display:none;"><i class="fa-solid fa-xmark"></i> Exit Fullscreen</button>
                 </div>
             `;
-            const retryBtn = document.getElementById('ws-retry-pdf-load-btn');
-            if (retryBtn) retryBtn.addEventListener('click', () => buildWorksheetUI(currentSelectedIndex));
 
-            const fbFsBtn = document.getElementById('ws-fallback-fs-btn');
-            const topActionBtn = document.getElementById('worksheet-fullscreen-action-btn');
-            const fbFloatingBtn = document.getElementById('ws-fallback-floating-exit-btn');
+            const fsBtn = document.getElementById('ws-app-fallback-fs-btn');
+            const flExit = document.getElementById('ws-app-fallback-floating-exit');
+            const topFsBtn = document.getElementById('worksheet-fullscreen-action-btn');
 
-            function toggleFallbackFs(force) {
-                const isFs = (typeof force === 'boolean') ? force : !wrapper.classList.contains('pdf-fullscreen-active');
-                wrapper.classList.toggle('pdf-fullscreen-active', isFs);
-                document.body.classList.toggle('pdf-modal-open', isFs);
-                if (fbFsBtn) {
-                    fbFsBtn.classList.toggle('pdf-btn-exit-fullscreen', isFs);
-                    fbFsBtn.innerHTML = isFs 
-                        ? '<i class="fa-solid fa-xmark"></i> <span class="btn-text">Exit</span>' 
-                        : '<i class="fa-solid fa-expand"></i> <span class="btn-text">Fullscreen</span>';
-                }
-                if (topActionBtn) {
-                    topActionBtn.classList.toggle('pdf-btn-exit-fullscreen', isFs);
-                    topActionBtn.innerHTML = isFs 
-                        ? '<i class="fa-solid fa-xmark"></i> <span id="worksheet-fs-btn-text">Exit Fullscreen</span>' 
-                        : '<i class="fa-solid fa-expand"></i> <span id="worksheet-fs-btn-text">Fullscreen Practice View</span>';
-                }
-
-                if (isFs) {
-                    try {
-                        const req = wrapper.requestFullscreen ||
-                                    wrapper.webkitRequestFullscreen ||
-                                    wrapper.mozRequestFullScreen ||
-                                    wrapper.msRequestFullscreen ||
-                                    document.documentElement.requestFullscreen;
-                        if (req && !document.fullscreenElement && !document.webkitFullscreenElement) {
-                            const p = req.call(wrapper);
-                            if (p && p.catch) p.catch(() => {});
-                        }
-                    } catch (e) {}
+            function toggleFallbackWsFs(force) {
+                const isActive = wrapper.classList.contains('pdf-fullscreen-active');
+                const target = (typeof force === 'boolean') ? force : !isActive;
+                if (target) {
+                    wrapper.classList.add('pdf-fullscreen-active');
+                    document.body.classList.add('pdf-modal-open');
+                    if (fsBtn) {
+                        fsBtn.classList.add('pdf-btn-exit-fullscreen');
+                        fsBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Exit Fullscreen';
+                    }
+                    if (flExit) flExit.style.display = 'inline-flex';
+                    if (topFsBtn) {
+                        topFsBtn.classList.add('pdf-btn-exit-fullscreen');
+                        topFsBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> <span id="worksheet-fs-btn-text">Exit Fullscreen</span>';
+                    }
                 } else {
-                    try {
-                        const exit = document.exitFullscreen ||
-                                     document.webkitExitFullscreen ||
-                                     document.mozCancelFullScreen ||
-                                     document.msExitFullscreen;
-                        if (exit && (document.fullscreenElement || document.webkitFullscreenElement)) {
-                            const p2 = exit.call(document);
-                            if (p2 && p2.catch) p2.catch(() => {});
-                        }
-                    } catch (e) {}
+                    wrapper.classList.remove('pdf-fullscreen-active');
+                    document.body.classList.remove('pdf-modal-open');
+                    if (fsBtn) {
+                        fsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                        fsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> Fullscreen';
+                    }
+                    if (flExit) flExit.style.display = 'none';
+                    if (topFsBtn) {
+                        topFsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                        topFsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="worksheet-fs-btn-text">Fullscreen Practice View</span>';
+                    }
                 }
             }
+            if (fsBtn) fsBtn.onclick = () => toggleFallbackWsFs();
+            if (flExit) flExit.onclick = () => toggleFallbackWsFs(false);
+            if (topFsBtn) topFsBtn.onclick = () => toggleFallbackWsFs();
 
-            const onFallbackNativeFsChange = () => {
-                const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
-                if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
-                    toggleFallbackFs(false);
-                }
+            currentWorksheetSession = {
+                pdfDoc: null,
+                cleanup: () => toggleFallbackWsFs(false)
             };
-            document.addEventListener('fullscreenchange', onFallbackNativeFsChange);
-            document.addEventListener('webkitfullscreenchange', onFallbackNativeFsChange);
-
-            const onFallbackEscapeKey = (e) => {
-                if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
-                    toggleFallbackFs(false);
-                }
-            };
-            window.addEventListener('keydown', onFallbackEscapeKey);
-
-            if (fbFsBtn) fbFsBtn.addEventListener('click', () => toggleFallbackFs());
-            if (topActionBtn) topActionBtn.addEventListener('click', () => toggleFallbackFs());
-            if (fbFloatingBtn) fbFloatingBtn.addEventListener('click', () => toggleFallbackFs(false));
         }
 
         function getPdfJsLib() {
@@ -5728,28 +5628,51 @@ function renderWorksheet(lesson) {
 
         waitForPdfJs().then(async (pdfjs) => {
             if (!pdfjs) {
-                fallbackToIframe(primaryUrl, 'PDF.js library not available after timeout');
+                renderProtectedWorksheetErrorCard('PDF.js library not available after timeout');
                 return;
             }
 
             setupPdfWorker(pdfjs);
 
-            function withTimeout(prom, ms, label) {
-                let tId = null;
-                const timeoutPromise = new Promise((_, reject) => {
-                    tId = setTimeout(() => {
-                        reject(new Error(`${label} timed out (${ms}ms)`));
-                    }, ms);
-                });
-                return Promise.race([prom, timeoutPromise]).finally(() => {
-                    if (tId) clearTimeout(tId);
+            function fetchBinaryArrayBuffer(url) {
+                return new Promise((resolve, reject) => {
+                    if (typeof fetch === 'function') {
+                        fetch(url)
+                            .then(res => {
+                                if (res.ok) return res.arrayBuffer();
+                                throw new Error('HTTP ' + res.status);
+                            })
+                            .then(buf => {
+                                if (buf && buf.byteLength > 100) resolve(buf);
+                                else throw new Error('Empty buffer');
+                            })
+                            .catch(() => loadWithXhr(url, resolve, reject));
+                    } else {
+                        loadWithXhr(url, resolve, reject);
+                    }
                 });
             }
 
-            async function fetchPdfDoc() {
-                let pdfBuffer = null;
-                let lastErr = null;
+            function loadWithXhr(url, resolve, reject) {
+                try {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, true);
+                    xhr.responseType = 'arraybuffer';
+                    xhr.onload = function() {
+                        if ((xhr.status >= 200 && xhr.status < 300) || (xhr.status === 0 && xhr.response && xhr.response.byteLength > 100)) {
+                            resolve(xhr.response);
+                        } else {
+                            reject(new Error('XHR status ' + xhr.status));
+                        }
+                    };
+                    xhr.onerror = function(err) { reject(err || new Error('XHR error')); };
+                    xhr.send();
+                } catch(xhrErr) {
+                    reject(xhrErr);
+                }
+            }
 
+            async function fetchPdfDoc() {
                 const candidateUrls = [primaryUrl];
                 if (altUrl && !candidateUrls.includes(altUrl)) candidateUrls.push(altUrl);
                 if (primaryUrl.toLowerCase().endsWith('.pdf.pdf')) {
@@ -5759,6 +5682,12 @@ function renderWorksheet(lesson) {
                     const double = primaryUrl + '.pdf';
                     if (!candidateUrls.includes(double)) candidateUrls.push(double);
                 }
+                candidateUrls.push('./' + primaryUrl.replace(/^\.\//, ''));
+                candidateUrls.push('/' + primaryUrl.replace(/^\//, ''));
+                try {
+                    const abs = new URL(primaryUrl, window.location.href).href;
+                    if (!candidateUrls.includes(abs)) candidateUrls.push(abs);
+                } catch(e) {}
 
                 // Seamless Grade-level fallback if a standalone file is missing on server
                 const lKey = String((lesson && lesson.id) || '').toLowerCase();
@@ -5776,43 +5705,35 @@ function renderWorksheet(lesson) {
                     candidateUrls.push('worksheets/ch1-l1-worksheet.pdf', 'worksheets/ch1-l1-worksheet.pdf.pdf');
                 }
 
-                for (let i = 0; i < candidateUrls.length; i++) {
+                let doc = null;
+                for (const u of candidateUrls) {
                     try {
-                        const res = await fetch(candidateUrls[i]);
-                        if (res.ok) {
-                            pdfBuffer = await res.arrayBuffer();
-                            break;
+                        const buf = await fetchBinaryArrayBuffer(u);
+                        if (buf) {
+                            doc = await pdfjs.getDocument({
+                                data: new Uint8Array(buf),
+                                cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                cMapPacked: true,
+                                disableWorker: true
+                            }).promise;
+                            if (doc) return doc;
                         }
-                    } catch (e) {
-                        lastErr = e;
-                    }
+                    } catch (e) {}
                 }
 
-                if (!pdfBuffer) {
-                    throw lastErr || new Error(`Could not fetch worksheet PDF from candidates: ${candidateUrls.join(', ')}`);
-                }
-
-                const docParams = {
-                    data: new Uint8Array(pdfBuffer),
-                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
-                    cMapPacked: true,
-                    disableAutoFetch: false,
-                    disableStream: false
-                };
-
-                try {
-                    return await withTimeout(pdfjs.getDocument(docParams).promise, 3500, 'Standard Worker parse');
-                } catch (firstErr) {
-                    console.warn('Worksheet worker PDF parse timed out or rejected, falling back to main-thread fake worker:', firstErr);
+                for (const u of candidateUrls) {
                     try {
-                        const fakeWorkerParams = Object.assign({}, docParams, { disableWorker: true, stopAtErrors: false });
-                        return await withTimeout(pdfjs.getDocument(fakeWorkerParams).promise, 3500, 'Fake worker parse');
-                    } catch (secondErr) {
-                        console.warn('Fake worker timed out or rejected, falling back to direct URL fetch:', secondErr);
-                        const urlParams = { url: primaryUrl, cMapUrl: docParams.cMapUrl, cMapPacked: true, disableWorker: true };
-                        return await withTimeout(pdfjs.getDocument(urlParams).promise, 3500, 'Direct URL parse');
-                    }
+                        doc = await pdfjs.getDocument({
+                            url: u,
+                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                            cMapPacked: true,
+                            disableWorker: true
+                        }).promise;
+                        if (doc) return doc;
+                    } catch (e2) {}
                 }
+
+                throw new Error(`Could not fetch worksheet PDF from candidates: ${candidateUrls.join(', ')}`);
             }
 
             try {
@@ -6274,7 +6195,7 @@ function renderWorksheet(lesson) {
                 };
             } catch (fatalErr) {
                 console.error('Fatal error initializing PDF.js worksheet viewer:', fatalErr);
-                fallbackToIframe(primaryUrl, fatalErr.message || 'PDF.js load failure');
+                renderProtectedWorksheetErrorCard(fatalErr.message || 'PDF.js load failure');
             }
         });
     }
