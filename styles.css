@@ -2739,6 +2739,32 @@ body.pdf-modal-open .worksheet-container {
     padding: 1.5rem;
     box-shadow: var(--shadow-sm);
     margin-top: 1rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Worksheet Copy Protection & View-Only Hardening (Mirroring eBook Section) */
+#tab-worksheet,
+.worksheet-container,
+#lesson-worksheet,
+#ws-pdf-viewer-wrapper,
+#ws-pdf-scroll-container,
+#ws-pdf-pages-mount,
+#ws-pdf-pages-mount .pdf-page-card,
+#ws-pdf-pages-mount canvas,
+.worksheet-preview,
+#worksheet-iframe {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+}
+
+#ws-pdf-pages-mount canvas {
+    pointer-events: none !important;
 }
 
 .worksheet-header {

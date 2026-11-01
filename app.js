@@ -5354,7 +5354,7 @@ function renderWorksheet(lesson) {
 
             ${topicsSelectorHtml}
 
-            <div class="pdf-viewer-wrapper" id="ws-pdf-viewer-wrapper" oncontextmenu="return false;">
+            <div class="pdf-viewer-wrapper" id="ws-pdf-viewer-wrapper" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;" ondragstart="return false;">
                 <div class="pdf-toolbar">
                     <div class="pdf-toolbar-group">
                         <button type="button" class="pdf-btn" id="ws-pdf-prev-btn" title="Previous Page (Left Arrow)">
@@ -5390,7 +5390,7 @@ function renderWorksheet(lesson) {
                     </div>
                 </div>
 
-                <div class="pdf-scroll-container" id="ws-pdf-scroll-container">
+                <div class="pdf-scroll-container" id="ws-pdf-scroll-container" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;" ondragstart="return false;">
                     <button type="button" class="pdf-floating-exit-btn" id="ws-pdf-floating-exit-btn" title="Exit Fullscreen Practice Mode">
                         <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
                     </button>
@@ -5398,14 +5398,14 @@ function renderWorksheet(lesson) {
                         <i class="fa-solid fa-circle-notch fa-spin"></i>
                         <span id="ws-pdf-loading-status">Loading worksheet pages...</span>
                     </div>
-                    <div id="ws-pdf-pages-mount" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>
+                    <div id="ws-pdf-pages-mount" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;" ondragstart="return false;" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>
                 </div>
             </div>
 
             <div class="worksheet-notice" style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 8px; padding: 0.75rem 1.25rem; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
                 <i class="fa-solid fa-shield-halved" style="color: #15803d; font-size: 1.15rem; flex-shrink: 0;"></i>
                 <div>
-                    <span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, and exporting are restricted for this practice worksheet. Students can practice problems and scroll up and down smoothly across all pages on iPad, phone, or laptop.</span>
+                    <span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, text copying, and exporting are restricted for this practice worksheet. Students can practice problems and scroll up and down smoothly across all pages on iPad, phone, or laptop.</span>
                 </div>
             </div>
         `;
@@ -5460,11 +5460,11 @@ function renderWorksheet(lesson) {
                         </button>
                     </div>
                 </div>
-                <div class="ebook-preview-wrapper" id="ws-fallback-iframe-wrapper" oncontextmenu="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
+                <div class="ebook-preview-wrapper" id="ws-fallback-iframe-wrapper" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;" ondragstart="return false;" style="position: relative; width: 100%; height: 750px; overflow-y: auto; -webkit-overflow-scrolling: touch; -webkit-user-select: none; user-select: none;">
                     <button type="button" class="pdf-floating-exit-btn" id="ws-fallback-floating-exit-btn" title="Exit Fullscreen Practice Mode">
                         <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
                     </button>
-                    <iframe src="${currentViewerSrc}" class="worksheet-preview" id="worksheet-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none;"></iframe>
+                    <iframe src="${currentViewerSrc}" class="worksheet-preview" id="worksheet-iframe" title="${title} Preview" style="width: 100%; height: 100%; border: none; pointer-events: auto;"></iframe>
                 </div>
             `;
             const retryBtn = document.getElementById('ws-retry-pdf-load-btn');
@@ -5731,16 +5731,37 @@ function renderWorksheet(lesson) {
                     card.dataset.page = p;
                     card.style.width = `${Math.floor(baseW * currentScale)}px`;
                     card.style.height = `${Math.floor(baseH * currentScale)}px`;
+                    card.style.margin = '0 auto 1.25rem auto';
+                    card.style.display = 'block';
+                    card.style.touchAction = 'pan-y pinch-zoom';
+                    card.style.pointerEvents = 'auto';
+                    card.style.userSelect = 'none';
+                    card.style.webkitUserSelect = 'none';
 
-                    card.innerHTML = `
-                        <div class="pdf-loading-card" id="ws-pdf-placeholder-${p}" style="position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; background: #1e293b; color: #94a3b8; border-radius: 6px;">
-                            <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.4rem; color: #38bdf8; margin-right: 8px;"></i>
-                            <span>Rendering page ${p}...</span>
-                        </div>
-                        <canvas id="ws-pdf-canvas-${p}" class="pdf-page-canvas" style="display: none; width: 100%; height: 100%;"></canvas>
-                        <span class="pdf-page-badge">Page ${p} / ${numPages}</span>
-                    `;
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'pdf-loading-card';
+                    placeholder.id = `ws-pdf-placeholder-${p}`;
+                    placeholder.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i><span>Page ${p}</span>`;
+                    placeholder.style.pointerEvents = 'none';
+                    placeholder.style.userSelect = 'none';
 
+                    const canvas = document.createElement('canvas');
+                    canvas.className = 'pdf-page-canvas';
+                    canvas.id = `ws-pdf-canvas-${p}`;
+                    canvas.style.display = 'none';
+                    canvas.style.pointerEvents = 'none';
+                    canvas.style.userSelect = 'none';
+                    canvas.style.webkitUserSelect = 'none';
+
+                    const badge = document.createElement('span');
+                    badge.className = 'pdf-page-number-badge';
+                    badge.textContent = `Page ${p} / ${numPages}`;
+                    badge.style.pointerEvents = 'none';
+                    badge.style.userSelect = 'none';
+
+                    card.appendChild(placeholder);
+                    card.appendChild(canvas);
+                    card.appendChild(badge);
                     mount.appendChild(card);
                 }
 
@@ -5763,6 +5784,9 @@ function renderWorksheet(lesson) {
                         canvas.height = Math.floor(viewport.height);
                         canvas.style.width = `${Math.floor(baseW * currentScale)}px`;
                         canvas.style.height = `${Math.floor(baseH * currentScale)}px`;
+                        canvas.style.pointerEvents = 'none';
+                        canvas.style.userSelect = 'none';
+                        canvas.style.webkitUserSelect = 'none';
 
                         const ctx = canvas.getContext('2d', { alpha: false });
                         if (activeTasks[pageNum]) {
@@ -5872,7 +5896,10 @@ function renderWorksheet(lesson) {
                         c.style.width = `${Math.floor(baseW * currentScale)}px`;
                         c.style.height = `${Math.floor(baseH * currentScale)}px`;
                         const cv = c.querySelector('canvas');
-                        if (cv) cv.style.display = 'none';
+                        if (cv) {
+                            cv.style.display = 'none';
+                            cv.style.pointerEvents = 'none';
+                        }
                         const ph = c.querySelector('.pdf-loading-card');
                         if (ph) ph.style.display = 'flex';
                     });
@@ -6040,9 +6067,24 @@ function renderWorksheet(lesson) {
                 document.addEventListener('fullscreenchange', onNativeFsChange);
                 document.addEventListener('webkitfullscreenchange', onNativeFsChange);
 
+                const preventCopyAction = (e) => {
+                    e.preventDefault();
+                    return false;
+                };
+                wrapper.addEventListener('copy', preventCopyAction);
+                wrapper.addEventListener('cut', preventCopyAction);
+                wrapper.addEventListener('selectstart', preventCopyAction);
+                wrapper.addEventListener('dragstart', preventCopyAction);
+                scrollContainer.addEventListener('copy', preventCopyAction);
+                scrollContainer.addEventListener('cut', preventCopyAction);
+                scrollContainer.addEventListener('selectstart', preventCopyAction);
+                scrollContainer.addEventListener('dragstart', preventCopyAction);
+
                 const keyHandler = (e) => {
                     if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
                         toggleFullscreen(false);
+                    } else if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C' || e.key === 'a' || e.key === 'A' || e.key === 'p' || e.key === 'P' || e.key === 's' || e.key === 'S')) {
+                        e.preventDefault();
                     } else if (document.activeElement !== pageInput && !document.activeElement.matches('input, textarea')) {
                         if (e.key === 'ArrowRight' || e.key === 'PageDown') {
                             const cur = parseInt(pageInput.value, 10) || 1;
@@ -6062,6 +6104,14 @@ function renderWorksheet(lesson) {
                     fitWidth: () => applyZoom(getOptimalFitScale()),
                     cleanup: () => {
                         window.removeEventListener('keydown', keyHandler);
+                        wrapper.removeEventListener('copy', preventCopyAction);
+                        wrapper.removeEventListener('cut', preventCopyAction);
+                        wrapper.removeEventListener('selectstart', preventCopyAction);
+                        wrapper.removeEventListener('dragstart', preventCopyAction);
+                        scrollContainer.removeEventListener('copy', preventCopyAction);
+                        scrollContainer.removeEventListener('cut', preventCopyAction);
+                        scrollContainer.removeEventListener('selectstart', preventCopyAction);
+                        scrollContainer.removeEventListener('dragstart', preventCopyAction);
                         window.removeEventListener('resize', onViewportResize);
                         window.removeEventListener('orientationchange', onViewportResize);
                         document.removeEventListener('fullscreenchange', onNativeFsChange);
