@@ -71,16 +71,91 @@
         return null;
     }
 
-    // Auto-seed active custom password from administrator's update if not yet stored
-    (function seedActiveCustomPassword() {
+    // --- Persistent Student Session (Remember Me Across Browser Restarts) ---
+    const PERSISTENT_SESSION_KEY = 'wis_persistent_student_session';
+    const STUDENT_SESSION_PEPPER = 'WIS_STUDENT_REMEMBER_v5_2';
+
+    async function createPersistentStudentSession(version) {
+        try {
+            const v = version || authState.sharedPasswordVersion || 4;
+            const randomId = Math.random().toString(36).substring(2) + Date.now().toString(36);
+            const tokenSig = await hashStringSHA256(`student_auth_v${v}_${randomId}`, STUDENT_SESSION_PEPPER);
+            const sessionPayload = {
+                v: v,
+                id: randomId,
+                sig: tokenSig,
+                createdAt: Date.now()
+            };
+            localStorage.setItem(PERSISTENT_SESSION_KEY, JSON.stringify(sessionPayload));
+            return sessionPayload;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async function validatePersistentStudentSession(activeVersion) {
+        try {
+            const raw = localStorage.getItem(PERSISTENT_SESSION_KEY);
+            if (!raw) return false;
+            const session = JSON.parse(raw);
+            if (!session || typeof session !== 'object') return false;
+
+            // Session invalidation: If the administrator changed the shared password, version will not match!
+            if (session.v !== activeVersion) {
+                localStorage.removeItem(PERSISTENT_SESSION_KEY);
+                return false;
+            }
+
+            // Expiration: 30 days
+            const maxAgeMs = 30 * 24 * 60 * 60 * 1000;
+            if (session.createdAt && (Date.now() - session.createdAt > maxAgeMs)) {
+                localStorage.removeItem(PERSISTENT_SESSION_KEY);
+                return false;
+            }
+
+            // Verify integrity of the session token signature
+            const expectedSig = await hashStringSHA256(`student_auth_v${session.v}_${session.id}`, STUDENT_SESSION_PEPPER);
+            if (session.sig !== expectedSig) {
+                localStorage.removeItem(PERSISTENT_SESSION_KEY);
+                return false;
+            }
+
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function clearPersistentStudentSession() {
+        try {
+            localStorage.removeItem(PERSISTENT_SESSION_KEY);
+        } catch (e) {}
+    }
+
+    // Auto-seed active custom password using salted SHA-256 hash (never store plainText)
+    (async function seedActiveCustomPassword() {
         try {
             const current = getLocalSharedConfig();
-            if (!current || !current.plainText) {
+            if (!current || (!current.hash && !current.plainText)) {
+                const salt = Math.random().toString(36).substring(2) + Date.now().toString(36);
+                const hash = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, salt);
                 localStorage.setItem('wis_auth_shared_config', JSON.stringify({
-                    plainText: CURRENT_CUSTOM_SHARED_PW,
+                    hash: hash,
+                    salt: salt,
                     version: 4,
                     isCustom: true,
                     updatedAt: new Date().toISOString()
+                }));
+            } else if (current.plainText) {
+                // Secure migration: upgrade legacy plainText to salted hash only
+                const salt = current.salt || (Math.random().toString(36).substring(2) + Date.now().toString(36));
+                const hash = current.hash || (await hashStringSHA256(current.plainText, salt));
+                localStorage.setItem('wis_auth_shared_config', JSON.stringify({
+                    hash: hash,
+                    salt: salt,
+                    version: current.version || 4,
+                    isCustom: true,
+                    updatedAt: current.updatedAt || new Date().toISOString()
                 }));
             }
         } catch (e) {}
@@ -91,15 +166,15 @@
         const trimmed = enteredPw.trim();
         const storedConfig = getLocalSharedConfig();
 
-        // If administrator changed the password, verify ONLY against the custom stored password / hash.
+        // If administrator changed the password, verify ONLY against the custom stored hash.
         // The old default password (Physics@2026) MUST NOT be accepted once a custom password is set.
-        if (storedConfig && (storedConfig.isCustom !== false) && (storedConfig.plainText || storedConfig.hash)) {
-            if (storedConfig.plainText && trimmed === storedConfig.plainText) {
-                return true;
-            }
+        if (storedConfig && (storedConfig.isCustom !== false)) {
             if (storedConfig.hash && storedConfig.salt) {
                 const inputHash = await hashStringSHA256(trimmed, storedConfig.salt);
                 if (inputHash === storedConfig.hash) return true;
+            }
+            if (storedConfig.plainText && trimmed === storedConfig.plainText) {
+                return true;
             }
             return false; // REJECT! Never fall through to default initial password.
         }
@@ -183,12 +258,14 @@
     // --- Lock and Unlock UI ---
     function setLockedState(locked) {
         if (locked) {
+            document.documentElement.classList.remove('wis-pre-auth');
             document.body.classList.add('is-locked');
             const pwInput = getEl('shared-password-input');
             if (pwInput) {
                 setTimeout(() => pwInput.focus(), 150);
             }
         } else {
+            document.documentElement.classList.remove('wis-pre-auth');
             document.body.classList.remove('is-locked');
 
             // Trigger router to properly render active view now that lock is removed
@@ -202,22 +279,31 @@
         }
     }
 
-    function grantAccess() {
+    async function grantAccess() {
         authState.isAuthenticated = true;
+        const currentVersion = authState.sharedPasswordVersion || 4;
         sessionStorage.setItem('wis_student_session', 'authenticated');
-        sessionStorage.setItem('wis_session_version', String(authState.sharedPasswordVersion || 4));
+        sessionStorage.setItem('wis_session_version', String(currentVersion));
+        
+        // Automatically remember student login across browser restarts and refreshes
+        await createPersistentStudentSession(currentVersion);
+
         const pwInput = getEl('shared-password-input');
         if (pwInput) pwInput.value = '';
         hideAlert(getEl('shared-login-alert'));
         setLockedState(false);
     }
 
-    function grantAdminAccess() {
+    async function grantAdminAccess() {
         authState.isAdmin = true;
         authState.isAuthenticated = true;
+        const currentVersion = authState.sharedPasswordVersion || 4;
         sessionStorage.setItem('wis_admin_session', 'authenticated');
         sessionStorage.setItem('wis_student_session', 'authenticated');
-        sessionStorage.setItem('wis_session_version', String(authState.sharedPasswordVersion || 4));
+        sessionStorage.setItem('wis_session_version', String(currentVersion));
+        
+        await createPersistentStudentSession(currentVersion);
+
         const adminPwInput = getEl('admin-password-input');
         if (adminPwInput) adminPwInput.value = '';
         hideAlert(getEl('admin-login-alert'));
@@ -228,6 +314,23 @@
     // --- Check Current Authentication Status ---
     async function checkAuthStatus() {
         let checkedOnServer = false;
+        const localConfig = getLocalSharedConfig();
+        if (localConfig && localConfig.version) {
+            authState.sharedPasswordVersion = localConfig.version;
+            authState.lastUpdated = localConfig.updatedAt || null;
+        }
+
+        const activeVersion = authState.sharedPasswordVersion || 4;
+
+        // Fast client-side session validation to prevent any flicker on browser reopening or refresh
+        const isClientRemembered = await validatePersistentStudentSession(activeVersion);
+        if (isClientRemembered) {
+            authState.isAuthenticated = true;
+            sessionStorage.setItem('wis_student_session', 'authenticated');
+            sessionStorage.setItem('wis_session_version', String(activeVersion));
+            setLockedState(false);
+        }
+
         try {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 1200);
@@ -242,33 +345,47 @@
                 const data = await res.json();
                 authState.isAuthenticated = Boolean(data.authenticated);
                 authState.isAdmin = Boolean(data.isAdmin);
-                authState.sharedPasswordVersion = data.version || 4;
+                authState.sharedPasswordVersion = data.version || activeVersion;
                 authState.lastUpdated = data.lastUpdated || null;
                 checkedOnServer = true;
+
+                if (!data.authenticated) {
+                    // Server invalidated session (e.g. password changed by admin), clear client session immediately
+                    clearPersistentStudentSession();
+                    sessionStorage.removeItem('wis_student_session');
+                } else {
+                    // Synchronize client persistent session with server version
+                    sessionStorage.setItem('wis_student_session', 'authenticated');
+                    sessionStorage.setItem('wis_session_version', String(data.version || activeVersion));
+                    await createPersistentStudentSession(data.version || activeVersion);
+                }
             }
         } catch (e) {}
 
         if (!checkedOnServer) {
-            // Local client fallback
-            const localConfig = getLocalSharedConfig();
-            if (localConfig) {
-                authState.sharedPasswordVersion = localConfig.version || 4;
-                authState.lastUpdated = localConfig.updatedAt || null;
-            } else {
-                authState.sharedPasswordVersion = 4;
-                authState.lastUpdated = null;
-            }
-
+            const currentActiveVer = authState.sharedPasswordVersion || 4;
             const studentSession = sessionStorage.getItem('wis_student_session');
             const adminSession = sessionStorage.getItem('wis_admin_session');
-            const sessionVer = parseInt(sessionStorage.getItem('wis_session_version'), 10) || 4;
+            const sessionVer = parseInt(sessionStorage.getItem('wis_session_version'), 10) || currentActiveVer;
 
-            if (sessionVer !== authState.sharedPasswordVersion) {
+            let persistentValid = false;
+            if (!studentSession || sessionVer !== currentActiveVer) {
+                persistentValid = await validatePersistentStudentSession(currentActiveVer);
+                if (persistentValid) {
+                    sessionStorage.setItem('wis_student_session', 'authenticated');
+                    sessionStorage.setItem('wis_session_version', String(currentActiveVer));
+                }
+            } else {
+                persistentValid = true;
+            }
+
+            if (sessionVer !== currentActiveVer && !persistentValid) {
                 // Session was invalidated by password update
                 sessionStorage.removeItem('wis_student_session');
+                clearPersistentStudentSession();
                 authState.isAuthenticated = false;
             } else {
-                authState.isAuthenticated = Boolean(studentSession || adminSession);
+                authState.isAuthenticated = Boolean(studentSession || persistentValid || adminSession);
             }
             authState.isAdmin = Boolean(adminSession);
         }
@@ -354,7 +471,10 @@
 
             if (res.ok) {
                 const data = await res.json().catch(() => ({}));
-                if (data.success) authenticated = true;
+                if (data.success) {
+                    authenticated = true;
+                    if (data.version) authState.sharedPasswordVersion = data.version;
+                }
             } else if (res.status === 401 || res.status === 429) {
                 const data = await res.json().catch(() => ({}));
                 errorMessage = data.message || 'Incorrect password. Please try again.';
@@ -384,7 +504,7 @@
         }
 
         if (authenticated) {
-            grantAccess();
+            await grantAccess();
         } else {
             showAlert(alertEl, alertTextEl, errorMessage, true);
             if (inputEl) inputEl.select();
@@ -454,7 +574,7 @@
             // Keep admin credentials in sessionStorage for server authorization failsafe
             sessionStorage.setItem('wis_admin_auth_user', username);
             sessionStorage.setItem('wis_admin_auth_pw', password);
-            grantAdminAccess();
+            await grantAdminAccess();
         } else {
             showAlert(alertEl, alertTextEl, errorMessage, true);
             if (pwInput) pwInput.select();
@@ -529,7 +649,7 @@
             }
         } catch (e) {}
 
-        // 2. Persist client-side salted hash & plainText verification
+        // 2. Persist client-side salted hash (never store plainText password)
         const salt = Math.random().toString(36).substring(2) + Date.now().toString(36);
         const newHash = await hashStringSHA256(newPassword, salt);
         const newVersion = (authState.sharedPasswordVersion || 4) + 1;
@@ -539,7 +659,6 @@
             localStorage.setItem('wis_auth_shared_config', JSON.stringify({
                 hash: newHash,
                 salt: salt,
-                plainText: newPassword,
                 version: newVersion,
                 updatedAt: updatedAt,
                 isCustom: true
@@ -547,6 +666,7 @@
         } catch (e) {}
 
         if (invalidateSessions) {
+            clearPersistentStudentSession();
             sessionStorage.removeItem('wis_student_session');
             sessionStorage.setItem('wis_session_version', String(newVersion));
         }
@@ -595,6 +715,7 @@
 
         // Remove custom shared config from client storage
         localStorage.removeItem('wis_auth_shared_config');
+        clearPersistentStudentSession();
         const newVersion = (authState.sharedPasswordVersion || 4) + 1;
         authState.sharedPasswordVersion = newVersion;
         authState.lastUpdated = new Date().toISOString();
@@ -678,6 +799,7 @@
             await fetch('/api/logout', { method: 'POST', credentials: 'include' });
         } catch (e) {}
 
+        clearPersistentStudentSession();
         sessionStorage.removeItem('wis_student_session');
         sessionStorage.removeItem('wis_admin_session');
         sessionStorage.removeItem('wis_session_version');
@@ -699,6 +821,7 @@
             await fetch('/api/logout', { method: 'POST', credentials: 'include' });
         } catch (e) {}
 
+        clearPersistentStudentSession();
         sessionStorage.removeItem('wis_admin_session');
         sessionStorage.removeItem('wis_admin_token');
         sessionStorage.removeItem('wis_admin_auth_user');

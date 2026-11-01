@@ -4531,6 +4531,29 @@ body.is-admin .nav-btn-admin {
     border-color: rgba(239, 68, 68, 0.4) !important;
 }
 
+/* Remember Me Notice on Login Card */
+.auth-remember-hint {
+    margin-top: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.auth-remember-hint i {
+    color: #10b981;
+    font-size: 0.9rem;
+}
+
+/* Fast-track smooth unlock for remembered devices to avoid login screen flicker */
+html.wis-pre-auth body.is-locked #website-auth-gate {
+    display: none !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 640px) {
     .auth-gate-card {

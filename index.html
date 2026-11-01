@@ -7,7 +7,26 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>WIS Physics Learning Hub</title>
-    <link rel="stylesheet" href="styles.css?v=5.0">
+    <script>
+        (function() {
+            try {
+                var sess = localStorage.getItem('wis_persistent_student_session');
+                var conf = localStorage.getItem('wis_auth_shared_config');
+                if (sess) {
+                    var s = JSON.parse(sess);
+                    var v = 4;
+                    if (conf) {
+                        var c = JSON.parse(conf);
+                        if (c && c.version) v = c.version;
+                    }
+                    if (s && s.v === v && s.sig) {
+                        document.documentElement.classList.add('wis-pre-auth');
+                    }
+                }
+            } catch(e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css?v=5.2">
     <style>
         .view.active {
             display: block !important;
@@ -57,8 +76,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=4.6"></script>
-    <script src="physics-data.js?v=4.6"></script>
+    <script src="physics-figures.js?v=5.1"></script>
+    <script src="physics-data.js?v=5.1"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -1317,7 +1336,7 @@
             {
                 id: "g12-ch3-l2",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electromagnetic_induction.gif",
-                worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+                worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
                 ebookUrl: "ebooks/g12-ch3-l1-part2.pdf.pdf",
                 ebooks: [
                     { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
@@ -1365,7 +1384,7 @@
             {
                 id: "g12-ch3-l3",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electromagnetic_induction.gif",
-                worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+                worksheetUrl: "worksheets/ch3-l3-worksheet.pdf",
                 ebookUrl: "ebooks/g12-ch3-l1-part2.pdf.pdf",
                 ebooks: [
                     { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
@@ -1412,7 +1431,7 @@
             {
                 id: "g12-ch3-l4",
                 gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Alternating_current_ani.gif",
-                worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
+                worksheetUrl: "worksheets/ch3-l4-worksheet.pdf",
                 ebookUrl: "ebooks/g12-ch3-l2-ebook.pdf.pdf",
                 ebooks: [
                     { title: "AC Circuits & Electromagnetic Waves (pp. 131–159)", url: "ebooks/g12-ch3-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch3-l2-ebook.pdf" }
@@ -5024,11 +5043,11 @@
             'g12-l4': [{ title: "Chapter 2 Lesson 1: Superposition & Standing Waves Practice Worksheet", url: "worksheets/ch2-l1-worksheet.pdf", altUrl: "worksheets/ch2-l1-worksheet.pdf.pdf" }],
             'g12-interf': [{ title: "Chapter 2 Lesson 2: Interference & Diffraction Practice Worksheet", url: "worksheets/ch2-l2-worksheet.pdf", altUrl: "worksheets/ch2-l2-worksheet.pdf.pdf" }],
             'g12-ch3-l1': [{ title: "Chapter 3 Lesson 1: Magnetism Practice Worksheet", url: "worksheets/ch3-l1-worksheet.pdf", altUrl: "worksheets/ch3-l1-worksheet.pdf.pdf" }],
-            'g12-ch3-l2': [{ title: "Chapter 3 Lesson 2: Electromagnetic Induction Practice Worksheet", url: "worksheets/ch3-l1-worksheet.pdf", altUrl: "worksheets/ch3-l1-worksheet.pdf.pdf" }],
-            'g12-ch3-l3': [{ title: "Chapter 3 Lesson 3: Self Induction Practice Worksheet", url: "worksheets/ch3-l1-worksheet.pdf", altUrl: "worksheets/ch3-l1-worksheet.pdf.pdf" }],
-            'g12-ch3-l4': [{ title: "Chapter 3 Lesson 4: Alternating Current Practice Worksheet", url: "worksheets/ch3-l2-worksheet.pdf", altUrl: "worksheets/ch3-l2-worksheet.pdf.pdf" }],
+            'g12-ch3-l2': [{ title: "Chapter 3 Lesson 2: Electromagnetic Induction Practice Worksheet", url: "worksheets/ch3-l2-worksheet.pdf", altUrl: "worksheets/ch3-l2-worksheet.pdf.pdf" }],
+            'g12-ch3-l3': [{ title: "Chapter 3 Lesson 3: Self Induction Practice Worksheet", url: "worksheets/ch3-l3-worksheet.pdf", altUrl: "worksheets/ch3-l3-worksheet.pdf.pdf" }],
+            'g12-ch3-l4': [{ title: "Chapter 3 Lesson 4: Alternating Current Practice Worksheet", url: "worksheets/ch3-l4-worksheet.pdf", altUrl: "worksheets/ch3-l4-worksheet.pdf.pdf" }],
             'g12-l5': [{ title: "Chapter 3 Lessons 1–3: Electromagnetism Practice Worksheet", url: "worksheets/ch3-l1-worksheet.pdf", altUrl: "worksheets/ch3-l1-worksheet.pdf.pdf" }],
-            'g12-l6': [{ title: "Chapter 3 Lesson 4: Alternating Current Practice Worksheet", url: "worksheets/ch3-l2-worksheet.pdf", altUrl: "worksheets/ch3-l2-worksheet.pdf.pdf" }],
+            'g12-l6': [{ title: "Chapter 3 Lesson 4: Alternating Current Practice Worksheet", url: "worksheets/ch3-l4-worksheet.pdf", altUrl: "worksheets/ch3-l4-worksheet.pdf.pdf" }],
             'g12-ch4-l1': [{ title: "Chapter 4 Lesson 1: Semiconductors & Transistors Practice Worksheet", url: "worksheets/ch4-l1-worksheet.pdf", altUrl: "worksheets/ch4-l1-worksheet.pdf.pdf" }],
             'g12-ch4-l2': [{ title: "Chapter 4 Lesson 2: Special Theory of Relativity Practice Worksheet", url: "worksheets/ch4-l2-worksheet.pdf", altUrl: "worksheets/ch4-l2-worksheet.pdf.pdf" }],
             'g12-ch4-l3': [{ title: "Chapter 4 Lesson 3: Atomic Structure Practice Worksheet", url: "worksheets/ch4-l3-worksheet.pdf", altUrl: "worksheets/ch4-l3-worksheet.pdf.pdf" }]
@@ -6048,6 +6067,11 @@
                     <i class="fa-solid fa-arrow-right-to-bracket"></i>
                     <span id="shared-login-btn-text">Enter Website</span>
                 </button>
+
+                <div class="auth-remember-hint">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span><strong>Remember Me Active:</strong> You will remain logged in automatically on future visits.</span>
+                </div>
             </form>
 
             <div class="auth-gate-footer">
@@ -6212,7 +6236,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo" id="site-logo" title="WIS Physics Learning Hub">
-            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v5.0 Live</span>
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v5.2 Live</span>
         </div>
         <div class="nav-links">
             <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
@@ -6629,7 +6653,7 @@
             </div>
         </div>
     </div>
-    <script src="auth.js?v=5.0&build=202610292350"></script>
-    <script src="app.js?v=5.0" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=5.2&build=202611011830"></script>
+    <script src="app.js?v=5.2" onerror="onAppJsError()"></script>
 </body>
 </html>

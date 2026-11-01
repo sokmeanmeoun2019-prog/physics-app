@@ -5726,7 +5726,7 @@
         {
             id: "g12-ch3-l2",
             gifUrl: "",
-            worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+            worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
             ebookUrl: "ebooks/g12-ch3-l1-part2.pdf.pdf",
             ebooks: [
                 { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
@@ -6011,7 +6011,7 @@
         {
             id: "g12-ch3-l3",
             gifUrl: "",
-            worksheetUrl: "worksheets/ch3-l1-worksheet.pdf",
+            worksheetUrl: "worksheets/ch3-l3-worksheet.pdf",
             ebookUrl: "ebooks/g12-ch3-l1-part2.pdf.pdf",
             ebooks: [
                 { title: "Part 2: Induced EMF & Self-Induction (pp. 110–130)", url: "ebooks/g12-ch3-l1-part2.pdf.pdf", altUrl: "ebooks/g12-ch3-l1-part2.pdf" }
@@ -6357,7 +6357,7 @@
         {
             id: "g12-ch3-l4",
             gifUrl: "",
-            worksheetUrl: "worksheets/ch3-l2-worksheet.pdf",
+            worksheetUrl: "worksheets/ch3-l4-worksheet.pdf",
             ebookUrl: "ebooks/g12-ch3-l2-ebook.pdf.pdf",
             ebooks: [
                 { title: "AC Circuits & Electromagnetic Waves (pp. 131–159)", url: "ebooks/g12-ch3-l2-ebook.pdf.pdf", altUrl: "ebooks/g12-ch3-l2-ebook.pdf" }

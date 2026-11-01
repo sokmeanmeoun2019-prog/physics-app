@@ -425,16 +425,25 @@ const server = http.createServer(async (req, res) => {
 
         resetRateLimit(`login_${ip}`);
 
+        const isHttps = (req.headers['x-forwarded-proto'] === 'https' || Boolean(req.connection && req.connection.encrypted));
+        const secureFlag = isHttps ? '; Secure' : '';
+        const maxAgeSec = 30 * 24 * 60 * 60; // 30-day persistent student session
+
         const tokenPayload = {
             type: 'student',
             version: authConfig.sharedPassword.version,
             iat: Date.now(),
-            exp: Date.now() + (7 * 24 * 60 * 60 * 1000)
+            exp: Date.now() + (maxAgeSec * 1000)
         };
         const signedToken = signToken(tokenPayload);
 
-        res.setHeader('Set-Cookie', `wis_auth_token=${encodeURIComponent(signedToken)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${7 * 24 * 60 * 60}`);
-        return sendJson(res, 200, { success: true, message: 'Website access granted.' });
+        res.setHeader('Set-Cookie', `wis_auth_token=${encodeURIComponent(signedToken)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAgeSec}${secureFlag}`);
+        return sendJson(res, 200, {
+            success: true,
+            message: 'Website access granted.',
+            version: authConfig.sharedPassword.version,
+            token: signedToken
+        });
     }
 
     // 3. Administrator Login
@@ -473,17 +482,21 @@ const server = http.createServer(async (req, res) => {
         };
         const adminToken = signToken(adminPayload);
 
+        const isHttps = (req.headers['x-forwarded-proto'] === 'https' || Boolean(req.connection && req.connection.encrypted));
+        const secureFlag = isHttps ? '; Secure' : '';
+        const maxAgeSec = 30 * 24 * 60 * 60; // 30-day persistent student session
+
         const studentPayload = {
             type: 'student',
             version: authConfig.sharedPassword.version,
             iat: Date.now(),
-            exp: Date.now() + (7 * 24 * 60 * 60 * 1000)
+            exp: Date.now() + (maxAgeSec * 1000)
         };
         const studentToken = signToken(studentPayload);
 
         res.setHeader('Set-Cookie', [
-            `wis_admin_token=${encodeURIComponent(adminToken)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${24 * 60 * 60}`,
-            `wis_auth_token=${encodeURIComponent(studentToken)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${7 * 24 * 60 * 60}`
+            `wis_admin_token=${encodeURIComponent(adminToken)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${24 * 60 * 60}${secureFlag}`,
+            `wis_auth_token=${encodeURIComponent(studentToken)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAgeSec}${secureFlag}`
         ]);
 
         return sendJson(res, 200, {
@@ -545,13 +558,17 @@ const server = http.createServer(async (req, res) => {
             return sendJson(res, 500, { success: false, message: 'Failed to persist password change to disk.' });
         }
 
+        const isHttps = (req.headers['x-forwarded-proto'] === 'https' || Boolean(req.connection && req.connection.encrypted));
+        const secureFlag = isHttps ? '; Secure' : '';
+        const maxAgeSec = 30 * 24 * 60 * 60; // 30-day persistent student session
+
         const newStudentToken = signToken({
             type: 'student',
             version: authConfig.sharedPassword.version,
             iat: Date.now(),
-            exp: Date.now() + (7 * 24 * 60 * 60 * 1000)
+            exp: Date.now() + (maxAgeSec * 1000)
         });
-        res.setHeader('Set-Cookie', `wis_auth_token=${encodeURIComponent(newStudentToken)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${7 * 24 * 60 * 60}`);
+        res.setHeader('Set-Cookie', `wis_auth_token=${encodeURIComponent(newStudentToken)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAgeSec}${secureFlag}`);
 
         console.log(`[AUTH] Shared password updated by admin to new secret (Version: ${authConfig.sharedPassword.version})`);
         return sendJson(res, 200, {
@@ -641,9 +658,11 @@ const server = http.createServer(async (req, res) => {
 
     // 7. Logout
     if (pathname === '/api/logout' && method === 'POST') {
+        const isHttps = (req.headers['x-forwarded-proto'] === 'https' || Boolean(req.connection && req.connection.encrypted));
+        const secureFlag = isHttps ? '; Secure' : '';
         res.setHeader('Set-Cookie', [
-            'wis_auth_token=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0',
-            'wis_admin_token=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0'
+            `wis_auth_token=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0${secureFlag}`,
+            `wis_admin_token=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0${secureFlag}`
         ]);
         return sendJson(res, 200, { success: true, message: 'Logged out successfully.' });
     }
