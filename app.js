@@ -1888,7 +1888,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 7} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
-                    <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade9-diploma-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#ccfbf1; color:#0f766e; border:1px solid #99f6e4; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade9-diploma-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-award"></i> Diploma Section ↓</a>
                 `;
             }
         } else if (currentGrade === '10') {
@@ -1927,7 +1927,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
-                    <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade12-bacii-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#e0e7ff; color:#4338ca; border:1px solid #c7d2fe; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade12-bacii-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-graduation-cap"></i> BacII Section ↓</a>
                 `;
             }
         }
@@ -2001,6 +2001,13 @@ function loadLessons(grade, pushRoute = true) {
                 card.addEventListener('click', () => loadLessonDetail(lesson, true));
                 container.appendChild(card);
             });
+
+            // Render Grade-Specific Examination Hubs (Grade 9 Diploma & Grade 12 BacII Only)
+            if (typeof window.renderSpecialGradeSections === 'function') {
+                window.renderSpecialGradeSections(currentGrade);
+            } else if (typeof renderSpecialGradeSections === 'function') {
+                renderSpecialGradeSections(currentGrade);
+            }
         }
     } catch (err) {
         console.error('Error loading lessons:', err);

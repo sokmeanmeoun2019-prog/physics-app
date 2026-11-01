@@ -4606,6 +4606,227 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
     }
 }
 
+/* ==========================================================================
+   GRADE-SPECIFIC EXAMINATION SECTIONS (Grade 9 Diploma & Grade 12 BacII)
+   ========================================================================== */
+.grade-special-sections {
+    margin-top: 3.5rem;
+    margin-bottom: 3rem;
+    padding-top: 2.5rem;
+    border-top: 2px dashed #cbd5e1;
+    position: relative;
+}
+
+.exam-section-container {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    padding: 2.25rem 2.25rem 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.exam-section-container:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Diploma Theme (Grade 9 Teal / Cyan) */
+.exam-section-container.diploma-theme {
+    border-top: 5px solid #00acc1;
+    background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 120px);
+}
+
+/* BacII Theme (Grade 12 Indigo / Purple / Gold) */
+.exam-section-container.bacii-theme {
+    border-top: 5px solid #6366f1;
+    background: linear-gradient(180deg, #f5f3ff 0%, #ffffff 120px);
+}
+
+.exam-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.exam-header-left {
+    flex: 1 1 300px;
+}
+
+.exam-section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.badge-diploma {
+    background: #ccfbf1;
+    color: #0f766e;
+    border: 1px solid #99f6e4;
+}
+
+.badge-bacii {
+    background: #e0e7ff;
+    color: #4338ca;
+    border: 1px solid #c7d2fe;
+}
+
+.exam-section-title {
+    font-size: clamp(1.4rem, 2vw + 0.8rem, 1.85rem);
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.diploma-theme .exam-section-title i {
+    color: #00acc1;
+}
+
+.bacii-theme .exam-section-title i {
+    color: #6366f1;
+}
+
+.exam-section-desc {
+    font-size: 0.96rem;
+    color: #64748b;
+    line-height: 1.55;
+    max-width: 720px;
+}
+
+.exam-header-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    padding: 0.45rem 0.95rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #475569;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Empty State (Clean, Professional, No Sample Content) */
+.exam-empty-state {
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 18px;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.exam-empty-state:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.exam-empty-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 1.85rem;
+    color: #64748b;
+}
+
+.diploma-theme .exam-empty-icon i {
+    color: #00acc1;
+}
+
+.bacii-theme .exam-empty-icon i {
+    color: #6366f1;
+}
+
+.exam-empty-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.exam-empty-text {
+    font-size: 0.92rem;
+    color: #64748b;
+    max-width: 520px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+}
+
+.exam-admin-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: #0284c7;
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+}
+
+/* Resources Grid for Administrator Additions */
+.exam-resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.exam-resource-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 1.4rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.exam-resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+@media (max-width: 768px) {
+    .exam-section-container {
+        padding: 1.5rem 1.25rem;
+        border-radius: 18px;
+    }
+    .exam-empty-state {
+        padding: 2.25rem 1.25rem;
+    }
+}
+
 
 
 

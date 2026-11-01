@@ -26,7 +26,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=5.3">
+    <link rel="stylesheet" href="styles.css?v=5.4">
     <style>
         .view.active {
             display: block !important;
@@ -3236,7 +3236,7 @@
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 39 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 7 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
+                        '<a href="#grade9-diploma-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#ccfbf1; color:#0f766e; border:1px solid #99f6e4; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById(\'grade9-diploma-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-award"></i> Diploma Section ↓</a>';
                 }
             } else if (g === '10') {
                 if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-rocket"></i> Grade 10 • Classical Mechanics & Kinematics';
@@ -3269,10 +3269,122 @@
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 115 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>';
+                        '<a href="#grade12-bacii-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#e0e7ff; color:#4338ca; border:1px solid #c7d2fe; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById(\'grade12-bacii-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-graduation-cap"></i> BacII Section ↓</a>';
                 }
             }
         }
+
+        // ==========================================================================
+        // SPECIAL EXAM SECTIONS (GRADE 9 DIPLOMA & GRADE 12 BACII ONLY)
+        // Administrator-extensible catalogs for past papers and revision resources
+        // ==========================================================================
+        window.GRADE9_DIPLOMA_RESOURCES = window.GRADE9_DIPLOMA_RESOURCES || [];
+        window.GRADE12_BACII_RESOURCES = window.GRADE12_BACII_RESOURCES || [];
+
+        function renderSpecialGradeSections(grade) {
+            var g = String(grade);
+            var specialWrapper = document.getElementById('grade-special-sections');
+            var g9Section = document.getElementById('grade9-diploma-section');
+            var g12Section = document.getElementById('grade12-bacii-section');
+            if (!specialWrapper || !g9Section || !g12Section) return;
+
+            // Strict Restriction: Only modify Grade 9 and Grade 12.
+            // Grades 7, 8, 10, and 11 must NOT display either section.
+            if (g === '9') {
+                specialWrapper.style.display = 'block';
+                g9Section.style.display = 'block';
+                g12Section.style.display = 'none';
+                renderDiplomaContent();
+            } else if (g === '12') {
+                specialWrapper.style.display = 'block';
+                g9Section.style.display = 'none';
+                g12Section.style.display = 'block';
+                renderBacIIContent();
+            } else {
+                specialWrapper.style.display = 'none';
+                g9Section.style.display = 'none';
+                g12Section.style.display = 'none';
+            }
+        }
+
+        function renderDiplomaContent() {
+            var container = document.getElementById('diploma-resources-container');
+            if (!container) return;
+            var list = window.GRADE9_DIPLOMA_RESOURCES || [];
+
+            if (!list || list.length === 0) {
+                container.innerHTML = '<div class="exam-empty-state">' +
+                    '<div class="exam-empty-icon"><i class="fa-regular fa-folder-open"></i></div>' +
+                    '<h3 class="exam-empty-title">Diploma Section Ready</h3>' +
+                    '<p class="exam-empty-text">No examination documents or past papers have been published yet. New official Grade 9 Diploma resources will appear here once published by the administrator.</p>' +
+                    '<span class="exam-admin-tag"><i class="fa-solid fa-user-shield"></i> Administrator Managed</span>' +
+                '</div>';
+                return;
+            }
+
+            container.innerHTML = '<div class="exam-resources-grid">' +
+                list.map(function(item) {
+                    return '<div class="exam-resource-card">' +
+                        '<div class="exam-resource-top">' +
+                            '<span class="exam-resource-type"><i class="fa-solid fa-file-pdf"></i> ' + (item.type || 'Exam Paper') + '</span>' +
+                            (item.year ? '<span class="exam-resource-year">' + item.year + '</span>' : '') +
+                        '</div>' +
+                        '<h4 class="exam-resource-title">' + (item.title || 'Diploma Resource') + '</h4>' +
+                        '<p class="exam-resource-desc">' + (item.description || '') + '</p>' +
+                        (item.url ? '<div class="exam-resource-actions"><a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0.6rem 1rem; border-radius:8px; font-size:0.88rem; text-decoration:none;"><i class="fa-solid fa-eye"></i> View Examination</a></div>' : '') +
+                    '</div>';
+                }).join('') +
+            '</div>';
+        }
+
+        function renderBacIIContent() {
+            var container = document.getElementById('bacii-resources-container');
+            if (!container) return;
+            var list = window.GRADE12_BACII_RESOURCES || [];
+
+            if (!list || list.length === 0) {
+                container.innerHTML = '<div class="exam-empty-state">' +
+                    '<div class="exam-empty-icon"><i class="fa-regular fa-folder-open"></i></div>' +
+                    '<h3 class="exam-empty-title">BacII Section Ready</h3>' +
+                    '<p class="exam-empty-text">No examination documents or past papers have been published yet. New official Grade 12 National BacII resources will appear here once published by the administrator.</p>' +
+                    '<span class="exam-admin-tag"><i class="fa-solid fa-user-shield"></i> Administrator Managed</span>' +
+                '</div>';
+                return;
+            }
+
+            container.innerHTML = '<div class="exam-resources-grid">' +
+                list.map(function(item) {
+                    return '<div class="exam-resource-card">' +
+                        '<div class="exam-resource-top">' +
+                            '<span class="exam-resource-type"><i class="fa-solid fa-file-pdf"></i> ' + (item.type || 'Exam Paper') + '</span>' +
+                            (item.year ? '<span class="exam-resource-year">' + item.year + '</span>' : '') +
+                        '</div>' +
+                        '<h4 class="exam-resource-title">' + (item.title || 'BacII Resource') + '</h4>' +
+                        '<p class="exam-resource-desc">' + (item.description || '') + '</p>' +
+                        (item.url ? '<div class="exam-resource-actions"><a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0.6rem 1rem; border-radius:8px; font-size:0.88rem; text-decoration:none;"><i class="fa-solid fa-eye"></i> View Examination</a></div>' : '') +
+                    '</div>';
+                }).join('') +
+            '</div>';
+        }
+
+        window.renderSpecialGradeSections = renderSpecialGradeSections;
+        window.renderDiplomaContent = renderDiplomaContent;
+        window.renderBacIIContent = renderBacIIContent;
+
+        // Administrator Content Management Helpers
+        window.addDiplomaResource = function(resource) {
+            if (!resource || !resource.title) return false;
+            window.GRADE9_DIPLOMA_RESOURCES.push(resource);
+            if (window.currentGrade === '9') renderDiplomaContent();
+            return true;
+        };
+
+        window.addBacIIResource = function(resource) {
+            if (!resource || !resource.title) return false;
+            window.GRADE12_BACII_RESOURCES.push(resource);
+            if (window.currentGrade === '12') renderBacIIContent();
+            return true;
+        };
 
         function renderChapterCards(grade) {
             var g = String(grade);
@@ -3341,6 +3453,9 @@
 
             // Immediately render all chapters into DOM synchronously (0ms delay)
             renderChapterCards(g);
+
+            // Render Grade-Specific Examination Hubs (Grade 9 Diploma & Grade 12 BacII Only)
+            renderSpecialGradeSections(g);
 
             // If app.js is ready, notify to sync
             if (typeof window.appLoadLessons === 'function') {
@@ -6288,7 +6403,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo" id="site-logo" title="WIS Physics Learning Hub">
-            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v5.3 Live</span>
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v5.4 Live</span>
         </div>
         <div class="nav-links">
             <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
@@ -6397,8 +6512,8 @@
 
                     <div class="card-footer-info">
                         <span><i class="fa-solid fa-layer-group"></i> 5 Chapters</span>
+                        <span style="color:#0f766e; font-weight:700;"><i class="fa-solid fa-award"></i> Diploma Section</span>
                         <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
-                        <span><i class="fa-solid fa-vial"></i> Simulations</span>
                     </div>
 
                     <button class="btn-grade btn-grade-9" type="button" data-grade="9" onclick="event.stopPropagation(); loadLessons('9');">
@@ -6489,8 +6604,8 @@
 
                     <div class="card-footer-info">
                         <span><i class="fa-solid fa-layer-group"></i> 4 Chapters • 12 Lessons</span>
+                        <span style="color:#4338ca; font-weight:700;"><i class="fa-solid fa-graduation-cap"></i> BacII Section</span>
                         <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
-                        <span><i class="fa-solid fa-brain"></i> Quizzes</span>
                     </div>
 
                     <button class="btn-grade btn-grade-12" type="button" data-grade="12" onclick="event.stopPropagation(); loadLessons('12');">
@@ -6530,6 +6645,49 @@
 
             <div class="lesson-list" id="lesson-list-container">
                 <!-- Lesson cards will be populated here -->
+            </div>
+
+            <!-- Grade-Specific Examination Hubs (Grade 9 Diploma & Grade 12 BacII Only) -->
+            <div id="grade-special-sections" class="grade-special-sections" style="display: none;">
+                <!-- Grade 9 Diploma Section (Shown ONLY for Grade 9) -->
+                <section id="grade9-diploma-section" class="exam-section-container diploma-theme" style="display: none;" aria-label="Grade 9 Diploma Section">
+                    <div class="exam-section-header">
+                        <div class="exam-header-left">
+                            <span class="exam-section-badge badge-diploma">
+                                <i class="fa-solid fa-award"></i> National Examination Preparation
+                            </span>
+                            <h2 class="exam-section-title">
+                                <i class="fa-solid fa-certificate"></i> Diploma Section
+                            </h2>
+                            <p class="exam-section-desc">
+                                Official Grade 9 National Diploma examination papers, past problem sets, and revision resources.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="diploma-resources-container" class="exam-resources-mount">
+                        <!-- Populated dynamically or displays clean ready state -->
+                    </div>
+                </section>
+
+                <!-- Grade 12 BacII Section (Shown ONLY for Grade 12) -->
+                <section id="grade12-bacii-section" class="exam-section-container bacii-theme" style="display: none;" aria-label="Grade 12 BacII Section">
+                    <div class="exam-section-header">
+                        <div class="exam-header-left">
+                            <span class="exam-section-badge badge-bacii">
+                                <i class="fa-solid fa-graduation-cap"></i> National Examination Hub
+                            </span>
+                            <h2 class="exam-section-title">
+                                <i class="fa-solid fa-medal"></i> BacII Section
+                            </h2>
+                            <p class="exam-section-desc">
+                                Official Grade 12 National Baccalaureate (BacII) physics examinations, practice problem sets, and high-stakes revision resources.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="bacii-resources-container" class="exam-resources-mount">
+                        <!-- Populated dynamically or displays clean ready state -->
+                    </div>
+                </section>
             </div>
         </section>
 
@@ -6705,7 +6863,7 @@
             </div>
         </div>
     </div>
-    <script src="auth.js?v=5.3&build=202611011900"></script>
-    <script src="app.js?v=5.3" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=5.4&build=202611011930"></script>
+    <script src="app.js?v=5.4" onerror="onAppJsError()"></script>
 </body>
 </html>
