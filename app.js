@@ -1720,6 +1720,13 @@ function showView(viewElement) {
 }
 
 function showDashboard(pushRoute = true) {
+    if (document.body) {
+        document.body.classList.remove('grade-9-active', 'grade-12-active');
+    }
+    const tabDiploma = document.getElementById('tab-btn-diploma');
+    const tabBacII = document.getElementById('tab-btn-bacii');
+    if (tabDiploma) { tabDiploma.style.setProperty('display', 'none', 'important'); tabDiploma.classList.add('hidden'); }
+    if (tabBacII) { tabBacII.style.setProperty('display', 'none', 'important'); tabBacII.classList.add('hidden'); }
     if (pushRoute && window.location.hash !== '' && window.location.hash !== '#') {
         try {
             history.pushState({ view: 'dashboard' }, '', window.location.pathname + window.location.search);
@@ -1805,6 +1812,33 @@ function loadLessons(grade, pushRoute = true) {
     if (!grade) return;
     currentGrade = String(grade);
     window.currentGrade = currentGrade;
+
+    if (document.body) {
+        document.body.classList.remove('grade-9-active', 'grade-12-active');
+        if (currentGrade === '9') document.body.classList.add('grade-9-active');
+        else if (currentGrade === '12') document.body.classList.add('grade-12-active');
+    }
+
+    const tabDiploma = document.getElementById('tab-btn-diploma');
+    const tabBacII = document.getElementById('tab-btn-bacii');
+    if (tabDiploma) {
+        if (currentGrade === '9') {
+            tabDiploma.style.setProperty('display', 'inline-flex', 'important');
+            tabDiploma.classList.remove('hidden');
+        } else {
+            tabDiploma.style.setProperty('display', 'none', 'important');
+            tabDiploma.classList.add('hidden');
+        }
+    }
+    if (tabBacII) {
+        if (currentGrade === '12') {
+            tabBacII.style.setProperty('display', 'inline-flex', 'important');
+            tabBacII.classList.remove('hidden');
+        } else {
+            tabBacII.style.setProperty('display', 'none', 'important');
+            tabBacII.classList.add('hidden');
+        }
+    }
     
     // Switch view immediately so the user experiences zero lag and instant response
     showView(viewLessons);
@@ -2195,15 +2229,52 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
     currentLesson = lesson;
     window.currentSelectedLessonId = lesson.id;
 
-    // Detect and maintain currentGrade
-    const activeDataGradeSearch = (typeof window !== 'undefined' && (window.physicsData || window.appData)) ? (window.physicsData || window.appData) : data;
-    for (const gKey of Object.keys(activeDataGradeSearch)) {
-        if (activeDataGradeSearch[gKey] && activeDataGradeSearch[gKey].some(l => l.id === lesson.id)) {
-            currentGrade = gKey;
-            break;
+    // Detect and maintain currentGrade from lesson ID or activeDataGradeSearch
+    const lidPref = String(lesson.id || '').toLowerCase().trim();
+    if (lidPref.startsWith('g9-') || lidPref.startsWith('g9_')) {
+        currentGrade = '9';
+    } else if (lidPref.startsWith('g12-') || lidPref.startsWith('g12_')) {
+        currentGrade = '12';
+    } else if (lidPref.startsWith('g7-') || lidPref.startsWith('g8-') || lidPref.startsWith('g10-') || lidPref.startsWith('g11-')) {
+        const gm = lidPref.match(/^g(\d+)[-_]/);
+        if (gm) currentGrade = gm[1];
+    } else {
+        const activeDataGradeSearch = (typeof window !== 'undefined' && (window.physicsData || window.appData)) ? (window.physicsData || window.appData) : data;
+        for (const gKey of Object.keys(activeDataGradeSearch)) {
+            if (activeDataGradeSearch[gKey] && activeDataGradeSearch[gKey].some(l => l.id === lesson.id)) {
+                currentGrade = gKey;
+                break;
+            }
         }
     }
     window.currentGrade = currentGrade;
+
+    if (document.body) {
+        document.body.classList.remove('grade-9-active', 'grade-12-active');
+        if (currentGrade === '9') document.body.classList.add('grade-9-active');
+        else if (currentGrade === '12') document.body.classList.add('grade-12-active');
+    }
+
+    const tabDiploma = document.getElementById('tab-btn-diploma');
+    const tabBacII = document.getElementById('tab-btn-bacii');
+    if (tabDiploma) {
+        if (currentGrade === '9') {
+            tabDiploma.style.setProperty('display', 'inline-flex', 'important');
+            tabDiploma.classList.remove('hidden');
+        } else {
+            tabDiploma.style.setProperty('display', 'none', 'important');
+            tabDiploma.classList.add('hidden');
+        }
+    }
+    if (tabBacII) {
+        if (currentGrade === '12') {
+            tabBacII.style.setProperty('display', 'inline-flex', 'important');
+            tabBacII.classList.remove('hidden');
+        } else {
+            tabBacII.style.setProperty('display', 'none', 'important');
+            tabBacII.classList.add('hidden');
+        }
+    }
 
     if (pushRoute) {
         const targetHash = `#lesson/${lesson.id}`;
@@ -4050,6 +4121,64 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
         else quizTabBtn.classList.add('hidden');
     }
 
+    // Grade-Specific Exam Section Tabs (Grade 9 Diploma & Grade 12 BacII Only)
+    // Strict Grade Isolation:
+    // - Grade 9 lessons show ONLY the Diploma tab
+    // - Grade 12 lessons show ONLY the BacII tab
+    // - Grades 7, 8, 10, 11 show NEITHER tab
+    const diplomaTabBtn = document.getElementById('tab-btn-diploma');
+    const baciiTabBtn = document.getElementById('tab-btn-bacii');
+    const lid = (lesson && lesson.id) ? String(lesson.id).toLowerCase().trim() : '';
+    let detectedGrade = null;
+    if (lid.startsWith('g9-') || lid.startsWith('g9_')) {
+        detectedGrade = '9';
+    } else if (lid.startsWith('g12-') || lid.startsWith('g12_')) {
+        detectedGrade = '12';
+    } else if (lid.startsWith('g7-') || lid.startsWith('g8-') || lid.startsWith('g10-') || lid.startsWith('g11-')) {
+        const gm = lid.match(/^g(\d+)[-_]/);
+        detectedGrade = gm ? gm[1] : null;
+    } else if (lesson && lesson.grade) {
+        detectedGrade = String(lesson.grade);
+    } else {
+        detectedGrade = String(currentGrade || window.currentGrade || '');
+    }
+
+    if (detectedGrade) {
+        currentGrade = detectedGrade;
+        window.currentGrade = detectedGrade;
+        if (document.body) {
+            document.body.classList.remove('grade-9-active', 'grade-12-active');
+            if (currentGrade === '9') document.body.classList.add('grade-9-active');
+            else if (currentGrade === '12') document.body.classList.add('grade-12-active');
+        }
+    }
+
+    const isGrade9Lesson = (detectedGrade === '9');
+    const isGrade12Lesson = (detectedGrade === '12');
+
+    if (diplomaTabBtn) {
+        if (isGrade9Lesson) {
+            diplomaTabBtn.style.setProperty('display', 'inline-flex', 'important');
+            diplomaTabBtn.classList.remove('hidden');
+            if (typeof renderDiplomaContent === 'function') renderDiplomaContent();
+            else if (typeof window.renderDiplomaContent === 'function') window.renderDiplomaContent();
+        } else {
+            diplomaTabBtn.style.setProperty('display', 'none', 'important');
+            diplomaTabBtn.classList.add('hidden');
+        }
+    }
+    if (baciiTabBtn) {
+        if (isGrade12Lesson) {
+            baciiTabBtn.style.setProperty('display', 'inline-flex', 'important');
+            baciiTabBtn.classList.remove('hidden');
+            if (typeof renderBacIIContent === 'function') renderBacIIContent();
+            else if (typeof window.renderBacIIContent === 'function') window.renderBacIIContent();
+        } else {
+            baciiTabBtn.style.setProperty('display', 'none', 'important');
+            baciiTabBtn.classList.add('hidden');
+        }
+    }
+
     showView(viewLessonDetail);
 
     // Pre-populate and hydrate all tabs immediately
@@ -4742,8 +4871,13 @@ function renderEbook(lesson) {
                     badge.textContent = `${p} / ${numPages}`;
                     badge.style.pointerEvents = 'none';
 
+                    const shield = document.createElement('div');
+                    shield.className = 'pdf-shield-overlay';
+                    shield.setAttribute('aria-hidden', 'true');
+
                     card.appendChild(placeholder);
                     card.appendChild(canvas);
+                    card.appendChild(shield);
                     card.appendChild(badge);
                     mount.appendChild(card);
                 }
@@ -5766,8 +5900,13 @@ function renderWorksheet(lesson) {
                     badge.style.pointerEvents = 'none';
                     badge.style.userSelect = 'none';
 
+                    const shield = document.createElement('div');
+                    shield.className = 'pdf-shield-overlay';
+                    shield.setAttribute('aria-hidden', 'true');
+
                     card.appendChild(placeholder);
                     card.appendChild(canvas);
+                    card.appendChild(shield);
                     card.appendChild(badge);
                     mount.appendChild(card);
                 }
@@ -6290,6 +6429,12 @@ function switchTab(targetName) {
         renderWorksheet(currentLesson);
     } else if (targetName === 'game') {
         renderGame(currentLesson);
+    } else if (targetName === 'diploma') {
+        if (typeof renderDiplomaContent === 'function') renderDiplomaContent();
+        else if (typeof window.renderDiplomaContent === 'function') window.renderDiplomaContent();
+    } else if (targetName === 'bacii') {
+        if (typeof renderBacIIContent === 'function') renderBacIIContent();
+        else if (typeof window.renderBacIIContent === 'function') window.renderBacIIContent();
     }
 }
 

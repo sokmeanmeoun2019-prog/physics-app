@@ -26,7 +26,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=5.4">
+    <link rel="stylesheet" href="styles.css?v=5.7&build=202611012245">
     <style>
         .view.active {
             display: block !important;
@@ -3165,6 +3165,9 @@
         };
 
         function showDashboard() {
+            if (document.body) {
+                document.body.classList.remove('grade-9-active', 'grade-12-active');
+            }
             if (typeof window.appShowDashboard === 'function') {
                 try { window.appShowDashboard(true); return; } catch (e) {}
             }
@@ -3179,10 +3182,15 @@
         }
 
         function showLessonsView() {
+            var g = window.pendingGrade || window.currentGrade || '9';
+            if (document.body) {
+                document.body.classList.remove('grade-9-active', 'grade-12-active');
+                if (String(g) === '9') document.body.classList.add('grade-9-active');
+                else if (String(g) === '12') document.body.classList.add('grade-12-active');
+            }
             if (typeof window.appShowLessonsView === 'function') {
                 try { window.appShowLessonsView(true); return; } catch (e) {}
             }
-            var g = window.pendingGrade || window.currentGrade || '9';
             loadLessons(g);
         }
 
@@ -3278,11 +3286,58 @@
         // SPECIAL EXAM SECTIONS (GRADE 9 DIPLOMA & GRADE 12 BACII ONLY)
         // Administrator-extensible catalogs for past papers and revision resources
         // ==========================================================================
-        window.GRADE9_DIPLOMA_RESOURCES = window.GRADE9_DIPLOMA_RESOURCES || [];
-        window.GRADE12_BACII_RESOURCES = window.GRADE12_BACII_RESOURCES || [];
+        window.GRADE9_DIPLOMA_RESOURCES = [
+            {
+                id: 'g9-diploma-prep',
+                title: 'Mock Junior High School National Exam – Physics Grade 9',
+                subtitle: 'Western International School Mock Exam Prep • 14 Pages',
+                type: 'Preparation & Practice',
+                year: 'Diploma Mock Prep',
+                pages: 14,
+                description: 'Comprehensive mock examination problem sets and revision exercises covering forces, turning effect, simple machines, electricity, and optics for Grade 9 National Diploma preparation.',
+                url: 'exams/g9-diploma-prep.pdf.pdf',
+                altUrl: 'exams/g9-diploma-prep.pdf'
+            },
+            {
+                id: 'g9-diploma-exam',
+                title: 'National Diploma Physics Examination Papers (2016–2021)',
+                subtitle: 'Official Past National Exam Papers & Complete Solutions • 29 Pages',
+                type: 'Official Past Exam',
+                year: 'National Diploma (2016–2021)',
+                pages: 29,
+                description: 'Official National Diploma physics examination papers and real sample problem sets with step-by-step solutions and scoring keys.',
+                url: 'exams/g9-diploma-exam.pdf.pdf',
+                altUrl: 'exams/g9-diploma-exam.pdf'
+            }
+        ];
+
+        window.GRADE12_BACII_RESOURCES = [
+            {
+                id: 'g12-bacii-prep',
+                title: 'Mock High School National Exam – Physics Grade 12',
+                subtitle: 'Western International School Mock BacII Prep • 31 Pages',
+                type: 'Preparation & Practice',
+                year: 'BacII Mock Prep',
+                pages: 31,
+                description: 'Advanced mock examination problem sets covering Thermodynamics, Mechanical & Sound Waves, AC Circuits, and Electromagnetism for High School BacII candidates.',
+                url: 'exams/g12-bacii-prep.pdf.pdf',
+                altUrl: 'exams/g12-bacii-prep.pdf'
+            },
+            {
+                id: 'g12-bacii-exam',
+                title: 'Senior High School National Exam – Physics Science & Social (2011–2024)',
+                subtitle: 'Official Past BacII Examination Papers • 21 Pages',
+                type: 'Official Past Exam',
+                year: 'National BacII (2011–2024)',
+                pages: 21,
+                description: 'Official National Baccalaureate (BacII) physics examination papers for Science and Social tracks, containing authentic past examination questions from 2011 through 2024.',
+                url: 'exams/g12-bacii-exam.pdf.pdf',
+                altUrl: 'exams/g12-bacii-exam.pdf'
+            }
+        ];
 
         function renderSpecialGradeSections(grade) {
-            var g = String(grade);
+            var g = String(grade || window.currentGrade || '');
             var specialWrapper = document.getElementById('grade-special-sections');
             var g9Section = document.getElementById('grade9-diploma-section');
             var g12Section = document.getElementById('grade12-bacii-section');
@@ -3308,68 +3363,821 @@
         }
 
         function renderDiplomaContent() {
-            var container = document.getElementById('diploma-resources-container');
-            if (!container) return;
             var list = window.GRADE9_DIPLOMA_RESOURCES || [];
-
+            var itemsHtml = '';
             if (!list || list.length === 0) {
-                container.innerHTML = '<div class="exam-empty-state">' +
+                itemsHtml = '<div class="exam-empty-state">' +
                     '<div class="exam-empty-icon"><i class="fa-regular fa-folder-open"></i></div>' +
                     '<h3 class="exam-empty-title">Diploma Section Ready</h3>' +
-                    '<p class="exam-empty-text">No examination documents or past papers have been published yet. New official Grade 9 Diploma resources will appear here once published by the administrator.</p>' +
+                    '<p class="exam-empty-text">No examination documents or past papers have been published yet. Official Grade 9 National Diploma examination papers, past problem sets, and revision resources will appear here once published by the administrator.</p>' +
                     '<span class="exam-admin-tag"><i class="fa-solid fa-user-shield"></i> Administrator Managed</span>' +
                 '</div>';
-                return;
+            } else {
+                itemsHtml = '<div class="exam-resources-grid">' +
+                    list.map(function(item) {
+                        return '<div class="exam-resource-card">' +
+                            '<div class="exam-resource-top">' +
+                                '<span class="exam-resource-type"><i class="fa-solid fa-file-pdf"></i> ' + (item.type || 'Exam Paper') + '</span>' +
+                                (item.year ? '<span class="exam-resource-year">' + item.year + '</span>' : '') +
+                            '</div>' +
+                            '<h4 class="exam-resource-title">' + (item.title || 'Diploma Resource') + '</h4>' +
+                            (item.subtitle ? '<div style="font-size:0.83rem; font-weight:600; color:#0d9488; margin-bottom:0.4rem;"><i class="fa-solid fa-layer-group"></i> ' + item.subtitle + '</div>' : '') +
+                            '<p class="exam-resource-desc">' + (item.description || '') + '</p>' +
+                            '<div class="exam-resource-actions">' +
+                                '<button type="button" class="btn-primary" onclick="openExamViewer(\'' + item.id + '\')" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0.65rem 1.2rem; border-radius:10px; font-size:0.88rem; font-weight:600; cursor:pointer; border:none; width:100%;"><i class="fa-solid fa-eye"></i> View Examination (View-Only)</button>' +
+                            '</div>' +
+                        '</div>';
+                    }).join('') +
+                '</div>';
             }
 
-            container.innerHTML = '<div class="exam-resources-grid">' +
-                list.map(function(item) {
-                    return '<div class="exam-resource-card">' +
-                        '<div class="exam-resource-top">' +
-                            '<span class="exam-resource-type"><i class="fa-solid fa-file-pdf"></i> ' + (item.type || 'Exam Paper') + '</span>' +
-                            (item.year ? '<span class="exam-resource-year">' + item.year + '</span>' : '') +
+            var container = document.getElementById('diploma-resources-container');
+            if (container) container.innerHTML = itemsHtml;
+
+            var tabContainer = document.getElementById('tab-diploma-content');
+            if (tabContainer) {
+                tabContainer.innerHTML = '<div class="exam-section-container diploma-theme" style="margin-top: 1rem;">' +
+                    '<div class="exam-section-header">' +
+                        '<div class="exam-header-left">' +
+                            '<span class="exam-section-badge badge-diploma"><i class="fa-solid fa-award"></i> National Examination Preparation</span>' +
+                            '<h2 class="exam-section-title"><i class="fa-solid fa-certificate"></i> Diploma Section</h2>' +
+                            '<p class="exam-section-desc">Official Grade 9 National Diploma examination papers, past problem sets, and revision resources. Protected view-only documents.</p>' +
                         '</div>' +
-                        '<h4 class="exam-resource-title">' + (item.title || 'Diploma Resource') + '</h4>' +
-                        '<p class="exam-resource-desc">' + (item.description || '') + '</p>' +
-                        (item.url ? '<div class="exam-resource-actions"><a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0.6rem 1rem; border-radius:8px; font-size:0.88rem; text-decoration:none;"><i class="fa-solid fa-eye"></i> View Examination</a></div>' : '') +
-                    '</div>';
-                }).join('') +
-            '</div>';
+                    '</div>' +
+                    itemsHtml +
+                '</div>';
+            }
         }
 
         function renderBacIIContent() {
-            var container = document.getElementById('bacii-resources-container');
-            if (!container) return;
             var list = window.GRADE12_BACII_RESOURCES || [];
-
+            var itemsHtml = '';
             if (!list || list.length === 0) {
-                container.innerHTML = '<div class="exam-empty-state">' +
+                itemsHtml = '<div class="exam-empty-state">' +
                     '<div class="exam-empty-icon"><i class="fa-regular fa-folder-open"></i></div>' +
                     '<h3 class="exam-empty-title">BacII Section Ready</h3>' +
-                    '<p class="exam-empty-text">No examination documents or past papers have been published yet. New official Grade 12 National BacII resources will appear here once published by the administrator.</p>' +
+                    '<p class="exam-empty-text">No examination documents or past papers have been published yet. Official Grade 12 National Baccalaureate (BacII) physics examinations, practice problem sets, and high-stakes revision resources will appear here once published by the administrator.</p>' +
                     '<span class="exam-admin-tag"><i class="fa-solid fa-user-shield"></i> Administrator Managed</span>' +
                 '</div>';
-                return;
+            } else {
+                itemsHtml = '<div class="exam-resources-grid">' +
+                    list.map(function(item) {
+                        return '<div class="exam-resource-card">' +
+                            '<div class="exam-resource-top">' +
+                                '<span class="exam-resource-type"><i class="fa-solid fa-file-pdf"></i> ' + (item.type || 'Exam Paper') + '</span>' +
+                                (item.year ? '<span class="exam-resource-year">' + item.year + '</span>' : '') +
+                            '</div>' +
+                            '<h4 class="exam-resource-title">' + (item.title || 'BacII Resource') + '</h4>' +
+                            (item.subtitle ? '<div style="font-size:0.83rem; font-weight:600; color:#4f46e5; margin-bottom:0.4rem;"><i class="fa-solid fa-layer-group"></i> ' + item.subtitle + '</div>' : '') +
+                            '<p class="exam-resource-desc">' + (item.description || '') + '</p>' +
+                            '<div class="exam-resource-actions">' +
+                                '<button type="button" class="btn-primary" onclick="openExamViewer(\'' + item.id + '\')" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0.65rem 1.2rem; border-radius:10px; font-size:0.88rem; font-weight:600; cursor:pointer; border:none; width:100%;"><i class="fa-solid fa-eye"></i> View Examination (View-Only)</button>' +
+                            '</div>' +
+                        '</div>';
+                    }).join('') +
+                '</div>';
             }
 
-            container.innerHTML = '<div class="exam-resources-grid">' +
-                list.map(function(item) {
-                    return '<div class="exam-resource-card">' +
-                        '<div class="exam-resource-top">' +
-                            '<span class="exam-resource-type"><i class="fa-solid fa-file-pdf"></i> ' + (item.type || 'Exam Paper') + '</span>' +
-                            (item.year ? '<span class="exam-resource-year">' + item.year + '</span>' : '') +
+            var container = document.getElementById('bacii-resources-container');
+            if (container) container.innerHTML = itemsHtml;
+
+            var tabContainer = document.getElementById('tab-bacii-content');
+            if (tabContainer) {
+                tabContainer.innerHTML = '<div class="exam-section-container bacii-theme" style="margin-top: 1rem;">' +
+                    '<div class="exam-section-header">' +
+                        '<div class="exam-header-left">' +
+                            '<span class="exam-section-badge badge-bacii"><i class="fa-solid fa-graduation-cap"></i> National Examination Hub</span>' +
+                            '<h2 class="exam-section-title"><i class="fa-solid fa-medal"></i> BacII Section</h2>' +
+                            '<p class="exam-section-desc">Official Grade 12 National Baccalaureate (BacII) physics examinations, practice problem sets, and high-stakes revision resources. Protected view-only documents.</p>' +
                         '</div>' +
-                        '<h4 class="exam-resource-title">' + (item.title || 'BacII Resource') + '</h4>' +
-                        '<p class="exam-resource-desc">' + (item.description || '') + '</p>' +
-                        (item.url ? '<div class="exam-resource-actions"><a href="' + item.url + '" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0.6rem 1rem; border-radius:8px; font-size:0.88rem; text-decoration:none;"><i class="fa-solid fa-eye"></i> View Examination</a></div>' : '') +
-                    '</div>';
-                }).join('') +
-            '</div>';
+                    '</div>' +
+                    itemsHtml +
+                '</div>';
+            }
         }
 
         window.renderSpecialGradeSections = renderSpecialGradeSections;
         window.renderDiplomaContent = renderDiplomaContent;
         window.renderBacIIContent = renderBacIIContent;
+
+        // ==========================================================================
+        // HARDENED UNIVERSAL PDF ANTI-COPY & EXTRACTION PROTECTION ENGINE
+        // Enforces strict view-only protection across:
+        // 1. eBook (Grades 7–12)
+        // 2. Worksheet (Grades 7–12)
+        // 3. Diploma Section (Grade 9 only)
+        // 4. BacII Section (Grade 12 only)
+        // ==========================================================================
+        function isProtectedPdfViewerActive() {
+            var gate = document.getElementById('website-auth-gate');
+            if (gate && !gate.classList.contains('hidden') && gate.style.display !== 'none' && document.body.classList.contains('is-locked')) {
+                return false;
+            }
+            var adminModal = document.getElementById('admin-auth-modal');
+            if (adminModal && !adminModal.classList.contains('hidden') && adminModal.style.display !== 'none') {
+                return false;
+            }
+
+            var examModal = document.getElementById('exam-viewer-modal');
+            if (examModal && examModal.style.display !== 'none' && !examModal.classList.contains('hidden')) {
+                return true;
+            }
+
+            var detailView = document.getElementById('view-lesson-detail');
+            if (detailView && !detailView.classList.contains('hidden') && detailView.style.display !== 'none') {
+                var ebPane = document.getElementById('tab-ebook');
+                if (ebPane && !ebPane.classList.contains('hidden') && ebPane.style.display !== 'none') {
+                    return true;
+                }
+                var wsPane = document.getElementById('tab-worksheet');
+                if (wsPane && !wsPane.classList.contains('hidden') && wsPane.style.display !== 'none') {
+                    return true;
+                }
+                var diplomaPane = document.getElementById('tab-diploma');
+                if (diplomaPane && !diplomaPane.classList.contains('hidden') && diplomaPane.style.display !== 'none') {
+                    return true;
+                }
+                var baciiPane = document.getElementById('tab-bacii');
+                if (baciiPane && !baciiPane.classList.contains('hidden') && baciiPane.style.display !== 'none') {
+                    return true;
+                }
+            }
+
+            var activeEl = document.activeElement;
+            if (activeEl && (activeEl.closest('.pdf-viewer-wrapper') || activeEl.closest('.exam-viewer-window') || activeEl.closest('.ebook-preview-wrapper') || activeEl.closest('.worksheet-preview-wrapper'))) {
+                return true;
+            }
+
+            return false;
+        }
+
+        window.isProtectedPdfViewerActive = isProtectedPdfViewerActive;
+
+        function neutralizePdfClipboard(e) {
+            if (e) {
+                e.preventDefault();
+                if (e.stopPropagation) e.stopPropagation();
+                if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                if (e.clipboardData) {
+                    try {
+                        e.clipboardData.clearData();
+                        e.clipboardData.setData('text/plain', '');
+                        e.clipboardData.setData('text/html', '');
+                    } catch(err) {}
+                }
+            }
+            try {
+                var sel = window.getSelection ? window.getSelection() : null;
+                if (sel && sel.removeAllRanges) {
+                    sel.removeAllRanges();
+                }
+            } catch(err) {}
+            return false;
+        }
+
+        window.neutralizePdfClipboard = neutralizePdfClipboard;
+
+        // Global capture-phase clipboard and key event interceptors
+        (function() {
+            var handleCaptureCopyCut = function(e) {
+                if (isProtectedPdfViewerActive()) {
+                    neutralizePdfClipboard(e);
+                    return false;
+                }
+            };
+            window.addEventListener('copy', handleCaptureCopyCut, true);
+            window.addEventListener('cut', handleCaptureCopyCut, true);
+            document.addEventListener('copy', handleCaptureCopyCut, true);
+            document.addEventListener('cut', handleCaptureCopyCut, true);
+
+            var handleCaptureKeydown = function(e) {
+                if (!isProtectedPdfViewerActive()) return;
+
+                var target = e.target;
+                if (target && target.matches && target.matches('input, textarea')) {
+                    if (!target.classList.contains('pdf-page-input')) {
+                        return;
+                    }
+                }
+
+                var isCtrlOrCmd = e.ctrlKey || e.metaKey;
+                if (isCtrlOrCmd) {
+                    var k = (e.key || '').toLowerCase();
+                    if (k === 'c' || k === 'x' || k === 'a' || k === 'p' || k === 's' || k === 'u') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        neutralizePdfClipboard(null);
+                        return false;
+                    }
+                }
+            };
+            window.addEventListener('keydown', handleCaptureKeydown, true);
+            document.addEventListener('keydown', handleCaptureKeydown, true);
+
+            var handleCaptureContextMenu = function(e) {
+                if (!isProtectedPdfViewerActive()) return;
+                var target = e.target;
+                if (target && (target.closest('.pdf-viewer-wrapper') || target.closest('.exam-viewer-modal') || target.closest('.ebook-preview-wrapper') || target.closest('.worksheet-preview-wrapper') || target.closest('.pdf-shield-overlay'))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            };
+            window.addEventListener('contextmenu', handleCaptureContextMenu, true);
+            document.addEventListener('contextmenu', handleCaptureContextMenu, true);
+
+            var handleCaptureSelection = function(e) {
+                if (!isProtectedPdfViewerActive()) return;
+                var target = e.target;
+                if (target && target.matches && target.matches('input, textarea')) return;
+                if (target && (target.closest('.pdf-viewer-wrapper') || target.closest('.exam-viewer-modal') || target.closest('.ebook-preview-wrapper') || target.closest('.worksheet-preview-wrapper') || target.closest('.pdf-shield-overlay'))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            };
+            window.addEventListener('selectstart', handleCaptureSelection, true);
+            window.addEventListener('dragstart', handleCaptureSelection, true);
+            document.addEventListener('selectstart', handleCaptureSelection, true);
+            document.addEventListener('dragstart', handleCaptureSelection, true);
+        })();
+
+        // Interactive Protected View-Only Examination Viewer (Full-Screen & Touch Scroll)
+        var activeExamSession = null;
+
+        function cleanupExamSession() {
+            var prevBtn = document.getElementById('exam-prev-btn');
+            var nextBtn = document.getElementById('exam-next-btn');
+            var zoomInBtn = document.getElementById('exam-zoom-in-btn');
+            var zoomOutBtn = document.getElementById('exam-zoom-out-btn');
+            var fitWidthBtn = document.getElementById('exam-fit-width-btn');
+            var pageInput = document.getElementById('exam-page-input');
+            if (prevBtn) prevBtn.style.display = '';
+            if (nextBtn) nextBtn.style.display = '';
+            if (zoomInBtn) zoomInBtn.style.display = '';
+            if (zoomOutBtn) zoomOutBtn.style.display = '';
+            if (fitWidthBtn) fitWidthBtn.style.display = '';
+            if (pageInput) pageInput.disabled = false;
+
+            if (activeExamSession && typeof activeExamSession.cleanup === 'function') {
+                try { activeExamSession.cleanup(); } catch (e) {}
+            }
+            activeExamSession = null;
+        }
+
+        window.openExamViewer = function(resourceId) {
+            var all = (window.GRADE9_DIPLOMA_RESOURCES || []).concat(window.GRADE12_BACII_RESOURCES || []);
+            var item = all.find(function(r) { return r.id === resourceId; });
+            if (!item) return;
+
+            cleanupExamSession();
+
+            var modal = document.getElementById('exam-viewer-modal');
+            var titleEl = document.getElementById('exam-viewer-title');
+            var mount = document.getElementById('exam-viewer-mount');
+            var loading = document.getElementById('exam-viewer-loading');
+            var scrollContainer = document.getElementById('exam-viewer-scroll');
+            var pageInput = document.getElementById('exam-page-input');
+            var totalPagesEl = document.getElementById('exam-total-pages');
+            var zoomLabel = document.getElementById('exam-zoom-label');
+            var fsBtn = document.getElementById('exam-fs-btn');
+            var fsIcon = document.getElementById('exam-fs-icon');
+            var fsText = document.getElementById('exam-fs-text');
+            var prevBtn = document.getElementById('exam-prev-btn');
+            var nextBtn = document.getElementById('exam-next-btn');
+            var zoomInBtn = document.getElementById('exam-zoom-in-btn');
+            var zoomOutBtn = document.getElementById('exam-zoom-out-btn');
+            var fitWidthBtn = document.getElementById('exam-fit-width-btn');
+            var floatingExitBtn = document.getElementById('exam-floating-exit-btn');
+
+            if (!modal || !mount) return;
+
+            if (titleEl) titleEl.textContent = item.title;
+            modal.style.display = 'flex';
+            modal.classList.remove('hidden');
+            document.body.classList.add('exam-modal-open');
+
+            if (loading) {
+                loading.style.display = 'block';
+                loading.innerHTML = '<i class="fa-solid fa-atom fa-spin fa-2x" style="color: #38bdf8; margin-bottom: 1rem; display: block;"></i><p>Loading view-only examination document...</p>';
+            }
+            mount.innerHTML = '';
+            if (totalPagesEl) totalPagesEl.textContent = '-';
+            if (pageInput) {
+                pageInput.value = 1;
+                pageInput.max = 1;
+            }
+
+            var candidates = [item.url];
+            if (item.altUrl && candidates.indexOf(item.altUrl) === -1) candidates.push(item.altUrl);
+            if (!item.url.endsWith('.pdf.pdf') && item.url.endsWith('.pdf')) {
+                var doublePdf = item.url + '.pdf';
+                if (candidates.indexOf(doublePdf) === -1) candidates.push(doublePdf);
+            } else if (item.url.endsWith('.pdf.pdf')) {
+                var singlePdf = item.url.slice(0, -4);
+                if (candidates.indexOf(singlePdf) === -1) candidates.push(singlePdf);
+            }
+
+            var primaryFallbackUrl = candidates[0] || item.url;
+
+            function preventCopy(e) {
+                neutralizePdfClipboard(e);
+                return false;
+            }
+
+            modal.addEventListener('copy', preventCopy, true);
+            modal.addEventListener('cut', preventCopy, true);
+            modal.addEventListener('selectstart', preventCopy, true);
+            modal.addEventListener('dragstart', preventCopy, true);
+            modal.addEventListener('contextmenu', preventCopy, true);
+
+            function renderIframeFallback(url) {
+                if (loading) loading.style.display = 'none';
+                if (totalPagesEl) totalPagesEl.textContent = (item.pages ? item.pages + ' Pgs' : 'Multi-Page');
+                if (pageInput) { pageInput.value = 1; pageInput.disabled = true; }
+                if (zoomLabel) { zoomLabel.textContent = 'Auto'; }
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
+                if (zoomInBtn) zoomInBtn.style.display = 'none';
+                if (zoomOutBtn) zoomOutBtn.style.display = 'none';
+                if (fitWidthBtn) fitWidthBtn.style.display = 'none';
+                mount.innerHTML = '<div class="exam-iframe-wrapper" style="position:relative; width:100%; height:82vh; height:82dvh; display:flex; flex-direction:column; align-items:center;">' +
+                    '<iframe id="exam-iframe" src="' + url + '#toolbar=0&navpanes=0" style="width:100%; height:100%; border:none; border-radius:10px; background:#ffffff; box-shadow:0 6px 24px rgba(0,0,0,0.35);" title="' + (item.title || 'Exam Document') + '"></iframe>' +
+                    '<div class="pdf-shield-overlay" style="position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:none;"></div>' +
+                '</div>';
+            }
+
+            // In local offline / file:/// mode, browsers restrict fetch() and PDF.js workers via CORS.
+            // Direct native protected iframe embedding works 100% reliably and instantly in 0ms.
+            if (window.location.protocol === 'file:') {
+                renderIframeFallback(primaryFallbackUrl);
+                return;
+            }
+
+            var pdfjs = window.pdfjsLib || window['pdfjs-dist/build/pdf'] || window.PDFJS;
+            if (!pdfjs) {
+                renderIframeFallback(primaryFallbackUrl);
+                return;
+            }
+
+            (async function() {
+                try {
+                    var pdfDoc = null;
+                    for (var i = 0; i < candidates.length; i++) {
+                        var u = candidates[i];
+                        try {
+                            var resp = await fetch(u);
+                            if (resp.ok) {
+                                var buf = await resp.arrayBuffer();
+                                pdfDoc = await pdfjs.getDocument({
+                                    data: new Uint8Array(buf),
+                                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                    cMapPacked: true,
+                                    disableWorker: true
+                                }).promise;
+                                if (pdfDoc) break;
+                            }
+                        } catch(e) {
+                            // local file:/// fetch blocked by browser CORS
+                        }
+                    }
+
+                    if (!pdfDoc) {
+                        for (var j = 0; j < candidates.length; j++) {
+                            var cu = candidates[j];
+                            try {
+                                pdfDoc = await pdfjs.getDocument({
+                                    url: cu,
+                                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                    cMapPacked: true,
+                                    disableWorker: true
+                                }).promise;
+                                if (pdfDoc) break;
+                            } catch(urlErr) {}
+                        }
+                    }
+
+                    if (!pdfDoc) {
+                        renderIframeFallback(primaryFallbackUrl);
+                        return;
+                    }
+
+                    if (loading) loading.style.display = 'none';
+                    if (prevBtn) prevBtn.style.display = '';
+                    if (nextBtn) nextBtn.style.display = '';
+                    if (zoomInBtn) zoomInBtn.style.display = '';
+                    if (zoomOutBtn) zoomOutBtn.style.display = '';
+                    if (fitWidthBtn) fitWidthBtn.style.display = '';
+                    if (pageInput) pageInput.disabled = false;
+                var numPages = pdfDoc.numPages;
+                if (totalPagesEl) totalPagesEl.textContent = numPages;
+                if (pageInput) {
+                    pageInput.max = numPages;
+                    pageInput.value = 1;
+                }
+
+                var firstPage = await pdfDoc.getPage(1);
+                var defaultVp = firstPage.getViewport({ scale: 1.0 });
+                var baseW = defaultVp.width;
+                var baseH = defaultVp.height;
+
+                function getOptimalFitScale() {
+                    if (!scrollContainer) return 1.0;
+                    var contW = scrollContainer.clientWidth || window.innerWidth;
+                    var pad = (contW <= 640) ? 16 : 36;
+                    var targetW = Math.max(contW - pad, 280);
+                    var scale = targetW / baseW;
+                    return Math.min(Math.max(scale, 0.4), 2.5);
+                }
+
+                var currentScale = getOptimalFitScale();
+                if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
+
+                mount.innerHTML = '';
+                var renderedPages = new Set();
+                var activeTasks = {};
+                var observer = null;
+
+                for (var p = 1; p <= numPages; p++) {
+                    var card = document.createElement('div');
+                    card.className = 'exam-page-card';
+                    card.id = 'exam-page-' + p;
+                    card.dataset.page = p;
+                    card.style.width = Math.floor(baseW * currentScale) + 'px';
+                    card.style.height = Math.floor(baseH * currentScale) + 'px';
+                    card.style.margin = '0 auto 1.5rem auto';
+                    card.style.display = 'block';
+                    card.style.touchAction = 'pan-y pinch-zoom';
+                    card.style.pointerEvents = 'auto';
+                    card.style.userSelect = 'none';
+                    card.style.webkitUserSelect = 'none';
+
+                    var placeholder = document.createElement('div');
+                    placeholder.className = 'pdf-loading-card';
+                    placeholder.id = 'exam-placeholder-' + p;
+                    placeholder.innerHTML = '<i class="fa-solid fa-atom fa-spin"></i><span>Page ' + p + '</span>';
+                    placeholder.style.pointerEvents = 'none';
+                    placeholder.style.userSelect = 'none';
+
+                    var canvas = document.createElement('canvas');
+                    canvas.className = 'exam-page-canvas';
+                    canvas.id = 'exam-canvas-' + p;
+                    canvas.style.display = 'none';
+                    canvas.style.pointerEvents = 'none';
+                    canvas.style.userSelect = 'none';
+                    canvas.style.webkitUserSelect = 'none';
+
+                    var badge = document.createElement('span');
+                    badge.className = 'exam-page-badge';
+                    badge.textContent = p + ' / ' + numPages;
+                    badge.style.pointerEvents = 'none';
+                    badge.style.userSelect = 'none';
+
+                    var shield = document.createElement('div');
+                    shield.className = 'pdf-shield-overlay';
+                    shield.setAttribute('aria-hidden', 'true');
+
+                    card.appendChild(placeholder);
+                    card.appendChild(canvas);
+                    card.appendChild(shield);
+                    card.appendChild(badge);
+                    mount.appendChild(card);
+                }
+
+                async function renderPage(pageNum) {
+                    if (renderedPages.has(pageNum)) return;
+                    renderedPages.add(pageNum);
+
+                    var card = document.getElementById('exam-page-' + pageNum);
+                    var canvas = document.getElementById('exam-canvas-' + pageNum);
+                    var placeholder = document.getElementById('exam-placeholder-' + pageNum);
+                    if (!card || !canvas) return;
+
+                    try {
+                        var page = await pdfDoc.getPage(pageNum);
+                        var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+                        var renderScale = currentScale * dpr;
+                        var viewport = page.getViewport({ scale: renderScale });
+
+                        canvas.width = Math.floor(viewport.width);
+                        canvas.height = Math.floor(viewport.height);
+                        canvas.style.width = Math.floor(baseW * currentScale) + 'px';
+                        canvas.style.height = Math.floor(baseH * currentScale) + 'px';
+                        canvas.style.pointerEvents = 'none';
+                        canvas.style.userSelect = 'none';
+                        canvas.style.webkitUserSelect = 'none';
+
+                        var ctx = canvas.getContext('2d', { alpha: false });
+                        if (activeTasks[pageNum]) {
+                            try { activeTasks[pageNum].cancel(); } catch(e) {}
+                        }
+
+                        var renderTask = page.render({ canvasContext: ctx, viewport: viewport });
+                        activeTasks[pageNum] = renderTask;
+                        await renderTask.promise;
+                        delete activeTasks[pageNum];
+
+                        if (placeholder) placeholder.style.display = 'none';
+                        canvas.style.display = 'block';
+                    } catch(err) {
+                        if (err && err.name === 'RenderingCancelledException') return;
+                        renderedPages.delete(pageNum);
+                    }
+                }
+
+                if ('IntersectionObserver' in window) {
+                    observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                var pNum = parseInt(entry.target.dataset.page, 10);
+                                renderPage(pNum);
+                                if (pNum < numPages) renderPage(pNum + 1);
+                                if (pNum > 1) renderPage(pNum - 1);
+                            }
+                        });
+                    }, {
+                        root: scrollContainer,
+                        rootMargin: '800px 0px',
+                        threshold: 0.01
+                    });
+                    mount.querySelectorAll('.exam-page-card').forEach(function(c) { observer.observe(c); });
+                } else {
+                    for (var i = 1; i <= Math.min(numPages, 3); i++) renderPage(i);
+                }
+
+                renderPage(1);
+                if (numPages >= 2) renderPage(2);
+
+                var scrollDebounce = null;
+                var onScrollUpdate = function() {
+                    clearTimeout(scrollDebounce);
+                    scrollDebounce = setTimeout(function() {
+                        var cards = mount.querySelectorAll('.exam-page-card');
+                        var containerTop = scrollContainer.getBoundingClientRect().top;
+                        var closestPage = 1;
+                        var minDiff = Infinity;
+                        cards.forEach(function(c) {
+                            var r = c.getBoundingClientRect();
+                            var diff = Math.abs(r.top - containerTop);
+                            if (diff < minDiff) {
+                                minDiff = diff;
+                                closestPage = parseInt(c.dataset.page, 10);
+                            }
+                        });
+                        if (pageInput && document.activeElement !== pageInput) {
+                            pageInput.value = closestPage;
+                        }
+                    }, 60);
+                };
+                scrollContainer.addEventListener('scroll', onScrollUpdate, { passive: true });
+
+                function scrollToPage(pageNum) {
+                    var p = Math.min(Math.max(pageNum, 1), numPages);
+                    var card = document.getElementById('exam-page-' + p);
+                    if (card) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        if (pageInput) pageInput.value = p;
+                        renderPage(p);
+                        if (p < numPages) renderPage(p + 1);
+                    }
+                }
+
+                if (prevBtn) {
+                    prevBtn.onclick = function() {
+                        var cur = parseInt(pageInput.value, 10) || 1;
+                        if (cur > 1) scrollToPage(cur - 1);
+                    };
+                }
+                if (nextBtn) {
+                    nextBtn.onclick = function() {
+                        var cur = parseInt(pageInput.value, 10) || 1;
+                        if (cur < numPages) scrollToPage(cur + 1);
+                    };
+                }
+                if (pageInput) {
+                    pageInput.onchange = function() {
+                        scrollToPage(parseInt(pageInput.value, 10) || 1);
+                    };
+                    pageInput.onkeydown = function(e) {
+                        if (e.key === 'Enter') scrollToPage(parseInt(pageInput.value, 10) || 1);
+                    };
+                }
+
+                function applyZoom(newScale) {
+                    currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
+                    if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
+
+                    for (var pKey in activeTasks) {
+                        try { activeTasks[pKey].cancel(); } catch(e) {}
+                    }
+                    activeTasks = {};
+                    renderedPages.clear();
+
+                    mount.querySelectorAll('.exam-page-card').forEach(function(c) {
+                        c.style.width = Math.floor(baseW * currentScale) + 'px';
+                        c.style.height = Math.floor(baseH * currentScale) + 'px';
+                        var cv = c.querySelector('canvas');
+                        if (cv) cv.style.display = 'none';
+                        var ph = c.querySelector('.pdf-loading-card');
+                        if (ph) ph.style.display = 'flex';
+                    });
+
+                    var cur = parseInt(pageInput.value, 10) || 1;
+                    renderPage(cur);
+                    if (cur < numPages) renderPage(cur + 1);
+                    if (cur > 1) renderPage(cur - 1);
+                }
+
+                if (zoomInBtn) zoomInBtn.onclick = function() { applyZoom(currentScale + 0.15); };
+                if (zoomOutBtn) zoomOutBtn.onclick = function() { applyZoom(currentScale - 0.15); };
+                if (fitWidthBtn) fitWidthBtn.onclick = function() { applyZoom(getOptimalFitScale()); };
+
+                var touchStartDist = 0;
+                var isPinching = false;
+                scrollContainer.addEventListener('touchstart', function(e) {
+                    if (e.touches && e.touches.length === 2) {
+                        isPinching = true;
+                        touchStartDist = Math.hypot(
+                            e.touches[0].clientX - e.touches[1].clientX,
+                            e.touches[0].clientY - e.touches[1].clientY
+                        );
+                    } else {
+                        isPinching = false;
+                    }
+                }, { passive: true });
+
+                scrollContainer.addEventListener('touchmove', function(e) {
+                    if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
+                        var curDist = Math.hypot(
+                            e.touches[0].clientX - e.touches[1].clientX,
+                            e.touches[0].clientY - e.touches[1].clientY
+                        );
+                        var ratio = curDist / touchStartDist;
+                        if (Math.abs(ratio - 1) > 0.08) {
+                            applyZoom(currentScale * ratio);
+                            touchStartDist = curDist;
+                        }
+                    }
+                }, { passive: true });
+
+                scrollContainer.addEventListener('touchend', function() {
+                    isPinching = false;
+                }, { passive: true });
+
+                var resizeDebounce = null;
+                var onViewportResize = function() {
+                    clearTimeout(resizeDebounce);
+                    resizeDebounce = setTimeout(function() {
+                        if (!scrollContainer || !baseW) return;
+                        applyZoom(getOptimalFitScale());
+                    }, 120);
+                };
+                window.addEventListener('resize', onViewportResize);
+                window.addEventListener('orientationchange', onViewportResize);
+
+                var keyHandler = function(e) {
+                    if (e.key === 'Escape') {
+                        if (modal.classList.contains('pdf-fullscreen-active')) {
+                            window.toggleExamFullscreen(false);
+                        } else {
+                            window.closeExamViewer();
+                        }
+                    } else if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C' || e.key === 'a' || e.key === 'A' || e.key === 'p' || e.key === 'P' || e.key === 's' || e.key === 'S')) {
+                        e.preventDefault();
+                    } else if (document.activeElement !== pageInput && !document.activeElement.matches('input, textarea')) {
+                        if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                            var cur = parseInt(pageInput.value, 10) || 1;
+                            if (cur < numPages) scrollToPage(cur + 1);
+                        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                            var cur = parseInt(pageInput.value, 10) || 1;
+                            if (cur > 1) scrollToPage(cur - 1);
+                        }
+                    }
+                };
+                window.addEventListener('keydown', keyHandler);
+
+                activeExamSession = {
+                    pdfDoc: pdfDoc,
+                    observer: observer,
+                    activeTasks: activeTasks,
+                    fitWidth: function() { applyZoom(getOptimalFitScale()); },
+                    cleanup: function() {
+                        window.removeEventListener('keydown', keyHandler);
+                        modal.removeEventListener('copy', preventCopy);
+                        modal.removeEventListener('cut', preventCopy);
+                        modal.removeEventListener('selectstart', preventCopy);
+                        modal.removeEventListener('dragstart', preventCopy);
+                        modal.removeEventListener('contextmenu', preventCopy);
+                        window.removeEventListener('resize', onViewportResize);
+                        window.removeEventListener('orientationchange', onViewportResize);
+                        scrollContainer.removeEventListener('scroll', onScrollUpdate);
+                        if (observer) {
+                            try { observer.disconnect(); } catch(e) {}
+                        }
+                        for (var t in activeTasks) {
+                            try { activeTasks[t].cancel(); } catch(e) {}
+                        }
+                    }
+                };
+            } catch (outerErr) {
+                console.warn('PDF.js exam rendering encountered an error, falling back to protected iframe:', outerErr);
+                renderIframeFallback(primaryFallbackUrl);
+            }
+        })();
+    };
+
+        window.closeExamViewer = function() {
+            var modal = document.getElementById('exam-viewer-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                modal.classList.add('hidden');
+                modal.classList.remove('pdf-fullscreen-active');
+            }
+            document.body.classList.remove('exam-modal-open');
+            document.body.classList.remove('pdf-modal-open');
+            if (document.fullscreenElement) {
+                try { document.exitFullscreen(); } catch (e) {}
+            }
+            var icon = document.getElementById('exam-fs-icon');
+            var text = document.getElementById('exam-fs-text');
+            var fsBtn = document.getElementById('exam-fs-btn');
+            var floatingExitBtn = document.getElementById('exam-floating-exit-btn');
+            if (icon) icon.className = 'fa-solid fa-expand';
+            if (text) text.textContent = 'Fullscreen';
+            if (fsBtn) {
+                fsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                fsBtn.title = 'Toggle Fullscreen Reading View';
+            }
+            if (floatingExitBtn) floatingExitBtn.style.display = 'none';
+            cleanupExamSession();
+        };
+
+        window.toggleExamFullscreen = function(forceState) {
+            var modal = document.getElementById('exam-viewer-modal');
+            var icon = document.getElementById('exam-fs-icon');
+            var text = document.getElementById('exam-fs-text');
+            var fsBtn = document.getElementById('exam-fs-btn');
+            var floatingExitBtn = document.getElementById('exam-floating-exit-btn');
+            if (!modal) return;
+
+            var isCurrentlyActive = modal.classList.contains('pdf-fullscreen-active');
+            var targetState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyActive;
+
+            if (targetState) {
+                modal.classList.add('pdf-fullscreen-active');
+                document.body.classList.add('exam-modal-open');
+                document.body.classList.add('pdf-modal-open');
+                if (icon) icon.className = 'fa-solid fa-xmark';
+                if (text) text.textContent = 'Exit Fullscreen';
+                if (fsBtn) {
+                    fsBtn.classList.add('pdf-btn-exit-fullscreen');
+                    fsBtn.title = 'Exit Fullscreen (Esc)';
+                }
+                if (floatingExitBtn) floatingExitBtn.style.display = 'inline-flex';
+
+                try {
+                    var reqFs = modal.requestFullscreen ||
+                                modal.webkitRequestFullscreen ||
+                                modal.mozRequestFullScreen ||
+                                modal.msRequestFullscreen ||
+                                document.documentElement.requestFullscreen;
+                    if (reqFs && !document.fullscreenElement && !document.webkitFullscreenElement) {
+                        var p = reqFs.call(modal);
+                        if (p && p.catch) p.catch(function() {});
+                    }
+                } catch (e) {}
+
+                setTimeout(function() {
+                    if (activeExamSession && typeof activeExamSession.fitWidth === 'function') {
+                        activeExamSession.fitWidth();
+                    }
+                }, 120);
+            } else {
+                modal.classList.remove('pdf-fullscreen-active');
+                document.body.classList.remove('pdf-modal-open');
+                if (icon) icon.className = 'fa-solid fa-expand';
+                if (text) text.textContent = 'Fullscreen';
+                if (fsBtn) {
+                    fsBtn.classList.remove('pdf-btn-exit-fullscreen');
+                    fsBtn.title = 'Toggle Fullscreen Reading View';
+                }
+                if (floatingExitBtn) floatingExitBtn.style.display = 'none';
+
+                if (document.fullscreenElement || document.webkitFullscreenElement) {
+                    try {
+                        if (document.exitFullscreen) document.exitFullscreen();
+                        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                    } catch (e) {}
+                }
+
+                setTimeout(function() {
+                    if (activeExamSession && typeof activeExamSession.fitWidth === 'function') {
+                        activeExamSession.fitWidth();
+                    }
+                }, 120);
+            }
+        };
 
         // Administrator Content Management Helpers
         window.addDiplomaResource = function(resource) {
@@ -3430,6 +4238,33 @@
             window.currentGrade = g;
             window.pendingGrade = g;
 
+            if (document.body) {
+                document.body.classList.remove('grade-9-active', 'grade-12-active');
+                if (g === '9') document.body.classList.add('grade-9-active');
+                else if (g === '12') document.body.classList.add('grade-12-active');
+            }
+
+            var tabDiploma = document.getElementById('tab-btn-diploma');
+            var tabBacII = document.getElementById('tab-btn-bacii');
+            if (tabDiploma) {
+                if (g === '9') {
+                    tabDiploma.style.setProperty('display', 'inline-flex', 'important');
+                    tabDiploma.classList.remove('hidden');
+                } else {
+                    tabDiploma.style.setProperty('display', 'none', 'important');
+                    tabDiploma.classList.add('hidden');
+                }
+            }
+            if (tabBacII) {
+                if (g === '12') {
+                    tabBacII.style.setProperty('display', 'inline-flex', 'important');
+                    tabBacII.classList.remove('hidden');
+                } else {
+                    tabBacII.style.setProperty('display', 'none', 'important');
+                    tabBacII.classList.add('hidden');
+                }
+            }
+
             // Update URL hash
             try {
                 if (window.location.hash !== '#grade-' + g) {
@@ -3473,6 +4308,52 @@
             var id = String(rawId).replace(/^[#\/]+/, '').replace(/\/+$/, '').trim().toLowerCase();
             window.pendingLessonId = id;
             window.currentSelectedLessonId = id;
+
+            // Immediately set active grade from lesson ID prefix
+            if (id.indexOf('g9-') === 0 || id.indexOf('g9_') === 0) {
+                window.currentGrade = '9';
+            } else if (id.indexOf('g12-') === 0 || id.indexOf('g12_') === 0) {
+                window.currentGrade = '12';
+            } else if (id.indexOf('g7-') === 0 || id.indexOf('g7_') === 0) {
+                window.currentGrade = '7';
+            } else if (id.indexOf('g8-') === 0 || id.indexOf('g8_') === 0) {
+                window.currentGrade = '8';
+            } else if (id.indexOf('g10-') === 0 || id.indexOf('g10_') === 0) {
+                window.currentGrade = '10';
+            } else if (id.indexOf('g11-') === 0 || id.indexOf('g11_') === 0) {
+                window.currentGrade = '11';
+            }
+
+            if (document.body) {
+                document.body.classList.remove('grade-9-active', 'grade-12-active');
+                if (window.currentGrade === '9') document.body.classList.add('grade-9-active');
+                else if (window.currentGrade === '12') document.body.classList.add('grade-12-active');
+            }
+
+            var tabDiploma = document.getElementById('tab-btn-diploma');
+            var tabBacII = document.getElementById('tab-btn-bacii');
+            var isG9 = (window.currentGrade === '9');
+            var isG12 = (window.currentGrade === '12');
+            if (tabDiploma) {
+                if (isG9) {
+                    tabDiploma.style.setProperty('display', 'inline-flex', 'important');
+                    tabDiploma.classList.remove('hidden');
+                    if (typeof renderDiplomaContent === 'function') renderDiplomaContent();
+                } else {
+                    tabDiploma.style.setProperty('display', 'none', 'important');
+                    tabDiploma.classList.add('hidden');
+                }
+            }
+            if (tabBacII) {
+                if (isG12) {
+                    tabBacII.style.setProperty('display', 'inline-flex', 'important');
+                    tabBacII.classList.remove('hidden');
+                    if (typeof renderBacIIContent === 'function') renderBacIIContent();
+                } else {
+                    tabBacII.style.setProperty('display', 'none', 'important');
+                    tabBacII.classList.add('hidden');
+                }
+            }
 
             try {
                 if (window.location.hash !== '#lesson/' + id) {
@@ -4097,6 +4978,62 @@
 
             // 9. Interactive Game Tab
             initGameUI(lesson);
+
+            // 10. Grade-Specific Exam Section Tabs (Grade 9 Diploma & Grade 12 BacII Only)
+            // Strict Grade Isolation:
+            // - Grade 9 lessons show ONLY the Diploma tab
+            // - Grade 12 lessons show ONLY the BacII tab
+            // - Grades 7, 8, 10, 11 show NEITHER tab
+            var lid = (lesson && lesson.id) ? String(lesson.id).toLowerCase().trim() : '';
+            var detectedGrade = null;
+            if (lid.indexOf('g9-') === 0 || lid.indexOf('g9_') === 0) {
+                detectedGrade = '9';
+            } else if (lid.indexOf('g12-') === 0 || lid.indexOf('g12_') === 0) {
+                detectedGrade = '12';
+            } else if (lid.indexOf('g7-') === 0 || lid.indexOf('g8-') === 0 || lid.indexOf('g10-') === 0 || lid.indexOf('g11-') === 0) {
+                var gm = lid.match(/^g(\d+)[-_]/);
+                detectedGrade = gm ? gm[1] : null;
+            } else if (lesson && lesson.grade) {
+                detectedGrade = String(lesson.grade);
+            } else {
+                detectedGrade = String(window.currentGrade || '');
+            }
+
+            if (detectedGrade) {
+                window.currentGrade = detectedGrade;
+            }
+
+            var isGrade9Lesson = (detectedGrade === '9');
+            var isGrade12Lesson = (detectedGrade === '12');
+
+            if (document.body) {
+                document.body.classList.remove('grade-9-active', 'grade-12-active');
+                if (isGrade9Lesson) document.body.classList.add('grade-9-active');
+                else if (isGrade12Lesson) document.body.classList.add('grade-12-active');
+            }
+
+            var diplomaBtn = document.getElementById('tab-btn-diploma');
+            var baciiBtn = document.getElementById('tab-btn-bacii');
+            if (diplomaBtn) {
+                if (isGrade9Lesson) {
+                    diplomaBtn.style.setProperty('display', 'inline-flex', 'important');
+                    diplomaBtn.classList.remove('hidden');
+                    renderDiplomaContent();
+                } else {
+                    diplomaBtn.style.setProperty('display', 'none', 'important');
+                    diplomaBtn.classList.add('hidden');
+                }
+            }
+            if (baciiBtn) {
+                if (isGrade12Lesson) {
+                    baciiBtn.style.setProperty('display', 'inline-flex', 'important');
+                    baciiBtn.classList.remove('hidden');
+                    renderBacIIContent();
+                } else {
+                    baciiBtn.style.setProperty('display', 'none', 'important');
+                    baciiBtn.classList.add('hidden');
+                }
+            }
 
             // Typeset math via MathJax
             if (window.MathJax && window.MathJax.typesetPromise) {
@@ -4770,8 +5707,13 @@
                             badge.textContent = 'Page ' + p + ' / ' + numPages;
                             badge.style.pointerEvents = 'none';
 
+                            var shield = document.createElement('div');
+                            shield.className = 'pdf-shield-overlay';
+                            shield.setAttribute('aria-hidden', 'true');
+
                             card.appendChild(placeholder);
                             card.appendChild(canvas);
+                            card.appendChild(shield);
                             card.appendChild(badge);
                             mount.appendChild(card);
                         }
@@ -5607,8 +6549,13 @@
                             badge.style.pointerEvents = 'none';
                             badge.style.userSelect = 'none';
 
+                            var shield = document.createElement('div');
+                            shield.className = 'pdf-shield-overlay';
+                            shield.setAttribute('aria-hidden', 'true');
+
                             card.appendChild(placeholder);
                             card.appendChild(canvas);
+                            card.appendChild(shield);
                             card.appendChild(badge);
                             mount.appendChild(card);
                         }
@@ -6057,6 +7004,10 @@
                 }
             } else if (targetName === 'game' && activeLesson) {
                 initGameUI(activeLesson);
+            } else if (targetName === 'diploma') {
+                if (typeof renderDiplomaContent === 'function') renderDiplomaContent();
+            } else if (targetName === 'bacii') {
+                if (typeof renderBacIIContent === 'function') renderBacIIContent();
             }
 
             if (typeof window.appSwitchTab === 'function') {
@@ -6403,7 +7354,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo" id="site-logo" title="WIS Physics Learning Hub">
-            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v5.4 Live</span>
+            <i class="fa-solid fa-atom"></i> @MeanWIS Physics <span class="app-version-badge">v5.5 Live</span>
         </div>
         <div class="nav-links">
             <button id="home-btn" class="nav-btn" onclick="showDashboard()"><i class="fa-solid fa-home"></i> Home</button>
@@ -6706,6 +7657,8 @@
             <!-- Navigation Tabs for Lesson -->
             <div class="lesson-tabs">
                 <button class="tab-btn active" data-target="summary" onclick="switchTab('summary')">Summary</button>
+                <button class="tab-btn tab-btn-special tab-btn-diploma" id="tab-btn-diploma" data-target="diploma" onclick="switchTab('diploma')"><i class="fa-solid fa-award"></i> Diploma</button>
+                <button class="tab-btn tab-btn-special tab-btn-bacii" id="tab-btn-bacii" data-target="bacii" onclick="switchTab('bacii')"><i class="fa-solid fa-graduation-cap"></i> BacII</button>
                 <button class="tab-btn" data-target="ebook" onclick="switchTab('ebook')">Ebook</button>
                 <button class="tab-btn" data-target="equations" onclick="switchTab('equations')">Equations</button>
                 <button class="tab-btn" data-target="flashcards" onclick="switchTab('flashcards')">Flashcards</button>
@@ -6832,6 +7785,20 @@
                         <!-- Populated by JS -->
                     </div>
                 </div>
+
+                <!-- Diploma Tab (Grade 9 Only) -->
+                <div id="tab-diploma" class="tab-pane hidden" aria-label="Grade 9 Diploma Section">
+                    <div id="tab-diploma-content">
+                        <!-- Populated dynamically by renderDiplomaTabContent() -->
+                    </div>
+                </div>
+
+                <!-- BacII Tab (Grade 12 Only) -->
+                <div id="tab-bacii" class="tab-pane hidden" aria-label="Grade 12 BacII Section">
+                    <div id="tab-bacii-content">
+                        <!-- Populated dynamically by renderBacIITabContent() -->
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -6863,7 +7830,55 @@
             </div>
         </div>
     </div>
-    <script src="auth.js?v=5.4&build=202611011930"></script>
-    <script src="app.js?v=5.4" onerror="onAppJsError()"></script>
+    <!-- Interactive View-Only Examination Document Modal -->
+    <div id="exam-viewer-modal" class="exam-viewer-modal hidden" style="display: none;">
+        <div class="exam-viewer-overlay" onclick="closeExamViewer()"></div>
+        <div class="exam-viewer-window">
+            <header class="exam-viewer-header">
+                <div class="exam-viewer-title-group">
+                    <span class="exam-viewer-badge"><i class="fa-solid fa-lock"></i> Protected View-Only</span>
+                    <h3 id="exam-viewer-title" class="exam-viewer-title">National Examination Paper</h3>
+                </div>
+                <div class="pdf-toolbar" style="background: transparent; border: none; padding: 0; flex-wrap: nowrap;">
+                    <div class="pdf-toolbar-group">
+                        <button type="button" class="pdf-btn" id="exam-prev-btn" title="Previous Page (Left Arrow)"><i class="fa-solid fa-chevron-left"></i></button>
+                        <div class="pdf-page-indicator">
+                            <span>Page</span>
+                            <input type="number" id="exam-page-input" class="pdf-page-input" value="1" min="1" max="1" aria-label="Current Page">
+                            <span>/ <span id="exam-total-pages">-</span></span>
+                        </div>
+                        <button type="button" class="pdf-btn" id="exam-next-btn" title="Next Page (Right Arrow)"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="pdf-toolbar-group">
+                        <button type="button" class="pdf-btn" id="exam-zoom-out-btn" title="Zoom Out (-)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <span class="pdf-zoom-label" id="exam-zoom-label">100%</span>
+                        <button type="button" class="pdf-btn" id="exam-zoom-in-btn" title="Zoom In (+)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button type="button" class="pdf-btn" id="exam-fit-width-btn" title="Fit to Screen Width"><i class="fa-solid fa-arrows-left-right"></i> <span class="btn-text">Fit</span></button>
+                    </div>
+                    <div class="pdf-toolbar-group">
+                        <button type="button" class="pdf-btn pdf-btn-fullscreen" id="exam-fs-btn" onclick="toggleExamFullscreen()" title="Toggle Fullscreen Reading View (Esc)">
+                            <i class="fa-solid fa-expand" id="exam-fs-icon"></i> <span class="btn-text" id="exam-fs-text">Fullscreen</span>
+                        </button>
+                        <button type="button" class="pdf-btn" onclick="closeExamViewer()" title="Close Viewer" style="background: #e11d48; border-color: #f43f5e; color: #fff;">
+                            <i class="fa-solid fa-xmark"></i> <span>Close</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <div class="exam-viewer-body" id="exam-viewer-scroll" style="user-select: none; -webkit-user-select: none;">
+                <button type="button" class="pdf-floating-exit-btn" id="exam-floating-exit-btn" onclick="toggleExamFullscreen(false)" title="Exit Fullscreen Reading Mode">
+                    <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
+                </button>
+                <div id="exam-viewer-loading" class="exam-viewer-loading">
+                    <i class="fa-solid fa-atom fa-spin fa-2x" style="color: #38bdf8; margin-bottom: 1rem; display: block;"></i>
+                    <p>Loading view-only examination document...</p>
+                </div>
+                <div id="exam-viewer-mount" class="exam-viewer-mount"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js?v=5.7&build=202611012245"></script>
+    <script src="app.js?v=5.7&build=202611012245" onerror="onAppJsError()"></script>
 </body>
 </html>
