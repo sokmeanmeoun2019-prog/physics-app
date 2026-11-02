@@ -2227,6 +2227,7 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
         return;
     }
     currentLesson = lesson;
+    window.currentLesson = lesson;
     window.currentSelectedLessonId = lesson.id;
 
     // Detect and maintain currentGrade from lesson ID or activeDataGradeSearch
@@ -4205,9 +4206,15 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
 
 // --- Ebook Render Function ---
 let currentPdfSession = null;
+let currentEbookRenderSessionId = 0;
 
 function cleanupCurrentPdfSession() {
+    currentEbookRenderSessionId++;
     if (currentPdfSession) {
+        currentPdfSession.aborted = true;
+        if (currentPdfSession.token) {
+            currentPdfSession.token.aborted = true;
+        }
         if (currentPdfSession.observer) {
             try { currentPdfSession.observer.disconnect(); } catch (e) {}
         }
@@ -4223,6 +4230,18 @@ function cleanupCurrentPdfSession() {
             try { currentPdfSession.cleanup(); } catch (e) {}
         }
         currentPdfSession = null;
+    }
+
+    // Safely clear and abort any direct index.html fallback reader sessions
+    if (window.activeEbookSession) {
+        window.activeEbookSession.aborted = true;
+        if (typeof window.activeEbookSession.cleanup === 'function') {
+            try { window.activeEbookSession.cleanup(); } catch (e) {}
+        }
+        window.activeEbookSession = null;
+    }
+    if (typeof window.cleanupEbookSession === 'function') {
+        try { window.cleanupEbookSession(); } catch (e) {}
     }
 }
 
@@ -4380,15 +4399,22 @@ function renderEbook(lesson) {
 
     // If this lesson and section is already loaded in DOM, avoid reloading; just refresh fit
     const existingMount = document.getElementById('pdf-pages-mount');
-    if (currentLoadedEbookLessonId === lesson.id && existingMount && existingMount.children.length > 0 && currentPdfSession && typeof currentPdfSession.fitWidth === 'function') {
+    if (currentLoadedEbookLessonId === lesson.id && existingMount && existingMount.children.length > 0 && currentPdfSession && !currentPdfSession.aborted && typeof currentPdfSession.fitWidth === 'function') {
         currentPdfSession.fitWidth();
         return;
     }
 
     let currentSelectedIndex = 0;
+    let initialSectionIdx = 0;
+    if (currentLoadedEbookLessonId === lesson.id && typeof currentLoadedEbookSectionIdx === 'number' && currentLoadedEbookSectionIdx >= 0 && currentLoadedEbookSectionIdx < ebooksList.length) {
+        initialSectionIdx = currentLoadedEbookSectionIdx;
+    }
 
     function buildEbookUI(selectedIndex) {
         cleanupCurrentPdfSession();
+        const thisSessionId = ++currentEbookRenderSessionId;
+        const sessionToken = { id: thisSessionId, aborted: false };
+
         currentSelectedIndex = selectedIndex;
         currentLoadedEbookLessonId = lesson.id;
         currentLoadedEbookSectionIdx = selectedIndex;
@@ -4509,7 +4535,7 @@ function renderEbook(lesson) {
         `;
 
         wireTopicPills();
-        initPdfReader(activeUrl, altUrl, currentTitle);
+        initPdfReader(activeUrl, altUrl, currentTitle, thisSessionId, sessionToken);
     }
 
     function wireTopicPills() {
@@ -4518,14 +4544,52 @@ function renderEbook(lesson) {
             pills.forEach(pill => {
                 pill.addEventListener('click', () => {
                     const idx = parseInt(pill.getAttribute('data-index'), 10);
-                    buildEbookUI(idx);
+                    if (!isNaN(idx) && idx >= 0 && idx < ebooksList.length) {
+                        buildEbookUI(idx);
+                    }
                 });
             });
         }
     }
 
-    function initPdfReader(primaryUrl, altUrl, title) {
+    function initPdfReader(primaryUrl, altUrl, title, thisSessionId, sessionToken) {
+        let activeTasks = {};
+        let observer = null;
+        let boundCleanups = [];
+
+        function registerListener(target, type, listener, options) {
+            if (!target) return;
+            target.addEventListener(type, listener, options);
+            boundCleanups.push(() => {
+                try { target.removeEventListener(type, listener, options); } catch (e) {}
+            });
+        }
+
+        // Immediately bind session object so cleanupCurrentPdfSession can abort early in-flight operations
+        currentPdfSession = {
+            token: sessionToken,
+            sessionId: thisSessionId,
+            pdfDoc: null,
+            observer: null,
+            activeTasks: activeTasks,
+            aborted: false,
+            fitWidth: null,
+            cleanup: () => {
+                sessionToken.aborted = true;
+                boundCleanups.forEach(fn => { try { fn(); } catch(e) {} });
+                boundCleanups = [];
+                document.body.classList.remove('pdf-modal-open');
+                document.body.style.overflow = '';
+                const curTopFs = document.getElementById('ebook-fullscreen-action-btn');
+                if (curTopFs) {
+                    curTopFs.classList.remove('pdf-btn-exit-fullscreen');
+                    curTopFs.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                }
+            }
+        };
+
         function renderProtectedErrorCard(msg) {
+            if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
             console.warn('Protected PDF reader fallback to embed:', msg);
             const wrapper = document.getElementById('pdf-viewer-wrapper');
             if (!wrapper) return;
@@ -4552,6 +4616,7 @@ function renderEbook(lesson) {
             const topFsBtn = document.getElementById('ebook-fullscreen-action-btn');
 
             function toggleFallbackFs(force) {
+                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                 const isActive = wrapper.classList.contains('pdf-fullscreen-active');
                 const target = (typeof force === 'boolean') ? force : !isActive;
                 if (target) {
@@ -4580,14 +4645,9 @@ function renderEbook(lesson) {
                     }
                 }
             }
-            if (fsBtn) fsBtn.onclick = () => toggleFallbackFs();
-            if (flExit) flExit.onclick = () => toggleFallbackFs(false);
-            if (topFsBtn) topFsBtn.onclick = () => toggleFallbackFs();
-
-            currentPdfSession = {
-                pdfDoc: null,
-                cleanup: () => toggleFallbackFs(false)
-            };
+            if (fsBtn) registerListener(fsBtn, 'click', () => toggleFallbackFs());
+            if (flExit) registerListener(flExit, 'click', () => toggleFallbackFs(false));
+            if (topFsBtn) registerListener(topFsBtn, 'click', () => toggleFallbackFs());
         }
 
         function getPdfJsLib() {
@@ -4599,6 +4659,7 @@ function renderEbook(lesson) {
             if (lib) return lib;
             const start = Date.now();
             while (Date.now() - start < maxWaitMs) {
+                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
                 await new Promise(r => setTimeout(r, 60));
                 lib = getPdfJsLib();
                 if (lib) return lib;
@@ -4624,8 +4685,6 @@ function renderEbook(lesson) {
             }
 
             try {
-                // Instantly construct inline worker script that loads the CDN worker via importScripts!
-                // This eliminates cross-origin restrictions on desktop Chrome/Firefox/Edge.
                 const blobCode = `importScripts("${cdnWorker}");`;
                 const workerBlob = new Blob([blobCode], { type: 'application/javascript' });
                 cachedWorkerBlobUrl = URL.createObjectURL(workerBlob);
@@ -4640,6 +4699,7 @@ function renderEbook(lesson) {
         if (loadingStatus) loadingStatus.textContent = 'Loading textbook...';
 
         waitForPdfJs().then(async (pdfjs) => {
+            if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
             if (!pdfjs) {
                 renderProtectedErrorCard('PDF.js library not available after timeout');
                 return;
@@ -4649,17 +4709,31 @@ function renderEbook(lesson) {
 
             function fetchBinaryArrayBuffer(url) {
                 return new Promise((resolve, reject) => {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
+                        return reject(new Error('Session aborted'));
+                    }
                     if (typeof fetch === 'function') {
                         fetch(url)
                             .then(res => {
+                                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
+                                    throw new Error('Session aborted');
+                                }
                                 if (res.ok) return res.arrayBuffer();
                                 throw new Error('HTTP ' + res.status);
                             })
                             .then(buf => {
+                                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
+                                    throw new Error('Session aborted');
+                                }
                                 if (buf && buf.byteLength > 100) resolve(buf);
                                 else throw new Error('Empty buffer');
                             })
-                            .catch(() => loadWithXhr(url, resolve, reject));
+                            .catch((fetchErr) => {
+                                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
+                                    return reject(new Error('Session aborted'));
+                                }
+                                loadWithXhr(url, resolve, reject);
+                            });
                     } else {
                         loadWithXhr(url, resolve, reject);
                     }
@@ -4667,11 +4741,17 @@ function renderEbook(lesson) {
             }
 
             function loadWithXhr(url, resolve, reject) {
+                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
+                    return reject(new Error('Session aborted'));
+                }
                 try {
                     const xhr = new XMLHttpRequest();
                     xhr.open('GET', url, true);
                     xhr.responseType = 'arraybuffer';
                     xhr.onload = function() {
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
+                            return reject(new Error('Session aborted'));
+                        }
                         if ((xhr.status >= 200 && xhr.status < 300) || (xhr.status === 0 && xhr.response && xhr.response.byteLength > 100)) {
                             resolve(xhr.response);
                         } else {
@@ -4686,6 +4766,7 @@ function renderEbook(lesson) {
             }
 
             async function fetchPdfDoc() {
+                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
                 const candidateUrls = [primaryUrl];
                 if (altUrl && !candidateUrls.includes(altUrl)) candidateUrls.push(altUrl);
                 if (primaryUrl.toLowerCase().endsWith('.pdf.pdf')) {
@@ -4704,8 +4785,10 @@ function renderEbook(lesson) {
 
                 let doc = null;
                 for (const u of candidateUrls) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
                     try {
                         const buf = await fetchBinaryArrayBuffer(u);
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
                         if (buf) {
                             doc = await pdfjs.getDocument({
                                 data: new Uint8Array(buf),
@@ -4713,12 +4796,17 @@ function renderEbook(lesson) {
                                 cMapPacked: true,
                                 disableWorker: true
                             }).promise;
+                            if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
+                                if (doc) { try { doc.destroy(); } catch(e) {} }
+                                return null;
+                            }
                             if (doc) return doc;
                         }
                     } catch (e) {}
                 }
 
                 for (const u of candidateUrls) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
                     try {
                         doc = await pdfjs.getDocument({
                             url: u,
@@ -4726,15 +4814,26 @@ function renderEbook(lesson) {
                             cMapPacked: true,
                             disableWorker: true
                         }).promise;
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
+                            if (doc) { try { doc.destroy(); } catch(e) {} }
+                            return null;
+                        }
                         if (doc) return doc;
                     } catch (e2) {}
                 }
 
+                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
                 throw new Error(`Could not fetch PDF from candidates: ${candidateUrls.join(', ')}`);
             }
 
             try {
                 const pdfDoc = await fetchPdfDoc();
+                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId || !pdfDoc) {
+                    if (pdfDoc) { try { pdfDoc.destroy(); } catch (e) {} }
+                    return;
+                }
+                currentPdfSession.pdfDoc = pdfDoc;
+
                 const numPages = pdfDoc.numPages;
                 const totalPagesEl = document.getElementById('pdf-total-pages');
                 const pageInput = document.getElementById('pdf-page-input');
@@ -4762,6 +4861,8 @@ function renderEbook(lesson) {
                 }
 
                 const page1 = await pdfDoc.getPage(1);
+                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
+
                 const vp1 = page1.getViewport({ scale: 1 });
                 const baseW = vp1.width;
                 const baseH = vp1.height;
@@ -4784,8 +4885,6 @@ function renderEbook(lesson) {
                 updateZoomDisplay();
 
                 const renderedPages = new Set();
-                const activeTasks = {};
-                let observer = null;
 
                 mount.innerHTML = '';
                 for (let p = 1; p <= numPages; p++) {
@@ -4793,6 +4892,7 @@ function renderEbook(lesson) {
                     card.className = 'pdf-page-card';
                     card.id = `pdf-page-${p}`;
                     card.dataset.page = p;
+                    card.dataset.sessionId = String(thisSessionId);
                     card.style.width = Math.floor(baseW * currentScale) + 'px';
                     card.style.height = Math.floor(baseH * currentScale) + 'px';
                     card.style.margin = '0 auto 1.25rem auto';
@@ -4809,6 +4909,7 @@ function renderEbook(lesson) {
                     const canvas = document.createElement('canvas');
                     canvas.className = 'pdf-page-canvas';
                     canvas.id = `pdf-canvas-${p}`;
+                    canvas.dataset.sessionId = String(thisSessionId);
                     canvas.style.display = 'none';
                     canvas.style.pointerEvents = 'none';
 
@@ -4831,6 +4932,7 @@ function renderEbook(lesson) {
                 if (mainLoading) mainLoading.style.display = 'none';
 
                 async function renderPage(pageNum) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                     if (renderedPages.has(pageNum)) return;
                     renderedPages.add(pageNum);
 
@@ -4838,9 +4940,13 @@ function renderEbook(lesson) {
                     const canvas = document.getElementById(`pdf-canvas-${pageNum}`);
                     const ph = document.getElementById(`pdf-placeholder-${pageNum}`);
                     if (!card || !canvas) return;
+                    if (card.dataset.sessionId !== String(thisSessionId)) return;
 
                     try {
                         const page = await pdfDoc.getPage(pageNum);
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
+                        if (card.dataset.sessionId !== String(thisSessionId)) return;
+
                         const dpr = Math.min(window.devicePixelRatio || 1, 2);
                         const viewport = page.getViewport({ scale: currentScale * dpr });
 
@@ -4858,9 +4964,15 @@ function renderEbook(lesson) {
                             viewport: viewport
                         };
 
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
+                        if (card.dataset.sessionId !== String(thisSessionId)) return;
+
                         const task = page.render(renderContext);
                         activeTasks[pageNum] = task;
                         await task.promise;
+
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
+                        if (card.dataset.sessionId !== String(thisSessionId)) return;
 
                         if (ph) ph.style.display = 'none';
                         canvas.style.display = 'block';
@@ -4876,12 +4988,15 @@ function renderEbook(lesson) {
 
                 // Render page 1 immediately for instant display
                 await renderPage(1);
+                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
 
                 // Progressively pre-render remaining pages with low-overhead scheduler
                 async function renderRemainingPages() {
                     for (let p = 2; p <= numPages; p++) {
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                         if (!renderedPages.has(p)) {
                             await renderPage(p);
+                            if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                             await new Promise(r => setTimeout(r, 60));
                         }
                     }
@@ -4890,12 +5005,19 @@ function renderEbook(lesson) {
 
                 if ('IntersectionObserver' in window) {
                     observer = new IntersectionObserver((entries) => {
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
                                 const p = parseInt(entry.target.dataset.page, 10);
-                                renderPage(p);
-                                if (p < numPages) setTimeout(() => renderPage(p + 1), 40);
-                                if (p > 1) setTimeout(() => renderPage(p - 1), 60);
+                                if (entry.target.dataset.sessionId === String(thisSessionId)) {
+                                    renderPage(p);
+                                    if (p < numPages) setTimeout(() => {
+                                        if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) renderPage(p + 1);
+                                    }, 40);
+                                    if (p > 1) setTimeout(() => {
+                                        if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) renderPage(p - 1);
+                                    }, 60);
+                                }
                             }
                         });
                     }, {
@@ -4903,17 +5025,23 @@ function renderEbook(lesson) {
                         rootMargin: '800px 0px 800px 0px'
                     });
 
-                    mount.querySelectorAll('.pdf-page-card').forEach(c => observer.observe(c));
+                    mount.querySelectorAll('.pdf-page-card').forEach(c => {
+                        if (c.dataset.sessionId === String(thisSessionId)) observer.observe(c);
+                    });
+                    currentPdfSession.observer = observer;
                 }
 
                 let scrollTimeout = null;
                 function onScrollUpdate() {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                     if (scrollTimeout) return;
                     scrollTimeout = setTimeout(() => {
                         scrollTimeout = null;
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                         const containerRect = scrollContainer.getBoundingClientRect();
                         const cards = mount.querySelectorAll('.pdf-page-card');
                         for (const card of cards) {
+                            if (card.dataset.sessionId !== String(thisSessionId)) continue;
                             const r = card.getBoundingClientRect();
                             if (r.top <= containerRect.top + containerRect.height / 3 && r.bottom >= containerRect.top) {
                                 const p = parseInt(card.dataset.page, 10);
@@ -4928,11 +5056,12 @@ function renderEbook(lesson) {
                         }
                     }, 50);
                 }
-                scrollContainer.addEventListener('scroll', onScrollUpdate, { passive: true });
+                registerListener(scrollContainer, 'scroll', onScrollUpdate, { passive: true });
 
                 function scrollToPage(p) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                     const card = document.getElementById(`pdf-page-${p}`);
-                    if (card) {
+                    if (card && card.dataset.sessionId === String(thisSessionId)) {
                         card.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         if (pageInput) pageInput.value = p;
                         renderPage(p);
@@ -4942,26 +5071,26 @@ function renderEbook(lesson) {
                 }
 
                 if (prevBtn) {
-                    prevBtn.addEventListener('click', () => {
+                    registerListener(prevBtn, 'click', () => {
                         const cur = parseInt(pageInput.value, 10) || 1;
                         scrollToPage(Math.max(1, cur - 1));
                     });
                 }
                 if (nextBtn) {
-                    nextBtn.addEventListener('click', () => {
+                    registerListener(nextBtn, 'click', () => {
                         const cur = parseInt(pageInput.value, 10) || 1;
                         scrollToPage(Math.min(numPages, cur + 1));
                     });
                 }
 
                 if (pageInput) {
-                    pageInput.addEventListener('change', () => {
+                    registerListener(pageInput, 'change', () => {
                         const val = parseInt(pageInput.value, 10);
                         if (!isNaN(val)) {
                             scrollToPage(Math.min(Math.max(1, val), numPages));
                         }
                     });
-                    pageInput.addEventListener('keydown', (e) => {
+                    registerListener(pageInput, 'keydown', (e) => {
                         if (e.key === 'Enter') {
                             e.preventDefault();
                             pageInput.blur();
@@ -4970,6 +5099,7 @@ function renderEbook(lesson) {
                 }
 
                 function applyZoom(newScale) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                     currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
                     updateZoomDisplay();
 
@@ -4979,6 +5109,7 @@ function renderEbook(lesson) {
                     renderedPages.clear();
 
                     mount.querySelectorAll('.pdf-page-card').forEach(c => {
+                        if (c.dataset.sessionId !== String(thisSessionId)) return;
                         c.style.width = Math.floor(baseW * currentScale) + 'px';
                         c.style.height = Math.floor(baseH * currentScale) + 'px';
                         const cv = c.querySelector('.pdf-page-canvas');
@@ -4993,10 +5124,16 @@ function renderEbook(lesson) {
                     if (cur > 1) renderPage(cur - 1);
                 }
 
-                if (zoomInBtn) zoomInBtn.addEventListener('click', () => applyZoom(currentScale + 0.15));
-                if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => applyZoom(currentScale - 0.15));
+                currentPdfSession.fitWidth = () => {
+                    if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) {
+                        applyZoom(getOptimalFitScale());
+                    }
+                };
+
+                if (zoomInBtn) registerListener(zoomInBtn, 'click', () => applyZoom(currentScale + 0.15));
+                if (zoomOutBtn) registerListener(zoomOutBtn, 'click', () => applyZoom(currentScale - 0.15));
                 if (fitWidthBtn) {
-                    fitWidthBtn.addEventListener('click', () => {
+                    registerListener(fitWidthBtn, 'click', () => {
                         applyZoom(getOptimalFitScale());
                     });
                 }
@@ -5007,7 +5144,7 @@ function renderEbook(lesson) {
                 let isPinching = false;
                 let lastPinchRatio = 1;
 
-                scrollContainer.addEventListener('touchstart', (e) => {
+                registerListener(scrollContainer, 'touchstart', (e) => {
                     if (e.touches && e.touches.length === 2) {
                         isPinching = true;
                         touchStartDist = Math.hypot(
@@ -5021,7 +5158,7 @@ function renderEbook(lesson) {
                     }
                 }, { passive: true });
 
-                scrollContainer.addEventListener('touchmove', (e) => {
+                registerListener(scrollContainer, 'touchmove', (e) => {
                     if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
                         const curDist = Math.hypot(
                             e.touches[0].clientX - e.touches[1].clientX,
@@ -5035,7 +5172,7 @@ function renderEbook(lesson) {
                     }
                 }, { passive: true });
 
-                scrollContainer.addEventListener('touchend', (e) => {
+                registerListener(scrollContainer, 'touchend', (e) => {
                     if (isPinching) {
                         isPinching = false;
                         mount.style.transform = '';
@@ -5052,19 +5189,22 @@ function renderEbook(lesson) {
                 // Responsive auto-fit on window resize or iPad/phone orientation change
                 let resizeDebounce = null;
                 const onViewportResize = () => {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                     clearTimeout(resizeDebounce);
                     resizeDebounce = setTimeout(() => {
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                         if (!scrollContainer || !baseW) return;
                         applyZoom(getOptimalFitScale());
                     }, 120);
                 };
-                window.addEventListener('resize', onViewportResize);
-                window.addEventListener('orientationchange', onViewportResize);
+                registerListener(window, 'resize', onViewportResize);
+                registerListener(window, 'orientationchange', onViewportResize);
 
                 // Fullscreen Reading View Management
                 const topFsBtn = document.getElementById('ebook-fullscreen-action-btn');
 
                 function toggleFullscreen(forceState) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                     const isCurrentlyActive = wrapper.classList.contains('pdf-fullscreen-active');
                     const targetState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyActive;
 
@@ -5097,7 +5237,9 @@ function renderEbook(lesson) {
                         } catch (e) {}
 
                         setTimeout(() => {
-                            applyZoom(getOptimalFitScale());
+                            if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) {
+                                applyZoom(getOptimalFitScale());
+                            }
                         }, 120);
                     } else {
                         // Exit Fullscreen
@@ -5128,31 +5270,35 @@ function renderEbook(lesson) {
                         } catch (e) {}
 
                         setTimeout(() => {
-                            applyZoom(getOptimalFitScale());
+                            if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) {
+                                applyZoom(getOptimalFitScale());
+                            }
                         }, 120);
                     }
                 }
 
                 if (fsBtn) {
-                    fsBtn.addEventListener('click', () => toggleFullscreen());
+                    registerListener(fsBtn, 'click', () => toggleFullscreen());
                 }
                 if (topFsBtn) {
-                    topFsBtn.addEventListener('click', () => toggleFullscreen());
+                    registerListener(topFsBtn, 'click', () => toggleFullscreen());
                 }
                 if (floatingExitBtn) {
-                    floatingExitBtn.addEventListener('click', () => toggleFullscreen(false));
+                    registerListener(floatingExitBtn, 'click', () => toggleFullscreen(false));
                 }
 
                 const onNativeFsChange = () => {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                     const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
                     if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
                         toggleFullscreen(false);
                     }
                 };
-                document.addEventListener('fullscreenchange', onNativeFsChange);
-                document.addEventListener('webkitfullscreenchange', onNativeFsChange);
+                registerListener(document, 'fullscreenchange', onNativeFsChange);
+                registerListener(document, 'webkitfullscreenchange', onNativeFsChange);
 
                 const keyHandler = (e) => {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                     if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
                         toggleFullscreen(false);
                     } else if (document.activeElement !== pageInput && !document.activeElement.matches('input, textarea')) {
@@ -5165,37 +5311,21 @@ function renderEbook(lesson) {
                         }
                     }
                 };
-                window.addEventListener('keydown', keyHandler);
-
-                currentPdfSession = {
-                    pdfDoc: pdfDoc,
-                    observer: observer,
-                    activeTasks: activeTasks,
-                    fitWidth: () => applyZoom(getOptimalFitScale()),
-                    cleanup: () => {
-                        window.removeEventListener('keydown', keyHandler);
-                        window.removeEventListener('resize', onViewportResize);
-                        window.removeEventListener('orientationchange', onViewportResize);
-                        document.removeEventListener('fullscreenchange', onNativeFsChange);
-                        document.removeEventListener('webkitfullscreenchange', onNativeFsChange);
-                        scrollContainer.removeEventListener('scroll', onScrollUpdate);
-                        document.body.classList.remove('pdf-modal-open');
-                        document.body.style.overflow = '';
-                        const curTopFs = document.getElementById('ebook-fullscreen-action-btn');
-                        if (curTopFs) {
-                            curTopFs.classList.remove('pdf-btn-exit-fullscreen');
-                            curTopFs.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
-                        }
-                    }
-                };
+                registerListener(window, 'keydown', keyHandler);
             } catch (fatalErr) {
+                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                 console.error('Fatal error initializing PDF.js viewer:', fatalErr);
                 renderProtectedErrorCard(fatalErr.message || 'PDF.js load failure');
             }
         });
     }
 
-    buildEbookUI(0);
+    buildEbookUI(initialSectionIdx);
+}
+
+if (typeof window !== 'undefined') {
+    window.renderEbook = renderEbook;
+    window.cleanupCurrentPdfSession = cleanupCurrentPdfSession;
 }
 
 // --- Worksheet Render Function ---
@@ -6838,6 +6968,12 @@ if (document.body && document.body.classList.contains('is-locked')) {
 
 // Automatically sync eBook and Worksheet readers if tabs are active or lesson is open
 if (typeof window !== 'undefined') {
+    window.__appLoaded = true;
+    window.renderEbook = renderEbook;
+    window.appRenderEbook = renderEbook;
+    window.renderWorksheet = renderWorksheet;
+    window.appRenderWorksheet = renderWorksheet;
+    window.appSwitchTab = switchTab;
     try {
         window.dispatchEvent(new CustomEvent('app-engine-ready'));
     } catch (e) {}

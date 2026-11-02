@@ -5349,15 +5349,40 @@
         var activeEbookSession = null;
         var activeLoadedEbookLessonId = null;
         var activeLoadedEbookSectionIdx = null;
+        var directEbookRenderSessionId = 0;
 
         function cleanupEbookSession() {
-            if (activeEbookSession && typeof activeEbookSession.cleanup === 'function') {
-                try { activeEbookSession.cleanup(); } catch(e) {}
+            directEbookRenderSessionId++;
+            if (activeEbookSession) {
+                activeEbookSession.aborted = true;
+                if (activeEbookSession.token) activeEbookSession.token.aborted = true;
+                if (activeEbookSession.observer) {
+                    try { activeEbookSession.observer.disconnect(); } catch(e) {}
+                }
+                if (activeEbookSession.activeTasks) {
+                    Object.values(activeEbookSession.activeTasks).forEach(function(t) {
+                        try { t.cancel(); } catch(e) {}
+                    });
+                }
+                if (activeEbookSession.pdfDoc) {
+                    try { activeEbookSession.pdfDoc.destroy(); } catch(e) {}
+                }
+                if (typeof activeEbookSession.cleanup === 'function') {
+                    try { activeEbookSession.cleanup(); } catch(e) {}
+                }
             }
             activeEbookSession = null;
+            window.activeEbookSession = null;
         }
 
+        window.cleanupEbookSession = cleanupEbookSession;
+        window.activeEbookSession = null;
+
         function initEbookUI(lesson) {
+            if (window.__appLoaded && typeof window.renderEbook === 'function') {
+                window.renderEbook(lesson);
+                return;
+            }
             if (!lesson) return;
             var ebContainer = document.getElementById('lesson-ebook');
             if (!ebContainer) return;
@@ -5401,13 +5426,20 @@
             }
 
             var existingMount = document.getElementById('pdf-pages-mount');
-            if (activeLoadedEbookLessonId === lesson.id && existingMount && existingMount.children.length > 0 && activeEbookSession && typeof activeEbookSession.fitWidth === 'function') {
+            if (activeLoadedEbookLessonId === lesson.id && existingMount && existingMount.children.length > 0 && activeEbookSession && !activeEbookSession.aborted && typeof activeEbookSession.fitWidth === 'function') {
                 activeEbookSession.fitWidth();
                 return;
             }
 
+            var initialSectionIdx = 0;
+            if (activeLoadedEbookLessonId === lesson.id && typeof activeLoadedEbookSectionIdx === 'number' && activeLoadedEbookSectionIdx >= 0 && activeLoadedEbookSectionIdx < ebooksList.length) {
+                initialSectionIdx = activeLoadedEbookSectionIdx;
+            }
+
             function buildDirectEbookUI(selectedIndex) {
                 cleanupEbookSession();
+                var thisSessionId = ++directEbookRenderSessionId;
+                var sessionToken = { id: thisSessionId, aborted: false };
                 activeLoadedEbookLessonId = lesson.id;
                 activeLoadedEbookSectionIdx = selectedIndex;
 
@@ -5497,7 +5529,7 @@
                 '</div>';
 
                 wireDirectTopicPills();
-                startDirectPdfReader(activeUrl, altUrl, currentTitle);
+                startDirectPdfReader(activeUrl, altUrl, currentTitle, thisSessionId, sessionToken);
             }
 
             function wireDirectTopicPills() {
@@ -5506,13 +5538,50 @@
                     pills.forEach(function(pill) {
                         pill.addEventListener('click', function() {
                             var idx = parseInt(pill.getAttribute('data-index'), 10);
-                            buildDirectEbookUI(idx);
+                            if (!isNaN(idx) && idx >= 0 && idx < ebooksList.length) {
+                                buildDirectEbookUI(idx);
+                            }
                         });
                     });
                 }
             }
 
-            function startDirectPdfReader(primaryUrl, altUrl, title) {
+            function startDirectPdfReader(primaryUrl, altUrl, title, thisSessionId, sessionToken) {
+                var activeTasks = {};
+                var observer = null;
+                var boundCleanups = [];
+
+                function registerDirectListener(target, type, listener, options) {
+                    if (!target) return;
+                    target.addEventListener(type, listener, options);
+                    boundCleanups.push(function() {
+                        try { target.removeEventListener(type, listener, options); } catch(e) {}
+                    });
+                }
+
+                activeEbookSession = {
+                    token: sessionToken,
+                    sessionId: thisSessionId,
+                    pdfDoc: null,
+                    observer: null,
+                    activeTasks: activeTasks,
+                    aborted: false,
+                    fitWidth: null,
+                    cleanup: function() {
+                        sessionToken.aborted = true;
+                        boundCleanups.forEach(function(fn) { try { fn(); } catch(e) {} });
+                        boundCleanups = [];
+                        document.body.classList.remove('pdf-modal-open');
+                        document.body.style.overflow = '';
+                        var topBtn = document.getElementById('ebook-fullscreen-action-btn');
+                        if (topBtn) {
+                            topBtn.classList.remove('pdf-btn-exit-fullscreen');
+                            topBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
+                        }
+                    }
+                };
+                window.activeEbookSession = activeEbookSession;
+
                 var candidateUrls = [primaryUrl];
                 if (altUrl && candidateUrls.indexOf(altUrl) === -1) candidateUrls.push(altUrl);
                 if (primaryUrl.toLowerCase().endsWith('.pdf.pdf')) {
@@ -5534,6 +5603,7 @@
                     if (pLib) return pLib;
                     var start = Date.now();
                     while (Date.now() - start < (maxWaitMs || 4000)) {
+                        if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return null;
                         await new Promise(function(r) { setTimeout(r, 60); });
                         pLib = getPdfJs();
                         if (pLib) return pLib;
@@ -5543,17 +5613,23 @@
 
                 function fetchBinaryArrayBuffer(url) {
                     return new Promise(function(resolve, reject) {
+                        if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) {
+                            return reject(new Error('Aborted'));
+                        }
                         if (typeof fetch === 'function') {
                             fetch(url)
                                 .then(function(res) {
+                                    if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) throw new Error('Aborted');
                                     if (res.ok) return res.arrayBuffer();
                                     throw new Error('HTTP ' + res.status);
                                 })
                                 .then(function(buf) {
+                                    if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) throw new Error('Aborted');
                                     if (buf && buf.byteLength > 100) resolve(buf);
                                     else throw new Error('Empty buffer');
                                 })
                                 .catch(function() {
+                                    if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return reject(new Error('Aborted'));
                                     loadWithXhr(url, resolve, reject);
                                 });
                         } else {
@@ -5563,11 +5639,13 @@
                 }
 
                 function loadWithXhr(url, resolve, reject) {
+                    if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return reject(new Error('Aborted'));
                     try {
                         var xhr = new XMLHttpRequest();
                         xhr.open('GET', url, true);
                         xhr.responseType = 'arraybuffer';
                         xhr.onload = function() {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return reject(new Error('Aborted'));
                             if ((xhr.status >= 200 && xhr.status < 300) || (xhr.status === 0 && xhr.response && xhr.response.byteLength > 100)) {
                                 resolve(xhr.response);
                             } else {
@@ -5582,6 +5660,7 @@
                 }
 
                 function renderProtectedEbookEmbed(docUrl, ebookTitle) {
+                    if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                     var wrapper = document.getElementById('pdf-viewer-wrapper');
                     if (!wrapper) return;
                     var targetUrl = docUrl || candidateUrls[0] || primaryUrl;
@@ -5605,6 +5684,7 @@
                     var topFsBtn = document.getElementById('ebook-fullscreen-action-btn');
 
                     function toggleFallbackFs(force) {
+                        if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                         var isActive = wrapper.classList.contains('pdf-fullscreen-active');
                         var target = (typeof force === 'boolean') ? force : !isActive;
                         if (target) {
@@ -5633,36 +5713,34 @@
                             }
                         }
                     }
-                    if (fsBtn) fsBtn.onclick = function() { toggleFallbackFs(); };
-                    if (flExit) flExit.onclick = function() { toggleFallbackFs(false); };
-                    if (topFsBtn) topFsBtn.onclick = function() { toggleFallbackFs(); };
+                    if (fsBtn) registerDirectListener(fsBtn, 'click', function() { toggleFallbackFs(); });
+                    if (flExit) registerDirectListener(flExit, 'click', function() { toggleFallbackFs(false); });
+                    if (topFsBtn) registerDirectListener(topFsBtn, 'click', function() { toggleFallbackFs(); });
 
-                    window.addEventListener('keydown', function(e) {
+                    registerDirectListener(window, 'keydown', function(e) {
+                        if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                         if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
                             toggleFallbackFs(false);
                         }
                     });
-
-                    activeLoadedDirectSession = {
-                        pdfDoc: null,
-                        cleanup: function() {
-                            toggleFallbackFs(false);
-                        }
-                    };
                 }
 
                 ensurePdfJs(3000).then(async function(pdfjs) {
+                    if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                     if (!pdfjs) {
                         renderProtectedEbookEmbed(candidateUrls[0], title);
                         return;
                     }
 
                     async function fetchPdfDoc() {
+                        if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return null;
                         var doc = null;
                         for (var i = 0; i < candidateUrls.length; i++) {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return null;
                             var u = candidateUrls[i];
                             try {
                                 var buf = await fetchBinaryArrayBuffer(u);
+                                if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return null;
                                 if (buf) {
                                     doc = await pdfjs.getDocument({
                                         data: new Uint8Array(buf),
@@ -5670,11 +5748,16 @@
                                         cMapPacked: true,
                                         disableWorker: true
                                     }).promise;
+                                    if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) {
+                                        if (doc) { try { doc.destroy(); } catch(e) {} }
+                                        return null;
+                                    }
                                     if (doc) return doc;
                                 }
                             } catch(e) {}
                         }
                         for (var j = 0; j < candidateUrls.length; j++) {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return null;
                             try {
                                 doc = await pdfjs.getDocument({
                                     url: candidateUrls[j],
@@ -5682,14 +5765,25 @@
                                     cMapPacked: true,
                                     disableWorker: true
                                 }).promise;
+                                if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) {
+                                    if (doc) { try { doc.destroy(); } catch(e) {} }
+                                    return null;
+                                }
                                 if (doc) return doc;
                             } catch(e2) {}
                         }
+                        if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return null;
                         throw new Error('Could not load ebook from candidates');
                     }
 
                     try {
                         var pdfDoc = await fetchPdfDoc();
+                        if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId || !pdfDoc) {
+                            if (pdfDoc) { try { pdfDoc.destroy(); } catch(e) {} }
+                            return;
+                        }
+                        activeEbookSession.pdfDoc = pdfDoc;
+
                         var numPages = pdfDoc.numPages;
                         var totalPagesEl = document.getElementById('pdf-total-pages');
                         var pageInput = document.getElementById('pdf-page-input');
@@ -5717,6 +5811,8 @@
                         }
 
                         var page1 = await pdfDoc.getPage(1);
+                        if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
+
                         var vp1 = page1.getViewport({ scale: 1 });
                         var baseW = vp1.width;
                         var baseH = vp1.height;
@@ -5739,8 +5835,6 @@
                         updateZoomDisplay();
 
                         var renderedPages = new Set();
-                        var activeTasks = {};
-                        var observer = null;
 
                         mount.innerHTML = '';
                         for (var p = 1; p <= numPages; p++) {
@@ -5748,6 +5842,7 @@
                             card.className = 'pdf-page-card';
                             card.id = 'pdf-page-' + p;
                             card.dataset.page = p;
+                            card.dataset.sessionId = String(thisSessionId);
                             card.style.width = Math.floor(baseW * currentScale) + 'px';
                             card.style.height = Math.floor(baseH * currentScale) + 'px';
                             card.style.margin = '0 auto 1.25rem auto';
@@ -5764,6 +5859,7 @@
                             var canvas = document.createElement('canvas');
                             canvas.className = 'pdf-page-canvas';
                             canvas.id = 'pdf-canvas-' + p;
+                            canvas.dataset.sessionId = String(thisSessionId);
                             canvas.style.display = 'none';
                             canvas.style.pointerEvents = 'none';
 
@@ -5784,6 +5880,7 @@
                         }
 
                         async function renderPage(pageNum) {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                             if (pageNum < 1 || pageNum > numPages || renderedPages.has(pageNum)) return;
                             renderedPages.add(pageNum);
 
@@ -5791,9 +5888,13 @@
                             var canvas = document.getElementById('pdf-canvas-' + pageNum);
                             var placeholder = document.getElementById('pdf-placeholder-' + pageNum);
                             if (!card || !canvas) return;
+                            if (card.dataset.sessionId !== String(thisSessionId)) return;
 
                             try {
                                 var page = await pdfDoc.getPage(pageNum);
+                                if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
+                                if (card.dataset.sessionId !== String(thisSessionId)) return;
+
                                 var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
                                 var renderScale = currentScale * dpr;
                                 var viewport = page.getViewport({ scale: renderScale });
@@ -5808,10 +5909,16 @@
                                     try { activeTasks[pageNum].cancel(); } catch(e) {}
                                 }
 
+                                if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
+                                if (card.dataset.sessionId !== String(thisSessionId)) return;
+
                                 var renderTask = page.render({ canvasContext: ctx, viewport: viewport });
                                 activeTasks[pageNum] = renderTask;
                                 await renderTask.promise;
                                 delete activeTasks[pageNum];
+
+                                if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
+                                if (card.dataset.sessionId !== String(thisSessionId)) return;
 
                                 if (placeholder) placeholder.style.display = 'none';
                                 canvas.style.display = 'block';
@@ -5823,11 +5930,16 @@
 
                         if ('IntersectionObserver' in window) {
                             observer = new IntersectionObserver(function(entries) {
+                                if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                                 entries.forEach(function(entry) {
-                                    if (entry.isIntersecting) {
+                                    if (entry.isIntersecting && entry.target.dataset.sessionId === String(thisSessionId)) {
                                         var pNum = parseInt(entry.target.dataset.page, 10);
                                         renderPage(pNum);
-                                        if (pNum < numPages) renderPage(pNum + 1);
+                                        if (pNum < numPages) {
+                                            setTimeout(function() {
+                                                if (!sessionToken.aborted && thisSessionId === directEbookRenderSessionId) renderPage(pNum + 1);
+                                            }, 40);
+                                        }
                                     }
                                 });
                             }, {
@@ -5835,26 +5947,36 @@
                                 rootMargin: '800px 0px',
                                 threshold: 0.01
                             });
-                            mount.querySelectorAll('.pdf-page-card').forEach(function(c) { observer.observe(c); });
+                            mount.querySelectorAll('.pdf-page-card').forEach(function(c) {
+                                if (c.dataset.sessionId === String(thisSessionId)) observer.observe(c);
+                            });
+                            activeEbookSession.observer = observer;
                         } else {
                             for (var i = 1; i <= Math.min(numPages, 3); i++) renderPage(i);
                         }
 
                         renderPage(1);
-                        if (numPages >= 2) renderPage(2);
+                        if (numPages >= 2) {
+                            setTimeout(function() {
+                                if (!sessionToken.aborted && thisSessionId === directEbookRenderSessionId) renderPage(2);
+                            }, 50);
+                        }
 
                         if (mainLoading) mainLoading.style.display = 'none';
 
                         var scrollDebounce = null;
                         var onScrollUpdate = function() {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                             clearTimeout(scrollDebounce);
                             scrollDebounce = setTimeout(function() {
+                                if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                                 var cards = mount.querySelectorAll('.pdf-page-card');
                                 var containerTop = scrollContainer.getBoundingClientRect().top;
                                 var closestPage = 1;
                                 var minDiff = Infinity;
 
                                 cards.forEach(function(c) {
+                                    if (c.dataset.sessionId !== String(thisSessionId)) return;
                                     var r = c.getBoundingClientRect();
                                     var diff = Math.abs(r.top - containerTop - 20);
                                     if (diff < minDiff) {
@@ -5868,33 +5990,34 @@
                                 }
                             }, 50);
                         };
-                        scrollContainer.addEventListener('scroll', onScrollUpdate, { passive: true });
+                        registerDirectListener(scrollContainer, 'scroll', onScrollUpdate, { passive: true });
 
                         function scrollToPage(pNum) {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                             var target = Math.max(1, Math.min(pNum, numPages));
                             var targetCard = document.getElementById('pdf-page-' + target);
-                            if (targetCard) {
+                            if (targetCard && targetCard.dataset.sessionId === String(thisSessionId)) {
                                 renderPage(target);
                                 targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                 if (pageInput) pageInput.value = target;
                             }
                         }
 
-                        if (prevBtn) prevBtn.addEventListener('click', function() {
+                        if (prevBtn) registerDirectListener(prevBtn, 'click', function() {
                             var cur = parseInt(pageInput.value, 10) || 1;
                             scrollToPage(cur - 1);
                         });
-                        if (nextBtn) nextBtn.addEventListener('click', function() {
+                        if (nextBtn) registerDirectListener(nextBtn, 'click', function() {
                             var cur = parseInt(pageInput.value, 10) || 1;
                             scrollToPage(cur + 1);
                         });
 
                         if (pageInput) {
-                            pageInput.addEventListener('change', function() {
+                            registerDirectListener(pageInput, 'change', function() {
                                 var val = parseInt(pageInput.value, 10);
                                 if (!isNaN(val)) scrollToPage(val);
                             });
-                            pageInput.addEventListener('keydown', function(e) {
+                            registerDirectListener(pageInput, 'keydown', function(e) {
                                 if (e.key === 'Enter') {
                                     var val = parseInt(pageInput.value, 10);
                                     if (!isNaN(val)) scrollToPage(val);
@@ -5903,6 +6026,7 @@
                         }
 
                         function applyZoom(newScale) {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                             currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
                             updateZoomDisplay();
 
@@ -5912,6 +6036,7 @@
                             renderedPages.clear();
 
                             mount.querySelectorAll('.pdf-page-card').forEach(function(c) {
+                                if (c.dataset.sessionId !== String(thisSessionId)) return;
                                 c.style.width = Math.floor(baseW * currentScale) + 'px';
                                 c.style.height = Math.floor(baseH * currentScale) + 'px';
                                 var cv = c.querySelector('.pdf-page-canvas');
@@ -5926,17 +6051,23 @@
                             if (cur > 1) renderPage(cur - 1);
                         }
 
-                        if (zoomInBtn) zoomInBtn.addEventListener('click', function() { applyZoom(currentScale + 0.15); });
-                        if (zoomOutBtn) zoomOutBtn.addEventListener('click', function() { applyZoom(currentScale - 0.15); });
+                        activeEbookSession.fitWidth = function() {
+                            if (!sessionToken.aborted && thisSessionId === directEbookRenderSessionId) {
+                                applyZoom(getOptimalFitScale());
+                            }
+                        };
+
+                        if (zoomInBtn) registerDirectListener(zoomInBtn, 'click', function() { applyZoom(currentScale + 0.15); });
+                        if (zoomOutBtn) registerDirectListener(zoomOutBtn, 'click', function() { applyZoom(currentScale - 0.15); });
                         if (fitWidthBtn) {
-                            fitWidthBtn.addEventListener('click', function() {
+                            registerDirectListener(fitWidthBtn, 'click', function() {
                                 applyZoom(getOptimalFitScale());
                             });
                         }
 
                         var touchStartDist = 0;
                         var isPinching = false;
-                        scrollContainer.addEventListener('touchstart', function(e) {
+                        registerDirectListener(scrollContainer, 'touchstart', function(e) {
                             if (e.touches && e.touches.length === 2) {
                                 isPinching = true;
                                 touchStartDist = Math.hypot(
@@ -5948,7 +6079,7 @@
                             }
                         }, { passive: true });
 
-                        scrollContainer.addEventListener('touchmove', function(e) {
+                        registerDirectListener(scrollContainer, 'touchmove', function(e) {
                             if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
                                 var curDist = Math.hypot(
                                     e.touches[0].clientX - e.touches[1].clientX,
@@ -5962,22 +6093,25 @@
                             }
                         }, { passive: true });
 
-                        scrollContainer.addEventListener('touchend', function() {
+                        registerDirectListener(scrollContainer, 'touchend', function() {
                             isPinching = false;
                         }, { passive: true });
 
                         var resizeDebounce = null;
                         var onViewportResize = function() {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                             clearTimeout(resizeDebounce);
                             resizeDebounce = setTimeout(function() {
+                                if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                                 if (!scrollContainer || !baseW) return;
                                 applyZoom(getOptimalFitScale());
                             }, 120);
                         };
-                        window.addEventListener('resize', onViewportResize);
-                        window.addEventListener('orientationchange', onViewportResize);
+                        registerDirectListener(window, 'resize', onViewportResize);
+                        registerDirectListener(window, 'orientationchange', onViewportResize);
 
                         function toggleFullscreen(forceState) {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                             var isCurrentlyActive = wrapper.classList.contains('pdf-fullscreen-active');
                             var targetState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyActive;
 
@@ -6009,7 +6143,11 @@
                                     }
                                 } catch (e) {}
 
-                                setTimeout(function() { applyZoom(getOptimalFitScale()); }, 120);
+                                setTimeout(function() {
+                                    if (!sessionToken.aborted && thisSessionId === directEbookRenderSessionId) {
+                                        applyZoom(getOptimalFitScale());
+                                    }
+                                }, 120);
                             } else {
                                 wrapper.classList.remove('pdf-fullscreen-active');
                                 document.body.classList.remove('pdf-modal-open');
@@ -6035,25 +6173,31 @@
                                     }
                                 } catch (e) {}
 
-                                setTimeout(function() { applyZoom(getOptimalFitScale()); }, 120);
+                                setTimeout(function() {
+                                    if (!sessionToken.aborted && thisSessionId === directEbookRenderSessionId) {
+                                        applyZoom(getOptimalFitScale());
+                                    }
+                                }, 120);
                             }
                         }
 
-                        if (fsBtn) fsBtn.addEventListener('click', function() { toggleFullscreen(); });
+                        if (fsBtn) registerDirectListener(fsBtn, 'click', function() { toggleFullscreen(); });
                         var topActionBtn = document.getElementById('ebook-fullscreen-action-btn');
-                        if (topActionBtn) topActionBtn.addEventListener('click', function() { toggleFullscreen(); });
-                        if (floatingExitBtn) floatingExitBtn.addEventListener('click', function() { toggleFullscreen(false); });
+                        if (topActionBtn) registerDirectListener(topActionBtn, 'click', function() { toggleFullscreen(); });
+                        if (floatingExitBtn) registerDirectListener(floatingExitBtn, 'click', function() { toggleFullscreen(false); });
 
                         var onNativeFsChange = function() {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                             var isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
                             if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
                                 toggleFullscreen(false);
                             }
                         };
-                        document.addEventListener('fullscreenchange', onNativeFsChange);
-                        document.addEventListener('webkitfullscreenchange', onNativeFsChange);
+                        registerDirectListener(document, 'fullscreenchange', onNativeFsChange);
+                        registerDirectListener(document, 'webkitfullscreenchange', onNativeFsChange);
 
                         var keyHandler = function(e) {
+                            if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                             if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
                                 toggleFullscreen(false);
                             } else if (document.activeElement !== pageInput && !document.activeElement.matches('input, textarea')) {
@@ -6066,37 +6210,16 @@
                                 }
                             }
                         };
-                        window.addEventListener('keydown', keyHandler);
-
-                        activeEbookSession = {
-                            pdfDoc: pdfDoc,
-                            observer: observer,
-                            activeTasks: activeTasks,
-                            fitWidth: function() { applyZoom(getOptimalFitScale()); },
-                            cleanup: function() {
-                                window.removeEventListener('keydown', keyHandler);
-                                window.removeEventListener('resize', onViewportResize);
-                                window.removeEventListener('orientationchange', onViewportResize);
-                                document.removeEventListener('fullscreenchange', onNativeFsChange);
-                                document.removeEventListener('webkitfullscreenchange', onNativeFsChange);
-                                scrollContainer.removeEventListener('scroll', onScrollUpdate);
-                                document.body.classList.remove('pdf-modal-open');
-                                document.body.style.overflow = '';
-                                var topBtn = document.getElementById('ebook-fullscreen-action-btn');
-                                if (topBtn) {
-                                    topBtn.classList.remove('pdf-btn-exit-fullscreen');
-                                    topBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="ebook-fs-btn-text">Fullscreen Reading View</span>';
-                                }
-                            }
-                        };
+                        registerDirectListener(window, 'keydown', keyHandler);
                     } catch(fatalErr) {
+                        if (sessionToken.aborted || thisSessionId !== directEbookRenderSessionId) return;
                         console.warn('PDF.js ebook rendering error, using protected embed fallback:', fatalErr);
                         renderProtectedEbookEmbed(candidateUrls[0], title);
                     }
                 });
             }
 
-            buildDirectEbookUI(0);
+            buildDirectEbookUI(initialSectionIdx);
         }
 
         var WORKSHEET_FALLBACK_CATALOG = {
