@@ -26,7 +26,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=6.1&build=202611020500">
+    <link rel="stylesheet" href="styles.css?v=6.2&build=202611020600">
     <style>
         .view.active {
             display: block !important;
@@ -5159,7 +5159,13 @@
                 s = s.replace(/\(\s*N\s*\/\s*V\s*\)/g, '\\left(\\frac{N}{V}\\right)').replace(/\(\s*V_1\s*\/\s*V_2\s*\)/g, '\\left(\\frac{V_1}{V_2}\\right)').replace(/\(\s*T_2\s*\/\s*T_1\s*\)/g, '\\left(\\frac{T_2}{T_1}\\right)').replace(/\(\s*P_1\s*\/\s*P_2\s*\)/g, '\\left(\\frac{P_1}{P_2}\\right)').replace(/\(\s*P_2\s*\/\s*P_1\s*\)/g, '\\left(\\frac{P_2}{P_1}\\right)');
                 s = s.replace(/\b3RT\s*\/\s*M\b/g, '\\frac{3RT}{M}').replace(/3k_{\\text\{B\}}\s*T\s*\/\s*m_0/g, '\\frac{3k_{\\text{B}} T}{m_0}').replace(/3\s*k_B\s*T\s*\/\s*m_0/g, '\\frac{3k_{\\text{B}} T}{m_0}').replace(/3P\s*\/\s*\\rho/g, '\\frac{3P}{\\rho}').replace(/\bm\s*\/\s*M\b/g, '\\frac{m}{M}').replace(/N\s*\/\s*N_{\\text\{A\}}/g, '\\frac{N}{N_{\\text{A}}}').replace(/N\s*\/\s*V/g, '\\frac{N}{V}').replace(/M\s*\/\s*N_{\\text\{A\}}/g, '\\frac{M}{N_{\\text{A}}}');
                 if (/^\s*([0-9]+)\s*\/\s*([0-9]+)\s*$/.test(s)) s = s.replace(/^\s*([0-9]+)\s*\/\s*([0-9]+)\s*$/, '\\frac{$1}{$2}');
-                s = s.replace(/([0-9]+(?:\.[0-9]+)?)\s*°\s*C\b/g, '$1\\,^\\circ\\text{C}').replace(/([0-9]+(?:\.[0-9]+)?)\s*°/g, '$1^\\circ');
+                s = s.replace(/\\circ\s*F\b/g, '\\circ\\text{F}').replace(/\\circF\b/g, '\\circ\\text{F}').replace(/\\circ\s*C\b/g, '\\circ\\text{C}').replace(/\\circC\b/g, '\\circ\\text{C}');
+                s = s.replace(/\^\\circ\s*([CF])\b/g, '^\\circ\\text{$1}').replace(/\^\{\\circ\}\s*([CF])\b/g, '^\\circ\\text{$1}');
+                s = s.replace(/([0-9]+(?:\.[0-9]+)?)\s*°\s*C\b/g, '$1\\,^\\circ\\text{C}');
+                s = s.replace(/([0-9]+(?:\.[0-9]+)?)\s*°\s*F\b/g, '$1\\,^\\circ\\text{F}');
+                s = s.replace(/([0-9]+(?:\.[0-9]+)?)\s*(?:deg|degrees?)\s*([CF])\b/gi, '$1\\,^\\circ\\text{$2}');
+                s = s.replace(/([0-9]+(?:\.[0-9]+)?)\s*°/g, '$1^\\circ');
+                s = s.replace(/(?<![0-9a-zA-Z])°\s*C\b/g, '^\\circ\\text{C}').replace(/(?<![0-9a-zA-Z])°\s*F\b/g, '^\\circ\\text{F}').replace(/(?<![0-9a-zA-Z])°/g, '^\\circ');
                 s = s.replace(/\b([0-9]{1,3}),([0-9]{3})\b/g, '$1{,}$2');
                 var unitRegex = /\b(kPa|Pa|kJ|J|m\/s|m\^3|m\^2|dm\^3|cm\^3|mL|L|kg\/mol|kg\/m\^3|kg|mol\^\{-1\}|mol|J\/\(mol\\cdot K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K)\b/g;
                 s = s.replace(new RegExp('((?:\\d+(?:\\.\\d+)?(?:\\s*\\\\times\\s*10\\^\\{-?\\d+\\})?|\\b10\\^\\{-?\\d+\\}))\\s*' + unitRegex.source, 'g'), function(m, num, u) {
@@ -5222,15 +5228,15 @@
                     return '\\( ' + cleanedFormula + ' \\)';
                 }
 
-                str = str.replace(/\b([A-Za-zΔθμρλωγαβπΩ_0-9\(\)\{\}\\\/]+(?:_[a-zA-Z0-9]+)?)\s*([=≈≠≤≥∝]|&lt;|&gt;|<|>)\s*([^\s,;:?\n\r\(\)]+(?:\s*(?:×|\btimes\b|\/|\+|-|\*|·)\s*[^\s,;:?\n\r\(\)]+)*(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K|°C))?)(?=[,;:?\s]|$|\))/g, function(m, left, op, right) {
+                str = str.replace(/\b([A-Za-zΔθμρλωγαβπΩ_0-9\(\)\{\}\\\/]+(?:_[a-zA-Z0-9]+)?)\s*([=≈≠≤≥∝]|&lt;|&gt;|<|>)\s*([^\s,;:?\n\r\(\)]+(?:\s*(?:×|\btimes\b|\/|\+|-|\*|·)\s*[^\s,;:?\n\r\(\)]+)*(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K|°\s*[CF]))?)(?=[,;:?\s]|$|\))/g, function(m, left, op, right) {
                     return '\\( ' + window.cleanMathExpr(left + ' ' + op + ' ' + right) + ' \\)';
                 });
 
-                str = str.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?\s*(?:×|\btimes\b)\s*10\^?\{?-?[0-9]+\}?(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K))?)\b(?![^()]*\))/g, function(m, sn) {
+                str = str.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?\s*(?:×|\btimes\b)\s*10\^?\{?-?[0-9]+\}?(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K|°\s*[CF]))?)\b(?![^()]*\))/g, function(m, sn) {
                     return '\\( ' + window.cleanMathExpr(sn) + ' \\)';
                 });
 
-                str = str.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?)\s*(kPa|Pa|kJ|m\/s|m³|m²|dm³|cm³|kg\/mol|kg\/m³|mol⁻¹|J\/\(mol[·\.]K\)|J\/K|mmHg|°\s*C)\b(?![^()]*\))/g, function(m, num, u) {
+                str = str.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?)\s*(kPa|Pa|kJ|m\/s|m³|m²|dm³|cm³|kg\/mol|kg\/m³|mol⁻¹|J\/\(mol[·\.]K\)|J\/K|mmHg|°\s*[CF])\b(?![^()]*\))/g, function(m, num, u) {
                     return '\\( ' + window.cleanMathExpr(num + ' ' + u) + ' \\)';
                 });
 
@@ -5238,7 +5244,7 @@
                     return '\\( ' + window.cleanMathExpr(sym) + ' \\)';
                 });
 
-                str = str.replace(/(?<!\\\(.*?)\b([0-9]+)\s*°(?!\s*C)\b(?![^()]*\))/g, function(m, deg) {
+                str = str.replace(/(?<!\\\(.*?)\b([0-9]+)\s*°(?!\s*[CF])\b(?![^()]*\))/g, function(m, deg) {
                     return '\\( ' + deg + '^\\circ \\)';
                 });
 
@@ -8235,7 +8241,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=6.1&build=202611020500"></script>
-    <script src="app.js?v=6.1&build=202611020500" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=6.2&build=202611020600"></script>
+    <script src="app.js?v=6.2&build=202611020600" onerror="onAppJsError()"></script>
 </body>
 </html>

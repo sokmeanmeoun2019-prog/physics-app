@@ -2247,9 +2247,21 @@ function cleanMathExpr(expr) {
         s = s.replace(/^\s*([0-9]+)\s*\/\s*([0-9]+)\s*$/, '\\frac{$1}{$2}');
     }
 
-    // 9. Degrees: 90° -> 90^\circ, 27 °C -> 27\,^\circ\text{C}
-    s = s.replace(/([0-9]+(?:\.[0-9]+)?)\s*°\s*C\b/g, '$1\\,^\\circ\\text{C}');
-    s = s.replace(/([0-9]+(?:\.[0-9]+)?)\s*°/g, '$1^\\circ');
+    // 9. Degrees & Temperatures: 90° -> 90^\circ, 27 °C -> 27\,^\circ\text{C}, 86 °F -> 86\,^\circ\text{F}
+    // Fix existing or accidental un-delimited \circF or \circC macros (preventing MathJax \circF syntax errors)
+    s = s.replace(/\\circ\s*F\b/g, '\\circ\\text{F}')
+         .replace(/\\circF\b/g, '\\circ\\text{F}')
+         .replace(/\\circ\s*C\b/g, '\\circ\\text{C}')
+         .replace(/\\circC\b/g, '\\circ\\text{C}')
+         .replace(/\^\\circ\s*([CF])\b/g, '^\\circ\\text{$1}')
+         .replace(/\^\{\\circ\}\s*([CF])\b/g, '^\\circ\\text{$1}')
+         .replace(/([0-9]+(?:\.[0-9]+)?)\s*°\s*C\b/g, '$1\\,^\\circ\\text{C}')
+         .replace(/([0-9]+(?:\.[0-9]+)?)\s*°\s*F\b/g, '$1\\,^\\circ\\text{F}')
+         .replace(/([0-9]+(?:\.[0-9]+)?)\s*(?:deg|degrees?)\s*([CF])\b/gi, '$1\\,^\\circ\\text{$2}')
+         .replace(/([0-9]+(?:\.[0-9]+)?)\s*°/g, '$1^\\circ')
+         .replace(/(?<![0-9a-zA-Z])°\s*C\b/g, '^\\circ\\text{C}')
+         .replace(/(?<![0-9a-zA-Z])°\s*F\b/g, '^\\circ\\text{F}')
+         .replace(/(?<![0-9a-zA-Z])°/g, '^\\circ');
 
     // 10. Large numbers with commas in math: 80,000 -> 80{,}000
     s = s.replace(/\b([0-9]{1,3}),([0-9]{3})\b/g, '$1{,}$2');
@@ -2338,19 +2350,19 @@ function formatInlineOrBlockMath(str, options = {}) {
 
     // Step 4: Prose with embedded formulas, scientific notations, and physical quantities
     // A. Embedded equations: e.g. "K_av = 6.0 × 10⁻²¹ J", "P = (2/3)(N / V) K_av", "V = 0.050 m³"
-    text = text.replace(/\b([A-Za-zΔθμρλωγαβπΩ_0-9\(\)\{\}\\\/]+(?:_[a-zA-Z0-9]+)?)\s*([=≈≠≤≥∝]|&lt;|&gt;|<|>)\s*([^\s,;:?\n\r\(\)]+(?:\s*(?:×|\btimes\b|\/|\+|-|\*|·)\s*[^\s,;:?\n\r\(\)]+)*(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K|°C))?)(?=[,;:?\s]|$|\))/g, (m, left, op, right) => {
+    text = text.replace(/\b([A-Za-zΔθμρλωγαβπΩ_0-9\(\)\{\}\\\/]+(?:_[a-zA-Z0-9]+)?)\s*([=≈≠≤≥∝]|&lt;|&gt;|<|>)\s*([^\s,;:?\n\r\(\)]+(?:\s*(?:×|\btimes\b|\/|\+|-|\*|·)\s*[^\s,;:?\n\r\(\)]+)*(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K|°\s*[CF]))?)(?=[,;:?\s]|$|\))/g, (m, left, op, right) => {
         const fullExpr = `${left} ${op} ${right}`;
         const cleaned = cleanMathExpr(fullExpr);
         return `\\( ${cleaned} \\)`;
     });
 
     // B. Scientific notations: e.g. "5.0 × 10²²", "1.0 × 10²⁴"
-    text = text.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?\s*(?:×|\btimes\b)\s*10\^?\{?-?[0-9]+\}?(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K))?)\b(?![^()]*\))/g, (m, sn) => {
+    text = text.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?\s*(?:×|\btimes\b)\s*10\^?\{?-?[0-9]+\}?(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K|°\s*[CF]))?)\b(?![^()]*\))/g, (m, sn) => {
         return `\\( ${cleanMathExpr(sn)} \\)`;
     });
 
-    // C. Quantities with units: e.g. "0.050 m³", "80 kPa", "500 m/s", "27 °C"
-    text = text.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?)\s*(kPa|Pa|kJ|m\/s|m³|m²|dm³|cm³|kg\/mol|kg\/m³|mol⁻¹|J\/\(mol[·\.]K\)|J\/K|mmHg|°\s*C)\b(?![^()]*\))/g, (m, num, u) => {
+    // C. Quantities with units: e.g. "0.050 m³", "80 kPa", "500 m/s", "27 °C", "86 °F"
+    text = text.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?)\s*(kPa|Pa|kJ|m\/s|m³|m²|dm³|cm³|kg\/mol|kg\/m³|mol⁻¹|J\/\(mol[·\.]K\)|J\/K|mmHg|°\s*[CF])\b(?![^()]*\))/g, (m, num, u) => {
         return `\\( ${cleanMathExpr(`${num} ${u}`)} \\)`;
     });
 
@@ -2359,8 +2371,8 @@ function formatInlineOrBlockMath(str, options = {}) {
         return `\\( ${cleanMathExpr(sym)} \\)`;
     });
 
-    // E. Degrees: e.g. "90°", "45°"
-    text = text.replace(/(?<!\\\(.*?)\b([0-9]+)\s*°(?!\s*C)\b(?![^()]*\))/g, (m, deg) => {
+    // E. Degrees: e.g. "90°", "45°" (excluding temperatures °C and °F)
+    text = text.replace(/(?<!\\\(.*?)\b([0-9]+)\s*°(?!\s*[CF])\b(?![^()]*\))/g, (m, deg) => {
         return `\\( ${deg}^\\circ \\)`;
     });
 
