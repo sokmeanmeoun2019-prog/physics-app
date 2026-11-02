@@ -1789,6 +1789,9 @@ mjx-container[jax="CHTML"] mjx-mi {
     border-radius: 16px;
     box-shadow: var(--shadow-md);
     background-color: var(--white);
+    overflow-y: auto;
+    box-sizing: border-box;
+    word-break: break-word;
 }
 
 .flashcard-front {
@@ -1800,6 +1803,11 @@ mjx-container[jax="CHTML"] mjx-mi {
     color: var(--text-main);
 }
 
+.flashcard-front mjx-container,
+.flashcard-front mjx-container * {
+    color: var(--text-main);
+}
+
 .flashcard-back {
     transform: rotateY(180deg);
     background-color: var(--primary-blue);
@@ -1808,6 +1816,14 @@ mjx-container[jax="CHTML"] mjx-mi {
 
 .flashcard-back p {
     font-size: 1.25rem;
+}
+
+.flashcard-back,
+.flashcard-back p,
+.flashcard-back h3,
+.flashcard-back mjx-container,
+.flashcard-back mjx-container * {
+    color: #ffffff !important;
 }
 
 .flashcard-controls {
@@ -1842,6 +1858,13 @@ mjx-container[jax="CHTML"] mjx-mi {
 #quiz-question-text {
     font-size: 1.25rem;
     margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+#quiz-question-text mjx-container {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin: 0 2px !important;
 }
 
 .quiz-options {
@@ -1861,6 +1884,17 @@ mjx-container[jax="CHTML"] mjx-mi {
     text-align: left;
     font-size: 1rem;
     color: var(--text-main);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    line-height: 1.5;
+}
+
+.quiz-option mjx-container {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin: 0 2px !important;
 }
 
 .quiz-option:hover:not(:disabled) {
@@ -1879,18 +1913,51 @@ mjx-container[jax="CHTML"] mjx-mi {
     color: #1b5e20;
 }
 
+.quiz-option.correct mjx-container,
+.quiz-option.correct mjx-container * {
+    color: #1b5e20 !important;
+}
+
 .quiz-option.wrong {
     background-color: rgba(234, 67, 53, 0.1);
     border-color: var(--error);
     color: #b71c1c;
 }
 
+.quiz-option.wrong mjx-container,
+.quiz-option.wrong mjx-container * {
+    color: #b71c1c !important;
+}
+
 .quiz-feedback {
-    padding: 1rem;
+    padding: 1.15rem 1.35rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     font-weight: 500;
+    line-height: 1.6;
     animation: fadeIn 0.3s ease;
+}
+
+.quiz-feedback mjx-container {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin: 0 2px !important;
+}
+
+.quiz-feedback-step {
+    margin-bottom: 0.65rem;
+    line-height: 1.6;
+}
+
+.quiz-feedback-step:last-child {
+    margin-bottom: 0;
+}
+
+.quiz-feedback-step-title {
+    font-weight: 700;
+    color: inherit;
+    display: inline;
+    margin-right: 4px;
 }
 
 .quiz-feedback.correct-feedback {

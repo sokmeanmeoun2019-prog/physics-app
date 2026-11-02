@@ -2103,6 +2103,9 @@ function typesetMath(elements) {
                     if (!window.MathJax || !window.MathJax.typesetPromise) {
                         return resolve();
                     }
+                    if (window.MathJax.typesetClear && targets && targets.length > 0) {
+                        try { window.MathJax.typesetClear(targets); } catch (e) {}
+                    }
                     const promise = (targets && targets.length > 0)
                         ? window.MathJax.typesetPromise(targets)
                         : window.MathJax.typesetPromise();
@@ -2114,6 +2117,301 @@ function typesetMath(elements) {
             });
         });
     return mathTypesetPromise;
+}
+
+// Clean and convert plain math fragments into standardized LaTeX
+function cleanMathExpr(expr) {
+    if (!expr) return '';
+    let s = String(expr).trim();
+
+    // 1. Unescape HTML entities
+    s = s.replace(/&lt;/g, '<')
+         .replace(/&gt;/g, '>')
+         .replace(/&amp;/g, '&')
+         .replace(/&plusmn;/g, '\\pm ')
+         .replace(/&times;/g, '\\times ')
+         .replace(/&middot;/g, '\\cdot ');
+
+    // 2. Unicode and named operators
+    s = s.replace(/\btimes\b/gi, '\\times ')
+         .replace(/×/g, '\\times ')
+         .replace(/·/g, '\\cdot ')
+         .replace(/≈/g, '\\approx ')
+         .replace(/≠/g, '\\neq ')
+         .replace(/≤/g, '\\le ')
+         .replace(/≥/g, '\\ge ')
+         .replace(/±/g, '\\pm ')
+         .replace(/∝/g, '\\propto ');
+
+    // 3. Greek letters
+    s = s.replace(/Δ/g, '\\Delta ')
+         .replace(/θ_c/g, '\\theta_{\\text{c}}')
+         .replace(/θc/g, '\\theta_{\\text{c}}')
+         .replace(/θ/g, '\\theta ')
+         .replace(/μ_0/g, '\\mu_0')
+         .replace(/μ₀/g, '\\mu_0')
+         .replace(/μ/g, '\\mu ')
+         .replace(/ρ/g, '\\rho ')
+         .replace(/λ/g, '\\lambda ')
+         .replace(/ω/g, '\\omega ')
+         .replace(/γ/g, '\\gamma ')
+         .replace(/α/g, '\\alpha ')
+         .replace(/β/g, '\\beta ')
+         .replace(/π/g, '\\pi ')
+         .replace(/Ω/g, '\\Omega ')
+         .replace(/φ/g, '\\phi ');
+
+    // 4. Overline symbols like v̄
+    s = s.replace(/v̄|v\u0304/g, '\\bar{v}')
+         .replace(/x̄|x\u0304/g, '\\bar{x}');
+
+    // 5. Named physics subscripts (K_av -> K_{\text{av}}, v_rms -> v_{\text{rms}}, k_B -> k_{\text{B}}, etc.)
+    s = s.replace(/\bK_av\b/g, 'K_{\\text{av}}')
+         .replace(/\bK_{av}\b/g, 'K_{\\text{av}}')
+         .replace(/\bv_rms\b/g, 'v_{\\text{rms}}')
+         .replace(/\bv_{rms}\b/g, 'v_{\\text{rms}}')
+         .replace(/\bk_B\b/g, 'k_{\\text{B}}')
+         .replace(/\bk_{B}\b/g, 'k_{\\text{B}}')
+         .replace(/\bkB\b/g, 'k_{\\text{B}}')
+         .replace(/\bN_A\b/g, 'N_{\\text{A}}')
+         .replace(/\bN_{A}\b/g, 'N_{\\text{A}}')
+         .replace(/\bNA\b/g, 'N_{\\text{A}}')
+         .replace(/\bm_0\b/g, 'm_0')
+         .replace(/\bm₀\b/g, 'm_0')
+         .replace(/\bv₀\b/g, 'v_0')
+         .replace(/\bP_inel\b/g, 'P_{\\text{inel}}')
+         .replace(/\bP_elast\b/g, 'P_{\\text{elast}}')
+         .replace(/\bM_ACW\b/g, 'M_{\\text{ACW}}')
+         .replace(/\bM_CW\b/g, 'M_{\\text{CW}}')
+         .replace(/\bP_e1\b/g, 'P_{\\text{e1}}')
+         .replace(/\bP_e2\b/g, 'P_{\\text{e2}}')
+         .replace(/\bP_J\b/g, 'P_{\\text{J}}')
+         .replace(/\bN_S\b/g, 'N_{\\text{S}}')
+         .replace(/\bN_P\b/g, 'N_{\\text{P}}')
+         .replace(/\bV_S\b/g, 'V_{\\text{S}}')
+         .replace(/\bV_P\b/g, 'V_{\\text{P}}')
+         .replace(/\bI_S\b/g, 'I_{\\text{S}}')
+         .replace(/\bI_P\b/g, 'I_{\\text{P}}')
+         .replace(/\bT_K\b/g, 'T_{\\text{K}}')
+         .replace(/\bT_C\b/g, 'T_{\\text{C}}');
+
+    // General multi-letter subscript: X_word -> X_{\text{word}}
+    s = s.replace(/\b([A-Za-z])_([a-zA-Z]{2,})\b/g, '$1_{\\text{$2}}');
+
+    // Unicode digit subscripts (P₁ -> P_1, V₁ -> V_1, etc.)
+    const subMap = { '₀': '_0', '₁': '_1', '₂': '_2', '₃': '_3', '₄': '_4', '₅': '_5', '₆': '_6', '₇': '_7', '₈': '_8', '₉': '_9' };
+    s = s.replace(/([A-Za-z])([₀₁₂₃₄₅₆₇₈₉])/g, (m, v, sub) => v + subMap[sub]);
+
+    // 6. Unicode superscripts and caret exponents (10⁻²¹ -> 10^{-21}, 10²⁴ -> 10^{24}, m³ -> m^3)
+    const supMap = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁺': '+', '⁻': '-' };
+    s = s.replace(/([0-9a-zA-Z\)])([⁻⁺]?[⁰¹²³⁴⁵⁶⁷⁸⁹]+)/g, (match, base, sups) => {
+        let converted = '';
+        for (let char of sups) {
+            converted += supMap[char] || char;
+        }
+        return `${base}^{${converted}}`;
+    });
+    // Standard caret exponents: 10^-21 -> 10^{-21}
+    s = s.replace(/10\^(-?[0-9]+)/g, '10^{$1}');
+    s = s.replace(/([a-zA-Z0-9])\^(-?[0-9]+)/g, '$1^{$2}');
+
+    // 7. Square roots: √(3RT / M) -> \sqrt{\frac{3RT}{M}}, √(3 k_B T / m_0) -> \sqrt{\frac{3k_{\text{B}} T}{m_0}}
+    s = s.replace(/√\s*\[\s*([^\]]+)\s*\]/g, (m, inside) => `\\sqrt{${cleanMathExpr(inside)}}`);
+    s = s.replace(/√\s*\(\s*([^)]+)\s*\)/g, (m, inside) => `\\sqrt{${cleanMathExpr(inside)}}`);
+    s = s.replace(/√\s*([A-Za-z0-9_]+)/g, '\\sqrt{$1}');
+    s = s.replace(/\bsqrt\s*\(\s*([^)]+)\s*\)/g, (m, inside) => `\\sqrt{${cleanMathExpr(inside)}}`);
+
+    // 8. Fractions:
+    s = s.replace(/\(\s*2\s*\/\s*3\s*\)/g, '\\frac{2}{3}');
+    s = s.replace(/\(\s*3\s*\/\s*2\s*\)/g, '\\frac{3}{2}');
+    s = s.replace(/\(\s*1\s*\/\s*2\s*\)/g, '\\frac{1}{2}');
+    s = s.replace(/\(\s*4\s*\/\s*3\s*\)/g, '\\frac{4}{3}');
+    s = s.replace(/\(\s*N\s*\/\s*V\s*\)/g, '\\left(\\frac{N}{V}\\right)');
+    s = s.replace(/\(\s*V_1\s*\/\s*V_2\s*\)/g, '\\left(\\frac{V_1}{V_2}\\right)');
+    s = s.replace(/\(\s*T_2\s*\/\s*T_1\s*\)/g, '\\left(\\frac{T_2}{T_1}\\right)');
+    s = s.replace(/\(\s*P_1\s*\/\s*P_2\s*\)/g, '\\left(\\frac{P_1}{P_2}\\right)');
+    s = s.replace(/\(\s*P_2\s*\/\s*P_1\s*\)/g, '\\left(\\frac{P_2}{P_1}\\right)');
+    s = s.replace(/\(\s*400\s*\/\s*300\s*\)/g, '\\left(\\frac{400}{300}\\right)');
+    s = s.replace(/\(\s*450\s*\/\s*300\s*\)/g, '\\left(\\frac{450}{300}\\right)');
+
+    s = s.replace(/\b3RT\s*\/\s*M\b/g, '\\frac{3RT}{M}');
+    s = s.replace(/3k_{\\text\{B\}}\s*T\s*\/\s*m_0/g, '\\frac{3k_{\\text{B}} T}{m_0}');
+    s = s.replace(/3\s*k_B\s*T\s*\/\s*m_0/g, '\\frac{3k_{\\text{B}} T}{m_0}');
+    s = s.replace(/3P\s*\/\s*\\rho/g, '\\frac{3P}{\\rho}');
+    s = s.replace(/\bm\s*\/\s*M\b/g, '\\frac{m}{M}');
+    s = s.replace(/N\s*\/\s*N_{\\text\{A\}}/g, '\\frac{N}{N_{\\text{A}}}');
+    s = s.replace(/N\s*\/\s*V/g, '\\frac{N}{V}');
+    s = s.replace(/M\s*\/\s*N_{\\text\{A\}}/g, '\\frac{M}{N_{\\text{A}}}');
+
+    if (/^\s*([0-9]+)\s*\/\s*([0-9]+)\s*$/.test(s)) {
+        s = s.replace(/^\s*([0-9]+)\s*\/\s*([0-9]+)\s*$/, '\\frac{$1}{$2}');
+    }
+
+    // 9. Degrees: 90° -> 90^\circ, 27 °C -> 27\,^\circ\text{C}
+    s = s.replace(/([0-9]+(?:\.[0-9]+)?)\s*°\s*C\b/g, '$1\\,^\\circ\\text{C}');
+    s = s.replace(/([0-9]+(?:\.[0-9]+)?)\s*°/g, '$1^\\circ');
+
+    // 10. Large numbers with commas in math: 80,000 -> 80{,}000
+    s = s.replace(/\b([0-9]{1,3}),([0-9]{3})\b/g, '$1{,}$2');
+
+    // 11. SI Units formatting in values:
+    const unitRegex = /\b(kPa|Pa|kJ|J|m\/s|m\^3|m\^2|dm\^3|cm\^3|mL|L|kg\/mol|kg\/m\^3|kg|mol\^\{-1\}|mol|J\/\(mol\\cdot K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K)\b/g;
+    s = s.replace(new RegExp(`((?:\\d+(?:\\.\\d+)?(?:\\s*\\\\times\\s*10\\^\\{-?\\d+\\})?|\\b10\\^\\{-?\\d+\\}))\\s*${unitRegex.source}`, 'g'), (m, num, u) => {
+        let cleanU = u;
+        if (cleanU === 'm^3') cleanU = '\\text{m}^3';
+        else if (cleanU === 'm^2') cleanU = '\\text{m}^2';
+        else if (cleanU === 'dm^3') cleanU = '\\text{dm}^3';
+        else if (cleanU === 'cm^3') cleanU = '\\text{cm}^3';
+        else if (cleanU === 'mol^{-1}') cleanU = '\\text{mol}^{-1}';
+        else if (cleanU === 'kg/m^3') cleanU = '\\text{kg/m}^3';
+        else if (cleanU === 'J/(mol\\cdot K)') cleanU = '\\text{J/(mol}\\cdot\\text{K)}';
+        else cleanU = `\\text{${cleanU}}`;
+        return `${num}\\,${cleanU}`;
+    });
+
+    return s;
+}
+
+function isPlainTextOption(text) {
+    const t = (text || '').trim();
+    if (!t) return true;
+    if (t.includes('\\(') || t.includes('\\[') || t.includes('$$')) return false;
+    if (/[0-9×·=≈≠≤≥∝±√°_^\/\\]/.test(t)) return false;
+    if (/[₀₁₂₃₄₅₆₇₈₉⁰¹²³⁴⁵⁶⁷⁸⁹]/.test(t)) return false;
+    if (/[ΔθμρλωγαβπΩφ]/.test(t)) return false;
+    if (/\b(K_av|v_rms|k_B|m_0|m₀|v̄|N_A)\b/.test(t)) return false;
+    if (/^[A-Za-z]$/.test(t)) return false;
+    return true;
+}
+
+function formatInlineOrBlockMath(str, options = {}) {
+    if (!str) return '';
+    let text = String(str).trim();
+    if (!text) return '';
+
+    // Step 1: Extract any existing LaTeX math delimiters into placeholders
+    const placeholders = [];
+    text = text.replace(/\\\[([\s\S]*?)\\\]/g, (m, inner) => {
+        const id = `@@MATH_BLOCK_${placeholders.length}@@`;
+        placeholders.push(`\\[ ${cleanMathExpr(inner)} \\]`);
+        return id;
+    });
+    text = text.replace(/\$\$([\s\S]*?)\$\$/g, (m, inner) => {
+        const id = `@@MATH_BLOCK_${placeholders.length}@@`;
+        placeholders.push(`\\[ ${cleanMathExpr(inner)} \\]`);
+        return id;
+    });
+    text = text.replace(/\\\(([\s\S]*?)\\\)/g, (m, inner) => {
+        const id = `@@MATH_INLINE_${placeholders.length}@@`;
+        placeholders.push(`\\( ${cleanMathExpr(inner)} \\)`);
+        return id;
+    });
+
+    // Step 2: Handle quiz options
+    if (options.isOption) {
+        if (isPlainTextOption(text)) {
+            placeholders.forEach((val, idx) => {
+                text = text.replace(new RegExp(`@@MATH_(?:BLOCK|INLINE)_${idx}@@`, 'g'), val);
+            });
+            return text;
+        }
+        let cleaned = cleanMathExpr(text);
+        placeholders.forEach((val, idx) => {
+            cleaned = cleaned.replace(new RegExp(`@@MATH_(?:BLOCK|INLINE)_${idx}@@`, 'g'), val);
+        });
+        if (cleaned.startsWith('\\(') && cleaned.endsWith('\\)')) return cleaned;
+        return `\\( ${cleaned} \\)`;
+    }
+
+    // Step 3: Check if the entire remaining string is an isolated formula or equation
+    const isPureFormula = /^[A-Za-z0-9_₀₁₂₃₄₅₆₇₈₉\(\)\{\}\\\/ΔθμρλωγαβπΩ\s]*[=≈≠≤≥∝<>]/.test(text) && 
+                          !/\b(the|is|are|was|were|what|calculate|determine|find|under|if|when|where|which|assume|conditions|impact|collision)\b/i.test(text);
+
+    if (isPureFormula) {
+        let cleaned = cleanMathExpr(text);
+        placeholders.forEach((val, idx) => {
+            cleaned = cleaned.replace(new RegExp(`@@MATH_(?:BLOCK|INLINE)_${idx}@@`, 'g'), val);
+        });
+        if (cleaned.startsWith('\\(') && cleaned.endsWith('\\)')) return cleaned;
+        return `\\( ${cleaned} \\)`;
+    }
+
+    // Step 4: Prose with embedded formulas, scientific notations, and physical quantities
+    // A. Embedded equations: e.g. "K_av = 6.0 × 10⁻²¹ J", "P = (2/3)(N / V) K_av", "V = 0.050 m³"
+    text = text.replace(/\b([A-Za-zΔθμρλωγαβπΩ_0-9\(\)\{\}\\\/]+(?:_[a-zA-Z0-9]+)?)\s*([=≈≠≤≥∝]|&lt;|&gt;|<|>)\s*([^\s,;:?\n\r\(\)]+(?:\s*(?:×|\btimes\b|\/|\+|-|\*|·)\s*[^\s,;:?\n\r\(\)]+)*(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K|°C))?)(?=[,;:?\s]|$|\))/g, (m, left, op, right) => {
+        const fullExpr = `${left} ${op} ${right}`;
+        const cleaned = cleanMathExpr(fullExpr);
+        return `\\( ${cleaned} \\)`;
+    });
+
+    // B. Scientific notations: e.g. "5.0 × 10²²", "1.0 × 10²⁴"
+    text = text.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?\s*(?:×|\btimes\b)\s*10\^?\{?-?[0-9]+\}?(?:\s*(?:kPa|Pa|kJ|J|m\/s|m³|m²|dm³|cm³|mL|L|kg\/mol|kg\/m³|kg|mol⁻¹|mol|J\/\(mol[·\.]K\)|J\/K|atm|bar|mmHg|kW|W|kV|V|mA|A|Hz|T|K))?)\b(?![^()]*\))/g, (m, sn) => {
+        return `\\( ${cleanMathExpr(sn)} \\)`;
+    });
+
+    // C. Quantities with units: e.g. "0.050 m³", "80 kPa", "500 m/s", "27 °C"
+    text = text.replace(/(?<!\\\(.*?)\b([0-9]+(?:\.[0-9]+)?)\s*(kPa|Pa|kJ|m\/s|m³|m²|dm³|cm³|kg\/mol|kg\/m³|mol⁻¹|J\/\(mol[·\.]K\)|J\/K|mmHg|°\s*C)\b(?![^()]*\))/g, (m, num, u) => {
+        return `\\( ${cleanMathExpr(`${num} ${u}`)} \\)`;
+    });
+
+    // D. Standalone physics symbols/variables: e.g. "K_av", "v_rms", "k_B", "m₀", "v̄"
+    text = text.replace(/(?<!\\\(.*?)\b(K_av|v_rms|k_B|m₀|N_A|P_inel|P_elast|v̄)\b(?![^()]*\))/g, (m, sym) => {
+        return `\\( ${cleanMathExpr(sym)} \\)`;
+    });
+
+    // E. Degrees: e.g. "90°", "45°"
+    text = text.replace(/(?<!\\\(.*?)\b([0-9]+)\s*°(?!\s*C)\b(?![^()]*\))/g, (m, deg) => {
+        return `\\( ${deg}^\\circ \\)`;
+    });
+
+    // Step 5: Restore all original placeholders
+    placeholders.forEach((val, idx) => {
+        text = text.replace(new RegExp(`@@MATH_(?:BLOCK|INLINE)_${idx}@@`, 'g'), val);
+    });
+
+    // Clean up any double math wrappers like \( \( ... \) \)
+    text = text.replace(/\\\(\s*\\\(\s*([\s\S]*?)\s*\\\)\s*\\\)/g, '\\( $1 \\)');
+
+    return text;
+}
+
+// Formatter specifically built for Quiz questions, options, feedback, and Flashcard fronts/backs
+function formatQuizAndFlashcardMath(val, options = {}) {
+    if (val === null || val === undefined) return '';
+    let str = String(val).trim();
+    if (!str) return '';
+
+    // Protect currency numbers like $0.20 or $50 from triggering MathJax inline math
+    str = str.replace(/\$([0-9]+(?:\.[0-9]{2})?)/g, '&#36;$1');
+
+    // Handle feedback with numbered multi-step solutions
+    if (options.isFeedback || /^\s*\d+\.\s+[A-Za-z\s]+:/m.test(str)) {
+        return formatFeedbackText(str);
+    }
+
+    return formatInlineOrBlockMath(str, options);
+}
+
+function formatFeedbackText(str) {
+    let lines = [];
+    if (str.includes('\n')) {
+        lines = str.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    } else {
+        lines = str.split(/(?=\b\d+\.\s+[A-Za-z\s]+:)/).map(l => l.trim()).filter(Boolean);
+    }
+
+    const formattedLines = lines.map(line => {
+        const headerMatch = line.match(/^(\d+\.\s+[A-Za-z\s]+:)\s*(.*)$/);
+        if (headerMatch) {
+            const header = headerMatch[1];
+            const body = headerMatch[2];
+            const formattedBody = formatInlineOrBlockMath(body);
+            return `<div class="quiz-feedback-step"><strong class="quiz-feedback-step-title">${header}</strong> ${formattedBody}</div>`;
+        }
+        return `<div class="quiz-feedback-step">${formatInlineOrBlockMath(line)}</div>`;
+    });
+
+    return formattedLines.join('');
 }
 
 // Helper to ensure math formulas and expressions are recognized and rendered by MathJax
@@ -6508,8 +6806,8 @@ function updateFlashcard() {
     card.classList.remove('flipped');
     const fc = currentLesson.flashcards[currentFlashcardIndex];
     if (!fc) return;
-    front.innerText = fc.front || '';
-    back.innerHTML = fc.back || '';
+    front.innerHTML = formatQuizAndFlashcardMath(fc.front || '');
+    back.innerHTML = formatQuizAndFlashcardMath(fc.back || '');
     counter.innerText = `${currentFlashcardIndex + 1} / ${currentLesson.flashcards.length}`;
     typesetMath([front, back]);
 }
@@ -6570,7 +6868,7 @@ function loadQuizQuestion() {
     if (progressEl) progressEl.innerText = `Question ${currentQuizIndex + 1} of ${currentLesson.quiz.length}`;
     
     const qTextEl = document.getElementById('quiz-question-text');
-    if (qTextEl) qTextEl.innerHTML = q.question || '';
+    if (qTextEl) qTextEl.innerHTML = formatQuizAndFlashcardMath(q.question || '');
     
     const optionsContainer = document.getElementById('quiz-options');
     if (optionsContainer) {
@@ -6578,7 +6876,7 @@ function loadQuizQuestion() {
         (q.options || []).forEach((opt, idx) => {
             const btn = document.createElement('button');
             btn.className = 'quiz-option';
-            btn.innerHTML = opt;
+            btn.innerHTML = formatQuizAndFlashcardMath(opt, { isOption: true });
             btn.addEventListener('click', () => handleQuizAnswer(idx, btn));
             optionsContainer.appendChild(btn);
         });
@@ -6610,7 +6908,7 @@ function handleQuizAnswer(selectedIndex, btnElement) {
     const feedbackEl = document.getElementById('quiz-feedback');
     if (feedbackEl) {
         feedbackEl.classList.remove('hidden');
-        feedbackEl.innerHTML = q.feedback || '';
+        feedbackEl.innerHTML = formatQuizAndFlashcardMath(q.feedback || '', { isFeedback: true });
         if (selectedIndex === q.correctIndex) {
             quizScore++;
             feedbackEl.classList.add('correct-feedback');
@@ -6838,6 +7136,11 @@ window.initEbookUI = renderEbook;
 window.physicsData = (typeof window !== 'undefined' && window.physicsData && window.physicsData["12"] && window.physicsData["12"].length >= 10) ? window.physicsData : data;
 window.appData = window.physicsData;
 window.__appLoaded = true;
+
+window.typesetMath = typesetMath;
+window.cleanMathExpr = cleanMathExpr;
+window.isPlainTextOption = isPlainTextOption;
+window.formatQuizAndFlashcardMath = formatQuizAndFlashcardMath;
 
 window.copyEqLatex = window.copyEqLatex || function(btn, latex) {
     if (!latex) return;
