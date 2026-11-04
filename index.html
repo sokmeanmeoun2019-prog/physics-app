@@ -26,7 +26,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=6.2&build=202611020600">
+    <link rel="stylesheet" href="styles.css?v=6.5&build=202611041945">
     <style>
         .view.active {
             display: block !important;
@@ -3244,7 +3244,7 @@
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 39 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 7 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
-                        '<a href="#grade9-diploma-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#ccfbf1; color:#0f766e; border:1px solid #99f6e4; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById(\'grade9-diploma-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-award"></i> Diploma Section ↓</a>';
+                        '<a href="#grade9-diploma-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#ccfbf1; color:#0f766e; border:1px solid #99f6e4; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById(\'grade9-diploma-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-award"></i> Diploma & KH-Phy Section ↓</a>';
                 }
             } else if (g === '10') {
                 if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-rocket"></i> Grade 10 • Classical Mechanics & Kinematics';
@@ -3292,6 +3292,7 @@
                 title: 'Mock Junior High School National Exam – Physics Grade 9',
                 subtitle: 'Western International School Mock Exam Prep • 14 Pages',
                 type: 'Preparation & Practice',
+                category: 'national',
                 year: 'Diploma Mock Prep',
                 pages: 14,
                 description: 'Comprehensive mock examination problem sets and revision exercises covering forces, turning effect, simple machines, electricity, and optics for Grade 9 National Diploma preparation.',
@@ -3303,13 +3304,75 @@
                 title: 'National Diploma Physics Examination Papers (2016–2021)',
                 subtitle: 'Official Past National Exam Papers & Complete Solutions • 29 Pages',
                 type: 'Official Past Exam',
+                category: 'national',
                 year: 'National Diploma (2016–2021)',
                 pages: 29,
                 description: 'Official National Diploma physics examination papers and real sample problem sets with step-by-step solutions and scoring keys.',
                 url: 'exams/g9-diploma-exam.pdf.pdf',
                 altUrl: 'exams/g9-diploma-exam.pdf'
+            },
+            {
+                id: 'g9-kh-phy-diploma-exam',
+                title: 'KH-Phy Diploma – National Khmer Physics Examination Papers',
+                subtitle: 'Official Past National Diploma Papers & Complete Solutions • Khmer Medium',
+                type: 'KH-Phy Past Exam',
+                category: 'kh-phy',
+                year: 'KH-Phy Diploma',
+                pages: 29,
+                description: 'Official Grade 9 Khmer Physics (KH-Phy) National Diploma examination papers, problem sets, and complete step-by-step answers in Khmer curriculum format.',
+                url: 'exams/g9-kh-phy-diploma.pdf',
+                altUrl: 'exams/g9-kh-phy-diploma.pdf.pdf',
+                aliases: [
+                    'exams/g9-kh-phy-diploma.pdf.pdf',
+                    'exams/g9-kh-phy-diploma-exam.pdf',
+                    'exams/g9-kh-phy-diploma-exam.pdf.pdf',
+                    'exams/kh-phy-diploma.pdf',
+                    'exams/kh-phy-diploma.pdf.pdf',
+                    'exams/KH-Phy Diploma.pdf',
+                    'exams/KH-Phy%20Diploma.pdf',
+                    'exams/KH-Phy-Diploma.pdf',
+                    'exams/g9-kh-phy.pdf',
+                    'exams/kh-phy.pdf'
+                ],
+                fallbackUrl: 'exams/g9-diploma-exam.pdf.pdf'
+            },
+            {
+                id: 'g9-kh-phy-diploma-prep',
+                title: 'KH-Phy Diploma – Intensive Preparation & Practice Problem Sets',
+                subtitle: 'Comprehensive Practice Worksheets & Problem Sets • Grade 9 Diploma',
+                type: 'Preparation & Practice',
+                category: 'kh-phy',
+                year: 'KH-Phy Mock Prep',
+                pages: 14,
+                description: 'Comprehensive Khmer Physics Diploma mock exam problem sets, formula applications, and sample test questions for junior high school diploma candidates.',
+                url: 'exams/g9-kh-phy-diploma-prep.pdf',
+                altUrl: 'exams/g9-kh-phy-diploma-prep.pdf.pdf',
+                aliases: [
+                    'exams/g9-kh-phy-diploma-prep.pdf.pdf',
+                    'exams/g9-kh-phy-prep.pdf',
+                    'exams/g9-kh-phy-prep.pdf.pdf',
+                    'exams/kh-phy-prep.pdf',
+                    'exams/kh-phy-prep.pdf.pdf',
+                    'exams/KH-Phy Diploma Prep.pdf',
+                    'exams/KH-Phy%20Diploma%20Prep.pdf',
+                    'exams/KH-Phy-Prep.pdf',
+                    'exams/kh-phy-mock.pdf'
+                ],
+                fallbackUrl: 'exams/g9-diploma-prep.pdf.pdf'
             }
         ];
+
+        window.GRADE9_KH_PHY_DIPLOMA_RESOURCES = window.GRADE9_DIPLOMA_RESOURCES.filter(function(r) {
+            return r.category === 'kh-phy';
+        });
+
+        window.activeDiplomaCategory = 'all';
+
+        function filterDiplomaCategory(cat) {
+            window.activeDiplomaCategory = cat || 'all';
+            renderDiplomaContent();
+        }
+        window.filterDiplomaCategory = filterDiplomaCategory;
 
         window.GRADE12_BACII_RESOURCES = [
             {
@@ -3364,20 +3427,28 @@
 
         function renderDiplomaContent() {
             var list = window.GRADE9_DIPLOMA_RESOURCES || [];
-            var itemsHtml = '';
-            if (!list || list.length === 0) {
-                itemsHtml = '<div class="exam-empty-state">' +
-                    '<div class="exam-empty-icon"><i class="fa-regular fa-folder-open"></i></div>' +
-                    '<h3 class="exam-empty-title">Diploma Section Ready</h3>' +
-                    '<p class="exam-empty-text">No examination documents or past papers have been published yet. Official Grade 9 National Diploma examination papers, past problem sets, and revision resources will appear here once published by the administrator.</p>' +
-                    '<span class="exam-admin-tag"><i class="fa-solid fa-user-shield"></i> Administrator Managed</span>' +
-                '</div>';
-            } else {
-                itemsHtml = '<div class="exam-resources-grid">' +
-                    list.map(function(item) {
-                        return '<div class="exam-resource-card">' +
+            var currentCat = window.activeDiplomaCategory || 'all';
+
+            var nationalItems = list.filter(function(item) { return item.category !== 'kh-phy'; });
+            var khPhyItems = list.filter(function(item) { return item.category === 'kh-phy'; });
+
+            function renderCardsGrid(items) {
+                if (!items || items.length === 0) {
+                    return '<div class="exam-empty-state" style="padding: 2rem 1rem;">' +
+                        '<div class="exam-empty-icon" style="width:48px; height:48px; font-size:1.4rem;"><i class="fa-regular fa-folder-open"></i></div>' +
+                        '<h4 class="exam-empty-title" style="font-size:1.05rem;">Section Documents Ready</h4>' +
+                        '<p class="exam-empty-text" style="font-size:0.86rem;">Examination papers will appear here once published by the administrator.</p>' +
+                    '</div>';
+                }
+                return '<div class="exam-resources-grid">' +
+                    items.map(function(item) {
+                        var isKh = (item.category === 'kh-phy');
+                        var badgeText = isKh 
+                            ? '<i class="fa-solid fa-file-signature"></i> ' + (item.type || 'KH-Phy Paper') 
+                            : '<i class="fa-solid fa-file-pdf"></i> ' + (item.type || 'Exam Paper');
+                        return '<div class="exam-resource-card' + (isKh ? ' kh-phy-card' : '') + '">' +
                             '<div class="exam-resource-top">' +
-                                '<span class="exam-resource-type"><i class="fa-solid fa-file-pdf"></i> ' + (item.type || 'Exam Paper') + '</span>' +
+                                '<span class="exam-resource-type" style="color:#0d9488;">' + badgeText + '</span>' +
                                 (item.year ? '<span class="exam-resource-year">' + item.year + '</span>' : '') +
                             '</div>' +
                             '<h4 class="exam-resource-title">' + (item.title || 'Diploma Resource') + '</h4>' +
@@ -3391,8 +3462,38 @@
                 '</div>';
             }
 
+            var filterBarHtml = '<div class="exam-category-bar">' +
+                '<span style="font-weight:700; font-size:0.88rem; color:#0f766e; display:inline-flex; align-items:center; gap:6px;"><i class="fa-solid fa-filter"></i> Category:</span>' +
+                '<button type="button" class="exam-cat-pill' + (currentCat === 'all' ? ' active' : '') + '" onclick="filterDiplomaCategory(\'all\')"><i class="fa-solid fa-layer-group"></i> All Diploma Resources (' + list.length + ')</button>' +
+                '<button type="button" class="exam-cat-pill' + (currentCat === 'national' ? ' active' : '') + '" onclick="filterDiplomaCategory(\'national\')"><i class="fa-solid fa-award"></i> National Diploma (' + nationalItems.length + ')</button>' +
+                '<button type="button" class="exam-cat-pill' + (currentCat === 'kh-phy' ? ' active' : '') + '" onclick="filterDiplomaCategory(\'kh-phy\')"><i class="fa-solid fa-file-signature"></i> KH-Phy Diploma (' + khPhyItems.length + ')</button>' +
+            '</div>';
+
+            var contentHtml = '';
+            if (currentCat === 'all' || currentCat === 'national') {
+                contentHtml += '<div class="exam-subsection" id="sub-section-national-diploma">' +
+                    '<div class="exam-subsection-header">' +
+                        '<div class="exam-subsection-title"><i class="fa-solid fa-award"></i> National Diploma Examination Papers</div>' +
+                        '<div class="exam-subsection-desc">Official past national examination papers, problem sets, and mock prep in the general curriculum.</div>' +
+                    '</div>' +
+                    renderCardsGrid(nationalItems) +
+                '</div>';
+            }
+            if (currentCat === 'all' || currentCat === 'kh-phy') {
+                contentHtml += '<div class="exam-subsection" id="sub-section-kh-phy-diploma">' +
+                    '<div class="exam-subsection-header">' +
+                        '<span class="exam-section-badge badge-kh-phy"><i class="fa-solid fa-star"></i> Dedicated Khmer Curriculum</span>' +
+                        '<div class="exam-subsection-title"><i class="fa-solid fa-file-signature"></i> KH-Phy Diploma</div>' +
+                        '<div class="exam-subsection-desc">Dedicated Grade 9 Khmer Physics (KH-Phy) National Diploma examination papers, problem sets, and scoring solutions. Protected view-only documents.</div>' +
+                    '</div>' +
+                    renderCardsGrid(khPhyItems) +
+                '</div>';
+            }
+
+            var fullHtml = filterBarHtml + contentHtml;
+
             var container = document.getElementById('diploma-resources-container');
-            if (container) container.innerHTML = itemsHtml;
+            if (container) container.innerHTML = fullHtml;
 
             var tabContainer = document.getElementById('tab-diploma-content');
             if (tabContainer) {
@@ -3401,10 +3502,10 @@
                         '<div class="exam-header-left">' +
                             '<span class="exam-section-badge badge-diploma"><i class="fa-solid fa-award"></i> National Examination Preparation</span>' +
                             '<h2 class="exam-section-title"><i class="fa-solid fa-certificate"></i> Diploma Section</h2>' +
-                            '<p class="exam-section-desc">Official Grade 9 National Diploma examination papers, past problem sets, and revision resources. Protected view-only documents.</p>' +
+                            '<p class="exam-section-desc">Official Grade 9 National Diploma examination papers, KH-Phy Diploma resources, and revision problem sets. Protected view-only documents.</p>' +
                         '</div>' +
                     '</div>' +
-                    itemsHtml +
+                    fullHtml +
                 '</div>';
             }
         }
@@ -3680,6 +3781,7 @@
             }
             addCandidate(item.url);
             addCandidate(item.altUrl);
+            if (item.fallbackUrl) addCandidate(item.fallbackUrl);
             if (item.url) {
                 if (item.url.endsWith('.pdf.pdf')) {
                     addCandidate(item.url.slice(0, -4));
@@ -3693,6 +3795,27 @@
                     addCandidate('/' + item.url.slice(0, -4).replace(/^\//, ''));
                 }
             }
+            if (item.fallbackUrl) {
+                if (item.fallbackUrl.endsWith('.pdf.pdf')) {
+                    addCandidate(item.fallbackUrl.slice(0, -4));
+                } else if (item.fallbackUrl.endsWith('.pdf')) {
+                    addCandidate(item.fallbackUrl + '.pdf');
+                }
+                addCandidate('./' + item.fallbackUrl.replace(/^\.\//, ''));
+                addCandidate('/' + item.fallbackUrl.replace(/^\//, ''));
+            }
+            if (Array.isArray(item.aliases)) {
+                item.aliases.forEach(function(al) {
+                    addCandidate(al);
+                    if (al.endsWith('.pdf.pdf')) {
+                        addCandidate(al.slice(0, -4));
+                    } else if (al.endsWith('.pdf')) {
+                        addCandidate(al + '.pdf');
+                    }
+                    addCandidate('./' + al.replace(/^\.\//, ''));
+                    addCandidate('/' + al.replace(/^\//, ''));
+                });
+            }
 
             function preventCopy(e) {
                 neutralizePdfClipboard(e);
@@ -3705,7 +3828,7 @@
             modal.addEventListener('dragstart', preventCopy, true);
             modal.addEventListener('contextmenu', preventCopy, true);
 
-            function renderProtectedExamEmbed(docUrl, examItem) {
+            function renderProtectedExamEmbed(docUrl, examItem, candidateList) {
                 if (loading) loading.style.display = 'none';
                 if (prevBtn) prevBtn.style.display = 'none';
                 if (nextBtn) nextBtn.style.display = 'none';
@@ -3715,11 +3838,32 @@
                 if (pageInput) pageInput.disabled = true;
                 if (totalPagesEl) totalPagesEl.textContent = (examItem && examItem.pages) || '•';
 
-                var targetUrl = docUrl || (examItem && examItem.url) || 'exams/';
+                var targetList = Array.isArray(candidateList) && candidateList.length ? candidateList : (candidates.length ? candidates : [docUrl || examItem.url]);
+                var targetUrl = docUrl || targetList[0] || (examItem && examItem.url) || 'exams/';
                 var encodedSrc = encodeURI(targetUrl) + '#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
+                var iframeId = 'exam-protected-frame-' + Date.now();
                 mount.innerHTML = '<div class="exam-iframe-wrapper" style="width: 100%; height: 100%; min-height: 75vh; display: flex; flex-direction: column; position: relative;">' +
-                    '<iframe src="' + encodedSrc + '" class="pdf-protected-frame" style="width: 100%; height: 100%; min-height: 75vh; flex: 1; border: none; border-radius: 8px; background: #0f172a;" title="' + ((examItem && examItem.title) || 'Examination Document') + '" allowfullscreen></iframe>' +
+                    '<iframe id="' + iframeId + '" src="' + encodedSrc + '" class="pdf-protected-frame" style="width: 100%; height: 100%; min-height: 75vh; flex: 1; border: none; border-radius: 8px; background: #0f172a;" title="' + ((examItem && examItem.title) || 'Examination Document') + '" allowfullscreen></iframe>' +
                 '</div>';
+
+                var iframeEl = document.getElementById(iframeId);
+                if (iframeEl && targetList.length > 1) {
+                    var candidateIdx = 0;
+                    iframeEl.addEventListener('load', function() {
+                        try {
+                            if (iframeEl.contentDocument) {
+                                var docTxt = (iframeEl.contentDocument.body ? iframeEl.contentDocument.body.innerText : '') + (iframeEl.contentDocument.title || '');
+                                if (docTxt.indexOf('404') !== -1 || docTxt.indexOf('Cannot GET') !== -1 || docTxt.indexOf('Unauthorized') !== -1) {
+                                    candidateIdx++;
+                                    if (candidateIdx < targetList.length) {
+                                        var nextUrl = targetList[candidateIdx];
+                                        iframeEl.src = encodeURI(nextUrl) + '#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
+                                    }
+                                }
+                            }
+                        } catch(e) {}
+                    });
+                }
 
                 window.currentExamSession = {
                     pdfDoc: null,
@@ -3786,7 +3930,7 @@
                     }
 
                     if (!pdfjs) {
-                        renderProtectedExamEmbed(candidates[0] || item.url, item);
+                        renderProtectedExamEmbed(candidates[0] || item.url, item, candidates);
                         return;
                     }
 
@@ -3823,7 +3967,7 @@
                     }
 
                     if (!pdfDoc) {
-                        renderProtectedExamEmbed(candidates[0] || item.url, item);
+                        renderProtectedExamEmbed(candidates[0] || item.url, item, candidates);
                         return;
                     }
 
@@ -4146,7 +4290,7 @@
                 };
             } catch (outerErr) {
                 console.warn('PDF.js exam rendering encountered an error, falling back to protected embed:', outerErr);
-                renderProtectedExamEmbed(candidates[0] || item.url, item);
+                renderProtectedExamEmbed(candidates[0] || item.url, item, candidates);
             }
         })();
     };
@@ -7974,7 +8118,7 @@
                                 <i class="fa-solid fa-certificate"></i> Diploma Section
                             </h2>
                             <p class="exam-section-desc">
-                                Official Grade 9 National Diploma examination papers, past problem sets, and revision resources.
+                                Official Grade 9 National Diploma examination papers, KH-Phy Diploma resources, and revision problem sets.
                             </p>
                         </div>
                     </div>
@@ -8241,7 +8385,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=6.2&build=202611020600"></script>
-    <script src="app.js?v=6.2&build=202611020600" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=6.5&build=202611041945"></script>
+    <script src="app.js?v=6.5&build=202611041945" onerror="onAppJsError()"></script>
 </body>
 </html>

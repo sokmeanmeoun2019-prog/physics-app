@@ -690,12 +690,41 @@ const server = http.createServer(async (req, res) => {
     // Static File Serving & Streaming
     // ==========================================
     const relativePath = (pathname === '/' || pathname === '') ? 'index.html' : pathname.replace(/^\/+/, '');
-    const safePath = path.normalize(path.join(__dirname, relativePath));
+    let safePath = path.normalize(path.join(__dirname, relativePath));
 
     // Prevent directory traversal attacks
     if (!safePath.startsWith(__dirname)) {
         res.writeHead(403, { 'Content-Type': 'text/plain' });
         return res.end('403 Forbidden');
+    }
+
+    // Smart path resolution for PDF and exam files (handles .pdf vs .pdf.pdf and case variations)
+    if (!fs.existsSync(safePath)) {
+        if (safePath.endsWith('.pdf.pdf')) {
+            const single = safePath.slice(0, -4);
+            if (fs.existsSync(single)) safePath = single;
+        } else if (safePath.endsWith('.pdf')) {
+            const double = safePath + '.pdf';
+            if (fs.existsSync(double)) safePath = double;
+        }
+
+        const examsDir = path.join(__dirname, 'exams');
+        if (!fs.existsSync(safePath) && safePath.startsWith(examsDir) && fs.existsSync(examsDir)) {
+            try {
+                const reqBase = path.basename(safePath).toLowerCase();
+                const files = fs.readdirSync(examsDir);
+                for (const f of files) {
+                    const fLow = f.toLowerCase();
+                    if (fLow === reqBase ||
+                        fLow.replace(/\.pdf\.pdf$/, '.pdf') === reqBase.replace(/\.pdf\.pdf$/, '.pdf') ||
+                        fLow === reqBase + '.pdf' ||
+                        reqBase === fLow + '.pdf') {
+                        safePath = path.join(examsDir, f);
+                        break;
+                    }
+                }
+            } catch (e) {}
+        }
     }
 
     fs.stat(safePath, (err, stats) => {
