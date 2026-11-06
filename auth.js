@@ -20,6 +20,7 @@
 
     // List of revoked legacy passwords that must be rejected
     const REVOKED_OLD_PASSWORDS = [
+        '@Physics2026*!',
         '@Physics2026!',
         '@physics2026!',
         'Physics@2026',
@@ -33,7 +34,7 @@
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 7,
+        sharedPasswordVersion: 8,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };

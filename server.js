@@ -89,7 +89,7 @@ function loadOrInitAuthConfig() {
         console.warn('Could not read existing auth-config.json, re-initializing:', err.message);
     }
 
-    const defaultSharedPw = process.env.SHARED_PASSWORD || '@Physics2026*!';
+    const defaultSharedPw = process.env.SHARED_PASSWORD || '@Physics2026**!';
     const defaultAdminUsername = process.env.ADMIN_USERNAME || 'admin';
     const defaultAdminPw = process.env.ADMIN_PASSWORD || 'Teacher#PhyAdmin2026!';
 
@@ -103,7 +103,7 @@ function loadOrInitAuthConfig() {
             salt: sharedSalt,
             plainText: defaultSharedPw,
             isCustom: true,
-            version: 7,
+            version: 8,
             updatedAt: new Date().toISOString()
         },
         admin: {

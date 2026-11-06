@@ -33,7 +33,7 @@ git add -A
 
 echo.
 echo [2/3] Committing changes...
-git commit -m "Deploy v7.6: Strict @Physics2026*! password enforcement, admin credentials fix, 48-page diploma prep"
+git commit -m "Deploy v7.7: Activated @Physics2026**! shared password and updated cache busters"
 
 echo.
 echo [3/3] Pushing to GitHub (main branch)...
@@ -52,9 +52,8 @@ if %errorlevel% equ 0 (
     echo      - Open an Incognito Window (Ctrl + Shift + N)
     echo      - OR press Ctrl + Shift + R (Hard Refresh) on your site
     echo   3. Verify the blue badge at the top shows:
-    echo      "PHYSICS LEARNING HUB v7.6 (Active)"
-    echo   4. Old passwords (@Physics2026!) will be rejected!
-    echo      Enter the active password: @Physics2026*!
+    echo      "PHYSICS LEARNING HUB v7.7 (Active)"
+    echo   4. The required password is now: @Physics2026**!
     echo =======================================================
 ) else (
     echo.
