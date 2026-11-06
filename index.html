@@ -21,6 +21,15 @@
                 }
 
                 var currentVer = 7;
+                var LATEST_BUILD = '202611061940';
+                var storedBuild = localStorage.getItem('wis_build_ts');
+                if (storedBuild !== LATEST_BUILD) {
+                    localStorage.setItem('wis_build_ts', LATEST_BUILD);
+                    localStorage.removeItem('wis_persistent_student_session');
+                    localStorage.removeItem('wis_auth_shared_config');
+                    sessionStorage.clear();
+                }
+
                 var sess = localStorage.getItem('wis_persistent_student_session');
                 var conf = localStorage.getItem('wis_auth_shared_config');
 
@@ -63,7 +72,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=7.5&build=202611061925">
+    <link rel="stylesheet" href="styles.css?v=7.6&build=202611061940">
     <style>
         .view.active {
             display: block !important;
@@ -7700,7 +7709,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v7.6 (Active)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -8416,7 +8425,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=7.5&build=202611061925"></script>
-    <script src="app.js?v=7.5&build=202611061925" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=7.6&build=202611061940"></script>
+    <script src="app.js?v=7.6&build=202611061940" onerror="onAppJsError()"></script>
 </body>
 </html>

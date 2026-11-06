@@ -172,12 +172,11 @@
         const trimmed = enteredPw.trim();
 
         // 1. STRICT BLOCK: Revoked passwords permanently blocked across all cases
-        const revoked = [
-            'physics@2026', 'Physics@2026', 'Physics2026', 'physics2026',
-            '@physics2026!', '@Physics2026!', '@physics2026', '@Physics2026'
-        ];
-        if (revoked.includes(trimmed) || revoked.includes(trimmed.toLowerCase())) {
-            return false;
+        if (trimmed !== '@Physics2026*!') {
+            const low = trimmed.toLowerCase();
+            if (low.includes('physics2026') || low.includes('physics@2026') || trimmed.includes('@Physics2026')) {
+                return false;
+            }
         }
 
         // 2. Active shared student access password (strictly @Physics2026*!)
@@ -483,10 +482,12 @@
 
         // Strictly reject all old revoked passwords
         const enteredLower = password.toLowerCase();
-        if (enteredLower === 'physics@2026' || password === 'Physics2026' || password === '@Physics2026!' || enteredLower === '@physics2026!') {
-            showAlert(alertEl, alertTextEl, 'This previous password has been permanently revoked. Please enter the current password (@Physics2026*!).', true);
-            if (inputEl) inputEl.select();
-            return;
+        if (password !== '@Physics2026*!') {
+            if (enteredLower.includes('physics2026') || enteredLower.includes('physics@2026') || password.includes('@Physics2026')) {
+                showAlert(alertEl, alertTextEl, 'Old password revoked! The required password is now: @Physics2026*!', true);
+                if (inputEl) inputEl.select();
+                return;
+            }
         }
 
         hideAlert(alertEl);

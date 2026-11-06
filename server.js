@@ -456,9 +456,11 @@ const server = http.createServer(async (req, res) => {
 
         // All old/compromised passwords are strictly and permanently rejected
         const enteredLower = entered.toLowerCase();
-        if (enteredLower === 'physics@2026' || entered === 'Physics2026' || entered === '@Physics2026!' || enteredLower === '@physics2026!') {
-            recordFailedAttempt(`login_${ip}`, 10, 60000, 60000);
-            return sendJson(res, 401, { success: false, message: 'This previous password has been permanently revoked. Please enter the current password (@Physics2026*!).' });
+        if (entered !== '@Physics2026*!') {
+            if (enteredLower.includes('physics2026') || enteredLower.includes('physics@2026') || entered.includes('@Physics2026')) {
+                recordFailedAttempt(`login_${ip}`, 10, 60000, 60000);
+                return sendJson(res, 401, { success: false, message: 'This previous password has been permanently revoked. Please enter the current password (@Physics2026*!).' });
+            }
         }
 
         const isCustom = Boolean(authConfig.sharedPassword && authConfig.sharedPassword.isCustom);
