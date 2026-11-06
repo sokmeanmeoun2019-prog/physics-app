@@ -639,7 +639,7 @@ const server = http.createServer(async (req, res) => {
             return sendJson(res, 500, { success: false, message: 'Failed to persist password change to disk.' });
         }
 
-        // Automatically sync new password directly into auth.js for GitHub Pages
+        // Automatically sync new password directly into auth.js and index.html for GitHub Pages
         try {
             const authJsPath = path.join(__dirname, 'auth.js');
             if (fs.existsSync(authJsPath)) {
@@ -650,8 +650,20 @@ const server = http.createServer(async (req, res) => {
                 fs.writeFileSync(authJsPath, content, 'utf8');
                 console.log(`[AUTH] Synced new password to auth.js for GitHub Pages deploy.`);
             }
+
+            const indexPath = path.join(__dirname, 'index.html');
+            if (fs.existsSync(indexPath)) {
+                let indexHtml = fs.readFileSync(indexPath, 'utf8');
+                const ts = new Date().toISOString().replace(/\D/g, '').substring(0, 14);
+                indexHtml = indexHtml.replace(/var\s+LATEST_BUILD\s*=\s*'[^']*';/, `var LATEST_BUILD = '${ts}';`);
+                indexHtml = indexHtml.replace(/auth\.js\?v=[^"']*/g, `auth.js?v=${authConfig.sharedPassword.version}&build=${ts}`);
+                indexHtml = indexHtml.replace(/app\.js\?v=[^"']*/g, `app.js?v=${authConfig.sharedPassword.version}&build=${ts}`);
+                indexHtml = indexHtml.replace(/styles\.css\?v=[^"']*/g, `styles.css?v=${authConfig.sharedPassword.version}&build=${ts}`);
+                fs.writeFileSync(indexPath, indexHtml, 'utf8');
+                console.log(`[AUTH] Synced new build timestamp to index.html.`);
+            }
         } catch (syncErr) {
-            console.warn('[AUTH] Could not auto-sync auth.js:', syncErr.message);
+            console.warn('[AUTH] Could not auto-sync auth.js/index.html:', syncErr.message);
         }
 
         const isHttps = (req.headers['x-forwarded-proto'] === 'https' || Boolean(req.connection && req.connection.encrypted));

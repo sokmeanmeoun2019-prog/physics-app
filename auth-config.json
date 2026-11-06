@@ -1,16 +1,16 @@
 {
-  "sharedPassword": {
-    "plainText": "@Physics2026**!",
-    "version": 8,
-    "isCustom": true,
-    "updatedAt": "2026-11-06T20:45:00.000Z"
-  },
-  "admin": {
-    "username": "admin",
-    "plainText": "Teacher#PhyAdmin2026!",
-    "isCustom": true,
-    "updatedAt": "2026-11-06T18:00:00.000Z"
-  },
-  "sessionSecret": "4c9d8e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f",
-  "masterHostKey": "HOST-WIS-PHYSICS-2026-KEY"
+    "sharedPassword":  {
+                           "plainText":  "@Physics2026**!",
+                           "version":  8,
+                           "isCustom":  true,
+                           "updatedAt":  "2026-11-06T14:11:48.773Z"
+                       },
+    "admin":  {
+                  "username":  "admin",
+                  "plainText":  "Teacher#PhyAdmin2026!",
+                  "isCustom":  true,
+                  "updatedAt":  "2026-11-06T18:00:00.000Z"
+              },
+    "sessionSecret":  "4c9d8e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f",
+    "masterHostKey":  "HOST-WIS-PHYSICS-2026-KEY"
 }

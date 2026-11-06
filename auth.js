@@ -13,14 +13,13 @@
     // WIS PHYSICS LEARNING HUB - SHARED ACCESS PASSWORD CONFIGURATION
     // To change the password for GitHub Pages, update CURRENT_CUSTOM_SHARED_PW:
     // =========================================================================
-    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026*!';
+    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026**!';
     const DEFAULT_INITIAL_SHARED_PW = CURRENT_CUSTOM_SHARED_PW;
     const DEFAULT_ADMIN_USER = 'admin';
     const SALT_PEPPER = 'WIS_PHYSICS_SALT_v5_0';
 
     // List of revoked legacy passwords that must be rejected
     const REVOKED_OLD_PASSWORDS = [
-        '@Physics2026*!',
         '@Physics2026!',
         '@physics2026!',
         'Physics@2026',
@@ -97,13 +96,15 @@
 
     async function createPersistentStudentSession(version) {
         try {
-            const v = version || authState.sharedPasswordVersion || 5;
+            const v = version || authState.sharedPasswordVersion || 8;
             const randomId = Math.random().toString(36).substring(2) + Date.now().toString(36);
             const tokenSig = await hashStringSHA256(`student_auth_v${v}_${randomId}`, STUDENT_SESSION_PEPPER);
+            const pwFingerprint = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, 'WIS_SESSION_SALT');
             const sessionPayload = {
                 v: v,
                 id: randomId,
                 sig: tokenSig,
+                pwFingerprint: pwFingerprint,
                 createdAt: Date.now()
             };
             localStorage.setItem(PERSISTENT_SESSION_KEY, JSON.stringify(sessionPayload));
@@ -122,6 +123,13 @@
 
             // Session invalidation: If the administrator changed the shared password, version will not match!
             if (session.v !== activeVersion) {
+                localStorage.removeItem(PERSISTENT_SESSION_KEY);
+                return false;
+            }
+
+            // Invalidation when password is changed directly in code
+            const currentFingerprint = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, 'WIS_SESSION_SALT');
+            if (session.pwFingerprint && session.pwFingerprint !== currentFingerprint) {
                 localStorage.removeItem(PERSISTENT_SESSION_KEY);
                 return false;
             }
@@ -156,7 +164,15 @@
     (async function seedActiveCustomPassword() {
         try {
             const current = getLocalSharedConfig();
-            const REQUIRED_VER = authState.sharedPasswordVersion || 7;
+            const REQUIRED_VER = authState.sharedPasswordVersion || 8;
+            // If CURRENT_CUSTOM_SHARED_PW has changed, invalidate all existing sessions immediately
+            if (current && current.configuredPw && current.configuredPw !== CURRENT_CUSTOM_SHARED_PW) {
+                localStorage.removeItem('wis_auth_shared_config');
+                localStorage.removeItem('wis_persistent_student_session');
+                sessionStorage.removeItem('wis_student_session');
+                sessionStorage.removeItem('wis_session_version');
+            }
+
             // Re-seed if no config, older version, missing hash, or if CURRENT_CUSTOM_SHARED_PW has changed
             if (!current || !current.version || current.version < REQUIRED_VER || current.configuredPw !== CURRENT_CUSTOM_SHARED_PW || !current.hash) {
                 const salt = Math.random().toString(36).substring(2) + Date.now().toString(36);
@@ -187,9 +203,9 @@
             return false;
         }
 
-        // 3. Custom administrator-configured password (via hash in localStorage, only if version >= 7)
+        // 3. Custom administrator-configured password (via hash in localStorage, only if matches CURRENT_CUSTOM_SHARED_PW)
         const storedConfig = getLocalSharedConfig();
-        if (storedConfig && (storedConfig.isCustom !== false) && (storedConfig.version || 0) >= 7) {
+        if (storedConfig && (storedConfig.isCustom !== false) && storedConfig.configuredPw === CURRENT_CUSTOM_SHARED_PW) {
             if (storedConfig.hash && storedConfig.salt) {
                 const inputHash = await hashStringSHA256(trimmed, storedConfig.salt);
                 if (inputHash === storedConfig.hash) return true;
@@ -483,7 +499,7 @@
 
         // Reject old revoked passwords if entered
         if (REVOKED_OLD_PASSWORDS.includes(password) && password !== CURRENT_CUSTOM_SHARED_PW) {
-            showAlert(alertEl, alertTextEl, 'Old password revoked! The required password is now: ' + CURRENT_CUSTOM_SHARED_PW, true);
+            showAlert(alertEl, alertTextEl, 'This password has expired. Please enter the current password provided by your teacher.', true);
             if (inputEl) inputEl.select();
             return;
         }

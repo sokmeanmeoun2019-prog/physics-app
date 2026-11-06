@@ -1,12 +1,19 @@
 @echo off
-title Push All Files to GitHub
+title Push All Files to GitHub - WIS Physics Hub
 cd /d "%~dp0"
 echo =======================================================
 echo   WIS Physics Hub - 1-Click GitHub Updater
 echo =======================================================
 echo.
 
-:: 1. Ensure User Identity is Configured
+:: 1. Auto-synchronize credentials and generate fresh cache-busters
+echo [0/3] Synchronizing password and cache busters...
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0sync-credentials.ps1"
+if %errorlevel% neq 0 (
+    echo [WARNING] PowerShell sync had a warning, continuing with push...
+)
+
+:: 2. Ensure User Identity is Configured
 git config --global user.name "sokmeanmeoun2019-prog"
 for /f "tokens=*" %%a in ('git config user.email') do set CUR_EMAIL=%%a
 if "%CUR_EMAIL%"=="" (
@@ -19,7 +26,7 @@ if "%CUR_EMAIL%"=="" (
     )
 )
 
-:: 2. Ensure Remote Origin is Configured
+:: 3. Ensure Remote Origin is Configured
 git remote get-url origin >nul 2>&1
 if %errorlevel% neq 0 (
     echo.
@@ -28,12 +35,12 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-echo [1/3] Staging all files and folders (including large PDFs)...
+echo [1/3] Staging all updated files and folders...
 git add -A
 
 echo.
 echo [2/3] Committing changes...
-git commit -m "Deploy v7.7: Activated @Physics2026**! shared password and updated cache busters"
+git commit -m "Auto-Deploy: Updated password and refreshed cache busters"
 
 echo.
 echo [3/3] Pushing to GitHub (main branch)...
@@ -46,14 +53,12 @@ if %errorlevel% equ 0 (
     echo   SUCCESS! All updates have been pushed to GitHub.
     echo =======================================================
     echo.
-    echo   [IMPORTANT NEXT STEPS]
-    echo   1. GitHub Pages takes 1-2 minutes to build and deploy.
-    echo   2. Browsers cache old files! To see the update right now:
-    echo      - Open an Incognito Window (Ctrl + Shift + N)
-    echo      - OR press Ctrl + Shift + R (Hard Refresh) on your site
-    echo   3. Verify the blue badge at the top shows:
-    echo      "PHYSICS LEARNING HUB v7.7 (Active)"
-    echo   4. The required password is now: @Physics2026**!
+    echo   [IMPORTANT DEPLOYMENT NOTICE]
+    echo   1. GitHub Pages takes 60 to 90 seconds to deploy online.
+    echo   2. When opening your website, press Ctrl + F5
+    echo      or open an Incognito window (Ctrl + Shift + N)
+    echo      to ensure your browser loads the newest version.
+    echo   3. Your new password from auth.js is now active!
     echo =======================================================
 ) else (
     echo.
