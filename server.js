@@ -91,7 +91,7 @@ function loadOrInitAuthConfig() {
 
     const defaultSharedPw = process.env.SHARED_PASSWORD || '@Physics2026!';
     const defaultAdminUsername = process.env.ADMIN_USERNAME || 'admin';
-    const defaultAdminPw = process.env.ADMIN_PASSWORD || 'Admin@Physics2026!';
+    const defaultAdminPw = process.env.ADMIN_PASSWORD || 'Teacher#PhyAdmin2026!';
 
     const sharedSalt = crypto.randomBytes(32).toString('hex');
     const adminSalt = crypto.randomBytes(32).toString('hex');
@@ -103,7 +103,7 @@ function loadOrInitAuthConfig() {
             salt: sharedSalt,
             plainText: defaultSharedPw,
             isCustom: true,
-            version: 4,
+            version: 5,
             updatedAt: new Date().toISOString()
         },
         admin: {
@@ -111,6 +111,7 @@ function loadOrInitAuthConfig() {
             hash: hashPassword(defaultAdminPw, adminSalt),
             salt: adminSalt,
             plainText: defaultAdminPw,
+            isCustom: true,
             updatedAt: new Date().toISOString()
         },
         sessionSecret: sessionSecret
@@ -462,13 +463,14 @@ const server = http.createServer(async (req, res) => {
         }
 
         const isUserMatch = (username.trim() === authConfig.admin.username);
-        const defaultAdmin = process.env.ADMIN_PASSWORD || 'Admin@Physics2026!';
+        const defaultAdmin = process.env.ADMIN_PASSWORD || 'Teacher#PhyAdmin2026!';
         const isAdminCustom = Boolean(authConfig.admin && authConfig.admin.isCustom);
         const isHashMatch = verifyPassword(password.trim(), authConfig.admin.salt, authConfig.admin.hash, authConfig.admin.plainText);
         const isPwMatch = isAdminCustom ? isHashMatch : (isHashMatch || password.trim() === defaultAdmin);
 
         if (!isUserMatch || !isPwMatch) {
-            recordFailedAttempt(`admin_login_${ip}`, 5, 300000, 300000);
+            console.warn(`[SECURITY] Failed administrator authentication attempt from IP: ${ip} for user: "${username.trim()}"`);
+            recordFailedAttempt(`admin_login_${ip}`, 3, 900000, 900000);
             return sendJson(res, 401, { success: false, message: 'Invalid administrator credentials.' });
         }
 
@@ -517,7 +519,7 @@ const server = http.createServer(async (req, res) => {
             const u = String(body.adminUsername).trim();
             const p = String(body.adminPassword).trim();
             const isUserMatch = (u === authConfig.admin.username);
-            const defaultAdmin = process.env.ADMIN_PASSWORD || 'Admin@Physics2026!';
+            const defaultAdmin = process.env.ADMIN_PASSWORD || 'Teacher#PhyAdmin2026!';
             const isAdminCustom = Boolean(authConfig.admin && authConfig.admin.isCustom);
             const isHashMatch = verifyPassword(p, authConfig.admin.salt, authConfig.admin.hash, authConfig.admin.plainText);
             const isPwMatch = isAdminCustom ? isHashMatch : (isHashMatch || p === defaultAdmin);
@@ -587,7 +589,7 @@ const server = http.createServer(async (req, res) => {
             const u = String(body.adminUsername).trim();
             const p = String(body.adminPassword).trim();
             const isUserMatch = (u === authConfig.admin.username);
-            const defaultAdmin = process.env.ADMIN_PASSWORD || 'Admin@Physics2026!';
+            const defaultAdmin = process.env.ADMIN_PASSWORD || 'Teacher#PhyAdmin2026!';
             const isAdminCustom = Boolean(authConfig.admin && authConfig.admin.isCustom);
             const isHashMatch = verifyPassword(p, authConfig.admin.salt, authConfig.admin.hash, authConfig.admin.plainText);
             const isPwMatch = isAdminCustom ? isHashMatch : (isHashMatch || p === defaultAdmin);

@@ -4394,24 +4394,16 @@ body:not(.is-locked) #website-auth-gate {
     justify-content: center;
 }
 
-.auth-admin-link {
-    background: none;
-    border: none;
-    color: #64748b;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.35rem 0.75rem;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-}
-
-.auth-admin-link:hover {
-    color: #94a3b8;
-    background: rgba(255, 255, 255, 0.05);
+/* Administrator link permanently hidden from public lock screen */
+.auth-gate-footer,
+.auth-admin-link,
+#open-admin-login-btn {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
 }
 
 /* 6. Administrator Management Modal */

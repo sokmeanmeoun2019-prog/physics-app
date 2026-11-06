@@ -10,23 +10,33 @@
     <script>
         (function() {
             try {
+                var currentVer = 5;
                 var sess = localStorage.getItem('wis_persistent_student_session');
                 var conf = localStorage.getItem('wis_auth_shared_config');
                 if (sess) {
                     var s = JSON.parse(sess);
-                    var v = 4;
+                    var v = currentVer;
                     if (conf) {
                         var c = JSON.parse(conf);
                         if (c && c.version) v = c.version;
                     }
-                    if (s && s.v === v && s.sig) {
+                    if (s && s.v === v && s.v >= currentVer && s.sig) {
                         document.documentElement.classList.add('wis-pre-auth');
+                    } else {
+                        // Invalidate and evict all previous student & admin sessions immediately
+                        localStorage.removeItem('wis_persistent_student_session');
+                        localStorage.removeItem('wis_auth_admin_config');
+                        sessionStorage.removeItem('wis_student_session');
+                        sessionStorage.removeItem('wis_admin_session');
+                        sessionStorage.removeItem('wis_admin_token');
+                        sessionStorage.removeItem('wis_admin_auth_user');
+                        sessionStorage.removeItem('wis_admin_auth_pw');
                     }
                 }
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=6.5&build=202611041945">
+    <link rel="stylesheet" href="styles.css?v=7.0&build=202611061800">
     <style>
         .view.active {
             display: block !important;
@@ -7698,12 +7708,6 @@
                     <span><strong>Remember Me Active:</strong> You will remain logged in automatically on future visits.</span>
                 </div>
             </form>
-
-            <div class="auth-gate-footer">
-                <button type="button" id="open-admin-login-btn" class="auth-admin-link">
-                    <i class="fa-solid fa-lock"></i> Administrator Login
-                </button>
-            </div>
         </div>
     </div>
 
@@ -8385,7 +8389,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=6.5&build=202611041945"></script>
-    <script src="app.js?v=6.5&build=202611041945" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=7.0&build=202611061800"></script>
+    <script src="app.js?v=7.0&build=202611061800" onerror="onAppJsError()"></script>
 </body>
 </html>

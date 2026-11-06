@@ -2,13 +2,8 @@
  * WIS Physics Learning Hub - Universal Authentication Controller
  * 
  * Supports both:
- * 1. Node.js Express Backend Mode (/api/login, /api/admin/login, HttpOnly signed cookies)
+ * 1. Node.js Backend Mode (/api/login, /api/admin/login, HttpOnly signed cookies)
  * 2. Static / Browser / Live Server Mode (Web Crypto Salted Hashing, Session Invalidation)
- * 
- * Current Configuration:
- * - Shared Access Password: @Physics2026! (Updated by Administrator)
- * - Administrator Username: admin
- * - Administrator Password: Admin@Physics2026!
  */
 
 (function () {
@@ -17,14 +12,13 @@
     const DEFAULT_INITIAL_SHARED_PW = 'Physics@2026';
     const CURRENT_CUSTOM_SHARED_PW = '@Physics2026!';
     const DEFAULT_ADMIN_USER = 'admin';
-    const DEFAULT_ADMIN_PW = 'Admin@Physics2026!';
     const SALT_PEPPER = 'WIS_PHYSICS_SALT_v5_0';
 
     // Application Auth State
     const authState = {
         isAuthenticated: false,
         isAdmin: false,
-        sharedPasswordVersion: 4,
+        sharedPasswordVersion: 5,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
@@ -77,7 +71,7 @@
 
     async function createPersistentStudentSession(version) {
         try {
-            const v = version || authState.sharedPasswordVersion || 4;
+            const v = version || authState.sharedPasswordVersion || 5;
             const randomId = Math.random().toString(36).substring(2) + Date.now().toString(36);
             const tokenSig = await hashStringSHA256(`student_auth_v${v}_${randomId}`, STUDENT_SESSION_PEPPER);
             const sessionPayload = {
@@ -142,7 +136,7 @@
                 localStorage.setItem('wis_auth_shared_config', JSON.stringify({
                     hash: hash,
                     salt: salt,
-                    version: 4,
+                    version: 5,
                     isCustom: true,
                     updatedAt: new Date().toISOString()
                 }));
@@ -153,7 +147,7 @@
                 localStorage.setItem('wis_auth_shared_config', JSON.stringify({
                     hash: hash,
                     salt: salt,
-                    version: current.version || 4,
+                    version: current.version || 5,
                     isCustom: true,
                     updatedAt: current.updatedAt || new Date().toISOString()
                 }));
@@ -194,6 +188,26 @@
         const u = username.trim().toLowerCase();
         const p = password.trim();
 
+        // 1. Verify against server API
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 1800);
+            const res = await fetch('/api/admin/login', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: u, password: p }),
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+            if (res.ok) {
+                const data = await res.json().catch(() => ({}));
+                return Boolean(data.success);
+            }
+            return false;
+        } catch (netErr) {}
+
+        // 2. Offline fallback (only against securely stored salted hash)
         const storedAdmin = getLocalAdminConfig();
         if (storedAdmin && storedAdmin.hash && storedAdmin.salt) {
             const expectedUser = (storedAdmin.username || DEFAULT_ADMIN_USER).toLowerCase();
@@ -201,10 +215,7 @@
             if (u === expectedUser && inputHash === storedAdmin.hash) return true;
         }
 
-        // Default initial admin credentials
-        const validUsers = ['admin', 'administrator'];
-        const validPws = ['Admin@Physics2026!', 'admin@physics2026!'];
-        return (validUsers.includes(u) && validPws.includes(p));
+        return false;
     }
 
     // --- Helper: Password Visibility Toggle ---
@@ -281,7 +292,7 @@
 
     async function grantAccess() {
         authState.isAuthenticated = true;
-        const currentVersion = authState.sharedPasswordVersion || 4;
+        const currentVersion = authState.sharedPasswordVersion || 5;
         sessionStorage.setItem('wis_student_session', 'authenticated');
         sessionStorage.setItem('wis_session_version', String(currentVersion));
         
@@ -297,7 +308,7 @@
     async function grantAdminAccess() {
         authState.isAdmin = true;
         authState.isAuthenticated = true;
-        const currentVersion = authState.sharedPasswordVersion || 4;
+        const currentVersion = authState.sharedPasswordVersion || 5;
         sessionStorage.setItem('wis_admin_session', 'authenticated');
         sessionStorage.setItem('wis_student_session', 'authenticated');
         sessionStorage.setItem('wis_session_version', String(currentVersion));
@@ -320,7 +331,7 @@
             authState.lastUpdated = localConfig.updatedAt || null;
         }
 
-        const activeVersion = authState.sharedPasswordVersion || 4;
+        const activeVersion = authState.sharedPasswordVersion || 5;
 
         // Fast client-side session validation to prevent any flicker on browser reopening or refresh
         const isClientRemembered = await validatePersistentStudentSession(activeVersion);
@@ -363,7 +374,7 @@
         } catch (e) {}
 
         if (!checkedOnServer) {
-            const currentActiveVer = authState.sharedPasswordVersion || 4;
+            const currentActiveVer = authState.sharedPasswordVersion || 5;
             const studentSession = sessionStorage.getItem('wis_student_session');
             const adminSession = sessionStorage.getItem('wis_admin_session');
             const sessionVer = parseInt(sessionStorage.getItem('wis_session_version'), 10) || currentActiveVer;
@@ -404,8 +415,8 @@
 
         if (adminPwVersionPill) {
             adminPwVersionPill.textContent = isCustom 
-                ? `Version ${authState.sharedPasswordVersion || 4} (Custom Password Active)` 
-                : `Version ${authState.sharedPasswordVersion || 4} (Default: Physics@2026)`;
+                ? `Version ${authState.sharedPasswordVersion || 5} (Custom Password Active)` 
+                : `Version ${authState.sharedPasswordVersion || 5} (Default: Physics@2026)`;
         }
         if (adminPwUpdatedText) {
             adminPwUpdatedText.textContent = `Last Changed: ${formatDate(authState.lastUpdated)}`;
@@ -486,20 +497,6 @@
             const clientValid = await verifySharedPasswordClient(password);
             if (clientValid) {
                 authenticated = true;
-                // Auto-sync server in background if server was running with outdated credentials
-                try {
-                    fetch('/api/admin/change-password', {
-                        method: 'POST',
-                        credentials: 'include',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            newPassword: password,
-                            confirmPassword: password,
-                            adminUsername: DEFAULT_ADMIN_USER,
-                            adminPassword: DEFAULT_ADMIN_PW
-                        })
-                    }).catch(() => {});
-                } catch (e) {}
             }
         }
 
@@ -616,7 +613,7 @@
 
         const adminToken = sessionStorage.getItem('wis_admin_token') || '';
         const adminUsername = sessionStorage.getItem('wis_admin_auth_user') || DEFAULT_ADMIN_USER;
-        const adminPassword = sessionStorage.getItem('wis_admin_auth_pw') || DEFAULT_ADMIN_PW;
+        const adminPassword = sessionStorage.getItem('wis_admin_auth_pw') || '';
 
         // 1. Send update to Server API with full auth failsafe
         try {
@@ -652,7 +649,7 @@
         // 2. Persist client-side salted hash (never store plainText password)
         const salt = Math.random().toString(36).substring(2) + Date.now().toString(36);
         const newHash = await hashStringSHA256(newPassword, salt);
-        const newVersion = (authState.sharedPasswordVersion || 4) + 1;
+        const newVersion = (authState.sharedPasswordVersion || 5) + 1;
         const updatedAt = new Date().toISOString();
 
         try {
@@ -699,7 +696,7 @@
 
         const adminToken = sessionStorage.getItem('wis_admin_token') || '';
         const adminUsername = sessionStorage.getItem('wis_admin_auth_user') || DEFAULT_ADMIN_USER;
-        const adminPassword = sessionStorage.getItem('wis_admin_auth_pw') || DEFAULT_ADMIN_PW;
+        const adminPassword = sessionStorage.getItem('wis_admin_auth_pw') || '';
 
         try {
             await fetch('/api/admin/reset-password', {
@@ -716,7 +713,7 @@
         // Remove custom shared config from client storage
         localStorage.removeItem('wis_auth_shared_config');
         clearPersistentStudentSession();
-        const newVersion = (authState.sharedPasswordVersion || 4) + 1;
+        const newVersion = (authState.sharedPasswordVersion || 5) + 1;
         authState.sharedPasswordVersion = newVersion;
         authState.lastUpdated = new Date().toISOString();
 
@@ -961,25 +958,25 @@
             }
         });
 
-        // --- Secret Administrator Triggers ---
-        // 1. Triple-Tap on Logo (Mobile & Desktop)
-        let logoTapCount = 0;
-        let lastLogoTapTime = 0;
-        const logoElements = document.querySelectorAll('.logo, .auth-gate-logo, #site-logo');
+        // --- Stealth Administrator Triggers (Teacher-Only Access) ---
+        // 1. Secret 5-Tap Gesture on Shield Icon or Logo
+        let shieldTapCount = 0;
+        let lastShieldTapTime = 0;
+        const secretTapTargets = document.querySelectorAll('.auth-gate-icon, .auth-gate-badge, .logo, #site-logo');
 
-        logoElements.forEach(logoEl => {
-            if (!logoEl) return;
-            logoEl.addEventListener('click', function (e) {
+        secretTapTargets.forEach(el => {
+            if (!el) return;
+            el.addEventListener('click', function (e) {
                 const now = Date.now();
-                if (now - lastLogoTapTime < 700) {
-                    logoTapCount++;
+                if (now - lastShieldTapTime < 600) {
+                    shieldTapCount++;
                 } else {
-                    logoTapCount = 1;
+                    shieldTapCount = 1;
                 }
-                lastLogoTapTime = now;
+                lastShieldTapTime = now;
 
-                if (logoTapCount >= 3) {
-                    logoTapCount = 0;
+                if (shieldTapCount >= 5) {
+                    shieldTapCount = 0;
                     if (navigator.vibrate) {
                         try { navigator.vibrate([40, 60, 40]); } catch(err) {}
                     }
@@ -988,23 +985,25 @@
             });
         });
 
-        // 2. Keyboard Shortcut: Ctrl + Shift + A or Cmd + Shift + A
+        // 2. Keyboard Shortcut: Ctrl + Shift + A, Ctrl + Alt + A, or Cmd + Shift + A
         window.addEventListener('keydown', function (e) {
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+            if ((e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (e.key === 'A' || e.key === 'a')) {
                 e.preventDefault();
                 openAdminModal();
             }
         });
 
-        // 3. Secret URL Hash: #admin or #/admin
+        // 3. Secret URL Hash or Query: #admin, #admin-portal, ?admin=1
         function checkAdminHash() {
             const h = (window.location.hash || '').toLowerCase();
-            if (h === '#admin' || h === '#/admin' || h === '#admin-portal') {
+            const s = (window.location.search || '').toLowerCase();
+            if (h === '#admin' || h === '#/admin' || h === '#admin-portal' || s.includes('admin=1') || s.includes('admin=true')) {
                 openAdminModal();
             }
         }
         checkAdminHash();
         window.addEventListener('hashchange', checkAdminHash);
+        window.addEventListener('popstate', checkAdminHash);
     }
 
     // Initialize on DOM Ready
