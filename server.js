@@ -639,6 +639,21 @@ const server = http.createServer(async (req, res) => {
             return sendJson(res, 500, { success: false, message: 'Failed to persist password change to disk.' });
         }
 
+        // Automatically sync new password directly into auth.js for GitHub Pages
+        try {
+            const authJsPath = path.join(__dirname, 'auth.js');
+            if (fs.existsSync(authJsPath)) {
+                let content = fs.readFileSync(authJsPath, 'utf8');
+                const escapedPw = newPassword.trim().replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+                content = content.replace(/const CURRENT_CUSTOM_SHARED_PW = '[^']*';/, `const CURRENT_CUSTOM_SHARED_PW = '${escapedPw}';`);
+                content = content.replace(/sharedPasswordVersion: \d+/, `sharedPasswordVersion: ${authConfig.sharedPassword.version}`);
+                fs.writeFileSync(authJsPath, content, 'utf8');
+                console.log(`[AUTH] Synced new password to auth.js for GitHub Pages deploy.`);
+            }
+        } catch (syncErr) {
+            console.warn('[AUTH] Could not auto-sync auth.js:', syncErr.message);
+        }
+
         const isHttps = (req.headers['x-forwarded-proto'] === 'https' || Boolean(req.connection && req.connection.encrypted));
         const secureFlag = isHttps ? '; Secure' : '';
         const maxAgeSec = 30 * 24 * 60 * 60; // 30-day persistent student session
