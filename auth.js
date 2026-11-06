@@ -18,10 +18,20 @@
     const authState = {
         isAuthenticated: false,
         isAdmin: false,
+        isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
         sharedPasswordVersion: 5,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
+
+    function isHostEnvironment() {
+        if (authState.isHost === true) return true;
+        const host = (window.location.hostname || '').toLowerCase();
+        if (host === 'localhost' || host === '127.0.0.1' || host === '[::1]' || window.location.protocol === 'file:') {
+            return true;
+        }
+        return false;
+    }
 
     // Helper: Safely get element
     function getEl(id) {
@@ -58,6 +68,7 @@
     }
 
     function getLocalAdminConfig() {
+        if (!isHostEnvironment()) return null;
         try {
             const raw = localStorage.getItem('wis_auth_admin_config');
             if (raw) return JSON.parse(raw);
@@ -184,6 +195,7 @@
     }
 
     async function verifyAdminClient(username, password) {
+        if (!isHostEnvironment()) return false;
         if (!username || !password) return false;
         const u = username.trim().toLowerCase();
         const p = password.trim();
@@ -356,9 +368,22 @@
                 const data = await res.json();
                 authState.isAuthenticated = Boolean(data.authenticated);
                 authState.isAdmin = Boolean(data.isAdmin);
+                authState.isHost = Boolean(data.isHost);
                 authState.sharedPasswordVersion = data.version || activeVersion;
                 authState.lastUpdated = data.lastUpdated || null;
                 checkedOnServer = true;
+
+                // Non-host devices must NEVER retain administrator privileges or configuration
+                if (!authState.isHost) {
+                    try {
+                        localStorage.removeItem('wis_auth_admin_config');
+                        sessionStorage.removeItem('wis_admin_session');
+                        sessionStorage.removeItem('wis_admin_token');
+                        sessionStorage.removeItem('wis_admin_auth_user');
+                        sessionStorage.removeItem('wis_admin_auth_pw');
+                    } catch (e) {}
+                    authState.isAdmin = false;
+                }
 
                 if (!data.authenticated) {
                     // Server invalidated session (e.g. password changed by admin), clear client session immediately
@@ -374,6 +399,17 @@
         } catch (e) {}
 
         if (!checkedOnServer) {
+            authState.isHost = isHostEnvironment();
+            if (!authState.isHost) {
+                try {
+                    localStorage.removeItem('wis_auth_admin_config');
+                    sessionStorage.removeItem('wis_admin_session');
+                    sessionStorage.removeItem('wis_admin_token');
+                    sessionStorage.removeItem('wis_admin_auth_user');
+                    sessionStorage.removeItem('wis_admin_auth_pw');
+                } catch (e) {}
+            }
+
             const currentActiveVer = authState.sharedPasswordVersion || 5;
             const studentSession = sessionStorage.getItem('wis_student_session');
             const adminSession = sessionStorage.getItem('wis_admin_session');
@@ -520,6 +556,12 @@
         const submitBtn = getEl('admin-login-btn');
         const submitBtnText = getEl('admin-login-btn-text');
 
+        // Strictly deny non-host client devices
+        if (!isHostEnvironment()) {
+            showAlert(alertEl, alertTextEl, 'Access Denied: Administrator controls can only be operated directly on the host computer.', true);
+            return;
+        }
+
         const username = userInput ? userInput.value.trim() : '';
         const password = pwInput ? pwInput.value.trim() : '';
 
@@ -533,12 +575,13 @@
         if (submitBtnText) submitBtnText.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Verifying admin credentials...';
 
         let authenticated = false;
+        let serverForbidden = false;
         let errorMessage = 'Invalid administrator credentials.';
 
         // 1. Attempt Server API
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 1500);
+            const timeoutId = setTimeout(() => controller.abort(), 2000);
             const res = await fetch('/api/admin/login', {
                 method: 'POST',
                 credentials: 'include',
@@ -555,14 +598,18 @@
                     if (data.adminToken) sessionStorage.setItem('wis_admin_token', data.adminToken);
                     if (data.version) authState.sharedPasswordVersion = data.version;
                 }
+            } else if (res.status === 403) {
+                const data = await res.json().catch(() => ({}));
+                errorMessage = data.message || 'Access Denied: Administrator controls can only be accessed directly from the host computer.';
+                serverForbidden = true;
             } else if (res.status === 401 || res.status === 429) {
                 const data = await res.json().catch(() => ({}));
                 errorMessage = data.message || 'Invalid administrator credentials.';
             }
         } catch (netErr) {}
 
-        // 2. Client Mode Fallback (Live Server, file://, static hosts)
-        if (!authenticated) {
+        // 2. Client Mode Fallback (Allowed strictly on host environment and never if server gave 403 Forbidden)
+        if (!authenticated && !serverForbidden && isHostEnvironment()) {
             const clientAdminValid = await verifyAdminClient(username, password);
             if (clientAdminValid) authenticated = true;
         }
@@ -591,6 +638,11 @@
         const saveBtnText = getEl('admin-save-pw-btn-text');
         const invalidateChk = getEl('admin-invalidate-sessions-chk');
 
+        if (!isHostEnvironment()) {
+            showAlert(alertEl, alertTextEl, 'Access Denied: Password modifications can only be performed directly on the host computer.', true);
+            return;
+        }
+
         const newPassword = newPwInput ? newPwInput.value.trim() : '';
         const confirmPassword = confirmPwInput ? confirmPwInput.value.trim() : '';
         const invalidateSessions = invalidateChk ? invalidateChk.checked : true;
@@ -615,10 +667,14 @@
         const adminUsername = sessionStorage.getItem('wis_admin_auth_user') || DEFAULT_ADMIN_USER;
         const adminPassword = sessionStorage.getItem('wis_admin_auth_pw') || '';
 
-        // 1. Send update to Server API with full auth failsafe
+        // 1. Send update to Server API
+        let newVersion = (authState.sharedPasswordVersion || 5) + 1;
+        let serverFailed = false;
+        let serverErrorMsg = '';
+
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2500);
+            const timeoutId = setTimeout(() => controller.abort(), 3000);
             const res = await fetch('/api/admin/change-password', {
                 method: 'POST',
                 credentials: 'include',
@@ -641,42 +697,54 @@
             if (res.ok) {
                 const data = await res.json().catch(() => ({}));
                 if (data.success && data.version) {
-                    authState.sharedPasswordVersion = data.version;
+                    newVersion = data.version;
                 }
+            } else {
+                serverFailed = true;
+                const data = await res.json().catch(() => ({}));
+                serverErrorMsg = data.message || `Server rejected request (Status ${res.status})`;
             }
         } catch (e) {}
 
-        // 2. Persist client-side salted hash (never store plainText password)
-        const salt = Math.random().toString(36).substring(2) + Date.now().toString(36);
-        const newHash = await hashStringSHA256(newPassword, salt);
-        const newVersion = (authState.sharedPasswordVersion || 5) + 1;
-        const updatedAt = new Date().toISOString();
-
-        try {
-            localStorage.setItem('wis_auth_shared_config', JSON.stringify({
-                hash: newHash,
-                salt: salt,
-                version: newVersion,
-                updatedAt: updatedAt,
-                isCustom: true
-            }));
-        } catch (e) {}
-
-        if (invalidateSessions) {
-            clearPersistentStudentSession();
-            sessionStorage.removeItem('wis_student_session');
-            sessionStorage.setItem('wis_session_version', String(newVersion));
+        if (serverFailed) {
+            showAlert(alertEl, alertTextEl, serverErrorMsg || 'Failed to update password. Server refused permission.', true);
+            if (saveBtn) saveBtn.disabled = false;
+            if (saveBtnText) saveBtnText.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save and Apply New Shared Password';
+            return;
         }
 
-        authState.sharedPasswordVersion = newVersion;
-        authState.lastUpdated = updatedAt;
-        updateAdminStatusUI();
+        // 2. Persist client-side salted hash (only on host computer)
+        if (isHostEnvironment()) {
+            const salt = Math.random().toString(36).substring(2) + Date.now().toString(36);
+            const newHash = await hashStringSHA256(newPassword, salt);
+            const updatedAt = new Date().toISOString();
 
-        const successMsg = `Shared password changed successfully! The new password is required for all future visits, and the previous password has been revoked. (Version: ${newVersion})`;
+            try {
+                localStorage.setItem('wis_auth_shared_config', JSON.stringify({
+                    hash: newHash,
+                    salt: salt,
+                    version: newVersion,
+                    updatedAt: updatedAt,
+                    isCustom: true
+                }));
+            } catch (e) {}
 
-        showAlert(alertEl, alertTextEl, successMsg, false);
-        if (newPwInput) newPwInput.value = '';
-        if (confirmPwInput) confirmPwInput.value = '';
+            if (invalidateSessions) {
+                clearPersistentStudentSession();
+                sessionStorage.removeItem('wis_student_session');
+                sessionStorage.setItem('wis_session_version', String(newVersion));
+            }
+
+            authState.sharedPasswordVersion = newVersion;
+            authState.lastUpdated = updatedAt;
+            updateAdminStatusUI();
+
+            const successMsg = `Shared password changed successfully! The new password is required for all future visits, and all previous student sessions have been invalidated. (Version: ${newVersion})`;
+
+            showAlert(alertEl, alertTextEl, successMsg, false);
+            if (newPwInput) newPwInput.value = '';
+            if (confirmPwInput) confirmPwInput.value = '';
+        }
 
         if (saveBtn) saveBtn.disabled = false;
         if (saveBtnText) saveBtnText.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save and Apply New Shared Password';
@@ -688,7 +756,12 @@
         const alertTextEl = getEl('admin-change-pw-alert-text');
         const resetBtn = getEl('admin-reset-pw-btn');
 
-        if (!confirm('Are you sure you want to reset the shared website access password back to the default (Physics@2026)?')) {
+        if (!isHostEnvironment()) {
+            showAlert(alertEl, alertTextEl, 'Access Denied: Password reset can only be performed directly on the host computer.', true);
+            return;
+        }
+
+        if (!confirm('Are you sure you want to reset the shared website access password back to the default (@Physics2026!)?')) {
             return;
         }
 
@@ -699,7 +772,7 @@
         const adminPassword = sessionStorage.getItem('wis_admin_auth_pw') || '';
 
         try {
-            await fetch('/api/admin/reset-password', {
+            const res = await fetch('/api/admin/reset-password', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -708,6 +781,12 @@
                 },
                 body: JSON.stringify({ adminToken, adminUsername, adminPassword })
             });
+            if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                showAlert(alertEl, alertTextEl, data.message || 'Failed to reset password on server.', true);
+                if (resetBtn) resetBtn.disabled = false;
+                return;
+            }
         } catch (e) {}
 
         // Remove custom shared config from client storage
@@ -721,7 +800,7 @@
         sessionStorage.setItem('wis_session_version', String(newVersion));
 
         updateAdminStatusUI();
-        showAlert(alertEl, alertTextEl, 'Shared access password has been reset to default (Physics@2026).', false);
+        showAlert(alertEl, alertTextEl, 'Shared access password has been reset to default (@Physics2026!).', false);
 
         if (resetBtn) resetBtn.disabled = false;
     }
@@ -733,6 +812,11 @@
         const confirmInput = getEl('confirm-admin-pw-input');
         const alertEl = getEl('admin-self-pw-alert');
         const alertTextEl = getEl('admin-self-pw-alert-text');
+
+        if (!isHostEnvironment()) {
+            showAlert(alertEl, alertTextEl, 'Access Denied: Administrator credential updates can only be performed directly on the host computer.', true);
+            return;
+        }
 
         const currentPassword = currentInput ? currentInput.value.trim() : '';
         const newAdminPassword = newInput ? newInput.value.trim() : '';
@@ -764,12 +848,17 @@
 
         // Try server
         try {
-            await fetch('/api/admin/change-admin-password', {
+            const res = await fetch('/api/admin/change-admin-password', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ currentPassword, newAdminPassword, confirmAdminPassword })
             });
+            if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                showAlert(alertEl, alertTextEl, data.message || 'Current administrator password is incorrect or access denied.', true);
+                return;
+            }
         } catch (e) {}
 
         // Persist client-side
@@ -830,6 +919,10 @@
 
     // --- Modal Navigation ---
     function openAdminModal() {
+        if (!isHostEnvironment()) {
+            console.warn('[SECURITY] Access Denied: Administrator portal can only be accessed directly on the host computer.');
+            return;
+        }
         const adminModal = getEl('admin-auth-modal');
         if (!adminModal) return;
         adminModal.classList.remove('hidden');
@@ -958,8 +1051,8 @@
             }
         });
 
-        // --- Stealth Administrator Triggers (Teacher-Only Access) ---
-        // 1. Secret 5-Tap Gesture on Shield Icon or Logo
+        // --- Stealth Administrator Triggers (Teacher-Only Access on Host Computer) ---
+        // 1. Secret 5-Tap Gesture on Shield Icon or Logo (Active ONLY on Host Computer)
         let shieldTapCount = 0;
         let lastShieldTapTime = 0;
         const secretTapTargets = document.querySelectorAll('.auth-gate-icon, .auth-gate-badge, .logo, #site-logo');
@@ -967,6 +1060,9 @@
         secretTapTargets.forEach(el => {
             if (!el) return;
             el.addEventListener('click', function (e) {
+                // Students (non-host devices) cannot trigger the administrator gesture
+                if (!isHostEnvironment()) return;
+
                 const now = Date.now();
                 if (now - lastShieldTapTime < 600) {
                     shieldTapCount++;
@@ -985,16 +1081,18 @@
             });
         });
 
-        // 2. Keyboard Shortcut: Ctrl + Shift + A, Ctrl + Alt + A, or Cmd + Shift + A
+        // 2. Keyboard Shortcut: Ctrl + Shift + A, Ctrl + Alt + A, or Cmd + Shift + A (Host Only)
         window.addEventListener('keydown', function (e) {
             if ((e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (e.key === 'A' || e.key === 'a')) {
+                if (!isHostEnvironment()) return;
                 e.preventDefault();
                 openAdminModal();
             }
         });
 
-        // 3. Secret URL Hash or Query: #admin, #admin-portal, ?admin=1
+        // 3. Secret URL Hash or Query: #admin, #admin-portal, ?admin=1 (Host Only)
         function checkAdminHash() {
+            if (!isHostEnvironment()) return;
             const h = (window.location.hash || '').toLowerCase();
             const s = (window.location.search || '').toLowerCase();
             if (h === '#admin' || h === '#/admin' || h === '#admin-portal' || s.includes('admin=1') || s.includes('admin=true')) {

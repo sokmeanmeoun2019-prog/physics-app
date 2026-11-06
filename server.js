@@ -243,6 +243,33 @@ setInterval(() => {
     }
 }, 900000);
 
+// --- Host Verification (Restricts administrative actions strictly to the host computer) ---
+function isHostRequest(req, body) {
+    const rawIp = req.socket.remoteAddress || '';
+    const forwarded = req.headers['x-forwarded-for'];
+    const ip = (forwarded ? forwarded.split(',')[0].trim() : rawIp);
+
+    // 1. Localhost / Loopback verification
+    if (ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1' || ip === 'localhost') {
+        return true;
+    }
+    if (rawIp === '127.0.0.1' || rawIp === '::1' || rawIp === '::ffff:127.0.0.1') {
+        return true;
+    }
+    if (req.socket.localAddress && rawIp && req.socket.localAddress === rawIp) {
+        return true;
+    }
+
+    // 2. Master Host Key verification (for authorized remote administration by the teacher)
+    const masterKey = (authConfig && authConfig.masterHostKey) || 'HOST-WIS-PHYSICS-2026-KEY';
+    const reqKey = (req.headers['x-host-key'] || (body && body.masterHostKey) || '');
+    if (reqKey && reqKey === masterKey) {
+        return true;
+    }
+
+    return false;
+}
+
 // --- Session Verification ---
 function getClientIp(req) {
     return req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
@@ -383,9 +410,11 @@ const server = http.createServer(async (req, res) => {
     if (pathname === '/api/auth-status' && method === 'GET') {
         const adminSession = getAdminSession(cookies, req.headers, {});
         const studentSession = getStudentSession(cookies);
+        const isHost = isHostRequest(req, null);
         return sendJson(res, 200, {
             authenticated: Boolean(adminSession || studentSession),
             isAdmin: Boolean(adminSession),
+            isHost: isHost,
             version: authConfig.sharedPassword.version,
             lastUpdated: authConfig.sharedPassword.updatedAt
         });
@@ -451,6 +480,16 @@ const server = http.createServer(async (req, res) => {
     if (pathname === '/api/admin/login' && method === 'POST') {
         const body = await readRequestBody(req);
         const ip = getClientIp(req);
+
+        // Enforce strict host-only protection: Non-host client devices are strictly denied
+        if (!isHostRequest(req, body)) {
+            console.warn(`[SECURITY] Blocked non-host administrator login attempt from IP: ${ip}`);
+            return sendJson(res, 403, {
+                success: false,
+                message: 'Access Denied: Administrator controls can only be accessed directly from the host computer.'
+            });
+        }
+
         const rateCheck = checkRateLimit(`admin_login_${ip}`, 5, 300000, 300000);
         if (!rateCheck.allowed) {
             return sendJson(res, 429, { success: false, message: rateCheck.message });
@@ -512,6 +551,17 @@ const server = http.createServer(async (req, res) => {
     // 4. Admin Change Shared Access Password
     if (pathname === '/api/admin/change-password' && method === 'POST') {
         const body = await readRequestBody(req);
+        const ip = getClientIp(req);
+
+        // Enforce strict host-only protection
+        if (!isHostRequest(req, body)) {
+            console.warn(`[SECURITY] Blocked non-host request to change password from IP: ${ip}`);
+            return sendJson(res, 403, {
+                success: false,
+                message: 'Access Denied: Administrative controls can only be operated directly on the host computer.'
+            });
+        }
+
         let admin = getAdminSession(cookies, req.headers, body);
 
         // Failsafe direct verification if admin credentials provided in request
@@ -584,6 +634,17 @@ const server = http.createServer(async (req, res) => {
     // 5. Admin Reset Shared Password to Initial Default
     if (pathname === '/api/admin/reset-password' && method === 'POST') {
         const body = await readRequestBody(req);
+        const ip = getClientIp(req);
+
+        // Enforce strict host-only protection
+        if (!isHostRequest(req, body)) {
+            console.warn(`[SECURITY] Blocked non-host request to reset password from IP: ${ip}`);
+            return sendJson(res, 403, {
+                success: false,
+                message: 'Access Denied: Administrative controls can only be operated directly on the host computer.'
+            });
+        }
+
         let admin = getAdminSession(cookies, req.headers, body);
         if (!admin && body.adminUsername && body.adminPassword) {
             const u = String(body.adminUsername).trim();
@@ -601,21 +662,21 @@ const server = http.createServer(async (req, res) => {
             return sendJson(res, 403, { success: false, message: 'Unauthorized: Administrator authentication required.' });
         }
 
-        const defaultSharedPw = process.env.SHARED_PASSWORD || 'Physics@2026';
+        const defaultSharedPw = process.env.SHARED_PASSWORD || '@Physics2026!';
         const sharedSalt = crypto.randomBytes(32).toString('hex');
         authConfig.sharedPassword = {
             hash: hashPassword(defaultSharedPw, sharedSalt),
             salt: sharedSalt,
             plainText: defaultSharedPw,
             version: (authConfig.sharedPassword.version || 1) + 1,
-            isCustom: false,
+            isCustom: true,
             updatedAt: new Date().toISOString()
         };
         saveAuthConfig();
 
         return sendJson(res, 200, {
             success: true,
-            message: 'Shared access password has been reset to default (Physics@2026).',
+            message: 'Shared access password has been reset to default (@Physics2026!).',
             version: authConfig.sharedPassword.version
         });
     }
@@ -623,6 +684,17 @@ const server = http.createServer(async (req, res) => {
     // 6. Admin Change Administrator Password
     if (pathname === '/api/admin/change-admin-password' && method === 'POST') {
         const body = await readRequestBody(req);
+        const ip = getClientIp(req);
+
+        // Enforce strict host-only protection
+        if (!isHostRequest(req, body)) {
+            console.warn(`[SECURITY] Blocked non-host request to change admin password from IP: ${ip}`);
+            return sendJson(res, 403, {
+                success: false,
+                message: 'Access Denied: Administrative controls can only be operated directly on the host computer.'
+            });
+        }
+
         const admin = getAdminSession(cookies, req.headers, body);
         if (!admin) {
             return sendJson(res, 403, { success: false, message: 'Unauthorized: Administrator authentication required.' });

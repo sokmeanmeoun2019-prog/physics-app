@@ -10,6 +10,16 @@
     <script>
         (function() {
             try {
+                var host = (window.location.hostname || '').toLowerCase();
+                var isHost = (host === 'localhost' || host === '127.0.0.1' || host === '[::1]' || window.location.protocol === 'file:');
+                if (!isHost) {
+                    localStorage.removeItem('wis_auth_admin_config');
+                    sessionStorage.removeItem('wis_admin_session');
+                    sessionStorage.removeItem('wis_admin_token');
+                    sessionStorage.removeItem('wis_admin_auth_user');
+                    sessionStorage.removeItem('wis_admin_auth_pw');
+                }
+
                 var currentVer = 5;
                 var sess = localStorage.getItem('wis_persistent_student_session');
                 var conf = localStorage.getItem('wis_auth_shared_config');
@@ -36,7 +46,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=7.0&build=202611061800">
+    <link rel="stylesheet" href="styles.css?v=7.1&build=202611061830">
     <style>
         .view.active {
             display: block !important;
@@ -8389,7 +8399,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=7.0&build=202611061800"></script>
-    <script src="app.js?v=7.0&build=202611061800" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=7.1&build=202611061830"></script>
+    <script src="app.js?v=7.1&build=202611061830" onerror="onAppJsError()"></script>
 </body>
 </html>
