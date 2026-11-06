@@ -13,7 +13,7 @@
     // WIS PHYSICS LEARNING HUB - SHARED ACCESS PASSWORD CONFIGURATION
     // To change the password for GitHub Pages, update CURRENT_CUSTOM_SHARED_PW:
     // =========================================================================
-    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026***!';
+    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026*!';
     const DEFAULT_INITIAL_SHARED_PW = CURRENT_CUSTOM_SHARED_PW;
     const DEFAULT_ADMIN_USER = 'admin';
     const SALT_PEPPER = 'WIS_PHYSICS_SALT_v5_0';
@@ -33,7 +33,7 @@
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 9,
+        sharedPasswordVersion: 10,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
