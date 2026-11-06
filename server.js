@@ -89,7 +89,7 @@ function loadOrInitAuthConfig() {
         console.warn('Could not read existing auth-config.json, re-initializing:', err.message);
     }
 
-    const defaultSharedPw = process.env.SHARED_PASSWORD || '@Physics2026!';
+    const defaultSharedPw = process.env.SHARED_PASSWORD || '@Physics2026*!';
     const defaultAdminUsername = process.env.ADMIN_USERNAME || 'admin';
     const defaultAdminPw = process.env.ADMIN_PASSWORD || 'Teacher#PhyAdmin2026!';
 
@@ -103,7 +103,7 @@ function loadOrInitAuthConfig() {
             salt: sharedSalt,
             plainText: defaultSharedPw,
             isCustom: true,
-            version: 5,
+            version: 7,
             updatedAt: new Date().toISOString()
         },
         admin: {
@@ -453,6 +453,14 @@ const server = http.createServer(async (req, res) => {
         }
 
         const entered = password.trim();
+
+        // All old/compromised passwords are strictly and permanently rejected
+        const enteredLower = entered.toLowerCase();
+        if (enteredLower === 'physics@2026' || entered === 'Physics2026' || entered === '@Physics2026!' || enteredLower === '@physics2026!') {
+            recordFailedAttempt(`login_${ip}`, 10, 60000, 60000);
+            return sendJson(res, 401, { success: false, message: 'This previous password has been permanently revoked. Please enter the current password (@Physics2026*!).' });
+        }
+
         const isCustom = Boolean(authConfig.sharedPassword && authConfig.sharedPassword.isCustom);
         let isValid = false;
 
@@ -460,9 +468,9 @@ const server = http.createServer(async (req, res) => {
             // Once a custom password is set, ONLY the custom password matches!
             isValid = verifyPassword(entered, authConfig.sharedPassword.salt, authConfig.sharedPassword.hash, authConfig.sharedPassword.plainText);
         } else {
-            const defaultShared = process.env.SHARED_PASSWORD || 'Physics@2026';
+            const defaultShared = process.env.SHARED_PASSWORD || '@Physics2026*!';
             const isHashValid = verifyPassword(entered, authConfig.sharedPassword.salt, authConfig.sharedPassword.hash, authConfig.sharedPassword.plainText);
-            isValid = (isHashValid || entered === defaultShared || entered.toLowerCase() === 'physics@2026');
+            isValid = (isHashValid || entered === defaultShared);
         }
 
         if (!isValid) {
@@ -681,7 +689,7 @@ const server = http.createServer(async (req, res) => {
             return sendJson(res, 403, { success: false, message: 'Unauthorized: Administrator authentication required.' });
         }
 
-        const defaultSharedPw = process.env.SHARED_PASSWORD || '@Physics2026!';
+        const defaultSharedPw = process.env.SHARED_PASSWORD || '@Physics2026*!';
         const sharedSalt = crypto.randomBytes(32).toString('hex');
         authConfig.sharedPassword = {
             hash: hashPassword(defaultSharedPw, sharedSalt),
@@ -695,7 +703,7 @@ const server = http.createServer(async (req, res) => {
 
         return sendJson(res, 200, {
             success: true,
-            message: 'Shared access password has been reset to default (@Physics2026!).',
+            message: 'Shared access password has been reset to default (@Physics2026*!).',
             version: authConfig.sharedPassword.version
         });
     }

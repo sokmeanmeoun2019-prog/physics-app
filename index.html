@@ -20,9 +20,26 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
-                var currentVer = 5;
+                var currentVer = 7;
                 var sess = localStorage.getItem('wis_persistent_student_session');
                 var conf = localStorage.getItem('wis_auth_shared_config');
+
+                // If stored config has an older version (< 7), evict it so stale hashes never linger
+                if (conf) {
+                    try {
+                        var c = JSON.parse(conf);
+                        if (!c || !c.version || c.version < currentVer) {
+                            localStorage.removeItem('wis_auth_shared_config');
+                            localStorage.removeItem('wis_persistent_student_session');
+                            sessionStorage.removeItem('wis_student_session');
+                            sessionStorage.removeItem('wis_session_version');
+                            sess = null;
+                        }
+                    } catch(e) {
+                        localStorage.removeItem('wis_auth_shared_config');
+                    }
+                }
+
                 if (sess) {
                     var s = JSON.parse(sess);
                     var v = currentVer;
@@ -46,7 +63,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=7.2&build=202611061851">
+    <link rel="stylesheet" href="styles.css?v=7.5&build=202611061925">
     <style>
         .view.active {
             display: block !important;
@@ -3363,7 +3380,7 @@
                 type: 'Preparation & Practice',
                 category: 'kh-phy',
                 year: 'KH-Phy Mock Prep',
-                pages: 14,
+                pages: 48,
                 description: 'Comprehensive Khmer Physics Diploma mock exam problem sets, formula applications, and sample test questions for junior high school diploma candidates.',
                 url: 'exams/g9-kh-phy-diploma-prep.pdf',
                 altUrl: 'exams/g9-kh-phy-diploma-prep.pdf.pdf',
@@ -8399,7 +8416,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=7.2&build=202611061851"></script>
-    <script src="app.js?v=7.2&build=202611061851" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=7.5&build=202611061925"></script>
+    <script src="app.js?v=7.5&build=202611061925" onerror="onAppJsError()"></script>
 </body>
 </html>

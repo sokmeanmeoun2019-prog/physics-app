@@ -9,8 +9,8 @@
 (function () {
     'use strict';
 
-    const DEFAULT_INITIAL_SHARED_PW = 'Physics@2026';
-    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026!';
+    const DEFAULT_INITIAL_SHARED_PW = '@Physics2026*!';
+    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026*!';
     const DEFAULT_ADMIN_USER = 'admin';
     const SALT_PEPPER = 'WIS_PHYSICS_SALT_v5_0';
 
@@ -19,7 +19,7 @@
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 5,
+        sharedPasswordVersion: 7,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
@@ -141,13 +141,14 @@
     (async function seedActiveCustomPassword() {
         try {
             const current = getLocalSharedConfig();
-            if (!current || (!current.hash && !current.plainText)) {
+            const REQUIRED_VER = 7;
+            if (!current || !current.version || current.version < REQUIRED_VER || (!current.hash && !current.plainText)) {
                 const salt = Math.random().toString(36).substring(2) + Date.now().toString(36);
                 const hash = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, salt);
                 localStorage.setItem('wis_auth_shared_config', JSON.stringify({
                     hash: hash,
                     salt: salt,
-                    version: 5,
+                    version: REQUIRED_VER,
                     isCustom: true,
                     updatedAt: new Date().toISOString()
                 }));
@@ -158,7 +159,7 @@
                 localStorage.setItem('wis_auth_shared_config', JSON.stringify({
                     hash: hash,
                     salt: salt,
-                    version: current.version || 5,
+                    version: current.version || REQUIRED_VER,
                     isCustom: true,
                     updatedAt: current.updatedAt || new Date().toISOString()
                 }));
@@ -169,11 +170,25 @@
     async function verifySharedPasswordClient(enteredPw) {
         if (!enteredPw) return false;
         const trimmed = enteredPw.trim();
+
+        // 1. STRICT BLOCK: Revoked passwords permanently blocked across all cases
+        const revoked = [
+            'physics@2026', 'Physics@2026', 'Physics2026', 'physics2026',
+            '@physics2026!', '@Physics2026!', '@physics2026', '@Physics2026'
+        ];
+        if (revoked.includes(trimmed) || revoked.includes(trimmed.toLowerCase())) {
+            return false;
+        }
+
+        // 2. Active shared student access password (strictly @Physics2026*!)
+        if (trimmed === CURRENT_CUSTOM_SHARED_PW || trimmed === '@Physics2026*!') {
+            return true;
+        }
+
         const storedConfig = getLocalSharedConfig();
 
-        // If administrator changed the password, verify ONLY against the custom stored hash.
-        // The old default password (Physics@2026) MUST NOT be accepted once a custom password is set.
-        if (storedConfig && (storedConfig.isCustom !== false)) {
+        // 3. Custom administrator-configured password (via hash or plainText, only if version >= 7)
+        if (storedConfig && (storedConfig.isCustom !== false) && (storedConfig.version || 0) >= 7) {
             if (storedConfig.hash && storedConfig.salt) {
                 const inputHash = await hashStringSHA256(trimmed, storedConfig.salt);
                 if (inputHash === storedConfig.hash) return true;
@@ -181,17 +196,10 @@
             if (storedConfig.plainText && trimmed === storedConfig.plainText) {
                 return true;
             }
-            return false; // REJECT! Never fall through to default initial password.
+            return false;
         }
 
-        // If no custom config in localStorage, check the current active custom password first
-        if (CURRENT_CUSTOM_SHARED_PW && trimmed === CURRENT_CUSTOM_SHARED_PW) {
-            return true;
-        }
-
-        // Only when in initial default state (before any custom password has been saved)
-        const defaults = [DEFAULT_INITIAL_SHARED_PW, 'physics@2026', 'Physics2026', 'physics2026'];
-        return defaults.includes(trimmed);
+        return false;
     }
 
     async function verifyAdminClient(username, password) {
@@ -437,8 +445,8 @@
 
         if (adminPwVersionPill) {
             adminPwVersionPill.textContent = isCustom 
-                ? `Version ${authState.sharedPasswordVersion || 5} (Custom Password Active)` 
-                : `Version ${authState.sharedPasswordVersion || 5} (Default: Physics@2026)`;
+                ? `Version ${authState.sharedPasswordVersion || 7} (Custom Password Active)` 
+                : `Version ${authState.sharedPasswordVersion || 7} (Default: @Physics2026*!)`;
         }
         if (adminPwUpdatedText) {
             adminPwUpdatedText.textContent = `Last Changed: ${formatDate(authState.lastUpdated)}`;
@@ -473,11 +481,10 @@
             return;
         }
 
-        // Enforce that old password (Physics@2026) is strictly rejected once a custom password is set
-        const storedConfig = getLocalSharedConfig();
-        const isCustomActive = Boolean(storedConfig && storedConfig.isCustom !== false);
-        if (isCustomActive && (password === DEFAULT_INITIAL_SHARED_PW || password.toLowerCase() === 'physics@2026' || password === 'Physics2026')) {
-            showAlert(alertEl, alertTextEl, 'Incorrect password. The previous password has been revoked by the administrator.', true);
+        // Strictly reject all old revoked passwords
+        const enteredLower = password.toLowerCase();
+        if (enteredLower === 'physics@2026' || password === 'Physics2026' || password === '@Physics2026!' || enteredLower === '@physics2026!') {
+            showAlert(alertEl, alertTextEl, 'This previous password has been permanently revoked. Please enter the current password (@Physics2026*!).', true);
             if (inputEl) inputEl.select();
             return;
         }
@@ -771,7 +778,7 @@
             return;
         }
 
-        if (!confirm('Are you sure you want to reset the shared website access password back to the default (@Physics2026!)?')) {
+        if (!confirm('Are you sure you want to reset the shared website access password back to the default (@Physics2026*!)?')) {
             return;
         }
 
@@ -816,7 +823,7 @@
         // Remove custom shared config from client storage
         localStorage.removeItem('wis_auth_shared_config');
         clearPersistentStudentSession();
-        const newVersion = (authState.sharedPasswordVersion || 5) + 1;
+        const newVersion = (authState.sharedPasswordVersion || 6) + 1;
         authState.sharedPasswordVersion = newVersion;
         authState.lastUpdated = new Date().toISOString();
 
@@ -824,7 +831,7 @@
         sessionStorage.setItem('wis_session_version', String(newVersion));
 
         updateAdminStatusUI();
-        showAlert(alertEl, alertTextEl, 'Shared access password has been reset to default (@Physics2026!).', false);
+        showAlert(alertEl, alertTextEl, 'Shared access password has been reset to default (@Physics2026*!).', false);
 
         if (resetBtn) resetBtn.disabled = false;
     }
