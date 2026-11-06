@@ -22,14 +22,19 @@ if (-not $pwMatch.Success) {
 
 $detectedPw = $pwMatch.Groups[1].Value
 $buildTimestamp = (Get-Date).ToString("yyyyMMddHHmmss")
-$version = 8
+$version = 9
 
-# Check if there is an existing version number in auth.js
+# Check if there is an existing version number in auth.js and auto-increment
 $verMatch = [regex]::Match($authContent, "sharedPasswordVersion:\s*(\d+)")
 if ($verMatch.Success) {
     $currentVerNum = [int]$verMatch.Groups[1].Value
-    $version = [Math]::Max($currentVerNum, 8)
+    $version = $currentVerNum + 1
 }
+
+# Update version inside auth.js to force instant session invalidation
+$authContent = [regex]::Replace($authContent, "sharedPasswordVersion:\s*\d+", "sharedPasswordVersion: $version")
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText($authJsPath, $authContent, $utf8NoBom)
 
 # 2. Update index.html cache busters and build timestamps
 if (Test-Path $indexPath) {

@@ -13,7 +13,7 @@
     // WIS PHYSICS LEARNING HUB - SHARED ACCESS PASSWORD CONFIGURATION
     // To change the password for GitHub Pages, update CURRENT_CUSTOM_SHARED_PW:
     // =========================================================================
-    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026**!';
+    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026***!';
     const DEFAULT_INITIAL_SHARED_PW = CURRENT_CUSTOM_SHARED_PW;
     const DEFAULT_ADMIN_USER = 'admin';
     const SALT_PEPPER = 'WIS_PHYSICS_SALT_v5_0';
@@ -33,7 +33,7 @@
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 8,
+        sharedPasswordVersion: 9,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
@@ -127,9 +127,9 @@
                 return false;
             }
 
-            // Invalidation when password is changed directly in code
+            // Invalidation when password is changed directly in code: must match fingerprint
             const currentFingerprint = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, 'WIS_SESSION_SALT');
-            if (session.pwFingerprint && session.pwFingerprint !== currentFingerprint) {
+            if (!session.pwFingerprint || session.pwFingerprint !== currentFingerprint) {
                 localStorage.removeItem(PERSISTENT_SESSION_KEY);
                 return false;
             }
@@ -193,26 +193,9 @@
         if (!enteredPw) return false;
         const trimmed = enteredPw.trim();
 
-        // 1. Direct match with current active custom password in code
+        // ONLY the current active custom password set in code is valid!
         if (trimmed === CURRENT_CUSTOM_SHARED_PW) {
             return true;
-        }
-
-        // 2. Reject explicitly revoked legacy passwords
-        if (REVOKED_OLD_PASSWORDS.includes(trimmed)) {
-            return false;
-        }
-
-        // 3. Custom administrator-configured password (via hash in localStorage, only if matches CURRENT_CUSTOM_SHARED_PW)
-        const storedConfig = getLocalSharedConfig();
-        if (storedConfig && (storedConfig.isCustom !== false) && storedConfig.configuredPw === CURRENT_CUSTOM_SHARED_PW) {
-            if (storedConfig.hash && storedConfig.salt) {
-                const inputHash = await hashStringSHA256(trimmed, storedConfig.salt);
-                if (inputHash === storedConfig.hash) return true;
-            }
-            if (storedConfig.plainText && trimmed === storedConfig.plainText) {
-                return true;
-            }
         }
 
         return false;
@@ -295,7 +278,13 @@
             document.body.classList.add('is-locked');
             const pwInput = getEl('shared-password-input');
             if (pwInput) {
-                setTimeout(() => pwInput.focus(), 150);
+                pwInput.value = '';
+                setTimeout(() => {
+                    if (pwInput) {
+                        pwInput.value = '';
+                        pwInput.focus();
+                    }
+                }, 150);
             }
         } else {
             document.documentElement.classList.remove('wis-pre-auth');
@@ -314,9 +303,11 @@
 
     async function grantAccess() {
         authState.isAuthenticated = true;
-        const currentVersion = authState.sharedPasswordVersion || 5;
+        const currentVersion = authState.sharedPasswordVersion || 9;
+        const currentFingerprint = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, 'WIS_SESSION_SALT');
         sessionStorage.setItem('wis_student_session', 'authenticated');
         sessionStorage.setItem('wis_session_version', String(currentVersion));
+        sessionStorage.setItem('wis_session_pw_fp', currentFingerprint);
         
         // Automatically remember student login across browser restarts and refreshes
         await createPersistentStudentSession(currentVersion);
@@ -424,26 +415,27 @@
             const studentSession = sessionStorage.getItem('wis_student_session');
             const adminSession = sessionStorage.getItem('wis_admin_session');
             const sessionVer = parseInt(sessionStorage.getItem('wis_session_version'), 10) || currentActiveVer;
+            const currentFingerprint = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, 'WIS_SESSION_SALT');
+            const sessionPwFp = sessionStorage.getItem('wis_session_pw_fp');
 
             let persistentValid = false;
-            if (!studentSession || sessionVer !== currentActiveVer) {
+            if (!studentSession || sessionVer !== currentActiveVer || sessionPwFp !== currentFingerprint) {
                 persistentValid = await validatePersistentStudentSession(currentActiveVer);
                 if (persistentValid) {
                     sessionStorage.setItem('wis_student_session', 'authenticated');
                     sessionStorage.setItem('wis_session_version', String(currentActiveVer));
+                    sessionStorage.setItem('wis_session_pw_fp', currentFingerprint);
+                } else {
+                    sessionStorage.removeItem('wis_student_session');
+                    sessionStorage.removeItem('wis_session_version');
+                    sessionStorage.removeItem('wis_session_pw_fp');
+                    clearPersistentStudentSession();
                 }
             } else {
                 persistentValid = true;
             }
 
-            if (sessionVer !== currentActiveVer && !persistentValid) {
-                // Session was invalidated by password update
-                sessionStorage.removeItem('wis_student_session');
-                clearPersistentStudentSession();
-                authState.isAuthenticated = false;
-            } else {
-                authState.isAuthenticated = Boolean(studentSession || persistentValid || adminSession);
-            }
+            authState.isAuthenticated = Boolean(persistentValid || adminSession);
             authState.isAdmin = Boolean(adminSession);
         }
 
@@ -497,9 +489,9 @@
             return;
         }
 
-        // Reject old revoked passwords if entered
-        if (REVOKED_OLD_PASSWORDS.includes(password) && password !== CURRENT_CUSTOM_SHARED_PW) {
-            showAlert(alertEl, alertTextEl, 'This password has expired. Please enter the current password provided by your teacher.', true);
+        // Direct validation: only the exact CURRENT_CUSTOM_SHARED_PW unlocks the website
+        if (password !== CURRENT_CUSTOM_SHARED_PW) {
+            showAlert(alertEl, alertTextEl, 'Incorrect password. Please enter the current password provided by your teacher.', true);
             if (inputEl) inputEl.select();
             return;
         }
