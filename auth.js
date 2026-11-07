@@ -25,7 +25,7 @@
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 13,
+        sharedPasswordVersion: 14,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
@@ -44,25 +44,86 @@
         return document.getElementById(id);
     }
 
-    // --- Helper: Web Crypto SHA-256 Hashing ---
+    // --- Helper: Web Crypto SHA-256 Hashing with pure-JS synchronous fallback ---
+    function pureSha256(str) {
+        function rightRotate(value, amount) {
+            return (value >>> amount) | (value << (32 - amount));
+        }
+        const mathPow = Math.pow;
+        const maxWord = mathPow(2, 32);
+        let i, j;
+        const words = [];
+        const utf8 = unescape(encodeURIComponent(str));
+        const asciiBitLength = utf8.length * 8;
+        const hash = [];
+        const k = [];
+        let primeCounter = 0;
+        const isComposite = {};
+        for (let candidate = 2; primeCounter < 64; candidate++) {
+            if (!isComposite[candidate]) {
+                for (i = candidate * candidate; i < 313; i += candidate) {
+                    isComposite[i] = true;
+                }
+                if (primeCounter < 8) hash[primeCounter] = (mathPow(candidate, 0.5) * maxWord) | 0;
+                k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
+            }
+        }
+        words[asciiBitLength >> 5] |= 0x80 << (24 - (asciiBitLength % 32));
+        words[(((asciiBitLength + 64) >> 9) << 4) + 15] = asciiBitLength;
+        for (i = 0; i < utf8.length; i++) {
+            words[i >> 2] |= utf8.charCodeAt(i) << ((3 - (i % 4)) * 8);
+        }
+        for (j = 0; j < words.length; j += 16) {
+            const w = words.slice(j, j + 16);
+            const oldHash = hash.slice(0);
+            for (i = 0; i < 64; i++) {
+                if (i >= 16) {
+                    const s0 = rightRotate(w[i - 15], 7) ^ rightRotate(w[i - 15], 18) ^ (w[i - 15] >>> 3);
+                    const s1 = rightRotate(w[i - 2], 17) ^ rightRotate(w[i - 2], 19) ^ (w[i - 2] >>> 10);
+                    w[i] = (w[i - 16] + s0 + w[i - 7] + s1) | 0;
+                }
+                const s1 = rightRotate(hash[4], 6) ^ rightRotate(hash[4], 11) ^ rightRotate(hash[4], 25);
+                const ch = (hash[4] & hash[5]) ^ (~hash[4] & hash[6]);
+                const temp1 = (hash[7] + s1 + ch + k[i] + (w[i] || 0)) | 0;
+                const s0 = rightRotate(hash[0], 2) ^ rightRotate(hash[0], 13) ^ rightRotate(hash[0], 22);
+                const maj = (hash[0] & hash[1]) ^ (hash[0] & hash[2]) ^ (hash[1] & hash[2]);
+                const temp2 = (s0 + maj) | 0;
+                hash[7] = hash[6];
+                hash[6] = hash[5];
+                hash[5] = hash[4];
+                hash[4] = (hash[3] + temp1) | 0;
+                hash[3] = hash[2];
+                hash[2] = hash[1];
+                hash[1] = hash[0];
+                hash[0] = (temp1 + temp2) | 0;
+            }
+            for (i = 0; i < 8; i++) hash[i] = (hash[i] + oldHash[i]) | 0;
+        }
+        let res = '';
+        for (i = 0; i < 8; i++) {
+            for (j = 3; j >= 0; j--) {
+                const b = (hash[i] >> (j * 8)) & 255;
+                res += ('0' + b.toString(16)).slice(-2);
+            }
+        }
+        return res;
+    }
+
     async function hashStringSHA256(str, salt) {
+        const input = String(str) + (salt || SALT_PEPPER);
         try {
             if (window.crypto && window.crypto.subtle) {
                 const encoder = new TextEncoder();
-                const data = encoder.encode(str + (salt || SALT_PEPPER));
+                const data = encoder.encode(input);
                 const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
                 const hashArray = Array.from(new Uint8Array(hashBuffer));
                 return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
             }
         } catch (e) {}
-        // Fallback bitwise hash if Web Crypto unavailable in non-secure context
-        let h = 0;
-        const combined = str + (salt || SALT_PEPPER);
-        for (let i = 0; i < combined.length; i++) {
-            h = ((h << 5) - h) + combined.charCodeAt(i);
-            h |= 0;
-        }
-        return 'fallback_' + Math.abs(h).toString(16);
+        try {
+            return pureSha256(input);
+        } catch (err) {}
+        return '';
     }
 
     function getLocalSharedConfig() {
@@ -396,7 +457,11 @@
         const adminPwVersionPill = getEl('admin-pw-version-pill');
         const adminPwUpdatedText = getEl('admin-pw-updated-text');
         const navAdminBtn = getEl('nav-admin-btn');
+        const authGateBadge = getEl('auth-version-badge');
 
+        if (authGateBadge) {
+            authGateBadge.textContent = `v8.0 (Build ${authState.sharedPasswordVersion || 14})`;
+        }
         if (adminPwVersionPill) {
             adminPwVersionPill.textContent = `Version ${authState.sharedPasswordVersion || 12} (Protected)`;
         }
@@ -441,30 +506,35 @@
             let authenticated = false;
             let errorMessage = 'Incorrect password. Please try again.';
 
-            // 1. Attempt Server API (if server is running)
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 1200);
-                const res = await fetch('/api/login', {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ password }),
-                    signal: controller.signal
-                });
-                clearTimeout(timeoutId);
+            // Detect if running on static hosting without Node.js backend (e.g. GitHub Pages)
+            const isStaticHost = (window.location.hostname || '').endsWith('github.io') || window.location.protocol === 'file:';
 
-                if (res.ok) {
-                    const data = await res.json().catch(() => ({}));
-                    if (data.success) {
-                        authenticated = true;
-                        if (data.version) authState.sharedPasswordVersion = data.version;
+            // 1. Attempt Server API (only if running with a real local Node backend)
+            if (!isStaticHost) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 1000);
+                    const res = await fetch('/api/login', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ password }),
+                        signal: controller.signal
+                    });
+                    clearTimeout(timeoutId);
+
+                    if (res.ok) {
+                        const data = await res.json().catch(() => ({}));
+                        if (data.success) {
+                            authenticated = true;
+                            if (data.version) authState.sharedPasswordVersion = data.version;
+                        }
+                    } else if (res.status === 401 || res.status === 429) {
+                        const data = await res.json().catch(() => ({}));
+                        errorMessage = data.message || 'Incorrect password. Please try again.';
                     }
-                } else if (res.status === 401 || res.status === 429) {
-                    const data = await res.json().catch(() => ({}));
-                    errorMessage = data.message || 'Incorrect password. Please try again.';
-                }
-            } catch (netErr) {}
+                } catch (netErr) {}
+            }
 
             // 2. Client Mode: Irreversible Salted SHA-256 Hash Verification
             if (!authenticated) {

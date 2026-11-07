@@ -71,6 +71,7 @@ if (Test-Path $indexPath) {
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="auth\.js\?[^"]*"', "<script src=`"auth.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="app\.js\?[^"]*"', "<script src=`"app.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<link\s+rel="stylesheet"\s+href="styles\.css\?[^"]*"', "<link rel=`"stylesheet`" href=`"styles.css?v=$version&build=$buildTimestamp`"")
+    $indexContent = [regex]::Replace($indexContent, 'id="auth-version-badge"[^>]*>[^<]*<', "id=`"auth-version-badge`" style=`"display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;`">v8.0 (Build $version)<")
     
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
     [System.IO.File]::WriteAllText($indexPath, $indexContent, $utf8NoBom)
