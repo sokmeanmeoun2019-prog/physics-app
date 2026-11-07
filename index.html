@@ -20,8 +20,8 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
-                var currentVer = 12;
-                var LATEST_BUILD = '20261107201444';
+                var currentVer = 13;
+                var LATEST_BUILD = '20261107202359';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -72,7 +72,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=12&build=20261107201444">
+    <link rel="stylesheet" href="styles.css?v=13&build=20261107202359">
     <style>
         .view.active {
             display: block !important;
@@ -8425,7 +8425,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=12&build=20261107201444"></script>
-    <script src="app.js?v=12&build=20261107201444" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=13&build=20261107202359"></script>
+    <script src="app.js?v=13&build=20261107202359" onerror="onAppJsError()"></script>
 </body>
 </html>

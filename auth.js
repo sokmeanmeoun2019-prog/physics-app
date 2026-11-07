@@ -25,7 +25,7 @@
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 12,
+        sharedPasswordVersion: 13,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
@@ -252,8 +252,8 @@
 
     async function grantAccess() {
         authState.isAuthenticated = true;
-        const currentVersion = authState.sharedPasswordVersion || 9;
-        const currentFingerprint = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, 'WIS_SESSION_SALT');
+        const currentVersion = authState.sharedPasswordVersion || 12;
+        const currentFingerprint = SHARED_PW_HASH;
         sessionStorage.setItem('wis_student_session', 'authenticated');
         sessionStorage.setItem('wis_session_version', String(currentVersion));
         sessionStorage.setItem('wis_session_pw_fp', currentFingerprint);
@@ -437,51 +437,56 @@
         if (submitBtn) submitBtn.disabled = true;
         if (submitBtnText) submitBtnText.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Checking password...';
 
-        let authenticated = false;
-        let errorMessage = 'Incorrect password. Please try again.';
-
-        // 1. Attempt Server API (if server is running)
         try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 1200);
-            const res = await fetch('/api/login', {
-                method: 'POST',
-                credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password }),
-                signal: controller.signal
-            });
-            clearTimeout(timeoutId);
+            let authenticated = false;
+            let errorMessage = 'Incorrect password. Please try again.';
 
-            if (res.ok) {
-                const data = await res.json().catch(() => ({}));
-                if (data.success) {
-                    authenticated = true;
-                    if (data.version) authState.sharedPasswordVersion = data.version;
+            // 1. Attempt Server API (if server is running)
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 1200);
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password }),
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+
+                if (res.ok) {
+                    const data = await res.json().catch(() => ({}));
+                    if (data.success) {
+                        authenticated = true;
+                        if (data.version) authState.sharedPasswordVersion = data.version;
+                    }
+                } else if (res.status === 401 || res.status === 429) {
+                    const data = await res.json().catch(() => ({}));
+                    errorMessage = data.message || 'Incorrect password. Please try again.';
                 }
-            } else if (res.status === 401 || res.status === 429) {
-                const data = await res.json().catch(() => ({}));
-                errorMessage = data.message || 'Incorrect password. Please try again.';
+            } catch (netErr) {}
+
+            // 2. Client Mode: Irreversible Salted SHA-256 Hash Verification
+            if (!authenticated) {
+                const clientValid = await verifySharedPasswordClient(password);
+                if (clientValid) {
+                    authenticated = true;
+                }
             }
-        } catch (netErr) {}
 
-        // 2. Client Mode: Irreversible Salted SHA-256 Hash Verification
-        if (!authenticated) {
-            const clientValid = await verifySharedPasswordClient(password);
-            if (clientValid) {
-                authenticated = true;
+            if (authenticated) {
+                await grantAccess();
+            } else {
+                showAlert(alertEl, alertTextEl, 'Incorrect password. Please enter the current password provided by your teacher.', true);
+                if (inputEl) inputEl.select();
             }
+        } catch (err) {
+            console.error('[AUTH LOGIN ERROR]', err);
+            showAlert(alertEl, alertTextEl, 'An error occurred during verification. Please try again.', true);
+        } finally {
+            if (submitBtn) submitBtn.disabled = false;
+            if (submitBtnText) submitBtnText.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Enter Website';
         }
-
-        if (authenticated) {
-            await grantAccess();
-        } else {
-            showAlert(alertEl, alertTextEl, 'Incorrect password. Please enter the current password provided by your teacher.', true);
-            if (inputEl) inputEl.select();
-        }
-
-        if (submitBtn) submitBtn.disabled = false;
-        if (submitBtnText) submitBtnText.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Enter Website';
     }
 
     // --- Administrator Login Handler ---
@@ -515,54 +520,59 @@
         let serverForbidden = false;
         let errorMessage = 'Invalid administrator credentials.';
 
-        // 1. Attempt Server API
         try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2000);
-            const res = await fetch('/api/admin/login', {
-                method: 'POST',
-                credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password }),
-                signal: controller.signal
-            });
-            clearTimeout(timeoutId);
+            // 1. Attempt Server API
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 2000);
+                const res = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password }),
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
 
-            if (res.ok) {
-                const data = await res.json().catch(() => ({}));
-                if (data.success) {
-                    authenticated = true;
-                    if (data.adminToken) sessionStorage.setItem('wis_admin_token', data.adminToken);
-                    if (data.version) authState.sharedPasswordVersion = data.version;
+                if (res.ok) {
+                    const data = await res.json().catch(() => ({}));
+                    if (data.success) {
+                        authenticated = true;
+                        if (data.adminToken) sessionStorage.setItem('wis_admin_token', data.adminToken);
+                        if (data.version) authState.sharedPasswordVersion = data.version;
+                    }
+                } else if (res.status === 403) {
+                    const data = await res.json().catch(() => ({}));
+                    errorMessage = data.message || 'Access Denied: Administrator controls can only be accessed directly from the host computer.';
+                    serverForbidden = true;
+                } else if (res.status === 401 || res.status === 429) {
+                    const data = await res.json().catch(() => ({}));
+                    errorMessage = data.message || 'Invalid administrator credentials.';
                 }
-            } else if (res.status === 403) {
-                const data = await res.json().catch(() => ({}));
-                errorMessage = data.message || 'Access Denied: Administrator controls can only be accessed directly from the host computer.';
-                serverForbidden = true;
-            } else if (res.status === 401 || res.status === 429) {
-                const data = await res.json().catch(() => ({}));
-                errorMessage = data.message || 'Invalid administrator credentials.';
+            } catch (netErr) {}
+
+            // 2. Client Mode Fallback (Allowed strictly on host environment and never if server gave 403 Forbidden)
+            if (!authenticated && !serverForbidden && isHostEnvironment()) {
+                const clientAdminValid = await verifyAdminClient(username, password);
+                if (clientAdminValid) authenticated = true;
             }
-        } catch (netErr) {}
 
-        // 2. Client Mode Fallback (Allowed strictly on host environment and never if server gave 403 Forbidden)
-        if (!authenticated && !serverForbidden && isHostEnvironment()) {
-            const clientAdminValid = await verifyAdminClient(username, password);
-            if (clientAdminValid) authenticated = true;
+            if (authenticated) {
+                // Keep admin credentials in sessionStorage for server authorization failsafe
+                sessionStorage.setItem('wis_admin_auth_user', username);
+                sessionStorage.setItem('wis_admin_auth_pw', password);
+                await grantAdminAccess();
+            } else {
+                showAlert(alertEl, alertTextEl, errorMessage, true);
+                if (pwInput) pwInput.select();
+            }
+        } catch (err) {
+            console.error('[ADMIN LOGIN ERROR]', err);
+            showAlert(alertEl, alertTextEl, 'An error occurred during verification.', true);
+        } finally {
+            if (submitBtn) submitBtn.disabled = false;
+            if (submitBtnText) submitBtnText.textContent = 'Authenticate as Administrator';
         }
-
-        if (authenticated) {
-            // Keep admin credentials in sessionStorage for server authorization failsafe
-            sessionStorage.setItem('wis_admin_auth_user', username);
-            sessionStorage.setItem('wis_admin_auth_pw', password);
-            await grantAdminAccess();
-        } else {
-            showAlert(alertEl, alertTextEl, errorMessage, true);
-            if (pwInput) pwInput.select();
-        }
-
-        if (submitBtn) submitBtn.disabled = false;
-        if (submitBtnText) submitBtnText.textContent = 'Authenticate as Administrator';
     }
 
     // --- Admin Change Shared Access Password Handler ---
