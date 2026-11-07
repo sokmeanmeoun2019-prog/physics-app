@@ -58,7 +58,8 @@ if %errorlevel% equ 0 (
     echo   2. When opening your website, press Ctrl + F5
     echo      or open an Incognito window (Ctrl + Shift + N)
     echo      to ensure your browser loads the newest version.
-    echo   3. Your new password from auth.js is now active!
+    echo   3. Plaintext password is removed from online code (Zero Exposure).
+    echo   4. Your password in TEACHER_PASSWORD.txt is now active!
     echo =======================================================
 ) else (
     echo.

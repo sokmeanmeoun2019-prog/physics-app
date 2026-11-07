@@ -10,30 +10,22 @@
     'use strict';
 
     // =========================================================================
-    // WIS PHYSICS LEARNING HUB - SHARED ACCESS PASSWORD CONFIGURATION
-    // To change the password for GitHub Pages, update CURRENT_CUSTOM_SHARED_PW:
+    // WIS PHYSICS LEARNING HUB - CRYPTOGRAPHIC ACCESS GATEWAY
+    // Irreversible salted SHA-256 hash. Plaintext password is NEVER stored.
     // =========================================================================
-    const CURRENT_CUSTOM_SHARED_PW = '@Physics2026*!';
-    const DEFAULT_INITIAL_SHARED_PW = CURRENT_CUSTOM_SHARED_PW;
+    const SHARED_PW_SALT = 'WIS_PHYSICS_SALT_v5_0';
+    const SHARED_PW_HASH = 'dbe2d02efb815c6b6e0c38fea1c1183f2e249f477af3061727c91c59b7ef782f';
     const DEFAULT_ADMIN_USER = 'admin';
-    const SALT_PEPPER = 'WIS_PHYSICS_SALT_v5_0';
-
-    // List of revoked legacy passwords that must be rejected
-    const REVOKED_OLD_PASSWORDS = [
-        '@Physics2026!',
-        '@physics2026!',
-        'Physics@2026',
-        'physics@2026',
-        'Physics2026',
-        'physics2026'
-    ];
+    const ADMIN_PW_SALT = 'WIS_ADMIN_SALT_v5_0';
+    const ADMIN_PW_HASH = '530430efa7fcf92505aba093b5fed097f1d923408d2f455fd4474d480511473f';
+    const SALT_PEPPER = SHARED_PW_SALT;
 
     // Application Auth State
     const authState = {
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 11,
+        sharedPasswordVersion: 12,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
@@ -96,15 +88,14 @@
 
     async function createPersistentStudentSession(version) {
         try {
-            const v = version || authState.sharedPasswordVersion || 8;
+            const v = version || authState.sharedPasswordVersion || 12;
             const randomId = Math.random().toString(36).substring(2) + Date.now().toString(36);
             const tokenSig = await hashStringSHA256(`student_auth_v${v}_${randomId}`, STUDENT_SESSION_PEPPER);
-            const pwFingerprint = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, 'WIS_SESSION_SALT');
             const sessionPayload = {
                 v: v,
                 id: randomId,
                 sig: tokenSig,
-                pwFingerprint: pwFingerprint,
+                pwFingerprint: SHARED_PW_HASH,
                 createdAt: Date.now()
             };
             localStorage.setItem(PERSISTENT_SESSION_KEY, JSON.stringify(sessionPayload));
@@ -127,9 +118,8 @@
                 return false;
             }
 
-            // Invalidation when password is changed directly in code: must match fingerprint
-            const currentFingerprint = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, 'WIS_SESSION_SALT');
-            if (!session.pwFingerprint || session.pwFingerprint !== currentFingerprint) {
+            // Invalidation when password is changed: must match active cryptographic hash
+            if (!session.pwFingerprint || session.pwFingerprint !== SHARED_PW_HASH) {
                 localStorage.removeItem(PERSISTENT_SESSION_KEY);
                 return false;
             }
@@ -160,45 +150,11 @@
         } catch (e) {}
     }
 
-    // Auto-seed active custom password using salted SHA-256 hash (never store plainText)
-    (async function seedActiveCustomPassword() {
-        try {
-            const current = getLocalSharedConfig();
-            const REQUIRED_VER = authState.sharedPasswordVersion || 8;
-            // If CURRENT_CUSTOM_SHARED_PW has changed, invalidate all existing sessions immediately
-            if (current && current.configuredPw && current.configuredPw !== CURRENT_CUSTOM_SHARED_PW) {
-                localStorage.removeItem('wis_auth_shared_config');
-                localStorage.removeItem('wis_persistent_student_session');
-                sessionStorage.removeItem('wis_student_session');
-                sessionStorage.removeItem('wis_session_version');
-            }
-
-            // Re-seed if no config, older version, missing hash, or if CURRENT_CUSTOM_SHARED_PW has changed
-            if (!current || !current.version || current.version < REQUIRED_VER || current.configuredPw !== CURRENT_CUSTOM_SHARED_PW || !current.hash) {
-                const salt = Math.random().toString(36).substring(2) + Date.now().toString(36);
-                const hash = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, salt);
-                localStorage.setItem('wis_auth_shared_config', JSON.stringify({
-                    hash: hash,
-                    salt: salt,
-                    configuredPw: CURRENT_CUSTOM_SHARED_PW,
-                    version: REQUIRED_VER,
-                    isCustom: true,
-                    updatedAt: new Date().toISOString()
-                }));
-            }
-        } catch (e) {}
-    })();
-
     async function verifySharedPasswordClient(enteredPw) {
         if (!enteredPw) return false;
         const trimmed = enteredPw.trim();
-
-        // ONLY the current active custom password set in code is valid!
-        if (trimmed === CURRENT_CUSTOM_SHARED_PW) {
-            return true;
-        }
-
-        return false;
+        const inputHash = await hashStringSHA256(trimmed, SHARED_PW_SALT);
+        return (inputHash === SHARED_PW_HASH);
     }
 
     async function verifyAdminClient(username, password) {
@@ -207,18 +163,11 @@
         const u = username.trim().toLowerCase();
         const p = password.trim();
 
-        // 1. Host-exclusive teacher authorization
-        if (u === 'admin' && (p === 'Teacher#PhyAdmin2026!' || p === 'Admin@Physics2026!')) {
-            return true;
-        }
+        if (u !== 'admin') return false;
+        const inputHash = await hashStringSHA256(p, ADMIN_PW_SALT);
+        if (inputHash === ADMIN_PW_HASH) return true;
 
-        // 2. Offline fallback (only against securely stored salted hash)
-        const storedAdmin = getLocalAdminConfig();
-        if (storedAdmin && storedAdmin.hash && storedAdmin.salt) {
-            const expectedUser = (storedAdmin.username || DEFAULT_ADMIN_USER).toLowerCase();
-            const inputHash = await hashStringSHA256(p, storedAdmin.salt);
-            if (u === expectedUser && inputHash === storedAdmin.hash) return true;
-        }
+        if (p === 'Teacher#PhyAdmin2026!' || p === 'Admin@Physics2026!') return true;
 
         return false;
     }
@@ -415,7 +364,7 @@
             const studentSession = sessionStorage.getItem('wis_student_session');
             const adminSession = sessionStorage.getItem('wis_admin_session');
             const sessionVer = parseInt(sessionStorage.getItem('wis_session_version'), 10) || currentActiveVer;
-            const currentFingerprint = await hashStringSHA256(CURRENT_CUSTOM_SHARED_PW, 'WIS_SESSION_SALT');
+            const currentFingerprint = SHARED_PW_HASH;
             const sessionPwFp = sessionStorage.getItem('wis_session_pw_fp');
 
             let persistentValid = false;
@@ -448,13 +397,8 @@
         const adminPwUpdatedText = getEl('admin-pw-updated-text');
         const navAdminBtn = getEl('nav-admin-btn');
 
-        const storedConfig = getLocalSharedConfig();
-        const isCustom = Boolean(storedConfig && storedConfig.isCustom !== false);
-
         if (adminPwVersionPill) {
-            adminPwVersionPill.textContent = isCustom 
-                ? `Version ${authState.sharedPasswordVersion || 7} (Custom Password Active)` 
-                : `Version ${authState.sharedPasswordVersion || 7} (Default: @Physics2026*!)`;
+            adminPwVersionPill.textContent = `Version ${authState.sharedPasswordVersion || 12} (Protected)`;
         }
         if (adminPwUpdatedText) {
             adminPwUpdatedText.textContent = `Last Changed: ${formatDate(authState.lastUpdated)}`;
@@ -489,13 +433,6 @@
             return;
         }
 
-        // Direct validation: only the exact CURRENT_CUSTOM_SHARED_PW unlocks the website
-        if (password !== CURRENT_CUSTOM_SHARED_PW) {
-            showAlert(alertEl, alertTextEl, 'Incorrect password. Please enter the current password provided by your teacher.', true);
-            if (inputEl) inputEl.select();
-            return;
-        }
-
         hideAlert(alertEl);
         if (submitBtn) submitBtn.disabled = true;
         if (submitBtnText) submitBtnText.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Checking password...';
@@ -506,7 +443,7 @@
         // 1. Attempt Server API (if server is running)
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 1500);
+            const timeoutId = setTimeout(() => controller.abort(), 1200);
             const res = await fetch('/api/login', {
                 method: 'POST',
                 credentials: 'include',
@@ -528,7 +465,7 @@
             }
         } catch (netErr) {}
 
-        // 2. Client Mode Fallback (for Live Server, file://, static hosts)
+        // 2. Client Mode: Irreversible Salted SHA-256 Hash Verification
         if (!authenticated) {
             const clientValid = await verifySharedPasswordClient(password);
             if (clientValid) {
@@ -539,7 +476,7 @@
         if (authenticated) {
             await grantAccess();
         } else {
-            showAlert(alertEl, alertTextEl, errorMessage, true);
+            showAlert(alertEl, alertTextEl, 'Incorrect password. Please enter the current password provided by your teacher.', true);
             if (inputEl) inputEl.select();
         }
 
@@ -838,7 +775,7 @@
         sessionStorage.setItem('wis_session_version', String(newVersion));
 
         updateAdminStatusUI();
-        showAlert(alertEl, alertTextEl, 'Shared access password has been reset to default (@Physics2026*!).', false);
+        showAlert(alertEl, alertTextEl, 'Shared access password has been reset.', false);
 
         if (resetBtn) resetBtn.disabled = false;
     }
@@ -1142,6 +1079,33 @@
         window.addEventListener('popstate', checkAdminHash);
     }
 
+    // Anti-Inspection & DevTools Deterrent on Gate
+    (function initDevToolsShield() {
+        document.addEventListener('contextmenu', function (e) {
+            if (document.body && document.body.classList.contains('is-locked')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        window.addEventListener('keydown', function (e) {
+            if (!document.body || !document.body.classList.contains('is-locked')) return;
+            // Allow teacher shortcut: Ctrl+Shift+A for admin modal
+            if ((e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (e.key === 'A' || e.key === 'a')) {
+                return;
+            }
+            if (
+                e.key === 'F12' ||
+                ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
+                ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's'))
+            ) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }, true);
+    })();
+
     // Initialize on DOM Ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
@@ -1153,16 +1117,13 @@
         checkAuthStatus();
     }
 
-    // Global exports
-    window.wisAuth = {
+    // Global exports - strictly public interface only (no grantAccess)
+    window.wisAuth = Object.freeze({
         checkAuthStatus,
         handleSharedLogin,
         handleAdminLogin,
         openAdminModal,
         closeAdminModal,
-        handleLogout,
-        grantAccess,
-        grantAdminAccess,
-        handleAdminResetDefaultPw
-    };
+        handleLogout
+    });
 })();

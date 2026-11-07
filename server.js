@@ -639,16 +639,20 @@ const server = http.createServer(async (req, res) => {
             return sendJson(res, 500, { success: false, message: 'Failed to persist password change to disk.' });
         }
 
-        // Automatically sync new password directly into auth.js and index.html for GitHub Pages
+        // Automatically sync new password directly into TEACHER_PASSWORD.txt, auth.js (hash only), and index.html
         try {
+            const teacherPwPath = path.join(__dirname, 'TEACHER_PASSWORD.txt');
+            fs.writeFileSync(teacherPwPath, newPassword.trim(), 'utf8');
+
+            const sharedSalt = 'WIS_PHYSICS_SALT_v5_0';
+            const sha256Hash = crypto.createHash('sha256').update(newPassword.trim() + sharedSalt).digest('hex');
             const authJsPath = path.join(__dirname, 'auth.js');
             if (fs.existsSync(authJsPath)) {
                 let content = fs.readFileSync(authJsPath, 'utf8');
-                const escapedPw = newPassword.trim().replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-                content = content.replace(/const CURRENT_CUSTOM_SHARED_PW = '[^']*';/, `const CURRENT_CUSTOM_SHARED_PW = '${escapedPw}';`);
-                content = content.replace(/sharedPasswordVersion: \d+/, `sharedPasswordVersion: ${authConfig.sharedPassword.version}`);
+                content = content.replace(/const\s+SHARED_PW_HASH\s*=\s*'[^']*';/, `const SHARED_PW_HASH = '${sha256Hash}';`);
+                content = content.replace(/sharedPasswordVersion:\s*\d+/, `sharedPasswordVersion: ${authConfig.sharedPassword.version}`);
                 fs.writeFileSync(authJsPath, content, 'utf8');
-                console.log(`[AUTH] Synced new password to auth.js for GitHub Pages deploy.`);
+                console.log(`[AUTH] Synced new password hash to auth.js for GitHub Pages deploy.`);
             }
 
             const indexPath = path.join(__dirname, 'index.html');

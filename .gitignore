@@ -13,8 +13,11 @@ desktop.ini
 *.log
 *.tmp
 
-# Environment variables & dependencies
+# Environment variables & local credentials
 .env
 .env.*
 node_modules/
 auth-config.json
+TEACHER_PASSWORD.txt
+password.txt
+PASSWORD.txt
