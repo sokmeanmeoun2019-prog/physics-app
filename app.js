@@ -4520,6 +4520,9 @@ let currentEbookRenderSessionId = 0;
 
 function cleanupCurrentPdfSession() {
     currentEbookRenderSessionId++;
+    if (typeof stopActiveAudio === 'function') {
+        try { stopActiveAudio(); } catch (e) {}
+    }
     if (currentPdfSession) {
         currentPdfSession.aborted = true;
         if (currentPdfSession.token) {
@@ -4552,6 +4555,510 @@ function cleanupCurrentPdfSession() {
     }
     if (typeof window.cleanupEbookSession === 'function') {
         try { window.cleanupEbookSession(); } catch (e) {}
+    }
+}
+
+// --- Interactive Audiobook Narration Engine (Grade 9 & Grade 12) ---
+let activeAudioInstance = null;
+
+function stopActiveAudio() {
+    if (activeAudioInstance) {
+        try {
+            activeAudioInstance.pause();
+            activeAudioInstance.src = '';
+        } catch (e) {}
+        activeAudioInstance = null;
+    }
+    const playIcon = document.getElementById('audio-play-icon');
+    if (playIcon) playIcon.className = 'fa-solid fa-play';
+    const card = document.getElementById('ebook-audio-card');
+    if (card) card.classList.remove('is-playing');
+}
+
+const AUDIO_TRACK_SPEC = {
+    // Grade 9
+    'g9-l1': { count: 2, labelPrefix: 'Part', base: 'g9-ch1', preferPart: true, titles: ['Part 1: Turning Effect (pp. 1–6)', 'Part 2: Principle of Moments (pp. 7–12)'] },
+    'g9-ch1': { count: 2, labelPrefix: 'Part', base: 'g9-ch1', preferPart: true, titles: ['Part 1: Turning Effect (pp. 1–6)', 'Part 2: Principle of Moments (pp. 7–12)'] },
+
+    'g9-l3_s0': { count: 2, labelPrefix: 'Audio', base: 'g9-ch3-part1', titles: ['Electric Energy - Audio 1', 'Electric Energy - Audio 2'] },
+    'g9-ch3-part1': { count: 2, labelPrefix: 'Audio', base: 'g9-ch3-part1', titles: ['Electric Energy - Audio 1', 'Electric Energy - Audio 2'] },
+
+    'g9-l4': { count: 3, labelPrefix: 'Audio', base: 'g9-ch4', titles: ['Magnetic Field - Audio 1', 'Magnetic Field - Audio 2', 'Magnetic Field - Audio 3'] },
+    'g9-l4_s0': { count: 3, labelPrefix: 'Audio', base: 'g9-ch4', titles: ['Magnetic Field - Audio 1', 'Magnetic Field - Audio 2', 'Magnetic Field - Audio 3'] },
+    'g9-ch4': { count: 3, labelPrefix: 'Audio', base: 'g9-ch4', titles: ['Magnetic Field - Audio 1', 'Magnetic Field - Audio 2', 'Magnetic Field - Audio 3'] },
+
+    'g9-l5_s4': { count: 2, labelPrefix: 'Audio', base: 'g9-ch5-5-lenses', titles: ['Section 5.5: Lenses - Audio 1', 'Section 5.5: Lenses - Audio 2'] },
+    'g9-ch5-5-lenses': { count: 2, labelPrefix: 'Audio', base: 'g9-ch5-5-lenses', titles: ['Section 5.5: Lenses - Audio 1', 'Section 5.5: Lenses - Audio 2'] },
+
+    // Grade 12 - Chapter 1
+    'g12-l1': { count: 5, labelPrefix: 'Audio', base: 'g12-ch1-l1', titles: ['Thermal Physics - Audio 1', 'Thermal Physics - Audio 2', 'Thermal Physics - Audio 3', 'Thermal Physics - Audio 4', 'Thermal Physics - Audio 5'] },
+    'g12-ch1-l1': { count: 5, labelPrefix: 'Audio', base: 'g12-ch1-l1', titles: ['Thermal Physics - Audio 1', 'Thermal Physics - Audio 2', 'Thermal Physics - Audio 3', 'Thermal Physics - Audio 4', 'Thermal Physics - Audio 5'] },
+
+    'g12-l2': { count: 3, labelPrefix: 'Audio', base: 'g12-ch1-l2', titles: ['Laws of Thermodynamics - Audio 1', 'Laws of Thermodynamics - Audio 2', 'Laws of Thermodynamics - Audio 3'] },
+    'g12-ch1-l2': { count: 3, labelPrefix: 'Audio', base: 'g12-ch1-l2', titles: ['Laws of Thermodynamics - Audio 1', 'Laws of Thermodynamics - Audio 2', 'Laws of Thermodynamics - Audio 3'] },
+
+    'g12-l3': { count: 4, labelPrefix: 'Audio', base: 'g12-ch1-l3', titles: ['Heat Engines - Audio 1', 'Heat Engines - Audio 2', 'Heat Engines - Audio 3', 'Heat Engines - Audio 4'] },
+    'g12-ch1-l3': { count: 4, labelPrefix: 'Audio', base: 'g12-ch1-l3', titles: ['Heat Engines - Audio 1', 'Heat Engines - Audio 2', 'Heat Engines - Audio 3', 'Heat Engines - Audio 4'] },
+
+    // Grade 12 - Chapter 2
+    'g12-l4': { count: 7, labelPrefix: 'Audio', base: 'g12-ch2-l1', titles: ['Standing Waves - Audio 1', 'Standing Waves - Audio 2', 'Standing Waves - Audio 3', 'Standing Waves - Audio 4', 'Standing Waves - Audio 5', 'Standing Waves - Audio 6', 'Standing Waves - Audio 7'] },
+    'g12-ch2-l1': { count: 7, labelPrefix: 'Audio', base: 'g12-ch2-l1', titles: ['Standing Waves - Audio 1', 'Standing Waves - Audio 2', 'Standing Waves - Audio 3', 'Standing Waves - Audio 4', 'Standing Waves - Audio 5', 'Standing Waves - Audio 6', 'Standing Waves - Audio 7'] },
+    'g12-waves': { count: 7, labelPrefix: 'Audio', base: 'g12-ch2-l1', titles: ['Standing Waves - Audio 1', 'Standing Waves - Audio 2', 'Standing Waves - Audio 3', 'Standing Waves - Audio 4', 'Standing Waves - Audio 5', 'Standing Waves - Audio 6', 'Standing Waves - Audio 7'] },
+    'g12-standing': { count: 7, labelPrefix: 'Audio', base: 'g12-ch2-l1', titles: ['Standing Waves - Audio 1', 'Standing Waves - Audio 2', 'Standing Waves - Audio 3', 'Standing Waves - Audio 4', 'Standing Waves - Audio 5', 'Standing Waves - Audio 6', 'Standing Waves - Audio 7'] },
+
+    'g12-interf': { count: 8, labelPrefix: 'Audio', base: 'g12-ch2-l2', titles: ['Interference & Diffraction - Audio 1', 'Interference & Diffraction - Audio 2', 'Interference & Diffraction - Audio 3', 'Interference & Diffraction - Audio 4', 'Interference & Diffraction - Audio 5', 'Interference & Diffraction - Audio 6', 'Interference & Diffraction - Audio 7', 'Interference & Diffraction - Audio 8'] },
+    'g12-ch2-l2': { count: 8, labelPrefix: 'Audio', base: 'g12-ch2-l2', titles: ['Interference & Diffraction - Audio 1', 'Interference & Diffraction - Audio 2', 'Interference & Diffraction - Audio 3', 'Interference & Diffraction - Audio 4', 'Interference & Diffraction - Audio 5', 'Interference & Diffraction - Audio 6', 'Interference & Diffraction - Audio 7', 'Interference & Diffraction - Audio 8'] },
+
+    // Grade 12 - Chapter 3
+    'g12-ch3-l1': { count: 12, labelPrefix: 'Audio', base: 'g12-ch3-l1', titles: ['Magnetism - Audio 1', 'Magnetism - Audio 2', 'Magnetism - Audio 3', 'Magnetism - Audio 4', 'Magnetism - Audio 5', 'Magnetism - Audio 6', 'Magnetism - Audio 7', 'Magnetism - Audio 8', 'Magnetism - Audio 9', 'Magnetism - Audio 10', 'Magnetism - Audio 11', 'Magnetism - Audio 12'] },
+    'g12-l5': { count: 12, labelPrefix: 'Audio', base: 'g12-ch3-l1' },
+    'g12-l5_s0': { count: 12, labelPrefix: 'Audio', base: 'g12-ch3-l1', titles: ['Magnetism - Audio 1', 'Magnetism - Audio 2', 'Magnetism - Audio 3', 'Magnetism - Audio 4', 'Magnetism - Audio 5', 'Magnetism - Audio 6', 'Magnetism - Audio 7', 'Magnetism - Audio 8', 'Magnetism - Audio 9', 'Magnetism - Audio 10', 'Magnetism - Audio 11', 'Magnetism - Audio 12'] },
+    'g12-mag': { count: 12, labelPrefix: 'Audio', base: 'g12-ch3-l1' },
+
+    'g12-ch3-l2': { count: 4, labelPrefix: 'Audio', base: 'g12-ch3-l2', titles: ['Induced EMF - Audio 1', 'Induced EMF - Audio 2', 'Induced EMF - Audio 3', 'Induced EMF - Audio 4'] },
+    'g12-l5_s1': { count: 4, labelPrefix: 'Audio', base: 'g12-ch3-l2', titles: ['Induced EMF - Audio 1', 'Induced EMF - Audio 2', 'Induced EMF - Audio 3', 'Induced EMF - Audio 4'] },
+    'g12-emf': { count: 4, labelPrefix: 'Audio', base: 'g12-ch3-l2', titles: ['Induced EMF - Audio 1', 'Induced EMF - Audio 2', 'Induced EMF - Audio 3', 'Induced EMF - Audio 4'] },
+
+    'g12-ch3-l3': { count: 4, labelPrefix: 'Audio', base: 'g12-ch3-l3', titles: ['Self-Induction - Audio 1', 'Self-Induction - Audio 2', 'Self-Induction - Audio 3', 'Self-Induction - Audio 4'] },
+    'g12-self-ind': { count: 4, labelPrefix: 'Audio', base: 'g12-ch3-l3', titles: ['Self-Induction - Audio 1', 'Self-Induction - Audio 2', 'Self-Induction - Audio 3', 'Self-Induction - Audio 4'] },
+
+    'g12-ch3-l4': { count: 14, labelPrefix: 'Audio', base: 'g12-ch3-l4', titles: ['AC Circuits - Audio 1', 'AC Circuits - Audio 2', 'AC Circuits - Audio 3', 'AC Circuits - Audio 4', 'AC Circuits - Audio 5', 'AC Circuits - Audio 6', 'AC Circuits - Audio 7', 'AC Circuits - Audio 8', 'AC Circuits - Audio 9', 'AC Circuits - Audio 10', 'AC Circuits - Audio 11', 'AC Circuits - Audio 12', 'AC Circuits - Audio 13', 'AC Circuits - Audio 14'] },
+    'g12-l6': { count: 14, labelPrefix: 'Audio', base: 'g12-ch3-l4' },
+    'g12-ac': { count: 14, labelPrefix: 'Audio', base: 'g12-ch3-l4' }
+};
+
+function findAudioSpec(lid, sectionIdx) {
+    if (!lid) return null;
+    const secKey = `${lid}_s${sectionIdx}`;
+    if (AUDIO_TRACK_SPEC[secKey]) return AUDIO_TRACK_SPEC[secKey];
+    if (AUDIO_TRACK_SPEC[lid]) return AUDIO_TRACK_SPEC[lid];
+    return null;
+}
+
+function getAudioTracks(lesson, selectedIndex) {
+    const lid = String((lesson && lesson.id) || '').toLowerCase();
+    const sectionIdx = (typeof selectedIndex === 'number') ? selectedIndex : 0;
+    const spec = findAudioSpec(lid, sectionIdx);
+    if (spec && spec.count && spec.count > 1) {
+        const list = [];
+        const prefix = spec.labelPrefix || 'Audio';
+        for (let i = 0; i < spec.count; i++) {
+            const num = i + 1;
+            const shortTitle = `${prefix} ${num}`;
+            const title = (spec.titles && spec.titles[i]) ? spec.titles[i] : `${prefix} ${num}`;
+            list.push({ id: i, title: title, shortTitle: shortTitle });
+        }
+        return list;
+    }
+    return null;
+}
+
+function resolveAudioCandidates(lesson, selectedIndex, trackIndex) {
+    const candidates = [];
+    const lid = String((lesson && lesson.id) || '').toLowerCase();
+    const sectionIdx = (typeof selectedIndex === 'number') ? selectedIndex : 0;
+    const trk = (typeof trackIndex === 'number') ? trackIndex : 0;
+    const trackNum = trk + 1;
+    
+    if (lesson.audioUrl && trk === 0) candidates.push(lesson.audioUrl);
+    if (lesson.ebooks && lesson.ebooks[sectionIdx] && lesson.ebooks[sectionIdx].audioUrl && trk === 0) {
+        candidates.push(lesson.ebooks[sectionIdx].audioUrl);
+    }
+
+    let baseNames = [];
+    const spec = findAudioSpec(lid, sectionIdx);
+
+    if (spec && spec.base) {
+        const b = spec.base;
+        if (spec.preferPart) {
+            baseNames.push(`${b}-part${trackNum}`);
+            baseNames.push(`${b}-part-${trackNum}`);
+            baseNames.push(`${b}_${trackNum}`);
+            baseNames.push(`${b}-${trackNum}`);
+            baseNames.push(`${b}-audio${trackNum}`);
+            baseNames.push(`${b}-audio-${trackNum}`);
+            baseNames.push(`${b}-track${trackNum}`);
+        } else {
+            baseNames.push(`${b}-${trackNum}`);
+            baseNames.push(`${b}-audio${trackNum}`);
+            baseNames.push(`${b}-audio-${trackNum}`);
+            baseNames.push(`${b}-part${trackNum}`);
+            baseNames.push(`${b}-part-${trackNum}`);
+            baseNames.push(`${b}_${trackNum}`);
+            baseNames.push(`${b}-track${trackNum}`);
+        }
+        if (trackNum === 1) {
+            baseNames.push(`${b}-audio`);
+            baseNames.push(b);
+        }
+        if (b === 'g9-ch4') {
+            baseNames.push(`g9-ch4-part1-${trackNum}`);
+            baseNames.push(`g9-ch4-part1-audio${trackNum}`);
+        } else if (b === 'g9-ch5-5-lenses') {
+            baseNames.push(`g9-ch5-lenses-${trackNum}`);
+            baseNames.push(`g9-lenses-${trackNum}`);
+            baseNames.push(`g9-ch5-5-${trackNum}`);
+        } else if (b === 'g9-ch3-part1') {
+            baseNames.push(`g9-ch3-1-${trackNum}`);
+            baseNames.push(`g9-ch3-part1_${trackNum}`);
+        }
+    } else if (lid === 'g9-l2') {
+        const sub2 = ['g9-ch2-1-levers', 'g9-ch2-2-incline', 'g9-ch2-3-pulley', 'g9-ch2-4-gears', 'g9-ch2-5-wheel-axle'];
+        baseNames = [sub2[sectionIdx] || 'g9-ch2-1-levers', 'g9-ch2-audio', 'g9-ch2'];
+    } else if (lid === 'g9-l3') {
+        baseNames = ['g9-ch3-part2', 'g9-ch3-part2-audio', 'g9-ch3-part2-1', 'g9-ch3-audio', 'g9-ch3'];
+    } else if (lid === 'g9-l4') {
+        baseNames = ['g9-ch4-part2', 'g9-ch4-part2-audio', 'g9-ch4-audio', 'g9-ch4'];
+    } else if (lid === 'g9-l5') {
+        const sub5 = ['g9-ch5-1-light-ray', 'g9-ch5-2-reflection', 'g9-ch5-3-mirrors', 'g9-ch5-4-refraction', 'g9-ch5-5-lenses'];
+        baseNames = [sub5[sectionIdx] || 'g9-ch5-1-light-ray', 'g9-ch5-audio', 'g9-ch5'];
+    } else if (lid === 'g12-ch4-l1') {
+        baseNames = ['g12-ch4-l1-audio', 'g12-ch4-l1'];
+    } else if (lid === 'g12-ch4-l2') {
+        baseNames = ['g12-ch4-l2-audio', 'g12-ch4-l2'];
+    } else if (lid === 'g12-ch4-l3') {
+        baseNames = ['g12-ch4-l3-audio', 'g12-ch4-l3'];
+    } else {
+        baseNames = [`${lid}-audio`, lid];
+    }
+
+    const folders = ['audiobooks/', 'audio/'];
+    const extensions = ['.mp3', '.mp3.mp3', '.m4a', '.wav', '.aac', '.ogg'];
+
+    folders.forEach(f => {
+        baseNames.forEach(b => {
+            extensions.forEach(ext => {
+                candidates.push(f + b + ext);
+            });
+        });
+    });
+
+    return candidates;
+}
+
+function getAudiobookCardHtml(lesson, selectedIndex, currentTrackIdx) {
+    const lid = String((lesson && lesson.id) || '').toLowerCase();
+    const isG9or12 = lid.startsWith('g9-') || lid.startsWith('g12-') || (lesson.grade === '9' || lesson.grade === '12') || lesson.audioUrl;
+    if (!isG9or12) return '';
+
+    const tracks = getAudioTracks(lesson, selectedIndex);
+    const activeTrack = (typeof currentTrackIdx === 'number') ? currentTrackIdx : 0;
+    let tracksHtml = '';
+    if (tracks && tracks.length > 1) {
+        tracksHtml = `
+            <div class="audio-track-selector">
+                <span class="audio-track-label"><i class="fa-solid fa-list-ol"></i> Audio Parts:</span>
+                <div class="audio-track-pills">
+                    ${tracks.map((t, idx) => `
+                        <button type="button" class="audio-track-pill ${idx === activeTrack ? 'active' : ''}" data-track="${idx}">
+                            <i class="fa-solid fa-headphones"></i> ${t.shortTitle || t.title}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    return `
+        <div class="ebook-audio-card" id="ebook-audio-card">
+            <div class="ebook-audio-header">
+                <div class="ebook-audio-title-group">
+                    <div class="ebook-audio-icon-box">
+                        <i class="fa-solid fa-headphones"></i>
+                    </div>
+                    <div class="ebook-audio-text-group">
+                        <div class="ebook-audio-heading">
+                            <span>Audio Book Narration</span>
+                            <span class="ebook-audio-badge-status" id="audio-status-pill"><i class="fa-solid fa-volume-high"></i> Ready</span>
+                        </div>
+                        <div class="ebook-audio-subheading" id="audio-subtitle-text">Listen to teacher narration while following along in the textbook</div>
+                    </div>
+                </div>
+                <div class="audio-extra-controls">
+                    <button type="button" class="audio-speed-btn" id="audio-speed-btn" title="Change Playback Speed">1.0x</button>
+                    <button type="button" class="audio-ctrl-btn" id="audio-mute-btn" title="Mute / Unmute"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+            </div>
+            ${tracksHtml}
+            <div class="ebook-audio-player-bar">
+                <div class="ebook-audio-transport">
+                    <button type="button" class="audio-ctrl-btn" id="audio-skip-back-btn" title="Rewind 10 seconds"><i class="fa-solid fa-rotate-left"></i></button>
+                    <button type="button" class="audio-ctrl-btn play-btn" id="audio-play-pause-btn" title="Play / Pause Audiobook"><i class="fa-solid fa-play" id="audio-play-icon"></i></button>
+                    <button type="button" class="audio-ctrl-btn" id="audio-skip-fwd-btn" title="Forward 10 seconds"><i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+                <div class="audio-timeline-group">
+                    <span class="audio-time-text current" id="audio-time-current">00:00</span>
+                    <div class="audio-slider-wrapper">
+                        <input type="range" class="audio-slider" id="audio-scrubber" min="0" max="100" value="0" step="0.1" aria-label="Audio scrubber">
+                    </div>
+                    <span class="audio-time-text total" id="audio-time-total">--:--</span>
+                </div>
+            </div>
+            <div id="audio-notice-area"></div>
+            <input type="file" id="audio-local-picker" accept="audio/*" style="display:none;">
+        </div>
+    `;
+}
+
+function initAudiobookLogic(lesson, selectedIndex, initialTrackIdx) {
+    const playBtn = document.getElementById('audio-play-pause-btn');
+    const playIcon = document.getElementById('audio-play-icon');
+    const skipBackBtn = document.getElementById('audio-skip-back-btn');
+    const skipFwdBtn = document.getElementById('audio-skip-fwd-btn');
+    const scrubber = document.getElementById('audio-scrubber');
+    const timeCur = document.getElementById('audio-time-current');
+    const timeTot = document.getElementById('audio-time-total');
+    const speedBtn = document.getElementById('audio-speed-btn');
+    const muteBtn = document.getElementById('audio-mute-btn');
+    const card = document.getElementById('ebook-audio-card');
+    const statusPill = document.getElementById('audio-status-pill');
+    const noticeArea = document.getElementById('audio-notice-area');
+    const filePicker = document.getElementById('audio-local-picker');
+    const subtitleText = document.getElementById('audio-subtitle-text');
+
+    if (!playBtn) return;
+
+    stopActiveAudio();
+
+    let currentTrack = (typeof initialTrackIdx === 'number') ? initialTrackIdx : 0;
+    const audioTracks = getAudioTracks(lesson, selectedIndex);
+    let candidates = resolveAudioCandidates(lesson, selectedIndex, currentTrack);
+    let candidateIdx = 0;
+    const speeds = [1.0, 1.25, 1.5, 2.0, 0.75];
+    let currentSpeedIdx = 0;
+    let isSeeking = false;
+    let audio = null;
+
+    function formatTime(secs) {
+        if (!secs || isNaN(secs) || secs < 0) return '00:00';
+        const m = Math.floor(secs / 60);
+        const s = Math.floor(secs % 60);
+        return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+    }
+
+    function attachAudioEvents(targetAudio) {
+        targetAudio.addEventListener('error', () => {
+            if (targetAudio.src && !targetAudio.src.startsWith('blob:')) {
+                tryLoadNextCandidate();
+            }
+        });
+
+        targetAudio.addEventListener('loadedmetadata', () => {
+            if (timeTot) timeTot.textContent = formatTime(targetAudio.duration);
+            if (scrubber) scrubber.max = targetAudio.duration || 100;
+            if (statusPill) {
+                statusPill.className = 'ebook-audio-badge-status';
+                statusPill.innerHTML = '<i class="fa-solid fa-volume-high"></i> Ready';
+            }
+            if (noticeArea) noticeArea.innerHTML = '';
+            if (subtitleText && targetAudio.src) {
+                const cleanName = targetAudio.src.split('/').pop().split('?')[0].replace(/\.mp3\.mp3$/i, '.mp3');
+                const partPrefix = (audioTracks && audioTracks[currentTrack]) ? (`${audioTracks[currentTrack].shortTitle} • `) : '';
+                subtitleText.textContent = 'Audio Narration: ' + partPrefix + decodeURIComponent(cleanName);
+            }
+        });
+
+        targetAudio.addEventListener('timeupdate', () => {
+            if (!isSeeking && scrubber && targetAudio.duration) {
+                scrubber.value = targetAudio.currentTime;
+                if (timeCur) timeCur.textContent = formatTime(targetAudio.currentTime);
+            }
+        });
+
+        targetAudio.addEventListener('ended', () => {
+            if (playIcon) playIcon.className = 'fa-solid fa-play';
+            if (card) card.classList.remove('is-playing');
+            if (scrubber) scrubber.value = 0;
+            if (timeCur) timeCur.textContent = '00:00';
+            if (statusPill) {
+                statusPill.className = 'ebook-audio-badge-status';
+                statusPill.innerHTML = '<i class="fa-solid fa-circle-check"></i> Completed';
+            }
+        });
+    }
+
+    function setupTrack(trackIdx) {
+        currentTrack = trackIdx;
+        const trackPills = document.querySelectorAll('.audio-track-pill');
+        trackPills.forEach(pill => {
+            const pTrack = parseInt(pill.getAttribute('data-track'), 10);
+            if (pTrack === trackIdx) pill.classList.add('active');
+            else pill.classList.remove('active');
+        });
+
+        if (audio) {
+            try { audio.pause(); audio.src = ''; } catch(e) {}
+        }
+
+        if (playIcon) playIcon.className = 'fa-solid fa-play';
+        if (card) card.classList.remove('is-playing');
+        if (scrubber) scrubber.value = 0;
+        if (timeCur) timeCur.textContent = '00:00';
+        if (timeTot) timeTot.textContent = '--:--';
+        if (statusPill) {
+            statusPill.className = 'ebook-audio-badge-status';
+            statusPill.innerHTML = '<i class="fa-solid fa-volume-high"></i> Ready';
+        }
+
+        candidates = resolveAudioCandidates(lesson, selectedIndex, currentTrack);
+        candidateIdx = 0;
+
+        audio = new Audio();
+        audio.playbackRate = speeds[currentSpeedIdx];
+        activeAudioInstance = audio;
+        attachAudioEvents(audio);
+
+        tryLoadNextCandidate();
+    }
+
+    function tryLoadNextCandidate() {
+        if (candidateIdx < candidates.length) {
+            const url = candidates[candidateIdx++];
+            audio.src = url;
+            audio.load();
+        } else {
+            if (statusPill) {
+                statusPill.className = 'ebook-audio-badge-status not-loaded';
+                statusPill.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Audio Not Uploaded';
+            }
+            if (noticeArea) {
+                const expected = candidates[0] || (currentTrack === 1 ? 'audio/g9-ch1-part2.mp3' : 'audio/g9-ch1-part1.mp3');
+                const partLabel = (audioTracks && audioTracks[currentTrack]) ? (`<strong>${audioTracks[currentTrack].shortTitle}</strong>: `) : '';
+                noticeArea.innerHTML = `
+                    <div class="audio-fallback-banner">
+                        <span><i class="fa-solid fa-circle-info"></i> ${partLabel}Audio file not found online yet. Put your audio file into <strong>${expected}</strong></span>
+                        <button type="button" class="audio-local-input-btn" id="audio-test-local-btn"><i class="fa-solid fa-folder-open"></i> Test Local Audio File</button>
+                    </div>
+                `;
+                const testBtn = document.getElementById('audio-test-local-btn');
+                if (testBtn && filePicker) {
+                    testBtn.onclick = () => filePicker.click();
+                }
+            }
+            if (playIcon) playIcon.className = 'fa-solid fa-play';
+            if (card) card.classList.remove('is-playing');
+        }
+    }
+
+    // Wire Track Pills
+    const trackPills = document.querySelectorAll('.audio-track-pill');
+    trackPills.forEach(pill => {
+        pill.onclick = () => {
+            const tIdx = parseInt(pill.getAttribute('data-track'), 10);
+            if (!isNaN(tIdx) && tIdx !== currentTrack) {
+                setupTrack(tIdx);
+            }
+        };
+    });
+
+    audio = new Audio();
+    activeAudioInstance = audio;
+    attachAudioEvents(audio);
+    tryLoadNextCandidate();
+
+    playBtn.onclick = () => {
+        if (audio.paused) {
+            const p = audio.play();
+            if (p && p.then) {
+                p.then(() => {
+                    if (playIcon) playIcon.className = 'fa-solid fa-pause';
+                    if (card) card.classList.add('is-playing');
+                    if (statusPill) {
+                        statusPill.className = 'ebook-audio-badge-status';
+                        statusPill.innerHTML = '<i class="fa-solid fa-volume-high fa-beat"></i> Playing';
+                    }
+                }).catch(() => {
+                    tryLoadNextCandidate();
+                });
+            }
+        } else {
+            audio.pause();
+            if (playIcon) playIcon.className = 'fa-solid fa-play';
+            if (card) card.classList.remove('is-playing');
+            if (statusPill) {
+                statusPill.className = 'ebook-audio-badge-status';
+                statusPill.innerHTML = '<i class="fa-solid fa-pause"></i> Paused';
+            }
+        }
+    };
+
+    if (skipBackBtn) {
+        skipBackBtn.onclick = () => {
+            audio.currentTime = Math.max(0, audio.currentTime - 10);
+            if (timeCur) timeCur.textContent = formatTime(audio.currentTime);
+        };
+    }
+
+    if (skipFwdBtn) {
+        skipFwdBtn.onclick = () => {
+            audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + 10);
+            if (timeCur) timeCur.textContent = formatTime(audio.currentTime);
+        };
+    }
+
+    if (scrubber) {
+        scrubber.addEventListener('input', () => {
+            isSeeking = true;
+            if (timeCur) timeCur.textContent = formatTime(scrubber.value);
+        });
+        scrubber.addEventListener('change', () => {
+            isSeeking = false;
+            audio.currentTime = parseFloat(scrubber.value) || 0;
+        });
+    }
+
+    if (speedBtn) {
+        speedBtn.onclick = () => {
+            currentSpeedIdx = (currentSpeedIdx + 1) % speeds.length;
+            const spd = speeds[currentSpeedIdx];
+            audio.playbackRate = spd;
+            speedBtn.textContent = (spd === 1.0 || spd === 2.0 ? spd.toFixed(1) : spd) + 'x';
+        };
+    }
+
+    if (muteBtn) {
+        muteBtn.onclick = () => {
+            audio.muted = !audio.muted;
+            muteBtn.innerHTML = audio.muted
+                ? '<i class="fa-solid fa-volume-xmark" style="color:#f87171;"></i>'
+                : '<i class="fa-solid fa-volume-high"></i>';
+        };
+    }
+
+    if (filePicker) {
+        filePicker.onchange = (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (file) {
+                stopActiveAudio();
+                const blobUrl = URL.createObjectURL(file);
+                const localAudio = new Audio(blobUrl);
+                activeAudioInstance = localAudio;
+                localAudio.addEventListener('loadedmetadata', () => {
+                    if (timeTot) timeTot.textContent = formatTime(localAudio.duration);
+                    if (scrubber) scrubber.max = localAudio.duration || 100;
+                });
+                localAudio.addEventListener('timeupdate', () => {
+                    if (!isSeeking && scrubber && localAudio.duration) {
+                        scrubber.value = localAudio.currentTime;
+                        if (timeCur) timeCur.textContent = formatTime(localAudio.currentTime);
+                    }
+                });
+                localAudio.addEventListener('ended', () => {
+                    if (playIcon) playIcon.className = 'fa-solid fa-play';
+                    if (card) card.classList.remove('is-playing');
+                });
+                localAudio.play().then(() => {
+                    if (playIcon) playIcon.className = 'fa-solid fa-pause';
+                    if (card) card.classList.add('is-playing');
+                    if (subtitleText) subtitleText.textContent = 'Playing Local File: ' + file.name;
+                    if (noticeArea) noticeArea.innerHTML = '';
+                    if (statusPill) {
+                        statusPill.className = 'ebook-audio-badge-status';
+                        statusPill.innerHTML = '<i class="fa-solid fa-volume-high fa-beat"></i> Playing';
+                    }
+                }).catch(() => {});
+            }
+        };
     }
 }
 
@@ -4773,12 +5280,16 @@ function renderEbook(lesson) {
         }
 
         // Render Touch-Enabled Multi-Page PDF Shell
+        const audioPlayerHtml = getAudiobookCardHtml(lesson, selectedIndex);
+
         ebookContainer.innerHTML = `
             <div class="ebook-header" style="user-select: none;">
                 <h2><i class="fa-solid fa-book-open"></i> ${lesson.title} - E-Book / Textbook</h2>
                 ${subtitleHtml}
                 <p>Read the official curriculum textbook directly in the interactive viewer (Read-Only).</p>
             </div>
+
+            ${audioPlayerHtml}
 
             <div class="ebook-actions">
                 <button type="button" class="ebook-btn primary" id="ebook-fullscreen-action-btn" title="Toggle Fullscreen Reading View">
@@ -4845,6 +5356,7 @@ function renderEbook(lesson) {
         `;
 
         wireTopicPills();
+        initAudiobookLogic(lesson, selectedIndex);
         initPdfReader(activeUrl, altUrl, currentTitle, thisSessionId, sessionToken);
     }
 

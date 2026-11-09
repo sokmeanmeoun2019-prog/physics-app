@@ -82,12 +82,10 @@ if (Test-Path $authConfigPath) {
     try {
         $jsonRaw = [System.IO.File]::ReadAllText($authConfigPath, [System.Text.Encoding]::UTF8)
         $cfg = $jsonRaw | ConvertFrom-Json
-        $cfg.sharedPassword.plainText = $rawTeacherPw
         $cfg.sharedPassword.hash = $sharedHash
         $cfg.sharedPassword.salt = $sharedSalt
         $cfg.sharedPassword.version = $version
         $cfg.sharedPassword.updatedAt = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ")
-        $cfg.admin.plainText = $adminPw
         $cfg.admin.hash = $adminHash
         $cfg.admin.salt = $adminSalt
         

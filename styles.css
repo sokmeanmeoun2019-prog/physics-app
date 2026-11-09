@@ -4766,6 +4766,76 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
 }
 
 /* Responsive adjustments */
+/* Audio Track / Part Selection Pills */
+.audio-track-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.65rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+}
+
+.audio-track-label {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.audio-track-pills {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    max-height: 110px;
+    overflow-y: auto;
+    padding: 2px 2px 4px 2px;
+}
+
+.audio-track-pills::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.audio-track-pills::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+}
+
+.audio-track-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #cbd5e1;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: all 0.18s ease;
+}
+
+.audio-track-pill:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    transform: translateY(-1px);
+}
+
+.audio-track-pill.active {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border-color: #38bdf8;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+}
+
 @media (max-width: 640px) {
     .auth-gate-card {
         padding: 2rem 1.25rem;
@@ -5556,5 +5626,395 @@ div[class*="textLayer"],
 .exam-page-card {
     position: relative !important;
     overflow: hidden !important;
+}
+
+/* ==========================================================================
+   INTERACTIVE AUDIOBOOK PLAYER (E-BOOK SECTION - GRADE 9 & GRADE 12)
+   ========================================================================== */
+.ebook-audio-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 16px;
+    padding: 1.15rem 1.4rem;
+    margin-bottom: 1.25rem;
+    color: #ffffff;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.ebook-audio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00acc1, #38bdf8, #818cf8);
+}
+
+.ebook-audio-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.ebook-audio-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.ebook-audio-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+}
+
+.ebook-audio-card.is-playing .ebook-audio-icon-box {
+    animation: audioPulse 1.8s ease-in-out infinite;
+    color: #00acc1;
+    background: rgba(0, 172, 193, 0.25);
+}
+
+@keyframes audioPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4); }
+    50% { transform: scale(1.06); box-shadow: 0 0 14px 2px rgba(56, 189, 248, 0.6); }
+}
+
+.ebook-audio-text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.ebook-audio-heading {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #f8fafc;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.ebook-audio-subheading {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-top: 1px;
+}
+
+.ebook-audio-badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(34, 197, 94, 0.15);
+    color: #86efac;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.ebook-audio-badge-status.not-loaded {
+    background: rgba(148, 163, 184, 0.12);
+    color: #cbd5e1;
+    border-color: rgba(148, 163, 184, 0.25);
+}
+
+/* Audio Player Main Bar */
+.ebook-audio-player-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+}
+
+.ebook-audio-transport {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.audio-ctrl-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #f1f5f9;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.88rem;
+    transition: all 0.18s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.audio-ctrl-btn:hover {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: scale(1.05);
+}
+
+.audio-ctrl-btn:active {
+    transform: scale(0.96);
+}
+
+.audio-ctrl-btn.play-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.15rem;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: 1px solid #38bdf8;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+}
+
+.audio-ctrl-btn.play-btn:hover {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    box-shadow: 0 6px 18px rgba(14, 165, 233, 0.5);
+    transform: scale(1.08);
+}
+
+.audio-ctrl-btn.play-btn.is-playing {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    border-color: #34d399;
+}
+
+/* Audio Scrubber & Progress */
+.audio-timeline-group {
+    flex: 1 1 200px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.audio-time-text {
+    font-size: 0.78rem;
+    font-family: monospace, monospace;
+    color: #94a3b8;
+    font-weight: 600;
+    min-width: 42px;
+    text-align: center;
+    user-select: none;
+}
+
+.audio-time-text.total {
+    color: #64748b;
+}
+
+.audio-slider-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.audio-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.15);
+    outline: none;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.audio-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #38bdf8;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.audio-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.25);
+    background: #7dd3fc;
+}
+
+.audio-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: none;
+    border-radius: 50%;
+    background: #38bdf8;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+/* Secondary Controls (Speed, Volume, Load Local) */
+.audio-extra-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.audio-speed-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #cbd5e1;
+    padding: 0.35rem 0.65rem;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.audio-speed-btn:hover {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.audio-fallback-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: rgba(2, 132, 199, 0.08);
+    border: 1px dashed rgba(56, 189, 248, 0.35);
+    border-radius: 10px;
+    padding: 0.65rem 0.9rem;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    flex-wrap: wrap;
+}
+
+.audio-fallback-banner strong {
+    color: #38bdf8;
+}
+
+.audio-local-input-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #e2e8f0;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.15s ease;
+}
+
+.audio-local-input-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+}
+
+/* Audio Track / Part Selection Pills */
+.audio-track-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.65rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+}
+
+.audio-track-label {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.audio-track-pills {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    max-height: 110px;
+    overflow-y: auto;
+    padding: 2px 2px 4px 2px;
+}
+
+.audio-track-pills::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.audio-track-pills::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+}
+
+.audio-track-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #cbd5e1;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: all 0.18s ease;
+}
+
+.audio-track-pill:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    transform: translateY(-1px);
+}
+
+.audio-track-pill.active {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border-color: #38bdf8;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+}
+
+@media (max-width: 640px) {
+    .ebook-audio-card {
+        padding: 0.9rem 1rem;
+        border-radius: 12px;
+    }
+    .ebook-audio-player-bar {
+        padding: 0.6rem 0.75rem;
+        gap: 0.65rem;
+    }
+    .audio-timeline-group {
+        order: 3;
+        width: 100%;
+        flex-basis: 100%;
+    }
 }
 
