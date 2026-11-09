@@ -25,7 +25,7 @@
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 17,
+        sharedPasswordVersion: 18,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
@@ -315,12 +315,16 @@
         authState.isAuthenticated = true;
         const currentVersion = authState.sharedPasswordVersion || 12;
         const currentFingerprint = SHARED_PW_HASH;
-        sessionStorage.setItem('wis_student_session', 'authenticated');
-        sessionStorage.setItem('wis_session_version', String(currentVersion));
-        sessionStorage.setItem('wis_session_pw_fp', currentFingerprint);
+        try {
+            sessionStorage.setItem('wis_student_session', 'authenticated');
+            sessionStorage.setItem('wis_session_version', String(currentVersion));
+            sessionStorage.setItem('wis_session_pw_fp', currentFingerprint);
+        } catch (e) {}
         
         // Automatically remember student login across browser restarts and refreshes
-        await createPersistentStudentSession(currentVersion);
+        try {
+            await createPersistentStudentSession(currentVersion);
+        } catch (e) {}
 
         const pwInput = getEl('shared-password-input');
         if (pwInput) pwInput.value = '';
@@ -502,6 +506,13 @@
         if (submitBtn) submitBtn.disabled = true;
         if (submitBtnText) submitBtnText.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Checking password...';
 
+        // Unbreakable Watchdog Failsafe: Reset button after 3.5s if any network or crypto promise stalls
+        let loginWatchdog = setTimeout(() => {
+            if (submitBtn) submitBtn.disabled = false;
+            if (submitBtnText) submitBtnText.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Enter Website';
+            showAlert(alertEl, alertTextEl, 'Verification taking longer than usual. Please check your password or refresh the page.', true);
+        }, 3500);
+
         try {
             let authenticated = false;
             let errorMessage = 'Incorrect password. Please try again.';
@@ -554,6 +565,7 @@
             console.error('[AUTH LOGIN ERROR]', err);
             showAlert(alertEl, alertTextEl, 'An error occurred during verification. Please try again.', true);
         } finally {
+            clearTimeout(loginWatchdog);
             if (submitBtn) submitBtn.disabled = false;
             if (submitBtnText) submitBtnText.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Enter Website';
         }

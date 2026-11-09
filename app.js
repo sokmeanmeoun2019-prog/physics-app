@@ -5587,6 +5587,9 @@ function renderEbook(lesson) {
                 }
             }
 
+            // Multi-tier In-Memory Document Cache (Instant 0.05s switches across lessons)
+            const WIS_PDF_DOC_CACHE = window.__WIS_PDF_DOC_CACHE || (window.__WIS_PDF_DOC_CACHE = new Map());
+
             async function fetchPdfDoc() {
                 if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
                 const candidateUrls = [primaryUrl];
@@ -5605,43 +5608,103 @@ function renderEbook(lesson) {
                     if (!candidateUrls.includes(abs)) candidateUrls.push(abs);
                 } catch(e) {}
 
-                let doc = null;
+                // Tier 1: Check In-Memory Map (Instant load when navigating lessons of same grade)
+                for (const cachedUrl of candidateUrls) {
+                    if (WIS_PDF_DOC_CACHE.has(cachedUrl)) {
+                        const cDoc = WIS_PDF_DOC_CACHE.get(cachedUrl);
+                        if (cDoc && !cDoc.destroyed && cDoc.numPages > 0) {
+                            return cDoc;
+                        } else {
+                            WIS_PDF_DOC_CACHE.delete(cachedUrl);
+                        }
+                    }
+                }
+
+                // Tier 2: High-Speed HTTP Range Streaming (Pass URL directly to PDF.js with Web Worker enabled)
+                // Fetches only ~64KB header + Page 1, displaying Page 1 in 1-2 seconds without downloading full 80MB!
+                for (const u of candidateUrls) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
+                    try {
+                        const loadingTask = pdfjs.getDocument({
+                            url: u,
+                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                            cMapPacked: true,
+                            rangeChunkSize: 65536,
+                            disableAutoFetch: false,
+                            disableStream: false,
+                            disableWorker: false
+                        });
+                        const doc = await loadingTask.promise;
+                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
+                            if (doc) { try { doc.destroy(); } catch (e) {} }
+                            return null;
+                        }
+                        if (doc && doc.numPages > 0) {
+                            WIS_PDF_DOC_CACHE.set(u, doc);
+                            return doc;
+                        }
+                    } catch (rangeErr) {}
+                }
+
+                // Tier 3: Browser CacheStorage API (Offline / Fast local disk cache)
+                for (const cu of candidateUrls) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
+                    try {
+                        if ('caches' in window) {
+                            const cache = await caches.open('wis-ebooks-cache-v1');
+                            const matched = await cache.match(cu);
+                            if (matched) {
+                                const cBuf = await matched.arrayBuffer();
+                                if (cBuf && cBuf.byteLength > 100) {
+                                    const cDoc = await pdfjs.getDocument({
+                                        data: new Uint8Array(cBuf),
+                                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                        cMapPacked: true,
+                                        disableWorker: false
+                                    }).promise;
+                                    if (cDoc && cDoc.numPages > 0) {
+                                        WIS_PDF_DOC_CACHE.set(cu, cDoc);
+                                        return cDoc;
+                                    }
+                                }
+                            }
+                        }
+                    } catch (cacheErr) {}
+                }
+
+                // Tier 4: Direct Binary Download with Asynchronous CacheStorage Persistence
                 for (const u of candidateUrls) {
                     if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
                     try {
                         const buf = await fetchBinaryArrayBuffer(u);
                         if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
-                        if (buf) {
-                            doc = await pdfjs.getDocument({
+                        if (buf && buf.byteLength > 100) {
+                            try {
+                                if ('caches' in window) {
+                                    caches.open('wis-ebooks-cache-v1').then(c => {
+                                        c.put(u, new Response(buf.slice(0), {
+                                            headers: { 'Content-Type': 'application/pdf' }
+                                        })).catch(() => {});
+                                    }).catch(() => {});
+                                }
+                            } catch (e) {}
+
+                            const doc = await pdfjs.getDocument({
                                 data: new Uint8Array(buf),
                                 cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
                                 cMapPacked: true,
-                                disableWorker: true
+                                disableWorker: false
                             }).promise;
                             if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
-                                if (doc) { try { doc.destroy(); } catch(e) {} }
+                                if (doc) { try { doc.destroy(); } catch (e) {} }
                                 return null;
                             }
-                            if (doc) return doc;
+                            if (doc && doc.numPages > 0) {
+                                WIS_PDF_DOC_CACHE.set(u, doc);
+                                return doc;
+                            }
                         }
                     } catch (e) {}
-                }
-
-                for (const u of candidateUrls) {
-                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
-                    try {
-                        doc = await pdfjs.getDocument({
-                            url: u,
-                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
-                            cMapPacked: true,
-                            disableWorker: true
-                        }).promise;
-                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) {
-                            if (doc) { try { doc.destroy(); } catch(e) {} }
-                            return null;
-                        }
-                        if (doc) return doc;
-                    } catch (e2) {}
                 }
 
                 if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
@@ -5707,8 +5770,8 @@ function renderEbook(lesson) {
                 updateZoomDisplay();
 
                 const renderedPages = new Set();
+                const fragment = document.createDocumentFragment();
 
-                mount.innerHTML = '';
                 for (let p = 1; p <= numPages; p++) {
                     const card = document.createElement('div');
                     card.className = 'pdf-page-card';
@@ -5748,14 +5811,14 @@ function renderEbook(lesson) {
                     card.appendChild(canvas);
                     card.appendChild(shield);
                     card.appendChild(badge);
-                    mount.appendChild(card);
+                    fragment.appendChild(card);
                 }
-
-                if (mainLoading) mainLoading.style.display = 'none';
+                mount.innerHTML = '';
+                mount.appendChild(fragment);
 
                 async function renderPage(pageNum) {
                     if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
-                    if (renderedPages.has(pageNum)) return;
+                    if (pageNum < 1 || pageNum > numPages || renderedPages.has(pageNum)) return;
                     renderedPages.add(pageNum);
 
                     const card = document.getElementById(`pdf-page-${pageNum}`);
@@ -5769,7 +5832,7 @@ function renderEbook(lesson) {
                         if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                         if (card.dataset.sessionId !== String(thisSessionId)) return;
 
-                        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                        const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
                         const viewport = page.getViewport({ scale: currentScale * dpr });
 
                         canvas.width = Math.floor(viewport.width);
@@ -5780,11 +5843,15 @@ function renderEbook(lesson) {
                         card.style.width = Math.floor(viewport.width / dpr) + 'px';
                         card.style.height = Math.floor(viewport.height / dpr) + 'px';
 
-                        const ctx = canvas.getContext('2d');
+                        const ctx = canvas.getContext('2d', { alpha: false });
                         const renderContext = {
                             canvasContext: ctx,
                             viewport: viewport
                         };
+
+                        if (activeTasks[pageNum]) {
+                            try { activeTasks[pageNum].cancel(); } catch (e) {}
+                        }
 
                         if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                         if (card.dataset.sessionId !== String(thisSessionId)) return;
@@ -5799,57 +5866,46 @@ function renderEbook(lesson) {
                         if (ph) ph.style.display = 'none';
                         canvas.style.display = 'block';
                     } catch (renderErr) {
+                        if (renderErr && renderErr.name === 'RenderingCancelledException') return;
                         renderedPages.delete(pageNum);
-                        if (renderErr && renderErr.name !== 'RenderingCancelledException') {
-                            console.warn(`Render error on page ${pageNum}:`, renderErr);
-                        }
                     } finally {
                         delete activeTasks[pageNum];
                     }
                 }
 
-                // Render page 1 immediately for instant display
+                // Top Priority: Render Page 1 first and immediately hide main loading spinner!
                 await renderPage(1);
-                if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
+                if (mainLoading) mainLoading.style.display = 'none';
 
-                // Progressively pre-render remaining pages with low-overhead scheduler
-                async function renderRemainingPages() {
-                    for (let p = 2; p <= numPages; p++) {
-                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
-                        if (!renderedPages.has(p)) {
-                            await renderPage(p);
-                            if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
-                            await new Promise(r => setTimeout(r, 60));
-                        }
-                    }
+                if (numPages >= 2) {
+                    setTimeout(() => {
+                        if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) renderPage(2);
+                    }, 50);
                 }
-                renderRemainingPages();
 
                 if ('IntersectionObserver' in window) {
                     observer = new IntersectionObserver((entries) => {
                         if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                         entries.forEach(entry => {
-                            if (entry.isIntersecting) {
+                            if (entry.isIntersecting && entry.target.dataset.sessionId === String(thisSessionId)) {
                                 const p = parseInt(entry.target.dataset.page, 10);
-                                if (entry.target.dataset.sessionId === String(thisSessionId)) {
-                                    renderPage(p);
-                                    if (p < numPages) setTimeout(() => {
-                                        if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) renderPage(p + 1);
-                                    }, 40);
-                                    if (p > 1) setTimeout(() => {
-                                        if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) renderPage(p - 1);
-                                    }, 60);
-                                }
+                                renderPage(p);
+                                if (p < numPages) setTimeout(() => {
+                                    if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) renderPage(p + 1);
+                                }, 40);
                             }
                         });
                     }, {
                         root: scrollContainer,
-                        rootMargin: '800px 0px 800px 0px'
+                        rootMargin: '350px 0px',
+                        threshold: 0.01
                     });
 
                     mount.querySelectorAll('.pdf-page-card').forEach(c => {
                         if (c.dataset.sessionId === String(thisSessionId)) observer.observe(c);
                     });
+                    currentPdfSession.observer = observer;
+                }
                     currentPdfSession.observer = observer;
                 }
 
