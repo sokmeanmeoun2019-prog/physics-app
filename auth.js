@@ -25,7 +25,7 @@
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 16,
+        sharedPasswordVersion: 17,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
