@@ -623,15 +623,15 @@
             ebooks: [
                 { title: "1. Levers (pp. 13–19)", url: "ebooks/g9-ch2-1-levers.pdf.pdf", altUrl: "ebooks/g9-ch2-1-levers.pdf" },
                 { title: "2. Inclined Plane (pp. 20–22)", url: "ebooks/g9-ch2-2-incline.pdf.pdf", altUrl: "ebooks/g9-ch2-2-incline.pdf" },
-                { title: "3. Pulleys (pp. 23–26)", url: "ebooks/g9-ch2-3-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-3-pulley.pdf" },
-                { title: "4. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-4-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-4-gears.pdf" },
+                { title: "3. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-4-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-4-gears.pdf" },
+                { title: "4. Pulley (pp. 23–26)", url: "ebooks/g9-ch2-3-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-3-pulley.pdf" },
                 { title: "5. Wheel & Axle (p. 30)", url: "ebooks/g9-ch2-5-wheel-axle.pdf.pdf", altUrl: "ebooks/g9-ch2-5-wheel-axle.pdf" }
             ],
             games: [
                 { topic: "Levers", url: "https://g.co/gemini/share/0b9242977d1a" },
                 { topic: "Inclined Plane", url: "https://g.co/gemini/share/a0f83fb13666" },
-                { topic: "Pulley", url: "https://share.gemini.google/ikZlefCPf3VG" },
                 { topic: "Gear and Belt System", url: "https://gemini.google.com/share/a559ad0916ce" },
+                { topic: "Pulley", url: "https://share.gemini.google/ikZlefCPf3VG" },
                 { topic: "Wheel and Axle", url: "https://gemini.google.com/share/8a5c6aeecc08" },
                 { topic: "PhET: Balancing Act (Levers)", url: "https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_all.html" },
                 { topic: "PhET: Forces & Motion Basics", url: "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html" }
