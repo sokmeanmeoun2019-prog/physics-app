@@ -27,18 +27,25 @@ GRADE 9 AUDIOBOOK FILE NAMES (9 Files Total):
    - Part 1 (pp. 1–6):   g9-ch1-part1.mp3   (or g9-ch1-1.mp3)
    - Part 2 (pp. 7–12):  g9-ch1-part2.mp3   (or g9-ch1-2.mp3)
 
-2. Chapter 3: Electricity
+2. Chapter 2: Simple Machines (5 Audio Files)
+   - Section 1: Levers (pp. 13–19):          g9-ch2-1-levers.mp3
+   - Section 2: Inclined Plane (pp. 20–22):   g9-ch2-2-incline.mp3
+   - Section 3: Gears & Belts (pp. 27–29):    g9-ch2-3-gears.mp3   (or g9-ch2-gears.mp3, g9-ch2-4-gears.mp3)
+   - Section 4: Pulley (pp. 23–26):           g9-ch2-4-pulley.mp3  (or g9-ch2-pulley.mp3, g9-ch2-3-pulley.mp3)
+   - Section 5: Wheel & Axle (p. 30):         g9-ch2-5-wheel-axle.mp3
+
+3. Chapter 3: Electricity
    Section 1: Part 1: Electric Energy (2 Audio Files)
    - Audio 1:            g9-ch3-part1-1.mp3
    - Audio 2:            g9-ch3-part1-2.mp3
    (Section 2: Part 2: Household Wiring Systems: g9-ch3-part2.mp3)
 
-3. Chapter 4: Magnetic Field (3 Audio Files)
+4. Chapter 4: Magnetic Field (3 Audio Files)
    - Audio 1:            g9-ch4-1.mp3
    - Audio 2:            g9-ch4-2.mp3
    - Audio 3:            g9-ch4-3.mp3
 
-4. Chapter 5: Light
+5. Chapter 5: Light
    Section 5.5: Lenses (2 Audio Files)
    - Audio 1:            g9-ch5-5-lenses-1.mp3
    - Audio 2:            g9-ch5-5-lenses-2.mp3

@@ -14,7 +14,7 @@
     // Irreversible salted SHA-256 hash. Plaintext password is NEVER stored.
     // =========================================================================
     const SHARED_PW_SALT = 'WIS_PHYSICS_SALT_v5_0';
-    const SHARED_PW_HASH = 'dbe2d02efb815c6b6e0c38fea1c1183f2e249f477af3061727c91c59b7ef782f';
+    const SHARED_PW_HASH = '25737b355fa9e1a7d35be003e0d87e7634a3bbcf5492ff3ae72a5aa7fda5578e';
     const DEFAULT_ADMIN_USER = 'admin';
     const ADMIN_PW_SALT = 'WIS_ADMIN_SALT_v5_0';
     const ADMIN_PW_HASH = '530430efa7fcf92505aba093b5fed097f1d923408d2f455fd4474d480511473f';
@@ -25,7 +25,7 @@
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
-        sharedPasswordVersion: 18,
+        sharedPasswordVersion: 19,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };

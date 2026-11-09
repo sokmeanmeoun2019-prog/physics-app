@@ -4703,8 +4703,21 @@ function resolveAudioCandidates(lesson, selectedIndex, trackIndex) {
             baseNames.push(`g9-ch3-part1_${trackNum}`);
         }
     } else if (lid === 'g9-l2') {
-        const sub2 = ['g9-ch2-1-levers', 'g9-ch2-2-incline', 'g9-ch2-3-pulley', 'g9-ch2-4-gears', 'g9-ch2-5-wheel-axle'];
-        baseNames = [sub2[sectionIdx] || 'g9-ch2-1-levers', 'g9-ch2-audio', 'g9-ch2'];
+        const sub2 = ['g9-ch2-1-levers', 'g9-ch2-2-incline', 'g9-ch2-3-gears', 'g9-ch2-4-pulley', 'g9-ch2-5-wheel-axle'];
+        const selectedKey = sub2[sectionIdx] || 'g9-ch2-1-levers';
+        baseNames = [selectedKey];
+        if (sectionIdx === 2) { // 3. Gears & Belts
+            baseNames.push('g9-ch2-3-gears', 'g9-ch2-gears', 'g9-ch2-4-gears', 'g9-ch2-gears-and-belts', 'g9-ch2-3-gears-and-belts', 'g9-ch2-3-gears-belts', 'g9-ch2-gears-belts', 'g9-ch2-3', 'gears');
+        } else if (sectionIdx === 3) { // 4. Pulley
+            baseNames.push('g9-ch2-4-pulley', 'g9-ch2-pulley', 'g9-ch2-3-pulley', 'g9-ch2-4-pulleys', 'g9-ch2-pulleys', 'g9-ch2-3-pulleys', 'g9-ch2-4', 'pulley', 'pulleys');
+        } else if (sectionIdx === 0) {
+            baseNames.push('g9-ch2-1-levers', 'g9-ch2-levers', 'g9-ch2-1', 'levers');
+        } else if (sectionIdx === 1) {
+            baseNames.push('g9-ch2-2-incline', 'g9-ch2-incline', 'g9-ch2-2-inclined-plane', 'g9-ch2-2', 'incline');
+        } else if (sectionIdx === 4) {
+            baseNames.push('g9-ch2-5-wheel-axle', 'g9-ch2-wheel-axle', 'g9-ch2-5', 'wheel-axle');
+        }
+        baseNames.push('g9-ch2-audio', 'g9-ch2');
     } else if (lid === 'g9-l3') {
         baseNames = ['g9-ch3-part2', 'g9-ch3-part2-audio', 'g9-ch3-part2-1', 'g9-ch3-audio', 'g9-ch3'];
     } else if (lid === 'g9-l4') {
@@ -5119,8 +5132,8 @@ function renderEbook(lesson) {
             'g9-l2': [
                 { title: "1. Levers (pp. 13–19)", url: "ebooks/g9-ch2-1-levers.pdf.pdf", altUrl: "ebooks/g9-ch2-1-levers.pdf" },
                 { title: "2. Inclined Plane (pp. 20–22)", url: "ebooks/g9-ch2-2-incline.pdf.pdf", altUrl: "ebooks/g9-ch2-2-incline.pdf" },
-                { title: "3. Pulleys (pp. 23–26)", url: "ebooks/g9-ch2-3-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-3-pulley.pdf" },
-                { title: "4. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-4-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-4-gears.pdf" },
+                { title: "3. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-4-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-4-gears.pdf" },
+                { title: "4. Pulley (pp. 23–26)", url: "ebooks/g9-ch2-3-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-3-pulley.pdf" },
                 { title: "5. Wheel & Axle (p. 30)", url: "ebooks/g9-ch2-5-wheel-axle.pdf.pdf", altUrl: "ebooks/g9-ch2-5-wheel-axle.pdf" }
             ],
             'g9-l3': [
