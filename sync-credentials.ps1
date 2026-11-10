@@ -95,6 +95,39 @@ if (Test-Path $authConfigPath) {
     } catch {}
 }
 
+# 7.5 Ensure all Ebook alias files exist for Grade 9 Chapter 2 (Gears & Pulley cross-compatibility)
+$ebooksDir = Join-Path $scriptDir "ebooks"
+if (Test-Path $ebooksDir) {
+    # Gears aliases: mirror between g9-ch2-3-gears and g9-ch2-4-gears
+    $g3 = Join-Path $ebooksDir "g9-ch2-3-gears.pdf.pdf"
+    $g4 = Join-Path $ebooksDir "g9-ch2-4-gears.pdf.pdf"
+    if ((Test-Path $g3) -and (-not (Test-Path $g4))) {
+        Copy-Item -Path $g3 -Destination $g4 -Force
+    } elseif ((Test-Path $g4) -and (-not (Test-Path $g3))) {
+        Copy-Item -Path $g4 -Destination $g3 -Force
+    }
+    
+    # Also create single .pdf copies for maximum URL compatibility
+    $g3_single = Join-Path $ebooksDir "g9-ch2-3-gears.pdf"
+    $g4_single = Join-Path $ebooksDir "g9-ch2-4-gears.pdf"
+    if (Test-Path $g3) { if (-not (Test-Path $g3_single)) { Copy-Item -Path $g3 -Destination $g3_single -Force } }
+    if (Test-Path $g4) { if (-not (Test-Path $g4_single)) { Copy-Item -Path $g4 -Destination $g4_single -Force } }
+
+    # Pulley aliases: mirror between g9-ch2-4-pulley and g9-ch2-3-pulley
+    $p4 = Join-Path $ebooksDir "g9-ch2-4-pulley.pdf.pdf"
+    $p3 = Join-Path $ebooksDir "g9-ch2-3-pulley.pdf.pdf"
+    if ((Test-Path $p4) -and (-not (Test-Path $p3))) {
+        Copy-Item -Path $p4 -Destination $p3 -Force
+    } elseif ((Test-Path $p3) -and (-not (Test-Path $p4))) {
+        Copy-Item -Path $p3 -Destination $p4 -Force
+    }
+
+    $p4_single = Join-Path $ebooksDir "g9-ch2-4-pulley.pdf"
+    $p3_single = Join-Path $ebooksDir "g9-ch2-3-pulley.pdf"
+    if (Test-Path $p4) { if (-not (Test-Path $p4_single)) { Copy-Item -Path $p4 -Destination $p4_single -Force } }
+    if (Test-Path $p3) { if (-not (Test-Path $p3_single)) { Copy-Item -Path $p3 -Destination $p3_single -Force } }
+}
+
 # 8. Output Summary
 Write-Host "=======================================================" -ForegroundColor Cyan
 Write-Host "   WIS AUTO-SYNC ENGINE: CRYPTOGRAPHIC HASH SECURED" -ForegroundColor Cyan

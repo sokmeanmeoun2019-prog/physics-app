@@ -35,11 +35,16 @@ $batches = @(
     @{
         Title    = "Core Code & Password Security"
         Patterns = @(
-            "index.html", "app.js", "styles.css", "auth.js", "auth-config.json",
+            "index.html", "app.js", "physics-data.js", "styles.css", "auth.js", "auth-config.json",
             "sync-credentials.ps1", "smart-push.ps1", "Upload_To_GitHub.bat",
             ".gitignore", "audio/README.txt", "audiobooks/README.txt"
         )
         Message  = "Deploy: Core web code, password hashes, and cache busters"
+    },
+    @{
+        Title    = "Curriculum E-Books & Worksheets"
+        Patterns = @("ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*")
+        Message  = "Deploy: Curriculum ebooks, textbooks, and worksheets"
     },
     @{
         Title    = "Grade 9 Audiobooks (Chapters 1 - 5)"
@@ -83,8 +88,9 @@ foreach ($b in $batches) {
     $batchTitle = $b.Title
     Write-Host "`n---> [$currentBatchIdx/$totalBatches] Checking $batchTitle..." -ForegroundColor Cyan
 
-    # Stage files matching patterns
+    # Stage files matching patterns (including renames, additions, and deletions)
     foreach ($pat in $b.Patterns) {
+        git add -A $pat 2>$null
         git add $pat 2>$null
     }
 

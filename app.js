@@ -5132,8 +5132,8 @@ function renderEbook(lesson) {
             'g9-l2': [
                 { title: "1. Levers (pp. 13–19)", url: "ebooks/g9-ch2-1-levers.pdf.pdf", altUrl: "ebooks/g9-ch2-1-levers.pdf" },
                 { title: "2. Inclined Plane (pp. 20–22)", url: "ebooks/g9-ch2-2-incline.pdf.pdf", altUrl: "ebooks/g9-ch2-2-incline.pdf" },
-                { title: "3. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-4-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-4-gears.pdf" },
-                { title: "4. Pulley (pp. 23–26)", url: "ebooks/g9-ch2-3-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-3-pulley.pdf" },
+                { title: "3. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-3-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-3-gears.pdf", fallbacks: ["ebooks/g9-ch2-4-gears.pdf.pdf", "ebooks/g9-ch2-4-gears.pdf", "ebooks/g9-ch2-gears.pdf.pdf", "ebooks/g9-ch2-gears.pdf"] },
+                { title: "4. Pulley (pp. 23–26)", url: "ebooks/g9-ch2-4-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-4-pulley.pdf", fallbacks: ["ebooks/g9-ch2-3-pulley.pdf.pdf", "ebooks/g9-ch2-3-pulley.pdf", "ebooks/g9-ch2-pulley.pdf.pdf", "ebooks/g9-ch2-pulley.pdf"] },
                 { title: "5. Wheel & Axle (p. 30)", url: "ebooks/g9-ch2-5-wheel-axle.pdf.pdf", altUrl: "ebooks/g9-ch2-5-wheel-axle.pdf" }
             ],
             'g9-l3': [
@@ -5428,7 +5428,12 @@ function renderEbook(lesson) {
             console.warn('Protected PDF reader fallback to embed:', msg);
             const wrapper = document.getElementById('pdf-viewer-wrapper');
             if (!wrapper) return;
-            const targetUrl = primaryUrl || altUrl;
+            let targetUrl = primaryUrl || altUrl;
+            if (primaryUrl.includes('gears') || (altUrl && altUrl.includes('gears'))) {
+                targetUrl = 'ebooks/g9-ch2-3-gears.pdf.pdf';
+            } else if (primaryUrl.includes('pulley') || (altUrl && altUrl.includes('pulley'))) {
+                targetUrl = 'ebooks/g9-ch2-4-pulley.pdf.pdf';
+            }
             const encodedSrc = `${encodeURI(targetUrl)}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`;
             wrapper.innerHTML = `
                 <div class="pdf-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; padding:0.6rem 1rem; border-radius:8px 8px 0 0; border-bottom:1px solid #334155;">
@@ -5607,15 +5612,29 @@ function renderEbook(lesson) {
                 if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
                 const candidateUrls = [primaryUrl];
                 if (altUrl && !candidateUrls.includes(altUrl)) candidateUrls.push(altUrl);
-                if (primaryUrl.toLowerCase().endsWith('.pdf.pdf')) {
-                    const singlePdf = primaryUrl.slice(0, -4);
-                    if (!candidateUrls.includes(singlePdf)) candidateUrls.push(singlePdf);
-                } else if (primaryUrl.toLowerCase().endsWith('.pdf')) {
-                    const doublePdf = primaryUrl + '.pdf';
-                    if (!candidateUrls.includes(doublePdf)) candidateUrls.push(doublePdf);
+
+                // Smart cross-alias fallbacks for Gears & Pulley
+                if (primaryUrl.includes('gears') || (altUrl && altUrl.includes('gears'))) {
+                    ['ebooks/g9-ch2-3-gears.pdf.pdf', 'ebooks/g9-ch2-3-gears.pdf', 'ebooks/g9-ch2-4-gears.pdf.pdf', 'ebooks/g9-ch2-4-gears.pdf', 'ebooks/g9-ch2-gears.pdf.pdf', 'ebooks/g9-ch2-gears.pdf'].forEach(u => {
+                        if (!candidateUrls.includes(u)) candidateUrls.push(u);
+                    });
+                } else if (primaryUrl.includes('pulley') || (altUrl && altUrl.includes('pulley'))) {
+                    ['ebooks/g9-ch2-4-pulley.pdf.pdf', 'ebooks/g9-ch2-4-pulley.pdf', 'ebooks/g9-ch2-3-pulley.pdf.pdf', 'ebooks/g9-ch2-3-pulley.pdf', 'ebooks/g9-ch2-pulley.pdf.pdf', 'ebooks/g9-ch2-pulley.pdf'].forEach(u => {
+                        if (!candidateUrls.includes(u)) candidateUrls.push(u);
+                    });
                 }
-                candidateUrls.push('./' + primaryUrl.replace(/^\.\//, ''));
-                candidateUrls.push('/' + primaryUrl.replace(/^\//, ''));
+
+                [...candidateUrls].forEach(u => {
+                    if (u.toLowerCase().endsWith('.pdf.pdf')) {
+                        const singlePdf = u.slice(0, -4);
+                        if (!candidateUrls.includes(singlePdf)) candidateUrls.push(singlePdf);
+                    } else if (u.toLowerCase().endsWith('.pdf')) {
+                        const doublePdf = u + '.pdf';
+                        if (!candidateUrls.includes(doublePdf)) candidateUrls.push(doublePdf);
+                    }
+                    const rel1 = './' + u.replace(/^\.\//, '');
+                    if (!candidateUrls.includes(rel1)) candidateUrls.push(rel1);
+                });
                 try {
                     const abs = new URL(primaryUrl, window.location.href).href;
                     if (!candidateUrls.includes(abs)) candidateUrls.push(abs);
@@ -6539,7 +6558,12 @@ function renderWorksheet(lesson) {
             console.warn('Protected Worksheet PDF fallback to embed:', msg);
             const wrapper = document.getElementById('ws-pdf-viewer-wrapper');
             if (!wrapper) return;
-            const targetUrl = primaryUrl || altUrl;
+            let targetUrl = primaryUrl || altUrl;
+            if (primaryUrl.includes('gears') || (altUrl && altUrl.includes('gears'))) {
+                targetUrl = 'ebooks/g9-ch2-3-gears.pdf.pdf';
+            } else if (primaryUrl.includes('pulley') || (altUrl && altUrl.includes('pulley'))) {
+                targetUrl = 'ebooks/g9-ch2-4-pulley.pdf.pdf';
+            }
             const encodedSrc = `${encodeURI(targetUrl)}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`;
             wrapper.innerHTML = `
                 <div class="pdf-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; padding:0.6rem 1rem; border-radius:8px 8px 0 0; border-bottom:1px solid #334155;">

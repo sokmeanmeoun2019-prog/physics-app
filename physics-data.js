@@ -623,8 +623,8 @@
             ebooks: [
                 { title: "1. Levers (pp. 13–19)", url: "ebooks/g9-ch2-1-levers.pdf.pdf", altUrl: "ebooks/g9-ch2-1-levers.pdf" },
                 { title: "2. Inclined Plane (pp. 20–22)", url: "ebooks/g9-ch2-2-incline.pdf.pdf", altUrl: "ebooks/g9-ch2-2-incline.pdf" },
-                { title: "3. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-4-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-4-gears.pdf" },
-                { title: "4. Pulley (pp. 23–26)", url: "ebooks/g9-ch2-3-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-3-pulley.pdf" },
+                { title: "3. Gears & Belts (pp. 27–29)", url: "ebooks/g9-ch2-3-gears.pdf.pdf", altUrl: "ebooks/g9-ch2-3-gears.pdf", fallbacks: ["ebooks/g9-ch2-4-gears.pdf.pdf", "ebooks/g9-ch2-4-gears.pdf", "ebooks/g9-ch2-gears.pdf.pdf", "ebooks/g9-ch2-gears.pdf"] },
+                { title: "4. Pulley (pp. 23–26)", url: "ebooks/g9-ch2-4-pulley.pdf.pdf", altUrl: "ebooks/g9-ch2-4-pulley.pdf", fallbacks: ["ebooks/g9-ch2-3-pulley.pdf.pdf", "ebooks/g9-ch2-3-pulley.pdf", "ebooks/g9-ch2-pulley.pdf.pdf", "ebooks/g9-ch2-pulley.pdf"] },
                 { title: "5. Wheel & Axle (p. 30)", url: "ebooks/g9-ch2-5-wheel-axle.pdf.pdf", altUrl: "ebooks/g9-ch2-5-wheel-axle.pdf" }
             ],
             games: [
