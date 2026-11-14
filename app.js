@@ -6326,34 +6326,35 @@ function renderWorksheet(lesson) {
             'g9-l4': [{ title: "Chapter 4: Magnetic Field Practice Worksheet", url: "worksheets/g9-ch4-worksheet.pdf", altUrl: "worksheets/g9-ch4-worksheet.pdf.pdf" }],
             'g9-l5': [{ title: "Chapter 5: Light Practice Worksheet", url: "worksheets/g9-ch5-worksheet.pdf", altUrl: "worksheets/g9-ch5-worksheet.pdf.pdf" }],
 
-            // Grade 10 (Official Curriculum Book containing all practice exercises & worksheets)
-            'g10-l1': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-l2': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-l3': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-l4': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-ch1-l5': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-ch1-l6': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-ch2-l1': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-ch2-l2': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-ch3-l1': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-ch3-l2': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-ch4-l1': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-ch4-l2': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
-            'g10-ch4-l3': [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }],
+            // Grade 10 (Dedicated Practice Worksheets with Curriculum Textbook Fallback)
+            'g10-l1': [{ title: "Chapter 1 Lesson 1: Rectilinear Motion Practice Worksheet", url: "worksheets/g10-ch1-l1-worksheet.pdf", altUrl: "worksheets/g10-l1-worksheet.pdf" }],
+            'g10-l2': [{ title: "Chapter 1 Lesson 2: Newton's Laws Practice Worksheet", url: "worksheets/g10-ch1-l2-worksheet.pdf", altUrl: "worksheets/g10-l2-worksheet.pdf" }],
+            'g10-l3': [{ title: "Chapter 1 Lesson 3: Work, Energy & Power Practice Worksheet", url: "worksheets/g10-ch1-l3-worksheet.pdf", altUrl: "worksheets/g10-l3-worksheet.pdf" }],
+            'g10-l4': [{ title: "Chapter 1 Lesson 4: Fluids & Atmospheric Pressure Practice Worksheet", url: "worksheets/g10-ch1-l4-worksheet.pdf", altUrl: "worksheets/g10-l4-worksheet.pdf" }],
+            'g10-ch1-l5': [{ title: "Chapter 1 Lesson 5: Practice Worksheet", url: "worksheets/g10-ch1-l5-worksheet.pdf", altUrl: "worksheets/g10-l5-worksheet.pdf" }],
+            'g10-ch1-l6': [{ title: "Chapter 1 Lesson 6: Practice Worksheet", url: "worksheets/g10-ch1-l6-worksheet.pdf", altUrl: "worksheets/g10-l6-worksheet.pdf" }],
+            'g10-ch2-l1': [{ title: "Chapter 2 Lesson 1: Heat & Gas Model Practice Worksheet", url: "worksheets/g10-ch2-l1-worksheet.pdf", altUrl: "worksheets/g10-ch2-worksheet.pdf" }],
+            'g10-ch2-l2': [{ title: "Chapter 2 Lesson 2: Practice Worksheet", url: "worksheets/g10-ch2-l2-worksheet.pdf", altUrl: "worksheets/g10-ch2-worksheet.pdf" }],
+            'g10-ch3-l1': [{ title: "Chapter 3 Lesson 1: Electrostatics Practice Worksheet", url: "worksheets/g10-ch3-l1-worksheet.pdf", altUrl: "worksheets/g10-ch3-worksheet.pdf" }],
+            'g10-ch3-l2': [{ title: "Chapter 3 Lesson 2: DC Circuits & Magnetism Practice Worksheet", url: "worksheets/g10-ch3-l2-worksheet.pdf", altUrl: "worksheets/g10-ch3-worksheet.pdf" }],
+            'g10-ch3-l3': [{ title: "Chapter 3 Lesson 3: AC & Transformers Practice Worksheet", url: "worksheets/g10-ch3-l3-worksheet.pdf", altUrl: "worksheets/g10-ch3-worksheet.pdf" }],
+            'g10-ch4-l1': [{ title: "Chapter 4 Lesson 1: Light & Reflection Practice Worksheet", url: "worksheets/g10-ch4-l1-worksheet.pdf", altUrl: "worksheets/g10-ch4-worksheet.pdf" }],
+            'g10-ch4-l2': [{ title: "Chapter 4 Lesson 2: Refraction & Snell's Law Practice Worksheet", url: "worksheets/g10-ch4-l2-worksheet.pdf", altUrl: "worksheets/g10-ch4-worksheet.pdf" }],
+            'g10-ch4-l3': [{ title: "Chapter 4 Lesson 3: Slab & Prism Optics Practice Worksheet", url: "worksheets/g10-ch4-l3-worksheet.pdf", altUrl: "worksheets/g10-ch4-worksheet.pdf" }],
 
-            // Grade 11 (Official Curriculum Book containing all practice exercises & worksheets)
-            'g11-l1': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-l2': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-l3': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-l4': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-ch1-l5': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-ch1-l6': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-ch2-l1': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-ch2-l2': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-ch3-l1': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-ch3-l2': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-ch3-l3': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
-            'g11-ch3-l4': [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }],
+            // Grade 11 (Dedicated Practice Worksheets with Curriculum Textbook Fallback)
+            'g11-l1': [{ title: "Chapter 1 Lesson 1: 2D Motion & Projectiles Practice Worksheet", url: "worksheets/g11-ch1-l1-worksheet.pdf", altUrl: "worksheets/g11-l1-worksheet.pdf" }],
+            'g11-l2': [{ title: "Chapter 1 Lesson 2: Accelerated Frames & Rotational Dynamics Practice Worksheet", url: "worksheets/g11-ch1-l2-worksheet.pdf", altUrl: "worksheets/g11-l2-worksheet.pdf" }],
+            'g11-l3': [{ title: "Chapter 1 Lesson 3: Gravitation & Satellites Practice Worksheet", url: "worksheets/g11-ch1-l3-worksheet.pdf", altUrl: "worksheets/g11-l3-worksheet.pdf" }],
+            'g11-l4': [{ title: "Chapter 1 Lesson 4: Impulse & Collisions Practice Worksheet", url: "worksheets/g11-ch1-l4-worksheet.pdf", altUrl: "worksheets/g11-l4-worksheet.pdf" }],
+            'g11-ch1-l5': [{ title: "Chapter 1 Lesson 5: Energy Conservation & Pendulum Practice Worksheet", url: "worksheets/g11-ch1-l5-worksheet.pdf", altUrl: "worksheets/g11-l5-worksheet.pdf" }],
+            'g11-ch1-l6': [{ title: "Chapter 1 Lesson 6: Fluid Dynamics & Viscosity Practice Worksheet", url: "worksheets/g11-ch1-l6-worksheet.pdf", altUrl: "worksheets/g11-l6-worksheet.pdf" }],
+            'g11-ch2-l1': [{ title: "Chapter 2 Lesson 1: Thermal Physics & Expansion Practice Worksheet", url: "worksheets/g11-ch2-l1-worksheet.pdf", altUrl: "worksheets/g11-ch2-worksheet.pdf" }],
+            'g11-ch2-l2': [{ title: "Chapter 2 Lesson 2: Oscillations & Waves Practice Worksheet", url: "worksheets/g11-ch2-l2-worksheet.pdf", altUrl: "worksheets/g11-ch2-worksheet.pdf" }],
+            'g11-ch3-l1': [{ title: "Chapter 3 Lesson 1: Electrostatics & Fields Practice Worksheet", url: "worksheets/g11-ch3-l1-worksheet.pdf", altUrl: "worksheets/g11-ch3-worksheet.pdf" }],
+            'g11-ch3-l2': [{ title: "Chapter 3 Lesson 2: DC Circuits & Resistance Practice Worksheet", url: "worksheets/g11-ch3-l2-worksheet.pdf", altUrl: "worksheets/g11-ch3-worksheet.pdf" }],
+            'g11-ch3-l3': [{ title: "Chapter 3 Lesson 3: Practice Worksheet", url: "worksheets/g11-ch3-l3-worksheet.pdf", altUrl: "worksheets/g11-ch3-worksheet.pdf" }],
+            'g11-ch3-l4': [{ title: "Chapter 3 Lesson 4: Practice Worksheet", url: "worksheets/g11-ch3-l4-worksheet.pdf", altUrl: "worksheets/g11-ch3-worksheet.pdf" }],
 
             // Grade 12 (Official Dedicated Practice Worksheets)
             'g12-l1': [{ title: "Chapter 1 Lesson 1: Kinetic Theory Practice Worksheet", url: "worksheets/ch1-l1-worksheet.pdf", altUrl: "worksheets/ch1-l1-worksheet.pdf.pdf" }],
@@ -6733,6 +6734,26 @@ function renderWorksheet(lesson) {
                     const abs = new URL(primaryUrl, window.location.href).href;
                     if (!candidateUrls.includes(abs)) candidateUrls.push(abs);
                 } catch(e) {}
+
+                // Auto-expand aliases for Grade 10 & 11 (per-lesson and per-chapter cross compatibility)
+                const matchG10_11 = primaryUrl.match(/(g1[01])(?:-ch(\d+))?-l(\d+)-worksheet/i);
+                if (matchG10_11) {
+                    const gr = matchG10_11[1].toLowerCase();
+                    const ch = matchG10_11[2];
+                    const ls = matchG10_11[3];
+                    const extraCandidates = [];
+                    if (ch) {
+                        extraCandidates.push(`worksheets/${gr}-ch${ch}-l${ls}-worksheet.pdf`);
+                        extraCandidates.push(`worksheets/${gr}-ch${ch}-l${ls}-worksheet.pdf.pdf`);
+                        extraCandidates.push(`worksheets/${gr}-ch${ch}-worksheet.pdf`);
+                        extraCandidates.push(`worksheets/${gr}-ch${ch}-worksheet.pdf.pdf`);
+                    }
+                    extraCandidates.push(`worksheets/${gr}-l${ls}-worksheet.pdf`);
+                    extraCandidates.push(`worksheets/${gr}-l${ls}-worksheet.pdf.pdf`);
+                    extraCandidates.forEach(c => {
+                        if (!candidateUrls.includes(c)) candidateUrls.push(c);
+                    });
+                }
 
                 // Seamless Grade-level fallback if a standalone file is missing on server
                 const lKey = String((lesson && lesson.id) || '').toLowerCase();

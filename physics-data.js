@@ -34086,6 +34086,16 @@
                 if (!l.ebooks || l.ebooks.length === 0) {
                     l.ebooks = [{ title: tb.title, url: tb.url, altUrl: tb.altUrl }];
                 }
+                // Automatically assign dedicated worksheet URL if not already explicitly set
+                if (!l.worksheetUrl && (grade === "10" || grade === "11")) {
+                    const m = String(l.id || '').match(/^(g1[01])(?:-ch(\d+))?-l(\d+)$/i);
+                    if (m) {
+                        const gr = m[1].toLowerCase();
+                        const ch = m[2] || '1';
+                        const ls = m[3];
+                        l.worksheetUrl = `worksheets/${gr}-ch${ch}-l${ls}-worksheet.pdf`;
+                    }
+                }
             });
         }
     });
