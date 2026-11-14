@@ -143,6 +143,21 @@ if (Test-Path $worksheetsDir) {
     }
 }
 
+# 7.7 Ensure semester_exams double-extension mirroring (.pdf <-> .pdf.pdf)
+$semesterExamsDir = Join-Path $scriptDir "semester_exams"
+if (Test-Path $semesterExamsDir) {
+    Get-ChildItem -Path $semesterExamsDir -Filter "*.pdf*" -File | ForEach-Object {
+        $fullName = $_.FullName
+        if ($_.Name.EndsWith(".pdf.pdf")) {
+            $single = $fullName.Substring(0, $fullName.Length - 4)
+            if (-not (Test-Path $single)) { Copy-Item -Path $fullName -Destination $single -Force }
+        } elseif ($_.Name.EndsWith(".pdf")) {
+            $double = $fullName + ".pdf"
+            if (-not (Test-Path $double)) { Copy-Item -Path $fullName -Destination $double -Force }
+        }
+    }
+}
+
 # 8. Output Summary
 Write-Host "=======================================================" -ForegroundColor Cyan
 Write-Host "   WIS AUTO-SYNC ENGINE: CRYPTOGRAPHIC HASH SECURED" -ForegroundColor Cyan

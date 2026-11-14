@@ -42,9 +42,9 @@ $batches = @(
         Message  = "Deploy: Core web code, password hashes, and cache busters"
     },
     @{
-        Title    = "Curriculum E-Books & Worksheets"
-        Patterns = @("ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*")
-        Message  = "Deploy: Curriculum ebooks, textbooks, and worksheets"
+        Title    = "Curriculum E-Books, Worksheets & Semester Exams"
+        Patterns = @("ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*", "semester_exams/*")
+        Message  = "Deploy: Curriculum ebooks, textbooks, worksheets, and semester exams"
     },
     @{
         Title    = "Grade 9 Audiobooks (Chapters 1 - 5)"

@@ -1,5 +1,24 @@
 // --- WIS Physics Hub Application Script ---
 
+// Canonical Application URL Resolver (Prevents 404 on GitHub Pages subdirectory hosting)
+const resolveAppUrl = (typeof window !== 'undefined' && typeof window.resolveAppUrl === 'function')
+    ? window.resolveAppUrl
+    : function(relPath) {
+        if (!relPath) return '';
+        if (/^(?:https?:)?\/\//i.test(relPath) || relPath.startsWith('blob:') || relPath.startsWith('data:')) {
+            return relPath;
+        }
+        const clean = relPath.replace(/^\.?\/+/, '');
+        let base = (typeof window !== 'undefined' && window.location && window.location.pathname) ? window.location.pathname : '/';
+        base = base.replace(/\/[^/]+\.[a-zA-Z0-9]+$/, '/');
+        if (!base.endsWith('/')) base += '/';
+        const origin = (typeof window !== 'undefined' && window.location && window.location.origin) ? window.location.origin : '';
+        return origin + base + clean;
+    };
+if (typeof window !== 'undefined' && !window.resolveAppUrl) {
+    window.resolveAppUrl = resolveAppUrl;
+}
+
 // --- Data Structure ---
 const data = (typeof window !== 'undefined' && (window.physicsData || window.appData)) ? (window.physicsData || window.appData) : {
 "9": [
@@ -74,7 +93,13 @@ equations:[
 {question:"Which expression gives the direction angle \\(\\theta\\) of a resultant force?", options:["\\( \\sin^{-1}(b/a) \\)","\\( \\cos^{-1}(b/a) \\)","\\( \\tan^{-1}(b/a) \\)","\\( \\tan^{-1}(a/b) \\)"], correctIndex:2, feedback:"The angle is found using the inverse tangent of the opposite over adjacent components: \\( \\tan^{-1}(b/a) \\)."},
 {question:"For reaction forces on a beam supported at A and B with a load F, what is the force \\( F_A \\)?", options:["\\( F_A = F \\times \\frac{OA}{AB} \\)","\\( F_A = F \\times \\frac{OB}{AB} \\)","\\( F_A = F + OB \\)","\\( F_A = \\frac{AB}{F} \\)"], correctIndex:1, feedback:"By taking moments about B, \\( F_A \\times AB = F \\times OB \\), so \\( F_A = F \\times \\frac{OB}{AB} \\)."}
 ]},
-{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",worksheetUrl:"worksheets/g9-ch2-worksheet.pdf",games:[{topic:"Levers",url:"https://g.co/gemini/share/0b9242977d1a"},{topic:"Inclined Plane",url:"https://g.co/gemini/share/a0f83fb13666"},{topic:"Pulley",url:"https://share.gemini.google/ikZlefCPf3VG"},{topic:"Gear and Belt System",url:"https://gemini.google.com/share/a559ad0916ce"},{topic:"Wheel and Axle",url:"https://gemini.google.com/share/8a5c6aeecc08"}],title:"Chapter 2: Simple Machines",concepts:["Simple Machines: Devices that change the magnitude, direction, or distance of force to make physical work easier.","Mechanical Advantage (MA): The factor by which a machine multiplies applied effort force, \\( MA = \\frac{F_R}{F_E} \\).","Velocity Ratio (VR): The ratio of distance moved by effort to distance moved by load, \\( VR = \\frac{d_E}{d_R} \\).","Efficiency (eff): The percentage of input work transformed into useful output work, \\( \\text{eff} = \\frac{MA}{VR} \\times 100\\% \\).","Key Machines: Levers (1st, 2nd, 3rd class), Inclined Planes (\\( MA = L/h \\)), Pulleys, Gears, and Wheel & Axle (\\( MA = R/r \\))."],definitions:[
+{id:"g9-l2",gifUrl:"https://commons.wikimedia.org/wiki/Special:FilePath/Atwood_s_swinging_machine.gif",worksheetUrl:"worksheets/g9-ch2-worksheet.pdf",ebookUrl:"ebooks/g9-ch2-1-levers.pdf.pdf",ebooks:[
+    {title:"1. Levers (pp. 13–17)",url:"ebooks/g9-ch2-1-levers.pdf.pdf",altUrl:"ebooks/g9-ch2-1-levers.pdf",aliases:["ebooks/g9-ch2-1-levers.pdf.pdf","ebooks/g9-ch2-1-levers.pdf","ebooks/g9-ch2-levers.pdf.pdf","ebooks/g9-ch2-levers.pdf"]},
+    {title:"2. Inclined Plane (pp. 18–22)",url:"ebooks/g9-ch2-2-inclined-plane.pdf.pdf",altUrl:"ebooks/g9-ch2-2-inclined-plane.pdf",aliases:["ebooks/g9-ch2-2-inclined-plane.pdf.pdf","ebooks/g9-ch2-2-inclined-plane.pdf","ebooks/g9-ch2-inclined.pdf.pdf","ebooks/g9-ch2-inclined.pdf"]},
+    {title:"3. Gears & Belts (pp. 27–29)",url:"ebooks/g9-ch2-3-gears.pdf.pdf",altUrl:"ebooks/g9-ch2-3-gears.pdf",fallbackUrl:"ebooks/g9-ch2-4-gears.pdf.pdf",aliases:["ebooks/g9-ch2-3-gears.pdf.pdf","ebooks/g9-ch2-3-gears.pdf","ebooks/g9-ch2-4-gears.pdf.pdf","ebooks/g9-ch2-4-gears.pdf","ebooks/g9-ch2-gears.pdf.pdf","ebooks/g9-ch2-gears.pdf"]},
+    {title:"4. Pulley (pp. 23–26)",url:"ebooks/g9-ch2-4-pulley.pdf.pdf",altUrl:"ebooks/g9-ch2-4-pulley.pdf",fallbackUrl:"ebooks/g9-ch2-3-pulley.pdf.pdf",aliases:["ebooks/g9-ch2-4-pulley.pdf.pdf","ebooks/g9-ch2-4-pulley.pdf","ebooks/g9-ch2-3-pulley.pdf.pdf","ebooks/g9-ch2-3-pulley.pdf","ebooks/g9-ch2-pulley.pdf.pdf","ebooks/g9-ch2-pulley.pdf"]},
+    {title:"5. Wheel & Axle (pp. 30–33)",url:"ebooks/g9-ch2-5-wheel-and-axle.pdf.pdf",altUrl:"ebooks/g9-ch2-5-wheel-and-axle.pdf",aliases:["ebooks/g9-ch2-5-wheel-and-axle.pdf.pdf","ebooks/g9-ch2-5-wheel-and-axle.pdf","ebooks/g9-ch2-wheel.pdf.pdf","ebooks/g9-ch2-wheel.pdf"]}
+],games:[{topic:"Levers",url:"https://g.co/gemini/share/0b9242977d1a"},{topic:"Inclined Plane",url:"https://g.co/gemini/share/a0f83fb13666"},{topic:"Pulley",url:"https://share.gemini.google/ikZlefCPf3VG"},{topic:"Gear and Belt System",url:"https://gemini.google.com/share/a559ad0916ce"},{topic:"Wheel and Axle",url:"https://gemini.google.com/share/8a5c6aeecc08"}],title:"Chapter 2: Simple Machines",concepts:["Simple Machines: Devices that change the magnitude, direction, or distance of force to make physical work easier.","Mechanical Advantage (MA): The factor by which a machine multiplies applied effort force, \\( MA = \\frac{F_R}{F_E} \\).","Velocity Ratio (VR): The ratio of distance moved by effort to distance moved by load, \\( VR = \\frac{d_E}{d_R} \\).","Efficiency (eff): The percentage of input work transformed into useful output work, \\( \\text{eff} = \\frac{MA}{VR} \\times 100\\% \\).","Key Machines: Levers (1st, 2nd, 3rd class), Inclined Planes (\\( MA = L/h \\)), Pulleys, Gears, and Wheel & Axle (\\( MA = R/r \\))."],definitions:[
 {term:"Simple Machine",definition:"A basic mechanical device that changes the magnitude, direction, or distance of an applied force to make physical work easier.",symbol:"\\text{Machine}",unit:"\\text{No unit}",equation:"MA = \\frac{F_R}{F_E}"},
 {term:"Effort Force",definition:"The external force applied by a person or motor to operate a machine.",symbol:"F_E",unit:"\\mathrm{N}",equation:"F_E = \\frac{F_R}{MA}"},
 {term:"Resistance / Load Force",definition:"The resistive force or weight of the object that the machine overcomes or lifts.",symbol:"F_R",unit:"\\mathrm{N}",equation:"F_R = MA \\times F_E"},
@@ -1725,8 +1750,10 @@ function showDashboard(pushRoute = true) {
     }
     const tabDiploma = document.getElementById('tab-btn-diploma');
     const tabBacII = document.getElementById('tab-btn-bacii');
+    const tabSemester = document.getElementById('tab-btn-semester');
     if (tabDiploma) { tabDiploma.style.setProperty('display', 'none', 'important'); tabDiploma.classList.add('hidden'); }
     if (tabBacII) { tabBacII.style.setProperty('display', 'none', 'important'); tabBacII.classList.add('hidden'); }
+    if (tabSemester) { tabSemester.style.setProperty('display', 'none', 'important'); tabSemester.classList.add('hidden'); }
     if (pushRoute && window.location.hash !== '' && window.location.hash !== '#') {
         try {
             history.pushState({ view: 'dashboard' }, '', window.location.pathname + window.location.search);
@@ -1821,6 +1848,7 @@ function loadLessons(grade, pushRoute = true) {
 
     const tabDiploma = document.getElementById('tab-btn-diploma');
     const tabBacII = document.getElementById('tab-btn-bacii');
+    const tabSemester = document.getElementById('tab-btn-semester');
     if (tabDiploma) {
         if (currentGrade === '9') {
             tabDiploma.style.setProperty('display', 'inline-flex', 'important');
@@ -1837,6 +1865,15 @@ function loadLessons(grade, pushRoute = true) {
         } else {
             tabBacII.style.setProperty('display', 'none', 'important');
             tabBacII.classList.add('hidden');
+        }
+    }
+    if (tabSemester) {
+        if (['7', '8', '9', '10', '11', '12'].includes(currentGrade)) {
+            tabSemester.style.setProperty('display', 'inline-flex', 'important');
+            tabSemester.classList.remove('hidden');
+        } else {
+            tabSemester.style.setProperty('display', 'none', 'important');
+            tabSemester.classList.add('hidden');
         }
     }
     
@@ -1897,6 +1934,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                 `;
             }
         } else if (currentGrade === '8') {
@@ -1910,6 +1948,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                 `;
             }
         } else if (currentGrade === '9') {
@@ -1922,6 +1961,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 7} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                     <a href="#grade9-diploma-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#ccfbf1; color:#0f766e; border:1px solid #99f6e4; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade9-diploma-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-award"></i> Diploma Section ↓</a>
                 `;
             }
@@ -1936,6 +1976,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                 `;
             }
         } else if (currentGrade === '11') {
@@ -1949,6 +1990,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                 `;
             }
         } else {
@@ -1961,6 +2003,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                     <a href="#grade12-bacii-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#e0e7ff; color:#4338ca; border:1px solid #c7d2fe; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade12-bacii-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-graduation-cap"></i> BacII Section ↓</a>
                 `;
             }
@@ -2041,6 +2084,13 @@ function loadLessons(grade, pushRoute = true) {
                 window.renderSpecialGradeSections(currentGrade);
             } else if (typeof renderSpecialGradeSections === 'function') {
                 renderSpecialGradeSections(currentGrade);
+            }
+
+            // Render Grade-Level Semester Exam Section (Grades 7 through 12)
+            if (typeof window.renderSemesterExamSection === 'function') {
+                window.renderSemesterExamSection(currentGrade);
+            } else if (typeof renderSemesterExamSection === 'function') {
+                renderSemesterExamSection(currentGrade);
             }
         }
     } catch (err) {
@@ -2568,6 +2618,7 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
 
     const tabDiploma = document.getElementById('tab-btn-diploma');
     const tabBacII = document.getElementById('tab-btn-bacii');
+    const tabSemester = document.getElementById('tab-btn-semester');
     if (tabDiploma) {
         if (currentGrade === '9') {
             tabDiploma.style.setProperty('display', 'inline-flex', 'important');
@@ -2584,6 +2635,15 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
         } else {
             tabBacII.style.setProperty('display', 'none', 'important');
             tabBacII.classList.add('hidden');
+        }
+    }
+    if (tabSemester) {
+        if (['7', '8', '9', '10', '11', '12'].includes(currentGrade)) {
+            tabSemester.style.setProperty('display', 'inline-flex', 'important');
+            tabSemester.classList.remove('hidden');
+        } else {
+            tabSemester.style.setProperty('display', 'none', 'important');
+            tabSemester.classList.add('hidden');
         }
     }
 
@@ -4489,6 +4549,17 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
             baciiTabBtn.classList.add('hidden');
         }
     }
+    const semesterTabBtn = document.getElementById('tab-btn-semester');
+    const hasSemester = ['7', '8', '9', '10', '11', '12'].includes(String(detectedGrade));
+    if (semesterTabBtn) {
+        if (hasSemester) {
+            semesterTabBtn.style.setProperty('display', 'inline-flex', 'important');
+            semesterTabBtn.classList.remove('hidden');
+        } else {
+            semesterTabBtn.style.setProperty('display', 'none', 'important');
+            semesterTabBtn.classList.add('hidden');
+        }
+    }
 
     showView(viewLessonDetail);
 
@@ -5428,12 +5499,13 @@ function renderEbook(lesson) {
             console.warn('Protected PDF reader fallback to embed:', msg);
             const wrapper = document.getElementById('pdf-viewer-wrapper');
             if (!wrapper) return;
-            let targetUrl = primaryUrl || altUrl;
+            let rawTarget = primaryUrl || altUrl;
             if (primaryUrl.includes('gears') || (altUrl && altUrl.includes('gears'))) {
-                targetUrl = 'ebooks/g9-ch2-3-gears.pdf.pdf';
+                rawTarget = 'ebooks/g9-ch2-3-gears.pdf.pdf';
             } else if (primaryUrl.includes('pulley') || (altUrl && altUrl.includes('pulley'))) {
-                targetUrl = 'ebooks/g9-ch2-4-pulley.pdf.pdf';
+                rawTarget = 'ebooks/g9-ch2-4-pulley.pdf.pdf';
             }
+            const targetUrl = resolveAppUrl(rawTarget);
             const encodedSrc = `${encodeURI(targetUrl)}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`;
             wrapper.innerHTML = `
                 <div class="pdf-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; padding:0.6rem 1rem; border-radius:8px 8px 0 0; border-bottom:1px solid #334155;">
@@ -5610,35 +5682,42 @@ function renderEbook(lesson) {
 
             async function fetchPdfDoc() {
                 if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return null;
-                const candidateUrls = [primaryUrl];
-                if (altUrl && !candidateUrls.includes(altUrl)) candidateUrls.push(altUrl);
+                const rawList = [primaryUrl];
+                if (altUrl && !rawList.includes(altUrl)) rawList.push(altUrl);
 
                 // Smart cross-alias fallbacks for Gears & Pulley
                 if (primaryUrl.includes('gears') || (altUrl && altUrl.includes('gears'))) {
                     ['ebooks/g9-ch2-3-gears.pdf.pdf', 'ebooks/g9-ch2-3-gears.pdf', 'ebooks/g9-ch2-4-gears.pdf.pdf', 'ebooks/g9-ch2-4-gears.pdf', 'ebooks/g9-ch2-gears.pdf.pdf', 'ebooks/g9-ch2-gears.pdf'].forEach(u => {
-                        if (!candidateUrls.includes(u)) candidateUrls.push(u);
+                        if (!rawList.includes(u)) rawList.push(u);
                     });
                 } else if (primaryUrl.includes('pulley') || (altUrl && altUrl.includes('pulley'))) {
                     ['ebooks/g9-ch2-4-pulley.pdf.pdf', 'ebooks/g9-ch2-4-pulley.pdf', 'ebooks/g9-ch2-3-pulley.pdf.pdf', 'ebooks/g9-ch2-3-pulley.pdf', 'ebooks/g9-ch2-pulley.pdf.pdf', 'ebooks/g9-ch2-pulley.pdf'].forEach(u => {
-                        if (!candidateUrls.includes(u)) candidateUrls.push(u);
+                        if (!rawList.includes(u)) rawList.push(u);
                     });
                 }
 
-                [...candidateUrls].forEach(u => {
+                [...rawList].forEach(u => {
                     if (u.toLowerCase().endsWith('.pdf.pdf')) {
                         const singlePdf = u.slice(0, -4);
-                        if (!candidateUrls.includes(singlePdf)) candidateUrls.push(singlePdf);
+                        if (!rawList.includes(singlePdf)) rawList.push(singlePdf);
                     } else if (u.toLowerCase().endsWith('.pdf')) {
                         const doublePdf = u + '.pdf';
-                        if (!candidateUrls.includes(doublePdf)) candidateUrls.push(doublePdf);
+                        if (!rawList.includes(doublePdf)) rawList.push(doublePdf);
                     }
                     const rel1 = './' + u.replace(/^\.\//, '');
-                    if (!candidateUrls.includes(rel1)) candidateUrls.push(rel1);
+                    if (!rawList.includes(rel1)) rawList.push(rel1);
                 });
                 try {
                     const abs = new URL(primaryUrl, window.location.href).href;
-                    if (!candidateUrls.includes(abs)) candidateUrls.push(abs);
+                    if (!rawList.includes(abs)) rawList.push(abs);
                 } catch(e) {}
+
+                const candidateUrls = [];
+                rawList.forEach(u => {
+                    const canonical = resolveAppUrl(u);
+                    if (canonical && !candidateUrls.includes(canonical)) candidateUrls.push(canonical);
+                    if (!candidateUrls.includes(u)) candidateUrls.push(u);
+                });
 
                 // Tier 1: Check In-Memory Map (Instant load when navigating lessons of same grade)
                 for (const cachedUrl of candidateUrls) {
@@ -6559,12 +6638,13 @@ function renderWorksheet(lesson) {
             console.warn('Protected Worksheet PDF fallback to embed:', msg);
             const wrapper = document.getElementById('ws-pdf-viewer-wrapper');
             if (!wrapper) return;
-            let targetUrl = primaryUrl || altUrl;
+            let rawTarget = primaryUrl || altUrl;
             if (primaryUrl.includes('gears') || (altUrl && altUrl.includes('gears'))) {
-                targetUrl = 'ebooks/g9-ch2-3-gears.pdf.pdf';
+                rawTarget = 'ebooks/g9-ch2-3-gears.pdf.pdf';
             } else if (primaryUrl.includes('pulley') || (altUrl && altUrl.includes('pulley'))) {
-                targetUrl = 'ebooks/g9-ch2-4-pulley.pdf.pdf';
+                rawTarget = 'ebooks/g9-ch2-4-pulley.pdf.pdf';
             }
+            const targetUrl = resolveAppUrl(rawTarget);
             const encodedSrc = `${encodeURI(targetUrl)}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`;
             wrapper.innerHTML = `
                 <div class="pdf-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; padding:0.6rem 1rem; border-radius:8px 8px 0 0; border-bottom:1px solid #334155;">
@@ -6771,8 +6851,15 @@ function renderWorksheet(lesson) {
                     candidateUrls.push('worksheets/ch1-l1-worksheet.pdf', 'worksheets/ch1-l1-worksheet.pdf.pdf');
                 }
 
+                const resolvedCandidates = [];
+                candidateUrls.forEach(u => {
+                    const canonical = resolveAppUrl(u);
+                    if (canonical && !resolvedCandidates.includes(canonical)) resolvedCandidates.push(canonical);
+                    if (!resolvedCandidates.includes(u)) resolvedCandidates.push(u);
+                });
+
                 let doc = null;
-                for (const u of candidateUrls) {
+                for (const u of resolvedCandidates) {
                     try {
                         const buf = await fetchBinaryArrayBuffer(u);
                         if (buf) {
@@ -6787,7 +6874,7 @@ function renderWorksheet(lesson) {
                     } catch (e) {}
                 }
 
-                for (const u of candidateUrls) {
+                for (const u of resolvedCandidates) {
                     try {
                         doc = await pdfjs.getDocument({
                             url: u,
@@ -7422,6 +7509,10 @@ function switchTab(targetName) {
     } else if (targetName === 'bacii') {
         if (typeof renderBacIIContent === 'function') renderBacIIContent();
         else if (typeof window.renderBacIIContent === 'function') window.renderBacIIContent();
+    } else if (targetName === 'semester') {
+        const activeG = currentGrade || window.currentGrade || '7';
+        if (typeof renderSemesterExamSection === 'function') renderSemesterExamSection(activeG);
+        else if (typeof window.renderSemesterExamSection === 'function') window.renderSemesterExamSection(activeG);
     }
 }
 
@@ -7907,6 +7998,72 @@ if (document.body && document.body.classList.contains('is-locked')) {
     handleRoute();
 }
 
+function renderSemesterExamSection(grade) {
+    if (typeof window !== 'undefined' && typeof window.renderSemesterExamSection === 'function' && window.renderSemesterExamSection !== renderSemesterExamSection) {
+        return window.renderSemesterExamSection(grade);
+    }
+    const g = String(grade || (typeof currentGrade !== 'undefined' ? currentGrade : '7'));
+    const container = document.getElementById('semester-exams-container');
+    const sectionEl = document.getElementById('grade-semester-exam-section');
+    if (sectionEl) sectionEl.style.display = 'block';
+
+    const catalog = (typeof window !== 'undefined' && window.SEMESTER_EXAMS_CATALOG) ? window.SEMESTER_EXAMS_CATALOG : (typeof SEMESTER_EXAMS_CATALOG !== 'undefined' ? SEMESTER_EXAMS_CATALOG : {});
+    const items = catalog[g] || [];
+
+    const headingEl = document.getElementById('semester-exam-grade-heading');
+    if (headingEl) {
+        headingEl.innerHTML = `<i class="fa-solid fa-file-signature"></i> Grade ${g} Semester Examinations`;
+    }
+
+    let html = '';
+    if (!items || items.length === 0) {
+        html = `
+            <div class="exam-empty-state" style="padding: 2.5rem 1.5rem; text-align: center;">
+                <div class="exam-empty-icon" style="width: 56px; height: 56px; font-size: 1.6rem; margin: 0 auto 1rem; color: #16a34a;"><i class="fa-regular fa-folder-open"></i></div>
+                <h4 class="exam-empty-title" style="font-size: 1.15rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">No Semester Exam materials available yet.</h4>
+                <p class="exam-empty-text" style="font-size: 0.9rem; color: #64748b; max-width: 480px; margin: 0 auto;">Semester examination papers for Grade ${g} will appear here once uploaded by the teacher.</p>
+            </div>
+        `;
+    } else {
+        html = `
+            <div class="exam-resources-grid">
+                ${items.map(item => `
+                    <div class="exam-resource-card" style="border-left: 4px solid #16a34a;">
+                        <div class="exam-resource-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                            <span class="exam-resource-type" style="color: #15803d; font-weight: 700; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px;"><i class="fa-solid fa-file-pen"></i> ${item.type || 'Semester Exam'}</span>
+                            ${item.year ? `<span class="exam-resource-year" style="font-size: 0.78rem; background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 9999px; font-weight: 600;">${item.year}</span>` : ''}
+                        </div>
+                        <h4 class="exam-resource-title" style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem;">${item.title}</h4>
+                        ${item.subtitle ? `<div style="font-size: 0.82rem; font-weight: 600; color: #16a34a; margin-bottom: 0.45rem;"><i class="fa-solid fa-layer-group"></i> ${item.subtitle}</div>` : ''}
+                        <p class="exam-resource-desc" style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 1.25rem;">${item.description || ''}</p>
+                        <div class="exam-resource-actions">
+                            <button type="button" class="btn-primary" onclick="openExamViewer('${item.id}')" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.65rem 1.2rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; border: none; width: 100%; background: #16a34a; color: #fff;"><i class="fa-solid fa-eye"></i> View Examination (View-Only)</button>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    if (container) container.innerHTML = html;
+
+    const tabContainer = document.getElementById('tab-semester-content');
+    if (tabContainer) {
+        tabContainer.innerHTML = `
+            <div class="exam-section-container semester-theme" style="margin-top: 1rem;">
+                <div class="exam-section-header">
+                    <div class="exam-header-left">
+                        <span class="exam-section-badge badge-semester"><i class="fa-solid fa-file-pen"></i> Official Curriculum Examination</span>
+                        <h2 class="exam-section-title"><i class="fa-solid fa-file-signature"></i> Grade ${g} Semester Exams</h2>
+                        <p class="exam-section-desc">Official semester examinations for Grade ${g}. Protected view-only documents.</p>
+                    </div>
+                </div>
+                ${html}
+            </div>
+        `;
+    }
+}
+
 // Automatically sync eBook and Worksheet readers if tabs are active or lesson is open
 if (typeof window !== 'undefined') {
     window.__appLoaded = true;
@@ -7915,6 +8072,7 @@ if (typeof window !== 'undefined') {
     window.renderWorksheet = renderWorksheet;
     window.appRenderWorksheet = renderWorksheet;
     window.appSwitchTab = switchTab;
+    window.renderSemesterExamSection = window.renderSemesterExamSection || renderSemesterExamSection;
     try {
         window.dispatchEvent(new CustomEvent('app-engine-ready'));
     } catch (e) {}

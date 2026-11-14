@@ -34100,6 +34100,165 @@
         }
     });
 
+    const SEMESTER_EXAMS_CATALOG = {
+        "7": [
+            {
+                id: "g7-sem1-exam",
+                title: "Grade 7 Semester 1 Physics Examination",
+                subtitle: "Official Semester 1 Examination • Western International School",
+                type: "Semester 1 Exam",
+                year: "Semester 1",
+                grade: "7",
+                description: "Official Semester 1 physics examination covering Measurement, Density, Forces, Friction, and Experimental Methods.",
+                url: "semester_exams/g7-semester1-exam.pdf",
+                altUrl: "semester_exams/g7-semester1-exam.pdf.pdf",
+                aliases: ["semester_exams/g7-semester-1.pdf", "semester_exams/g7-sem1.pdf", "semester_exams/g7-sem1-exam.pdf"]
+            },
+            {
+                id: "g7-sem2-exam",
+                title: "Grade 7 Semester 2 Physics Examination",
+                subtitle: "Official Semester 2 Examination • Western International School",
+                type: "Semester 2 Exam",
+                year: "Semester 2",
+                grade: "7",
+                description: "Official Semester 2 physics examination covering Hydrostatic Pressure, Liquid Density, and Thermal Energy Transfer.",
+                url: "semester_exams/g7-semester2-exam.pdf",
+                altUrl: "semester_exams/g7-semester2-exam.pdf.pdf",
+                aliases: ["semester_exams/g7-semester-2.pdf", "semester_exams/g7-sem2.pdf", "semester_exams/g7-sem2-exam.pdf"]
+            }
+        ],
+        "8": [
+            {
+                id: "g8-sem1-exam",
+                title: "Grade 8 Semester 1 Physics Examination",
+                subtitle: "Official Semester 1 Examination • Western International School",
+                type: "Semester 1 Exam",
+                year: "Semester 1",
+                grade: "8",
+                description: "Official Semester 1 physics examination covering Work, Energy & Power, and Thermal Conduction & Convection.",
+                url: "semester_exams/g8-semester1-exam.pdf",
+                altUrl: "semester_exams/g8-semester1-exam.pdf.pdf",
+                aliases: ["semester_exams/g8-semester-1.pdf", "semester_exams/g8-sem1.pdf", "semester_exams/g8-sem1-exam.pdf"]
+            },
+            {
+                id: "g8-sem2-exam",
+                title: "Grade 8 Semester 2 Physics Examination",
+                subtitle: "Official Semester 2 Examination • Western International School",
+                type: "Semester 2 Exam",
+                year: "Semester 2",
+                grade: "8",
+                description: "Official Semester 2 physics examination covering Sound & Acoustic Waves, Electric Current, and DC Circuits.",
+                url: "semester_exams/g8-semester2-exam.pdf",
+                altUrl: "semester_exams/g8-semester2-exam.pdf.pdf",
+                aliases: ["semester_exams/g8-semester-2.pdf", "semester_exams/g8-sem2.pdf", "semester_exams/g8-sem2-exam.pdf"]
+            }
+        ],
+        "9": [
+            {
+                id: "g9-sem1-exam",
+                title: "Grade 9 Semester 1 Physics Examination",
+                subtitle: "Official Semester 1 Examination • Western International School",
+                type: "Semester 1 Exam",
+                year: "Semester 1",
+                grade: "9",
+                description: "Official Semester 1 physics examination covering Turning Effect of Force, Simple Machines, and Electrical Energy Distribution.",
+                url: "semester_exams/g9-semester1-exam.pdf",
+                altUrl: "semester_exams/g9-semester1-exam.pdf.pdf",
+                aliases: ["semester_exams/g9-semester-1.pdf", "semester_exams/g9-sem1.pdf", "semester_exams/g9-sem1-exam.pdf"]
+            },
+            {
+                id: "g9-sem2-exam",
+                title: "Grade 9 Semester 2 Physics Examination",
+                subtitle: "Official Semester 2 Examination • Western International School",
+                type: "Semester 2 Exam",
+                year: "Semester 2",
+                grade: "9",
+                description: "Official Semester 2 physics examination covering Magnetic Fields, Electromagnetic Induction, Reflection, Refraction, and Lenses.",
+                url: "semester_exams/g9-semester2-exam.pdf",
+                altUrl: "semester_exams/g9-semester2-exam.pdf.pdf",
+                aliases: ["semester_exams/g9-semester-2.pdf", "semester_exams/g9-sem2.pdf", "semester_exams/g9-sem2-exam.pdf"]
+            }
+        ],
+        "10": [
+            {
+                id: "g10-sem1-exam",
+                title: "Grade 10 Semester 1 Physics Examination",
+                subtitle: "Official Semester 1 Examination • Western International School",
+                type: "Semester 1 Exam",
+                year: "Semester 1",
+                grade: "10",
+                description: "Official Semester 1 physics examination covering 1D & 2D Kinematics, Newton's Laws of Motion, and Friction Dynamics.",
+                url: "semester_exams/g10-semester1-exam.pdf",
+                altUrl: "semester_exams/g10-semester1-exam.pdf.pdf",
+                aliases: ["semester_exams/g10-semester-1.pdf", "semester_exams/g10-sem1.pdf", "semester_exams/g10-sem1-exam.pdf"]
+            },
+            {
+                id: "g10-sem2-exam",
+                title: "Grade 10 Semester 2 Physics Examination",
+                subtitle: "Official Semester 2 Examination • Western International School",
+                type: "Semester 2 Exam",
+                year: "Semester 2",
+                grade: "10",
+                description: "Official Semester 2 physics examination covering Work-Energy Theorem, Universal Gravitation, and Calorimetry.",
+                url: "semester_exams/g10-semester2-exam.pdf",
+                altUrl: "semester_exams/g10-semester2-exam.pdf.pdf",
+                aliases: ["semester_exams/g10-semester-2.pdf", "semester_exams/g10-sem2.pdf", "semester_exams/g10-sem2-exam.pdf"]
+            }
+        ],
+        "11": [
+            {
+                id: "g11-sem1-exam",
+                title: "Grade 11 Semester 1 Physics Examination",
+                subtitle: "Official Semester 1 Examination • Western International School",
+                type: "Semester 1 Exam",
+                year: "Semester 1",
+                grade: "11",
+                description: "Official Semester 1 physics examination covering Rotational Dynamics, Angular Momentum, Gravitational Satellites, and Fluid Dynamics.",
+                url: "semester_exams/g11-semester1-exam.pdf",
+                altUrl: "semester_exams/g11-semester1-exam.pdf.pdf",
+                aliases: ["semester_exams/g11-semester-1.pdf", "semester_exams/g11-sem1.pdf", "semester_exams/g11-sem1-exam.pdf"]
+            },
+            {
+                id: "g11-sem2-exam",
+                title: "Grade 11 Semester 2 Physics Examination",
+                subtitle: "Official Semester 2 Examination • Western International School",
+                type: "Semester 2 Exam",
+                year: "Semester 2",
+                grade: "11",
+                description: "Official Semester 2 physics examination covering Simple Harmonic Motion, Thermal Physics, and Electrostatic Fields.",
+                url: "semester_exams/g11-semester2-exam.pdf",
+                altUrl: "semester_exams/g11-semester2-exam.pdf.pdf",
+                aliases: ["semester_exams/g11-semester-2.pdf", "semester_exams/g11-sem2.pdf", "semester_exams/g11-sem2-exam.pdf"]
+            }
+        ],
+        "12": [
+            {
+                id: "g12-sem1-exam",
+                title: "Grade 12 Semester 1 Physics Examination",
+                subtitle: "Official Semester 1 Examination • Western International School",
+                type: "Semester 1 Exam",
+                year: "Semester 1",
+                grade: "12",
+                description: "Official Semester 1 physics examination covering Kinetic Theory of Ideal Gases, First & Second Laws of Thermodynamics, Heat Engines, and Superposition of Waves.",
+                url: "semester_exams/g12-semester1-exam.pdf",
+                altUrl: "semester_exams/g12-semester1-exam.pdf.pdf",
+                aliases: ["semester_exams/g12-semester-1.pdf", "semester_exams/g12-sem1.pdf", "semester_exams/g12-sem1-exam.pdf"]
+            },
+            {
+                id: "g12-sem2-exam",
+                title: "Grade 12 Semester 2 Physics Examination",
+                subtitle: "Official Semester 2 Examination • Western International School",
+                type: "Semester 2 Exam",
+                year: "Semester 2",
+                grade: "12",
+                description: "Official Semester 2 physics examination covering Magnetism, Electromagnetic Induction, AC Circuits & Transformers, and Quantum/Modern Physics.",
+                url: "semester_exams/g12-semester2-exam.pdf",
+                altUrl: "semester_exams/g12-semester2-exam.pdf.pdf",
+                aliases: ["semester_exams/g12-semester-2.pdf", "semester_exams/g12-sem2.pdf", "semester_exams/g12-sem2-exam.pdf"]
+            }
+        ]
+    };
+
     const PHYSICS_DATA = {
         "7": G7_LESSONS,
         "8": G8_LESSONS,
@@ -34113,6 +34272,7 @@
     if (typeof window !== 'undefined') {
         window.physicsData = PHYSICS_DATA;
         window.appData = PHYSICS_DATA;
+        window.SEMESTER_EXAMS_CATALOG = SEMESTER_EXAMS_CATALOG;
         try {
             window.dispatchEvent(new CustomEvent('physicsDataReady', { detail: PHYSICS_DATA }));
         } catch (e) {}

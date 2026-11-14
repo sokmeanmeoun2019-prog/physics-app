@@ -6018,3 +6018,67 @@ div[class*="textLayer"],
     }
 }
 
+/* ==========================================================================
+   SEMESTER EXAM SECTION & BADGE STYLING (GRADES 7–12)
+   ========================================================================== */
+.semester-theme {
+    background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%) !important;
+    border: 1.5px solid #bbf7d0 !important;
+    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.06) !important;
+    border-radius: 20px !important;
+    padding: 2rem !important;
+    margin-top: 2rem !important;
+}
+
+.badge-semester {
+    background: #dcfce7 !important;
+    color: #15803d !important;
+    border: 1px solid #86efac !important;
+    font-weight: 700 !important;
+    font-size: 0.78rem !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 9999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+}
+
+.semester-theme .exam-section-title {
+    color: #14532d !important;
+}
+
+.semester-theme .exam-empty-icon i {
+    color: #16a34a !important;
+}
+
+.semester-pill {
+    background: #ecfdf5 !important;
+    color: #047857 !important;
+    border: 1px solid #a7f3d0 !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.semester-pill:hover {
+    background: #d1fae5 !important;
+    color: #065f46 !important;
+    border-color: #6ee7b7 !important;
+    transform: translateY(-1px) !important;
+}
+
+.tab-btn-semester {
+    color: #15803d !important;
+    background: #dcfce7 !important;
+    border: 1.5px solid #86efac !important;
+}
+
+.tab-btn-semester:hover,
+.tab-btn-semester.active {
+    background: #16a34a !important;
+    color: #ffffff !important;
+    border-color: #15803d !important;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3) !important;
+}
+
+
