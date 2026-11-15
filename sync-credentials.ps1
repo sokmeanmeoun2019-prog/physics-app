@@ -176,9 +176,84 @@ if (Test-Path $semesterExamsDir) {
     }
 }
 
-# 7.8 Ensure kh_worksheets double-extension mirroring (.pdf <-> .pdf.pdf)
+# 7.8 Ensure kh_worksheets double-extension & multi-part alias mirroring
 $khWorksheetsDir = Join-Path $scriptDir "kh_worksheets"
 if (Test-Path $khWorksheetsDir) {
+    # Step A: Intelligent multi-part naming normalization (supports (1), (2), (3), part1, -1, etc.)
+    Get-ChildItem -Path $khWorksheetsDir -Filter "*.pdf*" -File | ForEach-Object {
+        $baseName = $_.Name
+        $dir = $_.DirectoryName
+
+        # Check for Part 1 variants: (1), -part1, -p1, _1, etc.
+        if ($baseName -match "g11-ch1-l5.*[\(\s_-](?:part)?1[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch1-l5-1-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch1-l5-part1-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+        if ($baseName -match "g11-ch1-l5.*[\(\s_-](?:part)?2[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch1-l5-2-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch1-l5-part2-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+        if ($baseName -match "g11-ch1-l5.*[\(\s_-](?:part)?3[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch1-l5-3-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch1-l5-part3-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+
+        # Check for g11-ch2-l1 parts
+        if ($baseName -match "g11-ch2-l1.*[\(\s_-](?:part)?1[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch2-l1-1-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch2-l1-part1-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+        if ($baseName -match "g11-ch2-l1.*[\(\s_-](?:part)?2[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch2-l1-2-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch2-l1-part2-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+
+        # Check for g11-ch2-l2 parts
+        if ($baseName -match "g11-ch2-l2.*[\(\s_-](?:part)?1[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch2-l2-1-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch2-l2-part1-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+        if ($baseName -match "g11-ch2-l2.*[\(\s_-](?:part)?2[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch2-l2-2-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch2-l2-part2-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+
+        # Check for g11-ch3-l1 parts
+        if ($baseName -match "g11-ch3-l1.*[\(\s_-](?:part)?1[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch3-l1-1-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch3-l1-part1-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+        if ($baseName -match "g11-ch3-l1.*[\(\s_-](?:part)?2[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch3-l1-2-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch3-l1-part2-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+        if ($baseName -match "g11-ch3-l1.*[\(\s_-](?:part)?3[\)\s_-]?.*\.pdf") {
+            $t1 = Join-Path $dir "g11-ch3-l1-3-kh-worksheet.pdf"
+            $t2 = Join-Path $dir "g11-ch3-l1-part3-kh-worksheet.pdf"
+            if (-not (Test-Path $t1)) { Copy-Item -Path $_.FullName -Destination $t1 -Force }
+            if (-not (Test-Path $t2)) { Copy-Item -Path $_.FullName -Destination $t2 -Force }
+        }
+    }
+
+    # Step B: Double-extension mirroring (.pdf <-> .pdf.pdf)
     Get-ChildItem -Path $khWorksheetsDir -Filter "*.pdf*" -File | ForEach-Object {
         $fullName = $_.FullName
         if ($_.Name.EndsWith(".pdf.pdf")) {

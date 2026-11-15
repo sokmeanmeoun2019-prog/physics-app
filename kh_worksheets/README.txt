@@ -44,30 +44,65 @@ GRADE 9 - CANONICAL FILE NAMES
 - Chapter 5 (Light)                  : g9-ch5-kh-worksheet.pdf (or g9-l5-kh-worksheet.pdf)
 
 ================================================================================
-GRADE 10 - CANONICAL FILE NAMES
+GRADE 10 - CANONICAL FILE NAMES (ALL CHAPTERS & LESSONS)
 ================================================================================
-- Full Grade 10 Booklet : g10-kh-worksheet.pdf
-- Chapter 1 / Lesson 1 (Kinematics in 1D & 2D / Rectilinear Motion) : g10-ch1-l1-kh-worksheet.pdf (or g10-ch1-kh-worksheet.pdf)
-- Chapter 1 / Lesson 2 (Dynamics & Newton's Laws)                   : g10-ch1-l2-kh-worksheet.pdf (or g10-ch2-kh-worksheet.pdf)
-- Chapter 1 / Lesson 3 (Work, Energy & Momentum / Power)            : g10-ch1-l3-kh-worksheet.pdf (or g10-ch3-kh-worksheet.pdf)
-- Chapter 1 / Lesson 4 (Circular Motion, Gravitation & Fluids)      : g10-ch1-l4-kh-worksheet.pdf (or g10-ch4-kh-worksheet.pdf)
-- (Additional chapters if separated):
-  - Chapter 2 (Heat & Gas Model)          : g10-ch2-l1-kh-worksheet.pdf
-  - Chapter 3 (Electrostatics & Circuits) : g10-ch3-l1-kh-worksheet.pdf
-  - Chapter 4 (Optics & Refraction)       : g10-ch4-l1-kh-worksheet.pdf
+- Full Grade 10 Booklet (All Chapters & Lessons in one PDF):
+  * g10-kh-worksheet.pdf
+
+Chapter 1: Mechanics (Kinematics, Dynamics, Energy & Fluids)
+  - Lesson 1 (Rectilinear Motion & Kinematics) : g10-ch1-l1-kh-worksheet.pdf (or g10-ch1-kh-worksheet.pdf, g10-l1-kh-worksheet.pdf)
+  - Lesson 2 (Dynamics: Newton's Laws of Motion): g10-ch1-l2-kh-worksheet.pdf (or g10-ch2-kh-worksheet.pdf, g10-l2-kh-worksheet.pdf)
+  - Lesson 3 (Work, Kinetic Energy & Power)     : g10-ch1-l3-kh-worksheet.pdf (or g10-ch3-kh-worksheet.pdf, g10-l3-kh-worksheet.pdf)
+  - Lesson 4 (Fluids & Atmospheric Pressure)    : g10-ch1-l4-kh-worksheet.pdf (or g10-ch4-kh-worksheet.pdf, g10-l4-kh-worksheet.pdf)
+
+Chapter 2: Thermal Physics & Gas Model
+  - Lesson 1 (Heat, Temperature & Gas Model)    : g10-ch2-l1-kh-worksheet.pdf (or g10-ch2-kh-worksheet.pdf)
+
+Chapter 3: Electricity & Magnetism
+  - Lesson 1 (Electrostatics & Coulomb's Law)   : g10-ch3-l1-kh-worksheet.pdf (or g10-ch3-kh-worksheet.pdf)
+  - Lesson 2 (DC Circuits & Magnetic Fields)    : g10-ch3-l2-kh-worksheet.pdf
+  - Lesson 3 (AC & Transformer Systems)         : g10-ch3-l3-kh-worksheet.pdf
+
+Chapter 4: Optics & Waves
+  - Lesson 1 (Light Propagation & Reflection)   : g10-ch4-l1-kh-worksheet.pdf (or g10-ch4-kh-worksheet.pdf)
+  - Lesson 2 (Refraction & Snell's Law)         : g10-ch4-l2-kh-worksheet.pdf
+  - Lesson 3 (Double Plane, Slab & Prism Optics): g10-ch4-l3-kh-worksheet.pdf
 
 ================================================================================
-GRADE 11 - CANONICAL FILE NAMES
+GRADE 11 - CANONICAL FILE NAMES (ALL CHAPTERS, LESSONS & MULTI-PART FILES)
 ================================================================================
-- Full Grade 11 Booklet : g11-kh-worksheet.pdf
-- Chapter 1 / Lesson 1 (Rotational Dynamics & 2D Motion)       : g11-ch1-l1-kh-worksheet.pdf (or g11-ch1-kh-worksheet.pdf)
-- Chapter 1 / Lesson 2 (Fluid Mechanics & Thermal Physics)     : g11-ch1-l2-kh-worksheet.pdf (or g11-ch2-kh-worksheet.pdf)
-- Chapter 1 / Lesson 3 (Simple Harmonic Motion & Oscillations) : g11-ch1-l3-kh-worksheet.pdf (or g11-ch3-kh-worksheet.pdf)
-- Chapter 1 / Lesson 4 (Electrostatics & Electric Potential)   : g11-ch1-l4-kh-worksheet.pdf (or g11-ch4-kh-worksheet.pdf)
-- (Additional chapters if separated):
-  - Chapter 2 (Thermal Physics & Expansion) : g11-ch2-l1-kh-worksheet.pdf
-  - Chapter 3 (Electrostatics & Fields)     : g11-ch3-l1-kh-worksheet.pdf
-  - Chapter 3 (DC Circuits & Resistance)    : g11-ch3-l2-kh-worksheet.pdf
+- Full Grade 11 Booklet (All Chapters & Lessons in one PDF):
+  * g11-kh-worksheet.pdf
+
+Chapter 1: Mechanics & Dynamics
+  - Lesson 1 (Kinematics in 2D & Projectile Motion)     : g11-ch1-l1-kh-worksheet.pdf (or g11-ch1-kh-worksheet.pdf, g11-l1-kh-worksheet.pdf)
+  - Lesson 2 (Accelerated Frames & Rotational Dynamics) : g11-ch1-l2-kh-worksheet.pdf (or g11-ch2-kh-worksheet.pdf, g11-l2-kh-worksheet.pdf)
+  - Lesson 3 (Universal Gravitation & Satellite Motion) : g11-ch1-l3-kh-worksheet.pdf (or g11-ch3-kh-worksheet.pdf, g11-l3-kh-worksheet.pdf)
+  - Lesson 4 (Impulse, Momentum & Collisions)           : g11-ch1-l4-kh-worksheet.pdf (or g11-ch4-kh-worksheet.pdf, g11-l4-kh-worksheet.pdf)
+  - Lesson 5 (Energy Conservation, Pendulum & Elastic Moduli - 3 Files):
+    * Part 1 (Conservation of Mechanical Energy)        : g11-ch1-l5-1-kh-worksheet.pdf (or g11-ch1-l5-part1-kh-worksheet.pdf)
+    * Part 2 (Simple Pendulum Dynamics & Restoring Force): g11-ch1-l5-2-kh-worksheet.pdf (or g11-ch1-l5-part2-kh-worksheet.pdf)
+    * Part 3 (Static Equilibrium & Elastic Moduli)      : g11-ch1-l5-3-kh-worksheet.pdf (or g11-ch1-l5-part3-kh-worksheet.pdf)
+    (Note: A single combined file 'g11-ch1-l5-kh-worksheet.pdf' is also fully supported)
+  - Lesson 6 (Fluid Dynamics, Continuity & Viscosity)   : g11-ch1-l6-kh-worksheet.pdf (or g11-l6-kh-worksheet.pdf)
+
+Chapter 2: Thermodynamics & Oscillations
+  - Lesson 1 (Thermal Physics, Expansion & Heat Transfer - 2 Files):
+    * Part 1 (Temperature & Thermal Expansion)          : g11-ch2-l1-1-kh-worksheet.pdf (or g11-ch2-l1-part1-kh-worksheet.pdf)
+    * Part 2 (Calorimetry & Heat Transfer Modes)        : g11-ch2-l1-2-kh-worksheet.pdf (or g11-ch2-l1-part2-kh-worksheet.pdf)
+    (Note: A single combined file 'g11-ch2-l1-kh-worksheet.pdf' is also fully supported)
+  - Lesson 2 (Periodic Motion, Oscillations & Waves - 2 Files):
+    * Part 1 (Periodic Motion & SHM Oscillations)       : g11-ch2-l2-1-kh-worksheet.pdf (or g11-ch2-l2-part1-kh-worksheet.pdf)
+    * Part 2 (Mechanical Waves & Sound Doppler Effect)  : g11-ch2-l2-2-kh-worksheet.pdf (or g11-ch2-l2-part2-kh-worksheet.pdf)
+    (Note: A single combined file 'g11-ch2-l2-kh-worksheet.pdf' is also fully supported)
+
+Chapter 3: Electromagnetism & Circuits
+  - Lesson 1 (Electrostatics, Fields & Capacitors - 3 Files):
+    * Part 1 (Coulomb's Law & Electric Forces)          : g11-ch3-l1-1-kh-worksheet.pdf (or g11-ch3-l1-part1-kh-worksheet.pdf)
+    * Part 2 (Electric Fields, Gauss's Flux & Potential): g11-ch3-l1-2-kh-worksheet.pdf (or g11-ch3-l1-part2-kh-worksheet.pdf)
+    * Part 3 (Capacitors, Dielectrics & Energy Storage) : g11-ch3-l1-3-kh-worksheet.pdf (or g11-ch3-l1-part3-kh-worksheet.pdf)
+    (Note: A single combined file 'g11-ch3-l1-kh-worksheet.pdf' is also fully supported)
+  - Lesson 2 (Electric Current, Resistance & DC Circuits): g11-ch3-l2-kh-worksheet.pdf
 
 ================================================================================
 GRADE 12 - CANONICAL FILE NAMES

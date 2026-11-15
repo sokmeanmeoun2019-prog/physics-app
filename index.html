@@ -43,8 +43,8 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
-                var currentVer = 26;
-                var LATEST_BUILD = '20261115221905';
+                var currentVer = 27;
+                var LATEST_BUILD = '20261115231743';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -95,7 +95,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=26&build=20261115221905">
+    <link rel="stylesheet" href="styles.css?v=27&build=20261115231743">
     <style>
         .view.active {
             display: block !important;
@@ -133,8 +133,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=26&build=20261115221905"></script>
-    <script src="physics-data.js?v=26&build=20261115221905"></script>
+    <script src="physics-figures.js?v=27&build=20261115231743"></script>
+    <script src="physics-data.js?v=27&build=20261115231743"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -2084,7 +2084,7 @@
         ];
         }
     </script>
-    <script src="physics-data.js?v=26&build=20261115221905"></script>
+    <script src="physics-data.js?v=27&build=20261115231743"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -3789,20 +3789,68 @@
             "7": [
                 {
                     id: "g7-kh-ws",
-                    title: "Grade 7 KH-Worksheet (Khmer Physics Practice Paper)",
+                    title: "Grade 7 KH-Worksheet (Full Curriculum Booklet)",
                     subtitle: "Official Khmer Curriculum Practice • Western International School",
                     type: "KH-Worksheet",
                     grade: "7",
-                    description: "Comprehensive Khmer Physics practice problems covering Measurement, Density, Forces, Friction, and Thermal Energy.",
+                    description: "Comprehensive Khmer Physics practice problems covering all Grade 7 chapters: Measurement, Density, Forces, Friction, and Thermal Energy.",
                     url: "kh_worksheets/g7-kh-worksheet.pdf",
                     altUrl: "kh_worksheets/g7-kh-worksheet.pdf.pdf",
                     aliases: ["kh_worksheets/g7-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf.pdf", "kh_worksheets/g7-worksheet-kh.pdf", "kh_worksheets/g7-worksheet-kh.pdf.pdf"]
+                },
+                {
+                    id: "g7-ch1-kh-ws",
+                    title: "Chapter 1: Measurement, Units & Density KH-Worksheet",
+                    subtitle: "Chapter 1 Practice Problems • Western International School",
+                    type: "Chapter 1 KH-Worksheet",
+                    grade: "7",
+                    description: "Practice problems and exercises on units, measurement instruments, and density calculations.",
+                    url: "kh_worksheets/g7-ch1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g7-ch1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g7-ch1-kh-worksheet.pdf", "kh_worksheets/g7-ch1-kh-worksheet.pdf.pdf", "kh_worksheets/g7-l1-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g7-ch2-kh-ws",
+                    title: "Chapter 2: Forces & Motion KH-Worksheet",
+                    subtitle: "Chapter 2 Practice Problems • Western International School",
+                    type: "Chapter 2 KH-Worksheet",
+                    grade: "7",
+                    description: "Practice problems on types of forces, friction, gravity, and basic kinematics.",
+                    url: "kh_worksheets/g7-ch2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g7-ch2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g7-ch2-kh-worksheet.pdf", "kh_worksheets/g7-ch2-kh-worksheet.pdf.pdf", "kh_worksheets/g7-l2-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g7-ch3-kh-ws",
+                    title: "Chapter 3: Pressure & Archimedes' Principle KH-Worksheet",
+                    subtitle: "Chapter 3 Practice Problems • Western International School",
+                    type: "Chapter 3 KH-Worksheet",
+                    grade: "7",
+                    description: "Practice exercises on solid pressure, liquid pressure, buoyant force, and Archimedes' principle.",
+                    url: "kh_worksheets/g7-ch3-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g7-ch3-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g7-ch3-kh-worksheet.pdf", "kh_worksheets/g7-ch3-kh-worksheet.pdf.pdf", "kh_worksheets/g7-l3-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g7-ch4-kh-ws",
+                    title: "Chapter 4: Temperature & Thermal Energy KH-Worksheet",
+                    subtitle: "Chapter 4 Practice Problems • Western International School",
+                    type: "Chapter 4 KH-Worksheet",
+                    grade: "7",
+                    description: "Practice questions on temperature scales, heat transfer modes, and thermal expansion.",
+                    url: "kh_worksheets/g7-ch4-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g7-ch4-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g7-ch4-kh-worksheet.pdf", "kh_worksheets/g7-ch4-kh-worksheet.pdf.pdf", "kh_worksheets/g7-l4-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf"]
                 }
             ],
             "8": [
                 {
                     id: "g8-kh-ws",
-                    title: "Grade 8 KH-Worksheet (Khmer Physics Practice Paper)",
+                    title: "Grade 8 KH-Worksheet (Full Curriculum Booklet)",
                     subtitle: "Official Khmer Curriculum Practice • Western International School",
                     type: "KH-Worksheet",
                     grade: "8",
@@ -3810,12 +3858,60 @@
                     url: "kh_worksheets/g8-kh-worksheet.pdf",
                     altUrl: "kh_worksheets/g8-kh-worksheet.pdf.pdf",
                     aliases: ["kh_worksheets/g8-kh-worksheet.pdf", "kh_worksheets/g8-kh-worksheet.pdf.pdf", "kh_worksheets/g8-worksheet-kh.pdf", "kh_worksheets/g8-worksheet-kh.pdf.pdf"]
+                },
+                {
+                    id: "g8-ch1-kh-ws",
+                    title: "Chapter 1: Work, Energy & Power KH-Worksheet",
+                    subtitle: "Chapter 1 Practice Problems • Western International School",
+                    type: "Chapter 1 KH-Worksheet",
+                    grade: "8",
+                    description: "Practice calculations on mechanical work, kinetic energy, potential energy, and power.",
+                    url: "kh_worksheets/g8-ch1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g8-ch1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g8-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g8-ch1-kh-worksheet.pdf", "kh_worksheets/g8-ch1-kh-worksheet.pdf.pdf", "kh_worksheets/g8-l1-kh-worksheet.pdf", "kh_worksheets/g8-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g8-ch2-kh-ws",
+                    title: "Chapter 2: Heat Transfer & Thermal Expansion KH-Worksheet",
+                    subtitle: "Chapter 2 Practice Problems • Western International School",
+                    type: "Chapter 2 KH-Worksheet",
+                    grade: "8",
+                    description: "Practice exercises on conduction, convection, radiation, and thermal expansion of solids and liquids.",
+                    url: "kh_worksheets/g8-ch2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g8-ch2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g8-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g8-ch2-kh-worksheet.pdf", "kh_worksheets/g8-ch2-kh-worksheet.pdf.pdf", "kh_worksheets/g8-l2-kh-worksheet.pdf", "kh_worksheets/g8-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g8-ch3-kh-ws",
+                    title: "Chapter 3: Waves & Sound KH-Worksheet",
+                    subtitle: "Chapter 3 Practice Problems • Western International School",
+                    type: "Chapter 3 KH-Worksheet",
+                    grade: "8",
+                    description: "Practice problems on wave speed, frequency, wavelength, and sound characteristics.",
+                    url: "kh_worksheets/g8-ch3-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g8-ch3-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g8-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g8-ch3-kh-worksheet.pdf", "kh_worksheets/g8-ch3-kh-worksheet.pdf.pdf", "kh_worksheets/g8-l3-kh-worksheet.pdf", "kh_worksheets/g8-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g8-ch4-kh-ws",
+                    title: "Chapter 4: Electricity & DC Circuits KH-Worksheet",
+                    subtitle: "Chapter 4 Practice Problems • Western International School",
+                    type: "Chapter 4 KH-Worksheet",
+                    grade: "8",
+                    description: "Practice problems on electric current, voltage, resistance, and simple circuit analysis.",
+                    url: "kh_worksheets/g8-ch4-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g8-ch4-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g8-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g8-ch4-kh-worksheet.pdf", "kh_worksheets/g8-ch4-kh-worksheet.pdf.pdf", "kh_worksheets/g8-l4-kh-worksheet.pdf", "kh_worksheets/g8-kh-worksheet.pdf"]
                 }
             ],
             "9": [
                 {
                     id: "g9-kh-ws",
-                    title: "Grade 9 KH-Worksheet (Khmer Physics Practice Paper)",
+                    title: "Grade 9 KH-Worksheet (Full Curriculum Booklet)",
                     subtitle: "Official Khmer Curriculum Practice • Western International School",
                     type: "KH-Worksheet",
                     grade: "9",
@@ -3823,32 +3919,416 @@
                     url: "kh_worksheets/g9-kh-worksheet.pdf",
                     altUrl: "kh_worksheets/g9-kh-worksheet.pdf.pdf",
                     aliases: ["kh_worksheets/g9-kh-worksheet.pdf", "kh_worksheets/g9-kh-worksheet.pdf.pdf", "kh_worksheets/g9-worksheet-kh.pdf", "kh_worksheets/g9-worksheet-kh.pdf.pdf"]
+                },
+                {
+                    id: "g9-ch1-kh-ws",
+                    title: "Chapter 1: Turning Effect of Force KH-Worksheet",
+                    subtitle: "Moments & Equilibrium • Western International School",
+                    type: "Chapter 1 KH-Worksheet",
+                    grade: "9",
+                    description: "Problem sets on Resultant Forces, Parallelogram Law, Resolving Forces, and Principle of Moments.",
+                    url: "kh_worksheets/g9-ch1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g9-ch1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g9-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g9-ch1-kh-worksheet.pdf", "kh_worksheets/g9-ch1-kh-worksheet.pdf.pdf", "kh_worksheets/g9-l1-kh-worksheet.pdf", "kh_worksheets/g9-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g9-ch2-kh-ws",
+                    title: "Chapter 2: Simple Machines KH-Worksheet",
+                    subtitle: "Levers, Incline, Gears, Pulley, Wheel & Axle • WIS",
+                    type: "Chapter 2 KH-Worksheet",
+                    grade: "9",
+                    description: "Practice exercises covering Mechanical Advantage (MA), Velocity Ratio (VR), Efficiency, and all 5 simple machines.",
+                    url: "kh_worksheets/g9-ch2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g9-ch2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g9-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g9-ch2-kh-worksheet.pdf", "kh_worksheets/g9-ch2-kh-worksheet.pdf.pdf", "kh_worksheets/g9-l2-kh-worksheet.pdf", "kh_worksheets/g9-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g9-ch3-kh-ws",
+                    title: "Chapter 3: Electricity KH-Worksheet",
+                    subtitle: "Ohm's Law, Power & Energy • Western International School",
+                    type: "Chapter 3 KH-Worksheet",
+                    grade: "9",
+                    description: "Practice problems on Ohm's Law (V = IR), Electrical Power (P = VI), and Energy consumption calculations.",
+                    url: "kh_worksheets/g9-ch3-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g9-ch3-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g9-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g9-ch3-kh-worksheet.pdf", "kh_worksheets/g9-ch3-kh-worksheet.pdf.pdf", "kh_worksheets/g9-l3-kh-worksheet.pdf", "kh_worksheets/g9-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g9-ch4-kh-ws",
+                    title: "Chapter 4: Magnetic Field KH-Worksheet",
+                    subtitle: "Electromagnetism & Induction • Western International School",
+                    type: "Chapter 4 KH-Worksheet",
+                    grade: "9",
+                    description: "Practice problems on Magnetic Field lines, Straight Wires, Solenoids, and Laplace's Force (F = BIL).",
+                    url: "kh_worksheets/g9-ch4-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g9-ch4-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g9-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g9-ch4-kh-worksheet.pdf", "kh_worksheets/g9-ch4-kh-worksheet.pdf.pdf", "kh_worksheets/g9-l4-kh-worksheet.pdf", "kh_worksheets/g9-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g9-ch5-kh-ws",
+                    title: "Chapter 5: Light KH-Worksheet",
+                    subtitle: "Reflection, Refraction & Lenses • Western International School",
+                    type: "Chapter 5 KH-Worksheet",
+                    grade: "9",
+                    description: "Practice problems on Reflection, Snell's Law of Refraction, Total Internal Reflection, and Thin Lenses.",
+                    url: "kh_worksheets/g9-ch5-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g9-ch5-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g9-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g9-ch5-kh-worksheet.pdf", "kh_worksheets/g9-ch5-kh-worksheet.pdf.pdf", "kh_worksheets/g9-l5-kh-worksheet.pdf", "kh_worksheets/g9-kh-worksheet.pdf"]
                 }
             ],
             "10": [
                 {
                     id: "g10-kh-ws",
-                    title: "Grade 10 KH-Worksheet (Khmer Physics Practice Paper)",
+                    title: "Grade 10 KH-Worksheet (Full Curriculum Booklet)",
                     subtitle: "Official Khmer Curriculum Practice • Western International School",
                     type: "KH-Worksheet",
                     grade: "10",
-                    description: "Comprehensive Khmer Physics problem sets covering 1D & 2D Kinematics, Newton's Laws, Work-Energy, and Universal Gravitation.",
+                    description: "Comprehensive Khmer Physics problem sets covering Kinematics, Dynamics, Work-Energy, Fluid Statics, Thermodynamics, Electrostatics, DC Circuits, and Geometric Optics.",
                     url: "kh_worksheets/g10-kh-worksheet.pdf",
                     altUrl: "kh_worksheets/g10-kh-worksheet.pdf.pdf",
                     aliases: ["kh_worksheets/g10-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf.pdf", "kh_worksheets/g10-worksheet-kh.pdf", "kh_worksheets/g10-worksheet-kh.pdf.pdf"]
+                },
+                {
+                    id: "g10-ch1-l1-kh-ws",
+                    title: "Chapter 1 Lesson 1: Rectilinear Motion & Kinematics KH-Worksheet",
+                    subtitle: "Uniform Motion, UAM Kinematics & Vectors • WIS",
+                    type: "Chapter 1 Lesson 1 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on vector algebra, 1D/2D kinematics equations (v = v₀ + at, x = x₀ + v₀t + ½at²), velocity-time graphs, and free fall.",
+                    url: "kh_worksheets/g10-ch1-l1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch1-l1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch1-l1-kh-worksheet.pdf", "kh_worksheets/g10-ch1-kh-worksheet.pdf", "kh_worksheets/g10-l1-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch1-l2-kh-ws",
+                    title: "Chapter 1 Lesson 2: Dynamics & Newton's Laws KH-Worksheet",
+                    subtitle: "Newton's Three Laws, Friction & Inclines • WIS",
+                    type: "Chapter 1 Lesson 2 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems applying Newton's three laws of motion (ΣF = ma), static and kinetic friction (f = μN), free body diagrams, and inclined plane dynamics.",
+                    url: "kh_worksheets/g10-ch1-l2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch1-l2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch1-l2-kh-worksheet.pdf", "kh_worksheets/g10-ch2-kh-worksheet.pdf", "kh_worksheets/g10-l2-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch1-l3-kh-ws",
+                    title: "Chapter 1 Lesson 3: Work, Kinetic Energy & Power KH-Worksheet",
+                    subtitle: "Work-Energy Theorem & Conservation • WIS",
+                    type: "Chapter 1 Lesson 3 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on work done by constant forces (W = Fd cos θ), kinetic energy (K = ½mv²), gravitational potential energy (Ug = mgh), and mechanical power (P = W/t = Fv).",
+                    url: "kh_worksheets/g10-ch1-l3-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch1-l3-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch1-l3-kh-worksheet.pdf", "kh_worksheets/g10-ch3-kh-worksheet.pdf", "kh_worksheets/g10-l3-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch1-l4-kh-ws",
+                    title: "Chapter 1 Lesson 4: Fluids & Atmospheric Pressure KH-Worksheet",
+                    subtitle: "Hydrostatic Pressure, Pascal & Archimedes • WIS",
+                    type: "Chapter 1 Lesson 4 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on fluid pressure (P = ρgh), Pascal's principle in hydraulic systems, buoyant force, and Archimedes' principle (FB = ρVg).",
+                    url: "kh_worksheets/g10-ch1-l4-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch1-l4-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch1-l4-kh-worksheet.pdf", "kh_worksheets/g10-ch4-kh-worksheet.pdf", "kh_worksheets/g10-l4-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch2-l1-kh-ws",
+                    title: "Chapter 2 Lesson 1: Heat, Temperature & Gas Model KH-Worksheet",
+                    subtitle: "Specific Heat, Calorimetry & Ideal Gas • WIS",
+                    type: "Chapter 2 Lesson 1 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on thermodynamic equilibrium, specific heat capacity (Q = mcΔT), latent heat of phase changes (Q = mL), and kinetic gas model.",
+                    url: "kh_worksheets/g10-ch2-l1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch2-l1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch2-l1-kh-worksheet.pdf", "kh_worksheets/g10-ch2-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch3-l1-kh-ws",
+                    title: "Chapter 3 Lesson 1: Electrostatics & Coulomb's Law KH-Worksheet",
+                    subtitle: "Electric Charges & Field Lines • WIS",
+                    type: "Chapter 3 Lesson 1 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on elementary charges, Coulomb's force law (F = k|q₁q₂|/r²), electric field strength (E = F/q), and electrostatic shielding.",
+                    url: "kh_worksheets/g10-ch3-l1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch3-l1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch3-l1-kh-worksheet.pdf", "kh_worksheets/g10-ch3-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch3-l2-kh-ws",
+                    title: "Chapter 3 Lesson 2: DC Circuits & Magnetic Fields KH-Worksheet",
+                    subtitle: "Ohm's Law, Resistors & Magnetic Force • WIS",
+                    type: "Chapter 3 Lesson 2 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on electric current (I = q/t), Ohm's law (V = IR), series and parallel resistor combinations, Joule heating, and magnetic forces on conductors.",
+                    url: "kh_worksheets/g10-ch3-l2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch3-l2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch3-l2-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch3-l3-kh-ws",
+                    title: "Chapter 3 Lesson 3: AC & Transformer Systems KH-Worksheet",
+                    subtitle: "Electromagnetic Induction & Transformers • WIS",
+                    type: "Chapter 3 Lesson 3 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on Faraday's law of induction, alternating voltage waveforms, RMS voltage, and transformer transformation ratio (Vp/Vs = Np/Ns = Is/Ip).",
+                    url: "kh_worksheets/g10-ch3-l3-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch3-l3-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch3-l3-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch4-l1-kh-ws",
+                    title: "Chapter 4 Lesson 1: Light Propagation & Reflection KH-Worksheet",
+                    subtitle: "Geometric Ray Optics & Plane Mirrors • WIS",
+                    type: "Chapter 4 Lesson 1 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on rectilinear light propagation, law of reflection (i = r), plane mirror image characteristics, and ray diagrams.",
+                    url: "kh_worksheets/g10-ch4-l1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch4-l1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch4-l1-kh-worksheet.pdf", "kh_worksheets/g10-ch4-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch4-l2-kh-ws",
+                    title: "Chapter 4 Lesson 2: Refraction & Snell's Law KH-Worksheet",
+                    subtitle: "Refractive Index & Total Internal Reflection • WIS",
+                    type: "Chapter 4 Lesson 2 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on Snell's law of refraction (n₁ sin i = n₂ sin r), refractive index (n = c/v), critical angle, and total internal reflection in fiber optics.",
+                    url: "kh_worksheets/g10-ch4-l2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch4-l2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch4-l2-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g10-ch4-l3-kh-ws",
+                    title: "Chapter 4 Lesson 3: Double Plane, Slab & Prism Optics KH-Worksheet",
+                    subtitle: "Lateral Shift & Prism Deviation • WIS",
+                    type: "Chapter 4 Lesson 3 KH-Worksheet",
+                    grade: "10",
+                    description: "Practice problems on lateral displacement through parallel glass slabs, apparent depth of submerged objects (d' = d/n), and prism deviation angle formulas.",
+                    url: "kh_worksheets/g10-ch4-l3-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-ch4-l3-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g10-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g10-ch4-l3-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf"]
                 }
             ],
             "11": [
                 {
                     id: "g11-kh-ws",
-                    title: "Grade 11 KH-Worksheet (Khmer Physics Practice Paper)",
+                    title: "Grade 11 KH-Worksheet (Full Curriculum Booklet)",
                     subtitle: "Official Khmer Curriculum Practice • Western International School",
                     type: "KH-Worksheet",
                     grade: "11",
-                    description: "Comprehensive Khmer Physics problem sets covering Rotational Dynamics, Fluid Mechanics, Simple Harmonic Motion, and Electrostatics.",
+                    description: "Comprehensive Khmer Physics problem sets covering 2D Kinematics, Rotational Dynamics, Universal Gravitation, Collisions, Fluid Dynamics, Thermodynamics, Oscillations, and Electromagnetism.",
                     url: "kh_worksheets/g11-kh-worksheet.pdf",
                     altUrl: "kh_worksheets/g11-kh-worksheet.pdf.pdf",
                     aliases: ["kh_worksheets/g11-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf.pdf", "kh_worksheets/g11-worksheet-kh.pdf", "kh_worksheets/g11-worksheet-kh.pdf.pdf"]
+                },
+                {
+                    id: "g11-ch1-l1-kh-ws",
+                    title: "Chapter 1 Lesson 1: Kinematics in 2D & Projectile Motion KH-Worksheet",
+                    subtitle: "2D Vector Motion & Parabolic Trajectory • WIS",
+                    type: "Chapter 1 Lesson 1 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on 2D position vectors, horizontal projectiles, angled launch trajectories, maximum apex height (H = v₀² sin²θ / 2g), and horizontal range (R = v₀² sin 2θ / g).",
+                    url: "kh_worksheets/g11-ch1-l1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch1-l1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch1-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch1-kh-worksheet.pdf", "kh_worksheets/g11-l1-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch1-l2-kh-ws",
+                    title: "Chapter 1 Lesson 2: Accelerated Frames & Rotational Dynamics KH-Worksheet",
+                    subtitle: "Inertial Forces, Torque & Moment of Inertia • WIS",
+                    type: "Chapter 1 Lesson 2 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on non-inertial fictitious forces, banked road curves (tan θ = v²/rg), vertical loop dynamics, torque (τ = Iα), and moment of inertia.",
+                    url: "kh_worksheets/g11-ch1-l2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch1-l2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch1-l2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-kh-worksheet.pdf", "kh_worksheets/g11-l2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch1-l3-kh-ws",
+                    title: "Chapter 1 Lesson 3: Universal Gravitation & Satellite Motion KH-Worksheet",
+                    subtitle: "Newton's Gravity, Orbits & Kepler's Laws • WIS",
+                    type: "Chapter 1 Lesson 3 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on Newton's law of universal gravitation (F = GMm/r²), gravitational field strength, satellite orbital speed (v = √(GM/r)), Kepler's 3rd law, and escape velocity.",
+                    url: "kh_worksheets/g11-ch1-l3-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch1-l3-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch1-l3-kh-worksheet.pdf", "kh_worksheets/g11-ch3-kh-worksheet.pdf", "kh_worksheets/g11-l3-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch1-l4-kh-ws",
+                    title: "Chapter 1 Lesson 4: Impulse, Momentum & Collisions KH-Worksheet",
+                    subtitle: "Linear Momentum & Collision Restitution • WIS",
+                    type: "Chapter 1 Lesson 4 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on linear momentum (p = mv), impulse theorem (J = Δp = FΔt), 1D elastic and inelastic collisions, and coefficient of restitution (e = -(v₂-v₁)/(u₂-u₁)).",
+                    url: "kh_worksheets/g11-ch1-l4-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch1-l4-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch1-l4-kh-worksheet.pdf", "kh_worksheets/g11-ch4-kh-worksheet.pdf", "kh_worksheets/g11-l4-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch1-l5-1-kh-ws",
+                    title: "Ch 1 Lesson 5 (Part 1): Conservation of Mechanical Energy KH-Worksheet",
+                    subtitle: "Kinetic & Potential Energy Conservation • WIS",
+                    type: "Chapter 1 Lesson 5 Part 1 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on mechanical energy conservation (E = K + U = const), conservative vs non-conservative forces, free fall energy transforms, and projectile work-energy theorem.",
+                    url: "kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch1-l5-part1-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-p1-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch1-l5-2-kh-ws",
+                    title: "Ch 1 Lesson 5 (Part 2): Simple Pendulum Dynamics KH-Worksheet",
+                    subtitle: "Oscillation Period & Restoring Force • WIS",
+                    type: "Chapter 1 Lesson 5 Part 2 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on simple pendulum oscillation period (T = 2π√(L/g)), tangential restoring force (F = -mg sin θ), small-angle approximation, and energy exchange.",
+                    url: "kh_worksheets/g11-ch1-l5-2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch1-l5-2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch1-l5-2-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-2-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch1-l5-part2-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-p2-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch1-l5-3-kh-ws",
+                    title: "Ch 1 Lesson 5 (Part 3): Static Equilibrium & Elastic Moduli KH-Worksheet",
+                    subtitle: "Hooke's Law, Stress-Strain & Young's Modulus • WIS",
+                    type: "Chapter 1 Lesson 5 Part 3 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice exercises on static equilibrium conditions (ΣF = 0, Στ = 0), Hooke's elastic law, tensile stress (σ = F/A), tensile strain (ε = ΔL/L₀), and Young's modulus (Y = σ/ε).",
+                    url: "kh_worksheets/g11-ch1-l5-3-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch1-l5-3-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch1-l5-3-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-3-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch1-l5-part3-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-p3-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch1-l6-kh-ws",
+                    title: "Chapter 1 Lesson 6: Fluid Dynamics, Continuity & Viscosity KH-Worksheet",
+                    subtitle: "Bernoulli's Equation & Viscous Flow • WIS",
+                    type: "Chapter 1 Lesson 6 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on ideal fluid continuity (A₁v₁ = A₂v₂), Bernoulli's energy equation (P + ½ρv² + ρgh = const), Torricelli's efflux law, Poiseuille flow, and Stokes' law.",
+                    url: "kh_worksheets/g11-ch1-l6-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch1-l6-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch1-l6-kh-worksheet.pdf", "kh_worksheets/g11-l6-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch2-l1-1-kh-ws",
+                    title: "Ch 2 Lesson 1 (Part 1): Temperature & Thermal Expansion KH-Worksheet",
+                    subtitle: "Linear, Area & Volumetric Expansion • WIS",
+                    type: "Chapter 2 Lesson 1 Part 1 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on temperature scale conversions, linear thermal expansion (ΔL = αL₀ΔT), area expansion (ΔA = 2αA₀ΔT), and liquid/solid volumetric expansion (ΔV = βV₀ΔT).",
+                    url: "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l1-part1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-p1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch2-l1-2-kh-ws",
+                    title: "Ch 2 Lesson 1 (Part 2): Calorimetry & Heat Transfer Modes KH-Worksheet",
+                    subtitle: "Specific Heat, Phase Changes & Heat Conduction • WIS",
+                    type: "Chapter 2 Lesson 1 Part 2 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on specific heat capacity (Q = mcΔT), calorimeter thermal equilibrium (ΣQ = 0), Fourier's conduction law (H = kAΔT/L), convection, and Stefan-Boltzmann radiation.",
+                    url: "kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l1-part2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-p2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch2-l2-1-kh-ws",
+                    title: "Ch 2 Lesson 2 (Part 1): Periodic Motion & SHM Oscillations KH-Worksheet",
+                    subtitle: "Spring-Mass Oscillator & Energy in SHM • WIS",
+                    type: "Chapter 2 Lesson 2 Part 1 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on simple harmonic motion kinematics (x = A cos(ωt + φ)), spring-mass oscillator period (T = 2π√(m/k)), velocity, acceleration, and total mechanical energy in SHM (E = ½kA²).",
+                    url: "kh_worksheets/g11-ch2-l2-1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch2-l2-1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch2-l2-1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l2-1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l2-part1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l2-p1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch2-l2-2-kh-ws",
+                    title: "Ch 2 Lesson 2 (Part 2): Mechanical Waves & Sound Doppler Effect KH-Worksheet",
+                    subtitle: "Wave Speed on Strings & Acoustic Doppler Effect • WIS",
+                    type: "Chapter 2 Lesson 2 Part 2 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on sinusoidal wave properties (v = λf), transverse wave speed on tensioned strings (v = √(T/μ)), acoustic sound intensity, and the Doppler effect for moving sources and observers.",
+                    url: "kh_worksheets/g11-ch2-l2-2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch2-l2-2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch2-l2-2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l2-2-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l2-part2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l2-p2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch3-l1-1-kh-ws",
+                    title: "Ch 3 Lesson 1 (Part 1): Coulomb's Law & Electric Forces KH-Worksheet",
+                    subtitle: "Point Charge Interactions & Vector Superposition • WIS",
+                    type: "Chapter 3 Lesson 1 Part 1 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on Coulomb's law (F = k|q₁q₂|/r²), vector superposition of multiple electrostatic point charges, and equilibrium of charged spheres.",
+                    url: "kh_worksheets/g11-ch3-l1-1-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch3-l1-1-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch3-l1-1-kh-worksheet.pdf", "kh_worksheets/g11-ch3-l1-1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch3-l1-part1-kh-worksheet.pdf", "kh_worksheets/g11-ch3-l1-p1-kh-worksheet.pdf", "kh_worksheets/g11-ch3-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch3-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch3-l1-2-kh-ws",
+                    title: "Ch 3 Lesson 1 (Part 2): Electric Fields, Gauss's Flux & Potential KH-Worksheet",
+                    subtitle: "Electric Field Vectors & Potential Energy • WIS",
+                    type: "Chapter 3 Lesson 1 Part 2 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on electric field strength (E = F/q = kq/r²), Gauss's law flux (Φ = ∮E·dA = q_enc/ε₀), electrostatic potential (V = kq/r), and potential difference (ΔV = -Ed).",
+                    url: "kh_worksheets/g11-ch3-l1-2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch3-l1-2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch3-l1-2-kh-worksheet.pdf", "kh_worksheets/g11-ch3-l1-2-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch3-l1-part2-kh-worksheet.pdf", "kh_worksheets/g11-ch3-l1-p2-kh-worksheet.pdf", "kh_worksheets/g11-ch3-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch3-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch3-l1-3-kh-ws",
+                    title: "Ch 3 Lesson 1 (Part 3): Capacitors, Dielectrics & Energy Storage KH-Worksheet",
+                    subtitle: "Capacitance, Dielectric Constant & Energy • WIS",
+                    type: "Chapter 3 Lesson 1 Part 3 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on parallel-plate capacitors (C = κε₀A/d), series and parallel combinations, dielectric breakdown, and electrostatic stored energy (U = ½CV² = ½Q²/C).",
+                    url: "kh_worksheets/g11-ch3-l1-3-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch3-l1-3-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch3-l1-3-kh-worksheet.pdf", "kh_worksheets/g11-ch3-l1-3-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch3-l1-part3-kh-worksheet.pdf", "kh_worksheets/g11-ch3-l1-p3-kh-worksheet.pdf", "kh_worksheets/g11-ch3-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch3-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                },
+                {
+                    id: "g11-ch3-l2-kh-ws",
+                    title: "Chapter 3 Lesson 2: Electric Current, Resistance & DC Circuits KH-Worksheet",
+                    subtitle: "Ohm's Law, Kirchhoff's Rules & Pouillet's Law • WIS",
+                    type: "Chapter 3 Lesson 2 KH-Worksheet",
+                    grade: "11",
+                    description: "Practice problems on microscopic drift velocity, resistivity and temperature coefficient, electromotive force with internal resistance (E = I(R + r)), Kirchhoff's junction and loop rules, and maximum power transfer.",
+                    url: "kh_worksheets/g11-ch3-l2-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-ch3-l2-kh-worksheet.pdf.pdf",
+                    fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
+                    aliases: ["kh_worksheets/g11-ch3-l2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
                 }
             ],
             "12": [
@@ -8860,7 +9340,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 26)</span>
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 27)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -9296,26 +9776,6 @@
                 <!-- Lesson cards will be populated here -->
             </div>
 
-            <!-- Grade-Level Semester Exam Section (Available for Grades 7 through 12) -->
-            <section id="grade-semester-exam-section" class="exam-section-container semester-theme" style="display: none;" aria-label="Semester Exam Section">
-                <div class="exam-section-header">
-                    <div class="exam-header-left">
-                        <span class="exam-section-badge badge-semester">
-                            <i class="fa-solid fa-file-pen"></i> Official Examination Hub
-                        </span>
-                        <h2 class="exam-section-title" id="semester-exam-grade-heading">
-                            <i class="fa-solid fa-file-signature"></i> Semester Examination Papers
-                        </h2>
-                        <p class="exam-section-desc">
-                            Official semester examination papers, sample tests, and revision exam packets curated specifically for this grade. Protected view-only documents.
-                        </p>
-                    </div>
-                </div>
-                <div id="semester-exams-container" class="exam-resources-mount">
-                    <!-- Populated dynamically based on grade -->
-                </div>
-            </section>
-
             <!-- Grade-Level KH-Worksheet Section (Available for Grades 7 through 12) -->
             <section id="grade-kh-worksheet-section" class="exam-section-container kh-worksheet-theme" style="display: none;" aria-label="KH-Worksheet Section">
                 <div class="exam-section-header">
@@ -9332,6 +9792,26 @@
                     </div>
                 </div>
                 <div id="kh-worksheets-container" class="exam-resources-mount">
+                    <!-- Populated dynamically based on grade -->
+                </div>
+            </section>
+
+            <!-- Grade-Level Semester Exam Section (Available for Grades 7 through 12) -->
+            <section id="grade-semester-exam-section" class="exam-section-container semester-theme" style="display: none;" aria-label="Semester Exam Section">
+                <div class="exam-section-header">
+                    <div class="exam-header-left">
+                        <span class="exam-section-badge badge-semester">
+                            <i class="fa-solid fa-file-pen"></i> Official Examination Hub
+                        </span>
+                        <h2 class="exam-section-title" id="semester-exam-grade-heading">
+                            <i class="fa-solid fa-file-signature"></i> Semester Examination Papers
+                        </h2>
+                        <p class="exam-section-desc">
+                            Official semester examination papers, sample tests, and revision exam packets curated specifically for this grade. Protected view-only documents.
+                        </p>
+                    </div>
+                </div>
+                <div id="semester-exams-container" class="exam-resources-mount">
                     <!-- Populated dynamically based on grade -->
                 </div>
             </section>
@@ -9632,7 +10112,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=26&build=20261115221905"></script>
-    <script src="app.js?v=26&build=20261115221905" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=27&build=20261115231743"></script>
+    <script src="app.js?v=27&build=20261115231743" onerror="onAppJsError()"></script>
 </body>
 </html>
