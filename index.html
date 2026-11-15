@@ -43,8 +43,8 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
-                var currentVer = 24;
-                var LATEST_BUILD = '20261115195055';
+                var currentVer = 25;
+                var LATEST_BUILD = '20261115215532';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -95,7 +95,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=24&build=20261115195055">
+    <link rel="stylesheet" href="styles.css?v=25&build=20261115215532">
     <style>
         .view.active {
             display: block !important;
@@ -121,32 +121,20 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- PDF.js Universal Mobile & Desktop ES5/ES6 Compatible Build (2.16.105) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <!-- PDF.js Universal Mobile & Desktop Build (3.11.174) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
         (function() {
             try {
                 var lib = window.pdfjsLib || window['pdfjs-dist/build/pdf'] || window.PDFJS;
                 if (lib && lib.GlobalWorkerOptions) {
-                    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-                    if (!isIOS) {
-                        try {
-                            var blobCode = 'importScripts("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js");';
-                            var workerBlob = new Blob([blobCode], { type: 'application/javascript' });
-                            lib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
-                        } catch(e) {
-                            lib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-                        }
-                    } else {
-                        // On iOS/iPad Safari, use direct CDN worker to prevent opaque origin SecurityError inside blob worker
-                        lib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-                    }
+                    lib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
                 }
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=5.1"></script>
-    <script src="physics-data.js?v=5.1"></script>
+    <script src="physics-figures.js?v=25&build=20261115215532"></script>
+    <script src="physics-data.js?v=25&build=20261115215532"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -2096,7 +2084,7 @@
         ];
         }
     </script>
-    <script src="physics-data.js?v=4.2"></script>
+    <script src="physics-data.js?v=25&build=20261115215532"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -3291,6 +3279,7 @@
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 16 Formulas</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>';
                 }
             } else if (g === '8') {
@@ -3302,6 +3291,7 @@
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 18 Formulas</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>';
                 }
             } else if (g === '9') {
@@ -3313,6 +3303,7 @@
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 39 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 7 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>' +
                         '<a href="#grade9-diploma-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#ccfbf1; color:#0f766e; border:1px solid #99f6e4; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById(\'grade9-diploma-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-award"></i> Diploma & KH-Phy Section ↓</a>';
                 }
@@ -3325,6 +3316,7 @@
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 20 Formulas</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>';
                 }
             } else if (g === '11') {
@@ -3336,6 +3328,7 @@
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 20 Formulas</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>';
                 }
             } else {
@@ -3347,6 +3340,7 @@
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 115 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>' +
                         '<a href="#grade12-bacii-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#e0e7ff; color:#4338ca; border:1px solid #c7d2fe; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById(\'grade12-bacii-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-graduation-cap"></i> BacII Section ↓</a>';
                 }
@@ -3632,6 +3626,248 @@
         window.renderDiplomaContent = renderDiplomaContent;
         window.renderBacIIContent = renderBacIIContent;
 
+        window.SEMESTER_EXAMS_CATALOG = {
+            "7": [
+                {
+                    id: "g7-sem1-exam",
+                    title: "Grade 7 Semester 1 Physics Examination",
+                    subtitle: "Official Semester 1 Examination • Western International School",
+                    type: "Semester 1 Exam",
+                    year: "Semester 1",
+                    grade: "7",
+                    description: "Official Semester 1 physics examination covering Measurement, Density, Forces, Friction, and Experimental Methods.",
+                    url: "semester_exams/g7-semester1-exam.pdf",
+                    altUrl: "semester_exams/g7-semester1-exam.pdf.pdf",
+                    aliases: ["semester_exams/g7-semester-1.pdf", "semester_exams/g7-sem1.pdf", "semester_exams/g7-sem1-exam.pdf"]
+                },
+                {
+                    id: "g7-sem2-exam",
+                    title: "Grade 7 Semester 2 Physics Examination",
+                    subtitle: "Official Semester 2 Examination • Western International School",
+                    type: "Semester 2 Exam",
+                    year: "Semester 2",
+                    grade: "7",
+                    description: "Official Semester 2 physics examination covering Hydrostatic Pressure, Liquid Density, and Thermal Energy Transfer.",
+                    url: "semester_exams/g7-semester2-exam.pdf",
+                    altUrl: "semester_exams/g7-semester2-exam.pdf.pdf",
+                    aliases: ["semester_exams/g7-semester-2.pdf", "semester_exams/g7-sem2.pdf", "semester_exams/g7-sem2-exam.pdf"]
+                }
+            ],
+            "8": [
+                {
+                    id: "g8-sem1-exam",
+                    title: "Grade 8 Semester 1 Physics Examination",
+                    subtitle: "Official Semester 1 Examination • Western International School",
+                    type: "Semester 1 Exam",
+                    year: "Semester 1",
+                    grade: "8",
+                    description: "Official Semester 1 physics examination covering Work, Energy & Power, and Thermal Conduction & Convection.",
+                    url: "semester_exams/g8-semester1-exam.pdf",
+                    altUrl: "semester_exams/g8-semester1-exam.pdf.pdf",
+                    aliases: ["semester_exams/g8-semester-1.pdf", "semester_exams/g8-sem1.pdf", "semester_exams/g8-sem1-exam.pdf"]
+                },
+                {
+                    id: "g8-sem2-exam",
+                    title: "Grade 8 Semester 2 Physics Examination",
+                    subtitle: "Official Semester 2 Examination • Western International School",
+                    type: "Semester 2 Exam",
+                    year: "Semester 2",
+                    grade: "8",
+                    description: "Official Semester 2 physics examination covering Sound & Acoustic Waves, Electric Current, and DC Circuits.",
+                    url: "semester_exams/g8-semester2-exam.pdf",
+                    altUrl: "semester_exams/g8-semester2-exam.pdf.pdf",
+                    aliases: ["semester_exams/g8-semester-2.pdf", "semester_exams/g8-sem2.pdf", "semester_exams/g8-sem2-exam.pdf"]
+                }
+            ],
+            "9": [
+                {
+                    id: "g9-sem1-exam",
+                    title: "Grade 9 Semester 1 Physics Examination",
+                    subtitle: "Official Semester 1 Examination • Western International School",
+                    type: "Semester 1 Exam",
+                    year: "Semester 1",
+                    grade: "9",
+                    description: "Official Semester 1 physics examination covering Turning Effect of Force, Simple Machines, and Electrical Energy Distribution.",
+                    url: "semester_exams/g9-semester1-exam.pdf",
+                    altUrl: "semester_exams/g9-semester1-exam.pdf.pdf",
+                    aliases: ["semester_exams/g9-semester-1.pdf", "semester_exams/g9-sem1.pdf", "semester_exams/g9-sem1-exam.pdf"]
+                },
+                {
+                    id: "g9-sem2-exam",
+                    title: "Grade 9 Semester 2 Physics Examination",
+                    subtitle: "Official Semester 2 Examination • Western International School",
+                    type: "Semester 2 Exam",
+                    year: "Semester 2",
+                    grade: "9",
+                    description: "Official Semester 2 physics examination covering Magnetic Fields, Electromagnetic Induction, Reflection, Refraction, and Lenses.",
+                    url: "semester_exams/g9-semester2-exam.pdf",
+                    altUrl: "semester_exams/g9-semester2-exam.pdf.pdf",
+                    aliases: ["semester_exams/g9-semester-2.pdf", "semester_exams/g9-sem2.pdf", "semester_exams/g9-sem2-exam.pdf"]
+                }
+            ],
+            "10": [
+                {
+                    id: "g10-sem1-exam",
+                    title: "Grade 10 Semester 1 Physics Examination",
+                    subtitle: "Official Semester 1 Examination • Western International School",
+                    type: "Semester 1 Exam",
+                    year: "Semester 1",
+                    grade: "10",
+                    description: "Official Semester 1 physics examination covering 1D & 2D Kinematics, Newton's Laws of Motion, and Friction Dynamics.",
+                    url: "semester_exams/g10-semester1-exam.pdf",
+                    altUrl: "semester_exams/g10-semester1-exam.pdf.pdf",
+                    aliases: ["semester_exams/g10-semester-1.pdf", "semester_exams/g10-sem1.pdf", "semester_exams/g10-sem1-exam.pdf"]
+                },
+                {
+                    id: "g10-sem2-exam",
+                    title: "Grade 10 Semester 2 Physics Examination",
+                    subtitle: "Official Semester 2 Examination • Western International School",
+                    type: "Semester 2 Exam",
+                    year: "Semester 2",
+                    grade: "10",
+                    description: "Official Semester 2 physics examination covering Work-Energy Theorem, Universal Gravitation, and Calorimetry.",
+                    url: "semester_exams/g10-semester2-exam.pdf",
+                    altUrl: "semester_exams/g10-semester2-exam.pdf.pdf",
+                    aliases: ["semester_exams/g10-semester-2.pdf", "semester_exams/g10-sem2.pdf", "semester_exams/g10-sem2-exam.pdf"]
+                }
+            ],
+            "11": [
+                {
+                    id: "g11-sem1-exam",
+                    title: "Grade 11 Semester 1 Physics Examination",
+                    subtitle: "Official Semester 1 Examination • Western International School",
+                    type: "Semester 1 Exam",
+                    year: "Semester 1",
+                    grade: "11",
+                    description: "Official Semester 1 physics examination covering Rotational Dynamics, Angular Momentum, Gravitational Satellites, and Fluid Dynamics.",
+                    url: "semester_exams/g11-semester1-exam.pdf",
+                    altUrl: "semester_exams/g11-semester1-exam.pdf.pdf",
+                    aliases: ["semester_exams/g11-semester-1.pdf", "semester_exams/g11-sem1.pdf", "semester_exams/g11-sem1-exam.pdf"]
+                },
+                {
+                    id: "g11-sem2-exam",
+                    title: "Grade 11 Semester 2 Physics Examination",
+                    subtitle: "Official Semester 2 Examination • Western International School",
+                    type: "Semester 2 Exam",
+                    year: "Semester 2",
+                    grade: "11",
+                    description: "Official Semester 2 physics examination covering Simple Harmonic Motion, Thermal Physics, and Electrostatic Fields.",
+                    url: "semester_exams/g11-semester2-exam.pdf",
+                    altUrl: "semester_exams/g11-semester2-exam.pdf.pdf",
+                    aliases: ["semester_exams/g11-semester-2.pdf", "semester_exams/g11-sem2.pdf", "semester_exams/g11-sem2-exam.pdf"]
+                }
+            ],
+            "12": [
+                {
+                    id: "g12-sem1-exam",
+                    title: "Grade 12 Semester 1 Physics Examination",
+                    subtitle: "Official Semester 1 Examination • Western International School",
+                    type: "Semester 1 Exam",
+                    year: "Semester 1",
+                    grade: "12",
+                    description: "Official Semester 1 physics examination covering Kinetic Theory of Ideal Gases, First & Second Laws of Thermodynamics, Heat Engines, and Superposition of Waves.",
+                    url: "semester_exams/g12-semester1-exam.pdf",
+                    altUrl: "semester_exams/g12-semester1-exam.pdf.pdf",
+                    aliases: ["semester_exams/g12-semester-1.pdf", "semester_exams/g12-sem1.pdf", "semester_exams/g12-sem1-exam.pdf"]
+                },
+                {
+                    id: "g12-sem2-exam",
+                    title: "Grade 12 Semester 2 Physics Examination",
+                    subtitle: "Official Semester 2 Examination • Western International School",
+                    type: "Semester 2 Exam",
+                    year: "Semester 2",
+                    grade: "12",
+                    description: "Official Semester 2 physics examination covering Magnetism, Electromagnetic Induction, AC Circuits & Transformers, and Quantum/Modern Physics.",
+                    url: "semester_exams/g12-semester2-exam.pdf",
+                    altUrl: "semester_exams/g12-semester2-exam.pdf.pdf",
+                    aliases: ["semester_exams/g12-semester-2.pdf", "semester_exams/g12-sem2.pdf", "semester_exams/g12-sem2-exam.pdf"]
+                }
+            ]
+        };
+
+        window.KH_WORKSHEETS_CATALOG = {
+            "7": [
+                {
+                    id: "g7-kh-ws",
+                    title: "Grade 7 KH-Worksheet (Khmer Physics Practice Paper)",
+                    subtitle: "Official Khmer Curriculum Practice • Western International School",
+                    type: "KH-Worksheet",
+                    grade: "7",
+                    description: "Comprehensive Khmer Physics practice problems covering Measurement, Density, Forces, Friction, and Thermal Energy.",
+                    url: "kh_worksheets/g7-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g7-kh-worksheet.pdf.pdf",
+                    aliases: ["kh_worksheets/g7-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf.pdf", "kh_worksheets/g7-worksheet-kh.pdf", "kh_worksheets/g7-worksheet-kh.pdf.pdf"]
+                }
+            ],
+            "8": [
+                {
+                    id: "g8-kh-ws",
+                    title: "Grade 8 KH-Worksheet (Khmer Physics Practice Paper)",
+                    subtitle: "Official Khmer Curriculum Practice • Western International School",
+                    type: "KH-Worksheet",
+                    grade: "8",
+                    description: "Comprehensive Khmer Physics practice exercises covering Kinematics, Dynamics, Work-Energy, and Sound Waves.",
+                    url: "kh_worksheets/g8-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g8-kh-worksheet.pdf.pdf",
+                    aliases: ["kh_worksheets/g8-kh-worksheet.pdf", "kh_worksheets/g8-kh-worksheet.pdf.pdf", "kh_worksheets/g8-worksheet-kh.pdf", "kh_worksheets/g8-worksheet-kh.pdf.pdf"]
+                }
+            ],
+            "9": [
+                {
+                    id: "g9-kh-ws",
+                    title: "Grade 9 KH-Worksheet (Khmer Physics Practice Paper)",
+                    subtitle: "Official Khmer Curriculum Practice • Western International School",
+                    type: "KH-Worksheet",
+                    grade: "9",
+                    description: "Comprehensive Khmer Physics problem sets covering Turning Effect of Force, Simple Machines, Electricity, and Optics.",
+                    url: "kh_worksheets/g9-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g9-kh-worksheet.pdf.pdf",
+                    aliases: ["kh_worksheets/g9-kh-worksheet.pdf", "kh_worksheets/g9-kh-worksheet.pdf.pdf", "kh_worksheets/g9-worksheet-kh.pdf", "kh_worksheets/g9-worksheet-kh.pdf.pdf"]
+                }
+            ],
+            "10": [
+                {
+                    id: "g10-kh-ws",
+                    title: "Grade 10 KH-Worksheet (Khmer Physics Practice Paper)",
+                    subtitle: "Official Khmer Curriculum Practice • Western International School",
+                    type: "KH-Worksheet",
+                    grade: "10",
+                    description: "Comprehensive Khmer Physics problem sets covering 1D & 2D Kinematics, Newton's Laws, Work-Energy, and Universal Gravitation.",
+                    url: "kh_worksheets/g10-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g10-kh-worksheet.pdf.pdf",
+                    aliases: ["kh_worksheets/g10-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf.pdf", "kh_worksheets/g10-worksheet-kh.pdf", "kh_worksheets/g10-worksheet-kh.pdf.pdf"]
+                }
+            ],
+            "11": [
+                {
+                    id: "g11-kh-ws",
+                    title: "Grade 11 KH-Worksheet (Khmer Physics Practice Paper)",
+                    subtitle: "Official Khmer Curriculum Practice • Western International School",
+                    type: "KH-Worksheet",
+                    grade: "11",
+                    description: "Comprehensive Khmer Physics problem sets covering Rotational Dynamics, Fluid Mechanics, Simple Harmonic Motion, and Electrostatics.",
+                    url: "kh_worksheets/g11-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g11-kh-worksheet.pdf.pdf",
+                    aliases: ["kh_worksheets/g11-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf.pdf", "kh_worksheets/g11-worksheet-kh.pdf", "kh_worksheets/g11-worksheet-kh.pdf.pdf"]
+                }
+            ],
+            "12": [
+                {
+                    id: "g12-kh-ws",
+                    title: "Grade 12 KH-Worksheet (Khmer Physics Practice Paper)",
+                    subtitle: "Official Khmer Curriculum Practice • Western International School",
+                    type: "KH-Worksheet",
+                    grade: "12",
+                    description: "Advanced Khmer Physics practice sets covering Thermodynamics, Wave Superposition, Electromagnetism, AC Circuits, and Modern Physics.",
+                    url: "kh_worksheets/g12-kh-worksheet.pdf",
+                    altUrl: "kh_worksheets/g12-kh-worksheet.pdf.pdf",
+                    aliases: ["kh_worksheets/g12-kh-worksheet.pdf", "kh_worksheets/g12-kh-worksheet.pdf.pdf", "kh_worksheets/g12-worksheet-kh.pdf", "kh_worksheets/g12-worksheet-kh.pdf.pdf"]
+                }
+            ]
+        };
+        var SEMESTER_EXAMS_CATALOG = window.SEMESTER_EXAMS_CATALOG;
+        var KH_WORKSHEETS_CATALOG = window.KH_WORKSHEETS_CATALOG;
+
         function renderSemesterExamSection(grade) {
             var g = String(grade || window.currentGrade || '7');
             var container = document.getElementById('semester-exams-container');
@@ -3690,13 +3926,119 @@
         }
         window.renderSemesterExamSection = renderSemesterExamSection;
 
+        function renderKHWorksheetSection(grade) {
+            var g = String(grade || window.currentGrade || '7');
+            var container = document.getElementById('kh-worksheets-container');
+            var sectionEl = document.getElementById('grade-kh-worksheet-section');
+            if (sectionEl) sectionEl.style.display = 'block';
+
+            var catalog = window.KH_WORKSHEETS_CATALOG || (typeof KH_WORKSHEETS_CATALOG !== 'undefined' ? KH_WORKSHEETS_CATALOG : {});
+            var items = catalog[g] || [];
+
+            var headingEl = document.getElementById('kh-worksheet-grade-heading');
+            if (headingEl) {
+                headingEl.innerHTML = '<i class="fa-solid fa-file-pen"></i> Grade ' + g + ' KH-Worksheets';
+            }
+
+            var html = '';
+            if (!items || items.length === 0) {
+                html = '<div class="exam-empty-state" style="padding: 2.5rem 1.5rem; text-align: center;">' +
+                    '<div class="exam-empty-icon" style="width: 56px; height: 56px; font-size: 1.6rem; margin: 0 auto 1rem; color: #d97706;"><i class="fa-regular fa-folder-open"></i></div>' +
+                    '<h4 class="exam-empty-title" style="font-size: 1.15rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">No KH-Worksheet materials available yet.</h4>' +
+                    '<p class="exam-empty-text" style="font-size: 0.9rem; color: #64748b; max-width: 480px; margin: 0 auto;">Khmer Physics worksheet documents for Grade ' + g + ' will appear here once uploaded by the teacher.</p>' +
+                '</div>';
+            } else {
+                html = '<div class="exam-resources-grid">' +
+                    items.map(function(item) {
+                        return '<div class="exam-resource-card" style="border-left: 4px solid #d97706;">' +
+                            '<div class="exam-resource-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">' +
+                                '<span class="exam-resource-type" style="color: #b45309; font-weight: 700; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px;"><i class="fa-solid fa-file-signature"></i> ' + (item.type || 'KH-Worksheet') + '</span>' +
+                                (item.year ? '<span class="exam-resource-year" style="font-size: 0.78rem; background: #fef3c7; color: #b45309; padding: 2px 8px; border-radius: 9999px; font-weight: 600;">' + item.year + '</span>' : '') +
+                            '</div>' +
+                            '<h4 class="exam-resource-title" style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem;">' + item.title + '</h4>' +
+                            (item.subtitle ? '<div style="font-size: 0.82rem; font-weight: 600; color: #d97706; margin-bottom: 0.45rem;"><i class="fa-solid fa-layer-group"></i> ' + item.subtitle + '</div>' : '') +
+                            '<p class="exam-resource-desc" style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 1.25rem;">' + (item.description || '') + '</p>' +
+                            '<div class="exam-resource-actions">' +
+                                '<button type="button" class="btn-primary" onclick="openExamViewer(\'' + item.id + '\')" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.65rem 1.2rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; border: none; width: 100%; background: #d97706; color: #fff;"><i class="fa-solid fa-eye"></i> View KH-Worksheet (View-Only)</button>' +
+                            '</div>' +
+                        '</div>';
+                    }).join('') +
+                '</div>';
+            }
+
+            if (container) container.innerHTML = html;
+        }
+        window.renderKHWorksheetSection = renderKHWorksheetSection;
+
+        function renderKHWorksheet(lesson) {
+            var khWsContainer = document.getElementById('lesson-kh-worksheet');
+            if (!khWsContainer) return;
+
+            var detectedGrade = null;
+            var lid = (lesson && lesson.id) ? String(lesson.id).toLowerCase().trim() : '';
+            if (lid.startsWith('g9-') || lid.startsWith('g9_')) detectedGrade = '9';
+            else if (lid.startsWith('g12-') || lid.startsWith('g12_')) detectedGrade = '12';
+            else if (lid.startsWith('g7-') || lid.startsWith('g8-') || lid.startsWith('g10-') || lid.startsWith('g11-')) {
+                var gm = lid.match(/^g(\d+)[-_]/);
+                detectedGrade = gm ? gm[1] : null;
+            } else if (lesson && lesson.grade) {
+                detectedGrade = String(lesson.grade);
+            } else {
+                detectedGrade = String(window.currentGrade || '7');
+            }
+
+            var g = String(detectedGrade || '7');
+            var catalog = window.KH_WORKSHEETS_CATALOG || (typeof KH_WORKSHEETS_CATALOG !== 'undefined' ? KH_WORKSHEETS_CATALOG : {});
+            var items = catalog[g] || [];
+
+            var html = '';
+            if (!items || items.length === 0) {
+                html = '<div class="exam-empty-state" style="padding: 2.5rem 1.5rem; text-align: center;">' +
+                    '<div class="exam-empty-icon" style="width: 56px; height: 56px; font-size: 1.6rem; margin: 0 auto 1rem; color: #d97706;"><i class="fa-regular fa-folder-open"></i></div>' +
+                    '<h4 class="exam-empty-title" style="font-size: 1.15rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">No KH-Worksheet materials available yet.</h4>' +
+                    '<p class="exam-empty-text" style="font-size: 0.9rem; color: #64748b; max-width: 480px; margin: 0 auto;">Khmer Physics worksheet documents for Grade ' + g + ' will appear here once uploaded by the teacher.</p>' +
+                '</div>';
+            } else {
+                html = '<div class="exam-section-container kh-worksheet-theme" style="margin-top: 0.5rem; padding: 1.5rem;">' +
+                    '<div class="exam-section-header" style="margin-bottom: 1.5rem;">' +
+                        '<div class="exam-header-left">' +
+                            '<span class="exam-section-badge badge-kh-worksheet"><i class="fa-solid fa-file-signature"></i> Khmer Curriculum Practice</span>' +
+                            '<h2 class="exam-section-title" style="font-size: 1.35rem;"><i class="fa-solid fa-file-lines"></i> Grade ' + g + ' KH-Worksheet Practice Papers</h2>' +
+                            '<p class="exam-section-desc">Official Khmer Physics practice worksheets, exercises, and problem sets for Grade ' + g + '. Protected view-only documents.</p>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="exam-resources-grid">' +
+                        items.map(function(item) {
+                            return '<div class="exam-resource-card" style="border-left: 4px solid #d97706;">' +
+                                '<div class="exam-resource-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">' +
+                                    '<span class="exam-resource-type" style="color: #b45309; font-weight: 700; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px;"><i class="fa-solid fa-file-signature"></i> ' + (item.type || 'KH-Worksheet') + '</span>' +
+                                    (item.year ? '<span class="exam-resource-year" style="font-size: 0.78rem; background: #fef3c7; color: #b45309; padding: 2px 8px; border-radius: 9999px; font-weight: 600;">' + item.year + '</span>' : '') +
+                                '</div>' +
+                                '<h4 class="exam-resource-title" style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem;">' + item.title + '</h4>' +
+                                (item.subtitle ? '<div style="font-size: 0.82rem; font-weight: 600; color: #d97706; margin-bottom: 0.45rem;"><i class="fa-solid fa-layer-group"></i> ' + item.subtitle + '</div>' : '') +
+                                '<p class="exam-resource-desc" style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 1.25rem;">' + (item.description || '') + '</p>' +
+                                '<div class="exam-resource-actions">' +
+                                    '<button type="button" class="btn-primary" onclick="openExamViewer(\'' + item.id + '\')" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.65rem 1.2rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; border: none; width: 100%; background: #d97706; color: #fff;"><i class="fa-solid fa-eye"></i> View KH-Worksheet (View-Only)</button>' +
+                                '</div>' +
+                            '</div>';
+                        }).join('') +
+                    '</div>' +
+                '</div>';
+            }
+
+            khWsContainer.innerHTML = html;
+        }
+        window.renderKHWorksheet = renderKHWorksheet;
+
         // ==========================================================================
         // HARDENED UNIVERSAL PDF ANTI-COPY & EXTRACTION PROTECTION ENGINE
         // Enforces strict view-only protection across:
         // 1. eBook (Grades 7–12)
         // 2. Worksheet (Grades 7–12)
-        // 3. Diploma Section (Grade 9 only)
-        // 4. BacII Section (Grade 12 only)
+        // 3. KH-Worksheet (Grades 7–12)
+        // 4. Diploma Section (Grade 9 only)
+        // 5. BacII Section (Grade 12 only)
+        // 6. Semester Exam (Grades 7–12)
         // ==========================================================================
         function isProtectedPdfViewerActive() {
             var gate = document.getElementById('website-auth-gate');
@@ -3723,6 +4065,10 @@
                 if (wsPane && !wsPane.classList.contains('hidden') && wsPane.style.display !== 'none') {
                     return true;
                 }
+                var khWsPane = document.getElementById('tab-kh-worksheet');
+                if (khWsPane && !khWsPane.classList.contains('hidden') && khWsPane.style.display !== 'none') {
+                    return true;
+                }
                 var diplomaPane = document.getElementById('tab-diploma');
                 if (diplomaPane && !diplomaPane.classList.contains('hidden') && diplomaPane.style.display !== 'none') {
                     return true;
@@ -3738,7 +4084,7 @@
             }
 
             var activeEl = document.activeElement;
-            if (activeEl && (activeEl.closest('.pdf-viewer-wrapper') || activeEl.closest('.exam-viewer-window') || activeEl.closest('.ebook-preview-wrapper') || activeEl.closest('.worksheet-preview-wrapper'))) {
+            if (activeEl && (activeEl.closest('.pdf-viewer-wrapper') || activeEl.closest('.exam-viewer-window') || activeEl.closest('.ebook-preview-wrapper') || activeEl.closest('.worksheet-preview-wrapper') || activeEl.closest('.kh-worksheet-preview-wrapper'))) {
                 return true;
             }
 
@@ -3866,9 +4212,15 @@
             Object.values(catalog).forEach(function(list) {
                 if (Array.isArray(list)) semExams = semExams.concat(list);
             });
+            var khWs = [];
+            var khCatalog = window.KH_WORKSHEETS_CATALOG || (typeof KH_WORKSHEETS_CATALOG !== 'undefined' ? KH_WORKSHEETS_CATALOG : {});
+            Object.values(khCatalog).forEach(function(list) {
+                if (Array.isArray(list)) khWs = khWs.concat(list);
+            });
             var all = (window.GRADE9_DIPLOMA_RESOURCES || [])
                 .concat(window.GRADE12_BACII_RESOURCES || [])
-                .concat(semExams);
+                .concat(semExams)
+                .concat(khWs);
             var item = all.find(function(r) { return r.id === resourceId; });
             if (!item) return;
 
@@ -4085,7 +4437,7 @@
                             if (buf) {
                                 pdfDoc = await pdfjs.getDocument({
                                     data: new Uint8Array(buf),
-                                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + (pdfjs.version || '3.11.174') + '/cmaps/',
                                     cMapPacked: true,
                                     disableWorker: true
                                 }).promise;
@@ -4100,7 +4452,7 @@
                             try {
                                 pdfDoc = await pdfjs.getDocument({
                                     url: directUrl,
-                                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                    cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + (pdfjs.version || '3.11.174') + '/cmaps/',
                                     cMapPacked: true,
                                     disableWorker: true
                                 }).promise;
@@ -4625,6 +4977,16 @@
                     tabSemester.classList.add('hidden');
                 }
             }
+            var tabKhWs = document.getElementById('tab-btn-kh-worksheet');
+            if (tabKhWs) {
+                if (['7', '8', '9', '10', '11', '12'].indexOf(g) !== -1) {
+                    tabKhWs.style.setProperty('display', 'inline-flex', 'important');
+                    tabKhWs.classList.remove('hidden');
+                } else {
+                    tabKhWs.style.setProperty('display', 'none', 'important');
+                    tabKhWs.classList.add('hidden');
+                }
+            }
 
             // Update URL hash
             try {
@@ -4656,6 +5018,11 @@
             // Render Grade-Level Semester Exam Section (Grades 7 through 12)
             if (typeof renderSemesterExamSection === 'function') {
                 renderSemesterExamSection(g);
+            }
+
+            // Render Grade-Level KH-Worksheet Section (Grades 7 through 12)
+            if (typeof renderKHWorksheetSection === 'function') {
+                renderKHWorksheetSection(g);
             }
 
             // If app.js is ready, notify to sync
@@ -4729,6 +5096,16 @@
                 } else {
                     tabSemester.style.setProperty('display', 'none', 'important');
                     tabSemester.classList.add('hidden');
+                }
+            }
+            var tabKhWs = document.getElementById('tab-btn-kh-worksheet');
+            if (tabKhWs) {
+                if (hasSemester) {
+                    tabKhWs.style.setProperty('display', 'inline-flex', 'important');
+                    tabKhWs.classList.remove('hidden');
+                } else {
+                    tabKhWs.style.setProperty('display', 'none', 'important');
+                    tabKhWs.classList.add('hidden');
                 }
             }
 
@@ -8483,7 +8860,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 24)</span>
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 25)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -8939,6 +9316,26 @@
                 </div>
             </section>
 
+            <!-- Grade-Level KH-Worksheet Section (Available for Grades 7 through 12) -->
+            <section id="grade-kh-worksheet-section" class="exam-section-container kh-worksheet-theme" style="display: none;" aria-label="KH-Worksheet Section">
+                <div class="exam-section-header">
+                    <div class="exam-header-left">
+                        <span class="exam-section-badge badge-kh-worksheet">
+                            <i class="fa-solid fa-file-signature"></i> Khmer Curriculum Worksheets
+                        </span>
+                        <h2 class="exam-section-title" id="kh-worksheet-grade-heading">
+                            <i class="fa-solid fa-file-lines"></i> KH-Worksheet Documents
+                        </h2>
+                        <p class="exam-section-desc">
+                            Curated Khmer curriculum worksheets, exercises, and practice packets for this grade. Protected view-only documents.
+                        </p>
+                    </div>
+                </div>
+                <div id="kh-worksheets-container" class="exam-resources-mount">
+                    <!-- Populated dynamically based on grade -->
+                </div>
+            </section>
+
             <!-- Grade-Specific Examination Hubs (Grade 9 Diploma & Grade 12 BacII Only) -->
             <div id="grade-special-sections" class="grade-special-sections" style="display: none;">
                 <!-- Grade 9 Diploma Section (Shown ONLY for Grade 9) -->
@@ -9005,7 +9402,8 @@
                 <button class="tab-btn" data-target="equations" onclick="switchTab('equations')">Equations</button>
                 <button class="tab-btn" data-target="flashcards" onclick="switchTab('flashcards')">Flashcards</button>
                 <button class="tab-btn" data-target="quiz" onclick="switchTab('quiz')">Quiz</button>
-                <button class="tab-btn" data-target="worksheet" onclick="switchTab('worksheet')">Worksheet</button>
+                <button class="tab-btn" id="tab-btn-worksheet" data-target="worksheet" onclick="switchTab('worksheet')">Worksheet</button>
+                <button class="tab-btn tab-btn-special tab-btn-kh-worksheet" id="tab-btn-kh-worksheet" data-target="kh-worksheet" onclick="switchTab('kh-worksheet')"><i class="fa-solid fa-file-signature"></i> KH-Worksheet</button>
                 <button class="tab-btn" data-target="game" onclick="switchTab('game')">Game</button>
             </div>
 
@@ -9121,6 +9519,13 @@
                     </div>
                 </div>
 
+                <!-- KH-Worksheet Tab -->
+                <div id="tab-kh-worksheet" class="tab-pane hidden" aria-label="KH-Worksheet Section">
+                    <div class="worksheet-container" id="lesson-kh-worksheet">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
                 <!-- Interactive Game Tab -->
                 <div id="tab-game" class="tab-pane hidden">
                     <div class="game-container" id="lesson-game">
@@ -9227,7 +9632,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=24&build=20261115195055"></script>
-    <script src="app.js?v=24&build=20261115195055" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=25&build=20261115215532"></script>
+    <script src="app.js?v=25&build=20261115215532" onerror="onAppJsError()"></script>
 </body>
 </html>

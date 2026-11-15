@@ -34259,6 +34259,87 @@
         ]
     };
 
+    const KH_WORKSHEETS_CATALOG = {
+        "7": [
+            {
+                id: "g7-kh-ws",
+                title: "Grade 7 KH-Worksheet (Khmer Physics Practice Paper)",
+                subtitle: "Official Khmer Curriculum Practice • Western International School",
+                type: "KH-Worksheet",
+                grade: "7",
+                description: "Comprehensive Khmer Physics practice problems covering Measurement, Density, Forces, Friction, and Thermal Energy.",
+                url: "kh_worksheets/g7-kh-worksheet.pdf",
+                altUrl: "kh_worksheets/g7-kh-worksheet.pdf.pdf",
+                aliases: ["kh_worksheets/g7-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf.pdf", "kh_worksheets/g7-worksheet-kh.pdf", "kh_worksheets/g7-worksheet-kh.pdf.pdf"]
+            }
+        ],
+        "8": [
+            {
+                id: "g8-kh-ws",
+                title: "Grade 8 KH-Worksheet (Khmer Physics Practice Paper)",
+                subtitle: "Official Khmer Curriculum Practice • Western International School",
+                type: "KH-Worksheet",
+                grade: "8",
+                description: "Comprehensive Khmer Physics practice exercises covering Kinematics, Dynamics, Work-Energy, and Sound Waves.",
+                url: "kh_worksheets/g8-kh-worksheet.pdf",
+                altUrl: "kh_worksheets/g8-kh-worksheet.pdf.pdf",
+                aliases: ["kh_worksheets/g8-kh-worksheet.pdf", "kh_worksheets/g8-kh-worksheet.pdf.pdf", "kh_worksheets/g8-worksheet-kh.pdf", "kh_worksheets/g8-worksheet-kh.pdf.pdf"]
+            }
+        ],
+        "9": [
+            {
+                id: "g9-kh-ws",
+                title: "Grade 9 KH-Worksheet (Khmer Physics Practice Paper)",
+                subtitle: "Official Khmer Curriculum Practice • Western International School",
+                type: "KH-Worksheet",
+                grade: "9",
+                description: "Comprehensive Khmer Physics problem sets covering Turning Effect of Force, Simple Machines, Electricity, and Optics.",
+                url: "kh_worksheets/g9-kh-worksheet.pdf",
+                altUrl: "kh_worksheets/g9-kh-worksheet.pdf.pdf",
+                aliases: ["kh_worksheets/g9-kh-worksheet.pdf", "kh_worksheets/g9-kh-worksheet.pdf.pdf", "kh_worksheets/g9-worksheet-kh.pdf", "kh_worksheets/g9-worksheet-kh.pdf.pdf"]
+            }
+        ],
+        "10": [
+            {
+                id: "g10-kh-ws",
+                title: "Grade 10 KH-Worksheet (Khmer Physics Practice Paper)",
+                subtitle: "Official Khmer Curriculum Practice • Western International School",
+                type: "KH-Worksheet",
+                grade: "10",
+                description: "Comprehensive Khmer Physics problem sets covering 1D & 2D Kinematics, Newton's Laws, Work-Energy, and Universal Gravitation.",
+                url: "kh_worksheets/g10-kh-worksheet.pdf",
+                altUrl: "kh_worksheets/g10-kh-worksheet.pdf.pdf",
+                aliases: ["kh_worksheets/g10-kh-worksheet.pdf", "kh_worksheets/g10-kh-worksheet.pdf.pdf", "kh_worksheets/g10-worksheet-kh.pdf", "kh_worksheets/g10-worksheet-kh.pdf.pdf"]
+            }
+        ],
+        "11": [
+            {
+                id: "g11-kh-ws",
+                title: "Grade 11 KH-Worksheet (Khmer Physics Practice Paper)",
+                subtitle: "Official Khmer Curriculum Practice • Western International School",
+                type: "KH-Worksheet",
+                grade: "11",
+                description: "Comprehensive Khmer Physics problem sets covering Rotational Dynamics, Fluid Mechanics, Simple Harmonic Motion, and Electrostatics.",
+                url: "kh_worksheets/g11-kh-worksheet.pdf",
+                altUrl: "kh_worksheets/g11-kh-worksheet.pdf.pdf",
+                aliases: ["kh_worksheets/g11-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf.pdf", "kh_worksheets/g11-worksheet-kh.pdf", "kh_worksheets/g11-worksheet-kh.pdf.pdf"]
+            }
+        ],
+        "12": [
+            {
+                id: "g12-kh-ws",
+                title: "Grade 12 KH-Worksheet (Khmer Physics Practice Paper)",
+                subtitle: "Official Khmer Curriculum Practice • Western International School",
+                type: "KH-Worksheet",
+                grade: "12",
+                description: "Advanced Khmer Physics practice sets covering Thermodynamics, Wave Superposition, Electromagnetism, AC Circuits, and Modern Physics.",
+                url: "kh_worksheets/g12-kh-worksheet.pdf",
+                altUrl: "kh_worksheets/g12-kh-worksheet.pdf.pdf",
+                aliases: ["kh_worksheets/g12-kh-worksheet.pdf", "kh_worksheets/g12-kh-worksheet.pdf.pdf", "kh_worksheets/g12-worksheet-kh.pdf", "kh_worksheets/g12-worksheet-kh.pdf.pdf"]
+            }
+        ]
+    };
+
     const PHYSICS_DATA = {
         "7": G7_LESSONS,
         "8": G8_LESSONS,
@@ -34273,6 +34354,7 @@
         window.physicsData = PHYSICS_DATA;
         window.appData = PHYSICS_DATA;
         window.SEMESTER_EXAMS_CATALOG = SEMESTER_EXAMS_CATALOG;
+        window.KH_WORKSHEETS_CATALOG = KH_WORKSHEETS_CATALOG;
         try {
             window.dispatchEvent(new CustomEvent('physicsDataReady', { detail: PHYSICS_DATA }));
         } catch (e) {}

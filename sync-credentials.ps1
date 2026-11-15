@@ -70,6 +70,8 @@ if (Test-Path $indexPath) {
     $indexContent = [regex]::Replace($indexContent, "var\s+currentVer\s*=\s*\d+;", "var currentVer = $version;")
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="auth\.js\?[^"]*"', "<script src=`"auth.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="app\.js\?[^"]*"', "<script src=`"app.js?v=$version&build=$buildTimestamp`"")
+    $indexContent = [regex]::Replace($indexContent, '<script\s+src="physics-data\.js\?[^"]*"', "<script src=`"physics-data.js?v=$version&build=$buildTimestamp`"")
+    $indexContent = [regex]::Replace($indexContent, '<script\s+src="physics-figures\.js\?[^"]*"', "<script src=`"physics-figures.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<link\s+rel="stylesheet"\s+href="styles\.css\?[^"]*"', "<link rel=`"stylesheet`" href=`"styles.css?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, 'id="auth-version-badge"[^>]*>[^<]*<', "id=`"auth-version-badge`" style=`"display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;`">v8.0 (Build $version)<")
     
@@ -128,6 +130,22 @@ if (Test-Path $ebooksDir) {
     if (Test-Path $p3) { if (-not (Test-Path $p3_single)) { Copy-Item -Path $p3 -Destination $p3_single -Force } }
 }
 
+# 7.5b Audio mirroring for Gears & Pulley cross-compatibility
+$audioDirs = @((Join-Path $scriptDir "audio"), (Join-Path $scriptDir "audiobooks"))
+foreach ($ad in $audioDirs) {
+    if (Test-Path $ad) {
+        $ag3 = Join-Path $ad "g9-ch2-3-gears.mp3"
+        $ag4 = Join-Path $ad "g9-ch2-4-gears.mp3"
+        if ((Test-Path $ag3) -and (-not (Test-Path $ag4))) { Copy-Item -Path $ag3 -Destination $ag4 -Force }
+        elseif ((Test-Path $ag4) -and (-not (Test-Path $ag3))) { Copy-Item -Path $ag4 -Destination $ag3 -Force }
+
+        $ap4 = Join-Path $ad "g9-ch2-4-pulley.mp3"
+        $ap3 = Join-Path $ad "g9-ch2-3-pulley.mp3"
+        if ((Test-Path $ap4) -and (-not (Test-Path $ap3))) { Copy-Item -Path $ap4 -Destination $ap3 -Force }
+        elseif ((Test-Path $ap3) -and (-not (Test-Path $ap4))) { Copy-Item -Path $ap3 -Destination $ap4 -Force }
+    }
+}
+
 # 7.6 Ensure worksheets double-extension mirroring (.pdf <-> .pdf.pdf)
 $worksheetsDir = Join-Path $scriptDir "worksheets"
 if (Test-Path $worksheetsDir) {
@@ -147,6 +165,21 @@ if (Test-Path $worksheetsDir) {
 $semesterExamsDir = Join-Path $scriptDir "semester_exams"
 if (Test-Path $semesterExamsDir) {
     Get-ChildItem -Path $semesterExamsDir -Filter "*.pdf*" -File | ForEach-Object {
+        $fullName = $_.FullName
+        if ($_.Name.EndsWith(".pdf.pdf")) {
+            $single = $fullName.Substring(0, $fullName.Length - 4)
+            if (-not (Test-Path $single)) { Copy-Item -Path $fullName -Destination $single -Force }
+        } elseif ($_.Name.EndsWith(".pdf")) {
+            $double = $fullName + ".pdf"
+            if (-not (Test-Path $double)) { Copy-Item -Path $fullName -Destination $double -Force }
+        }
+    }
+}
+
+# 7.8 Ensure kh_worksheets double-extension mirroring (.pdf <-> .pdf.pdf)
+$khWorksheetsDir = Join-Path $scriptDir "kh_worksheets"
+if (Test-Path $khWorksheetsDir) {
+    Get-ChildItem -Path $khWorksheetsDir -Filter "*.pdf*" -File | ForEach-Object {
         $fullName = $_.FullName
         if ($_.Name.EndsWith(".pdf.pdf")) {
             $single = $fullName.Substring(0, $fullName.Length - 4)

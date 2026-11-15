@@ -99,7 +99,7 @@ equations:[
     {title:"3. Gears & Belts (pp. 27–29)",url:"ebooks/g9-ch2-3-gears.pdf.pdf",altUrl:"ebooks/g9-ch2-3-gears.pdf",fallbackUrl:"ebooks/g9-ch2-4-gears.pdf.pdf",aliases:["ebooks/g9-ch2-3-gears.pdf.pdf","ebooks/g9-ch2-3-gears.pdf","ebooks/g9-ch2-4-gears.pdf.pdf","ebooks/g9-ch2-4-gears.pdf","ebooks/g9-ch2-gears.pdf.pdf","ebooks/g9-ch2-gears.pdf"]},
     {title:"4. Pulley (pp. 23–26)",url:"ebooks/g9-ch2-4-pulley.pdf.pdf",altUrl:"ebooks/g9-ch2-4-pulley.pdf",fallbackUrl:"ebooks/g9-ch2-3-pulley.pdf.pdf",aliases:["ebooks/g9-ch2-4-pulley.pdf.pdf","ebooks/g9-ch2-4-pulley.pdf","ebooks/g9-ch2-3-pulley.pdf.pdf","ebooks/g9-ch2-3-pulley.pdf","ebooks/g9-ch2-pulley.pdf.pdf","ebooks/g9-ch2-pulley.pdf"]},
     {title:"5. Wheel & Axle (pp. 30–33)",url:"ebooks/g9-ch2-5-wheel-and-axle.pdf.pdf",altUrl:"ebooks/g9-ch2-5-wheel-and-axle.pdf",aliases:["ebooks/g9-ch2-5-wheel-and-axle.pdf.pdf","ebooks/g9-ch2-5-wheel-and-axle.pdf","ebooks/g9-ch2-wheel.pdf.pdf","ebooks/g9-ch2-wheel.pdf"]}
-],games:[{topic:"Levers",url:"https://g.co/gemini/share/0b9242977d1a"},{topic:"Inclined Plane",url:"https://g.co/gemini/share/a0f83fb13666"},{topic:"Pulley",url:"https://share.gemini.google/ikZlefCPf3VG"},{topic:"Gear and Belt System",url:"https://gemini.google.com/share/a559ad0916ce"},{topic:"Wheel and Axle",url:"https://gemini.google.com/share/8a5c6aeecc08"}],title:"Chapter 2: Simple Machines",concepts:["Simple Machines: Devices that change the magnitude, direction, or distance of force to make physical work easier.","Mechanical Advantage (MA): The factor by which a machine multiplies applied effort force, \\( MA = \\frac{F_R}{F_E} \\).","Velocity Ratio (VR): The ratio of distance moved by effort to distance moved by load, \\( VR = \\frac{d_E}{d_R} \\).","Efficiency (eff): The percentage of input work transformed into useful output work, \\( \\text{eff} = \\frac{MA}{VR} \\times 100\\% \\).","Key Machines: Levers (1st, 2nd, 3rd class), Inclined Planes (\\( MA = L/h \\)), Pulleys, Gears, and Wheel & Axle (\\( MA = R/r \\))."],definitions:[
+],games:[{topic:"Levers",url:"https://g.co/gemini/share/0b9242977d1a"},{topic:"Inclined Plane",url:"https://g.co/gemini/share/a0f83fb13666"},{topic:"Gear and Belt System",url:"https://gemini.google.com/share/a559ad0916ce"},{topic:"Pulley",url:"https://share.gemini.google/ikZlefCPf3VG"},{topic:"Wheel and Axle",url:"https://gemini.google.com/share/8a5c6aeecc08"}],title:"Chapter 2: Simple Machines",concepts:["Simple Machines: Devices that change the magnitude, direction, or distance of force to make physical work easier.","Mechanical Advantage (MA): The factor by which a machine multiplies applied effort force, \\( MA = \\frac{F_R}{F_E} \\).","Velocity Ratio (VR): The ratio of distance moved by effort to distance moved by load, \\( VR = \\frac{d_E}{d_R} \\).","Efficiency (eff): The percentage of input work transformed into useful output work, \\( \\text{eff} = \\frac{MA}{VR} \\times 100\\% \\).","Key Machines: Levers (1st, 2nd, 3rd class), Inclined Planes (\\( MA = L/h \\)), Pulleys, Gears, and Wheel & Axle (\\( MA = R/r \\))."],definitions:[
 {term:"Simple Machine",definition:"A basic mechanical device that changes the magnitude, direction, or distance of an applied force to make physical work easier.",symbol:"\\text{Machine}",unit:"\\text{No unit}",equation:"MA = \\frac{F_R}{F_E}"},
 {term:"Effort Force",definition:"The external force applied by a person or motor to operate a machine.",symbol:"F_E",unit:"\\mathrm{N}",equation:"F_E = \\frac{F_R}{MA}"},
 {term:"Resistance / Load Force",definition:"The resistive force or weight of the object that the machine overcomes or lifts.",symbol:"F_R",unit:"\\mathrm{N}",equation:"F_R = MA \\times F_E"},
@@ -1751,9 +1751,11 @@ function showDashboard(pushRoute = true) {
     const tabDiploma = document.getElementById('tab-btn-diploma');
     const tabBacII = document.getElementById('tab-btn-bacii');
     const tabSemester = document.getElementById('tab-btn-semester');
+    const tabKhWs = document.getElementById('tab-btn-kh-worksheet');
     if (tabDiploma) { tabDiploma.style.setProperty('display', 'none', 'important'); tabDiploma.classList.add('hidden'); }
     if (tabBacII) { tabBacII.style.setProperty('display', 'none', 'important'); tabBacII.classList.add('hidden'); }
     if (tabSemester) { tabSemester.style.setProperty('display', 'none', 'important'); tabSemester.classList.add('hidden'); }
+    if (tabKhWs) { tabKhWs.style.setProperty('display', 'none', 'important'); tabKhWs.classList.add('hidden'); }
     if (pushRoute && window.location.hash !== '' && window.location.hash !== '#') {
         try {
             history.pushState({ view: 'dashboard' }, '', window.location.pathname + window.location.search);
@@ -1876,6 +1878,16 @@ function loadLessons(grade, pushRoute = true) {
             tabSemester.classList.add('hidden');
         }
     }
+    const tabKhWorksheet = document.getElementById('tab-btn-kh-worksheet');
+    if (tabKhWorksheet) {
+        if (['7', '8', '9', '10', '11', '12'].includes(currentGrade)) {
+            tabKhWorksheet.style.setProperty('display', 'inline-flex', 'important');
+            tabKhWorksheet.classList.remove('hidden');
+        } else {
+            tabKhWorksheet.style.setProperty('display', 'none', 'important');
+            tabKhWorksheet.classList.add('hidden');
+        }
+    }
     
     // Switch view immediately so the user experiences zero lag and instant response
     showView(viewLessons);
@@ -1934,6 +1946,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                 `;
             }
@@ -1948,6 +1961,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                 `;
             }
@@ -1961,6 +1975,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 7} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                     <a href="#grade9-diploma-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#ccfbf1; color:#0f766e; border:1px solid #99f6e4; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade9-diploma-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-award"></i> Diploma Section ↓</a>
                 `;
@@ -1976,6 +1991,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                 `;
             }
@@ -1990,6 +2006,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
+                    <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                 `;
             }
@@ -2003,6 +2020,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>
                     <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                     <a href="#grade12-bacii-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#e0e7ff; color:#4338ca; border:1px solid #c7d2fe; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade12-bacii-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-graduation-cap"></i> BacII Section ↓</a>
                 `;
@@ -2091,6 +2109,13 @@ function loadLessons(grade, pushRoute = true) {
                 window.renderSemesterExamSection(currentGrade);
             } else if (typeof renderSemesterExamSection === 'function') {
                 renderSemesterExamSection(currentGrade);
+            }
+
+            // Render Grade-Level KH-Worksheet Section (Grades 7 through 12)
+            if (typeof window.renderKHWorksheetSection === 'function') {
+                window.renderKHWorksheetSection(currentGrade);
+            } else if (typeof renderKHWorksheetSection === 'function') {
+                renderKHWorksheetSection(currentGrade);
             }
         }
     } catch (err) {
@@ -2644,6 +2669,16 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
         } else {
             tabSemester.style.setProperty('display', 'none', 'important');
             tabSemester.classList.add('hidden');
+        }
+    }
+    const tabKhWorksheet = document.getElementById('tab-btn-kh-worksheet');
+    if (tabKhWorksheet) {
+        if (['7', '8', '9', '10', '11', '12'].includes(currentGrade)) {
+            tabKhWorksheet.style.setProperty('display', 'inline-flex', 'important');
+            tabKhWorksheet.classList.remove('hidden');
+        } else {
+            tabKhWorksheet.style.setProperty('display', 'none', 'important');
+            tabKhWorksheet.classList.add('hidden');
         }
     }
 
@@ -4560,6 +4595,16 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
             semesterTabBtn.classList.add('hidden');
         }
     }
+    const khWorksheetTabBtn = document.getElementById('tab-btn-kh-worksheet');
+    if (khWorksheetTabBtn) {
+        if (hasSemester) {
+            khWorksheetTabBtn.style.setProperty('display', 'inline-flex', 'important');
+            khWorksheetTabBtn.classList.remove('hidden');
+        } else {
+            khWorksheetTabBtn.style.setProperty('display', 'none', 'important');
+            khWorksheetTabBtn.classList.add('hidden');
+        }
+    }
 
     showView(viewLessonDetail);
 
@@ -4569,6 +4614,8 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
     if (typeof initQuiz === 'function') initQuiz();
     if (typeof renderEbook === 'function') renderEbook(lesson);
     if (typeof renderWorksheet === 'function') renderWorksheet(lesson);
+    if (typeof renderKHWorksheet === 'function') renderKHWorksheet(lesson);
+    else if (typeof window.renderKHWorksheet === 'function') window.renderKHWorksheet(lesson);
     if (typeof renderGame === 'function') renderGame(lesson);
 
     renderedTabsInCurrentLesson.clear();
@@ -4576,6 +4623,7 @@ function loadLessonDetail(lessonOrId, pushRoute = true) {
     renderedTabsInCurrentLesson.add('quiz');
     renderedTabsInCurrentLesson.add('ebook');
     renderedTabsInCurrentLesson.add('worksheet');
+    renderedTabsInCurrentLesson.add('kh-worksheet');
     renderedTabsInCurrentLesson.add('game');
     
     const hasSummaryContent = (lesson.concepts || []).length > 0 || 
@@ -5588,7 +5636,8 @@ function renderEbook(lesson) {
                 return;
             }
 
-            const cdnWorker = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+            const pdfVersion = (pdfjs && pdfjs.version) || '3.11.174';
+            const cdnWorker = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfVersion}/pdf.worker.min.js`;
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
             if (isIOS) {
@@ -5738,7 +5787,7 @@ function renderEbook(lesson) {
                     try {
                         const loadingTask = pdfjs.getDocument({
                             url: u,
-                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + ((pdfjs && pdfjs.version) || '3.11.174') + '/cmaps/',
                             cMapPacked: true,
                             rangeChunkSize: 65536,
                             disableAutoFetch: false,
@@ -5769,7 +5818,7 @@ function renderEbook(lesson) {
                                 if (cBuf && cBuf.byteLength > 100) {
                                     const cDoc = await pdfjs.getDocument({
                                         data: new Uint8Array(cBuf),
-                                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + ((pdfjs && pdfjs.version) || '3.11.174') + '/cmaps/',
                                         cMapPacked: true,
                                         disableWorker: false
                                     }).promise;
@@ -5802,7 +5851,7 @@ function renderEbook(lesson) {
 
                             const doc = await pdfjs.getDocument({
                                 data: new Uint8Array(buf),
-                                cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + ((pdfjs && pdfjs.version) || '3.11.174') + '/cmaps/',
                                 cMapPacked: true,
                                 disableWorker: false
                             }).promise;
@@ -6730,7 +6779,8 @@ function renderWorksheet(lesson) {
                 return;
             }
 
-            const cdnWorker = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+            const pdfVersion = (pdfjs && pdfjs.version) || '3.11.174';
+            const cdnWorker = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfVersion}/pdf.worker.min.js`;
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
             if (isIOS) {
@@ -6865,7 +6915,7 @@ function renderWorksheet(lesson) {
                         if (buf) {
                             doc = await pdfjs.getDocument({
                                 data: new Uint8Array(buf),
-                                cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                                cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + ((pdfjs && pdfjs.version) || '3.11.174') + '/cmaps/',
                                 cMapPacked: true,
                                 disableWorker: true
                             }).promise;
@@ -6878,7 +6928,7 @@ function renderWorksheet(lesson) {
                     try {
                         doc = await pdfjs.getDocument({
                             url: u,
-                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+                            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/' + ((pdfjs && pdfjs.version) || '3.11.174') + '/cmaps/',
                             cMapPacked: true,
                             disableWorker: true
                         }).promise;
@@ -7513,6 +7563,12 @@ function switchTab(targetName) {
         const activeG = currentGrade || window.currentGrade || '7';
         if (typeof renderSemesterExamSection === 'function') renderSemesterExamSection(activeG);
         else if (typeof window.renderSemesterExamSection === 'function') window.renderSemesterExamSection(activeG);
+    } else if (targetName === 'kh-worksheet') {
+        const activeG = currentGrade || window.currentGrade || '7';
+        if (typeof renderKHWorksheet === 'function') renderKHWorksheet(currentLesson);
+        else if (typeof window.renderKHWorksheet === 'function') window.renderKHWorksheet(currentLesson);
+        else if (typeof renderKHWorksheetSection === 'function') renderKHWorksheetSection(activeG);
+        else if (typeof window.renderKHWorksheetSection === 'function') window.renderKHWorksheetSection(activeG);
     }
 }
 
@@ -8064,6 +8120,119 @@ function renderSemesterExamSection(grade) {
     }
 }
 
+function renderKHWorksheetSection(grade) {
+    if (typeof window !== 'undefined' && typeof window.renderKHWorksheetSection === 'function' && window.renderKHWorksheetSection !== renderKHWorksheetSection) {
+        return window.renderKHWorksheetSection(grade);
+    }
+    const g = String(grade || (typeof currentGrade !== 'undefined' ? currentGrade : '7'));
+    const container = document.getElementById('kh-worksheets-container');
+    const sectionEl = document.getElementById('grade-kh-worksheet-section');
+    if (sectionEl) sectionEl.style.display = 'block';
+
+    const catalog = (typeof window !== 'undefined' && window.KH_WORKSHEETS_CATALOG) ? window.KH_WORKSHEETS_CATALOG : (typeof KH_WORKSHEETS_CATALOG !== 'undefined' ? KH_WORKSHEETS_CATALOG : {});
+    const items = catalog[g] || [];
+
+    const headingEl = document.getElementById('kh-worksheet-grade-heading');
+    if (headingEl) {
+        headingEl.innerHTML = `<i class="fa-solid fa-file-lines"></i> Grade ${g} KH-Worksheet Documents`;
+    }
+
+    let html = '';
+    if (!items || items.length === 0) {
+        html = `
+            <div class="exam-empty-state" style="padding: 2.5rem 1.5rem; text-align: center;">
+                <div class="exam-empty-icon" style="width: 56px; height: 56px; font-size: 1.6rem; margin: 0 auto 1rem; color: #d97706;"><i class="fa-regular fa-folder-open"></i></div>
+                <h4 class="exam-empty-title" style="font-size: 1.15rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">No KH-Worksheet materials available yet.</h4>
+                <p class="exam-empty-text" style="font-size: 0.9rem; color: #64748b; max-width: 480px; margin: 0 auto;">Khmer Physics worksheet documents for Grade ${g} will appear here once uploaded by the teacher.</p>
+            </div>
+        `;
+    } else {
+        html = `
+            <div class="exam-resources-grid">
+                ${items.map(item => `
+                    <div class="exam-resource-card" style="border-left: 4px solid #d97706;">
+                        <div class="exam-resource-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                            <span class="exam-resource-type" style="color: #b45309; font-weight: 700; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px;"><i class="fa-solid fa-file-signature"></i> ${item.type || 'KH-Worksheet'}</span>
+                            ${item.year ? `<span class="exam-resource-year" style="font-size: 0.78rem; background: #fef3c7; color: #b45309; padding: 2px 8px; border-radius: 9999px; font-weight: 600;">${item.year}</span>` : ''}
+                        </div>
+                        <h4 class="exam-resource-title" style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem;">${item.title}</h4>
+                        ${item.subtitle ? `<div style="font-size: 0.82rem; font-weight: 600; color: #d97706; margin-bottom: 0.45rem;"><i class="fa-solid fa-layer-group"></i> ${item.subtitle}</div>` : ''}
+                        <p class="exam-resource-desc" style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 1.25rem;">${item.description || ''}</p>
+                        <div class="exam-resource-actions">
+                            <button type="button" class="btn-primary" onclick="openExamViewer('${item.id}')" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.65rem 1.2rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; border: none; width: 100%; background: #d97706; color: #fff;"><i class="fa-solid fa-eye"></i> View KH-Worksheet (View-Only)</button>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    if (container) container.innerHTML = html;
+}
+
+function renderKHWorksheet(lesson) {
+    const khWsContainer = document.getElementById('lesson-kh-worksheet');
+    if (!khWsContainer) return;
+
+    let detectedGrade = null;
+    const lid = (lesson && lesson.id) ? String(lesson.id).toLowerCase().trim() : '';
+    if (lid.startsWith('g9-') || lid.startsWith('g9_')) detectedGrade = '9';
+    else if (lid.startsWith('g12-') || lid.startsWith('g12_')) detectedGrade = '12';
+    else if (lid.startsWith('g7-') || lid.startsWith('g8-') || lid.startsWith('g10-') || lid.startsWith('g11-')) {
+        const gm = lid.match(/^g(\d+)[-_]/);
+        detectedGrade = gm ? gm[1] : null;
+    } else if (lesson && lesson.grade) {
+        detectedGrade = String(lesson.grade);
+    } else {
+        detectedGrade = String(currentGrade || window.currentGrade || '7');
+    }
+
+    const g = String(detectedGrade || '7');
+    const catalog = (typeof window !== 'undefined' && window.KH_WORKSHEETS_CATALOG) ? window.KH_WORKSHEETS_CATALOG : (typeof KH_WORKSHEETS_CATALOG !== 'undefined' ? KH_WORKSHEETS_CATALOG : {});
+    const items = catalog[g] || [];
+
+    let html = '';
+    if (!items || items.length === 0) {
+        html = `
+            <div class="exam-empty-state" style="padding: 2.5rem 1.5rem; text-align: center;">
+                <div class="exam-empty-icon" style="width: 56px; height: 56px; font-size: 1.6rem; margin: 0 auto 1rem; color: #d97706;"><i class="fa-regular fa-folder-open"></i></div>
+                <h4 class="exam-empty-title" style="font-size: 1.15rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">No KH-Worksheet materials available yet.</h4>
+                <p class="exam-empty-text" style="font-size: 0.9rem; color: #64748b; max-width: 480px; margin: 0 auto;">Khmer Physics worksheet documents for Grade ${g} will appear here once uploaded by the teacher.</p>
+            </div>
+        `;
+    } else {
+        html = `
+            <div class="exam-section-container kh-worksheet-theme" style="margin-top: 0.5rem; padding: 1.5rem;">
+                <div class="exam-section-header" style="margin-bottom: 1.5rem;">
+                    <div class="exam-header-left">
+                        <span class="exam-section-badge badge-kh-worksheet"><i class="fa-solid fa-file-signature"></i> Khmer Curriculum Practice</span>
+                        <h2 class="exam-section-title" style="font-size: 1.35rem;"><i class="fa-solid fa-file-lines"></i> Grade ${g} KH-Worksheet Practice Papers</h2>
+                        <p class="exam-section-desc">Official Khmer Physics practice worksheets, exercises, and problem sets for Grade ${g}. Protected view-only documents.</p>
+                    </div>
+                </div>
+                <div class="exam-resources-grid">
+                    ${items.map(item => `
+                        <div class="exam-resource-card" style="border-left: 4px solid #d97706;">
+                            <div class="exam-resource-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <span class="exam-resource-type" style="color: #b45309; font-weight: 700; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px;"><i class="fa-solid fa-file-signature"></i> ${item.type || 'KH-Worksheet'}</span>
+                                ${item.year ? `<span class="exam-resource-year" style="font-size: 0.78rem; background: #fef3c7; color: #b45309; padding: 2px 8px; border-radius: 9999px; font-weight: 600;">${item.year}</span>` : ''}
+                            </div>
+                            <h4 class="exam-resource-title" style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem;">${item.title}</h4>
+                            ${item.subtitle ? `<div style="font-size: 0.82rem; font-weight: 600; color: #d97706; margin-bottom: 0.45rem;"><i class="fa-solid fa-layer-group"></i> ${item.subtitle}</div>` : ''}
+                            <p class="exam-resource-desc" style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 1.25rem;">${item.description || ''}</p>
+                            <div class="exam-resource-actions">
+                                <button type="button" class="btn-primary" onclick="openExamViewer('${item.id}')" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.65rem 1.2rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; border: none; width: 100%; background: #d97706; color: #fff;"><i class="fa-solid fa-eye"></i> View KH-Worksheet (View-Only)</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    khWsContainer.innerHTML = html;
+}
+
 // Automatically sync eBook and Worksheet readers if tabs are active or lesson is open
 if (typeof window !== 'undefined') {
     window.__appLoaded = true;
@@ -8071,6 +8240,9 @@ if (typeof window !== 'undefined') {
     window.appRenderEbook = renderEbook;
     window.renderWorksheet = renderWorksheet;
     window.appRenderWorksheet = renderWorksheet;
+    window.renderKHWorksheet = renderKHWorksheet;
+    window.appRenderKHWorksheet = renderKHWorksheet;
+    window.renderKHWorksheetSection = renderKHWorksheetSection;
     window.appSwitchTab = switchTab;
     window.renderSemesterExamSection = window.renderSemesterExamSection || renderSemesterExamSection;
     try {
@@ -8078,11 +8250,14 @@ if (typeof window !== 'undefined') {
     } catch (e) {}
     const ebookPane = document.getElementById('tab-ebook');
     const worksheetPane = document.getElementById('tab-worksheet');
+    const khWsPane = document.getElementById('tab-kh-worksheet');
     const curLes = (typeof currentLesson !== 'undefined' && currentLesson) ? currentLesson : window.currentLesson;
     if (ebookPane && !ebookPane.classList.contains('hidden') && curLes) {
         try { renderEbook(curLes); } catch(e) {}
     } else if (worksheetPane && !worksheetPane.classList.contains('hidden') && curLes) {
         try { renderWorksheet(curLes); } catch(e) {}
+    } else if (khWsPane && !khWsPane.classList.contains('hidden') && curLes) {
+        try { renderKHWorksheet(curLes); } catch(e) {}
     }
 }
 

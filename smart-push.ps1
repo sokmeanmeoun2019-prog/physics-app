@@ -35,16 +35,16 @@ $batches = @(
     @{
         Title    = "Core Code & Password Security"
         Patterns = @(
-            "index.html", "app.js", "physics-data.js", "styles.css", "auth.js", "auth-config.json",
+            "index.html", "app.js", "physics-data.js", "physics-figures.js", "styles.css", "auth.js", "auth-config.json",
             "sync-credentials.ps1", "smart-push.ps1", "Upload_To_GitHub.bat",
-            ".gitignore", "audio/README.txt", "audiobooks/README.txt"
+            ".gitignore", "audio/README.txt", "audiobooks/README.txt", "kh_worksheets/README.txt", "semester_exams/README.txt"
         )
         Message  = "Deploy: Core web code, password hashes, and cache busters"
     },
     @{
         Title    = "Curriculum E-Books, Worksheets & Semester Exams"
-        Patterns = @("ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*", "semester_exams/*")
-        Message  = "Deploy: Curriculum ebooks, textbooks, worksheets, and semester exams"
+        Patterns = @("ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*", "kh_worksheets/*", "kh-worksheets/*", "semester_exams/*", "exams/*")
+        Message  = "Deploy: Curriculum ebooks, textbooks, worksheets, KH-worksheets, and semester exams"
     },
     @{
         Title    = "Grade 9 Audiobooks (Chapters 1 - 5)"
