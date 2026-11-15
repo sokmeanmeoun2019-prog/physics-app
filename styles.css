@@ -5324,9 +5324,8 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
     overflow-x: auto;
     padding: 1.5rem 1rem;
     background: #090d16;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
+    text-align: center;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y pinch-zoom;
     box-sizing: border-box;
@@ -5340,12 +5339,17 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
 }
 
 .exam-viewer-mount {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
+    width: max-content;
+    min-width: 100%;
+    margin: 0 auto;
     transform-origin: top center;
     transition: transform 0.05s ease-out;
+}
+
+.exam-iframe-wrapper {
+    width: 100%;
+    min-width: 100%;
 }
 
 .exam-page-card {
@@ -5365,7 +5369,9 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
 .exam-page-canvas {
     display: block;
     width: 100%;
-    height: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
     pointer-events: none !important;
     user-select: none !important;
     -webkit-user-select: none !important;
@@ -5489,7 +5495,8 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
 
 .exam-viewer-modal.pdf-fullscreen-active #exam-viewer-mount,
 #exam-viewer-modal.pdf-fullscreen-active #exam-viewer-mount {
-    width: 100vw !important;
+    width: max-content !important;
+    min-width: 100% !important;
     height: auto !important;
     min-height: calc(100vh - 54px) !important;
     min-height: calc(100dvh - 54px) !important;

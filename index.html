@@ -43,8 +43,8 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
-                var currentVer = 29;
-                var LATEST_BUILD = '20261116041018';
+                var currentVer = 30;
+                var LATEST_BUILD = '20261116044356';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -95,7 +95,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=29&build=20261116041018">
+    <link rel="stylesheet" href="styles.css?v=30&build=20261116044356">
     <style>
         .view.active {
             display: block !important;
@@ -133,8 +133,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=29&build=20261116041018"></script>
-    <script src="physics-data.js?v=29&build=20261116041018"></script>
+    <script src="physics-figures.js?v=30&build=20261116044356"></script>
+    <script src="physics-data.js?v=30&build=20261116044356"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -2084,7 +2084,7 @@
         ];
         }
     </script>
-    <script src="physics-data.js?v=29&build=20261116041018"></script>
+    <script src="physics-data.js?v=30&build=20261116044356"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -5128,31 +5128,52 @@
                 var defaultVp = firstPage.getViewport({ scale: 1.0 });
                 var baseW = defaultVp.width;
                 var baseH = defaultVp.height;
+                var zoomMultiplier = 1.0;
+                var renderEpoch = 0;
+                var sessionClosed = false;
+                var lastContainerWidth = scrollContainer ? (scrollContainer.clientWidth || 0) : 0;
 
-                function getOptimalFitScale() {
-                    if (!scrollContainer) return 1.0;
-                    var contW = scrollContainer.clientWidth || window.innerWidth;
-                    var pad = (contW <= 640) ? 16 : 36;
-                    var targetW = Math.max(contW - pad, 280);
-                    var scale = targetW / baseW;
-                    return Math.min(Math.max(scale, 0.4), 2.5);
+                function getAvailableWidth() {
+                    if (!scrollContainer) return Math.max((window.innerWidth || 800) - 36, 240);
+                    var contW = scrollContainer.clientWidth || window.innerWidth || 800;
+                    var padX = (contW <= 640) ? 16 : 36;
+                    try {
+                        var cs = window.getComputedStyle(scrollContainer);
+                        if (cs) {
+                            var computedPadX = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+                            if (computedPadX > 0) padX = computedPadX + 8;
+                        }
+                    } catch(e) {}
+                    return Math.max(contW - padX, 240);
                 }
 
-                var currentScale = getOptimalFitScale();
-                if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
+                function getPageFitScale(pageW) {
+                    var w = pageW || baseW || 595;
+                    var scale = getAvailableWidth() / w;
+                    return Math.min(Math.max(scale, 0.25), 2.5);
+                }
+
+                function getPageScale(pageW) {
+                    return Math.min(Math.max(getPageFitScale(pageW) * zoomMultiplier, 0.25), 4.0);
+                }
+
+                if (zoomLabel) zoomLabel.textContent = Math.round(zoomMultiplier * 100) + '%';
 
                 mount.innerHTML = '';
                 var renderedPages = new Set();
                 var activeTasks = {};
                 var observer = null;
 
+                var initScale = getPageScale(baseW);
                 for (var p = 1; p <= numPages; p++) {
                     var card = document.createElement('div');
                     card.className = 'exam-page-card';
                     card.id = 'exam-page-' + p;
                     card.dataset.page = p;
-                    card.style.width = Math.floor(baseW * currentScale) + 'px';
-                    card.style.height = Math.floor(baseH * currentScale) + 'px';
+                    card.dataset.baseW = baseW;
+                    card.dataset.baseH = baseH;
+                    card.style.width = Math.round(baseW * initScale) + 'px';
+                    card.style.height = Math.round(baseH * initScale) + 'px';
                     card.style.margin = '0 auto 1.5rem auto';
                     card.style.display = 'block';
                     card.style.touchAction = 'pan-y pinch-zoom';
@@ -5164,6 +5185,8 @@
                     placeholder.className = 'pdf-loading-card';
                     placeholder.id = 'exam-placeholder-' + p;
                     placeholder.innerHTML = '<i class="fa-solid fa-atom fa-spin"></i><span>Page ' + p + '</span>';
+                    placeholder.style.height = '100%';
+                    placeholder.style.minHeight = '0';
                     placeholder.style.pointerEvents = 'none';
                     placeholder.style.userSelect = 'none';
 
@@ -5171,6 +5194,8 @@
                     canvas.className = 'exam-page-canvas';
                     canvas.id = 'exam-canvas-' + p;
                     canvas.style.display = 'none';
+                    canvas.style.width = '100%';
+                    canvas.style.height = 'auto';
                     canvas.style.pointerEvents = 'none';
                     canvas.style.userSelect = 'none';
                     canvas.style.webkitUserSelect = 'none';
@@ -5193,8 +5218,9 @@
                 }
 
                 async function renderPage(pageNum) {
-                    if (renderedPages.has(pageNum)) return;
+                    if (sessionClosed || renderedPages.has(pageNum)) return;
                     renderedPages.add(pageNum);
+                    var myEpoch = renderEpoch;
 
                     var card = document.getElementById('exam-page-' + pageNum);
                     var canvas = document.getElementById('exam-canvas-' + pageNum);
@@ -5203,35 +5229,75 @@
 
                     try {
                         var page = await pdfDoc.getPage(pageNum);
-                        var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-                        var renderScale = currentScale * dpr;
-                        var viewport = page.getViewport({ scale: renderScale });
+                        if (sessionClosed || myEpoch !== renderEpoch) {
+                            renderedPages.delete(pageNum);
+                            return;
+                        }
 
-                        canvas.width = Math.floor(viewport.width);
-                        canvas.height = Math.floor(viewport.height);
-                        canvas.style.width = Math.floor(baseW * currentScale) + 'px';
-                        canvas.style.height = Math.floor(baseH * currentScale) + 'px';
+                        var pageBaseVp = page.getViewport({ scale: 1.0 });
+                        var pBaseW = pageBaseVp.width;
+                        var pBaseH = pageBaseVp.height;
+                        card.dataset.baseW = pBaseW;
+                        card.dataset.baseH = pBaseH;
+
+                        var pScale = getPageScale(pBaseW);
+                        var displayW = Math.round(pBaseW * pScale);
+                        var displayH = Math.round(pBaseH * pScale);
+                        var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+                        var viewport = page.getViewport({ scale: pScale * dpr });
+
+                        if (activeTasks[pageNum]) {
+                            try { activeTasks[pageNum].cancel(); } catch(e) {}
+                            delete activeTasks[pageNum];
+                        }
+
+                        canvas.width = Math.max(1, Math.floor(viewport.width));
+                        canvas.height = Math.max(1, Math.floor(viewport.height));
+                        canvas.style.width = '100%';
+                        canvas.style.height = 'auto';
                         canvas.style.pointerEvents = 'none';
                         canvas.style.userSelect = 'none';
                         canvas.style.webkitUserSelect = 'none';
 
-                        var ctx = canvas.getContext('2d', { alpha: false });
-                        if (activeTasks[pageNum]) {
-                            try { activeTasks[pageNum].cancel(); } catch(e) {}
-                        }
+                        card.style.width = displayW + 'px';
+                        card.style.height = displayH + 'px';
 
+                        var ctx = canvas.getContext('2d', { alpha: false });
                         var renderTask = page.render({ canvasContext: ctx, viewport: viewport });
                         activeTasks[pageNum] = renderTask;
                         await renderTask.promise;
                         delete activeTasks[pageNum];
 
+                        if (sessionClosed || myEpoch !== renderEpoch) return;
                         if (placeholder) placeholder.style.display = 'none';
                         canvas.style.display = 'block';
+                        card.style.height = 'auto';
                     } catch(err) {
                         if (err && err.name === 'RenderingCancelledException') return;
                         renderedPages.delete(pageNum);
                     }
                 }
+
+                // Pre-populate true per-page proportions asynchronously so mixed-orientation pages size accurately before scrolling
+                (async function hydratePageDimensions() {
+                    for (var hp = 2; hp <= numPages; hp++) {
+                        if (sessionClosed) return;
+                        var hCard = document.getElementById('exam-page-' + hp);
+                        if (!hCard) continue;
+                        try {
+                            var hPage = await pdfDoc.getPage(hp);
+                            if (sessionClosed) return;
+                            var hVp = hPage.getViewport({ scale: 1.0 });
+                            hCard.dataset.baseW = hVp.width;
+                            hCard.dataset.baseH = hVp.height;
+                            if (!renderedPages.has(hp)) {
+                                var hScale = getPageScale(hVp.width);
+                                hCard.style.width = Math.round(hVp.width * hScale) + 'px';
+                                hCard.style.height = Math.round(hVp.height * hScale) + 'px';
+                            }
+                        } catch(e) {}
+                    }
+                })();
 
                 if ('IntersectionObserver' in window) {
                     observer = new IntersectionObserver(function(entries) {
@@ -5311,9 +5377,11 @@
                     };
                 }
 
-                function applyZoom(newScale) {
-                    currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
-                    if (zoomLabel) zoomLabel.textContent = Math.round(currentScale * 100) + '%';
+                function applyZoom(newZoom) {
+                    if (sessionClosed) return;
+                    zoomMultiplier = Math.min(Math.max(newZoom, 0.5), 3.0);
+                    renderEpoch++;
+                    if (zoomLabel) zoomLabel.textContent = Math.round(zoomMultiplier * 100) + '%';
 
                     for (var pKey in activeTasks) {
                         try { activeTasks[pKey].cancel(); } catch(e) {}
@@ -5322,27 +5390,42 @@
                     renderedPages.clear();
 
                     mount.querySelectorAll('.exam-page-card').forEach(function(c) {
-                        c.style.width = Math.floor(baseW * currentScale) + 'px';
-                        c.style.height = Math.floor(baseH * currentScale) + 'px';
+                        var cW = parseFloat(c.dataset.baseW) || baseW;
+                        var cH = parseFloat(c.dataset.baseH) || baseH;
+                        var pScale = getPageScale(cW);
+                        c.style.width = Math.round(cW * pScale) + 'px';
+                        c.style.height = Math.round(cH * pScale) + 'px';
                         var cv = c.querySelector('canvas');
                         if (cv) cv.style.display = 'none';
                         var ph = c.querySelector('.pdf-loading-card');
                         if (ph) ph.style.display = 'flex';
                     });
 
-                    var cur = parseInt(pageInput.value, 10) || 1;
+                    var cur = parseInt(pageInput && pageInput.value, 10) || 1;
                     renderPage(cur);
                     if (cur < numPages) renderPage(cur + 1);
                     if (cur > 1) renderPage(cur - 1);
+
+                    // Render any cards currently near/within the scroll viewport
+                    if (scrollContainer) {
+                        var contRect = scrollContainer.getBoundingClientRect();
+                        mount.querySelectorAll('.exam-page-card').forEach(function(c) {
+                            var r = c.getBoundingClientRect();
+                            if (r.bottom >= contRect.top - 600 && r.top <= contRect.bottom + 600) {
+                                var pNum = parseInt(c.dataset.page, 10);
+                                if (pNum) renderPage(pNum);
+                            }
+                        });
+                    }
                 }
 
-                if (zoomInBtn) zoomInBtn.onclick = function() { applyZoom(currentScale + 0.15); };
-                if (zoomOutBtn) zoomOutBtn.onclick = function() { applyZoom(currentScale - 0.15); };
-                if (fitWidthBtn) fitWidthBtn.onclick = function() { applyZoom(getOptimalFitScale()); };
+                if (zoomInBtn) zoomInBtn.onclick = function() { applyZoom(zoomMultiplier + 0.15); };
+                if (zoomOutBtn) zoomOutBtn.onclick = function() { applyZoom(zoomMultiplier - 0.15); };
+                if (fitWidthBtn) fitWidthBtn.onclick = function() { applyZoom(1.0); };
 
                 var touchStartDist = 0;
                 var isPinching = false;
-                scrollContainer.addEventListener('touchstart', function(e) {
+                var onTouchStart = function(e) {
                     if (e.touches && e.touches.length === 2) {
                         isPinching = true;
                         touchStartDist = Math.hypot(
@@ -5352,9 +5435,8 @@
                     } else {
                         isPinching = false;
                     }
-                }, { passive: true });
-
-                scrollContainer.addEventListener('touchmove', function(e) {
+                };
+                var onTouchMove = function(e) {
                     if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
                         var curDist = Math.hypot(
                             e.touches[0].clientX - e.touches[1].clientX,
@@ -5362,22 +5444,28 @@
                         );
                         var ratio = curDist / touchStartDist;
                         if (Math.abs(ratio - 1) > 0.08) {
-                            applyZoom(currentScale * ratio);
+                            applyZoom(zoomMultiplier * ratio);
                             touchStartDist = curDist;
                         }
                     }
-                }, { passive: true });
-
-                scrollContainer.addEventListener('touchend', function() {
+                };
+                var onTouchEnd = function() {
                     isPinching = false;
-                }, { passive: true });
+                };
+                scrollContainer.addEventListener('touchstart', onTouchStart, { passive: true });
+                scrollContainer.addEventListener('touchmove', onTouchMove, { passive: true });
+                scrollContainer.addEventListener('touchend', onTouchEnd, { passive: true });
 
                 var resizeDebounce = null;
                 var onViewportResize = function() {
                     clearTimeout(resizeDebounce);
                     resizeDebounce = setTimeout(function() {
-                        if (!scrollContainer || !baseW) return;
-                        applyZoom(getOptimalFitScale());
+                        if (sessionClosed || !scrollContainer || !baseW) return;
+                        var newW = scrollContainer.clientWidth || 0;
+                        if (Math.abs(newW - lastContainerWidth) > 2) {
+                            lastContainerWidth = newW;
+                            applyZoom(zoomMultiplier);
+                        }
                     }, 120);
                 };
                 window.addEventListener('resize', onViewportResize);
@@ -5408,17 +5496,27 @@
                     pdfDoc: pdfDoc,
                     observer: observer,
                     activeTasks: activeTasks,
-                    fitWidth: function() { applyZoom(getOptimalFitScale()); },
+                    fitWidth: function() {
+                        if (scrollContainer) lastContainerWidth = scrollContainer.clientWidth || 0;
+                        applyZoom(1.0);
+                    },
                     cleanup: function() {
+                        sessionClosed = true;
+                        renderEpoch++;
+                        clearTimeout(resizeDebounce);
+                        clearTimeout(scrollDebounce);
                         window.removeEventListener('keydown', keyHandler);
-                        modal.removeEventListener('copy', preventCopy);
-                        modal.removeEventListener('cut', preventCopy);
-                        modal.removeEventListener('selectstart', preventCopy);
-                        modal.removeEventListener('dragstart', preventCopy);
-                        modal.removeEventListener('contextmenu', preventCopy);
+                        modal.removeEventListener('copy', preventCopy, true);
+                        modal.removeEventListener('cut', preventCopy, true);
+                        modal.removeEventListener('selectstart', preventCopy, true);
+                        modal.removeEventListener('dragstart', preventCopy, true);
+                        modal.removeEventListener('contextmenu', preventCopy, true);
                         window.removeEventListener('resize', onViewportResize);
                         window.removeEventListener('orientationchange', onViewportResize);
                         scrollContainer.removeEventListener('scroll', onScrollUpdate);
+                        scrollContainer.removeEventListener('touchstart', onTouchStart);
+                        scrollContainer.removeEventListener('touchmove', onTouchMove);
+                        scrollContainer.removeEventListener('touchend', onTouchEnd);
                         if (observer) {
                             try { observer.disconnect(); } catch(e) {}
                         }
@@ -9532,7 +9630,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 29)</span>
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 30)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -10307,7 +10405,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=29&build=20261116041018"></script>
-    <script src="app.js?v=29&build=20261116041018" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=30&build=20261116044356"></script>
+    <script src="app.js?v=30&build=20261116044356" onerror="onAppJsError()"></script>
 </body>
 </html>
