@@ -5528,6 +5528,43 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
     display: inline-flex !important;
 }
 
+/* KH-Worksheet Fullscreen Parity with eBook (instant expansion, minimal horizontal margins, max readable width) */
+.exam-viewer-modal.kh-worksheet-viewer .exam-viewer-window,
+.exam-viewer-modal.kh-worksheet-viewer.pdf-fullscreen-active .exam-viewer-window,
+#exam-viewer-modal.kh-worksheet-viewer.pdf-fullscreen-active .exam-viewer-window,
+:fullscreen #exam-viewer-modal.kh-worksheet-viewer .exam-viewer-window,
+:-webkit-full-screen #exam-viewer-modal.kh-worksheet-viewer .exam-viewer-window {
+    transition: none !important;
+}
+
+.exam-viewer-modal.kh-worksheet-viewer.pdf-fullscreen-active .exam-viewer-body,
+#exam-viewer-modal.kh-worksheet-viewer.pdf-fullscreen-active .exam-viewer-body,
+:fullscreen #exam-viewer-modal.kh-worksheet-viewer .exam-viewer-body,
+:-webkit-full-screen #exam-viewer-modal.kh-worksheet-viewer .exam-viewer-body {
+    flex: 1 1 0% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    width: 100% !important;
+    padding: 0.75rem 0.25rem !important;
+    margin: 0 !important;
+    overflow-y: scroll !important;
+    overflow-x: auto !important;
+    display: block !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+.exam-viewer-modal.kh-worksheet-viewer.pdf-fullscreen-active #exam-viewer-mount,
+#exam-viewer-modal.kh-worksheet-viewer.pdf-fullscreen-active #exam-viewer-mount {
+    width: max-content !important;
+    min-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    padding: 0 0 2.5rem 0 !important;
+}
+
 body.exam-modal-open {
     overflow: hidden !important;
 }
