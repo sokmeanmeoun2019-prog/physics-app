@@ -34667,10 +34667,10 @@
                 type: "Chapter 1 Lesson 5 Part 1 KH-Worksheet",
                 grade: "11",
                 description: "Practice problems on mechanical energy conservation (E = K + U = const), conservative vs non-conservative forces, free fall energy transforms, and projectile work-energy theorem.",
-                url: "kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf",
-                altUrl: "kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf.pdf",
+                url: "kh_worksheets/g11-ch1-l5-kh-worksheet.pdf",
+                altUrl: "kh_worksheets/g11-ch1-l5-kh-worksheet.pdf.pdf",
                 fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
-                aliases: ["kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch1-l5-part1-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-p1-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                aliases: ["kh_worksheets/g11-ch1-l5-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch1-l5-part1-kh-worksheet.pdf", "kh_worksheets/g11-ch1-l5-p1-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
             },
             {
                 id: "g11-ch1-l5-2-kh-ws",
@@ -34715,10 +34715,10 @@
                 type: "Chapter 2 Lesson 1 Part 1 KH-Worksheet",
                 grade: "11",
                 description: "Practice problems on temperature scale conversions, linear thermal expansion (ΔL = αL₀ΔT), area expansion (ΔA = 2αA₀ΔT), and liquid/solid volumetric expansion (ΔV = βV₀ΔT).",
-                url: "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf",
-                altUrl: "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf.pdf",
+                url: "kh_worksheets/g11-ch2-l1-kh-worksheet.pdf",
+                altUrl: "kh_worksheets/g11-ch2-l1-kh-worksheet.pdf.pdf",
                 fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
-                aliases: ["kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l1-part1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-p1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                aliases: ["kh_worksheets/g11-ch2-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l1-part1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-p1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
             },
             {
                 id: "g11-ch2-l1-2-kh-ws",
@@ -34727,10 +34727,10 @@
                 type: "Chapter 2 Lesson 1 Part 2 KH-Worksheet",
                 grade: "11",
                 description: "Practice problems on specific heat capacity (Q = mcΔT), calorimeter thermal equilibrium (ΣQ = 0), Fourier's conduction law (H = kAΔT/L), convection, and Stefan-Boltzmann radiation.",
-                url: "kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf",
-                altUrl: "kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf.pdf",
+                url: "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf",
+                altUrl: "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf.pdf",
                 fallbackUrl: "kh_worksheets/g11-kh-worksheet.pdf",
-                aliases: ["kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l1-part2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-p2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
+                aliases: ["kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-1-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-2-kh-worksheet.pdf.pdf", "kh_worksheets/g11-ch2-l1-part2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-p2-kh-worksheet.pdf", "kh_worksheets/g11-ch2-l1-kh-worksheet.pdf", "kh_worksheets/g11-ch2-kh-worksheet.pdf", "kh_worksheets/g11-kh-worksheet.pdf"]
             },
             {
                 id: "g11-ch2-l2-1-kh-ws",

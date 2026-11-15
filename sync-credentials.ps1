@@ -253,6 +253,21 @@ if (Test-Path $khWorksheetsDir) {
         }
     }
 
+    # Step A2: Mirror unnumbered <-> -1 ONLY for multi-part lessons where -2 exists
+    @("g11-ch1-l5", "g11-ch2-l1", "g11-ch2-l2", "g11-ch3-l1") | ForEach-Object {
+        $base = $_
+        $p2 = Join-Path $khWorksheetsDir ($base + "-2-kh-worksheet.pdf")
+        if (Test-Path $p2) {
+            $unnum = Join-Path $khWorksheetsDir ($base + "-kh-worksheet.pdf")
+            $p1 = Join-Path $khWorksheetsDir ($base + "-1-kh-worksheet.pdf")
+            if ((Test-Path $unnum) -and -not (Test-Path $p1)) {
+                Copy-Item -Path $unnum -Destination $p1 -Force
+            } elseif ((Test-Path $p1) -and -not (Test-Path $unnum)) {
+                Copy-Item -Path $p1 -Destination $unnum -Force
+            }
+        }
+    }
+
     # Step B: Double-extension mirroring (.pdf <-> .pdf.pdf)
     Get-ChildItem -Path $khWorksheetsDir -Filter "*.pdf*" -File | ForEach-Object {
         $fullName = $_.FullName
