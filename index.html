@@ -43,8 +43,8 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
-                var currentVer = 35;
-                var LATEST_BUILD = '20261116102620';
+                var currentVer = 36;
+                var LATEST_BUILD = '20261116104048';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -95,7 +95,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=35&build=20261116102620">
+    <link rel="stylesheet" href="styles.css?v=36&build=20261116104048">
     <style>
         .view.active {
             display: block !important;
@@ -133,8 +133,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=35&build=20261116102620"></script>
-    <script src="physics-data.js?v=35&build=20261116102620"></script>
+    <script src="physics-figures.js?v=36&build=20261116104048"></script>
+    <script src="physics-data.js?v=36&build=20261116104048"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -2084,7 +2084,7 @@
         ];
         }
     </script>
-    <script src="physics-data.js?v=35&build=20261116102620"></script>
+    <script src="physics-data.js?v=36&build=20261116104048"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -3259,7 +3259,7 @@
                     statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 3 Chapters</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 28 Formulas</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 6 Simulations</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & EN-Worksheet</span>' +
                         '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>';
                 }
@@ -3271,7 +3271,7 @@
                     statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 18 Formulas</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & EN-Worksheet</span>' +
                         '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>';
                 }
@@ -3283,7 +3283,7 @@
                     statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 5 Chapters</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 39 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 7 Simulations</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & EN-Worksheet</span>' +
                         '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>' +
                         '<a href="#grade9-diploma-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#ccfbf1; color:#0f766e; border:1px solid #99f6e4; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById(\'grade9-diploma-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-award"></i> Diploma & KH-Phy Section ↓</a>';
@@ -3296,7 +3296,7 @@
                     statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 20 Formulas</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & EN-Worksheet</span>' +
                         '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>';
                 }
@@ -3308,7 +3308,7 @@
                     statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 20 Formulas</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & EN-Worksheet</span>' +
                         '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>';
                 }
@@ -3320,7 +3320,7 @@
                     statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters (12 Lessons)</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 115 Formulas & Examples</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & EN-Worksheet</span>' +
                         '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>' +
                         '<a href="#grade12-bacii-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#e0e7ff; color:#4338ca; border:1px solid #c7d2fe; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById(\'grade12-bacii-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-graduation-cap"></i> BacII Section ↓</a>';
@@ -8589,9 +8589,9 @@
 
             var worksheetsList = [];
             if (lesson.worksheets && Array.isArray(lesson.worksheets) && lesson.worksheets.length > 0) {
-                worksheetsList = lesson.worksheets.map(function(w) { return (typeof w === 'string' ? { title: 'Practice Worksheet', url: w } : w); });
+                worksheetsList = lesson.worksheets.map(function(w) { return (typeof w === 'string' ? { title: 'EN-Worksheet', url: w } : w); });
             } else if (lesson.worksheetUrl) {
-                worksheetsList = [{ title: (lesson.title ? lesson.title + ' Worksheet' : 'Practice Worksheet'), url: lesson.worksheetUrl }];
+                worksheetsList = [{ title: (lesson.title ? lesson.title + ' EN-Worksheet' : 'EN-Worksheet'), url: lesson.worksheetUrl }];
             } else if (lesson.id) {
                 var lid = String(lesson.id).toLowerCase();
                 if (WORKSHEET_FALLBACK_CATALOG[lid]) {
@@ -8607,13 +8607,13 @@
                 } else if (lessonKey.startsWith('g8-')) {
                     worksheetsList = [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }];
                 } else if (lessonKey.startsWith('g9-')) {
-                    worksheetsList = [{ title: "Grade 9 Physics Practice Worksheet", url: "worksheets/g9-ch1-worksheet.pdf", altUrl: "worksheets/g9-ch1-worksheet.pdf.pdf" }];
+                    worksheetsList = [{ title: "Grade 9 Physics EN-Worksheet", url: "worksheets/g9-ch1-worksheet.pdf", altUrl: "worksheets/g9-ch1-worksheet.pdf.pdf" }];
                 } else if (lessonKey.startsWith('g10-')) {
                     worksheetsList = [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }];
                 } else if (lessonKey.startsWith('g11-')) {
                     worksheetsList = [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }];
                 } else if (lessonKey.startsWith('g12-')) {
-                    worksheetsList = [{ title: "Grade 12 Physics Practice Worksheet", url: "worksheets/ch1-l1-worksheet.pdf", altUrl: "worksheets/ch1-l1-worksheet.pdf.pdf" }];
+                    worksheetsList = [{ title: "Grade 12 Physics EN-Worksheet", url: "worksheets/ch1-l1-worksheet.pdf", altUrl: "worksheets/ch1-l1-worksheet.pdf.pdf" }];
                 }
             }
 
@@ -8623,7 +8623,7 @@
                 activeLoadedWorksheetSectionIdx = null;
                 wsContainer.innerHTML = '<div class="worksheet-empty">' +
                     '<i class="fa-solid fa-file-circle-question"></i>' +
-                    '<h3>Worksheet Coming Soon</h3>' +
+                    '<h3>EN-Worksheet Coming Soon</h3>' +
                     '<p>Practice exercises for this lesson will be available soon.</p>' +
                 '</div>';
                 return;
@@ -8644,12 +8644,12 @@
                 var pair = resolveWorksheetCandidates(currentWs);
                 var activeUrl = pair.primary || pair.alt || '';
                 var altUrl = pair.alt || '';
-                var currentTitle = currentWs.title || (lesson.title ? lesson.title + ' Worksheet' : 'Practice Worksheet');
+                var currentTitle = currentWs.title || (lesson.title ? lesson.title + ' EN-Worksheet' : 'EN-Worksheet');
 
                 var topicsSelectorHtml = '';
                 if (worksheetsList.length > 1) {
                     topicsSelectorHtml = '<div class="worksheet-topic-selector">' +
-                        '<span class="worksheet-topic-label"><i class="fa-solid fa-layer-group"></i> Select Worksheet (' + worksheetsList.length + ' Files):</span>' +
+                        '<span class="worksheet-topic-label"><i class="fa-solid fa-layer-group"></i> Select EN-Worksheet (' + worksheetsList.length + ' Files):</span>' +
                         '<div class="worksheet-topic-pills">' +
                             worksheetsList.map(function(ws, idx) {
                                 return '<button type="button" class="worksheet-topic-pill ' + (idx === selectedIndex ? 'active' : '') + '" data-index="' + idx + '">' +
@@ -8666,17 +8666,17 @@
 
                 if (!activeUrl) {
                     wsContainer.innerHTML = '<div class="worksheet-header" style="user-select: none;">' +
-                        '<h2><i class="fa-solid fa-file-lines"></i> ' + (lesson.title || 'Lesson') + ' - Practice Worksheet</h2>' +
+                        '<h2><i class="fa-solid fa-file-lines"></i> ' + (lesson.title || 'Lesson') + ' - EN-Worksheet</h2>' +
                         '<p>Practice problems and review exercises in the interactive viewer (Read-Only).</p>' +
                     '</div>' +
                     topicsSelectorHtml +
-                    '<div class="worksheet-empty"><i class="fa-solid fa-file-circle-question"></i><h3>Worksheet File Not Available</h3><p>The practice worksheet file could not be located.</p></div>';
+                    '<div class="worksheet-empty"><i class="fa-solid fa-file-circle-question"></i><h3>EN-Worksheet File Not Available</h3><p>The EN-Worksheet file could not be located.</p></div>';
                     wireDirectWsTopicPills();
                     return;
                 }
 
                 wsContainer.innerHTML = '<div class="worksheet-header" style="user-select: none;">' +
-                    '<h2><i class="fa-solid fa-file-lines"></i> ' + (lesson.title || 'Lesson') + ' - Practice Worksheet</h2>' +
+                    '<h2><i class="fa-solid fa-file-lines"></i> ' + (lesson.title || 'Lesson') + ' - EN-Worksheet</h2>' +
                     subtitleHtml +
                     '<p>Practice problems and review exercises directly in the interactive viewer (Read-Only).</p>' +
                 '</div>' +
@@ -8715,14 +8715,14 @@
                         '</button>' +
                         '<div class="pdf-loading-card" id="ws-pdf-loading-card">' +
                             '<i class="fa-solid fa-circle-notch fa-spin"></i>' +
-                            '<span id="ws-pdf-loading-status">Loading worksheet pages...</span>' +
+                            '<span id="ws-pdf-loading-status">Loading EN-Worksheet pages...</span>' +
                         '</div>' +
                         '<div id="ws-pdf-pages-mount" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;" ondragstart="return false;" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>' +
                     '</div>' +
                 '</div>' +
                 '<div class="worksheet-notice" style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 8px; padding: 0.75rem 1.25rem; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem;">' +
                     '<i class="fa-solid fa-shield-halved" style="color: #15803d; font-size: 1.15rem; flex-shrink: 0;"></i>' +
-                    '<div><span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, text copying, and exporting are restricted for this practice worksheet. Students can practice problems and scroll up and down smoothly across all pages on iPad, phone, or laptop.</span></div>' +
+                    '<div><span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, text copying, and exporting are restricted for this EN-Worksheet. Students can practice problems and scroll up and down smoothly across all pages on iPad, phone, or laptop.</span></div>' +
                 '</div>';
 
                 wireDirectWsTopicPills();
@@ -8812,14 +8812,14 @@
                     wrapper.innerHTML = '<div class="pdf-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; padding:0.6rem 1rem; border-radius:8px 8px 0 0; border-bottom:1px solid #334155;">' +
                         '<div style="font-size:0.88rem; font-weight:600; color:#cbd5e1; display:flex; align-items:center; gap:8px;">' +
                             '<span class="badge-diploma" style="background:rgba(14,165,233,0.2); color:#38bdf8; font-size:0.75rem; padding:2px 8px; border-radius:4px;"><i class="fa-solid fa-lock"></i> Protected View-Only</span>' +
-                            '<span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:320px;">' + (wsTitle || 'Worksheet Practice') + '</span>' +
+                            '<span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:320px;">' + (wsTitle || 'EN-Worksheet') + '</span>' +
                         '</div>' +
                         '<div style="display:flex; align-items:center; gap:8px;">' +
                             '<button type="button" class="pdf-btn pdf-btn-fullscreen" id="ws-fallback-fs-btn" style="display:inline-flex; align-items:center; gap:6px; padding:0.4rem 0.9rem; border-radius:6px; font-size:0.85rem; font-weight:600; cursor:pointer;"><i class="fa-solid fa-expand"></i> Fullscreen</button>' +
                         '</div>' +
                     '</div>' +
                     '<div class="pdf-scroll-container pdf-frame-container" style="height:750px; max-height:80vh; padding:0; background:#0f172a; position:relative; overflow:hidden;">' +
-                        '<iframe src="' + encodedSrc + '" class="pdf-protected-frame" style="width:100%; height:100%; min-height:750px; border:none; display:block;" title="' + (wsTitle || 'Worksheet') + '" allowfullscreen></iframe>' +
+                        '<iframe src="' + encodedSrc + '" class="pdf-protected-frame" style="width:100%; height:100%; min-height:750px; border:none; display:block;" title="' + (wsTitle || 'EN-Worksheet') + '" allowfullscreen></iframe>' +
                         '<button type="button" class="pdf-floating-exit-btn" id="ws-fallback-floating-exit" style="display:none;"><i class="fa-solid fa-xmark"></i> Exit Fullscreen</button>' +
                     '</div>';
 
@@ -9679,7 +9679,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 35)</span>
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 36)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -9918,7 +9918,7 @@
 
                     <div class="card-footer-info">
                         <span><i class="fa-solid fa-layer-group"></i> 3 Chapters</span>
-                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                         <span><i class="fa-solid fa-vial"></i> Simulations</span>
                     </div>
 
@@ -9948,7 +9948,7 @@
 
                     <div class="card-footer-info">
                         <span><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>
-                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                         <span><i class="fa-solid fa-vial"></i> Simulations</span>
                     </div>
 
@@ -9980,7 +9980,7 @@
                     <div class="card-footer-info">
                         <span><i class="fa-solid fa-layer-group"></i> 5 Chapters</span>
                         <span style="color:#0f766e; font-weight:700;"><i class="fa-solid fa-award"></i> Diploma Section</span>
-                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                     </div>
 
                     <button class="btn-grade btn-grade-9" type="button" data-grade="9" onclick="event.stopPropagation(); loadLessons('9');">
@@ -10009,7 +10009,7 @@
 
                     <div class="card-footer-info">
                         <span><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>
-                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                         <span><i class="fa-solid fa-vial"></i> Simulations</span>
                     </div>
 
@@ -10039,7 +10039,7 @@
 
                     <div class="card-footer-info">
                         <span><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>
-                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                         <span><i class="fa-solid fa-vial"></i> Simulations</span>
                     </div>
 
@@ -10072,7 +10072,7 @@
                     <div class="card-footer-info">
                         <span><i class="fa-solid fa-layer-group"></i> 4 Chapters • 12 Lessons</span>
                         <span style="color:#4338ca; font-weight:700;"><i class="fa-solid fa-graduation-cap"></i> BacII Section</span>
-                        <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                        <span><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                     </div>
 
                     <button class="btn-grade btn-grade-12" type="button" data-grade="12" onclick="event.stopPropagation(); loadLessons('12');">
@@ -10220,7 +10220,7 @@
                 <button class="tab-btn" data-target="equations" onclick="switchTab('equations')">Equations</button>
                 <button class="tab-btn" data-target="flashcards" onclick="switchTab('flashcards')">Flashcards</button>
                 <button class="tab-btn" data-target="quiz" onclick="switchTab('quiz')">Quiz</button>
-                <button class="tab-btn" id="tab-btn-worksheet" data-target="worksheet" onclick="switchTab('worksheet')">Worksheet</button>
+                <button class="tab-btn" id="tab-btn-worksheet" data-target="worksheet" onclick="switchTab('worksheet')">EN-Worksheet</button>
                 <button class="tab-btn tab-btn-special tab-btn-kh-worksheet" id="tab-btn-kh-worksheet" data-target="kh-worksheet" onclick="switchTab('kh-worksheet')"><i class="fa-solid fa-file-signature"></i> KH-Worksheet</button>
                 <button class="tab-btn" data-target="game" onclick="switchTab('game')">Game</button>
             </div>
@@ -10330,8 +10330,8 @@
                     </div>
                 </div>
 
-                <!-- Worksheet Tab -->
-                <div id="tab-worksheet" class="tab-pane hidden">
+                <!-- EN-Worksheet Tab -->
+                <div id="tab-worksheet" class="tab-pane hidden" aria-label="EN-Worksheet Section">
                     <div class="worksheet-container" id="lesson-worksheet">
                         <!-- Populated by JS -->
                     </div>
@@ -10453,7 +10453,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=35&build=20261116102620"></script>
-    <script src="app.js?v=35&build=20261116102620" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=36&build=20261116104048"></script>
+    <script src="app.js?v=36&build=20261116104048" onerror="onAppJsError()"></script>
 </body>
 </html>

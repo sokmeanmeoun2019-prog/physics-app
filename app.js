@@ -1934,7 +1934,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
-                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
                     <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
@@ -1949,7 +1949,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
-                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
                     <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
@@ -1964,7 +1964,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 7} Simulations</span>
-                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                     <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                     <a href="#grade9-diploma-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#ccfbf1; color:#0f766e; border:1px solid #99f6e4; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade9-diploma-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-award"></i> Diploma Section ↓</a>
@@ -1979,7 +1979,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
-                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
                     <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
@@ -1994,7 +1994,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> ${totalSimulations || 4} Simulations</span>
-                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                     <span class="stat-pill"><i class="fa-solid fa-brain"></i> Quizzes</span>
                     <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
@@ -2009,7 +2009,7 @@ function loadLessons(grade, pushRoute = true) {
                     <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters (${totalChapters} Lessons)</span>
                     <span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> ${totalFormulas} Formulas</span>
                     <span class="stat-pill"><i class="fa-solid fa-gamepad"></i> PhET & Gemini Sims</span>
-                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> EN-Worksheet</span>
                     <a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none; background:#fef3c7; color:#b45309; border:1px solid #fde68a; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-kh-worksheet-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>
                     <a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none; background:#dcfce7; color:#166534; border:1px solid #bbf7d0; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade-semester-exam-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>
                     <a href="#grade12-bacii-section" class="stat-pill stat-pill-special" style="text-decoration:none; background:#e0e7ff; color:#4338ca; border:1px solid #c7d2fe; font-weight:700; cursor:pointer;" onclick="var el=document.getElementById('grade12-bacii-section'); if(el){el.scrollIntoView({behavior:'smooth'});} return false;"><i class="fa-solid fa-graduation-cap"></i> BacII Section ↓</a>
@@ -6409,9 +6409,9 @@ function renderWorksheet(lesson) {
 
     let worksheetsList = [];
     if (lesson.worksheets && Array.isArray(lesson.worksheets) && lesson.worksheets.length > 0) {
-        worksheetsList = lesson.worksheets.map(w => (typeof w === 'string' ? { title: 'Practice Worksheet', url: w } : w));
+        worksheetsList = lesson.worksheets.map(w => (typeof w === 'string' ? { title: 'EN-Worksheet', url: w } : w));
     } else if (lesson.worksheetUrl) {
-        worksheetsList = [{ title: (lesson.title ? `${lesson.title} Worksheet` : 'Practice Worksheet'), url: lesson.worksheetUrl }];
+        worksheetsList = [{ title: (lesson.title ? `${lesson.title} EN-Worksheet` : 'EN-Worksheet'), url: lesson.worksheetUrl }];
     } else if (lesson.id) {
         const lid = String(lesson.id).toLowerCase();
         const fallbackWsMap = {
@@ -6503,13 +6503,13 @@ function renderWorksheet(lesson) {
         } else if (lid.startsWith('g8-')) {
             worksheetsList = [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }];
         } else if (lid.startsWith('g9-')) {
-            worksheetsList = [{ title: "Grade 9 Physics Practice Worksheet", url: "worksheets/g9-ch1-worksheet.pdf", altUrl: "worksheets/g9-ch1-worksheet.pdf.pdf" }];
+            worksheetsList = [{ title: "Grade 9 Physics EN-Worksheet", url: "worksheets/g9-ch1-worksheet.pdf", altUrl: "worksheets/g9-ch1-worksheet.pdf.pdf" }];
         } else if (lid.startsWith('g10-')) {
             worksheetsList = [{ title: "Grade 10 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade10_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade10_Physics.pdf" }];
         } else if (lid.startsWith('g11-')) {
             worksheetsList = [{ title: "Grade 11 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade11_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade11_Physics.pdf" }];
         } else if (lid.startsWith('g12-')) {
-            worksheetsList = [{ title: "Grade 12 Physics Practice Worksheet", url: "worksheets/ch1-l1-worksheet.pdf", altUrl: "worksheets/ch1-l1-worksheet.pdf.pdf" }];
+            worksheetsList = [{ title: "Grade 12 Physics EN-Worksheet", url: "worksheets/ch1-l1-worksheet.pdf", altUrl: "worksheets/ch1-l1-worksheet.pdf.pdf" }];
         }
     }
 
@@ -6520,7 +6520,7 @@ function renderWorksheet(lesson) {
         worksheetContainer.innerHTML = `
             <div class="worksheet-empty">
                 <i class="fa-solid fa-file-circle-question"></i>
-                <h3>Worksheet Coming Soon</h3>
+                <h3>EN-Worksheet Coming Soon</h3>
                 <p>Practice exercises for this lesson will be available soon.</p>
             </div>
         `;
@@ -6545,13 +6545,13 @@ function renderWorksheet(lesson) {
         const pair = resolveAppWorksheetCandidates(currentWs);
         const activeUrl = pair.primary || pair.alt || '';
         const altUrl = pair.alt || '';
-        const currentTitle = currentWs.title || (lesson.title ? `${lesson.title} Worksheet` : 'Practice Worksheet');
+        const currentTitle = currentWs.title || (lesson.title ? `${lesson.title} EN-Worksheet` : 'EN-Worksheet');
 
         let topicsSelectorHtml = '';
         if (worksheetsList.length > 1) {
             topicsSelectorHtml = `
                 <div class="worksheet-topic-selector">
-                    <span class="worksheet-topic-label"><i class="fa-solid fa-layer-group"></i> Select Worksheet (${worksheetsList.length} Files):</span>
+                    <span class="worksheet-topic-label"><i class="fa-solid fa-layer-group"></i> Select EN-Worksheet (${worksheetsList.length} Files):</span>
                     <div class="worksheet-topic-pills">
                         ${worksheetsList.map((ws, idx) => `
                             <button type="button" class="worksheet-topic-pill ${idx === selectedIndex ? 'active' : ''}" data-index="${idx}">
@@ -6570,24 +6570,24 @@ function renderWorksheet(lesson) {
         if (!activeUrl) {
             worksheetContainer.innerHTML = `
                 <div class="worksheet-header" style="user-select: none;">
-                    <h2><i class="fa-solid fa-file-lines"></i> ${lesson.title || 'Lesson'} - Practice Worksheet</h2>
+                    <h2><i class="fa-solid fa-file-lines"></i> ${lesson.title || 'Lesson'} - EN-Worksheet</h2>
                     <p>Practice problems and review exercises in the interactive viewer (Read-Only).</p>
                 </div>
                 ${topicsSelectorHtml}
                 <div class="worksheet-empty">
                     <i class="fa-solid fa-file-circle-question"></i>
-                    <h3>Worksheet File Not Available</h3>
-                    <p>The practice worksheet file for this section could not be located.</p>
+                    <h3>EN-Worksheet File Not Available</h3>
+                    <p>The EN-Worksheet file for this section could not be located.</p>
                 </div>
             `;
             wireWsTopicPills();
             return;
         }
 
-        // Render Touch-Enabled Multi-Page PDF Shell for Worksheet (View-Only, Protected)
+        // Render Touch-Enabled Multi-Page PDF Shell for EN-Worksheet (View-Only, Protected)
         worksheetContainer.innerHTML = `
             <div class="worksheet-header" style="user-select: none;">
-                <h2><i class="fa-solid fa-file-lines"></i> ${lesson.title || 'Lesson'} - Practice Worksheet</h2>
+                <h2><i class="fa-solid fa-file-lines"></i> ${lesson.title || 'Lesson'} - EN-Worksheet</h2>
                 ${subtitleHtml}
                 <p>Practice problems and review exercises directly in the interactive viewer (Read-Only).</p>
             </div>
@@ -6642,7 +6642,7 @@ function renderWorksheet(lesson) {
                     </button>
                     <div class="pdf-loading-card" id="ws-pdf-loading-card">
                         <i class="fa-solid fa-circle-notch fa-spin"></i>
-                        <span id="ws-pdf-loading-status">Loading worksheet pages...</span>
+                        <span id="ws-pdf-loading-status">Loading EN-Worksheet pages...</span>
                     </div>
                     <div id="ws-pdf-pages-mount" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;" ondragstart="return false;" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>
                 </div>
@@ -6651,7 +6651,7 @@ function renderWorksheet(lesson) {
             <div class="worksheet-notice" style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 8px; padding: 0.75rem 1.25rem; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
                 <i class="fa-solid fa-shield-halved" style="color: #15803d; font-size: 1.15rem; flex-shrink: 0;"></i>
                 <div>
-                    <span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, text copying, and exporting are restricted for this practice worksheet. Students can practice problems and scroll up and down smoothly across all pages on iPad, phone, or laptop.</span>
+                    <span><strong>Protected Curriculum Viewer:</strong> Downloading, printing, text copying, and exporting are restricted for this EN-Worksheet. Students can practice problems and scroll up and down smoothly across all pages on iPad, phone, or laptop.</span>
                 </div>
             </div>
         `;
@@ -6689,14 +6689,14 @@ function renderWorksheet(lesson) {
                 <div class="pdf-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; padding:0.6rem 1rem; border-radius:8px 8px 0 0; border-bottom:1px solid #334155;">
                     <div style="font-size:0.88rem; font-weight:600; color:#cbd5e1; display:flex; align-items:center; gap:8px;">
                         <span class="badge-diploma" style="background:rgba(14,165,233,0.2); color:#38bdf8; font-size:0.75rem; padding:2px 8px; border-radius:4px;"><i class="fa-solid fa-lock"></i> Protected View-Only</span>
-                        <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:320px;">${title || 'Worksheet Practice'}</span>
+                        <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:320px;">${title || 'EN-Worksheet'}</span>
                     </div>
                     <div style="display:flex; align-items:center; gap:8px;">
                         <button type="button" class="pdf-btn pdf-btn-fullscreen" id="ws-app-fallback-fs-btn" style="display:inline-flex; align-items:center; gap:6px; padding:0.4rem 0.9rem; border-radius:6px; font-size:0.85rem; font-weight:600; cursor:pointer;"><i class="fa-solid fa-expand"></i> Fullscreen</button>
                     </div>
                 </div>
                 <div class="pdf-scroll-container pdf-frame-container" style="height:750px; max-height:80vh; padding:0; background:#0f172a; position:relative; overflow:hidden;">
-                    <iframe src="${encodedSrc}" class="pdf-protected-frame" style="width:100%; height:100%; min-height:750px; border:none; display:block;" title="${title || 'Worksheet'}" allowfullscreen></iframe>
+                    <iframe src="${encodedSrc}" class="pdf-protected-frame" style="width:100%; height:100%; min-height:750px; border:none; display:block;" title="${title || 'EN-Worksheet'}" allowfullscreen></iframe>
                     <button type="button" class="pdf-floating-exit-btn" id="ws-app-fallback-floating-exit" style="display:none;"><i class="fa-solid fa-xmark"></i> Exit Fullscreen</button>
                 </div>
             `;
@@ -6790,7 +6790,7 @@ function renderWorksheet(lesson) {
         }
 
         const loadingStatus = document.getElementById('ws-pdf-loading-status');
-        if (loadingStatus) loadingStatus.textContent = 'Loading worksheet...';
+        if (loadingStatus) loadingStatus.textContent = 'Loading EN-Worksheet...';
 
         waitForPdfJs().then(async (pdfjs) => {
             if (!pdfjs) {
