@@ -43,8 +43,8 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
-                var currentVer = 34;
-                var LATEST_BUILD = '20261116063936';
+                var currentVer = 35;
+                var LATEST_BUILD = '20261116102620';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -95,7 +95,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=34&build=20261116063936">
+    <link rel="stylesheet" href="styles.css?v=35&build=20261116102620">
     <style>
         .view.active {
             display: block !important;
@@ -133,8 +133,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=34&build=20261116063936"></script>
-    <script src="physics-data.js?v=34&build=20261116063936"></script>
+    <script src="physics-figures.js?v=35&build=20261116102620"></script>
+    <script src="physics-data.js?v=35&build=20261116102620"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -2084,7 +2084,7 @@
         ];
         }
     </script>
-    <script src="physics-data.js?v=34&build=20261116063936"></script>
+    <script src="physics-data.js?v=35&build=20261116102620"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -2131,16 +2131,16 @@
                 {
                     id: "g7-l1",
                     chapterNum: "Chapter 1",
-                    chapterName: "Heat and Temperature",
-                    subtitle: "Thermometers, Fixed Points, Thermal Expansion & Specific Heat",
+                    chapterName: "Temperature & Thermal Energy",
+                    subtitle: "Thermometers, Fixed Points, Thermal Expansion & Heat Transfer",
                     icon: "fa-temperature-high",
                     color: "#dc2626",
                     gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
                     bgLight: "#fee2e2",
                     borderLight: "#fecaca",
                     shadow: "rgba(220, 38, 38, 0.22)",
-                    chips: ["Thermometers", "Expansion", "Heat Capacity", "Conduction"],
-                    formulas: 4,
+                    chips: ["Temperature", "Thermal Energy", "Specific Heat", "Heat Transfer"],
+                    formulas: 12,
                     terms: 11,
                     examples: 4,
                     sims: 2,
@@ -2150,16 +2150,16 @@
                 {
                     id: "g7-l2",
                     chapterNum: "Chapter 2",
-                    chapterName: "Static Electricity",
-                    subtitle: "Electric Charges, Conductors & Insulators, Electrostatic Induction & Lightning",
+                    chapterName: "Electric Charge",
+                    subtitle: "Electric Charges, Conductors & Insulators, Electrostatic Induction & Coulomb's Law",
                     icon: "fa-bolt-lightning",
                     color: "#0284c7",
                     gradient: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
                     bgLight: "#e0f2fe",
                     borderLight: "#bae6fd",
                     shadow: "rgba(2, 132, 199, 0.22)",
-                    chips: ["Electric Charge", "Electrostatics", "Induction", "Electroscope"],
-                    formulas: 2,
+                    chips: ["Electric Charge", "Coulomb's Law", "Induction", "Electroscope"],
+                    formulas: 5,
                     terms: 9,
                     examples: 3,
                     sims: 2,
@@ -2169,35 +2169,16 @@
                 {
                     id: "g7-l3",
                     chapterNum: "Chapter 3",
-                    chapterName: "Electric Current, Potential Difference & Resistance",
-                    subtitle: "Electric Current, Potential Difference, Ohm's Law & Resistor Networks",
-                    icon: "fa-plug",
-                    color: "#4f46e5",
-                    gradient: "linear-gradient(135deg, #6366f1 0%, #4338ca 100%)",
-                    bgLight: "#e0e7ff",
-                    borderLight: "#c7d2fe",
-                    shadow: "rgba(79, 70, 229, 0.22)",
-                    chips: ["Current (I)", "Voltage (V)", "Ohm's Law", "Circuits"],
-                    formulas: 5,
-                    terms: 8,
-                    examples: 4,
-                    sims: 2,
-                    hasPdf: true,
-                    hasQuiz: true
-                },
-                {
-                    id: "g7-l4",
-                    chapterNum: "Chapter 4",
-                    chapterName: "Pressure in Solids, Liquids & Gases",
-                    subtitle: "Solid Pressure, Hydrostatic Liquid Pressure, Atmospheric Pressure & Hydraulic Lift",
-                    icon: "fa-water",
+                    chapterName: "Pressure of Rigid Object",
+                    subtitle: "Force, Contact Area, Solid Pressure (P = F/A) & Pressure Applications",
+                    icon: "fa-arrows-down-to-line",
                     color: "#059669",
                     gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
                     bgLight: "#d1fae5",
                     borderLight: "#a7f3d0",
                     shadow: "rgba(5, 150, 105, 0.22)",
-                    chips: ["Solid Pressure", "Liquid Pressure", "Atmosphere", "Hydraulics"],
-                    formulas: 4,
+                    chips: ["Solid Pressure", "P = F/A", "Contact Area", "Hydraulics"],
+                    formulas: 11,
                     terms: 9,
                     examples: 4,
                     sims: 2,
@@ -3273,11 +3254,11 @@
             if (g === '7') {
                 if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-seedling"></i> Grade 7 • Introduction to Physics & Scientific Inquiry';
                 if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g7">Grade 7</span> Physics';
-                if (subtitleEl) subtitleEl.innerText = 'Measurement, Density, Forces, Friction, Hydrostatic Pressure, and Thermal Energy';
+                if (subtitleEl) subtitleEl.innerText = 'Temperature & Thermal Energy, Electric Charge, and Pressure of Rigid Object';
                 if (statsBar) {
-                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 16 Formulas</span>' +
-                        '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 4 Simulations</span>' +
+                    statsBar.innerHTML = '<span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 3 Chapters</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-square-root-variable"></i> 28 Formulas</span>' +
+                        '<span class="stat-pill"><i class="fa-solid fa-gamepad"></i> 6 Simulations</span>' +
                         '<span class="stat-pill"><i class="fa-solid fa-file-pdf"></i> E-Book & Worksheets</span>' +
                         '<a href="#grade-kh-worksheet-section" class="stat-pill stat-pill-special kh-worksheet-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-kh-worksheet-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-signature"></i> KH-Worksheet ↓</a>' +
                         '<a href="#grade-semester-exam-section" class="stat-pill stat-pill-special semester-pill" style="text-decoration:none;" onclick="var el=document.getElementById(\'grade-semester-exam-section\'); if(el){el.scrollIntoView({behavior:\'smooth\'});} return false;"><i class="fa-solid fa-file-pen"></i> Semester Exam ↓</a>';
@@ -3635,7 +3616,7 @@
                     type: "Semester 1 Exam",
                     year: "Semester 1",
                     grade: "7",
-                    description: "Official Semester 1 physics examination covering Measurement, Density, Forces, Friction, and Experimental Methods.",
+                    description: "Official Semester 1 physics examination covering Temperature & Thermal Energy and Electric Charge.",
                     url: "semester_exams/g7-semester1-exam.pdf",
                     altUrl: "semester_exams/g7-semester1-exam.pdf.pdf",
                     aliases: ["semester_exams/g7-semester-1.pdf", "semester_exams/g7-sem1.pdf", "semester_exams/g7-sem1-exam.pdf"]
@@ -3647,7 +3628,7 @@
                     type: "Semester 2 Exam",
                     year: "Semester 2",
                     grade: "7",
-                    description: "Official Semester 2 physics examination covering Hydrostatic Pressure, Liquid Density, and Thermal Energy Transfer.",
+                    description: "Official Semester 2 physics examination covering Electric Charge, Pressure of Rigid Object, and Thermal Energy.",
                     url: "semester_exams/g7-semester2-exam.pdf",
                     altUrl: "semester_exams/g7-semester2-exam.pdf.pdf",
                     aliases: ["semester_exams/g7-semester-2.pdf", "semester_exams/g7-sem2.pdf", "semester_exams/g7-sem2-exam.pdf"]
@@ -3793,18 +3774,18 @@
                     subtitle: "Official Khmer Curriculum Practice • Western International School",
                     type: "KH-Worksheet",
                     grade: "7",
-                    description: "Comprehensive Khmer Physics practice problems covering all Grade 7 chapters: Measurement, Density, Forces, Friction, and Thermal Energy.",
+                    description: "Comprehensive Khmer Physics practice problems covering all Grade 7 chapters: Temperature & Thermal Energy, Electric Charge, and Pressure of Rigid Object.",
                     url: "kh_worksheets/g7-kh-worksheet.pdf",
                     altUrl: "kh_worksheets/g7-kh-worksheet.pdf.pdf",
                     aliases: ["kh_worksheets/g7-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf.pdf", "kh_worksheets/g7-worksheet-kh.pdf", "kh_worksheets/g7-worksheet-kh.pdf.pdf"]
                 },
                 {
                     id: "g7-ch1-kh-ws",
-                    title: "Chapter 1: Measurement, Units & Density KH-Worksheet",
+                    title: "Chapter 1: Temperature & Thermal Energy KH-Worksheet",
                     subtitle: "Chapter 1 Practice Problems • Western International School",
                     type: "Chapter 1 KH-Worksheet",
                     grade: "7",
-                    description: "Practice problems and exercises on units, measurement instruments, and density calculations.",
+                    description: "Practice questions on temperature scales, heat transfer modes, specific heat capacity, and thermal energy.",
                     url: "kh_worksheets/g7-ch1-kh-worksheet.pdf",
                     altUrl: "kh_worksheets/g7-ch1-kh-worksheet.pdf.pdf",
                     fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
@@ -3812,11 +3793,11 @@
                 },
                 {
                     id: "g7-ch2-kh-ws",
-                    title: "Chapter 2: Forces & Motion KH-Worksheet",
+                    title: "Chapter 2: Electric Charge KH-Worksheet",
                     subtitle: "Chapter 2 Practice Problems • Western International School",
                     type: "Chapter 2 KH-Worksheet",
                     grade: "7",
-                    description: "Practice problems on types of forces, friction, gravity, and basic kinematics.",
+                    description: "Practice problems on electric charges, charging by friction, Coulomb's law, and electrostatics.",
                     url: "kh_worksheets/g7-ch2-kh-worksheet.pdf",
                     altUrl: "kh_worksheets/g7-ch2-kh-worksheet.pdf.pdf",
                     fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
@@ -3824,27 +3805,15 @@
                 },
                 {
                     id: "g7-ch3-kh-ws",
-                    title: "Chapter 3: Pressure & Archimedes' Principle KH-Worksheet",
+                    title: "Chapter 3: Pressure of Rigid Object KH-Worksheet",
                     subtitle: "Chapter 3 Practice Problems • Western International School",
                     type: "Chapter 3 KH-Worksheet",
                     grade: "7",
-                    description: "Practice exercises on solid pressure, liquid pressure, buoyant force, and Archimedes' principle.",
+                    description: "Practice exercises on force, contact area, solid pressure (P = F/A), and pressure applications.",
                     url: "kh_worksheets/g7-ch3-kh-worksheet.pdf",
                     altUrl: "kh_worksheets/g7-ch3-kh-worksheet.pdf.pdf",
                     fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
                     aliases: ["kh_worksheets/g7-ch3-kh-worksheet.pdf", "kh_worksheets/g7-ch3-kh-worksheet.pdf.pdf", "kh_worksheets/g7-l3-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf"]
-                },
-                {
-                    id: "g7-ch4-kh-ws",
-                    title: "Chapter 4: Temperature & Thermal Energy KH-Worksheet",
-                    subtitle: "Chapter 4 Practice Problems • Western International School",
-                    type: "Chapter 4 KH-Worksheet",
-                    grade: "7",
-                    description: "Practice questions on temperature scales, heat transfer modes, and thermal expansion.",
-                    url: "kh_worksheets/g7-ch4-kh-worksheet.pdf",
-                    altUrl: "kh_worksheets/g7-ch4-kh-worksheet.pdf.pdf",
-                    fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
-                    aliases: ["kh_worksheets/g7-ch4-kh-worksheet.pdf", "kh_worksheets/g7-ch4-kh-worksheet.pdf.pdf", "kh_worksheets/g7-l4-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf"]
                 }
             ],
             "8": [
@@ -8516,7 +8485,6 @@
             'g7-l1': [{ title: "Grade 7 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
             'g7-l2': [{ title: "Grade 7 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
             'g7-l3': [{ title: "Grade 7 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
-            'g7-l4': [{ title: "Grade 7 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade7_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade7_Physics.pdf" }],
 
             // Grade 8 (Official Curriculum Book containing all practice exercises & worksheets)
             'g8-l1': [{ title: "Grade 8 Physics Practice Exercises & Problems", url: "Physics_Grade7,8,10,11/Grade8_Physics.pdf.pdf", altUrl: "Physics_Grade7,8,10,11/Grade8_Physics.pdf" }],
@@ -9711,7 +9679,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 34)</span>
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 35)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -9940,17 +9908,16 @@
                         <i class="fa-solid fa-scale-balanced"></i>
                     </div>
                     <h2>Grade 7 Physics</h2>
-                    <p class="card-desc">Measurement, Density, Forces, Friction, Hydrostatic Pressure, and Thermal Energy</p>
+                    <p class="card-desc">Temperature &amp; Thermal Energy, Electric Charge, and Pressure of Rigid Object</p>
                     
                     <div class="topic-chips">
-                        <span class="topic-chip chip-measure"><i class="fa-solid fa-ruler-combined"></i> Measurement & Density</span>
-                        <span class="topic-chip chip-torque"><i class="fa-solid fa-arrows-to-dot"></i> Forces & Friction</span>
-                        <span class="topic-chip chip-pressure"><i class="fa-solid fa-water"></i> Pressure in Fluids</span>
-                        <span class="topic-chip chip-thermo"><i class="fa-solid fa-temperature-three-quarters"></i> Heat & Thermal Energy</span>
+                        <span class="topic-chip chip-thermo"><i class="fa-solid fa-temperature-three-quarters"></i> Temperature &amp; Thermal Energy</span>
+                        <span class="topic-chip chip-electricity"><i class="fa-solid fa-bolt-lightning"></i> Electric Charge</span>
+                        <span class="topic-chip chip-pressure"><i class="fa-solid fa-arrows-down-to-line"></i> Pressure of Rigid Object</span>
                     </div>
 
                     <div class="card-footer-info">
-                        <span><i class="fa-solid fa-layer-group"></i> 4 Chapters</span>
+                        <span><i class="fa-solid fa-layer-group"></i> 3 Chapters</span>
                         <span><i class="fa-solid fa-file-pdf"></i> Worksheets</span>
                         <span><i class="fa-solid fa-vial"></i> Simulations</span>
                     </div>
@@ -10486,7 +10453,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=34&build=20261116063936"></script>
-    <script src="app.js?v=34&build=20261116063936" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=35&build=20261116102620"></script>
+    <script src="app.js?v=35&build=20261116102620" onerror="onAppJsError()"></script>
 </body>
 </html>

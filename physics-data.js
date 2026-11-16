@@ -8603,7 +8603,7 @@
                 { topic: "Energy Forms and Changes", url: "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_all.html" },
                 { topic: "States of Matter: Basics", url: "https://phet.colorado.edu/sims/html/states-of-matter-basics/latest/states-of-matter-basics_all.html" }
             ],
-            title: "Chapter 1: Heat and Temperature",
+            title: "Chapter 1: Temperature & Thermal Energy",
             concepts: [
                 "Temperature vs Heat: Temperature is a fundamental scalar measure of how hot or cold a body is, representing the average molecular kinetic energy. Heat (thermal/internal energy) is the total kinetic and potential energy of all molecules in a body.",
                 "Direction of Heat Flow: Heat energy always transfers spontaneously from a body at a higher temperature to a body at a lower temperature until thermal equilibrium is established.",
@@ -9213,7 +9213,7 @@
                 { topic: "Balloons and Static Electricity", url: "https://phet.colorado.edu/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_all.html" },
                 { topic: "John Travoltage", url: "https://phet.colorado.edu/sims/html/john-travoltage/latest/john-travoltage_all.html" }
             ],
-            title: "Chapter 2: Static Electricity",
+            title: "Chapter 2: Electric Charge",
             concepts: [
                 "Electrostatics: The branch of physics that studies electric charges at rest, their properties, and electrostatic forces.",
                 "Atomic Nature of Charge: An atom consists of a central nucleus containing positively charged protons and neutral neutrons, surrounded by revolving negatively charged electrons. Normally, number of electrons equals number of protons, so the atom is electrically neutral.",
@@ -9612,711 +9612,15 @@
         },
         {
             id: "g7-l3",
-            gifUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Electric_circuit.gif",
-            worksheetUrl: "worksheets/g7-ch3-worksheet.pdf",
-            ebookUrl: "",
-            ebooks: [],
-            games: [
-                { topic: "Circuit Construction Kit: DC", url: "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html" },
-                { topic: "Ohm's Law Simulation", url: "https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_all.html" }
-            ],
-            title: "Chapter 3: Electric Current, Potential Difference & Resistance",
-            concepts: [
-                "Electric Current (I): Defined as the rate of flow of electric charges in a circuit, \\(I = \\frac{Q}{t}\\). Measured in Amperes (A), where \\(1\\,\\mathrm{C} = 1\\,\\mathrm{A}\\cdot\\mathrm{s}\\).",
-                "Conventional Current vs Electron Flow: Conventional current flows from positive (+) to negative (-) terminal. Electrons, carrying negative charge, actually drift from negative (-) to positive (+) terminal.",
-                "Current in Series Circuits: The current is identical at all points in a series circuit: \\(I = I_1 = I_2 = I_3\\). Ammeters must always be connected in series.",
-                "Current in Parallel Circuits: The total current entering a parallel junction splits among the branches: \\(I_{\\text{total}} = I_1 + I_2\\).",
-                "Electric Potential Difference (p.d. or Voltage V): The work done or electrical energy transferred per unit of charge: \\(V = \\frac{E}{Q}\\), measured in Volts (V), where \\(1\\,\\mathrm{V} = 1\\,\\mathrm{J/C}\\). Total energy is \\(E = V \\times Q = I \\times V \\times t\\).",
-                "Cells in Series and Parallel: Connecting identical cells in series adds voltages (\\(V = V_1 + V_2 + V_3\\)); connecting cells in parallel keeps voltage the same (\\(V = V_1 = V_2\\)) while extending operational lifetime.",
-                "Voltages Round a Circuit: In a series circuit, total terminal voltage equals the sum of voltages across individual components: \\(V = V_1 + V_2\\). In a parallel circuit, voltages across parallel devices are equal: \\(V = V_1 = V_2\\).",
-                "Electric Resistance (R) & Ohm's Law: Resistance is the opposition of a conductor to the flow of current. Ohm's Law states that current in a metallic conductor is directly proportional to the potential difference across it at constant temperature: \\(R = \\frac{V}{I} \\iff V = IR\\).",
-                "Resistors in Series: Total combined resistance equals the algebraic sum of the separate resistances: \\(R = R_1 + R_2 + R_3\\).",
-                "Resistors in Parallel: The reciprocal of total resistance equals the sum of reciprocals: \\(\\frac{1}{R} = \\frac{1}{R_1} + \\frac{1}{R_2} \\iff R = \\frac{R_1 \\times R_2}{R_1 + R_2}\\). Parallel resistance is always less than any individual branch resistor.",
-                "Unit Prefix Conversions: \\(1\\,\\mathrm{mA} = 10^{-3}\\,\\mathrm{A}\\), \\(1\\,\\mathrm{kA} = 10^3\\,\\mathrm{A}\\), \\(1\\,\\mathrm{k\\Omega} = 10^3\\,\\Omega\\), \\(1\\,\\mathrm{mV} = 10^{-3}\\,\\mathrm{V}\\), \\(1\\,\\mathrm{kV} = 10^3\\,\\mathrm{V}\\)."
-            ],
-            definitions: [
-                { term: "Electric Current", definition: "The continuous rate of flow of electric charges past a point in a circuit.", symbol: "I", unit: "\\mathrm{A} \\;(\\mathrm{Ampere})", equation: "I = \\frac{Q}{t}" },
-                { term: "Coulomb (C)", definition: "The quantity of electric charge passing any point in a circuit when a steady current of 1 Ampere flows for 1 second.", symbol: "\\mathrm{C}", unit: "\\mathrm{A\\cdot s}", equation: "1\\,\\mathrm{C} = 1\\,\\mathrm{A} \\times 1\\,\\mathrm{s}" },
-                { term: "Potential Difference (Voltage)", definition: "The electrical energy transferred (or work done) per Coulomb of electric charge moving between two points in a circuit.", symbol: "V", unit: "\\mathrm{V} \\;(\\mathrm{Volt})", equation: "V = \\frac{E}{Q}" },
-                { term: "Volt (V)", definition: "The potential difference between two points in a circuit when 1 Joule of energy is transferred as 1 Coulomb of charge passes.", symbol: "\\mathrm{V}", unit: "\\mathrm{J/C}", equation: "1\\,\\mathrm{V} = 1\\,\\mathrm{J/C}" },
-                { term: "Electrical Resistance", definition: "The opposition offered by a conductor material to the passage of electric current.", symbol: "R", unit: "\\Omega \\;(\\mathrm{Ohm})", equation: "R = \\frac{V}{I}" },
-                { term: "Ohm (Ω)", definition: "The electrical resistance of a conductor through which a current of 1 Ampere flows when a potential difference of 1 Volt is applied.", symbol: "\\Omega", unit: "\\mathrm{V/A}", equation: "1\\,\\Omega = 1\\,\\mathrm{V/A}" },
-                { term: "Ohm's Law", definition: "The current in a metallic conductor is directly proportional to the potential difference across its ends, provided temperature remains constant.", symbol: "I \\propto V", unit: "\\text{Law of Electricity}", equation: "V = IR \\iff R = \\frac{V}{I}" },
-                { term: "Rheostat (Variable Resistor)", definition: "A variable resistor with a sliding contact over a coil of constantan wire used to regulate current or divide potential in a circuit.", symbol: "\\text{Rheostat}", unit: "\\Omega", equation: "\\text{Adjusts circuit current or p.d.}" },
-                { term: "Equivalent Resistance (Series)", definition: "The total effective resistance of resistors connected end-to-end along a single path.", symbol: "R_{\\text{eq}}", unit: "\\Omega", equation: "R_{\\text{eq}} = R_1 + R_2 + R_3" },
-                { term: "Equivalent Resistance (Parallel)", definition: "The total effective resistance of resistors connected across common voltage nodes.", symbol: "R_{\\text{eq}}", unit: "\\Omega", equation: "R_{\\text{eq}} = \\frac{R_1 R_2}{R_1 + R_2} \\;\\Big|\\; \\frac{1}{R_{\\text{eq}}} = \\sum \\frac{1}{R_i}" }
-            ],
-            examples: [
-                {
-                    title: "Example 1: Calculating Charge from Current and Time",
-                    question: "A current of 4.0 A flows through a filament light bulb. Find the amount of electric charge passing through the filament in 60 seconds.",
-                    given: "Current \\( I = 4.0\\,\\mathrm{A} \\), Time \\( t = 60\\,\\mathrm{s} \\).",
-                    find: "Total charge (\\( Q \\)) in Coulombs.",
-                    equation: "Q = I \\times t",
-                    rearrangement: "Q = 4.0\\,\\mathrm{A} \\times 60\\,\\mathrm{s}",
-                    solution: "Multiply current by time:<br>\\[ Q = 4.0 \\times 60 = 240\\,\\mathrm{C} \\]",
-                    finalAnswer: "Q = 240\\,\\mathrm{C}",
-                    explanation: "Electric charge equals current multiplied by duration in seconds (1 A·s = 1 C)."
-                },
-                {
-                    title: "Example 2: Calculating Current from Charge and Time",
-                    question: "How much electric current flows through a charging circuit if 1000 Coulombs pass a given test point in 4.0 minutes?",
-                    given: "Charge \\( Q = 1000\\,\\mathrm{C} \\), Time \\( t = 4.0\\,\\text{minutes} = 4 \\times 60 = 240\\,\\mathrm{s} \\).",
-                    find: "Electric current (\\( I \\)) in Amperes.",
-                    equation: "I = \\frac{Q}{t}",
-                    rearrangement: "I = \\frac{1000\\,\\mathrm{C}}{240\\,\\mathrm{s}}",
-                    solution: "1. <strong>Convert time to seconds:</strong> \\( t = 4 \\times 60 = 240\\,\\mathrm{s} \\).<br>2. <strong>Compute Current:</strong><br>\\[ I = \\frac{1000}{240} = \\frac{25}{6} \\approx 4.17\\,\\mathrm{A} \\]",
-                    finalAnswer: "I \\approx 4.17\\,\\mathrm{A}",
-                    explanation: "Elapsed time must always be converted to SI seconds prior to dividing charge."
-                },
-                {
-                    title: "Practice Question 1: Battery Operating Duration from Charge Capacity",
-                    question: "A portable rechargeable battery pack stores 7200 C of charge. How long can it supply a steady current of 0.50 A to an LED lantern?",
-                    given: "Stored charge \\( Q = 7200\\,\\mathrm{C} \\), Operating current \\( I = 0.50\\,\\mathrm{A} \\).",
-                    find: "Time duration (\\( t \\)) in seconds and hours.",
-                    equation: "I = \\frac{Q}{t} \\implies t = \\frac{Q}{I}",
-                    rearrangement: "t = \\frac{7200\\,\\mathrm{C}}{0.50\\,\\mathrm{A}}",
-                    solution: "1. <strong>Calculate seconds:</strong> \\( t = \\frac{7200}{0.50} = 14{,}400\\,\\mathrm{s} \\).<br>2. <strong>Convert to hours:</strong> \\( t = \\frac{14400}{3600} = 4.0\\,\\text{hours} \\).",
-                    finalAnswer: "t = 14{,}400\\,\\mathrm{s} \\quad (4.0\\,\\text{hours})",
-                    explanation: "Dividing total Coulomb capacity by current demand determines operating life."
-                },
-                {
-                    title: "Example 3: Energy Transferred by Potential Difference",
-                    question: "The potential difference across an automobile lamp is 12 V. How many Joules of electrical energy are converted into light and heat when (a) 1.0 C of charge passes, and (b) 5.0 C of charge passes?",
-                    given: "Voltage \\( V = 12\\,\\mathrm{V} \\), Charges \\( Q_a = 1.0\\,\\mathrm{C} \\), \\( Q_b = 5.0\\,\\mathrm{C} \\).",
-                    find: "Energy transferred (\\( E \\)) for both cases.",
-                    equation: "E = V \\times Q",
-                    rearrangement: "E_a = 12 \\times 1.0, \\quad E_b = 12 \\times 5.0",
-                    solution: "1. <strong>For 1.0 C:</strong> \\( E = 12\\,\\mathrm{V} \\times 1.0\\,\\mathrm{C} = 12\\,\\mathrm{J} \\).<br>2. <strong>For 5.0 C:</strong> \\( E = 12\\,\\mathrm{V} \\times 5.0\\,\\mathrm{C} = 60\\,\\mathrm{J} \\).",
-                    finalAnswer: "E_a = 12\\,\\mathrm{J}, \\quad E_b = 60\\,\\mathrm{J}",
-                    explanation: "1 Volt represents 1 Joule of energy delivered per Coulomb of transferred charge."
-                },
-                {
-                    title: "Example 4: Potential Difference across an Electric Motor",
-                    question: "An electric lift motor converts 480 J of electrical energy into mechanical work when 20 C of charge passes through its windings. What is the potential difference across the motor?",
-                    given: "Energy transferred \\( E = 480\\,\\mathrm{J} \\), Charge \\( Q = 20\\,\\mathrm{C} \\).",
-                    find: "Potential difference (\\( V \\)).",
-                    equation: "V = \\frac{E}{Q}",
-                    rearrangement: "V = \\frac{480\\,\\mathrm{J}}{20\\,\\mathrm{C}}",
-                    solution: "Divide electrical energy by charge:<br>\\[ V = \\frac{480}{20} = 24\\,\\mathrm{V} \\]",
-                    finalAnswer: "V = 24\\,\\mathrm{V}",
-                    explanation: "Potential difference reflects the energy density delivered per unit charge."
-                },
-                {
-                    title: "Practice Question 2: Energy Stored in a Dry Cell Battery",
-                    question: "A 9.0 V smoke detector battery circulates 450 C of charge through its circuitry over its operational lifetime. Determine the total electrical energy delivered.",
-                    given: "Voltage \\( V = 9.0\\,\\mathrm{V} \\), Total charge \\( Q = 450\\,\\mathrm{C} \\).",
-                    find: "Total energy delivered (\\( E \\)) in Joules and kJ.",
-                    equation: "E = V \\times Q",
-                    rearrangement: "E = 9.0\\,\\mathrm{V} \\times 450\\,\\mathrm{C}",
-                    solution: "Multiply voltage by charge:<br>\\[ E = 9.0 \\times 450 = 4050\\,\\mathrm{J} = 4.05\\,\\mathrm{kJ} \\]",
-                    finalAnswer: "E = 4050\\,\\mathrm{J} \\quad (4.05\\,\\mathrm{kJ})",
-                    explanation: "Battery energy equals the product of its terminal potential difference and total charge delivered."
-                },
-                {
-                    title: "Example 5: Total Electrical Energy Consumed over Time (E = IVt)",
-                    question: "A domestic television is connected to a 230 V mains supply and draws a steady current of 0.80 A. How much electrical energy is consumed during 3.0 hours of viewing?",
-                    given: "Voltage \\( V = 230\\,\\mathrm{V} \\), Current \\( I = 0.80\\,\\mathrm{A} \\), Time \\( t = 3.0\\,\\text{h} = 3 \\times 3600 = 10{,}800\\,\\mathrm{s} \\).",
-                    find: "Electrical energy (\\( E \\)) in Joules and Megajoules.",
-                    equation: "E = I \\times V \\times t",
-                    rearrangement: "E = 0.80\\,\\mathrm{A} \\times 230\\,\\mathrm{V} \\times 10{,}800\\,\\mathrm{s}",
-                    solution: "1. <strong>Power:</strong> \\( P = I \\times V = 0.80 \\times 230 = 184\\,\\mathrm{W} \\).<br>2. <strong>Total Energy:</strong><br>\\[ E = 184\\,\\mathrm{W} \\times 10{,}800\\,\\mathrm{s} = 1{,}987{,}200\\,\\mathrm{J} \\approx 1.99\\,\\mathrm{MJ} \\]",
-                    finalAnswer: "E \\approx 1.99 \\times 10^6\\,\\mathrm{J} \\quad (1.99\\,\\mathrm{MJ})",
-                    explanation: "Combining current, voltage, and time tracks cumulative electrical energy consumption."
-                },
-                {
-                    title: "Example 6: Operating Time to Deliver Specific Heat Energy",
-                    question: "An electric water heater operates from a 12 V battery drawing 5.0 A. How long must it run to supply 72 kJ of thermal energy to warm a baby bottle?",
-                    given: "Energy \\( E = 72\\,\\mathrm{kJ} = 72{,}000\\,\\mathrm{J} \\), Voltage \\( V = 12\\,\\mathrm{V} \\), Current \\( I = 5.0\\,\\mathrm{A} \\).",
-                    find: "Time duration (\\( t \\)) in seconds and minutes.",
-                    equation: "E = I \\times V \\times t \\implies t = \\frac{E}{I \\times V}",
-                    rearrangement: "t = \\frac{72{,}000}{5.0 \\times 12}",
-                    solution: "1. <strong>Heater Power:</strong> \\( P = 5.0 \\times 12 = 60\\,\\mathrm{W} \\).<br>2. <strong>Calculate Time:</strong><br>\\[ t = \\frac{72000}{60} = 1200\\,\\mathrm{s} \\]<br>3. <strong>Convert to minutes:</strong> \\( t = \\frac{1200}{60} = 20\\,\\text{minutes} \\).",
-                    finalAnswer: "t = 1200\\,\\mathrm{s} \\quad (20\\,\\text{minutes})",
-                    explanation: "Time required equals total energy demand divided by electrical power output."
-                },
-                {
-                    title: "Practice Question 3: Energy Output of a Handheld Flashlight",
-                    question: "A pocket torch operates on two 1.5 V cells in series (total 3.0 V) drawing 0.40 A. Calculate the total energy consumed if left turned on for 15 minutes.",
-                    given: "Voltage \\( V = 3.0\\,\\mathrm{V} \\), Current \\( I = 0.40\\,\\mathrm{A} \\), Time \\( t = 15\\,\\text{min} = 15 \\times 60 = 900\\,\\mathrm{s} \\).",
-                    find: "Energy consumed (\\( E \\)).",
-                    equation: "E = I V t",
-                    rearrangement: "E = 0.40 \\times 3.0 \\times 900",
-                    solution: "Multiply:<br>\\[ E = 1.2\\,\\mathrm{W} \\times 900\\,\\mathrm{s} = 1080\\,\\mathrm{J} \\approx 1.08\\,\\mathrm{kJ} \\]",
-                    finalAnswer: "E = 1080\\,\\mathrm{J} \\quad (1.08\\,\\mathrm{kJ})",
-                    explanation: "Flashlights consume electrical energy at a constant rate proportional to battery voltage."
-                },
-                {
-                    title: "Example 7: Applying Ohm's Law with Prefix Conversion",
-                    question: "A electronic circuit board has a 12 V power rail connected across a 1.0 kΩ resistor. Find the current flowing through the resistor in mA.",
-                    given: "Voltage \\( V = 12\\,\\mathrm{V} \\), Resistance \\( R = 1.0\\,\\mathrm{k\\Omega} = 1000\\,\\Omega \\).",
-                    find: "Current (\\( I \\)) in Amperes and milliamperes (mA).",
-                    equation: "I = \\frac{V}{R}",
-                    rearrangement: "I = \\frac{12\\,\\mathrm{V}}{1000\\,\\Omega}",
-                    solution: "1. <strong>In Amperes:</strong> \\( I = \\frac{12}{1000} = 0.012\\,\\mathrm{A} \\).<br>2. <strong>In Milliamperes:</strong> \\( I = 0.012 \\times 1000 = 12\\,\\mathrm{mA} \\).",
-                    finalAnswer: "I = 0.012\\,\\mathrm{A} \\quad (12\\,\\mathrm{mA})",
-                    explanation: "1 kΩ equals 1000 Ω; dividing voltage by kilo-ohms yields milliamperes directly."
-                },
-                {
-                    title: "Example 8: Voltage across an Electric Heating Element",
-                    question: "An electric room heater element has an internal resistance of 48 Ω. Calculate the voltage required to drive a current of 5.0 A through it.",
-                    given: "Resistance \\( R = 48\\,\\Omega \\), Current \\( I = 5.0\\,\\mathrm{A} \\).",
-                    find: "Required voltage (\\( V \\)).",
-                    equation: "V = IR",
-                    rearrangement: "V = 5.0\\,\\mathrm{A} \\times 48\\,\\Omega",
-                    solution: "Multiply current by resistance:<br>\\[ V = 5.0 \\times 48 = 240\\,\\mathrm{V} \\]",
-                    finalAnswer: "V = 240\\,\\mathrm{V}",
-                    explanation: "By Ohm's law, potential difference is directly proportional to current and resistance."
-                },
-                {
-                    title: "Practice Question 4: Operating Resistance of a Car Headlight",
-                    question: "A car headlight bulb operates on a 12.0 V battery system and draws 4.5 A when glowing at full beam. Find the operating electrical resistance of the bulb filament.",
-                    given: "Voltage \\( V = 12.0\\,\\mathrm{V} \\), Current \\( I = 4.5\\,\\mathrm{A} \\).",
-                    find: "Filament resistance (\\( R \\)).",
-                    equation: "R = \\frac{V}{I}",
-                    rearrangement: "R = \\frac{12.0\\,\\mathrm{V}}{4.5\\,\\mathrm{A}}",
-                    solution: "Divide voltage by current:<br>\\[ R = \\frac{12.0}{4.5} = 2.67\\,\\Omega \\]",
-                    finalAnswer: "R \\approx 2.67\\,\\Omega",
-                    explanation: "Hot glowing filament metal exhibits a steady dynamic resistance of 2.67 Ω."
-                },
-                {
-                    title: "Example 9: Three Resistors in Series Combination",
-                    question: "Three resistors with values of 10 Ω, 25 Ω, and 15 Ω are connected in a continuous series string. What is the total equivalent resistance?",
-                    given: "Resistors \\( R_1 = 10\\,\\Omega \\), \\( R_2 = 25\\,\\Omega \\), \\( R_3 = 15\\,\\Omega \\).",
-                    find: "Equivalent resistance (\\( R_{\\text{eq}} \\)).",
-                    equation: "R_{\\text{eq}} = R_1 + R_2 + R_3",
-                    rearrangement: "R_{\\text{eq}} = 10 + 25 + 15",
-                    solution: "Add resistances directly:<br>\\[ R_{\\text{eq}} = 10 + 25 + 15 = 50\\,\\Omega \\]",
-                    finalAnswer: "R_{\\text{eq}} = 50\\,\\Omega",
-                    explanation: "In a series circuit, each added resistor increases the overall resistance to current flow."
-                },
-                {
-                    title: "Example 10: Potential Drops in a Series Circuit",
-                    question: "Two resistors of 3.0 Ω and 7.0 Ω are connected in series across a 20 V DC power supply. Find (a) the circuit current, and (b) the voltage drop across each individual resistor.",
-                    given: "Resistors \\( R_1 = 3.0\\,\\Omega \\), \\( R_2 = 7.0\\,\\Omega \\), Supply voltage \\( V = 20\\,\\mathrm{V} \\).",
-                    find: "Current \\( I \\), Voltage drops \\( V_1 \\) and \\( V_2 \\).",
-                    equation: "R_{\\text{eq}} = R_1 + R_2, \\quad I = \\frac{V}{R_{\\text{eq}}}, \\quad V_1 = IR_1, \\quad V_2 = IR_2",
-                    rearrangement: "R_{\\text{eq}} = 3.0 + 7.0 = 10.0\\,\\Omega, \\quad I = \\frac{20}{10.0} = 2.0\\,\\mathrm{A}",
-                    solution: "1. <strong>Equivalent Resistance:</strong> \\( R_{\\text{eq}} = 10.0\\,\\Omega \\).<br>2. <strong>Circuit Current:</strong> \\( I = \\frac{20}{10.0} = 2.0\\,\\mathrm{A} \\).<br>3. <strong>Voltage Drop \\( V_1 \\):</strong> \\( V_1 = 2.0\\,\\mathrm{A} \\times 3.0\\,\\Omega = 6.0\\,\\mathrm{V} \\).<br>4. <strong>Voltage Drop \\( V_2 \\):</strong> \\( V_2 = 2.0\\,\\mathrm{A} \\times 7.0\\,\\Omega = 14.0\\,\\mathrm{V} \\).<br>Check: \\( V_1 + V_2 = 6.0 + 14.0 = 20.0\\,\\mathrm{V} = V \\).",
-                    finalAnswer: "I = 2.0\\,\\mathrm{A}, \\quad V_1 = 6.0\\,\\mathrm{V}, \\quad V_2 = 14.0\\,\\mathrm{V}",
-                    explanation: "In a series circuit, the supply voltage divides in direct proportion to the individual resistances."
-                },
-                {
-                    title: "Practice Question 5: Series String of Decorative Holiday Lamps",
-                    question: "A string of ten identical miniature fairy lamps is connected in series. If each lamp has a hot resistance of 24 Ω, find the total combined resistance of the chain.",
-                    given: "Number of lamps \\( N = 10 \\), Resistance per lamp \\( R = 24\\,\\Omega \\).",
-                    find: "Total resistance (\\( R_{\\text{eq}} \\)).",
-                    equation: "R_{\\text{eq}} = N \\times R",
-                    rearrangement: "R_{\\text{eq}} = 10 \\times 24\\,\\Omega",
-                    solution: "Multiply:<br>\\[ R_{\\text{eq}} = 10 \\times 24 = 240\\,\\Omega \\]",
-                    finalAnswer: "R_{\\text{eq}} = 240\\,\\Omega",
-                    explanation: "Identical resistors in series have total resistance equal to N times the single resistance."
-                },
-                {
-                    title: "Example 11: Two Resistors in Parallel (Product-Over-Sum)",
-                    question: "Two resistors of 4.0 Ω and 12.0 Ω are connected in parallel. Find their combined equivalent resistance.",
-                    given: "Resistances \\( R_1 = 4.0\\,\\Omega \\), \\( R_2 = 12.0\\,\\Omega \\).",
-                    find: "Equivalent resistance (\\( R_{\\text{eq}} \\)).",
-                    equation: "R_{\\text{eq}} = \\frac{R_1 \\times R_2}{R_1 + R_2}",
-                    rearrangement: "R_{\\text{eq}} = \\frac{4.0 \\times 12.0}{4.0 + 12.0} = \\frac{48.0}{16.0}",
-                    solution: "Divide product by sum:<br>\\[ R_{\\text{eq}} = \\frac{48.0}{16.0} = 3.0\\,\\Omega \\]",
-                    finalAnswer: "R_{\\text{eq}} = 3.0\\,\\Omega",
-                    explanation: "Parallel combinations provide alternate paths, yielding an equivalent resistance smaller than the smallest branch."
-                },
-                {
-                    title: "Example 12: Three Resistors in Parallel (Reciprocal Method)",
-                    question: "Three resistors with values 10 Ω, 20 Ω, and 20 Ω are wired in parallel across a circuit. Determine their total equivalent resistance.",
-                    given: "Resistances \\( R_1 = 10\\,\\Omega \\), \\( R_2 = 20\\,\\Omega \\), \\( R_3 = 20\\,\\Omega \\).",
-                    find: "Equivalent resistance (\\( R_{\\text{eq}} \\)).",
-                    equation: "\\frac{1}{R_{\\text{eq}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3}",
-                    rearrangement: "\\frac{1}{R_{\\text{eq}}} = \\frac{1}{10} + \\frac{1}{20} + \\frac{1}{20}",
-                    solution: "1. <strong>Find common denominator:</strong><br>\\[ \\frac{1}{R_{\\text{eq}}} = \\frac{2}{20} + \\frac{1}{20} + \\frac{1}{20} = \\frac{4}{20} = \\frac{1}{5} \\]<br>2. <strong>Invert:</strong> \\( R_{\\text{eq}} = 5.0\\,\\Omega \\).",
-                    finalAnswer: "R_{\\text{eq}} = 5.0\\,\\Omega",
-                    explanation: "Summing reciprocals accounts for the increased total conductance of multiple parallel branches."
-                },
-                {
-                    title: "Practice Question 6: Two Parallel Branch Resistors",
-                    question: "Two resistors of 6.0 Ω and 30.0 Ω are connected in parallel. Calculate their combined resistance.",
-                    given: "Resistances \\( R_1 = 6.0\\,\\Omega \\), \\( R_2 = 30.0\\,\\Omega \\).",
-                    find: "Equivalent resistance (\\( R_{\\text{eq}} \\)).",
-                    equation: "R_{\\text{eq}} = \\frac{R_1 R_2}{R_1 + R_2}",
-                    rearrangement: "R_{\\text{eq}} = \\frac{6.0 \\times 30.0}{6.0 + 30.0} = \\frac{180.0}{36.0}",
-                    solution: "Divide product by sum:<br>\\[ R_{\\text{eq}} = \\frac{180.0}{36.0} = 5.0\\,\\Omega \\]",
-                    finalAnswer: "R_{\\text{eq}} = 5.0\\,\\Omega",
-                    explanation: "The parallel resistance of 5.0 Ω is strictly less than the smaller 6.0 Ω resistor."
-                },
-                {
-                    title: "Example 13: Current and Voltage Distribution in Parallel Branches",
-                    question: "A 12 V battery is connected across two parallel resistors of 6.0 Ω and 12.0 Ω. Calculate (a) the current in each branch, and (b) the total current drawn from the battery.",
-                    given: "Voltage \\( V = 12\\,\\mathrm{V} \\), Branch resistances \\( R_1 = 6.0\\,\\Omega \\), \\( R_2 = 12.0\\,\\Omega \\).",
-                    find: "Branch currents \\( I_1 \\), \\( I_2 \\), and total current \\( I_{\\text{total}} \\).",
-                    equation: "I_1 = \\frac{V}{R_1}, \\quad I_2 = \\frac{V}{R_2}, \\quad I_{\\text{total}} = I_1 + I_2",
-                    rearrangement: "I_1 = \\frac{12}{6.0}, \\quad I_2 = \\frac{12}{12.0}",
-                    solution: "1. <strong>Branch 1 Current:</strong> \\( I_1 = \\frac{12}{6.0} = 2.0\\,\\mathrm{A} \\).<br>2. <strong>Branch 2 Current:</strong> \\( I_2 = \\frac{12}{12.0} = 1.0\\,\\mathrm{A} \\).<br>3. <strong>Total Current:</strong> \\( I_{\\text{total}} = 2.0 + 1.0 = 3.0\\,\\mathrm{A} \\).",
-                    finalAnswer: "I_1 = 2.0\\,\\mathrm{A}, \\quad I_2 = 1.0\\,\\mathrm{A}, \\quad I_{\\text{total}} = 3.0\\,\\mathrm{A}",
-                    explanation: "In parallel, all branches experience the full supply voltage independently; total current is the sum of branch currents."
-                },
-                {
-                    title: "Example 14: Independence of Domestic Parallel Circuits",
-                    question: "In a house wired in parallel, a 60 W light bulb (drawing 0.25 A) and an 1800 W heater (drawing 7.50 A) are plugged into 240 V outlets. If the bulb burns out, what happens to the voltage and current in the heater?",
-                    given: "Mains voltage \\( V = 240\\,\\mathrm{V} \\), Bulb current \\( 0.25\\,\\mathrm{A} \\), Heater current \\( 7.50\\,\\mathrm{A} \\).",
-                    find: "Heater operation status after bulb failure.",
-                    equation: "V_{\\text{parallel}} = \\text{constant} = 240\\,\\mathrm{V}, \\quad I_{\\text{heater}} = \\frac{V}{R_{\\text{heater}}}",
-                    rearrangement: "\\text{Independent parallel branches}",
-                    solution: "1. In a parallel system, each device forms an independent circuit path across the 240 V line.<br>2. The failure of the light bulb breaks only its branch, leaving the heater connected to the full 240 V supply.<br>3. The heater continues to draw its normal 7.50 A undisturbed.",
-                    finalAnswer: "\\text{Heater remains fully operational with } V = 240\\,\\mathrm{V} \\text{ and } I = 7.50\\,\\mathrm{A}",
-                    explanation: "This independence is the primary reason domestic electrical wiring is universally connected in parallel."
-                },
-                {
-                    title: "Practice Question 7: Total Current Supplied to Parallel Resistors",
-                    question: "A 10.0 V DC power supply is connected across parallel resistors of 15.0 Ω and 30.0 Ω. Calculate the total current delivered by the supply.",
-                    given: "Supply voltage \\( V = 10.0\\,\\mathrm{V} \\), Resistors \\( R_1 = 15.0\\,\\Omega \\), \\( R_2 = 30.0\\,\\Omega \\).",
-                    find: "Total current (\\( I_{\\text{total}} \\)).",
-                    equation: "R_{\\text{eq}} = \\frac{R_1 R_2}{R_1 + R_2}, \\quad I_{\\text{total}} = \\frac{V}{R_{\\text{eq}}}",
-                    rearrangement: "R_{\\text{eq}} = \\frac{15.0 \\times 30.0}{15.0 + 30.0} = \\frac{450}{45} = 10.0\\,\\Omega",
-                    solution: "1. <strong>Equivalent Resistance:</strong> \\( R_{\\text{eq}} = 10.0\\,\\Omega \\).<br>2. <strong>Total Current:</strong><br>\\[ I_{\\text{total}} = \\frac{10.0\\,\\mathrm{V}}{10.0\\,\\Omega} = 1.0\\,\\mathrm{A} \\]",
-                    finalAnswer: "I_{\\text{total}} = 1.0\\,\\mathrm{A}",
-                    explanation: "Total current can be found directly by dividing supply voltage by the total equivalent resistance."
-                },
-                {
-                    title: "Example 15: Power Rating of a Domestic Electric Kettle",
-                    question: "An electric kettle operates on a 230 V household circuit and draws a current of 8.7 A. Calculate its electrical power rating in Watts and kilowatts.",
-                    given: "Voltage \\( V = 230\\,\\mathrm{V} \\), Current \\( I = 8.7\\,\\mathrm{A} \\).",
-                    find: "Power rating (\\( P \\)) in W and kW.",
-                    equation: "P = I \\times V",
-                    rearrangement: "P = 8.7\\,\\mathrm{A} \\times 230\\,\\mathrm{V}",
-                    solution: "Multiply current by voltage:<br>\\[ P = 8.7 \\times 230 = 2001\\,\\mathrm{W} \\approx 2.0\\,\\mathrm{kW} \\]",
-                    finalAnswer: "P = 2001\\,\\mathrm{W} \\quad (\\approx 2.0\\,\\mathrm{kW})",
-                    explanation: "Electrical power in Watts represents the rate of energy consumption in Joules per second."
-                },
-                {
-                    title: "Example 16: Joule Thermal Power Dissipated in a Resistor",
-                    question: "A steady current of 3.0 A passes through a 10.0 Ω power resistor. Calculate the rate of thermal heat generation in Watts.",
-                    given: "Current \\( I = 3.0\\,\\mathrm{A} \\), Resistance \\( R = 10.0\\,\\Omega \\).",
-                    find: "Power dissipated (\\( P \\)) in Watts.",
-                    equation: "P = I^2 R",
-                    rearrangement: "P = (3.0)^2 \\times 10.0",
-                    solution: "Square current and multiply by resistance:<br>\\[ P = 9.0 \\times 10.0 = 90\\,\\mathrm{W} \\]",
-                    finalAnswer: "P = 90\\,\\mathrm{W}",
-                    explanation: "Power dissipation increases quadratically with current, making high-current transmission lines susceptible to Joule losses."
-                },
-                {
-                    title: "Practice Question 8: Operating Resistance of a 60 W Lamp",
-                    question: "An incandescent light bulb is marked '120 V, 60 W'. Calculate (a) its operating current, and (b) its electrical resistance when glowing.",
-                    given: "Power \\( P = 60\\,\\mathrm{W} \\), Voltage \\( V = 120\\,\\mathrm{V} \\).",
-                    find: "Current \\( I \\) and Resistance \\( R \\).",
-                    equation: "P = IV \\implies I = \\frac{P}{V}, \\quad R = \\frac{V^2}{P}",
-                    rearrangement: "I = \\frac{60}{120}, \\quad R = \\frac{(120)^2}{60}",
-                    solution: "1. <strong>Current:</strong> \\( I = \\frac{60}{120} = 0.50\\,\\mathrm{A} \\).<br>2. <strong>Resistance:</strong> \\( R = \\frac{14400}{60} = 240\\,\\Omega \\).",
-                    finalAnswer: "I = 0.50\\,\\mathrm{A}, \\quad R = 240\\,\\Omega",
-                    explanation: "Higher-wattage lamps operate at lower resistance to draw more current at the same voltage."
-                },
-                {
-                    title: "Example 17: Resistance of a Long Copper Transmission Cable",
-                    question: "A copper transmission cable has a length of 50 m and a cross-sectional area of 1.0 mm² (1.0 × 10⁻⁶ m²). If the resistivity of copper is 1.7 × 10⁻⁸ Ω·m, calculate the total resistance of the cable.",
-                    given: "Resistivity \\( \\rho = 1.7 \\times 10^{-8}\\,\\Omega\\cdot\\mathrm{m} \\), Length \\( L = 50\\,\\mathrm{m} \\), Area \\( A = 1.0 \\times 10^{-6}\\,\\mathrm{m^2} \\).",
-                    find: "Cable resistance (\\( R \\)).",
-                    equation: "R = \\rho \\frac{L}{A}",
-                    rearrangement: "R = (1.7 \\times 10^{-8}) \\times \\frac{50}{1.0 \\times 10^{-6}}",
-                    solution: "1. <strong>Multiply:</strong> \\( 1.7 \\times 50 = 85 \\).<br>2. <strong>Exponents:</strong> \\( 10^{-8} / 10^{-6} = 10^{-2} \\).<br>3. <strong>Calculate:</strong> \\( R = 85 \\times 10^{-2} = 0.85\\,\\Omega \\).",
-                    finalAnswer: "R = 0.85\\,\\Omega",
-                    explanation: "Resistance is directly proportional to length and inversely proportional to wire thickness."
-                },
-                {
-                    title: "Example 18: Calculating Length of Constantan Wire for a Resistor",
-                    question: "A physics teacher needs to wind a 10.0 Ω standard resistor using constantan wire of cross-sectional area 0.49 mm² (0.49 × 10⁻⁶ m²). If the resistivity of constantan is 4.9 × 10⁻⁷ Ω·m, what length of wire is required?",
-                    given: "Resistance \\( R = 10.0\\,\\Omega \\), Area \\( A = 0.49 \\times 10^{-6}\\,\\mathrm{m^2} \\), Resistivity \\( \\rho = 4.9 \\times 10^{-7}\\,\\Omega\\cdot\\mathrm{m} \\).",
-                    find: "Wire length (\\( L \\)).",
-                    equation: "R = \\rho \\frac{L}{A} \\implies L = \\frac{RA}{\\rho}",
-                    rearrangement: "L = \\frac{10.0 \\times 0.49 \\times 10^{-6}}{4.9 \\times 10^{-7}}",
-                    solution: "1. <strong>Numerator:</strong> \\( 4.9 \\times 10^{-6}\\,\\Omega\\cdot\\mathrm{m^2} \\).<br>2. <strong>Divide:</strong><br>\\[ L = \\frac{4.9 \\times 10^{-6}}{4.9 \\times 10^{-7}} = 10.0\\,\\mathrm{m} \\]",
-                    finalAnswer: "L = 10.0\\,\\mathrm{m}",
-                    explanation: "Constantan alloy has high resistivity and low temperature coefficient, ideal for winding standard resistors."
-                },
-                {
-                    title: "Practice Question 9: Cross-Sectional Area of Nichrome Heating Wire",
-                    question: "A 2.0 m length of nichrome wire has an electrical resistance of 5.0 Ω. If the resistivity of nichrome is 1.0 × 10⁻⁶ Ω·m, calculate the cross-sectional area of the wire in mm².",
-                    given: "Length \\( L = 2.0\\,\\mathrm{m} \\), Resistance \\( R = 5.0\\,\\Omega \\), Resistivity \\( \\rho = 1.0 \\times 10^{-6}\\,\\Omega\\cdot\\mathrm{m} \\).",
-                    find: "Area \\( A \\) in \\( \\mathrm{m^2} \\) and \\( \\mathrm{mm^2} \\).",
-                    equation: "A = \\frac{\\rho L}{R}",
-                    rearrangement: "A = \\frac{(1.0 \\times 10^{-6}) \\times 2.0}{5.0}",
-                    solution: "1. <strong>Calculate in m²:</strong> \\( A = \\frac{2.0 \\times 10^{-6}}{5.0} = 0.40 \\times 10^{-6}\\,\\mathrm{m^2} \\).<br>2. <strong>Convert to mm²:</strong> \\( 0.40 \\times 10^{-6}\\,\\mathrm{m^2} = 0.40\\,\\mathrm{mm^2} \\).",
-                    finalAnswer: "A = 0.40\\,\\mathrm{mm^2} \\quad (4.0 \\times 10^{-7}\\,\\mathrm{m^2})",
-                    explanation: "Thicker heating wires provide lower resistance and higher structural durability in toasters and heaters."
-                },
-                {
-                    title: "Example 19: Terminal Potential Difference with Internal Resistance",
-                    question: "A battery has an electromotive force (EMF) of 12.0 V and an internal resistance of 0.50 Ω. When connected to an external load resistor of 5.50 Ω, calculate (a) the circuit current, and (b) the terminal voltage across the battery.",
-                    given: "EMF \\( E = 12.0\\,\\mathrm{V} \\), Internal resistance \\( r = 0.50\\,\\Omega \\), Load resistance \\( R = 5.50\\,\\Omega \\).",
-                    find: "Current \\( I \\) and Terminal voltage \\( V \\).",
-                    equation: "I = \\frac{E}{R + r}, \\quad V = E - Ir = IR",
-                    rearrangement: "I = \\frac{12.0}{5.50 + 0.50} = \\frac{12.0}{6.00}",
-                    solution: "1. <strong>Circuit Current:</strong> \\( I = \\frac{12.0}{6.00} = 2.0\\,\\mathrm{A} \\).<br>2. <strong>Internal Voltage Drop:</strong> \\( V_{\\text{lost}} = Ir = 2.0 \\times 0.50 = 1.0\\,\\mathrm{V} \\).<br>3. <strong>Terminal Voltage:</strong> \\( V = E - Ir = 12.0 - 1.0 = 11.0\\,\\mathrm{V} \\) (or \\( V = IR = 2.0 \\times 5.50 = 11.0\\,\\mathrm{V} \\)).",
-                    finalAnswer: "I = 2.0\\,\\mathrm{A}, \\quad V = 11.0\\,\\mathrm{V}",
-                    explanation: "Real chemical batteries drop terminal voltage under load due to internal resistive losses."
-                },
-                {
-                    title: "Example 20: Determining Internal Resistance from Voltage Drop",
-                    question: "A 9.0 V battery has an open-circuit voltage of 9.0 V. When connected to a load drawing 1.5 A, its terminal voltage drops to 8.1 V. Calculate the internal resistance of the battery.",
-                    given: "EMF \\( E = 9.0\\,\\mathrm{V} \\), Terminal voltage \\( V = 8.1\\,\\mathrm{V} \\), Current \\( I = 1.5\\,\\mathrm{A} \\).",
-                    find: "Internal resistance (\\( r \\)).",
-                    equation: "V = E - Ir \\implies Ir = E - V \\implies r = \\frac{E - V}{I}",
-                    rearrangement: "r = \\frac{9.0 - 8.1}{1.5}",
-                    solution: "1. <strong>Lost volts:</strong> \\( 9.0 - 8.1 = 0.90\\,\\mathrm{V} \\).<br>2. <strong>Calculate r:</strong><br>\\[ r = \\frac{0.90}{1.5} = 0.60\\,\\Omega \\]",
-                    finalAnswer: "r = 0.60\\,\\Omega",
-                    explanation: "As a battery ages, its chemical internal resistance rises, causing noticeable terminal voltage drop under heavy loads."
-                },
-                {
-                    title: "Practice Question 10: Maximum Short-Circuit Current of a Cell",
-                    question: "A 1.50 V dry cell battery has an internal resistance of 0.25 Ω. What maximum instantaneous current would flow if its terminals were accidentally short-circuited with a thick wire of negligible resistance?",
-                    given: "EMF \\( E = 1.50\\,\\mathrm{V} \\), Internal resistance \\( r = 0.25\\,\\Omega \\), External load \\( R = 0 \\).",
-                    find: "Short-circuit current (\\( I_{\\text{sc}} \\)).",
-                    equation: "I_{\\text{sc}} = \\frac{E}{r}",
-                    rearrangement: "I_{\\text{sc}} = \\frac{1.50\\,\\mathrm{V}}{0.25\\,\\Omega}",
-                    solution: "Divide EMF by internal resistance:<br>\\[ I_{\\text{sc}} = \\frac{1.50}{0.25} = 6.0\\,\\mathrm{A} \\]",
-                    finalAnswer: "I_{\\text{sc}} = 6.0\\,\\mathrm{A}",
-                    explanation: "Short-circuit current is limited exclusively by the internal resistance of the source, causing rapid heating."
-                },
-                {
-                    title: "Example 21: Current Divider Rule in Parallel Branches",
-                    question: "A total current of 6.0 A flows into a parallel combination of two resistors: R₁ = 4.0 Ω and R₂ = 8.0 Ω. Use the current divider rule to find the current through each resistor.",
-                    given: "Total current \\( I_{\\text{total}} = 6.0\\,\\mathrm{A} \\), \\( R_1 = 4.0\\,\\Omega \\), \\( R_2 = 8.0\\,\\Omega \\).",
-                    find: "Branch currents \\( I_1 \\) and \\( I_2 \\).",
-                    equation: "I_1 = I_{\\text{total}} \\left(\\frac{R_2}{R_1 + R_2}\\right), \\quad I_2 = I_{\\text{total}} \\left(\\frac{R_1}{R_1 + R_2}\\right)",
-                    rearrangement: "I_1 = 6.0 \\times \\frac{8.0}{4.0 + 8.0}, \\quad I_2 = 6.0 \\times \\frac{4.0}{4.0 + 8.0}",
-                    solution: "1. <strong>Sum of resistors:</strong> \\( 4.0 + 8.0 = 12.0\\,\\Omega \\).<br>2. <strong>Branch 1 Current:</strong> \\( I_1 = 6.0 \\times \\frac{8.0}{12.0} = 6.0 \\times \\frac{2}{3} = 4.0\\,\\mathrm{A} \\).<br>3. <strong>Branch 2 Current:</strong> \\( I_2 = 6.0 \\times \\frac{4.0}{12.0} = 6.0 \\times \\frac{1}{3} = 2.0\\,\\mathrm{A} \\).<br>Check: \\( I_1 + I_2 = 4.0 + 2.0 = 6.0\\,\\mathrm{A} \\).",
-                    finalAnswer: "I_1 = 4.0\\,\\mathrm{A}, \\quad I_2 = 2.0\\,\\mathrm{A}",
-                    explanation: "The current divider rule confirms that smaller resistance branches carry proportionally larger currents."
-                },
-                {
-                    title: "Example 22: Galvanometer Shunt Resistor Current Division",
-                    question: "A sensitive galvanometer of internal resistance 99.0 Ω is shunted by a parallel resistor of 1.0 Ω to convert it into an ammeter. If a total current of 10.0 A enters the meter, calculate the small current passing through the galvanometer coil.",
-                    given: "Total current \\( I_{\\text{total}} = 10.0\\,\\mathrm{A} \\), \\( R_g = 99.0\\,\\Omega \\), \\( R_s = 1.0\\,\\Omega \\).",
-                    find: "Galvanometer current (\\( I_g \\)).",
-                    equation: "I_g = I_{\\text{total}} \\left(\\frac{R_s}{R_g + R_s}\\right)",
-                    rearrangement: "I_g = 10.0 \\times \\frac{1.0}{99.0 + 1.0}",
-                    solution: "Calculate:<br>\\[ I_g = 10.0 \\times \\frac{1.0}{100.0} = 0.10\\,\\mathrm{A} \\]<br>The shunt carries the remaining \\( 10.0 - 0.10 = 9.90\\,\\mathrm{A} \\).",
-                    finalAnswer: "I_g = 0.10\\,\\mathrm{A} \\quad (100\\,\\mathrm{mA})",
-                    explanation: "Shunt resistors divert 99% of heavy currents around sensitive delicate meters."
-                },
-                {
-                    title: "Practice Question 11: Dividing Current Between Unequal Resistors",
-                    question: "A current of 2.40 A enters a junction splitting into parallel resistors of 20.0 Ω and 60.0 Ω. Calculate the current in each branch.",
-                    given: "Total current \\( I_{\\text{total}} = 2.40\\,\\mathrm{A} \\), \\( R_1 = 20.0\\,\\Omega \\), \\( R_2 = 60.0\\,\\Omega \\).",
-                    find: "Currents \\( I_1 \\) and \\( I_2 \\).",
-                    equation: "I_1 = I_{\\text{total}}\\frac{R_2}{R_1 + R_2}, \\quad I_2 = I_{\\text{total}}\\frac{R_1}{R_1 + R_2}",
-                    rearrangement: "I_1 = 2.40 \\times \\frac{60.0}{80.0}, \\quad I_2 = 2.40 \\times \\frac{20.0}{80.0}",
-                    solution: "1. <strong>Branch 1:</strong> \\( I_1 = 2.40 \\times 0.75 = 1.80\\,\\mathrm{A} \\).<br>2. <strong>Branch 2:</strong> \\( I_2 = 2.40 \\times 0.25 = 0.60\\,\\mathrm{A} \\).",
-                    finalAnswer: "I_1 = 1.80\\,\\mathrm{A}, \\quad I_2 = 0.60\\,\\mathrm{A}",
-                    explanation: "The 20 Ω branch has three times less resistance and carries exactly three times more current than the 60 Ω branch."
-                }
-            ],
-            equations: [
-                {
-                    section: "Electric Current",
-                    name: "Electric Current Equation",
-                    formula: "\\[ I = \\frac{Q}{t} \\iff Q = I \\times t \\]",
-                    explanation: "Electric current is the rate of flow of electric charges past a point in a circuit.",
-                    conditions: "Steady, uniform direct current.",
-                    variables: [
-                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
-                        { symbol: "Q", rep: "Electric charge", unit: "Coulomb", unitSym: "\\mathrm{C}" },
-                        { symbol: "t", rep: "Time taken", unit: "Second", unitSym: "\\mathrm{s}" }
-                    ]
-                },
-                {
-                    section: "Electric Potential Difference",
-                    name: "Potential Difference (Voltage) Equation",
-                    formula: "\\[ V = \\frac{E}{Q} \\iff E = V \\times Q \\]",
-                    explanation: "Potential difference is the work done or electrical energy transferred per unit charge.",
-                    conditions: "Electrostatic potential difference across a device.",
-                    variables: [
-                        { symbol: "V", rep: "Potential difference (voltage)", unit: "Volt", unitSym: "\\mathrm{V}" },
-                        { symbol: "E", rep: "Energy transferred or work done", unit: "Joule", unitSym: "\\mathrm{J}" },
-                        { symbol: "Q", rep: "Electric charge transferred", unit: "Coulomb", unitSym: "\\mathrm{C}" }
-                    ]
-                },
-                {
-                    section: "Electric Potential Difference",
-                    name: "Total Electrical Energy in Terms of Current",
-                    formula: "\\[ E = I \\times V \\times t \\]",
-                    explanation: "Substituting Q = It yields total electrical energy transferred over time t.",
-                    conditions: "Steady voltage and current.",
-                    variables: [
-                        { symbol: "E", rep: "Electrical energy", unit: "Joule", unitSym: "\\mathrm{J}" },
-                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
-                        { symbol: "V", rep: "Potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
-                        { symbol: "t", rep: "Time interval", unit: "Second", unitSym: "\\mathrm{s}" }
-                    ]
-                },
-                {
-                    section: "Ohm's Law & Resistance",
-                    name: "Ohm's Law Equation",
-                    formula: "\\[ R = \\frac{V}{I} \\iff V = IR \\iff I = \\frac{V}{R} \\]",
-                    explanation: "Resistance is the ratio of potential difference across a conductor to the resulting current.",
-                    conditions: "Ohmic metallic conductors at constant temperature.",
-                    variables: [
-                        { symbol: "R", rep: "Electrical resistance", unit: "Ohm", unitSym: "\\Omega" },
-                        { symbol: "V", rep: "Potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
-                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" }
-                    ]
-                },
-                {
-                    section: "Resistor Combinations",
-                    name: "Resistors in Series",
-                    formula: "\\[ R_{\\text{eq}} = R_1 + R_2 + R_3 + \\dots \\]",
-                    explanation: "The equivalent resistance of series resistors is the sum of their individual values.",
-                    conditions: "End-to-end unbranched series connection.",
-                    variables: [
-                        { symbol: "R_{\\text{eq}}", rep: "Total equivalent resistance", unit: "Ohm", unitSym: "\\Omega" },
-                        { symbol: "R_1, R_2, R_3", rep: "Individual series resistors", unit: "Ohm", unitSym: "\\Omega" }
-                    ]
-                },
-                {
-                    section: "Resistor Combinations",
-                    name: "Resistors in Parallel",
-                    formula: "\\[ \\frac{1}{R_{\\text{eq}}} = \\frac{1}{R_1} + \\frac{1}{R_2} \\iff R_{\\text{eq}} = \\frac{R_1 \\times R_2}{R_1 + R_2} \\]",
-                    explanation: "Combined resistance of parallel resistors is the reciprocal sum, or product divided by sum for two resistors.",
-                    conditions: "Parallel branches across identical voltage.",
-                    variables: [
-                        { symbol: "R_{\\text{eq}}", rep: "Total equivalent resistance", unit: "Ohm", unitSym: "\\Omega" },
-                        { symbol: "R_1, R_2", rep: "Individual parallel resistors", unit: "Ohm", unitSym: "\\Omega" }
-                    ]
-                },
-                {
-                    section: "Circuit Laws",
-                    name: "Voltages and Currents in Series vs Parallel",
-                    formula: "\\[ V_{\\text{series}} = V_1 + V_2, \\quad I_{\\text{series}} = \\text{const}; \\qquad V_{\\text{parallel}} = \\text{const}, \\quad I_{\\text{parallel}} = I_1 + I_2 \\]",
-                    explanation: "Summarizes Kirchhoff's branch rules for voltages and currents in basic DC configurations.",
-                    conditions: "Direct current circuits.",
-                    variables: [
-                        { symbol: "V", rep: "Total circuit potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
-                        { symbol: "I", rep: "Total circuit current", unit: "Ampere", unitSym: "\\mathrm{A}" }
-                    ]
-                },
-                {
-                    section: "Electrical Power",
-                    name: "Electrical Power Equation",
-                    formula: "\\[ P = IV = I^2 R = \\frac{V^2}{R} \\]",
-                    explanation: "The rate at which electrical energy is transformed into thermal, radiant, or mechanical energy in a circuit component.",
-                    conditions: "Steady DC or instantaneous AC power in resistive loads.",
-                    variables: [
-                        { symbol: "P", rep: "Electrical power", unit: "Watt", unitSym: "\\mathrm{W}" },
-                        { symbol: "I", rep: "Electric current", unit: "Ampere", unitSym: "\\mathrm{A}" },
-                        { symbol: "V", rep: "Potential difference (voltage)", unit: "Volt", unitSym: "\\mathrm{V}" },
-                        { symbol: "R", rep: "Resistance of conductor", unit: "Ohm", unitSym: "\\Omega" }
-                    ]
-                },
-                {
-                    section: "Conductor Resistance",
-                    name: "Resistance and Resistivity Law",
-                    formula: "\\[ R = \\rho \\frac{L}{A} \\iff \\rho = \\frac{RA}{L} \\]",
-                    explanation: "The resistance of a uniform conductor is directly proportional to its length and inversely proportional to its cross-sectional area.",
-                    conditions: "Uniform cylindrical or rectangular wire at constant temperature.",
-                    variables: [
-                        { symbol: "R", rep: "Resistance of the conductor", unit: "Ohm", unitSym: "\\Omega" },
-                        { symbol: "\\rho", rep: "Resistivity of the material", unit: "Ohm meter", unitSym: "\\Omega\\cdot\\mathrm{m}" },
-                        { symbol: "L", rep: "Length of the wire", unit: "Meter", unitSym: "\\mathrm{m}" },
-                        { symbol: "A", rep: "Cross-sectional area", unit: "Square meter", unitSym: "\\mathrm{m^2}" }
-                    ]
-                },
-                {
-                    section: "Electromotive Force",
-                    name: "EMF and Internal Resistance",
-                    formula: "\\[ E = I(R + r) = V + Ir \\iff V = E - Ir \\]",
-                    explanation: "Electromotive force E of a source equals terminal potential difference V plus the internal voltage drop Ir across internal resistance r.",
-                    conditions: "Closed DC circuit with a real power source.",
-                    variables: [
-                        { symbol: "E", rep: "Electromotive force (EMF)", unit: "Volt", unitSym: "\\mathrm{V}" },
-                        { symbol: "V", rep: "Terminal potential difference", unit: "Volt", unitSym: "\\mathrm{V}" },
-                        { symbol: "I", rep: "Total circuit current", unit: "Ampere", unitSym: "\\mathrm{A}" },
-                        { symbol: "R", rep: "External load resistance", unit: "Ohm", unitSym: "\\Omega" },
-                        { symbol: "r", rep: "Internal resistance of the battery", unit: "Ohm", unitSym: "\\Omega" }
-                    ]
-                },
-                {
-                    section: "Circuit Laws",
-                    name: "Current Divider Rule (Parallel Branches)",
-                    formula: "\\[ I_1 = I_{\\text{total}} \\left(\\frac{R_2}{R_1 + R_2}\\right), \\quad I_2 = I_{\\text{total}} \\left(\\frac{R_1}{R_1 + R_2}\\right) \\]",
-                    explanation: "Calculates the individual branch current flowing through one of two parallel resistors from the total incoming current.",
-                    conditions: "Two resistors connected in parallel.",
-                    variables: [
-                        { symbol: "I_1, I_2", rep: "Branch currents", unit: "Ampere", unitSym: "\\mathrm{A}" },
-                        { symbol: "I_{\\text{total}}", rep: "Total current entering junction", unit: "Ampere", unitSym: "\\mathrm{A}" },
-                        { symbol: "R_1, R_2", rep: "Branch resistances", unit: "Ohm", unitSym: "\\Omega" }
-                    ]
-                }
-            ],
-            flashcards: [
-                { front: "What is electric current and what is its defining formula?", back: "Electric current is the continuous rate of flow of electric charges: \\( I = \\frac{Q}{t} \\iff Q = I \\times t \\)." },
-                { front: "What is the SI unit of electric current and what is it equivalent to?", back: "The Ampere (A). \\( 1\\,\\mathrm{Ampere} = 1\\,\\mathrm{Coulomb/second} \\; (1\\,\\mathrm{A} = 1\\,\\mathrm{C/s}) \\)." },
-                { front: "How do you rearrange the current equation to solve for time?", back: "\\( t = \\frac{Q}{I} \\)" },
-                { front: "What is potential difference (voltage) and its formula?", back: "The work done or electrical energy transferred per unit charge: \\( V = \\frac{E}{Q} \\iff E = V \\times Q \\)." },
-                { front: "What is 1 Volt in base electrical units?", back: "\\( 1\\,\\mathrm{Volt} = 1\\,\\mathrm{Joule/Coulomb} \\; (1\\,\\mathrm{V} = 1\\,\\mathrm{J/C}) \\)." },
-                { front: "What is the formula for total electrical energy in terms of current, voltage, and time?", back: "\\( E = I \\times V \\times t \\)" },
-                { front: "State Ohm's Law and its three algebraic forms.", back: "Current is directly proportional to potential difference across a metallic conductor at constant temperature: \\( V = IR \\iff I = \\frac{V}{R} \\iff R = \\frac{V}{I} \\)." },
-                { front: "What is the SI unit of electrical resistance?", back: "The Ohm (\\( \\Omega \\)), where \\( 1\\,\\Omega = 1\\,\\mathrm{V/A} \\)." },
-                { front: "What is the formula for resistors connected in series?", back: "\\( R_{\\text{eq}} = R_1 + R_2 + R_3 + \\dots \\)" },
-                { front: "What is the formula for two resistors connected in parallel?", back: "\\( \\frac{1}{R_{\\text{eq}}} = \\frac{1}{R_1} + \\frac{1}{R_2} \\iff R_{\\text{eq}} = \\frac{R_1 \\times R_2}{R_1 + R_2} \\)" },
-                { front: "How do current and voltage behave in an unbranched series circuit?", back: "Current is identical at every point (\\( I = \\text{constant} \\)); Total voltage equals the sum of individual voltage drops (\\( V_{\\text{total}} = V_1 + V_2 \\))." },
-                { front: "How do current and voltage behave in a parallel circuit?", back: "Voltage across each parallel branch is identical (\\( V = \\text{constant} \\)); Total current is the sum of branch currents (\\( I_{\\text{total}} = I_1 + I_2 \\))." },
-                { front: "What are the three mathematical equations for electrical power?", back: "\\( P = IV = I^2 R = \\frac{V^2}{R} \\)" },
-                { front: "What is the SI unit of electrical power?", back: "The Watt (W), where \\( 1\\,\\mathrm{W} = 1\\,\\mathrm{J/s} = 1\\,\\mathrm{V\\cdot A} \\)." },
-                { front: "What is the resistance and resistivity law for a uniform wire?", back: "\\( R = \\rho \\frac{L}{A} \\), where \\( \\rho \\) is resistivity, \\( L \\) is length, and \\( A \\) is cross-sectional area." },
-                { front: "What is the SI unit of resistivity \\( \\rho \\)?", back: "Ohm-meter (\\( \\Omega\\cdot\\mathrm{m} \\))." },
-                { front: "How does wire length and thickness affect resistance?", back: "Doubling length doubles resistance (\\( R \\propto L \\)); doubling cross-sectional area halves resistance (\\( R \\propto \\frac{1}{A} \\))." },
-                { front: "What is the relationship between electromotive force (EMF), terminal voltage, and internal resistance?", back: "\\( E = I(R + r) = V + Ir \\iff V = E - Ir \\), where \\( Ir \\) is the internal lost volts." },
-                { front: "How do you calculate the internal resistance of a battery from voltage drop?", back: "\\( r = \\frac{E - V}{I} \\)" },
-                { front: "State the current divider rule for two parallel branches.", back: "\\( I_1 = I_{\\text{total}}\\left(\\frac{R_2}{R_1 + R_2}\\right) \\quad\\text{and}\\quad I_2 = I_{\\text{total}}\\left(\\frac{R_1}{R_1 + R_2}\\right) \\)" },
-                { front: "How must an ammeter and a voltmeter be connected in a circuit?", back: "An ammeter is connected in series (low resistance); a voltmeter is connected in parallel across the component (high resistance)." },
-                { front: "Why are household circuits wired in parallel rather than in series?", back: "Each appliance receives the full mains supply voltage (230 V) and can be turned on or off independently without disconnecting other devices." }
-            ],
-            quiz: [
-                {
-                    question: "A total charge of 1200 C passes through an electric kettle filament in 5.0 minutes (300 s). What is the electric current flowing?",
-                    options: ["4.0 A", "240 A", "6000 A", "0.25 A"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Charge \\( Q = 1200\\,\\mathrm{C} \\), Time \\( t = 5.0\\,\\text{min} = 300\\,\\mathrm{s} \\).<br>2. <strong>Find:</strong> Electric current \\( I \\).<br>3. <strong>Equation:</strong> \\( I = \\frac{Q}{t} \\).<br>4. <strong>Unit conversion:</strong> \\( 5.0\\,\\text{min} \\times 60 = 300\\,\\mathrm{s} \\).<br>5. <strong>Rearrangement:</strong> Direct division.<br>6. <strong>Substitution:</strong> \\( I = \\frac{1200\\,\\mathrm{C}}{300\\,\\mathrm{s}} \\).<br>7. <strong>Calculation:</strong> \\( \\frac{1200}{300} = 4.0\\,\\mathrm{A} \\).<br>8. <strong>Final Answer:</strong> \\( 4.0\\,\\mathrm{A} \\).<br>9. <strong>Explanation:</strong> Current measures the rate of charge flow in Coulombs per second."
-                },
-                {
-                    question: "An LED desk lamp draws a steady current of 0.50 A for 10 minutes. How much electric charge passes through the lamp?",
-                    options: ["300 C", "5.0 C", "600 C", "120 C"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Current \\( I = 0.50\\,\\mathrm{A} \\), Time \\( t = 10\\,\\text{min} = 10 \\times 60 = 600\\,\\mathrm{s} \\).<br>2. <strong>Find:</strong> Electric charge \\( Q \\).<br>3. <strong>Equation:</strong> \\( Q = I \\times t \\).<br>4. <strong>Unit conversion:</strong> Convert minutes to seconds: \\( 600\\,\\mathrm{s} \\).<br>5. <strong>Rearrangement:</strong> Direct multiplication.<br>6. <strong>Substitution:</strong> \\( Q = 0.50\\,\\mathrm{A} \\times 600\\,\\mathrm{s} \\).<br>7. <strong>Calculation:</strong> \\( 0.50 \\times 600 = 300\\,\\mathrm{C} \\).<br>8. <strong>Final Answer:</strong> \\( 300\\,\\mathrm{C} \\).<br>9. <strong>Explanation:</strong> Multiplying current by elapsed time yields total transferred charge."
-                },
-                {
-                    question: "A rechargeable power bank stores 7200 C of charge. How long can it supply a current of 0.50 A to an emergency lantern?",
-                    options: ["14,400 s (4.0 hours)", "3600 s (1.0 hour)", "7200 s (2.0 hours)", "28,800 s (8.0 hours)"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Charge \\( Q = 7200\\,\\mathrm{C} \\), Current \\( I = 0.50\\,\\mathrm{A} \\).<br>2. <strong>Find:</strong> Operating duration \\( t \\).<br>3. <strong>Equation:</strong> \\( I = \\frac{Q}{t} \\implies t = \\frac{Q}{I} \\).<br>4. <strong>Unit conversion:</strong> Seconds to hours (\\( \\div 3600 \\)).<br>5. <strong>Rearrangement:</strong> \\( t = \\frac{Q}{I} \\).<br>6. <strong>Substitution:</strong> \\( t = \\frac{7200\\,\\mathrm{C}}{0.50\\,\\mathrm{A}} \\).<br>7. <strong>Calculation:</strong> \\( t = 14{,}400\\,\\mathrm{s} \\); \\( \\frac{14400}{3600} = 4.0\\,\\text{hours} \\).<br>8. <strong>Final Answer:</strong> \\( 14{,}400\\,\\mathrm{s} \\) (4.0 hours).<br>9. <strong>Explanation:</strong> Dividing total stored charge by discharge current yields battery runtime."
-                },
-                {
-                    question: "An electric motor transfers 480 J of electrical energy into mechanical work when 20 C of charge passes through it. What is the potential difference across the motor?",
-                    options: ["24 V", "9600 V", "0.042 V", "240 V"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Energy \\( E = 480\\,\\mathrm{J} \\), Charge \\( Q = 20\\,\\mathrm{C} \\).<br>2. <strong>Find:</strong> Potential difference \\( V \\).<br>3. <strong>Equation:</strong> \\( V = \\frac{E}{Q} \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct division.<br>6. <strong>Substitution:</strong> \\( V = \\frac{480\\,\\mathrm{J}}{20\\,\\mathrm{C}} \\).<br>7. <strong>Calculation:</strong> \\( \\frac{480}{20} = 24\\,\\mathrm{V} \\).<br>8. <strong>Final Answer:</strong> \\( 24\\,\\mathrm{V} \\).<br>9. <strong>Explanation:</strong> Potential difference represents the Joules of work delivered per Coulomb of charge."
-                },
-                {
-                    question: "The potential difference across an automotive lamp is 12 V. How much electrical energy is transferred when 5.0 C of charge passes through it?",
-                    options: ["60 J", "2.4 J", "17 J", "120 J"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Voltage \\( V = 12\\,\\mathrm{V} \\), Charge \\( Q = 5.0\\,\\mathrm{C} \\).<br>2. <strong>Find:</strong> Electrical energy \\( E \\).<br>3. <strong>Equation:</strong> \\( E = V \\times Q \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct multiplication.<br>6. <strong>Substitution:</strong> \\( E = 12\\,\\mathrm{V} \\times 5.0\\,\\mathrm{C} \\).<br>7. <strong>Calculation:</strong> \\( 12 \\times 5.0 = 60\\,\\mathrm{J} \\).<br>8. <strong>Final Answer:</strong> \\( 60\\,\\mathrm{J} \\).<br>9. <strong>Explanation:</strong> Energy is the product of voltage and charge transferred."
-                },
-                {
-                    question: "A heating element connected to a 230 V mains supply carries a current of 2.0 A. How much energy is consumed in 60 seconds?",
-                    options: ["27,600 J (27.6 kJ)", "460 J", "13,800 J", "920 J"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Voltage \\( V = 230\\,\\mathrm{V} \\), Current \\( I = 2.0\\,\\mathrm{A} \\), Time \\( t = 60\\,\\mathrm{s} \\).<br>2. <strong>Find:</strong> Energy \\( E \\).<br>3. <strong>Equation:</strong> \\( E = I \\times V \\times t \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct multiplication.<br>6. <strong>Substitution:</strong> \\( E = 2.0 \\times 230 \\times 60 \\).<br>7. <strong>Calculation:</strong> \\( 2.0 \\times 230 = 460\\,\\mathrm{W} \\); \\( 460 \\times 60 = 27{,}600\\,\\mathrm{J} = 27.6\\,\\mathrm{kJ} \\).<br>8. <strong>Final Answer:</strong> \\( 27{,}600\\,\\mathrm{J} \\) (27.6 kJ).<br>9. <strong>Explanation:</strong> Electrical energy equals power (IV) multiplied by operating time (t)."
-                },
-                {
-                    question: "A 12 V power supply is connected across a 1.0 kΩ (1000 Ω) resistor. What current flows through the resistor?",
-                    options: ["0.012 A (12 mA)", "1.2 A", "12,000 A", "0.12 A (120 mA)"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Voltage \\( V = 12\\,\\mathrm{V} \\), Resistance \\( R = 1.0\\,\\mathrm{k\\Omega} = 1000\\,\\Omega \\).<br>2. <strong>Find:</strong> Current \\( I \\).<br>3. <strong>Equation:</strong> \\( I = \\frac{V}{R} \\).<br>4. <strong>Unit conversion:</strong> \\( 1.0\\,\\mathrm{k\\Omega} = 1000\\,\\Omega \\).<br>5. <strong>Rearrangement:</strong> Direct division.<br>6. <strong>Substitution:</strong> \\( I = \\frac{12\\,\\mathrm{V}}{1000\\,\\Omega} \\).<br>7. <strong>Calculation:</strong> \\( \\frac{12}{1000} = 0.012\\,\\mathrm{A} = 12\\,\\mathrm{mA} \\).<br>8. <strong>Final Answer:</strong> \\( 0.012\\,\\mathrm{A} \\) (12 mA).<br>9. <strong>Explanation:</strong> Applying Ohm's law with kilo-ohm resistance gives milliamperes of current."
-                },
-                {
-                    question: "An incandescent light bulb connected across 120 V draws a current of 0.50 A. What is the electrical resistance of the bulb filament?",
-                    options: ["240 Ω", "60 Ω", "0.0042 Ω", "480 Ω"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Voltage \\( V = 120\\,\\mathrm{V} \\), Current \\( I = 0.50\\,\\mathrm{A} \\).<br>2. <strong>Find:</strong> Resistance \\( R \\).<br>3. <strong>Equation:</strong> \\( R = \\frac{V}{I} \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct division.<br>6. <strong>Substitution:</strong> \\( R = \\frac{120\\,\\mathrm{V}}{0.50\\,\\mathrm{A}} \\).<br>7. <strong>Calculation:</strong> \\( \\frac{120}{0.50} = 240\\,\\Omega \\).<br>8. <strong>Final Answer:</strong> \\( 240\\,\\Omega \\).<br>9. <strong>Explanation:</strong> Ohm's law provides the dynamic hot resistance of the glowing filament."
-                },
-                {
-                    question: "An electric heater coil has a resistance of 48 Ω. What voltage is required to produce a current of 5.0 A through the coil?",
-                    options: ["240 V", "9.6 V", "120 V", "53 V"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Resistance \\( R = 48\\,\\Omega \\), Current \\( I = 5.0\\,\\mathrm{A} \\).<br>2. <strong>Find:</strong> Potential difference \\( V \\).<br>3. <strong>Equation:</strong> \\( V = IR \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct multiplication.<br>6. <strong>Substitution:</strong> \\( V = 5.0\\,\\mathrm{A} \\times 48\\,\\Omega \\).<br>7. <strong>Calculation:</strong> \\( 5.0 \\times 48 = 240\\,\\mathrm{V} \\).<br>8. <strong>Final Answer:</strong> \\( 240\\,\\mathrm{V} \\).<br>9. <strong>Explanation:</strong> Standard domestic mains voltage (240 V) drives 5.0 A through a 48 Ω heating element."
-                },
-                {
-                    question: "Three resistors with values 10 Ω, 25 Ω, and 15 Ω are connected in series. What is the total equivalent resistance?",
-                    options: ["50 Ω", "5.0 Ω", "25 Ω", "37.5 Ω"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> \\( R_1 = 10\\,\\Omega \\), \\( R_2 = 25\\,\\Omega \\), \\( R_3 = 15\\,\\Omega \\).<br>2. <strong>Find:</strong> Equivalent resistance \\( R_{\\text{eq}} \\).<br>3. <strong>Equation:</strong> \\( R_{\\text{eq}} = R_1 + R_2 + R_3 \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct addition.<br>6. <strong>Substitution:</strong> \\( R_{\\text{eq}} = 10 + 25 + 15 \\).<br>7. <strong>Calculation:</strong> \\( 10 + 25 + 15 = 50\\,\\Omega \\).<br>8. <strong>Final Answer:</strong> \\( 50\\,\\Omega \\).<br>9. <strong>Explanation:</strong> In series, each additional resistor adds its full value to the overall opposition to current."
-                },
-                {
-                    question: "Two resistors of 3.0 Ω and 7.0 Ω are connected in series across a 20 V power supply. What is the current in the circuit and the voltage drop across the 7.0 Ω resistor?",
-                    options: ["I = 2.0 A, V_2 = 14.0 V", "I = 2.0 A, V_2 = 6.0 V", "I = 1.0 A, V_2 = 7.0 V", "I = 4.0 A, V_2 = 14.0 V"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> \\( R_1 = 3.0\\,\\Omega \\), \\( R_2 = 7.0\\,\\Omega \\), Supply \\( V = 20\\,\\mathrm{V} \\).<br>2. <strong>Find:</strong> Circuit current \\( I \\) and voltage drop \\( V_2 \\).<br>3. <strong>Equation:</strong> \\( R_{\\text{eq}} = R_1 + R_2 \\), \\( I = \\frac{V}{R_{\\text{eq}}} \\), \\( V_2 = IR_2 \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Sequential substitution.<br>6. <strong>Substitution:</strong> \\( R_{\\text{eq}} = 3.0 + 7.0 = 10.0\\,\\Omega \\); \\( I = \\frac{20}{10.0} \\); \\( V_2 = 2.0 \\times 7.0 \\).<br>7. <strong>Calculation:</strong> \\( I = 2.0\\,\\mathrm{A} \\); \\( V_2 = 2.0 \\times 7.0 = 14.0\\,\\mathrm{V} \\) (and \\( V_1 = 2.0 \\times 3.0 = 6.0\\,\\mathrm{V} \\)).<br>8. <strong>Final Answer:</strong> \\( I = 2.0\\,\\mathrm{A}, \\; V_2 = 14.0\\,\\mathrm{V} \\).<br>9. <strong>Explanation:</strong> Potential difference divides in direct proportion to resistance in a series string."
-                },
-                {
-                    question: "Two resistors of 6.0 Ω and 12.0 Ω are connected in parallel. What is their combined equivalent resistance?",
-                    options: ["4.0 Ω", "18.0 Ω", "8.0 Ω", "2.0 Ω"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> \\( R_1 = 6.0\\,\\Omega \\), \\( R_2 = 12.0\\,\\Omega \\).<br>2. <strong>Find:</strong> Equivalent resistance \\( R_{\\text{eq}} \\).<br>3. <strong>Equation:</strong> \\( R_{\\text{eq}} = \\frac{R_1 \\times R_2}{R_1 + R_2} \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Product over sum formula.<br>6. <strong>Substitution:</strong> \\( R_{\\text{eq}} = \\frac{6.0 \\times 12.0}{6.0 + 12.0} \\).<br>7. <strong>Calculation:</strong> Numerator: \\( 6.0 \\times 12.0 = 72 \\); Denominator: \\( 6.0 + 12.0 = 18 \\); \\( R_{\\text{eq}} = \\frac{72}{18} = 4.0\\,\\Omega \\).<br>8. <strong>Final Answer:</strong> \\( 4.0\\,\\Omega \\).<br>9. <strong>Explanation:</strong> The combined resistance of parallel branches is always less than the smallest individual resistor."
-                },
-                {
-                    question: "A 10.0 V DC power supply is connected across parallel resistors of 15.0 Ω and 30.0 Ω. Calculate the total current supplied by the battery.",
-                    options: ["1.0 A", "0.22 A", "2.0 A", "4.5 A"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Supply \\( V = 10.0\\,\\mathrm{V} \\), \\( R_1 = 15.0\\,\\Omega \\), \\( R_2 = 30.0\\,\\Omega \\).<br>2. <strong>Find:</strong> Total current \\( I_{\\text{total}} \\).<br>3. <strong>Equation:</strong> \\( R_{\\text{eq}} = \\frac{R_1 R_2}{R_1 + R_2} \\), \\( I_{\\text{total}} = \\frac{V}{R_{\\text{eq}}} \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> \\( R_{\\text{eq}} = \\frac{15 \\times 30}{15 + 30} = \\frac{450}{45} = 10.0\\,\\Omega \\).<br>6. <strong>Substitution:</strong> \\( I_{\\text{total}} = \\frac{10.0\\,\\mathrm{V}}{10.0\\,\\Omega} \\).<br>7. <strong>Calculation:</strong> \\( \\frac{10.0}{10.0} = 1.0\\,\\mathrm{A} \\).<br>8. <strong>Final Answer:</strong> \\( 1.0\\,\\mathrm{A} \\).<br>9. <strong>Explanation:</strong> Total current equals supply voltage divided by total parallel equivalent resistance."
-                },
-                {
-                    question: "A 12 V battery is connected across two parallel resistors of 6.0 Ω and 12.0 Ω. What are the branch currents I₁ and I₂?",
-                    options: ["I₁ = 2.0 A, I₂ = 1.0 A", "I₁ = 1.0 A, I₂ = 2.0 A", "I₁ = 0.5 A, I₂ = 1.0 A", "I₁ = 4.0 A, I₂ = 2.0 A"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Supply \\( V = 12\\,\\mathrm{V} \\), \\( R_1 = 6.0\\,\\Omega \\), \\( R_2 = 12.0\\,\\Omega \\).<br>2. <strong>Find:</strong> Branch currents \\( I_1 \\) and \\( I_2 \\).<br>3. <strong>Equation:</strong> \\( I_1 = \\frac{V}{R_1} \\), \\( I_2 = \\frac{V}{R_2} \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct division.<br>6. <strong>Substitution:</strong> \\( I_1 = \\frac{12}{6.0} \\); \\( I_2 = \\frac{12}{12.0} \\).<br>7. <strong>Calculation:</strong> \\( I_1 = 2.0\\,\\mathrm{A} \\); \\( I_2 = 1.0\\,\\mathrm{A} \\). Total current: \\( 2.0 + 1.0 = 3.0\\,\\mathrm{A} \\).<br>8. <strong>Final Answer:</strong> \\( I_1 = 2.0\\,\\mathrm{A}, \\; I_2 = 1.0\\,\\mathrm{A} \\).<br>9. <strong>Explanation:</strong> In parallel, each resistor receives the full supply voltage independently."
-                },
-                {
-                    question: "An electric kettle connected to a 230 V household mains supply draws a current of 8.7 A. What is its power rating in Watts?",
-                    options: ["2001 W (~2.0 kW)", "26.4 W", "1150 W", "529 W"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Voltage \\( V = 230\\,\\mathrm{V} \\), Current \\( I = 8.7\\,\\mathrm{A} \\).<br>2. <strong>Find:</strong> Electrical power \\( P \\).<br>3. <strong>Equation:</strong> \\( P = I \\times V \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct multiplication.<br>6. <strong>Substitution:</strong> \\( P = 8.7\\,\\mathrm{A} \\times 230\\,\\mathrm{V} \\).<br>7. <strong>Calculation:</strong> \\( 8.7 \\times 230 = 2001\\,\\mathrm{W} \\approx 2.0\\,\\mathrm{kW} \\).<br>8. <strong>Final Answer:</strong> \\( 2001\\,\\mathrm{W} \\) (approximately 2.0 kW).<br>9. <strong>Explanation:</strong> Multiplying current by voltage determines the rate of electrical energy consumption in Watts."
-                },
-                {
-                    question: "A current of 3.0 A passes through a 10.0 Ω power resistor. Calculate the rate of thermal heat dissipation in Watts.",
-                    options: ["90 W", "30 W", "300 W", "100 W"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Current \\( I = 3.0\\,\\mathrm{A} \\), Resistance \\( R = 10.0\\,\\Omega \\).<br>2. <strong>Find:</strong> Power dissipated \\( P \\).<br>3. <strong>Equation:</strong> \\( P = I^2 R \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct calculation.<br>6. <strong>Substitution:</strong> \\( P = (3.0\\,\\mathrm{A})^2 \\times 10.0\\,\\Omega \\).<br>7. <strong>Calculation:</strong> \\( (3.0)^2 = 9.0 \\); \\( 9.0 \\times 10.0 = 90\\,\\mathrm{W} \\).<br>8. <strong>Final Answer:</strong> \\( 90\\,\\mathrm{W} \\).<br>9. <strong>Explanation:</strong> Joule heating increases quadratically with current."
-                },
-                {
-                    question: "A 240 Ω heating element is connected across a 120 V supply. What is the power generated by the element?",
-                    options: ["60 W", "28,800 W", "0.50 W", "120 W"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Voltage \\( V = 120\\,\\mathrm{V} \\), Resistance \\( R = 240\\,\\Omega \\).<br>2. <strong>Find:</strong> Power \\( P \\).<br>3. <strong>Equation:</strong> \\( P = \\frac{V^2}{R} \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Direct calculation.<br>6. <strong>Substitution:</strong> \\( P = \\frac{(120)^2}{240} \\).<br>7. <strong>Calculation:</strong> \\( (120)^2 = 14{,}400 \\); \\( P = \\frac{14400}{240} = 60\\,\\mathrm{W} \\).<br>8. <strong>Final Answer:</strong> \\( 60\\,\\mathrm{W} \\).<br>9. <strong>Explanation:</strong> Power is inversely proportional to resistance when voltage is constant."
-                },
-                {
-                    question: "A copper transmission cable of length 50 m has a cross-sectional area of 1.0 × 10⁻⁶ m² (1.0 mm²). If the resistivity of copper is 1.7 × 10⁻⁸ Ω·m, calculate the total resistance of the cable.",
-                    options: ["0.85 Ω", "8.5 Ω", "0.085 Ω", "1.7 Ω"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Length \\( L = 50\\,\\mathrm{m} \\), Area \\( A = 1.0 \\times 10^{-6}\\,\\mathrm{m^2} \\), Resistivity \\( \\rho = 1.7 \\times 10^{-8}\\,\\Omega\\cdot\\mathrm{m} \\).<br>2. <strong>Find:</strong> Resistance \\( R \\).<br>3. <strong>Equation:</strong> \\( R = \\rho \\frac{L}{A} \\).<br>4. <strong>Unit conversion:</strong> All values in SI units.<br>5. <strong>Rearrangement:</strong> Direct substitution.<br>6. <strong>Substitution:</strong> \\( R = (1.7 \\times 10^{-8}) \\times \\frac{50}{1.0 \\times 10^{-6}} \\).<br>7. <strong>Calculation:</strong> \\( 1.7 \\times 50 = 85 \\); exponents \\( 10^{-8} / 10^{-6} = 10^{-2} \\); \\( R = 85 \\times 10^{-2} = 0.85\\,\\Omega \\).<br>8. <strong>Final Answer:</strong> \\( 0.85\\,\\Omega \\).<br>9. <strong>Explanation:</strong> Wire resistance is proportional to length and material resistivity, and inversely proportional to wire area."
-                },
-                {
-                    question: "What length of constantan wire (cross-sectional area 0.49 × 10⁻⁶ m², resistivity 4.9 × 10⁻⁷ Ω·m) is required to wind a 10.0 Ω standard resistor?",
-                    options: ["10.0 m", "1.0 m", "100 m", "4.9 m"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Target \\( R = 10.0\\,\\Omega \\), Area \\( A = 0.49 \\times 10^{-6}\\,\\mathrm{m^2} \\), Resistivity \\( \\rho = 4.9 \\times 10^{-7}\\,\\Omega\\cdot\\mathrm{m} \\).<br>2. <strong>Find:</strong> Length \\( L \\).<br>3. <strong>Equation:</strong> \\( R = \\rho \\frac{L}{A} \\implies L = \\frac{RA}{\\rho} \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> \\( L = \\frac{RA}{\\rho} \\).<br>6. <strong>Substitution:</strong> \\( L = \\frac{10.0 \\times (0.49 \\times 10^{-6})}{4.9 \\times 10^{-7}} \\).<br>7. <strong>Calculation:</strong> Numerator: \\( 4.9 \\times 10^{-6} \\); \\( L = \\frac{4.9 \\times 10^{-6}}{4.9 \\times 10^{-7}} = 10.0\\,\\mathrm{m} \\).<br>8. <strong>Final Answer:</strong> \\( 10.0\\,\\mathrm{m} \\).<br>9. <strong>Explanation:</strong> Rearranging the resistivity formula determines the required length of wire."
-                },
-                {
-                    question: "A battery with an electromotive force (EMF) of 12.0 V and an internal resistance of 0.50 Ω is connected to a 5.50 Ω external resistor. Find the circuit current and the terminal voltage of the battery.",
-                    options: ["I = 2.0 A, V = 11.0 V", "I = 2.0 A, V = 12.0 V", "I = 2.18 A, V = 10.9 V", "I = 1.0 A, V = 6.0 V"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> EMF \\( E = 12.0\\,\\mathrm{V} \\), Internal resistance \\( r = 0.50\\,\\Omega \\), Load \\( R = 5.50\\,\\Omega \\).<br>2. <strong>Find:</strong> Current \\( I \\) and Terminal voltage \\( V \\).<br>3. <strong>Equation:</strong> \\( I = \\frac{E}{R + r} \\), \\( V = E - Ir = IR \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> \\( R_{\\text{total}} = R + r = 5.50 + 0.50 = 6.00\\,\\Omega \\).<br>6. <strong>Substitution:</strong> \\( I = \\frac{12.0\\,\\mathrm{V}}{6.00\\,\\Omega} \\); \\( V = 12.0 - (2.0 \\times 0.50) \\).<br>7. <strong>Calculation:</strong> \\( I = 2.0\\,\\mathrm{A} \\); Lost volts \\( Ir = 1.0\\,\\mathrm{V} \\); Terminal voltage \\( V = 12.0 - 1.0 = 11.0\\,\\mathrm{V} \\).<br>8. <strong>Final Answer:</strong> \\( I = 2.0\\,\\mathrm{A}, \\; V = 11.0\\,\\mathrm{V} \\).<br>9. <strong>Explanation:</strong> Internal resistance causes a 1.0 V drop within the cell, delivering 11.0 V to the external load."
-                },
-                {
-                    question: "A battery has an open-circuit EMF of 9.0 V. When supplying 1.5 A to a motor, its terminal voltage drops to 8.1 V. What is the internal resistance of the battery?",
-                    options: ["0.60 Ω", "1.5 Ω", "0.90 Ω", "5.4 Ω"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> EMF \\( E = 9.0\\,\\mathrm{V} \\), Terminal voltage \\( V = 8.1\\,\\mathrm{V} \\), Current \\( I = 1.5\\,\\mathrm{A} \\).<br>2. <strong>Find:</strong> Internal resistance \\( r \\).<br>3. <strong>Equation:</strong> \\( V = E - Ir \\implies r = \\frac{E - V}{I} \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> \\( r = \\frac{E - V}{I} \\).<br>6. <strong>Substitution:</strong> \\( r = \\frac{9.0 - 8.1}{1.5} \\).<br>7. <strong>Calculation:</strong> Lost volts: \\( 9.0 - 8.1 = 0.90\\,\\mathrm{V} \\); \\( r = \\frac{0.90}{1.5} = 0.60\\,\\Omega \\).<br>8. <strong>Final Answer:</strong> \\( 0.60\\,\\Omega \\).<br>9. <strong>Explanation:</strong> Internal resistance is calculated directly by dividing the internal voltage drop by current."
-                },
-                {
-                    question: "A total current of 6.0 A flows into a parallel combination of two resistors: R₁ = 4.0 Ω and R₂ = 8.0 Ω. Using the current divider rule, find the current through R₁ and R₂.",
-                    options: ["I₁ = 4.0 A, I₂ = 2.0 A", "I₁ = 2.0 A, I₂ = 4.0 A", "I₁ = 3.0 A, I₂ = 3.0 A", "I₁ = 4.5 A, I₂ = 1.5 A"],
-                    correctIndex: 0,
-                    feedback: "<strong>Step-by-step Solution:</strong><br>1. <strong>Given:</strong> Total current \\( I_{\\text{total}} = 6.0\\,\\mathrm{A} \\), \\( R_1 = 4.0\\,\\Omega \\), \\( R_2 = 8.0\\,\\Omega \\).<br>2. <strong>Find:</strong> Branch currents \\( I_1 \\) and \\( I_2 \\).<br>3. <strong>Equation:</strong> \\( I_1 = I_{\\text{total}}\\left(\\frac{R_2}{R_1 + R_2}\\right) \\), \\( I_2 = I_{\\text{total}}\\left(\\frac{R_1}{R_1 + R_2}\\right) \\).<br>4. <strong>Unit conversion:</strong> Standard SI units.<br>5. <strong>Rearrangement:</strong> Sum of resistances: \\( 4.0 + 8.0 = 12.0\\,\\Omega \\).<br>6. <strong>Substitution:</strong> \\( I_1 = 6.0 \\times \\frac{8.0}{12.0} \\); \\( I_2 = 6.0 \\times \\frac{4.0}{12.0} \\).<br>7. <strong>Calculation:</strong> \\( I_1 = 6.0 \\times \\frac{2}{3} = 4.0\\,\\mathrm{A} \\); \\( I_2 = 6.0 \\times \\frac{1}{3} = 2.0\\,\\mathrm{A} \\).<br>8. <strong>Final Answer:</strong> \\( I_1 = 4.0\\,\\mathrm{A}, \\; I_2 = 2.0\\,\\mathrm{A} \\).<br>9. <strong>Explanation:</strong> The branch with half the resistance (4.0 Ω) carries twice the current (4.0 A) compared to the 8.0 Ω branch."
-                }
-            ]
-        },
-        {
-            id: "g7-l4",
             gifUrl: "",
-            worksheetUrl: "worksheets/g7-ch4-worksheet.pdf",
+            worksheetUrl: "worksheets/g7-ch3-worksheet.pdf",
             ebookUrl: "",
             ebooks: [],
             games: [
                 { topic: "Under Pressure", url: "https://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_all.html" },
                 { topic: "Gas Properties", url: "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_all.html" }
             ],
-            title: "Chapter 4: Pressure in Solids, Liquids & Gases",
+            title: "Chapter 3: Pressure of Rigid Object",
             concepts: [
                 "Mass vs Weight: Mass (m) is the invariant quantity of substance in kg. Weight (W) is the gravitational force exerted by the Earth on that mass, \\(W = mg\\), measured in Newtons (N). Near Earth, gravitational field strength \\(g \\approx 9.8\\,\\mathrm{N/kg}\\) (or \\(10\\,\\mathrm{N/kg}\\) for simplified calculations).",
                 "Pressure in Solids: Defined as the perpendicular force acting per unit surface area: \\(P = \\frac{F}{A}\\). The SI unit is Newton per square meter (\\(\\mathrm{N/m^2}\\)), called the Pascal (Pa). \\(1\\,\\mathrm{Pa} = 1\\,\\mathrm{N/m^2}\\).",
@@ -34109,7 +33413,7 @@
                 type: "Semester 1 Exam",
                 year: "Semester 1",
                 grade: "7",
-                description: "Official Semester 1 physics examination covering Measurement, Density, Forces, Friction, and Experimental Methods.",
+                description: "Official Semester 1 physics examination covering Temperature & Thermal Energy and Electric Charge.",
                 url: "semester_exams/g7-semester1-exam.pdf",
                 altUrl: "semester_exams/g7-semester1-exam.pdf.pdf",
                 aliases: ["semester_exams/g7-semester-1.pdf", "semester_exams/g7-sem1.pdf", "semester_exams/g7-sem1-exam.pdf"]
@@ -34121,7 +33425,7 @@
                 type: "Semester 2 Exam",
                 year: "Semester 2",
                 grade: "7",
-                description: "Official Semester 2 physics examination covering Hydrostatic Pressure, Liquid Density, and Thermal Energy Transfer.",
+                description: "Official Semester 2 physics examination covering Electric Charge, Pressure of Rigid Object, and Thermal Energy.",
                 url: "semester_exams/g7-semester2-exam.pdf",
                 altUrl: "semester_exams/g7-semester2-exam.pdf.pdf",
                 aliases: ["semester_exams/g7-semester-2.pdf", "semester_exams/g7-sem2.pdf", "semester_exams/g7-sem2-exam.pdf"]
@@ -34267,18 +33571,18 @@
                 subtitle: "Official Khmer Curriculum Practice • Western International School",
                 type: "KH-Worksheet",
                 grade: "7",
-                description: "Comprehensive Khmer Physics practice problems covering all Grade 7 chapters: Measurement, Density, Forces, Friction, and Thermal Energy.",
+                description: "Comprehensive Khmer Physics practice problems covering all Grade 7 chapters: Temperature & Thermal Energy, Electric Charge, and Pressure of Rigid Object.",
                 url: "kh_worksheets/g7-kh-worksheet.pdf",
                 altUrl: "kh_worksheets/g7-kh-worksheet.pdf.pdf",
                 aliases: ["kh_worksheets/g7-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf.pdf", "kh_worksheets/g7-worksheet-kh.pdf", "kh_worksheets/g7-worksheet-kh.pdf.pdf"]
             },
             {
                 id: "g7-ch1-kh-ws",
-                title: "Chapter 1: Measurement, Units & Density KH-Worksheet",
+                title: "Chapter 1: Temperature & Thermal Energy KH-Worksheet",
                 subtitle: "Chapter 1 Practice Problems • Western International School",
                 type: "Chapter 1 KH-Worksheet",
                 grade: "7",
-                description: "Practice problems and exercises on units, measurement instruments, and density calculations.",
+                description: "Practice questions on temperature scales, heat transfer modes, specific heat capacity, and thermal energy.",
                 url: "kh_worksheets/g7-ch1-kh-worksheet.pdf",
                 altUrl: "kh_worksheets/g7-ch1-kh-worksheet.pdf.pdf",
                 fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
@@ -34286,11 +33590,11 @@
             },
             {
                 id: "g7-ch2-kh-ws",
-                title: "Chapter 2: Forces & Motion KH-Worksheet",
+                title: "Chapter 2: Electric Charge KH-Worksheet",
                 subtitle: "Chapter 2 Practice Problems • Western International School",
                 type: "Chapter 2 KH-Worksheet",
                 grade: "7",
-                description: "Practice problems on types of forces, friction, gravity, and basic kinematics.",
+                description: "Practice problems on electric charges, charging by friction, Coulomb's law, and electrostatics.",
                 url: "kh_worksheets/g7-ch2-kh-worksheet.pdf",
                 altUrl: "kh_worksheets/g7-ch2-kh-worksheet.pdf.pdf",
                 fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
@@ -34298,27 +33602,15 @@
             },
             {
                 id: "g7-ch3-kh-ws",
-                title: "Chapter 3: Pressure & Archimedes' Principle KH-Worksheet",
+                title: "Chapter 3: Pressure of Rigid Object KH-Worksheet",
                 subtitle: "Chapter 3 Practice Problems • Western International School",
                 type: "Chapter 3 KH-Worksheet",
                 grade: "7",
-                description: "Practice exercises on solid pressure, liquid pressure, buoyant force, and Archimedes' principle.",
+                description: "Practice exercises on force, contact area, solid pressure (P = F/A), and pressure applications.",
                 url: "kh_worksheets/g7-ch3-kh-worksheet.pdf",
                 altUrl: "kh_worksheets/g7-ch3-kh-worksheet.pdf.pdf",
                 fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
                 aliases: ["kh_worksheets/g7-ch3-kh-worksheet.pdf", "kh_worksheets/g7-ch3-kh-worksheet.pdf.pdf", "kh_worksheets/g7-l3-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf"]
-            },
-            {
-                id: "g7-ch4-kh-ws",
-                title: "Chapter 4: Temperature & Thermal Energy KH-Worksheet",
-                subtitle: "Chapter 4 Practice Problems • Western International School",
-                type: "Chapter 4 KH-Worksheet",
-                grade: "7",
-                description: "Practice questions on temperature scales, heat transfer modes, and thermal expansion.",
-                url: "kh_worksheets/g7-ch4-kh-worksheet.pdf",
-                altUrl: "kh_worksheets/g7-ch4-kh-worksheet.pdf.pdf",
-                fallbackUrl: "kh_worksheets/g7-kh-worksheet.pdf",
-                aliases: ["kh_worksheets/g7-ch4-kh-worksheet.pdf", "kh_worksheets/g7-ch4-kh-worksheet.pdf.pdf", "kh_worksheets/g7-l4-kh-worksheet.pdf", "kh_worksheets/g7-kh-worksheet.pdf"]
             }
         ],
         "8": [

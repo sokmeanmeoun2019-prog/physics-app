@@ -1361,44 +1361,34 @@ const CHAPTER_THEMES = {
     },
     // --- GRADE 7 CHAPTER THEMES ---
     "g7-l1": {
-        color: "#0d9488",
-        gradient: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
-        bgLight: "#ccfbf1",
-        borderLight: "#99f6e4",
-        shadow: "rgba(13, 148, 136, 0.22)",
-        icon: "fa-scale-balanced",
-        subtitle: "Physical Quantities, SI Units, Volume & Mass Density",
-        chips: ["Units", "Mass", "Density", "Displacement"]
+        color: "#dc2626",
+        gradient: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
+        bgLight: "#fee2e2",
+        borderLight: "#fecaca",
+        shadow: "rgba(220, 38, 38, 0.22)",
+        icon: "fa-temperature-high",
+        subtitle: "Thermometers, Fixed Points, Thermal Expansion & Heat Transfer",
+        chips: ["Temperature", "Thermal Energy", "Specific Heat", "Heat Transfer"]
     },
     "g7-l2": {
-        color: "#059669",
-        gradient: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-        bgLight: "#d1fae5",
-        borderLight: "#a7f3d0",
-        shadow: "rgba(5, 150, 105, 0.22)",
-        icon: "fa-person-running",
-        subtitle: "Forces, Contact Types, Speed & Net Force Calculations",
-        chips: ["Friction", "Speed", "Net Force", "Motion"]
-    },
-    "g7-l3": {
         color: "#0284c7",
-        gradient: "linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)",
+        gradient: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
         bgLight: "#e0f2fe",
         borderLight: "#bae6fd",
         shadow: "rgba(2, 132, 199, 0.22)",
-        icon: "fa-arrows-down-to-line",
-        subtitle: "Pressure in Solids, Fluid Hydrostatic Pressure & Pascal's Principle",
-        chips: ["Pressure", "Pascal", "Fluid Depth", "Atmosphere"]
+        icon: "fa-bolt-lightning",
+        subtitle: "Electric Charges, Conductors & Insulators, Electrostatic Induction & Coulomb's Law",
+        chips: ["Electric Charge", "Coulomb's Law", "Induction", "Electroscope"]
     },
-    "g7-l4": {
-        color: "#d97706",
-        gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
-        bgLight: "#fef3c7",
-        borderLight: "#fde68a",
-        shadow: "rgba(217, 119, 6, 0.22)",
-        icon: "fa-temperature-three-quarters",
-        subtitle: "Particle Model, Temperature Scales, Expansion & Phase Transitions",
-        chips: ["Temperature", "Kelvin", "Expansion", "States of Matter"]
+    "g7-l3": {
+        color: "#059669",
+        gradient: "linear-gradient(135deg, #10b981 0%, #047857 100%)",
+        bgLight: "#d1fae5",
+        borderLight: "#a7f3d0",
+        shadow: "rgba(5, 150, 105, 0.22)",
+        icon: "fa-arrows-down-to-line",
+        subtitle: "Force, Contact Area, Solid Pressure (P = F/A) & Pressure Applications",
+        chips: ["Solid Pressure", "P = F/A", "Contact Area", "Hydraulics"]
     },
     // --- GRADE 8 CHAPTER THEMES ---
     "g8-l1": {
@@ -1938,7 +1928,7 @@ function loadLessons(grade, pushRoute = true) {
         if (currentGrade === '7') {
             if (badgeText) badgeText.innerHTML = '<i class="fa-solid fa-seedling"></i> Grade 7 • Introduction to Physics & Scientific Inquiry';
             if (titleEl) titleEl.innerHTML = '<span class="title-highlight-g7">Grade 7</span> Physics';
-            if (subtitleEl) subtitleEl.innerText = 'Measurement, Density, Forces, Friction, Hydrostatic Pressure, and Thermal Energy';
+            if (subtitleEl) subtitleEl.innerText = 'Temperature & Thermal Energy, Electric Charge, and Pressure of Rigid Object';
             if (statsBar) {
                 statsBar.innerHTML = `
                     <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> ${totalChapters} Chapters</span>
