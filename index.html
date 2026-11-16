@@ -43,8 +43,8 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
-                var currentVer = 37;
-                var LATEST_BUILD = '20261116111254';
+                var currentVer = 38;
+                var LATEST_BUILD = '20261116160249';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -95,7 +95,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=37&build=20261116111254">
+    <link rel="stylesheet" href="styles.css?v=38&build=20261116160249">
     <style>
         .view.active {
             display: block !important;
@@ -133,8 +133,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=37&build=20261116111254"></script>
-    <script src="physics-data.js?v=37&build=20261116111254"></script>
+    <script src="physics-figures.js?v=38&build=20261116160249"></script>
+    <script src="physics-data.js?v=38&build=20261116160249"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -2084,7 +2084,7 @@
         ];
         }
     </script>
-    <script src="physics-data.js?v=37&build=20261116111254"></script>
+    <script src="physics-data.js?v=38&build=20261116160249"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -7004,9 +7004,6 @@
                 } catch(e) {}
                 activeAudioInstance = null;
             }
-            if (window.WISSyncReader && typeof window.WISSyncReader.resetSession === 'function') {
-                try { window.WISSyncReader.resetSession(); } catch(e) {}
-            }
             var playIcon = document.getElementById('audio-play-icon');
             if (playIcon) playIcon.className = 'fa-solid fa-play';
             var card = document.getElementById('ebook-audio-card');
@@ -7209,17 +7206,6 @@
                 '</div>';
             }
 
-            var isSyncEligible = Boolean(window.WISSyncReader && window.WISSyncReader.isEligibleLesson(lesson));
-            var syncPrevBtnHtml = isSyncEligible
-                ? '<button type="button" class="audio-ctrl-btn nav-cue-btn" id="audio-prev-cue-btn" title="Previous Sentence"><i class="fa-solid fa-backward-step"></i><span>Prev</span></button>'
-                : '';
-            var syncNextBtnHtml = isSyncEligible
-                ? '<button type="button" class="audio-ctrl-btn nav-cue-btn" id="audio-next-cue-btn" title="Next Sentence"><span>Next</span><i class="fa-solid fa-forward-step"></i></button>'
-                : '';
-            var syncControlsHtml = isSyncEligible
-                ? window.WISSyncReader.getAudiobookSyncControlsHtml(lesson)
-                : '';
-
             return '<div class="ebook-audio-card" id="ebook-audio-card">' +
                 '<div class="ebook-audio-header">' +
                     '<div class="ebook-audio-title-group">' +
@@ -7242,11 +7228,9 @@
                 tracksHtml +
                 '<div class="ebook-audio-player-bar">' +
                     '<div class="ebook-audio-transport">' +
-                        syncPrevBtnHtml +
                         '<button type="button" class="audio-ctrl-btn" id="audio-skip-back-btn" title="Rewind 10 seconds"><i class="fa-solid fa-rotate-left"></i></button>' +
                         '<button type="button" class="audio-ctrl-btn play-btn" id="audio-play-pause-btn" title="Play / Pause Audiobook"><i class="fa-solid fa-play" id="audio-play-icon"></i></button>' +
                         '<button type="button" class="audio-ctrl-btn" id="audio-skip-fwd-btn" title="Forward 10 seconds"><i class="fa-solid fa-rotate-right"></i></button>' +
-                        syncNextBtnHtml +
                     '</div>' +
                     '<div class="audio-timeline-group">' +
                         '<span class="audio-time-text current" id="audio-time-current">00:00</span>' +
@@ -7256,7 +7240,6 @@
                         '<span class="audio-time-text total" id="audio-time-total">--:--</span>' +
                     '</div>' +
                 '</div>' +
-                syncControlsHtml +
                 '<div id="audio-notice-area"></div>' +
                 '<input type="file" id="audio-local-picker" accept="audio/*" style="display:none;">' +
             '</div>';
@@ -7318,30 +7301,12 @@
                         var partPrefix = (audioTracks && audioTracks[currentTrack]) ? (audioTracks[currentTrack].shortTitle + ' • ') : '';
                         subtitleText.textContent = 'Audio Narration: ' + partPrefix + decodeURIComponent(cleanName);
                     }
-                    if (window.WISSyncReader && window.WISSyncReader.isEligibleLesson(lesson)) {
-                        window.WISSyncReader.registerAudioSession({
-                            lesson: lesson,
-                            sectionIdx: selectedIndex,
-                            trackIdx: currentTrack,
-                            audio: targetAudio,
-                            audioUrl: targetAudio.currentSrc || targetAudio.src
-                        });
-                    }
                 });
 
                 targetAudio.addEventListener('timeupdate', function() {
                     if (!isSeeking && scrubber && targetAudio.duration) {
                         scrubber.value = targetAudio.currentTime;
                         if (timeCur) timeCur.textContent = formatTime(targetAudio.currentTime);
-                    }
-                    if (!isSeeking && window.WISSyncReader) {
-                        window.WISSyncReader.syncAtTime(targetAudio.currentTime, false);
-                    }
-                });
-
-                targetAudio.addEventListener('seeked', function() {
-                    if (window.WISSyncReader) {
-                        window.WISSyncReader.syncAtTime(targetAudio.currentTime, true);
                     }
                 });
 
@@ -7353,9 +7318,6 @@
                     if (statusPill) {
                         statusPill.className = 'ebook-audio-badge-status';
                         statusPill.innerHTML = '<i class="fa-solid fa-circle-check"></i> Completed';
-                    }
-                    if (window.WISSyncReader) {
-                        window.WISSyncReader.onAudioEnded();
                     }
                 });
             }
@@ -7372,7 +7334,6 @@
                 if (audio) {
                     try { audio.pause(); audio.src = ''; } catch(e) {}
                 }
-                if (window.WISSyncReader) window.WISSyncReader.clearAllHighlights();
 
                 if (playIcon) playIcon.className = 'fa-solid fa-play';
                 if (card) card.classList.remove('is-playing');
@@ -7405,7 +7366,6 @@
                         statusPill.className = 'ebook-audio-badge-status not-loaded';
                         statusPill.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Audio Not Uploaded';
                     }
-                    if (window.WISSyncReader) window.WISSyncReader.onAudioUnavailable();
                     if (noticeArea) {
                         var expected = candidates[0] || (currentTrack === 1 ? 'audio/g9-ch1-part2.mp3' : 'audio/g9-ch1-part1.mp3');
                         var partLabel = (audioTracks && audioTracks[currentTrack]) ? ('<strong>' + audioTracks[currentTrack].shortTitle + '</strong>: ') : '';
@@ -7469,7 +7429,6 @@
                 skipBackBtn.onclick = function() {
                     audio.currentTime = Math.max(0, audio.currentTime - 10);
                     if (timeCur) timeCur.textContent = formatTime(audio.currentTime);
-                    if (window.WISSyncReader) window.WISSyncReader.syncAtTime(audio.currentTime, true);
                 };
             }
 
@@ -7477,7 +7436,6 @@
                 skipFwdBtn.onclick = function() {
                     audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + 10);
                     if (timeCur) timeCur.textContent = formatTime(audio.currentTime);
-                    if (window.WISSyncReader) window.WISSyncReader.syncAtTime(audio.currentTime, true);
                 };
             }
 
@@ -7485,13 +7443,10 @@
                 scrubber.addEventListener('input', function() {
                     isSeeking = true;
                     if (timeCur) timeCur.textContent = formatTime(scrubber.value);
-                    if (window.WISSyncReader) window.WISSyncReader.syncAtTime(parseFloat(scrubber.value) || 0, true);
                 });
                 scrubber.addEventListener('change', function() {
                     isSeeking = false;
-                    var targetSec = parseFloat(scrubber.value) || 0;
-                    audio.currentTime = targetSec;
-                    if (window.WISSyncReader) window.WISSyncReader.syncAtTime(targetSec, true);
+                    audio.currentTime = scrubber.value;
                 });
             }
 
@@ -7524,32 +7479,16 @@
                         audio.addEventListener('loadedmetadata', function() {
                             if (timeTot) timeTot.textContent = formatTime(audio.duration);
                             if (scrubber) scrubber.max = audio.duration || 100;
-                            if (window.WISSyncReader && window.WISSyncReader.isEligibleLesson(lesson)) {
-                                window.WISSyncReader.registerAudioSession({
-                                    lesson: lesson,
-                                    sectionIdx: selectedIndex,
-                                    trackIdx: currentTrack,
-                                    audio: audio,
-                                    audioUrl: file.name
-                                });
-                            }
                         });
                         audio.addEventListener('timeupdate', function() {
                             if (!isSeeking && scrubber && audio.duration) {
                                 scrubber.value = audio.currentTime;
                                 if (timeCur) timeCur.textContent = formatTime(audio.currentTime);
                             }
-                            if (!isSeeking && window.WISSyncReader) {
-                                window.WISSyncReader.syncAtTime(audio.currentTime, false);
-                            }
-                        });
-                        audio.addEventListener('seeked', function() {
-                            if (window.WISSyncReader) window.WISSyncReader.syncAtTime(audio.currentTime, true);
                         });
                         audio.addEventListener('ended', function() {
                             if (playIcon) playIcon.className = 'fa-solid fa-play';
                             if (card) card.classList.remove('is-playing');
-                            if (window.WISSyncReader) window.WISSyncReader.onAudioEnded();
                         });
                         audio.play().then(function() {
                             if (playIcon) playIcon.className = 'fa-solid fa-pause';
@@ -8187,14 +8126,8 @@
                             shield.className = 'pdf-shield-overlay';
                             shield.setAttribute('aria-hidden', 'true');
 
-                            var syncLayer = document.createElement('div');
-                            syncLayer.className = 'pdf-sync-highlight-layer';
-                            syncLayer.id = 'pdf-sync-layer-' + p;
-                            syncLayer.setAttribute('aria-hidden', 'true');
-
                             card.appendChild(placeholder);
                             card.appendChild(canvas);
-                            card.appendChild(syncLayer);
                             card.appendChild(shield);
                             card.appendChild(badge);
                             fragment.appendChild(card);
@@ -8245,9 +8178,6 @@
 
                                 if (placeholder) placeholder.style.display = 'none';
                                 canvas.style.display = 'block';
-                                if (window.WISSyncReader) {
-                                    window.WISSyncReader.rerenderHighlightForPage(pageNum);
-                                }
                             } catch(err) {
                                 if (err && err.name === 'RenderingCancelledException') return;
                                 renderedPages.delete(pageNum);
@@ -8329,19 +8259,6 @@
                                 targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                 if (pageInput) pageInput.value = target;
                             }
-                        }
-
-                        if (window.WISSyncReader && window.WISSyncReader.isEligibleLesson(lesson)) {
-                            window.WISSyncReader.registerPdfContext({
-                                lesson: lesson,
-                                pdfDoc: pdfDoc,
-                                scrollContainer: scrollContainer,
-                                pageInput: pageInput,
-                                renderPage: renderPage,
-                                scrollToPage: scrollToPage,
-                                getNumPages: function() { return numPages; },
-                                getCurrentPage: function() { return parseInt((pageInput && pageInput.value) || '1', 10) || 1; }
-                            });
                         }
 
                         if (prevBtn) registerDirectListener(prevBtn, 'click', function() {
@@ -9762,7 +9679,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 37)</span>
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 38)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -10536,8 +10453,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=37&build=20261116111254"></script>
-    <script src="audio-sync.js?v=36&build=20261116111500"></script>
-    <script src="app.js?v=37&build=20261116111254" onerror="onAppJsError()"></script>
+    <script src="auth.js?v=38&build=20261116160249"></script>
+    <script src="app.js?v=38&build=20261116160249" onerror="onAppJsError()"></script>
 </body>
 </html>

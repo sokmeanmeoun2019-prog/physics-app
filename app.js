@@ -4678,9 +4678,6 @@ function stopActiveAudio() {
         } catch (e) {}
         activeAudioInstance = null;
     }
-    if (typeof window !== 'undefined' && window.WISSyncReader && typeof window.WISSyncReader.resetSession === 'function') {
-        try { window.WISSyncReader.resetSession(); } catch (e) {}
-    }
     const playIcon = document.getElementById('audio-play-icon');
     if (playIcon) playIcon.className = 'fa-solid fa-play';
     const card = document.getElementById('ebook-audio-card');
@@ -4884,21 +4881,6 @@ function getAudiobookCardHtml(lesson, selectedIndex, currentTrackIdx) {
         `;
     }
 
-    const isSyncEligible = Boolean(
-        typeof window !== 'undefined' &&
-        window.WISSyncReader &&
-        window.WISSyncReader.isEligibleLesson(lesson)
-    );
-    const syncPrevBtnHtml = isSyncEligible
-        ? `<button type="button" class="audio-ctrl-btn nav-cue-btn" id="audio-prev-cue-btn" title="Previous Sentence"><i class="fa-solid fa-backward-step"></i><span>Prev</span></button>`
-        : '';
-    const syncNextBtnHtml = isSyncEligible
-        ? `<button type="button" class="audio-ctrl-btn nav-cue-btn" id="audio-next-cue-btn" title="Next Sentence"><span>Next</span><i class="fa-solid fa-forward-step"></i></button>`
-        : '';
-    const syncControlsHtml = isSyncEligible
-        ? window.WISSyncReader.getAudiobookSyncControlsHtml(lesson)
-        : '';
-
     return `
         <div class="ebook-audio-card" id="ebook-audio-card">
             <div class="ebook-audio-header">
@@ -4922,11 +4904,9 @@ function getAudiobookCardHtml(lesson, selectedIndex, currentTrackIdx) {
             ${tracksHtml}
             <div class="ebook-audio-player-bar">
                 <div class="ebook-audio-transport">
-                    ${syncPrevBtnHtml}
                     <button type="button" class="audio-ctrl-btn" id="audio-skip-back-btn" title="Rewind 10 seconds"><i class="fa-solid fa-rotate-left"></i></button>
                     <button type="button" class="audio-ctrl-btn play-btn" id="audio-play-pause-btn" title="Play / Pause Audiobook"><i class="fa-solid fa-play" id="audio-play-icon"></i></button>
                     <button type="button" class="audio-ctrl-btn" id="audio-skip-fwd-btn" title="Forward 10 seconds"><i class="fa-solid fa-rotate-right"></i></button>
-                    ${syncNextBtnHtml}
                 </div>
                 <div class="audio-timeline-group">
                     <span class="audio-time-text current" id="audio-time-current">00:00</span>
@@ -4936,7 +4916,6 @@ function getAudiobookCardHtml(lesson, selectedIndex, currentTrackIdx) {
                     <span class="audio-time-text total" id="audio-time-total">--:--</span>
                 </div>
             </div>
-            ${syncControlsHtml}
             <div id="audio-notice-area"></div>
             <input type="file" id="audio-local-picker" accept="audio/*" style="display:none;">
         </div>
@@ -4999,30 +4978,12 @@ function initAudiobookLogic(lesson, selectedIndex, initialTrackIdx) {
                 const partPrefix = (audioTracks && audioTracks[currentTrack]) ? (`${audioTracks[currentTrack].shortTitle} • `) : '';
                 subtitleText.textContent = 'Audio Narration: ' + partPrefix + decodeURIComponent(cleanName);
             }
-            if (window.WISSyncReader && window.WISSyncReader.isEligibleLesson(lesson)) {
-                window.WISSyncReader.registerAudioSession({
-                    lesson,
-                    sectionIdx: selectedIndex,
-                    trackIdx: currentTrack,
-                    audio: targetAudio,
-                    audioUrl: targetAudio.currentSrc || targetAudio.src
-                });
-            }
         });
 
         targetAudio.addEventListener('timeupdate', () => {
             if (!isSeeking && scrubber && targetAudio.duration) {
                 scrubber.value = targetAudio.currentTime;
                 if (timeCur) timeCur.textContent = formatTime(targetAudio.currentTime);
-            }
-            if (!isSeeking && window.WISSyncReader) {
-                window.WISSyncReader.syncAtTime(targetAudio.currentTime, false);
-            }
-        });
-
-        targetAudio.addEventListener('seeked', () => {
-            if (window.WISSyncReader) {
-                window.WISSyncReader.syncAtTime(targetAudio.currentTime, true);
             }
         });
 
@@ -5034,9 +4995,6 @@ function initAudiobookLogic(lesson, selectedIndex, initialTrackIdx) {
             if (statusPill) {
                 statusPill.className = 'ebook-audio-badge-status';
                 statusPill.innerHTML = '<i class="fa-solid fa-circle-check"></i> Completed';
-            }
-            if (window.WISSyncReader) {
-                window.WISSyncReader.onAudioEnded();
             }
         });
     }
@@ -5053,7 +5011,6 @@ function initAudiobookLogic(lesson, selectedIndex, initialTrackIdx) {
         if (audio) {
             try { audio.pause(); audio.src = ''; } catch(e) {}
         }
-        if (window.WISSyncReader) window.WISSyncReader.clearAllHighlights();
 
         if (playIcon) playIcon.className = 'fa-solid fa-play';
         if (card) card.classList.remove('is-playing');
@@ -5086,7 +5043,6 @@ function initAudiobookLogic(lesson, selectedIndex, initialTrackIdx) {
                 statusPill.className = 'ebook-audio-badge-status not-loaded';
                 statusPill.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Audio Not Uploaded';
             }
-            if (window.WISSyncReader) window.WISSyncReader.onAudioUnavailable();
             if (noticeArea) {
                 const expected = candidates[0] || (currentTrack === 1 ? 'audio/g9-ch1-part2.mp3' : 'audio/g9-ch1-part1.mp3');
                 const partLabel = (audioTracks && audioTracks[currentTrack]) ? (`<strong>${audioTracks[currentTrack].shortTitle}</strong>: `) : '';
@@ -5152,7 +5108,6 @@ function initAudiobookLogic(lesson, selectedIndex, initialTrackIdx) {
         skipBackBtn.onclick = () => {
             audio.currentTime = Math.max(0, audio.currentTime - 10);
             if (timeCur) timeCur.textContent = formatTime(audio.currentTime);
-            if (window.WISSyncReader) window.WISSyncReader.syncAtTime(audio.currentTime, true);
         };
     }
 
@@ -5160,7 +5115,6 @@ function initAudiobookLogic(lesson, selectedIndex, initialTrackIdx) {
         skipFwdBtn.onclick = () => {
             audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + 10);
             if (timeCur) timeCur.textContent = formatTime(audio.currentTime);
-            if (window.WISSyncReader) window.WISSyncReader.syncAtTime(audio.currentTime, true);
         };
     }
 
@@ -5168,13 +5122,10 @@ function initAudiobookLogic(lesson, selectedIndex, initialTrackIdx) {
         scrubber.addEventListener('input', () => {
             isSeeking = true;
             if (timeCur) timeCur.textContent = formatTime(scrubber.value);
-            if (window.WISSyncReader) window.WISSyncReader.syncAtTime(parseFloat(scrubber.value) || 0, true);
         });
         scrubber.addEventListener('change', () => {
             isSeeking = false;
-            const targetSec = parseFloat(scrubber.value) || 0;
-            audio.currentTime = targetSec;
-            if (window.WISSyncReader) window.WISSyncReader.syncAtTime(targetSec, true);
+            audio.currentTime = scrubber.value;
         });
     }
 
@@ -5207,32 +5158,16 @@ function initAudiobookLogic(lesson, selectedIndex, initialTrackIdx) {
                 localAudio.addEventListener('loadedmetadata', () => {
                     if (timeTot) timeTot.textContent = formatTime(localAudio.duration);
                     if (scrubber) scrubber.max = localAudio.duration || 100;
-                    if (window.WISSyncReader && window.WISSyncReader.isEligibleLesson(lesson)) {
-                        window.WISSyncReader.registerAudioSession({
-                            lesson,
-                            sectionIdx: selectedIndex,
-                            trackIdx: currentTrack,
-                            audio: localAudio,
-                            audioUrl: file.name
-                        });
-                    }
                 });
                 localAudio.addEventListener('timeupdate', () => {
                     if (!isSeeking && scrubber && localAudio.duration) {
                         scrubber.value = localAudio.currentTime;
                         if (timeCur) timeCur.textContent = formatTime(localAudio.currentTime);
                     }
-                    if (!isSeeking && window.WISSyncReader) {
-                        window.WISSyncReader.syncAtTime(localAudio.currentTime, false);
-                    }
-                });
-                localAudio.addEventListener('seeked', () => {
-                    if (window.WISSyncReader) window.WISSyncReader.syncAtTime(localAudio.currentTime, true);
                 });
                 localAudio.addEventListener('ended', () => {
                     if (playIcon) playIcon.className = 'fa-solid fa-play';
                     if (card) card.classList.remove('is-playing');
-                    if (window.WISSyncReader) window.WISSyncReader.onAudioEnded();
                 });
                 localAudio.play().then(() => {
                     if (playIcon) playIcon.className = 'fa-solid fa-pause';
@@ -6022,14 +5957,8 @@ function renderEbook(lesson) {
                     shield.className = 'pdf-shield-overlay';
                     shield.setAttribute('aria-hidden', 'true');
 
-                    const syncLayer = document.createElement('div');
-                    syncLayer.className = 'pdf-sync-highlight-layer';
-                    syncLayer.id = `pdf-sync-layer-${p}`;
-                    syncLayer.setAttribute('aria-hidden', 'true');
-
                     card.appendChild(placeholder);
                     card.appendChild(canvas);
-                    card.appendChild(syncLayer);
                     card.appendChild(shield);
                     card.appendChild(badge);
                     fragment.appendChild(card);
@@ -6086,9 +6015,6 @@ function renderEbook(lesson) {
 
                         if (ph) ph.style.display = 'none';
                         canvas.style.display = 'block';
-                        if (window.WISSyncReader) {
-                            window.WISSyncReader.rerenderHighlightForPage(pageNum);
-                        }
                     } catch (renderErr) {
                         if (renderErr && renderErr.name === 'RenderingCancelledException') return;
                         renderedPages.delete(pageNum);
@@ -6168,19 +6094,6 @@ function renderEbook(lesson) {
                         if (p < numPages) renderPage(p + 1);
                         if (p > 1) renderPage(p - 1);
                     }
-                }
-
-                if (window.WISSyncReader && window.WISSyncReader.isEligibleLesson(lesson)) {
-                    window.WISSyncReader.registerPdfContext({
-                        lesson,
-                        pdfDoc,
-                        scrollContainer,
-                        pageInput,
-                        renderPage,
-                        scrollToPage,
-                        getNumPages: () => numPages,
-                        getCurrentPage: () => parseInt((pageInput && pageInput.value) || '1', 10) || 1
-                    });
                 }
 
                 if (prevBtn) {
