@@ -1731,6 +1731,9 @@ function showView(viewElement) {
     viewElement.style.display = 'block';
     viewElement.style.opacity = '1';
     viewElement.style.visibility = 'visible';
+    if (viewElement.id !== 'view-summary-slides' && window.WISSummarySlides && typeof window.WISSummarySlides.onNonSlidesRoute === 'function') {
+        window.WISSummarySlides.onNonSlidesRoute();
+    }
     window.scrollTo(0, 0);
 }
 
@@ -2106,6 +2109,11 @@ function loadLessons(grade, pushRoute = true) {
                 window.renderKHWorksheetSection(currentGrade);
             } else if (typeof renderKHWorksheetSection === 'function') {
                 renderKHWorksheetSection(currentGrade);
+            }
+
+            // Render Grade 9 & Grade 12 Summary Slides shortcut (strictly isolated to G9 & G12)
+            if (window.WISSummarySlides && typeof window.WISSummarySlides.renderGradeShortcut === 'function') {
+                window.WISSummarySlides.renderGradeShortcut(currentGrade);
             }
         }
     } catch (err) {
@@ -7983,6 +7991,17 @@ function handleRoute() {
     const urlParams = new URLSearchParams(window.location.search);
     const queryGrade = urlParams.get('grade');
     const queryLesson = urlParams.get('lesson');
+    const queryView = urlParams.get('view');
+
+    // 0. Dedicated Summary Slides route (#summary-slides, #summary-slides-9, #summary-slides-12)
+    if (hash.startsWith('summary-slides') || queryView === 'summary-slides') {
+        const slidesMatch = hash.match(/^summary-slides(?:-(9|12))?$/);
+        const slidesGrade = (slidesMatch && slidesMatch[1]) ? slidesMatch[1] : urlParams.get('slidesGrade');
+        if (window.WISSummarySlides && typeof window.WISSummarySlides.openView === 'function') {
+            window.WISSummarySlides.openView(slidesGrade, null, false);
+            return;
+        }
+    }
 
     // 1. Direct lesson route: #lesson/:id or ?lesson=:id
     if (hash.startsWith('lesson/') || queryLesson) {
