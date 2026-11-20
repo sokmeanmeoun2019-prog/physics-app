@@ -15,6 +15,7 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
+const handleSummarySlidesRequest = require('./summary-slides-server');
 
 // Optional: Load .env if present without requiring third-party dotenv
 try {
@@ -799,6 +800,28 @@ const server = http.createServer(async (req, res) => {
             `wis_admin_token=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0${secureFlag}`
         ]);
         return sendJson(res, 200, { success: true, message: 'Logged out successfully.' });
+    }
+
+    // ==========================================
+    // Summary Slides Routes (Grade 9 & Grade 12 Only)
+    // ==========================================
+    if (pathname.startsWith('/api/summary-slides')) {
+        return handleSummarySlidesRequest(req, res, {
+            pathname,
+            method,
+            parsedUrl,
+            cookies,
+            baseDir: __dirname,
+            isHost: isHostRequest(req, null),
+            adminSession: getAdminSession(cookies, req.headers, {}),
+            studentSession: getStudentSession(cookies),
+            sendJson
+        });
+    }
+
+    if (pathname.startsWith('/summary_slides/') || pathname === '/summary_slides') {
+        res.writeHead(403, { 'Content-Type': 'text/plain' });
+        return res.end('403 Forbidden');
     }
 
     // ==========================================
