@@ -1,6 +1,6 @@
 {
   "grade": "12",
-  "updatedAt": "2026-11-21T00:48:58.173Z",
+  "updatedAt": "2026-11-21T06:53:05.629Z",
   "slides": [
     {
       "id": "g12-kh-7e090ed922",
@@ -14,9 +14,9 @@
       "url": "summary_slides/grade12/kh/G12-Ch1-L1-KH-Physics-Summary.pdf.pdf",
       "previewUrl": null,
       "ext": ".pdf",
-      "size": 2598790,
+      "size": 2368772,
       "createdAt": "2026-11-21T00:27:59.984Z",
-      "updatedAt": "2025-08-21T11:17:38.164Z"
+      "updatedAt": "2026-11-21T06:42:56.690Z"
     },
     {
       "id": "g12-en-3bfd145543",
@@ -30,9 +30,9 @@
       "url": "summary_slides/grade12/en/G12-Ch1-L1-EN-Physics-Summary.pdf.pdf",
       "previewUrl": null,
       "ext": ".pdf",
-      "size": 2537116,
+      "size": 2054092,
       "createdAt": "2026-11-21T00:27:59.963Z",
-      "updatedAt": "2025-12-03T14:02:44.763Z"
+      "updatedAt": "2026-11-21T06:45:19.311Z"
     }
   ]
 }
