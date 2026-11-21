@@ -1,5 +1,22 @@
 {
   "grade": "9",
-  "updatedAt": "2026-11-21T00:00:00.000Z",
-  "slides": []
+  "updatedAt": "2026-11-21T00:48:58.165Z",
+  "slides": [
+    {
+      "id": "g9-en-d1e42b48a6",
+      "grade": "9",
+      "language": "en",
+      "title": "G9 Ch1 EN Physics Summary.pdf",
+      "description": "",
+      "chapter": "Chapter 1",
+      "originalName": "G9-Ch1-EN-Physics-Summary.pdf.pdf",
+      "storedName": "G9-Ch1-EN-Physics-Summary.pdf.pdf",
+      "url": "summary_slides/grade9/en/G9-Ch1-EN-Physics-Summary.pdf.pdf",
+      "previewUrl": null,
+      "ext": ".pdf",
+      "size": 1004916,
+      "createdAt": "2026-11-21T00:28:30.404Z",
+      "updatedAt": "2025-12-03T14:01:18.000Z"
+    }
+  ]
 }

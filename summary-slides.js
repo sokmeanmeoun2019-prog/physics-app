@@ -222,20 +222,170 @@
         state.capabilitiesChecked = true;
     }
 
+    function deriveTitleFromName(filename) {
+        return String(filename || '')
+            .replace(/\.pdf\.pdf$/i, '.pdf')
+            .replace(/\.(pdf|pptx|ppt)$/i, '')
+            .replace(/[_-]+/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim() || String(filename || 'Summary Slides');
+    }
+
+    function deriveChapterFromName(filename) {
+        const m = String(filename || '').match(/(?:ch(?:apter)?[\s_-]*(\d+))(?:[\s_-]*l(?:esson)?[\s_-]*(\d+))?/i);
+        if (!m) return '';
+        return m[2] ? `Chapter ${m[1]} • Lesson ${m[2]}` : `Chapter ${m[1]}`;
+    }
+
+    function isSlideAssetFilename(name) {
+        const clean = String(name || '').trim();
+        if (!clean || clean.startsWith('.')) return false;
+        const low = clean.toLowerCase();
+        if (low.endsWith('.lo-preview.pdf')) return false;
+        return low.endsWith('.pdf') || low.endsWith('.pptx') || low.endsWith('.ppt');
+    }
+
+    async function fetchGithubFolderSlides(grade) {
+        const discovered = [];
+        try {
+            const host = (window.location.hostname || '').toLowerCase();
+            if (!host.endsWith('.github.io')) return discovered;
+
+            const owner = host.split('.')[0];
+            const pathParts = (window.location.pathname || '').split('/').filter(Boolean);
+            const firstSeg = (pathParts[0] && pathParts[0].toLowerCase() !== 'index.html') ? pathParts[0] : '';
+            const repoCandidates = firstSeg ? [firstSeg, `${owner}.github.io`] : [`${owner}.github.io`];
+
+            let workingRepo = null;
+            for (const lang of ['kh', 'en']) {
+                const reposToTry = workingRepo ? [workingRepo] : repoCandidates;
+                for (const repo of reposToTry) {
+                    const apiUrl = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/summary_slides/grade${grade}/${lang}`;
+                    const res = await fetch(apiUrl, {
+                        method: 'GET',
+                        headers: { 'Accept': 'application/vnd.github+json' }
+                    });
+                    if (!res.ok) continue;
+                    workingRepo = repo;
+                    const items = await res.json();
+                    if (!Array.isArray(items)) break;
+
+                    const itemNames = new Set(items.filter(x => x && x.type === 'file').map(x => x.name));
+                    for (const item of items) {
+                        if (!item || item.type !== 'file' || !isSlideAssetFilename(item.name)) continue;
+                        const ext = item.name.toLowerCase().endsWith('.pdf.pdf') ? '.pdf' : getExtFromName(item.name);
+                        const relUrl = `summary_slides/grade${grade}/${lang}/${item.name}`;
+                        const stem = item.name.replace(/\.[^.]+$/, '');
+                        const previewName = `${stem}.lo-preview.pdf`;
+                        const previewUrl = itemNames.has(previewName) ? `summary_slides/grade${grade}/${lang}/${previewName}` : null;
+                        discovered.push({
+                            id: `gh-g${grade}-${lang}-${item.name.replace(/[^a-zA-Z0-9_-]/g, '_')}`,
+                            grade: String(grade),
+                            language: lang,
+                            title: deriveTitleFromName(item.name),
+                            description: '',
+                            chapter: deriveChapterFromName(item.name),
+                            originalName: item.name,
+                            storedName: item.name,
+                            url: relUrl,
+                            previewUrl,
+                            ext,
+                            size: Number(item.size) || 0,
+                            createdAt: '',
+                            updatedAt: item.sha || '',
+                            source: 'folder'
+                        });
+                    }
+                    break;
+                }
+            }
+        } catch (e) {}
+        return discovered;
+    }
+
+    async function fetchLocalHttpDirSlides(grade) {
+        const discovered = [];
+        if (!isLocalHostEnv() || !window.location.protocol.startsWith('http')) return discovered;
+        try {
+            for (const lang of ['kh', 'en']) {
+                const dirUrl = resolveUrl(`summary_slides/grade${grade}/${lang}/`);
+                const res = await fetch(dirUrl, { method: 'GET', cache: 'no-store' });
+                if (!res.ok) continue;
+                const ct = (res.headers.get('content-type') || '').toLowerCase();
+                if (!ct.includes('text/html')) continue;
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                const links = Array.from(doc.querySelectorAll('a[href]'));
+                const seen = new Set();
+                for (const a of links) {
+                    const href = a.getAttribute('href') || '';
+                    if (!href || href.startsWith('?') || href.startsWith('#') || href.endsWith('/')) continue;
+                    const decodedName = decodeURIComponent(href.split('/').pop().split('?')[0]);
+                    if (!isSlideAssetFilename(decodedName) || seen.has(decodedName)) continue;
+                    seen.add(decodedName);
+                    const ext = decodedName.toLowerCase().endsWith('.pdf.pdf') ? '.pdf' : getExtFromName(decodedName);
+                    const relUrl = `summary_slides/grade${grade}/${lang}/${decodedName}`;
+                    discovered.push({
+                        id: `dir-g${grade}-${lang}-${decodedName.replace(/[^a-zA-Z0-9_-]/g, '_')}`,
+                        grade: String(grade),
+                        language: lang,
+                        title: deriveTitleFromName(decodedName),
+                        description: '',
+                        chapter: deriveChapterFromName(decodedName),
+                        originalName: decodedName,
+                        storedName: decodedName,
+                        url: relUrl,
+                        previewUrl: null,
+                        ext,
+                        size: 0,
+                        createdAt: '',
+                        updatedAt: '',
+                        source: 'folder'
+                    });
+                }
+            }
+        } catch (e) {}
+        return discovered;
+    }
+
     async function fetchStaticFolderCatalog(grade) {
+        let catalogSlides = [];
         try {
             const url = resolveUrl(`summary_slides/grade${grade}/catalog.json?t=${Date.now()}`);
             const res = await fetch(url, { method: 'GET', cache: 'no-store' });
             if (res.ok) {
                 const data = await res.json();
                 if (data && Array.isArray(data.slides)) {
-                    return data.slides
+                    catalogSlides = data.slides
                         .filter(s => s && String(s.grade) === String(grade) && s.url)
                         .map(s => ({ ...s, source: 'folder' }));
                 }
             }
         } catch (e) {}
-        return [];
+
+        // Also auto-discover files placed directly in GitHub repo or static local HTTP server folders
+        let autoSlides = await fetchGithubFolderSlides(grade);
+        if (autoSlides.length === 0) {
+            autoSlides = await fetchLocalHttpDirSlides(grade);
+        }
+
+        if (autoSlides.length === 0) return catalogSlides;
+
+        const catalogByUrl = new Map(catalogSlides.map(s => [decodeURIComponent(s.url), s]));
+        const merged = [];
+        const usedUrls = new Set();
+
+        for (const item of autoSlides) {
+            const decodedUrl = decodeURIComponent(item.url);
+            usedUrls.add(decodedUrl);
+            const meta = catalogByUrl.get(decodedUrl);
+            merged.push(meta ? { ...item, ...meta, url: item.url, size: item.size || meta.size || 0 } : item);
+        }
+        for (const item of catalogSlides) {
+            const decodedUrl = decodeURIComponent(item.url);
+            if (!usedUrls.has(decodedUrl)) merged.push(item);
+        }
+        return merged;
     }
 
     async function fetchSlidesForGrade(grade) {
