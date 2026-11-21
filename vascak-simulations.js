@@ -1663,6 +1663,7 @@
         if (explicit) return explicit;
         if (url.indexOf('phet.colorado.edu') !== -1) return 'PhET Interactive Simulations';
         if (url.indexOf('vascak.cz') !== -1) return 'Vaščák Physics at School';
+        if (url.indexOf('ophysics.com') !== -1) return 'oPhysics';
         if (url.indexOf('geogebra') !== -1) return 'GeoGebra Physics';
         return 'Interactive Simulation';
     }
@@ -1671,6 +1672,7 @@
         if (game && game.provider) return String(game.provider).toLowerCase();
         var url = String((game && game.url) || '').toLowerCase();
         if (url.indexOf('vascak.cz') !== -1) return 'vascak';
+        if (url.indexOf('ophysics.com') !== -1) return 'ophysics';
         return 'existing';
     }
 
@@ -1686,6 +1688,13 @@
         return list.map(function (item) {
             return Object.assign({}, item);
         });
+    }
+
+    function getOphysicsSimulations(lessonId) {
+        if (global.WISOPhysicsSimulations && typeof global.WISOPhysicsSimulations.getSimulations === 'function') {
+            return global.WISOPhysicsSimulations.getSimulations(lessonId);
+        }
+        return [];
     }
 
     function normalizeExistingGames(existingGames, lesson) {
@@ -1714,23 +1723,21 @@
     function getMergedGames(lesson, existingGames) {
         var existingNormalized = normalizeExistingGames(existingGames, lesson);
         var vascakList = getVascakSimulations(lesson && lesson.id);
+        var ophysicsList = getOphysicsSimulations(lesson && lesson.id);
 
         var seenUrls = {};
         var merged = [];
 
-        existingNormalized.forEach(function (g) {
-            var cleanUrl = String(g.url || '').trim();
+        function pushUnique(item) {
+            var cleanUrl = String((item && item.url) || '').trim();
             if (!cleanUrl || seenUrls[cleanUrl]) return;
             seenUrls[cleanUrl] = true;
-            merged.push(g);
-        });
+            merged.push(item);
+        }
 
-        vascakList.forEach(function (v) {
-            var cleanUrl = String(v.url || '').trim();
-            if (!cleanUrl || seenUrls[cleanUrl]) return;
-            seenUrls[cleanUrl] = true;
-            merged.push(v);
-        });
+        existingNormalized.forEach(pushUnique);
+        vascakList.forEach(pushUnique);
+        ophysicsList.forEach(pushUnique);
 
         return merged;
     }
@@ -1750,8 +1757,10 @@
             return;
         }
 
-        var existingOnly = allGames.filter(function (g) { return g.provider !== 'vascak'; });
+        var existingOnly = allGames.filter(function (g) { return g.provider !== 'vascak' && g.provider !== 'ophysics'; });
         var vascakOnly = allGames.filter(function (g) { return g.provider === 'vascak'; });
+        var ophysicsOnly = allGames.filter(function (g) { return g.provider === 'ophysics'; });
+        var activeProviderCount = (existingOnly.length ? 1 : 0) + (vascakOnly.length ? 1 : 0) + (ophysicsOnly.length ? 1 : 0);
 
         var activeFilter = 'all';
         var selectedIndex = 0;
@@ -1759,6 +1768,7 @@
         function getVisibleGames() {
             if (activeFilter === 'existing') return existingOnly;
             if (activeFilter === 'vascak') return vascakOnly;
+            if (activeFilter === 'ophysics') return ophysicsOnly;
             return allGames;
         }
 
@@ -1780,6 +1790,31 @@
             return false;
         }
 
+        function getProviderMeta(provider) {
+            if (provider === 'vascak') {
+                return {
+                    cls: 'vascak',
+                    cardCls: 'is-vascak',
+                    shortLabel: 'Vaščák',
+                    icon: 'fa-flask'
+                };
+            }
+            if (provider === 'ophysics') {
+                return {
+                    cls: 'ophysics',
+                    cardCls: 'is-ophysics',
+                    shortLabel: 'oPhysics',
+                    icon: 'fa-compass-drafting'
+                };
+            }
+            return {
+                cls: 'existing',
+                cardCls: 'is-existing',
+                shortLabel: 'Interactive',
+                icon: 'fa-atom'
+            };
+        }
+
         function draw() {
             var visibleGames = getVisibleGames();
             if (!visibleGames.length) {
@@ -1791,10 +1826,10 @@
             }
 
             var currentGame = visibleGames[selectedIndex];
-            var isVascak = currentGame.provider === 'vascak';
+            var pMeta = getProviderMeta(currentGame.provider);
 
             var providerFilterHtml = '';
-            if (existingOnly.length > 0 && vascakOnly.length > 0) {
+            if (activeProviderCount >= 2) {
                 providerFilterHtml =
                     '<div class="game-provider-bar" role="tablist" aria-label="Simulation Provider Filter">' +
                     '<span class="game-topic-label"><i class="fa-solid fa-layer-group"></i> Providers:</span>' +
@@ -1802,12 +1837,21 @@
                     '<button type="button" class="game-provider-pill ' + (activeFilter === 'all' ? 'active' : '') + '" data-filter="all">' +
                     'All Providers <span class="game-count-chip">' + allGames.length + '</span>' +
                     '</button>' +
-                    '<button type="button" class="game-provider-pill ' + (activeFilter === 'existing' ? 'active' : '') + '" data-filter="existing">' +
-                    '<i class="fa-solid fa-atom"></i> Existing / PhET <span class="game-count-chip">' + existingOnly.length + '</span>' +
-                    '</button>' +
-                    '<button type="button" class="game-provider-pill vascak ' + (activeFilter === 'vascak' ? 'active' : '') + '" data-filter="vascak">' +
-                    '<i class="fa-solid fa-flask"></i> Vaščák Physics at School <span class="game-count-chip">' + vascakOnly.length + '</span>' +
-                    '</button>' +
+                    (existingOnly.length
+                        ? '<button type="button" class="game-provider-pill ' + (activeFilter === 'existing' ? 'active' : '') + '" data-filter="existing">' +
+                          '<i class="fa-solid fa-atom"></i> Existing / PhET <span class="game-count-chip">' + existingOnly.length + '</span>' +
+                          '</button>'
+                        : '') +
+                    (vascakOnly.length
+                        ? '<button type="button" class="game-provider-pill vascak ' + (activeFilter === 'vascak' ? 'active' : '') + '" data-filter="vascak">' +
+                          '<i class="fa-solid fa-flask"></i> Vaščák Physics at School <span class="game-count-chip">' + vascakOnly.length + '</span>' +
+                          '</button>'
+                        : '') +
+                    (ophysicsOnly.length
+                        ? '<button type="button" class="game-provider-pill ophysics ' + (activeFilter === 'ophysics' ? 'active' : '') + '" data-filter="ophysics">' +
+                          '<i class="fa-solid fa-compass-drafting"></i> oPhysics <span class="game-count-chip">' + ophysicsOnly.length + '</span>' +
+                          '</button>'
+                        : '') +
                     '</div>' +
                     '</div>';
             }
@@ -1819,13 +1863,13 @@
                     '<span class="game-topic-label"><i class="fa-solid fa-list-check"></i> Select Simulation:</span>' +
                     '<div class="game-topic-pills">' +
                     visibleGames.map(function (g, idx) {
-                        var badgeLabel = g.provider === 'vascak'
-                            ? 'Vaščák'
-                            : (String(g.providerLabel || '').indexOf('PhET') !== -1 ? 'PhET' : 'Interactive');
-                        var badgeClass = g.provider === 'vascak' ? 'vascak' : 'existing';
+                        var gMeta = getProviderMeta(g.provider);
+                        var badgeLabel = g.provider === 'existing'
+                            ? (String(g.providerLabel || '').indexOf('PhET') !== -1 ? 'PhET' : 'Interactive')
+                            : gMeta.shortLabel;
                         return (
                             '<button type="button" class="game-topic-pill ' + (idx === selectedIndex ? 'active' : '') + '" data-index="' + idx + '">' +
-                            '<span class="game-provider-tag ' + badgeClass + '">' + escapeHtml(badgeLabel) + '</span>' +
+                            '<span class="game-provider-tag ' + gMeta.cls + '">' + escapeHtml(badgeLabel) + '</span>' +
                             '<span>' + escapeHtml(g.title || g.topic) + '</span>' +
                             '</button>'
                         );
@@ -1835,16 +1879,19 @@
             }
 
             var metadataHtml = '';
-            if (isVascak || currentGame.description || currentGame.objective) {
+            if (currentGame.provider === 'vascak' || currentGame.provider === 'ophysics' || currentGame.description || currentGame.objective) {
                 var chapterDisplay = currentGame.chapter && currentGame.curriculumTopic
                     ? (currentGame.chapter + ' — ' + currentGame.curriculumTopic)
                     : (currentGame.chapter || currentGame.topic);
+                var sourceLabel = currentGame.provider === 'vascak'
+                    ? 'Vaščák Physics at School (vascak.cz)'
+                    : (currentGame.provider === 'ophysics' ? 'oPhysics (ophysics.com)' : (currentGame.sourceUrl || currentGame.url));
                 metadataHtml =
-                    '<div class="game-sim-info-card ' + (isVascak ? 'is-vascak' : 'is-existing') + '">' +
+                    '<div class="game-sim-info-card ' + pMeta.cardCls + '">' +
                     '<div class="game-sim-info-top">' +
                     '<div class="game-sim-title-group">' +
-                    '<span class="game-provider-badge ' + (isVascak ? 'vascak' : 'existing') + '">' +
-                    '<i class="fa-solid ' + (isVascak ? 'fa-flask' : 'fa-atom') + '"></i> ' + escapeHtml(currentGame.providerLabel) +
+                    '<span class="game-provider-badge ' + pMeta.cls + '">' +
+                    '<i class="fa-solid ' + pMeta.icon + '"></i> ' + escapeHtml(currentGame.providerLabel) +
                     '</span>' +
                     '<h3>' + escapeHtml(currentGame.title || currentGame.topic) + '</h3>' +
                     '</div>' +
@@ -1859,7 +1906,7 @@
                     '<div class="game-meta-row game-meta-source">' +
                     '<strong><i class="fa-solid fa-link"></i> Original Simulation Source:</strong> ' +
                     '<a href="' + escapeHtml(currentGame.sourceUrl || currentGame.url) + '" target="_blank" rel="noopener noreferrer" class="game-source-link">' +
-                    escapeHtml(isVascak ? 'Vaščák Physics at School (vascak.cz)' : (currentGame.sourceUrl || currentGame.url)) +
+                    escapeHtml(sourceLabel) +
                     ' <i class="fa-solid fa-arrow-up-right-from-square"></i></a>' +
                     '</div>' +
                     '</div>';
@@ -1870,7 +1917,7 @@
                 '<h2><i class="fa-solid fa-gamepad"></i> ' + escapeHtml(lesson.title || 'Interactive Simulation') + '</h2>' +
                 '<div class="game-current-topic">' +
                 '<i class="fa-solid fa-puzzle-piece"></i> Active Simulation: <span>' + escapeHtml(currentGame.title || currentGame.topic) + '</span> ' +
-                '<span class="game-provider-inline-tag ' + (isVascak ? 'vascak' : 'existing') + '">' + escapeHtml(currentGame.providerLabel) + '</span>' +
+                '<span class="game-provider-inline-tag ' + pMeta.cls + '">' + escapeHtml(currentGame.providerLabel) + '</span>' +
                 '</div>' +
                 '<p>Explore the interactive simulation below or switch between available providers for this topic.</p>' +
                 '</div>' +
@@ -1888,7 +1935,7 @@
                 '<div class="game-embed-wrapper">' +
                 '<iframe src="' + escapeHtml(currentGame.url) + '" class="game-preview" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="' + escapeHtml(currentGame.title || currentGame.topic) + ' Simulation"></iframe>' +
                 '<div class="game-embed-notice">' +
-                '<i class="fa-solid fa-circle-info"></i> If this simulation does not display inside the embedded frame on your network or device, use <strong>"Open Simulation in New Tab"</strong> above to launch the full interactive experiment directly.' +
+                '<i class="fa-solid fa-circle-info"></i> If this simulation or its interactive controls do not display inside the embedded frame on your network or browser, use <strong>"Open Simulation in New Tab"</strong> above to launch the full interactive experiment directly.' +
                 '</div>' +
                 '</div>';
 
