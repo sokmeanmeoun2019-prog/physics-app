@@ -6261,6 +6261,18 @@ div[class*="textLayer"],
     box-shadow: 0 3px 10px rgba(234, 88, 12, 0.24);
 }
 
+.game-provider-pill.javalab:hover {
+    border-color: #16a34a;
+    color: #15803d;
+    background: #f0fdf4;
+}
+
+.game-provider-pill.javalab.active {
+    background: #16a34a;
+    border-color: #15803d;
+    box-shadow: 0 3px 10px rgba(22, 163, 74, 0.24);
+}
+
 .game-count-chip {
     display: inline-flex;
     align-items: center;
@@ -6306,6 +6318,11 @@ div[class*="textLayer"],
     color: #c2410c;
 }
 
+.game-provider-tag.javalab {
+    background: rgba(22, 163, 74, 0.14);
+    color: #15803d;
+}
+
 .game-topic-pill.active .game-provider-tag {
     background: rgba(255, 255, 255, 0.24);
     color: #ffffff;
@@ -6340,6 +6357,12 @@ div[class*="textLayer"],
     border: 1px solid #fed7aa;
 }
 
+.game-provider-inline-tag.javalab {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
 .game-sim-info-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
@@ -6358,6 +6381,11 @@ div[class*="textLayer"],
 .game-sim-info-card.is-ophysics {
     border-left-color: #ea580c;
     background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
+}
+
+.game-sim-info-card.is-javalab {
+    border-left-color: #16a34a;
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
 }
 
 .game-sim-info-top {
@@ -6401,6 +6429,11 @@ div[class*="textLayer"],
 
 .game-provider-badge.ophysics {
     background: #ea580c;
+    color: #ffffff;
+}
+
+.game-provider-badge.javalab {
+    background: #16a34a;
     color: #ffffff;
 }
 
@@ -6450,6 +6483,10 @@ div[class*="textLayer"],
     color: #ea580c;
 }
 
+.game-sim-info-card.is-javalab .game-meta-row strong i {
+    color: #16a34a;
+}
+
 .game-source-link {
     color: #0f766e;
     font-weight: 600;
@@ -6467,6 +6504,14 @@ div[class*="textLayer"],
 
 .game-sim-info-card.is-ophysics .game-source-link:hover {
     color: #9a3412;
+}
+
+.game-sim-info-card.is-javalab .game-source-link {
+    color: #15803d;
+}
+
+.game-sim-info-card.is-javalab .game-source-link:hover {
+    color: #166534;
 }
 
 .game-btn.secondary {
