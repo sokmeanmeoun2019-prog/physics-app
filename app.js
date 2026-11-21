@@ -7440,6 +7440,11 @@ function renderGame(lesson) {
         gamesList = [{ topic: "Interactive Simulation", url: lesson.gameUrl }];
     }
 
+    if (window.WISVascakSimulations && typeof window.WISVascakSimulations.renderGameSection === 'function') {
+        window.WISVascakSimulations.renderGameSection(gameContainer, lesson, gamesList);
+        return;
+    }
+
     if (!gamesList.length) {
         gameContainer.innerHTML = `
             <div class="game-empty">

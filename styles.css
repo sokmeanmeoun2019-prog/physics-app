@@ -6192,4 +6192,304 @@ div[class*="textLayer"],
     box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3) !important;
 }
 
+/* ==========================================================================
+   Multi-Provider Game Section & Vaščák Simulation Enhancements (Grades 7-12)
+   ========================================================================== */
+
+.game-provider-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-bottom: 1.25rem;
+    padding: 0.9rem 1.15rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+.game-provider-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.game-provider-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: 999px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.game-provider-pill:hover {
+    border-color: #6366f1;
+    color: #4f46e5;
+    background: #eef2ff;
+}
+
+.game-provider-pill.active {
+    background: #4f46e5;
+    color: #ffffff;
+    border-color: #4338ca;
+    box-shadow: 0 3px 10px rgba(79, 70, 229, 0.24);
+}
+
+.game-provider-pill.vascak.active {
+    background: #0d9488;
+    border-color: #0f766e;
+    box-shadow: 0 3px 10px rgba(13, 148, 136, 0.24);
+}
+
+.game-count-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.35rem;
+    height: 1.35rem;
+    padding: 0 0.35rem;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    background: rgba(15, 23, 42, 0.08);
+    color: inherit;
+}
+
+.game-provider-pill.active .game-count-chip {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+}
+
+.game-provider-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.14rem 0.48rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.game-provider-tag.existing {
+    background: rgba(99, 102, 241, 0.12);
+    color: #4338ca;
+}
+
+.game-provider-tag.vascak {
+    background: rgba(13, 148, 136, 0.14);
+    color: #0f766e;
+}
+
+.game-topic-pill.active .game-provider-tag {
+    background: rgba(255, 255, 255, 0.24);
+    color: #ffffff;
+}
+
+.game-provider-inline-tag {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.45rem;
+    padding: 0.18rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.game-provider-inline-tag.existing {
+    background: #eef2ff;
+    color: #4338ca;
+    border: 1px solid #c7d2fe;
+}
+
+.game-provider-inline-tag.vascak {
+    background: #ccfbf1;
+    color: #0f766e;
+    border: 1px solid #99f6e4;
+}
+
+.game-sim-info-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #6366f1;
+    border-radius: 14px;
+    padding: 1.1rem 1.35rem;
+    margin-bottom: 1.35rem;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.game-sim-info-card.is-vascak {
+    border-left-color: #0d9488;
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
+}
+
+.game-sim-info-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(203, 213, 225, 0.6);
+}
+
+.game-sim-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.game-sim-title-group h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: #0f172a;
+}
+
+.game-provider-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: fit-content;
+    padding: 0.22rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.game-provider-badge.vascak {
+    background: #0d9488;
+    color: #ffffff;
+}
+
+.game-provider-badge.existing {
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+.game-sim-chapter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.32rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.05);
+    color: #334155;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.game-meta-row {
+    font-size: 0.94rem;
+    line-height: 1.55;
+    color: #334155;
+    margin-bottom: 0.45rem;
+}
+
+.game-meta-row:last-child {
+    margin-bottom: 0;
+}
+
+.game-meta-row strong {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.game-meta-row strong i {
+    color: #0d9488;
+    margin-right: 0.25rem;
+}
+
+.game-sim-info-card.is-existing .game-meta-row strong i {
+    color: #4f46e5;
+}
+
+.game-source-link {
+    color: #0f766e;
+    font-weight: 600;
+    text-decoration: underline;
+    word-break: break-word;
+}
+
+.game-source-link:hover {
+    color: #115e59;
+}
+
+.game-btn.secondary {
+    background: #f1f5f9;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+}
+
+.game-btn.secondary:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+}
+
+.game-embed-wrapper:fullscreen,
+.game-embed-wrapper:-webkit-full-screen {
+    background: #0f172a;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-embed-wrapper:fullscreen .game-preview,
+.game-embed-wrapper:-webkit-full-screen .game-preview {
+    flex: 1 1 auto;
+    height: 100%;
+    border-radius: 10px;
+}
+
+@media (max-width: 992px) {
+    .game-preview {
+        height: 540px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 1.15rem;
+    }
+
+    .game-provider-bar {
+        padding: 0.75rem 0.9rem;
+    }
+
+    .game-sim-info-card {
+        padding: 0.95rem 1rem;
+    }
+
+    .game-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .game-btn {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .game-preview {
+        height: 440px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-preview {
+        height: 360px;
+    }
+}
+
+
 
