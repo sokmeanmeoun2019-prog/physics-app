@@ -43,6 +43,12 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
+                var SITE_OFFLINE = true;
+                if (SITE_OFFLINE && !(isHost && sessionStorage.getItem('wis_admin_session'))) {
+                    document.documentElement.classList.remove('wis-pre-auth');
+                    document.documentElement.classList.add('wis-pre-maintenance');
+                }
+
                 var currentVer = 50;
                 var LATEST_BUILD = '20261121195214';
                 var storedBuild = localStorage.getItem('wis_build_ts');
@@ -79,9 +85,9 @@
                         var c = JSON.parse(conf);
                         if (c && c.version) v = c.version;
                     }
-                    if (s && s.v === v && s.v >= currentVer && s.sig) {
+                    if (s && s.v === v && s.v >= currentVer && s.sig && !SITE_OFFLINE) {
                         document.documentElement.classList.add('wis-pre-auth');
-                    } else {
+                    } else if (!SITE_OFFLINE) {
                         // Invalidate and evict all previous student & admin sessions immediately
                         localStorage.removeItem('wis_persistent_student_session');
                         localStorage.removeItem('wis_auth_admin_config');
@@ -95,7 +101,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=50&build=20261121195214">
+    <link rel="stylesheet" href="styles.css?v=51&build=20261121201500">
     <link rel="stylesheet" href="summary-slides.css?v=2&build=20261121070500">
     <style>
         .view.active {
@@ -104,6 +110,12 @@
             visibility: visible !important;
         }
         .hidden {
+            display: none !important;
+        }
+        html.wis-pre-maintenance #website-maintenance-overlay {
+            display: flex !important;
+        }
+        html.wis-pre-maintenance body > :not(#website-maintenance-overlay) {
             display: none !important;
         }
     </style>
@@ -9647,7 +9659,7 @@
         }
 
         function handleRouteHash() {
-            if (document.body && document.body.classList.contains('is-locked')) {
+            if (document.body && (document.body.classList.contains('is-locked') || document.body.classList.contains('is-maintenance'))) {
                 window.pendingAuthTargetRoute = window.location.hash || window.location.search || '';
                 return;
             }
@@ -9704,6 +9716,23 @@
     </script>
 </head>
 <body class="is-locked">
+    <!-- Student Maintenance / Unavailable Screen (Enforced when Website Access is OFF) -->
+    <div id="website-maintenance-overlay" class="maintenance-overlay" role="alertdialog" aria-modal="true" aria-labelledby="maintenance-title" aria-describedby="maintenance-desc">
+        <div class="maintenance-card">
+            <div class="maintenance-status-pill">
+                <span class="maintenance-dot"></span> Website Offline
+            </div>
+            <div class="maintenance-icon" id="maintenance-overlay-icon" title="Website Temporarily Unavailable">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h1 id="maintenance-title">Website Temporarily Unavailable</h1>
+            <p id="maintenance-desc" class="maintenance-desc">This site can't be reached right now. The website is temporarily unavailable. Please contact your teacher for more information.</p>
+            <button type="button" class="maintenance-retry-btn" onclick="window.location.reload()">
+                <i class="fa-solid fa-rotate-right"></i> Try Again
+            </button>
+        </div>
+    </div>
+
     <!-- Website Access Password Screen -->
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
@@ -9811,6 +9840,48 @@
                     <div class="admin-last-updated" id="admin-pw-updated-text">Last Updated: Active</div>
                 </div>
 
+                <!-- Website Access Control (Exam Period ON / OFF Switch) -->
+                <div class="admin-panel-section admin-access-control-section" id="admin-website-access-section">
+                    <div class="admin-access-header">
+                        <div>
+                            <h3><i class="fa-solid fa-power-off"></i> Website Access Control</h3>
+                            <p class="admin-section-desc" style="margin-bottom: 0;">Temporarily turn student access OFF during examination periods and turn it ON anytime. Admin Dashboard remains accessible.</p>
+                        </div>
+                        <span class="site-status-pill is-online" id="admin-site-status-pill">
+                            <span class="site-status-dot" id="admin-site-status-dot"></span>
+                            <span id="admin-site-status-label">Website Online</span>
+                        </span>
+                    </div>
+
+                    <div class="admin-access-controls-row">
+                        <div class="admin-access-meta">
+                            <span>Current Status: <strong id="admin-site-status-text">Website Online (Students Allowed)</strong></span>
+                            <span class="admin-last-updated" id="admin-site-status-updated">Ready</span>
+                        </div>
+                        <div class="admin-access-switch-group" role="group" aria-label="Website ON/OFF Switch">
+                            <button type="button" id="admin-site-on-btn" class="admin-toggle-btn is-on active">
+                                <i class="fa-solid fa-circle-check"></i> WEBSITE ON
+                            </button>
+                            <button type="button" id="admin-site-off-btn" class="admin-toggle-btn is-off">
+                                <i class="fa-solid fa-ban"></i> WEBSITE OFF
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="admin-site-confirm-box" class="admin-confirm-box hidden" role="alertdialog" aria-live="polite">
+                        <div class="admin-confirm-msg" id="admin-site-confirm-msg">Are you sure you want to change website availability?</div>
+                        <div class="admin-confirm-actions">
+                            <button type="button" id="admin-site-confirm-yes" class="admin-confirm-btn-yes">Confirm</button>
+                            <button type="button" id="admin-site-confirm-cancel" class="admin-confirm-btn-cancel">Cancel</button>
+                        </div>
+                    </div>
+
+                    <div id="admin-site-access-alert" class="auth-alert hidden" role="alert" style="margin-top: 0.9rem; margin-bottom: 0;">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span id="admin-site-access-alert-text"></span>
+                    </div>
+                </div>
+
                 <div class="admin-panel-section">
                     <h3><i class="fa-solid fa-key"></i> Update Shared Website Access Password</h3>
                     <p class="admin-section-desc">Set the shared password required for all students and visitors to access the website.</p>
@@ -9894,6 +9965,14 @@
                     <button type="button" id="admin-done-btn" class="admin-btn-primary"><i class="fa-solid fa-check"></i> Done</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Admin Reminder Banner when Website is OFF -->
+    <div id="admin-maintenance-banner" class="admin-maintenance-banner hidden" role="status">
+        <div class="admin-maintenance-banner-inner">
+            <span><i class="fa-solid fa-triangle-exclamation"></i> <strong>Website Offline:</strong> Maintenance mode is active — all student access is currently blocked.</span>
+            <button type="button" id="admin-banner-open-control-btn" class="admin-banner-btn"><i class="fa-solid fa-power-off"></i> Website Access Control</button>
         </div>
     </div>
 
@@ -10490,7 +10569,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=50&build=20261121195214"></script>
+    <script src="auth.js?v=50&build=20261121203045"></script>
     <script src="summary-slides.js?v=4&build=20261121075000"></script>
     <script src="ophysics-simulations.js?v=1&build=20261121112000"></script>
     <script src="javalab-simulations.js?v=1&build=20261121115500"></script>

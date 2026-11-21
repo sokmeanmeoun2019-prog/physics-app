@@ -6581,5 +6581,364 @@ div[class*="textLayer"],
     }
 }
 
+/* ==========================================================================
+   Website Access Control (ON / OFF Maintenance Mode & Admin Switch)
+   ========================================================================== */
+
+body.is-maintenance {
+    overflow: hidden !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+}
+
+body.is-maintenance .navbar,
+body.is-maintenance #app-container,
+body.is-maintenance .view,
+body.is-maintenance #ai-widget-container,
+body.is-maintenance .progress-container,
+body.is-maintenance #website-auth-gate {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+body.is-maintenance #website-maintenance-overlay {
+    display: flex !important;
+}
+
+body:not(.is-maintenance) #website-maintenance-overlay {
+    display: none !important;
+}
+
+.maintenance-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: radial-gradient(ellipse at 50% 25%, #1e1b4b 0%, #0f172a 70%, #020617 100%);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.maintenance-card {
+    max-width: 520px;
+    width: 100%;
+    background: rgba(30, 41, 59, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
+    padding: 2.75rem 2.25rem;
+    text-align: center;
+    color: #f8fafc;
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.72);
+    animation: authFadeIn 0.3s ease-out;
+}
+
+.maintenance-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.42rem 1rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.16);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    margin-bottom: 1.35rem;
+}
+
+.maintenance-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.9);
+}
+
+.maintenance-icon {
+    width: 74px;
+    height: 74px;
+    margin: 0 auto 1.35rem;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.14);
+    border: 2px solid rgba(239, 68, 68, 0.38);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #f87171;
+}
+
+.maintenance-card h1 {
+    margin: 0 0 0.85rem 0;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.maintenance-desc {
+    margin: 0 auto 1.65rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #cbd5e1;
+}
+
+.maintenance-retry-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.35rem;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f8fafc;
+    font-size: 0.92rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.maintenance-retry-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+/* Admin Offline Reminder Banner */
+.admin-maintenance-banner {
+    background: linear-gradient(90deg, #991b1b 0%, #dc2626 100%);
+    color: #ffffff;
+    padding: 0.65rem 1.25rem;
+    position: relative;
+    z-index: 950;
+    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.35);
+}
+
+body:not(.is-admin) #admin-maintenance-banner {
+    display: none !important;
+}
+
+.admin-maintenance-banner-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.admin-banner-btn {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    color: #ffffff;
+    padding: 0.38rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.admin-banner-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+/* Admin Dashboard: Website Access Control Section */
+.admin-access-control-section {
+    border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.admin-access-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.85rem;
+    margin-bottom: 1.05rem;
+}
+
+.site-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.38rem 0.95rem;
+    border-radius: 9999px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+}
+
+.site-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.site-status-pill.is-online {
+    background: rgba(16, 185, 129, 0.16);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.42);
+}
+
+.site-status-pill.is-online .site-status-dot {
+    background: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.9);
+}
+
+.site-status-pill.is-offline {
+    background: rgba(239, 68, 68, 0.16);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.45);
+}
+
+.site-status-pill.is-offline .site-status-dot {
+    background: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.9);
+}
+
+.admin-access-controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.95rem;
+    padding: 0.95rem 1rem;
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+.admin-access-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.88rem;
+    color: #cbd5e1;
+}
+
+.admin-access-meta strong {
+    color: #ffffff;
+}
+
+.admin-access-switch-group {
+    display: inline-flex;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+}
+
+.admin-toggle-btn {
+    padding: 0.62rem 1.05rem;
+    border-radius: 9px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: rgba(30, 41, 59, 0.9);
+    color: #94a3b8;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.admin-toggle-btn.is-on:hover:not(:disabled) {
+    border-color: #10b981;
+    color: #6ee7b7;
+}
+
+.admin-toggle-btn.is-off:hover:not(:disabled) {
+    border-color: #ef4444;
+    color: #fca5a5;
+}
+
+.admin-toggle-btn.is-on.active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    border-color: #059669;
+    box-shadow: 0 3px 12px rgba(16, 185, 129, 0.35);
+}
+
+.admin-toggle-btn.is-off.active {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: #ffffff;
+    border-color: #dc2626;
+    box-shadow: 0 3px 12px rgba(239, 68, 68, 0.38);
+}
+
+.admin-toggle-btn:disabled {
+    opacity: 0.65;
+    cursor: default;
+}
+
+.admin-confirm-box {
+    margin-top: 0.95rem;
+    padding: 0.95rem 1rem;
+    border-radius: 10px;
+    background: rgba(245, 158, 11, 0.14);
+    border: 1px solid rgba(245, 158, 11, 0.42);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.admin-confirm-msg {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: #fef3c7;
+    font-weight: 600;
+    flex: 1 1 240px;
+}
+
+.admin-confirm-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.admin-confirm-btn-yes,
+.admin-confirm-btn-cancel {
+    padding: 0.48rem 0.95rem;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.admin-confirm-btn-yes {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.admin-confirm-btn-yes.is-online {
+    background: #10b981;
+}
+
+.admin-confirm-btn-cancel {
+    background: rgba(255, 255, 255, 0.14);
+    color: #f8fafc;
+}
+
+
 
 

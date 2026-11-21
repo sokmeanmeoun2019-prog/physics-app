@@ -19,12 +19,16 @@
     const ADMIN_PW_SALT = 'WIS_ADMIN_SALT_v5_0';
     const ADMIN_PW_HASH = '530430efa7fcf92505aba093b5fed097f1d923408d2f455fd4474d480511473f';
     const SALT_PEPPER = SHARED_PW_SALT;
+    const STATIC_WEBSITE_ONLINE = false;
 
     // Application Auth State
     const authState = {
         isAuthenticated: false,
         isAdmin: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
+        websiteOnline: STATIC_WEBSITE_ONLINE,
+        maintenanceUpdatedAt: null,
+        pendingWebsiteTargetState: null,
         sharedPasswordVersion: 50,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
@@ -281,8 +285,31 @@
         }
     }
 
-    // --- Lock and Unlock UI ---
+    // --- Lock, Maintenance and Unlock UI ---
+    function setMaintenanceState(isOffline) {
+        const shouldBlock = Boolean(isOffline && !authState.isAdmin);
+        if (shouldBlock) {
+            document.documentElement.classList.remove('wis-pre-auth');
+            document.documentElement.classList.add('wis-pre-maintenance');
+            document.body.classList.add('is-maintenance');
+        } else {
+            document.documentElement.classList.remove('wis-pre-maintenance');
+            document.body.classList.remove('is-maintenance');
+        }
+
+        const adminBanner = getEl('admin-maintenance-banner');
+        if (adminBanner) {
+            adminBanner.classList.toggle('hidden', !(isOffline && authState.isAdmin));
+        }
+    }
+
     function setLockedState(locked) {
+        if (!authState.websiteOnline && !authState.isAdmin) {
+            setMaintenanceState(true);
+            return;
+        }
+        setMaintenanceState(false);
+
         if (locked) {
             document.documentElement.classList.remove('wis-pre-auth');
             document.body.classList.add('is-locked');
@@ -312,6 +339,10 @@
     }
 
     async function grantAccess() {
+        if (!authState.websiteOnline && !authState.isAdmin) {
+            setMaintenanceState(true);
+            return;
+        }
         authState.isAuthenticated = true;
         const currentVersion = authState.sharedPasswordVersion || 12;
         const currentFingerprint = SHARED_PW_HASH;
@@ -335,6 +366,7 @@
     async function grantAdminAccess() {
         authState.isAdmin = true;
         authState.isAuthenticated = true;
+        setMaintenanceState(false);
         const currentVersion = authState.sharedPasswordVersion || 5;
         sessionStorage.setItem('wis_admin_session', 'authenticated');
         sessionStorage.setItem('wis_student_session', 'authenticated');
@@ -384,6 +416,8 @@
                 authState.isAuthenticated = Boolean(data.authenticated);
                 authState.isAdmin = Boolean(data.isAdmin);
                 authState.isHost = Boolean(data.isHost);
+                authState.websiteOnline = (data.websiteOnline !== false);
+                authState.maintenanceUpdatedAt = data.maintenanceUpdatedAt || null;
                 authState.sharedPasswordVersion = data.version || activeVersion;
                 authState.lastUpdated = data.lastUpdated || null;
                 checkedOnServer = true;
@@ -400,20 +434,61 @@
                     authState.isAdmin = false;
                 }
 
-                if (!data.authenticated) {
-                    // Server invalidated session (e.g. password changed by admin), clear client session immediately
-                    clearPersistentStudentSession();
-                    sessionStorage.removeItem('wis_student_session');
+                if (!authState.websiteOnline && !authState.isAdmin) {
+                    // Enforce maintenance lockout without erasing student's valid session token,
+                    // so restoring the website ON does not require unnecessary re-login.
+                    setMaintenanceState(true);
                 } else {
-                    // Synchronize client persistent session with server version
-                    sessionStorage.setItem('wis_student_session', 'authenticated');
-                    sessionStorage.setItem('wis_session_version', String(data.version || activeVersion));
-                    await createPersistentStudentSession(data.version || activeVersion);
+                    setMaintenanceState(false);
+                    if (!data.authenticated) {
+                        // Server invalidated session (e.g. password changed by admin), clear client session immediately
+                        clearPersistentStudentSession();
+                        sessionStorage.removeItem('wis_student_session');
+                    } else {
+                        // Synchronize client persistent session with server version
+                        sessionStorage.setItem('wis_student_session', 'authenticated');
+                        sessionStorage.setItem('wis_session_version', String(data.version || activeVersion));
+                        await createPersistentStudentSession(data.version || activeVersion);
+                    }
                 }
+            } else if (res.status === 503) {
+                const data = await res.json().catch(() => ({}));
+                authState.websiteOnline = false;
+                if (!authState.isAdmin) {
+                    setMaintenanceState(true);
+                }
+                checkedOnServer = true;
             }
         } catch (e) {}
 
         if (!checkedOnServer) {
+            // Static / GitHub Pages mode: respect STATIC_WEBSITE_ONLINE AND live site-status.json
+            let resolvedStaticOnline = STATIC_WEBSITE_ONLINE;
+            if (window.location.protocol !== 'file:') {
+                try {
+                    const statusUrl = (typeof window.resolveAppUrl === 'function'
+                        ? window.resolveAppUrl('site-status.json')
+                        : 'site-status.json') + '?t=' + Date.now();
+                    const sc = new AbortController();
+                    const stId = setTimeout(() => sc.abort(), 1500);
+                    const sRes = await fetch(statusUrl, {
+                        method: 'GET',
+                        cache: 'no-store',
+                        headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' },
+                        signal: sc.signal
+                    });
+                    clearTimeout(stId);
+                    if (sRes.ok) {
+                        const sData = await sRes.json().catch(() => null);
+                        if (sData && typeof sData.online === 'boolean') {
+                            resolvedStaticOnline = sData.online;
+                            if (sData.updatedAt) authState.maintenanceUpdatedAt = sData.updatedAt;
+                        }
+                    }
+                } catch (staticErr) {}
+            }
+            authState.websiteOnline = Boolean(resolvedStaticOnline);
+
             authState.isHost = isHostEnvironment();
             if (!authState.isHost) {
                 try {
@@ -423,6 +498,13 @@
                     sessionStorage.removeItem('wis_admin_auth_user');
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 } catch (e) {}
+            }
+
+            if (!authState.websiteOnline && !authState.isAdmin) {
+                // Static maintenance lock (keeps existing student login intact for seamless Turn ON restore)
+                setMaintenanceState(true);
+            } else {
+                setMaintenanceState(false);
             }
 
             const currentActiveVer = authState.sharedPasswordVersion || 5;
@@ -457,6 +539,46 @@
         setLockedState(!authState.isAuthenticated);
     }
 
+    function updateWebsiteAccessUI() {
+        const pill = getEl('admin-site-status-pill');
+        const label = getEl('admin-site-status-label');
+        const textEl = getEl('admin-site-status-text');
+        const updatedEl = getEl('admin-site-status-updated');
+        const onBtn = getEl('admin-site-on-btn');
+        const offBtn = getEl('admin-site-off-btn');
+        const adminBanner = getEl('admin-maintenance-banner');
+        const isOnline = (authState.websiteOnline !== false);
+
+        if (pill) {
+            pill.classList.toggle('is-online', isOnline);
+            pill.classList.toggle('is-offline', !isOnline);
+        }
+        if (label) {
+            label.textContent = isOnline ? 'Website Online' : 'Website Offline';
+        }
+        if (textEl) {
+            textEl.textContent = isOnline
+                ? 'Website Online (Students Allowed)'
+                : 'Website Offline (Maintenance Mode Active)';
+        }
+        if (updatedEl) {
+            updatedEl.textContent = authState.maintenanceUpdatedAt
+                ? `Last Changed: ${formatDate(authState.maintenanceUpdatedAt)}`
+                : 'Ready';
+        }
+        if (onBtn) {
+            onBtn.classList.toggle('active', isOnline);
+            onBtn.disabled = isOnline;
+        }
+        if (offBtn) {
+            offBtn.classList.toggle('active', !isOnline);
+            offBtn.disabled = !isOnline;
+        }
+        if (adminBanner) {
+            adminBanner.classList.toggle('hidden', !( !isOnline && authState.isAdmin ));
+        }
+    }
+
     function updateAdminStatusUI() {
         const adminPwVersionPill = getEl('admin-pw-version-pill');
         const adminPwUpdatedText = getEl('admin-pw-updated-text');
@@ -484,6 +606,7 @@
                 navAdminBtn.classList.add('hidden');
             }
         }
+        updateWebsiteAccessUI();
     }
 
     // --- Shared Access Login Handler ---
@@ -521,6 +644,7 @@
             const isStaticHost = (window.location.hostname || '').endsWith('github.io') || window.location.protocol === 'file:';
 
             // 1. Attempt Server API (only if running with a real local Node backend)
+            let blockedByMaintenance = false;
             if (!isStaticHost) {
                 try {
                     const controller = new AbortController();
@@ -540,11 +664,20 @@
                             authenticated = true;
                             if (data.version) authState.sharedPasswordVersion = data.version;
                         }
+                    } else if (res.status === 503) {
+                        blockedByMaintenance = true;
+                        authState.websiteOnline = false;
+                        setMaintenanceState(true);
                     } else if (res.status === 401 || res.status === 429) {
                         const data = await res.json().catch(() => ({}));
                         errorMessage = data.message || 'Incorrect password. Please try again.';
                     }
                 } catch (netErr) {}
+            }
+
+            if (blockedByMaintenance || (!authState.websiteOnline && !authState.isAdmin)) {
+                setMaintenanceState(true);
+                return;
             }
 
             // 2. Client Mode: Irreversible Salted SHA-256 Hash Verification
@@ -946,6 +1079,130 @@
         if (confirmInput) confirmInput.value = '';
     }
 
+    // --- Website Access Control (Admin ON / OFF Switch) ---
+    function hideWebsiteAccessConfirm() {
+        const confirmBox = getEl('admin-site-confirm-box');
+        authState.pendingWebsiteTargetState = null;
+        if (confirmBox) confirmBox.classList.add('hidden');
+    }
+
+    function requestWebsiteAccessChange(targetOnline) {
+        const alertEl = getEl('admin-site-access-alert');
+        const alertTextEl = getEl('admin-site-access-alert-text');
+        const confirmBox = getEl('admin-site-confirm-box');
+        const confirmMsg = getEl('admin-site-confirm-msg');
+        const yesBtn = getEl('admin-site-confirm-yes');
+
+        if (!isHostEnvironment() || !authState.isAdmin) {
+            showAlert(alertEl, alertTextEl, 'Access Denied: Only the administrator on the host computer can change website availability.', true);
+            return;
+        }
+
+        hideAlert(alertEl);
+        authState.pendingWebsiteTargetState = Boolean(targetOnline);
+
+        if (confirmMsg) {
+            confirmMsg.textContent = targetOnline
+                ? 'Are you sure you want to restore website access (WEBSITE ON)? Students will immediately regain access to their accounts and materials.'
+                : 'Are you sure you want to turn the website OFF (Maintenance Mode)? All student access, direct links, and APIs will be blocked until you turn it back ON.';
+        }
+        if (yesBtn) {
+            yesBtn.textContent = targetOnline ? 'Confirm Turn ON' : 'Confirm Turn OFF';
+            yesBtn.classList.toggle('is-online', Boolean(targetOnline));
+        }
+        if (confirmBox) confirmBox.classList.remove('hidden');
+    }
+
+    async function applyWebsiteAccessChange() {
+        const targetOnline = authState.pendingWebsiteTargetState;
+        if (typeof targetOnline !== 'boolean') {
+            hideWebsiteAccessConfirm();
+            return;
+        }
+
+        const alertEl = getEl('admin-site-access-alert');
+        const alertTextEl = getEl('admin-site-access-alert-text');
+        const yesBtn = getEl('admin-site-confirm-yes');
+        const onBtn = getEl('admin-site-on-btn');
+        const offBtn = getEl('admin-site-off-btn');
+
+        if (!isHostEnvironment() || !authState.isAdmin) {
+            hideWebsiteAccessConfirm();
+            showAlert(alertEl, alertTextEl, 'Access Denied: Administrator privileges required.', true);
+            return;
+        }
+
+        if (yesBtn) yesBtn.disabled = true;
+        if (onBtn) onBtn.disabled = true;
+        if (offBtn) offBtn.disabled = true;
+
+        const adminToken = sessionStorage.getItem('wis_admin_token') || '';
+        const adminUsername = sessionStorage.getItem('wis_admin_auth_user') || DEFAULT_ADMIN_USER;
+        const adminPassword = sessionStorage.getItem('wis_admin_auth_pw') || '';
+
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 3500);
+            const res = await fetch('/api/admin/website-status', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': adminToken ? `Bearer ${adminToken}` : ''
+                },
+                body: JSON.stringify({
+                    online: targetOnline,
+                    adminToken,
+                    adminUsername,
+                    adminPassword
+                }),
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data.success) {
+                showAlert(alertEl, alertTextEl, data.message || 'Could not update website access status on the server.', true);
+            } else {
+                authState.websiteOnline = (data.online !== false);
+                authState.maintenanceUpdatedAt = data.updatedAt || new Date().toISOString();
+                setMaintenanceState(!authState.websiteOnline);
+                updateWebsiteAccessUI();
+                hideWebsiteAccessConfirm();
+                showAlert(alertEl, alertTextEl, data.message || (authState.websiteOnline ? 'Website is now ONLINE.' : 'Website is now OFFLINE.'), false);
+            }
+        } catch (err) {
+            showAlert(alertEl, alertTextEl, 'Server unreachable. Website Access Control requires the Node.js server.', true);
+        } finally {
+            if (yesBtn) yesBtn.disabled = false;
+            updateWebsiteAccessUI();
+        }
+    }
+
+    async function refreshAdminWebsiteStatus() {
+        if (!isHostEnvironment() || !authState.isAdmin) return;
+        const adminToken = sessionStorage.getItem('wis_admin_token') || '';
+        try {
+            const res = await fetch('/api/admin/website-status', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Authorization': adminToken ? `Bearer ${adminToken}` : ''
+                }
+            });
+            if (res.ok) {
+                const data = await res.json().catch(() => ({}));
+                if (typeof data.online === 'boolean') {
+                    authState.websiteOnline = data.online;
+                    authState.maintenanceUpdatedAt = data.updatedAt || authState.maintenanceUpdatedAt;
+                    setMaintenanceState(!authState.websiteOnline);
+                    updateWebsiteAccessUI();
+                }
+            }
+        } catch (e) {}
+    }
+
     // --- Logout Handlers ---
     async function handleLogout() {
         try {
@@ -1007,6 +1264,8 @@
         hideAlert(getEl('admin-login-alert'));
         hideAlert(getEl('admin-change-pw-alert'));
         hideAlert(getEl('admin-self-pw-alert'));
+        hideAlert(getEl('admin-site-access-alert'));
+        hideWebsiteAccessConfirm();
     }
 
     function showAdminLoginView() {
@@ -1021,11 +1280,12 @@
     function showAdminDashboardView() {
         const adminLoginView = getEl('admin-login-view');
         const adminDashboardView = getEl('admin-dashboard-view');
-        const newSharedPwInput = getEl('new-shared-pw-input');
         if (adminLoginView) adminLoginView.classList.add('hidden');
         if (adminDashboardView) adminDashboardView.classList.remove('hidden');
+        hideWebsiteAccessConfirm();
+        hideAlert(getEl('admin-site-access-alert'));
         updateAdminStatusUI();
-        if (newSharedPwInput) setTimeout(() => newSharedPwInput.focus(), 150);
+        refreshAdminWebsiteStatus();
     }
 
     // --- Wire Event Listeners ---
@@ -1046,6 +1306,19 @@
         if (adminForm) adminForm.addEventListener('submit', (e) => { e.preventDefault(); handleAdminLogin(); });
         if (changePwForm) changePwForm.addEventListener('submit', (e) => { e.preventDefault(); handleAdminChangeSharedPw(); });
         if (changeSelfPwForm) changeSelfPwForm.addEventListener('submit', (e) => { e.preventDefault(); handleAdminChangeSelfPw(); });
+
+        // Website Access Control (ON / OFF) Buttons & Confirmation
+        const siteOnBtn = getEl('admin-site-on-btn');
+        const siteOffBtn = getEl('admin-site-off-btn');
+        const siteConfirmYes = getEl('admin-site-confirm-yes');
+        const siteConfirmCancel = getEl('admin-site-confirm-cancel');
+        const bannerOpenBtn = getEl('admin-banner-open-control-btn');
+
+        if (siteOnBtn) siteOnBtn.addEventListener('click', () => requestWebsiteAccessChange(true));
+        if (siteOffBtn) siteOffBtn.addEventListener('click', () => requestWebsiteAccessChange(false));
+        if (siteConfirmYes) siteConfirmYes.addEventListener('click', applyWebsiteAccessChange);
+        if (siteConfirmCancel) siteConfirmCancel.addEventListener('click', hideWebsiteAccessConfirm);
+        if (bannerOpenBtn) bannerOpenBtn.addEventListener('click', openAdminModal);
 
         // Direct Button Clicks & Enter Key Fallback
         const sharedBtn = getEl('shared-login-btn');
@@ -1119,10 +1392,10 @@
         });
 
         // --- Stealth Administrator Triggers (Teacher-Only Access on Host Computer) ---
-        // 1. Secret 5-Tap Gesture on Shield Icon or Logo (Active ONLY on Host Computer)
+        // 1. Secret 5-Tap Gesture on Shield Icon, Logo, or Maintenance Icon (Active ONLY on Host Computer)
         let shieldTapCount = 0;
         let lastShieldTapTime = 0;
-        const secretTapTargets = document.querySelectorAll('.auth-gate-icon, .auth-gate-badge, .logo, #site-logo');
+        const secretTapTargets = document.querySelectorAll('.auth-gate-icon, .auth-gate-badge, .logo, #site-logo, #maintenance-overlay-icon');
 
         secretTapTargets.forEach(el => {
             if (!el) return;
@@ -1169,19 +1442,30 @@
         checkAdminHash();
         window.addEventListener('hashchange', checkAdminHash);
         window.addEventListener('popstate', checkAdminHash);
+
+        // 4. Real-Time Status Sync (enforces maintenance mode on open student tabs across both server & GitHub Pages)
+        if (window.location.protocol !== 'file:') {
+            setInterval(() => { checkAuthStatus(); }, 8000);
+            window.addEventListener('focus', () => { checkAuthStatus(); });
+            window.addEventListener('pageshow', () => { checkAuthStatus(); });
+            window.addEventListener('hashchange', () => { checkAuthStatus(); });
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) checkAuthStatus();
+            });
+        }
     }
 
-    // Anti-Inspection & DevTools Deterrent on Gate
+    // Anti-Inspection & DevTools Deterrent on Gate / Maintenance
     (function initDevToolsShield() {
         document.addEventListener('contextmenu', function (e) {
-            if (document.body && document.body.classList.contains('is-locked')) {
+            if (document.body && (document.body.classList.contains('is-locked') || document.body.classList.contains('is-maintenance'))) {
                 e.preventDefault();
                 return false;
             }
         });
 
         window.addEventListener('keydown', function (e) {
-            if (!document.body || !document.body.classList.contains('is-locked')) return;
+            if (!document.body || (!document.body.classList.contains('is-locked') && !document.body.classList.contains('is-maintenance'))) return;
             // Allow teacher shortcut: Ctrl+Shift+A for admin modal
             if ((e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (e.key === 'A' || e.key === 'a')) {
                 return;
