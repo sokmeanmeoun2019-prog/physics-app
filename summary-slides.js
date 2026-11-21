@@ -265,128 +265,41 @@
     }
 
     // --------------------------------------------------------------------------
-    // Navigation & Grade Isolation
+    // Tab Entry & Strict Grade Isolation (Inside Lesson View After Equations)
     // --------------------------------------------------------------------------
-    function setNavbarButtonActive(isActive) {
-        const navBtn = document.getElementById('nav-summary-slides-btn');
-        if (navBtn) {
-            navBtn.classList.toggle('active', Boolean(isActive));
-        }
-    }
+    function renderTab(gradeOpt) {
+        const g = normalizeGrade(gradeOpt) || normalizeGrade(window.currentGrade);
+        const container = document.getElementById('tab-summary-slides-content');
+        if (!container) return;
 
-    function openSummarySlidesView(gradeOpt, langOpt, pushRoute = true) {
-        const targetGrade = normalizeGrade(gradeOpt)
-            || normalizeGrade(window.currentGrade)
-            || state.activeGrade
-            || '9';
-
-        state.activeGrade = targetGrade;
-        if (langOpt === 'kh' || langOpt === 'en' || langOpt === 'all') {
-            state.activeLangFilter = langOpt;
-        }
-
-        const viewEl = document.getElementById('view-summary-slides');
-        if (!viewEl) return;
-
-        if (typeof window.showView === 'function') {
-            window.showView(viewEl);
-        } else {
-            document.querySelectorAll('.view').forEach(v => {
-                v.classList.remove('active');
-                v.classList.add('hidden');
-                v.style.display = 'none';
-            });
-            viewEl.classList.remove('hidden');
-            viewEl.classList.add('active');
-            viewEl.style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        setNavbarButtonActive(true);
-
-        if (pushRoute) {
-            const targetHash = `#summary-slides-${targetGrade}`;
-            if (window.location.hash !== targetHash) {
-                try {
-                    history.pushState({ view: 'summary-slides', grade: targetGrade }, '', targetHash);
-                } catch (e) {
-                    window.location.hash = targetHash;
-                }
-            }
-        }
-
-        renderSummarySlidesView();
-        fetchSlidesForGrade(targetGrade).then(() => {
-            if (document.getElementById('view-summary-slides')?.classList.contains('active')) {
-                renderSummarySlidesView();
-            }
-        });
-    }
-
-    // Render clean shortcut card inside existing Grade 9 & Grade 12 views ONLY
-    function renderGradeShortcut(grade) {
-        setNavbarButtonActive(false);
-        const mount = document.getElementById('grade-summary-slides-mount');
-        if (!mount) return;
-
-        const g = normalizeGrade(grade);
         if (!g) {
-            mount.innerHTML = '';
-            mount.style.display = 'none';
+            container.innerHTML = '';
             return;
         }
 
-        mount.style.display = 'block';
-        const meta = GRADE_META[g];
-        mount.innerHTML = `
-            <section class="grade-slides-shortcut-section grade-${g}" aria-label="Grade ${g} Summary Slides">
-                <div class="grade-slides-shortcut-grid">
-                    <div>
-                        <span class="slides-badge" style="margin-bottom:0.5rem;">
-                            <i class="fa-solid fa-display"></i> Summary Slides • Grade ${g} Only
-                        </span>
-                        <h2 style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:0.3rem; display:flex; align-items:center; gap:0.55rem;">
-                            <i class="fa-solid fa-chalkboard-user" style="color:${meta.accentColor};"></i>
-                            ${escapeHtml(meta.title)}
-                        </h2>
-                        <p style="font-size:0.9rem; color:#64748b; max-width:620px; line-height:1.5;">
-                            Open visual lesson slide decks in <strong>KH-Physics</strong> (Khmer) or <strong>EN-Physics</strong> (English) with fullscreen slide presentation mode.
-                        </p>
-                    </div>
-                    <div class="grade-slides-shortcut-btns">
-                        <button type="button" class="grade-slides-open-pill kh" data-action="open-grade-slides" data-grade="${g}" data-lang="kh">
-                            <i class="fa-solid fa-language"></i> KH-Physics Slides
-                        </button>
-                        <button type="button" class="grade-slides-open-pill en" data-action="open-grade-slides" data-grade="${g}" data-lang="en">
-                            <i class="fa-solid fa-book-open-reader"></i> EN-Physics Slides
-                        </button>
-                        <button type="button" class="grade-slides-open-pill hub" data-action="open-grade-slides" data-grade="${g}" data-lang="all">
-                            <i class="fa-solid fa-display"></i> Open Summary Slides
-                        </button>
-                    </div>
-                </div>
-            </section>
-        `;
-
-        mount.querySelectorAll('[data-action="open-grade-slides"]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                openSummarySlidesView(btn.dataset.grade, btn.dataset.lang, true);
-            });
+        state.activeGrade = g;
+        renderSummarySlidesView();
+        fetchSlidesForGrade(g).then(() => {
+            const tabPane = document.getElementById('tab-summary-slides');
+            if (tabPane && (tabPane.classList.contains('active') || !tabPane.classList.contains('hidden'))) {
+                renderSummarySlidesView();
+            }
         });
-    }
-
-    function onNonSlidesRoute() {
-        setNavbarButtonActive(false);
     }
 
     // --------------------------------------------------------------------------
     // Render Main Summary Slides Section
     // --------------------------------------------------------------------------
     function renderSummarySlidesView() {
-        const container = document.getElementById('view-summary-slides');
+        const container = document.getElementById('tab-summary-slides-content');
         if (!container) return;
 
-        const g = state.activeGrade;
+        const g = normalizeGrade(window.currentGrade) || state.activeGrade;
+        if (!g) {
+            container.innerHTML = '';
+            return;
+        }
+        state.activeGrade = g;
         const meta = GRADE_META[g];
         const allGradeSlides = (state.slidesByGrade[g] || []).filter(s => String(s.grade) === g);
         const query = (state.searchQuery || '').trim().toLowerCase();
@@ -513,20 +426,11 @@
 
         container.innerHTML = `
             <div class="slides-view-shell">
-                <div class="lessons-nav-bar">
-                    <button type="button" class="nav-back-pill" id="slides-back-home-btn">
-                        <i class="fa-solid fa-arrow-left"></i> <span>All Grades</span>
-                    </button>
-                    <button type="button" class="nav-back-pill" id="slides-open-grade-lessons-btn">
-                        <i class="fa-solid fa-book-open"></i> <span>Grade ${g} Lessons</span>
-                    </button>
-                </div>
-
                 <header class="slides-hero-card grade-${g}">
                     <div class="slides-hero-top">
                         <div>
                             <span class="slides-badge"><i class="fa-solid fa-display"></i> ${escapeHtml(meta.badge)}</span>
-                            <h1 class="slides-hero-title"><i class="fa-solid fa-chalkboard-user"></i> ${escapeHtml(meta.title)}</h1>
+                            <h2 class="slides-hero-title"><i class="fa-solid fa-chalkboard-user"></i> ${escapeHtml(meta.title)}</h2>
                             <p class="slides-hero-desc">${escapeHtml(meta.subtitle)}</p>
                         </div>
                         ${canManageNow ? `
@@ -537,15 +441,6 @@
                     </div>
 
                     <div class="slides-controls-row">
-                        <div class="slides-grade-switcher" role="tablist" aria-label="Grade Switcher">
-                            <button type="button" class="slides-grade-btn ${g === '9' ? 'active' : ''}" data-action="switch-grade" data-grade="9">
-                                <i class="fa-solid fa-bolt-lightning"></i> Grade 9 Slides
-                            </button>
-                            <button type="button" class="slides-grade-btn ${g === '12' ? 'active' : ''}" data-action="switch-grade" data-grade="12">
-                                <i class="fa-solid fa-atom"></i> Grade 12 Slides
-                            </button>
-                        </div>
-
                         <div class="slides-toolbar-actions">
                             <div class="slides-lang-filter" role="group" aria-label="Language Filter">
                                 <button type="button" class="slides-lang-pill ${state.activeLangFilter === 'all' ? 'active' : ''}" data-action="filter-lang" data-lang="all">
@@ -559,6 +454,7 @@
                                 </button>
                             </div>
                         </div>
+                        ${storageStatusHtml}
                     </div>
                 </header>
 
@@ -567,7 +463,6 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" id="slides-search-input" class="slides-search-input" placeholder="Search Grade ${g} summary slides by title, chapter, or filename..." value="${escapeHtml(state.searchQuery)}">
                     </div>
-                    ${storageStatusHtml}
                 </div>
 
                 <div class="slides-sections-grid">
@@ -578,13 +473,6 @@
         `;
 
         // Bind view events
-        document.getElementById('slides-back-home-btn')?.addEventListener('click', () => {
-            if (typeof window.showDashboard === 'function') window.showDashboard(true);
-        });
-        document.getElementById('slides-open-grade-lessons-btn')?.addEventListener('click', () => {
-            if (typeof window.loadLessons === 'function') window.loadLessons(g, true);
-        });
-
         const searchEl = document.getElementById('slides-search-input');
         if (searchEl) {
             searchEl.addEventListener('input', (e) => {
@@ -598,12 +486,6 @@
                 }
             });
         }
-
-        container.querySelectorAll('[data-action="switch-grade"]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                openSummarySlidesView(btn.dataset.grade, state.activeLangFilter, true);
-            });
-        });
 
         container.querySelectorAll('[data-action="filter-lang"]').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -2229,14 +2111,8 @@
     // --------------------------------------------------------------------------
     // Public API & Initialization
     // --------------------------------------------------------------------------
-    window.openSummarySlidesView = function (grade, lang) {
-        openSummarySlidesView(grade, lang, true);
-    };
-
     window.WISSummarySlides = {
-        openView: openSummarySlidesView,
-        renderGradeShortcut,
-        onNonSlidesRoute,
+        renderTab,
         refresh: fetchSlidesForGrade
     };
 
