@@ -1664,6 +1664,7 @@
         if (url.indexOf('phet.colorado.edu') !== -1) return 'PhET Interactive Simulations';
         if (url.indexOf('vascak.cz') !== -1) return 'Vaščák Physics at School';
         if (url.indexOf('ophysics.com') !== -1) return 'oPhysics';
+        if (url.indexOf('javalab.org') !== -1) return 'Javalab';
         if (url.indexOf('geogebra') !== -1) return 'GeoGebra Physics';
         return 'Interactive Simulation';
     }
@@ -1673,6 +1674,7 @@
         var url = String((game && game.url) || '').toLowerCase();
         if (url.indexOf('vascak.cz') !== -1) return 'vascak';
         if (url.indexOf('ophysics.com') !== -1) return 'ophysics';
+        if (url.indexOf('javalab.org') !== -1) return 'javalab';
         return 'existing';
     }
 
@@ -1693,6 +1695,13 @@
     function getOphysicsSimulations(lessonId) {
         if (global.WISOPhysicsSimulations && typeof global.WISOPhysicsSimulations.getSimulations === 'function') {
             return global.WISOPhysicsSimulations.getSimulations(lessonId);
+        }
+        return [];
+    }
+
+    function getJavalabSimulations(lessonId) {
+        if (global.WISJavalabSimulations && typeof global.WISJavalabSimulations.getSimulations === 'function') {
+            return global.WISJavalabSimulations.getSimulations(lessonId);
         }
         return [];
     }
@@ -1724,6 +1733,7 @@
         var existingNormalized = normalizeExistingGames(existingGames, lesson);
         var vascakList = getVascakSimulations(lesson && lesson.id);
         var ophysicsList = getOphysicsSimulations(lesson && lesson.id);
+        var javalabList = getJavalabSimulations(lesson && lesson.id);
 
         var seenUrls = {};
         var merged = [];
@@ -1738,6 +1748,7 @@
         existingNormalized.forEach(pushUnique);
         vascakList.forEach(pushUnique);
         ophysicsList.forEach(pushUnique);
+        javalabList.forEach(pushUnique);
 
         return merged;
     }
@@ -1757,10 +1768,17 @@
             return;
         }
 
-        var existingOnly = allGames.filter(function (g) { return g.provider !== 'vascak' && g.provider !== 'ophysics'; });
+        var existingOnly = allGames.filter(function (g) {
+            return g.provider !== 'vascak' && g.provider !== 'ophysics' && g.provider !== 'javalab';
+        });
         var vascakOnly = allGames.filter(function (g) { return g.provider === 'vascak'; });
         var ophysicsOnly = allGames.filter(function (g) { return g.provider === 'ophysics'; });
-        var activeProviderCount = (existingOnly.length ? 1 : 0) + (vascakOnly.length ? 1 : 0) + (ophysicsOnly.length ? 1 : 0);
+        var javalabOnly = allGames.filter(function (g) { return g.provider === 'javalab'; });
+        var activeProviderCount =
+            (existingOnly.length ? 1 : 0) +
+            (vascakOnly.length ? 1 : 0) +
+            (ophysicsOnly.length ? 1 : 0) +
+            (javalabOnly.length ? 1 : 0);
 
         var activeFilter = 'all';
         var selectedIndex = 0;
@@ -1769,6 +1787,7 @@
             if (activeFilter === 'existing') return existingOnly;
             if (activeFilter === 'vascak') return vascakOnly;
             if (activeFilter === 'ophysics') return ophysicsOnly;
+            if (activeFilter === 'javalab') return javalabOnly;
             return allGames;
         }
 
@@ -1805,6 +1824,14 @@
                     cardCls: 'is-ophysics',
                     shortLabel: 'oPhysics',
                     icon: 'fa-compass-drafting'
+                };
+            }
+            if (provider === 'javalab') {
+                return {
+                    cls: 'javalab',
+                    cardCls: 'is-javalab',
+                    shortLabel: 'Javalab',
+                    icon: 'fa-microscope'
                 };
             }
             return {
@@ -1852,6 +1879,11 @@
                           '<i class="fa-solid fa-compass-drafting"></i> oPhysics <span class="game-count-chip">' + ophysicsOnly.length + '</span>' +
                           '</button>'
                         : '') +
+                    (javalabOnly.length
+                        ? '<button type="button" class="game-provider-pill javalab ' + (activeFilter === 'javalab' ? 'active' : '') + '" data-filter="javalab">' +
+                          '<i class="fa-solid fa-microscope"></i> Javalab <span class="game-count-chip">' + javalabOnly.length + '</span>' +
+                          '</button>'
+                        : '') +
                     '</div>' +
                     '</div>';
             }
@@ -1879,13 +1911,15 @@
             }
 
             var metadataHtml = '';
-            if (currentGame.provider === 'vascak' || currentGame.provider === 'ophysics' || currentGame.description || currentGame.objective) {
+            if (currentGame.provider === 'vascak' || currentGame.provider === 'ophysics' || currentGame.provider === 'javalab' || currentGame.description || currentGame.objective) {
                 var chapterDisplay = currentGame.chapter && currentGame.curriculumTopic
                     ? (currentGame.chapter + ' — ' + currentGame.curriculumTopic)
                     : (currentGame.chapter || currentGame.topic);
                 var sourceLabel = currentGame.provider === 'vascak'
                     ? 'Vaščák Physics at School (vascak.cz)'
-                    : (currentGame.provider === 'ophysics' ? 'oPhysics (ophysics.com)' : (currentGame.sourceUrl || currentGame.url));
+                    : (currentGame.provider === 'ophysics'
+                        ? 'oPhysics (ophysics.com)'
+                        : (currentGame.provider === 'javalab' ? 'Javalab (javalab.org)' : (currentGame.sourceUrl || currentGame.url)));
                 metadataHtml =
                     '<div class="game-sim-info-card ' + pMeta.cardCls + '">' +
                     '<div class="game-sim-info-top">' +
