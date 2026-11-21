@@ -1,11 +1,19 @@
 /**
- * WIS Physics Learning Hub - Independent Summary Slides Backend Module
+ * WIS Physics Learning Hub - Independent Summary Slides Backend & Folder Sync Module
  *
  * Strictly scoped to Grade 9 and Grade 12 (KH-Physics & EN-Physics).
  * Uses zero external dependencies (Node.js built-ins only).
- * Stores Grade 9 and Grade 12 files and manifests in completely isolated paths:
- *   - summary_slides/grade9/   & summary_slides/manifest-g9.json
- *   - summary_slides/grade12/  & summary_slides/manifest-g12.json
+ *
+ * Folder Layout (matching ebooks/ & worksheets/ for easy file replacement & GitHub push):
+ *   - summary_slides/grade9/kh/      (Grade 9 KH-Physics slides)
+ *   - summary_slides/grade9/en/      (Grade 9 EN-Physics slides)
+ *   - summary_slides/grade9/catalog.json
+ *   - summary_slides/grade12/kh/     (Grade 12 KH-Physics slides)
+ *   - summary_slides/grade12/en/     (Grade 12 EN-Physics slides)
+ *   - summary_slides/grade12/catalog.json
+ *
+ * Automatically syncs files dropped/replaced directly in File Explorer into catalog.json
+ * so uploading to GitHub serves them directly without requiring Node.js on GitHub Pages.
  */
 
 const fs = require('fs');
@@ -76,7 +84,14 @@ function tryConvertOfficeToPdf(bin, sourcePath, outDir) {
                     const base = path.basename(sourcePath, path.extname(sourcePath));
                     const expectedPdf = path.join(outDir, `${base}.pdf`);
                     if (fs.existsSync(expectedPdf)) {
-                        return resolve(expectedPdf);
+                        const renamedPreview = path.join(outDir, `${base}.lo-preview.pdf`);
+                        try {
+                            if (fs.existsSync(renamedPreview)) fs.unlinkSync(renamedPreview);
+                            fs.renameSync(expectedPdf, renamedPreview);
+                            return resolve(renamedPreview);
+                        } catch (e) {
+                            return resolve(expectedPdf);
+                        }
                     }
                     return resolve(null);
                 }
@@ -87,22 +102,35 @@ function tryConvertOfficeToPdf(bin, sourcePath, outDir) {
     });
 }
 
-function ensureGradeStorage(baseDir, grade) {
+function getGradePaths(baseDir, grade) {
     const rootDir = path.join(baseDir, 'summary_slides');
     const gradeDir = path.join(rootDir, `grade${grade}`);
-    const manifestPath = path.join(rootDir, `manifest-g${grade}.json`);
-    if (!fs.existsSync(rootDir)) fs.mkdirSync(rootDir, { recursive: true });
-    if (!fs.existsSync(gradeDir)) fs.mkdirSync(gradeDir, { recursive: true });
-    if (!fs.existsSync(manifestPath)) {
-        fs.writeFileSync(manifestPath, JSON.stringify({ grade, slides: [] }, null, 2), 'utf8');
-    }
-    return { rootDir, gradeDir, manifestPath };
+    const khDir = path.join(gradeDir, 'kh');
+    const enDir = path.join(gradeDir, 'en');
+    const catalogPath = path.join(gradeDir, 'catalog.json');
+    return { rootDir, gradeDir, khDir, enDir, catalogPath };
 }
 
-function readManifest(baseDir, grade) {
-    const { manifestPath } = ensureGradeStorage(baseDir, grade);
+function ensureGradeStorage(baseDir, grade) {
+    const paths = getGradePaths(baseDir, grade);
+    if (!fs.existsSync(paths.rootDir)) fs.mkdirSync(paths.rootDir, { recursive: true });
+    if (!fs.existsSync(paths.gradeDir)) fs.mkdirSync(paths.gradeDir, { recursive: true });
+    if (!fs.existsSync(paths.khDir)) fs.mkdirSync(paths.khDir, { recursive: true });
+    if (!fs.existsSync(paths.enDir)) fs.mkdirSync(paths.enDir, { recursive: true });
+    if (!fs.existsSync(paths.catalogPath)) {
+        fs.writeFileSync(paths.catalogPath, JSON.stringify({
+            grade: String(grade),
+            updatedAt: new Date().toISOString(),
+            slides: []
+        }, null, 2), 'utf8');
+    }
+    return paths;
+}
+
+function readRawCatalog(baseDir, grade) {
+    const { catalogPath } = ensureGradeStorage(baseDir, grade);
     try {
-        const raw = fs.readFileSync(manifestPath, 'utf8');
+        const raw = fs.readFileSync(catalogPath, 'utf8');
         const parsed = JSON.parse(raw);
         if (parsed && Array.isArray(parsed.slides)) {
             return parsed.slides.filter(s => s && String(s.grade) === String(grade));
@@ -111,23 +139,156 @@ function readManifest(baseDir, grade) {
     return [];
 }
 
-function writeManifest(baseDir, grade, slides) {
-    const { manifestPath } = ensureGradeStorage(baseDir, grade);
+function writeCatalog(baseDir, grade, slides) {
+    const { catalogPath } = ensureGradeStorage(baseDir, grade);
     const cleanSlides = (Array.isArray(slides) ? slides : []).filter(s => s && String(s.grade) === String(grade));
-    const tmpPath = `${manifestPath}.${crypto.randomBytes(4).toString('hex')}.tmp`;
+    const tmpPath = `${catalogPath}.${crypto.randomBytes(4).toString('hex')}.tmp`;
     fs.writeFileSync(tmpPath, JSON.stringify({
         grade: String(grade),
         updatedAt: new Date().toISOString(),
         slides: cleanSlides
     }, null, 2), 'utf8');
-    fs.renameSync(tmpPath, manifestPath);
+    fs.renameSync(tmpPath, catalogPath);
     return cleanSlides;
+}
+
+function deriveTitleFromFilename(filename) {
+    return path.basename(String(filename || ''), path.extname(String(filename || '')))
+        .replace(/[_-]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim() || String(filename || 'Summary Slides');
+}
+
+function deriveChapterTagFromFilename(filename) {
+    const m = String(filename || '').match(/(?:ch(?:apter)?[\s_-]*(\d+))(?:[\s_-]*l(?:esson)?[\s_-]*(\d+))?/i);
+    if (!m) return '';
+    return m[2] ? `Chapter ${m[1]} • Lesson ${m[2]}` : `Chapter ${m[1]}`;
+}
+
+function isSlideAssetFile(fileName) {
+    if (!fileName || fileName.startsWith('.')) return false;
+    if (fileName.endsWith('.lo-preview.pdf')) return false;
+    const lower = fileName.toLowerCase();
+    return lower.endsWith('.pdf') || lower.endsWith('.pptx') || lower.endsWith('.ppt');
+}
+
+/**
+ * Reconciles summary_slides/grade{9|12}/{kh,en}/ folders on disk with catalog.json.
+ * - Detects newly added files pasted manually into kh/ or en/
+ * - Detects replaced files (updated size / mtime)
+ * - Removes records whose file was manually deleted from disk
+ */
+function syncGradeCatalog(baseDir, grade) {
+    const g = String(grade);
+    if (!ALLOWED_GRADES.has(g)) return [];
+
+    const paths = ensureGradeStorage(baseDir, g);
+    const existing = readRawCatalog(baseDir, g);
+
+    const existingByRelUrl = new Map();
+    for (const item of existing) {
+        if (item && item.url) existingByRelUrl.set(item.url, item);
+    }
+
+    const diskSlides = [];
+    const seenRelUrls = new Set();
+
+    for (const lang of ['kh', 'en']) {
+        const langDir = lang === 'kh' ? paths.khDir : paths.enDir;
+        let fileNames = [];
+        try {
+            fileNames = fs.readdirSync(langDir).filter(isSlideAssetFile).sort((a, b) => a.localeCompare(b));
+        } catch (e) {
+            fileNames = [];
+        }
+
+        for (const fileName of fileNames) {
+            const fullPath = path.join(langDir, fileName);
+            let stats;
+            try {
+                stats = fs.statSync(fullPath);
+                if (!stats.isFile()) continue;
+            } catch (e) {
+                continue;
+            }
+
+            const relUrl = `summary_slides/grade${g}/${lang}/${fileName}`;
+            seenRelUrls.add(relUrl);
+
+            const ext = fileName.toLowerCase().endsWith('.pdf.pdf') ? '.pdf' : path.extname(fileName).toLowerCase();
+            const prev = existingByRelUrl.get(relUrl);
+            const mtimeIso = stats.mtime ? stats.mtime.toISOString() : new Date().toISOString();
+
+            const previewCandidate = `${path.basename(fileName, path.extname(fileName))}.lo-preview.pdf`;
+            const previewUrl = fs.existsSync(path.join(langDir, previewCandidate))
+                ? `summary_slides/grade${g}/${lang}/${previewCandidate}`
+                : null;
+
+            if (prev) {
+                diskSlides.push({
+                    ...prev,
+                    id: prev.id || `g${g}-${lang}-${crypto.createHash('md5').update(relUrl).digest('hex').slice(0, 10)}`,
+                    grade: g,
+                    language: lang,
+                    originalName: prev.originalName || fileName,
+                    storedName: fileName,
+                    url: relUrl,
+                    previewUrl: previewUrl || null,
+                    ext,
+                    size: stats.size,
+                    updatedAt: (prev.size !== stats.size) ? mtimeIso : (prev.updatedAt || mtimeIso)
+                });
+            } else {
+                diskSlides.push({
+                    id: `g${g}-${lang}-${crypto.createHash('md5').update(relUrl).digest('hex').slice(0, 10)}`,
+                    grade: g,
+                    language: lang,
+                    title: deriveTitleFromFilename(fileName),
+                    description: '',
+                    chapter: deriveChapterTagFromFilename(fileName),
+                    originalName: fileName,
+                    storedName: fileName,
+                    url: relUrl,
+                    previewUrl,
+                    ext,
+                    size: stats.size,
+                    createdAt: stats.birthtime ? stats.birthtime.toISOString() : mtimeIso,
+                    updatedAt: mtimeIso
+                });
+            }
+        }
+    }
+
+    // Write only if entries changed to avoid needless disk writes
+    const prevJson = JSON.stringify(existing);
+    const nextJson = JSON.stringify(diskSlides);
+    if (prevJson !== nextJson) {
+        return writeCatalog(baseDir, g, diskSlides);
+    }
+    return diskSlides;
+}
+
+function syncAllCatalogs(baseDir) {
+    syncGradeCatalog(baseDir, '9');
+    syncGradeCatalog(baseDir, '12');
 }
 
 function sanitizeFileName(name) {
     const base = path.basename(String(name || 'slide')).trim();
-    const cleaned = base.replace(/[<>:"/\\|?*\x00-\x1F]/g, '_').replace(/\s+/g, '_');
-    return cleaned || 'summary-slide';
+    const cleaned = base.replace(/[<>:"/\\|?*\x00-\x1F]/g, '_').replace(/\s+/g, '-');
+    return cleaned || 'summary-slide.pdf';
+}
+
+function getUniqueTargetFilename(dirPath, cleanFilename) {
+    const ext = path.extname(cleanFilename);
+    const stem = path.basename(cleanFilename, ext);
+    let candidate = cleanFilename;
+    let counter = 2;
+    while (fs.existsSync(path.join(dirPath, candidate))) {
+        candidate = `${stem}-${counter}${ext}`;
+        counter++;
+    }
+    return candidate;
 }
 
 function readBinaryUpload(req, maxBytes = MAX_UPLOAD_BYTES) {
@@ -227,11 +388,33 @@ function sendFileWithRanges(req, res, filePath, contentType, originalName) {
     });
 }
 
+function resolveSlideDiskPath(baseDir, grade, slideItem, usePreview) {
+    const paths = ensureGradeStorage(baseDir, grade);
+    const langDir = slideItem.language === 'en' ? paths.enDir : paths.khDir;
+    if (usePreview && slideItem.previewUrl) {
+        const pPath = path.normalize(path.join(baseDir, slideItem.previewUrl));
+        if (pPath.startsWith(paths.gradeDir) && fs.existsSync(pPath)) {
+            return { diskPath: pPath, isPreview: true };
+        }
+    }
+    if (slideItem.url) {
+        const uPath = path.normalize(path.join(baseDir, slideItem.url));
+        if (uPath.startsWith(paths.gradeDir) && fs.existsSync(uPath)) {
+            return { diskPath: uPath, isPreview: false };
+        }
+    }
+    const fallbackPath = path.normalize(path.join(langDir, path.basename(slideItem.storedName || '')));
+    if (fallbackPath.startsWith(langDir) && fs.existsSync(fallbackPath)) {
+        return { diskPath: fallbackPath, isPreview: false };
+    }
+    return null;
+}
+
 async function handleSummarySlidesRequest(req, res, ctx) {
     const { pathname, method, parsedUrl, baseDir, sendJson } = ctx;
     const params = parsedUrl.searchParams;
 
-    // 1. Capabilities check (used by frontend to confirm Node persistence backend is active)
+    // 1. Capabilities check
     if (pathname === '/api/summary-slides/capabilities' && method === 'GET') {
         const loBin = await detectLibreOffice();
         return sendJson(res, 200, {
@@ -245,7 +428,7 @@ async function handleSummarySlidesRequest(req, res, ctx) {
         });
     }
 
-    // 2. List slides strictly isolated per grade (9 or 12)
+    // 2. List slides (auto-syncs summary_slides/grade{9|12}/{kh,en}/ on disk)
     if (pathname === '/api/summary-slides' && method === 'GET') {
         if (!canViewSlides(ctx)) {
             return sendJson(res, 401, { success: false, error: 'Unauthorized: Website access password required.' });
@@ -255,7 +438,7 @@ async function handleSummarySlidesRequest(req, res, ctx) {
             return sendJson(res, 400, { success: false, message: 'Summary Slides only supports Grade 9 and Grade 12.' });
         }
         const lang = params.get('lang') ? String(params.get('lang')).trim().toLowerCase() : null;
-        let slides = readManifest(baseDir, grade);
+        let slides = syncGradeCatalog(baseDir, grade);
         if (lang && ALLOWED_LANGS.has(lang)) {
             slides = slides.filter(s => s.language === lang);
         }
@@ -276,34 +459,27 @@ async function handleSummarySlidesRequest(req, res, ctx) {
         const grade = fileMatch[1];
         const slideId = fileMatch[2];
         const variant = params.get('variant') || 'original';
-        const slides = readManifest(baseDir, grade);
+        const slides = syncGradeCatalog(baseDir, grade);
         const item = slides.find(s => s.id === slideId);
         if (!item) {
             return sendJson(res, 404, { error: 'Summary slide record not found.' });
         }
 
-        const { gradeDir } = ensureGradeStorage(baseDir, grade);
-        if (variant === 'pdf-preview' && item.previewPdfName) {
-            const pdfPreviewPath = path.normalize(path.join(gradeDir, path.basename(item.previewPdfName)));
-            if (pdfPreviewPath.startsWith(gradeDir) && fs.existsSync(pdfPreviewPath)) {
-                return sendFileWithRanges(req, res, pdfPreviewPath, 'application/pdf', `${item.title || 'slides'}.pdf`);
-            }
+        const resolved = resolveSlideDiskPath(baseDir, grade, item, variant === 'pdf-preview');
+        if (!resolved) {
+            return sendJson(res, 404, { error: 'Slide file not found on disk.' });
         }
 
-        const storedPath = path.normalize(path.join(gradeDir, path.basename(item.storedName || '')));
-        if (!storedPath.startsWith(gradeDir)) {
-            return sendJson(res, 403, { error: 'Invalid slide file path.' });
-        }
         return sendFileWithRanges(
             req,
             res,
-            storedPath,
-            SLIDE_MIME_TYPES[item.ext] || 'application/octet-stream',
-            item.originalName
+            resolved.diskPath,
+            resolved.isPreview ? 'application/pdf' : (SLIDE_MIME_TYPES[item.ext] || 'application/octet-stream'),
+            resolved.isPreview ? `${item.title || 'slides'}.pdf` : item.originalName
         );
     }
 
-    // 4. Upload a new slide file (strictly Grade 9 or 12, KH-Physics or EN-Physics)
+    // 4. Upload a new slide file directly into summary_slides/grade{9|12}/{kh|en}/
     if (pathname === '/api/summary-slides/upload' && method === 'POST') {
         if (!canManageSlides(ctx)) {
             return sendJson(res, 403, { success: false, message: 'Access Denied: Only the host/administrator can upload summary slides.' });
@@ -335,49 +511,52 @@ async function handleSummarySlidesRequest(req, res, ctx) {
                 return sendJson(res, 400, { success: false, message: 'Uploaded file appears to be empty.' });
             }
 
-            const { gradeDir } = ensureGradeStorage(baseDir, grade);
-            const id = `g${grade}-${lang}-${Date.now().toString(36)}-${crypto.randomBytes(4).toString('hex')}`;
-            const storedName = `${id}-${safeOrig}`;
-            const targetPath = path.join(gradeDir, storedName);
+            const paths = ensureGradeStorage(baseDir, grade);
+            const targetDir = lang === 'en' ? paths.enDir : paths.khDir;
+            const storedName = getUniqueTargetFilename(targetDir, safeOrig);
+            const targetPath = path.join(targetDir, storedName);
             fs.writeFileSync(targetPath, buffer);
 
-            let previewPdfName = null;
+            let previewUrl = null;
             if (ext === '.ppt' || ext === '.pptx') {
                 const loBin = await detectLibreOffice();
                 if (loBin) {
-                    const convertedPdfPath = await tryConvertOfficeToPdf(loBin, targetPath, gradeDir);
+                    const convertedPdfPath = await tryConvertOfficeToPdf(loBin, targetPath, targetDir);
                     if (convertedPdfPath) {
-                        previewPdfName = path.basename(convertedPdfPath);
+                        previewUrl = `summary_slides/grade${grade}/${lang}/${path.basename(convertedPdfPath)}`;
                     }
                 }
             }
 
-            const existingSlides = readManifest(baseDir, grade);
+            const existingSlides = syncGradeCatalog(baseDir, grade);
             const nowIso = new Date().toISOString();
-            const displayTitle = title || path.basename(rawFilename, path.extname(rawFilename)).replace(/[_-]+/g, ' ').trim() || safeOrig;
+            const relUrl = `summary_slides/grade${grade}/${lang}/${storedName}`;
+            const displayTitle = title || deriveTitleFromFilename(rawFilename);
 
             const record = {
-                id,
+                id: `g${grade}-${lang}-${crypto.createHash('md5').update(relUrl).digest('hex').slice(0, 10)}`,
                 grade,
                 language: lang,
                 title: displayTitle,
                 description,
-                chapter: chapterTag,
+                chapter: chapterTag || deriveChapterTagFromFilename(rawFilename),
                 originalName: rawFilename,
                 storedName,
-                previewPdfName,
+                url: relUrl,
+                previewUrl,
                 ext,
                 size: buffer.length,
                 createdAt: nowIso,
                 updatedAt: nowIso
             };
 
-            existingSlides.unshift(record);
-            writeManifest(baseDir, grade, existingSlides);
+            const filtered = existingSlides.filter(s => s.url !== relUrl);
+            filtered.unshift(record);
+            writeCatalog(baseDir, grade, filtered);
 
             return sendJson(res, 200, {
                 success: true,
-                message: 'Summary slide uploaded and saved permanently.',
+                message: 'Summary slide uploaded and saved to folder.',
                 slide: record
             });
         } catch (uploadErr) {
@@ -385,7 +564,7 @@ async function handleSummarySlidesRequest(req, res, ctx) {
         }
     }
 
-    // 5. Replace an existing slide's file safely (write new first, then unlink old)
+    // 5. Replace an existing slide file safely
     if (pathname === '/api/summary-slides/replace' && method === 'POST') {
         if (!canManageSlides(ctx)) {
             return sendJson(res, 403, { success: false, message: 'Access Denied: Only the host/administrator can replace slides.' });
@@ -408,7 +587,7 @@ async function handleSummarySlidesRequest(req, res, ctx) {
             return sendJson(res, 400, { success: false, message: 'Unsupported file format. Only PDF (.pdf) and PowerPoint (.pptx, .ppt) are allowed.' });
         }
 
-        const slides = readManifest(baseDir, grade);
+        const slides = syncGradeCatalog(baseDir, grade);
         const idx = slides.findIndex(s => s.id === slideId);
         if (idx === -1) {
             return sendJson(res, 404, { success: false, message: 'Target slide not found in this grade.' });
@@ -420,45 +599,52 @@ async function handleSummarySlidesRequest(req, res, ctx) {
                 return sendJson(res, 400, { success: false, message: 'Replacement file appears to be empty.' });
             }
 
-            const { gradeDir } = ensureGradeStorage(baseDir, grade);
-            const newSuffix = `${Date.now().toString(36)}-${crypto.randomBytes(3).toString('hex')}`;
-            const newStoredName = `${slideId}-${newSuffix}-${safeOrig}`;
-            const newTargetPath = path.join(gradeDir, newStoredName);
+            const oldItem = slides[idx];
+            const lang = oldItem.language === 'en' ? 'en' : 'kh';
+            const paths = ensureGradeStorage(baseDir, grade);
+            const langDir = lang === 'en' ? paths.enDir : paths.khDir;
+
+            const oldDiskPath = oldItem.url ? path.normalize(path.join(baseDir, oldItem.url)) : null;
+            const oldPreviewPath = oldItem.previewUrl ? path.normalize(path.join(baseDir, oldItem.previewUrl)) : null;
+
+            const newStoredName = (oldItem.storedName === safeOrig)
+                ? safeOrig
+                : getUniqueTargetFilename(langDir, safeOrig);
+            const newTargetPath = path.join(langDir, newStoredName);
             fs.writeFileSync(newTargetPath, buffer);
 
-            let newPreviewPdfName = null;
+            let newPreviewUrl = null;
             if (ext === '.ppt' || ext === '.pptx') {
                 const loBin = await detectLibreOffice();
                 if (loBin) {
-                    const convertedPdfPath = await tryConvertOfficeToPdf(loBin, newTargetPath, gradeDir);
+                    const convertedPdfPath = await tryConvertOfficeToPdf(loBin, newTargetPath, langDir);
                     if (convertedPdfPath) {
-                        newPreviewPdfName = path.basename(convertedPdfPath);
+                        newPreviewUrl = `summary_slides/grade${grade}/${lang}/${path.basename(convertedPdfPath)}`;
                     }
                 }
             }
 
-            const oldItem = slides[idx];
-            const oldStoredPath = oldItem.storedName ? path.join(gradeDir, path.basename(oldItem.storedName)) : null;
-            const oldPreviewPath = oldItem.previewPdfName ? path.join(gradeDir, path.basename(oldItem.previewPdfName)) : null;
-
+            const newRelUrl = `summary_slides/grade${grade}/${lang}/${newStoredName}`;
             const updated = {
                 ...oldItem,
+                id: `g${grade}-${lang}-${crypto.createHash('md5').update(newRelUrl).digest('hex').slice(0, 10)}`,
                 title: (title !== null && title.length > 0) ? title : oldItem.title,
                 description: description !== null ? description : (oldItem.description || ''),
                 chapter: chapterTag !== null ? chapterTag : (oldItem.chapter || ''),
                 originalName: rawFilename,
                 storedName: newStoredName,
-                previewPdfName: newPreviewPdfName,
+                url: newRelUrl,
+                previewUrl: newPreviewUrl,
                 ext,
                 size: buffer.length,
                 updatedAt: new Date().toISOString()
             };
 
             slides[idx] = updated;
-            writeManifest(baseDir, grade, slides);
+            writeCatalog(baseDir, grade, slides);
 
-            if (oldStoredPath && oldStoredPath !== newTargetPath) safeUnlink(oldStoredPath);
-            if (oldPreviewPath && path.basename(oldPreviewPath) !== newPreviewPdfName) safeUnlink(oldPreviewPath);
+            if (oldDiskPath && path.resolve(oldDiskPath) !== path.resolve(newTargetPath)) safeUnlink(oldDiskPath);
+            if (oldPreviewPath && (!newPreviewUrl || path.basename(oldPreviewPath) !== path.basename(newPreviewUrl))) safeUnlink(oldPreviewPath);
 
             return sendJson(res, 200, {
                 success: true,
@@ -470,7 +656,7 @@ async function handleSummarySlidesRequest(req, res, ctx) {
         }
     }
 
-    // 6. Update slide metadata (title, description, chapter, or language inside same grade)
+    // 6. Update slide metadata (moves file to kh/ or en/ folder if language changed)
     if (pathname === '/api/summary-slides/update' && method === 'POST') {
         if (!canManageSlides(ctx)) {
             return sendJson(res, 403, { success: false, message: 'Access Denied: Only the host/administrator can update slides.' });
@@ -483,7 +669,7 @@ async function handleSummarySlidesRequest(req, res, ctx) {
             return sendJson(res, 400, { success: false, message: 'Missing or invalid grade/slide ID.' });
         }
 
-        const slides = readManifest(baseDir, grade);
+        const slides = syncGradeCatalog(baseDir, grade);
         const idx = slides.findIndex(s => s.id === slideId);
         if (idx === -1) {
             return sendJson(res, 404, { success: false, message: 'Target slide not found.' });
@@ -494,9 +680,37 @@ async function handleSummarySlidesRequest(req, res, ctx) {
             ? String(body.language).toLowerCase()
             : current.language;
 
+        let nextStoredName = current.storedName;
+        let nextUrl = current.url;
+        let nextPreviewUrl = current.previewUrl || null;
+
+        if (nextLang !== current.language) {
+            const paths = ensureGradeStorage(baseDir, grade);
+            const fromDir = current.language === 'en' ? paths.enDir : paths.khDir;
+            const toDir = nextLang === 'en' ? paths.enDir : paths.khDir;
+            const srcFile = path.join(fromDir, path.basename(current.storedName));
+            if (fs.existsSync(srcFile)) {
+                nextStoredName = getUniqueTargetFilename(toDir, path.basename(current.storedName));
+                fs.renameSync(srcFile, path.join(toDir, nextStoredName));
+                nextUrl = `summary_slides/grade${grade}/${nextLang}/${nextStoredName}`;
+            }
+            if (current.previewUrl) {
+                const srcPrev = path.join(baseDir, current.previewUrl);
+                if (fs.existsSync(srcPrev)) {
+                    const prevName = path.basename(srcPrev);
+                    fs.renameSync(srcPrev, path.join(toDir, prevName));
+                    nextPreviewUrl = `summary_slides/grade${grade}/${nextLang}/${prevName}`;
+                }
+            }
+        }
+
         const updated = {
             ...current,
+            id: `g${grade}-${nextLang}-${crypto.createHash('md5').update(nextUrl).digest('hex').slice(0, 10)}`,
             language: nextLang,
+            storedName: nextStoredName,
+            url: nextUrl,
+            previewUrl: nextPreviewUrl,
             title: (typeof body.title === 'string' && body.title.trim()) ? body.title.trim() : current.title,
             description: typeof body.description === 'string' ? body.description.trim() : (current.description || ''),
             chapter: typeof body.chapter === 'string' ? body.chapter.trim() : (current.chapter || ''),
@@ -504,7 +718,7 @@ async function handleSummarySlidesRequest(req, res, ctx) {
         };
 
         slides[idx] = updated;
-        writeManifest(baseDir, grade, slides);
+        writeCatalog(baseDir, grade, slides);
         return sendJson(res, 200, { success: true, message: 'Slide details updated.', slide: updated });
     }
 
@@ -521,23 +735,31 @@ async function handleSummarySlidesRequest(req, res, ctx) {
             return sendJson(res, 400, { success: false, message: 'Missing or invalid grade/slide ID.' });
         }
 
-        const slides = readManifest(baseDir, grade);
+        const slides = syncGradeCatalog(baseDir, grade);
         const idx = slides.findIndex(s => s.id === slideId);
         if (idx === -1) {
             return sendJson(res, 404, { success: false, message: 'Slide not found.' });
         }
 
         const [removed] = slides.splice(idx, 1);
-        writeManifest(baseDir, grade, slides);
+        writeCatalog(baseDir, grade, slides);
 
-        const { gradeDir } = ensureGradeStorage(baseDir, grade);
-        if (removed.storedName) safeUnlink(path.join(gradeDir, path.basename(removed.storedName)));
-        if (removed.previewPdfName) safeUnlink(path.join(gradeDir, path.basename(removed.previewPdfName)));
+        const paths = ensureGradeStorage(baseDir, grade);
+        if (removed.url) {
+            const diskFile = path.normalize(path.join(baseDir, removed.url));
+            if (diskFile.startsWith(paths.gradeDir)) safeUnlink(diskFile);
+        }
+        if (removed.previewUrl) {
+            const prevFile = path.normalize(path.join(baseDir, removed.previewUrl));
+            if (prevFile.startsWith(paths.gradeDir)) safeUnlink(prevFile);
+        }
 
         return sendJson(res, 200, { success: true, message: 'Summary slide deleted.' });
     }
 
     return sendJson(res, 404, { success: false, error: 'Summary Slides endpoint not found.' });
 }
+
+handleSummarySlidesRequest.syncAll = syncAllCatalogs;
 
 module.exports = handleSummarySlidesRequest;

@@ -379,6 +379,8 @@ const MIME_TYPES = {
     '.svg': 'image/svg+xml',
     '.ico': 'image/x-icon',
     '.pdf': 'application/pdf',
+    '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    '.ppt': 'application/vnd.ms-powerpoint',
     '.woff': 'font/woff',
     '.woff2': 'font/woff2',
     '.ttf': 'font/ttf',
@@ -397,6 +399,7 @@ const MIME_TYPES = {
 const protectedPrefixes = [
     '/worksheets/',
     '/ebooks/',
+    '/summary_slides/',
     '/Physics_Grade7,8,10,11/',
     '/physics-data.js',
     '/physics-figures.js'
@@ -819,7 +822,7 @@ const server = http.createServer(async (req, res) => {
         });
     }
 
-    if (pathname.startsWith('/summary_slides/') || pathname === '/summary_slides') {
+    if (pathname.startsWith('/summary_slides/') && pathname.endsWith('/.gitkeep')) {
         res.writeHead(403, { 'Content-Type': 'text/plain' });
         return res.end('403 Forbidden');
     }
@@ -935,7 +938,7 @@ const server = http.createServer(async (req, res) => {
                 'Content-Length': stats.size,
                 'Accept-Ranges': 'bytes',
                 'Content-Type': contentType,
-                'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=86400'
+                'Cache-Control': (ext === '.html' || pathname.startsWith('/summary_slides/')) ? 'no-cache' : 'public, max-age=86400'
             });
             fs.createReadStream(safePath).pipe(res);
         }
@@ -943,6 +946,13 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
+    try {
+        if (typeof handleSummarySlidesRequest.syncAll === 'function') {
+            handleSummarySlidesRequest.syncAll(__dirname);
+        }
+    } catch (e) {
+        console.warn('Summary Slides folder sync warning:', e.message);
+    }
     console.log(`=======================================================`);
     console.log(`⚛️  WIS Physics Learning Hub`);
     console.log(`📡 URL: http://localhost:${PORT}`);

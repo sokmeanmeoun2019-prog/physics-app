@@ -222,6 +222,22 @@
         state.capabilitiesChecked = true;
     }
 
+    async function fetchStaticFolderCatalog(grade) {
+        try {
+            const url = resolveUrl(`summary_slides/grade${grade}/catalog.json?t=${Date.now()}`);
+            const res = await fetch(url, { method: 'GET', cache: 'no-store' });
+            if (res.ok) {
+                const data = await res.json();
+                if (data && Array.isArray(data.slides)) {
+                    return data.slides
+                        .filter(s => s && String(s.grade) === String(grade) && s.url)
+                        .map(s => ({ ...s, source: 'folder' }));
+                }
+            }
+        } catch (e) {}
+        return [];
+    }
+
     async function fetchSlidesForGrade(grade) {
         const g = normalizeGrade(grade);
         if (!g) return [];
@@ -241,7 +257,9 @@
                 if (res.ok) {
                     const data = await res.json();
                     if (data && Array.isArray(data.slides)) {
-                        state.slidesByGrade[g] = data.slides.filter(s => s && String(s.grade) === g);
+                        state.slidesByGrade[g] = data.slides
+                            .filter(s => s && String(s.grade) === g)
+                            .map(s => ({ ...s, source: 'server-folder' }));
                         if (typeof data.canManage === 'boolean') {
                             state.canManage = data.canManage || state.canManage;
                         }
@@ -249,12 +267,25 @@
                     }
                 }
             }
-            const localSlides = await idbListGrade(g);
-            state.slidesByGrade[g] = localSlides.map(s => {
-                const copy = { ...s };
+
+            const folderSlides = await fetchStaticFolderCatalog(g);
+            let localSlides = [];
+            try {
+                localSlides = await idbListGrade(g);
+            } catch (idbErr) {
+                localSlides = [];
+            }
+            const cleanLocal = localSlides.map(s => {
+                const copy = { ...s, source: 'idb' };
                 delete copy.fileData;
                 return copy;
             });
+
+            const folderIds = new Set(folderSlides.map(s => s.id));
+            state.slidesByGrade[g] = [
+                ...folderSlides,
+                ...cleanLocal.filter(s => !folderIds.has(s.id))
+            ];
             return state.slidesByGrade[g];
         } catch (e) {
             state.slidesByGrade[g] = state.slidesByGrade[g] || [];
@@ -319,8 +350,8 @@
         const showEn = state.activeLangFilter === 'all' || state.activeLangFilter === 'en';
 
         const storageStatusHtml = state.backendAvailable
-            ? `<span class="slides-storage-badge"><i class="fa-solid fa-circle-check"></i> Saved Permanently on Server (Grade ${g} Isolated)</span>`
-            : `<span class="slides-storage-badge local-mode"><i class="fa-solid fa-database"></i> Browser Offline Storage (Grade ${g} Isolated)</span>`;
+            ? `<span class="slides-storage-badge"><i class="fa-solid fa-folder-open"></i> Synced Folder: summary_slides/grade${g}/ (GitHub Ready)</span>`
+            : `<span class="slides-storage-badge"><i class="fa-solid fa-folder-open"></i> Folder: summary_slides/grade${g}/ (Grade ${g} Isolated)</span>`;
 
         function buildCardsHtml(list, langKey) {
             if (state.loadingGrade[g] && allGradeSlides.length === 0) {
@@ -347,7 +378,8 @@
                 const fmtClass = extClean === 'pdf' ? 'fmt-pdf' : (extClean === 'pptx' ? 'fmt-pptx' : 'fmt-ppt');
                 const fmtIcon = extClean === 'pdf' ? 'fa-file-pdf' : 'fa-file-powerpoint';
 
-                const manageHtml = canManageNow ? `
+                const canManageThisCard = canManageNow && (state.backendAvailable || slide.source === 'idb');
+                const manageHtml = canManageThisCard ? `
                     <div class="slide-manage-row">
                         <button type="button" class="slide-manage-btn" data-action="replace" data-id="${escapeHtml(slide.id)}" data-grade="${g}" title="Replace with a new file safely">
                             <i class="fa-solid fa-arrows-rotate"></i> Replace
@@ -2029,15 +2061,26 @@
             let fileUrlForDownload = null;
 
             if (state.backendAvailable) {
-                const usePdfPreview = Boolean(slide.previewPdfName && (effectiveExt === '.ppt' || effectiveExt === '.pptx'));
+                const usePdfPreview = Boolean((slide.previewUrl || slide.previewPdfName) && (effectiveExt === '.ppt' || effectiveExt === '.pptx'));
                 const targetPath = usePdfPreview
-                    ? `api/summary-slides/file/${g}/${slide.id}?variant=pdf-preview`
-                    : `api/summary-slides/file/${g}/${slide.id}`;
+                    ? `api/summary-slides/file/${g}/${slide.id}?variant=pdf-preview&t=${encodeURIComponent(slide.updatedAt || '')}`
+                    : `api/summary-slides/file/${g}/${slide.id}?t=${encodeURIComponent(slide.updatedAt || '')}`;
                 fileUrlForDownload = resolveUrl(`api/summary-slides/file/${g}/${slide.id}`);
-                const res = await fetch(resolveUrl(targetPath), { credentials: 'include' });
+                const res = await fetch(resolveUrl(targetPath), { credentials: 'include', cache: 'no-store' });
                 if (!res.ok) {
                     const errJson = await res.json().catch(() => ({}));
                     throw new Error(errJson.error || `Failed to load slide file (HTTP ${res.status}).`);
+                }
+                fileBuffer = await res.arrayBuffer();
+                if (usePdfPreview) effectiveExt = '.pdf';
+            } else if (slide.url) {
+                const usePdfPreview = Boolean(slide.previewUrl && (effectiveExt === '.ppt' || effectiveExt === '.pptx'));
+                const relAsset = usePdfPreview ? slide.previewUrl : slide.url;
+                const cacheTag = encodeURIComponent(slide.updatedAt || Date.now());
+                fileUrlForDownload = resolveUrl(slide.url);
+                const res = await fetch(`${resolveUrl(relAsset)}?t=${cacheTag}`, { cache: 'no-store' });
+                if (!res.ok) {
+                    throw new Error(`Failed to load slide file from ${relAsset} (HTTP ${res.status}).`);
                 }
                 fileBuffer = await res.arrayBuffer();
                 if (usePdfPreview) effectiveExt = '.pdf';
