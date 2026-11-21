@@ -1,7 +1,23 @@
 {
   "grade": "9",
-  "updatedAt": "2026-11-21T06:53:05.607Z",
+  "updatedAt": "2026-11-21T08:58:56.552Z",
   "slides": [
+    {
+      "id": "g9-kh-6dcfb69347",
+      "grade": "9",
+      "language": "kh",
+      "title": "G9 Ch1 KH Physics Summary.pdf",
+      "description": "",
+      "chapter": "Chapter 1",
+      "originalName": "G9-Ch1-KH-Physics-Summary.pdf.pdf",
+      "storedName": "G9-Ch1-KH-Physics-Summary.pdf.pdf",
+      "url": "summary_slides/grade9/kh/G9-Ch1-KH-Physics-Summary.pdf.pdf",
+      "previewUrl": null,
+      "ext": ".pdf",
+      "size": 861491,
+      "createdAt": "2026-11-21T08:56:05.556Z",
+      "updatedAt": "2026-11-21T08:51:51.549Z"
+    },
     {
       "id": "g9-en-d1e42b48a6",
       "grade": "9",
