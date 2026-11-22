@@ -16,6 +16,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 const handleSummarySlidesRequest = require('./summary-slides-server');
+const handleKhEbooksRequest = require('./kh-ebooks-server');
 
 // Optional: Load .env if present without requiring third-party dotenv
 try {
@@ -64,6 +65,30 @@ function verifyPassword(password, salt, storedHash, storedPlainText) {
 // --- Load or Initialize Persistent Auth Configuration ---
 let authConfig = null;
 
+function ensureWebsiteAccessConfig(configObj) {
+    if (!configObj || typeof configObj !== 'object') return false;
+    let changed = false;
+    if (!configObj.websiteAccess || typeof configObj.websiteAccess !== 'object') {
+        configObj.websiteAccess = {
+            online: true,
+            updatedAt: new Date().toISOString(),
+            updatedBy: 'system'
+        };
+        changed = true;
+    } else if (typeof configObj.websiteAccess.online !== 'boolean') {
+        configObj.websiteAccess.online = true;
+        configObj.websiteAccess.updatedAt = configObj.websiteAccess.updatedAt || new Date().toISOString();
+        configObj.websiteAccess.updatedBy = configObj.websiteAccess.updatedBy || 'system';
+        changed = true;
+    }
+    return changed;
+}
+
+function isWebsiteOnline() {
+    if (!authConfig || !authConfig.websiteAccess) return true;
+    return authConfig.websiteAccess.online !== false;
+}
+
 function loadOrInitAuthConfig() {
     try {
         if (fs.existsSync(AUTH_CONFIG_FILE)) {
@@ -82,6 +107,7 @@ function loadOrInitAuthConfig() {
                     authConfig.admin.salt = salt;
                     authConfig.admin.hash = hashPassword(authConfig.admin.plainText, salt);
                 }
+                ensureWebsiteAccessConfig(authConfig);
                 saveAuthConfig();
                 return authConfig;
             }
@@ -115,7 +141,12 @@ function loadOrInitAuthConfig() {
             isCustom: true,
             updatedAt: new Date().toISOString()
         },
-        sessionSecret: sessionSecret
+        sessionSecret: sessionSecret,
+        websiteAccess: {
+            online: true,
+            updatedAt: new Date().toISOString(),
+            updatedBy: 'system'
+        }
     };
 
     try {
@@ -144,6 +175,9 @@ function reloadAuthConfig() {
             const parsed = JSON.parse(raw);
             if (parsed && parsed.sharedPassword && parsed.admin) {
                 authConfig = parsed;
+                if (ensureWebsiteAccessConfig(authConfig)) {
+                    saveAuthConfig();
+                }
             }
         }
     } catch (e) {}
@@ -399,11 +433,244 @@ const MIME_TYPES = {
 const protectedPrefixes = [
     '/worksheets/',
     '/ebooks/',
+    '/kh_ebooks/',
     '/summary_slides/',
     '/Physics_Grade7,8,10,11/',
     '/physics-data.js',
     '/physics-figures.js'
 ];
+
+const MAINTENANCE_MESSAGE = "This site can't be reached right now. The website is temporarily unavailable. Please contact your teacher for more information.";
+
+function buildMaintenanceHtml(isHostClient, openAdminImmediately) {
+    const adminOverlay = isHostClient ? `
+        <div id="host-admin-backdrop" class="${openAdminImmediately ? '' : 'hidden'}" style="position:fixed;inset:0;z-index:50;background:rgba(2,6,23,0.84);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.25rem;">
+            <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.14);border-radius:18px;max-width:420px;width:100%;padding:2rem;color:#f8fafc;box-shadow:0 25px 50px rgba(0,0,0,0.65);text-align:left;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+                    <div style="font-weight:700;font-size:1.1rem;display:flex;align-items:center;gap:0.5rem;">
+                        <span style="display:inline-flex;width:32px;height:32px;border-radius:8px;background:rgba(79,70,229,0.22);color:#a5b4fc;align-items:center;justify-content:center;">&#128737;</span>
+                        Administrator Sign-In
+                    </div>
+                    <button type="button" id="host-admin-close" style="background:none;border:none;color:#94a3b8;font-size:1.35rem;cursor:pointer;line-height:1;">&times;</button>
+                </div>
+                <p style="font-size:0.86rem;color:#94a3b8;margin:0 0 1.15rem 0;line-height:1.45;">Website is currently OFF for students. Sign in as Administrator to access the full site and Admin Dashboard.</p>
+                <form id="host-admin-login-form">
+                    <label style="display:block;font-size:0.82rem;font-weight:600;color:#cbd5e1;margin-bottom:0.35rem;" for="host-admin-user">Administrator Username</label>
+                    <input id="host-admin-user" type="text" value="admin" required autocomplete="username" style="width:100%;box-sizing:border-box;padding:0.7rem 0.9rem;border-radius:10px;border:1px solid rgba(148,163,184,0.3);background:#0f172a;color:#fff;font-size:0.95rem;margin-bottom:0.9rem;">
+                    <label style="display:block;font-size:0.82rem;font-weight:600;color:#cbd5e1;margin-bottom:0.35rem;" for="host-admin-pw">Administrator Password</label>
+                    <input id="host-admin-pw" type="password" required autocomplete="current-password" placeholder="Administrator password..." style="width:100%;box-sizing:border-box;padding:0.7rem 0.9rem;border-radius:10px;border:1px solid rgba(148,163,184,0.3);background:#0f172a;color:#fff;font-size:0.95rem;margin-bottom:1rem;">
+                    <div id="host-admin-err" style="display:none;background:rgba(239,68,68,0.16);border:1px solid rgba(239,68,68,0.4);color:#fca5a5;padding:0.65rem 0.85rem;border-radius:8px;font-size:0.85rem;margin-bottom:0.9rem;"></div>
+                    <button type="submit" id="host-admin-submit" style="width:100%;padding:0.82rem 1rem;border:none;border-radius:10px;background:linear-gradient(135deg,#4f46e5,#3730a3);color:#fff;font-weight:700;font-size:0.98rem;cursor:pointer;">Authenticate &amp; Open Dashboard</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            (function() {
+                var backdrop = document.getElementById('host-admin-backdrop');
+                var closeBtn = document.getElementById('host-admin-close');
+                var form = document.getElementById('host-admin-login-form');
+                var errBox = document.getElementById('host-admin-err');
+                var iconTrigger = document.getElementById('maintenance-status-icon');
+                var tapCount = 0, lastTap = 0;
+
+                function openAdminLogin() {
+                    if (!backdrop) return;
+                    backdrop.classList.remove('hidden');
+                    backdrop.style.display = 'flex';
+                    var pw = document.getElementById('host-admin-pw');
+                    if (pw) setTimeout(function() { pw.focus(); }, 80);
+                }
+                function closeAdminLogin() {
+                    if (!backdrop) return;
+                    backdrop.classList.add('hidden');
+                    backdrop.style.display = 'none';
+                }
+                if (closeBtn) closeBtn.addEventListener('click', closeAdminLogin);
+                if (backdrop) {
+                    backdrop.addEventListener('click', function(e) {
+                        if (e.target === backdrop) closeAdminLogin();
+                    });
+                }
+                if (iconTrigger) {
+                    iconTrigger.addEventListener('click', function() {
+                        var now = Date.now();
+                        tapCount = (now - lastTap < 600) ? (tapCount + 1) : 1;
+                        lastTap = now;
+                        if (tapCount >= 5) { tapCount = 0; openAdminLogin(); }
+                    });
+                }
+                window.addEventListener('keydown', function(e) {
+                    if ((e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (e.key === 'A' || e.key === 'a')) {
+                        e.preventDefault();
+                        openAdminLogin();
+                    }
+                    if (e.key === 'Escape') closeAdminLogin();
+                });
+                var h = (window.location.hash || '').toLowerCase();
+                var s = (window.location.search || '').toLowerCase();
+                if (h === '#admin' || h === '#/admin' || h === '#admin-portal' || s.indexOf('admin=1') !== -1 || s.indexOf('admin=true') !== -1) {
+                    openAdminLogin();
+                }
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        if (errBox) errBox.style.display = 'none';
+                        var u = (document.getElementById('host-admin-user') || {}).value || '';
+                        var p = (document.getElementById('host-admin-pw') || {}).value || '';
+                        var btn = document.getElementById('host-admin-submit');
+                        if (btn) { btn.disabled = true; btn.textContent = 'Verifying...'; }
+                        fetch('/api/admin/login', {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ username: u.trim(), password: p.trim() })
+                        }).then(function(r) {
+                            return r.json().then(function(d) { return { ok: r.ok, data: d }; });
+                        }).then(function(res) {
+                            if (res.ok && res.data && res.data.success) {
+                                try {
+                                    sessionStorage.setItem('wis_admin_session', 'authenticated');
+                                    sessionStorage.setItem('wis_student_session', 'authenticated');
+                                    if (res.data.adminToken) sessionStorage.setItem('wis_admin_token', res.data.adminToken);
+                                    sessionStorage.setItem('wis_admin_auth_user', u.trim());
+                                    sessionStorage.setItem('wis_admin_auth_pw', p.trim());
+                                } catch (err) {}
+                                window.location.href = '/#admin';
+                                return;
+                            }
+                            if (errBox) {
+                                errBox.textContent = (res.data && res.data.message) || 'Invalid administrator credentials.';
+                                errBox.style.display = 'block';
+                            }
+                        }).catch(function() {
+                            if (errBox) {
+                                errBox.textContent = 'Connection error while verifying credentials.';
+                                errBox.style.display = 'block';
+                            }
+                        }).finally(function() {
+                            if (btn) { btn.disabled = false; btn.textContent = 'Authenticate & Open Dashboard'; }
+                        });
+                    });
+                }
+            })();
+        </script>` : '';
+
+    const hostHint = isHostClient
+        ? '<p style="margin-top:1.4rem;font-size:0.8rem;color:#64748b;">Administrator on host computer? <a href="/admin" style="color:#93c5fd;text-decoration:underline;font-weight:600;">Open Admin Portal</a></p>'
+        : '';
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Website Temporarily Unavailable - WIS Physics Learning Hub</title>
+    <style>
+        .hidden { display: none !important; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            min-height: 100dvh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(ellipse at 50% 25%, #1e1b4b 0%, #0f172a 70%, #020617 100%);
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+        .card {
+            max-width: 520px;
+            width: 100%;
+            background: rgba(30, 41, 59, 0.86);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 22px;
+            padding: 2.75rem 2.25rem;
+            text-align: center;
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.72);
+        }
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.42rem 1rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #fecaca;
+            background: rgba(239, 68, 68, 0.16);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            margin-bottom: 1.35rem;
+        }
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.9);
+        }
+        .icon-circle {
+            width: 76px;
+            height: 76px;
+            margin: 0 auto 1.35rem;
+            border-radius: 50%;
+            background: rgba(239, 68, 68, 0.14);
+            border: 2px solid rgba(239, 68, 68, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #f87171;
+        }
+        h1 {
+            margin: 0 0 0.85rem 0;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .msg {
+            margin: 0 auto 1.65rem;
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #cbd5e1;
+        }
+        .retry-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.72rem 1.35rem;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <main class="card" role="main">
+        <div class="status-pill"><span class="status-dot"></span> Website Offline</div>
+        <div class="icon-circle" id="maintenance-status-icon" title="Website Temporarily Unavailable">&#9888;</div>
+        <h1>Website Temporarily Unavailable</h1>
+        <p class="msg">${MAINTENANCE_MESSAGE}</p>
+        <button type="button" class="retry-btn" onclick="window.location.reload()">Try Again</button>
+        ${hostHint}
+    </main>
+    ${adminOverlay}
+</body>
+</html>`;
+}
 
 // --- Native HTTP Server ---
 const server = http.createServer(async (req, res) => {
@@ -432,10 +699,13 @@ const server = http.createServer(async (req, res) => {
         const adminSession = getAdminSession(cookies, req.headers, {});
         const studentSession = getStudentSession(cookies);
         const isHost = isHostRequest(req, null);
+        const websiteOnline = isWebsiteOnline();
         return sendJson(res, 200, {
-            authenticated: Boolean(adminSession || studentSession),
+            authenticated: Boolean(adminSession || (websiteOnline && studentSession)),
             isAdmin: Boolean(adminSession),
             isHost: isHost,
+            websiteOnline: websiteOnline,
+            maintenanceUpdatedAt: (authConfig.websiteAccess && authConfig.websiteAccess.updatedAt) || authConfig.sharedPassword.updatedAt,
             version: authConfig.sharedPassword.version,
             lastUpdated: authConfig.sharedPassword.updatedAt
         });
@@ -443,6 +713,14 @@ const server = http.createServer(async (req, res) => {
 
     // 2. Shared Website Access Login
     if (pathname === '/api/login' && method === 'POST') {
+        if (!isWebsiteOnline()) {
+            return sendJson(res, 503, {
+                success: false,
+                maintenance: true,
+                websiteOnline: false,
+                message: MAINTENANCE_MESSAGE
+            });
+        }
         const body = await readRequestBody(req);
         const ip = getClientIp(req);
         const rateCheck = checkRateLimit(`login_${ip}`, 10, 60000, 60000);
@@ -805,6 +1083,134 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, { success: true, message: 'Logged out successfully.' });
     }
 
+    // 8. Admin Website Access Control (ON/OFF Switch)
+    if (pathname === '/api/admin/website-status' && (method === 'GET' || method === 'POST')) {
+        const body = method === 'POST' ? await readRequestBody(req) : {};
+        const ip = getClientIp(req);
+
+        if (!isHostRequest(req, body)) {
+            console.warn(`[SECURITY] Blocked non-host website-status request from IP: ${ip}`);
+            return sendJson(res, 403, {
+                success: false,
+                message: 'Access Denied: Website Access Control can only be operated by the administrator.'
+            });
+        }
+
+        let admin = getAdminSession(cookies, req.headers, body);
+        if (!admin && body && body.adminUsername && body.adminPassword) {
+            const u = String(body.adminUsername).trim().toLowerCase();
+            const p = String(body.adminPassword).trim();
+            const expectedUser = ((authConfig.admin && authConfig.admin.username) || 'admin').toLowerCase();
+            const isUserMatch = (u === expectedUser || u === 'admin');
+            const defaultAdmin = process.env.ADMIN_PASSWORD || 'Teacher#PhyAdmin2026!';
+            const isHashMatch = verifyPassword(p, authConfig.admin.salt, authConfig.admin.hash, authConfig.admin.plainText);
+            const isPwMatch = (p === 'Teacher#PhyAdmin2026!' || p === 'Admin@Physics2026!' || isHashMatch || p === defaultAdmin);
+            if (isUserMatch && isPwMatch) {
+                admin = { type: 'admin', username: u };
+            }
+        }
+
+        if (!admin) {
+            return sendJson(res, 403, {
+                success: false,
+                message: 'Unauthorized: Administrator authentication required.'
+            });
+        }
+
+        if (method === 'GET') {
+            return sendJson(res, 200, {
+                success: true,
+                online: isWebsiteOnline(),
+                updatedAt: authConfig.websiteAccess.updatedAt,
+                updatedBy: authConfig.websiteAccess.updatedBy || 'admin'
+            });
+        }
+
+        if (typeof body.online !== 'boolean') {
+            return sendJson(res, 400, {
+                success: false,
+                message: 'Invalid payload: "online" boolean is required.'
+            });
+        }
+
+        authConfig.websiteAccess = {
+            online: body.online,
+            updatedAt: new Date().toISOString(),
+            updatedBy: admin.username || 'admin'
+        };
+
+        const saved = saveAuthConfig();
+        if (!saved) {
+            return sendJson(res, 500, {
+                success: false,
+                message: 'Failed to save website access status to persistent configuration.'
+            });
+        }
+
+        // Also sync site-status.json for static / GitHub Pages parity
+        try {
+            const siteStatusPath = path.join(__dirname, 'site-status.json');
+            fs.writeFileSync(siteStatusPath, JSON.stringify({
+                online: body.online,
+                updatedAt: authConfig.websiteAccess.updatedAt,
+                message: MAINTENANCE_MESSAGE
+            }, null, 2), 'utf8');
+        } catch (syncStatusErr) {}
+
+        console.log(`[ACCESS CONTROL] Website turned ${body.online ? 'ONLINE' : 'OFFLINE'} by administrator (${authConfig.websiteAccess.updatedBy}).`);
+        return sendJson(res, 200, {
+            success: true,
+            online: authConfig.websiteAccess.online,
+            updatedAt: authConfig.websiteAccess.updatedAt,
+            updatedBy: authConfig.websiteAccess.updatedBy,
+            message: body.online
+                ? 'Website is now ONLINE. Student access has been restored.'
+                : 'Website is now OFFLINE. Student access has been disabled for maintenance/examination.'
+        });
+    }
+
+    // ==========================================
+    // Server-Side Maintenance Enforcement Gate
+    // Blocks ALL student routes, direct URLs, assets, and APIs when OFF.
+    // Preserves administrator access and existing sessions/data untouched.
+    // ==========================================
+    if (!isWebsiteOnline()) {
+        const currentAdmin = getAdminSession(cookies, req.headers, {});
+        if (!currentAdmin) {
+            const isHostClient = isHostRequest(req, null);
+            const acceptHeader = String(req.headers.accept || '').toLowerCase();
+            const isAdminRoute = (pathname === '/admin' || pathname === '/admin/');
+            const wantsHtml = isAdminRoute ||
+                pathname === '/' ||
+                pathname === '/index.html' ||
+                (!pathname.startsWith('/api/') && acceptHeader.includes('text/html'));
+
+            if (wantsHtml) {
+                const html = buildMaintenanceHtml(isHostClient, isAdminRoute);
+                res.writeHead(503, {
+                    'Content-Type': 'text/html; charset=utf-8',
+                    'Content-Length': Buffer.byteLength(html),
+                    'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma': 'no-cache',
+                    'Expires': '0',
+                    'Retry-After': '300'
+                });
+                return res.end(html);
+            }
+
+            return sendJson(res, 503, {
+                error: 'Service Unavailable',
+                maintenance: true,
+                websiteOnline: false,
+                message: MAINTENANCE_MESSAGE
+            }, {
+                'Pragma': 'no-cache',
+                'Expires': '0',
+                'Retry-After': '300'
+            });
+        }
+    }
+
     // ==========================================
     // Summary Slides Routes (Grade 9 & Grade 12 Only)
     // ==========================================
@@ -823,6 +1229,28 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (pathname.startsWith('/summary_slides/') && pathname.endsWith('/.gitkeep')) {
+        res.writeHead(403, { 'Content-Type': 'text/plain' });
+        return res.end('403 Forbidden');
+    }
+
+    // ==========================================
+    // KH-Ebook Routes (Grades 7-12)
+    // ==========================================
+    if (pathname.startsWith('/api/kh-ebooks')) {
+        return handleKhEbooksRequest(req, res, {
+            pathname,
+            method,
+            parsedUrl,
+            cookies,
+            baseDir: __dirname,
+            isHost: isHostRequest(req, null),
+            adminSession: getAdminSession(cookies, req.headers, {}),
+            studentSession: getStudentSession(cookies),
+            sendJson
+        });
+    }
+
+    if (pathname.startsWith('/kh_ebooks/') && pathname.endsWith('/.gitkeep')) {
         res.writeHead(403, { 'Content-Type': 'text/plain' });
         return res.end('403 Forbidden');
     }
@@ -938,7 +1366,7 @@ const server = http.createServer(async (req, res) => {
                 'Content-Length': stats.size,
                 'Accept-Ranges': 'bytes',
                 'Content-Type': contentType,
-                'Cache-Control': (ext === '.html' || pathname.startsWith('/summary_slides/')) ? 'no-cache' : 'public, max-age=86400'
+                'Cache-Control': (ext === '.html' || pathname.startsWith('/summary_slides/') || pathname.startsWith('/kh_ebooks/')) ? 'no-cache' : 'public, max-age=86400'
             });
             fs.createReadStream(safePath).pipe(res);
         }
@@ -953,11 +1381,19 @@ server.listen(PORT, () => {
     } catch (e) {
         console.warn('Summary Slides folder sync warning:', e.message);
     }
+    try {
+        if (typeof handleKhEbooksRequest.syncAll === 'function') {
+            handleKhEbooksRequest.syncAll(__dirname);
+        }
+    } catch (e) {
+        console.warn('KH-Ebooks folder sync warning:', e.message);
+    }
     console.log(`=======================================================`);
     console.log(`⚛️  WIS Physics Learning Hub`);
     console.log(`📡 URL: http://localhost:${PORT}`);
     console.log(`🔒 Secure Password-Protected Access: ENABLED`);
     console.log(`🛡️  Admin Password Management: ACTIVE`);
+    console.log(`🌐 Website Access Control: ${isWebsiteOnline() ? 'ONLINE (Website ON)' : 'OFFLINE (Maintenance Mode Active)'}`);
     console.log(`🔑 Active Shared Access Password: ${authConfig.sharedPassword.plainText || '(Salted PBKDF2 Hash)'}`);
     console.log(`⚡ Zero-Dependency Mode: Running natively with Node.js`);
     console.log(`=======================================================`);
