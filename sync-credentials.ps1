@@ -75,12 +75,15 @@ if (Test-Path $indexPath) {
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="exams/kh-phy-catalog\.js\?[^"]*"', "<script src=`"exams/kh-phy-catalog.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="moeys_supplementary/catalog\.js\?[^"]*"', "<script src=`"moeys_supplementary/catalog.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="moeys-supplementary\.js\?[^"]*"', "<script src=`"moeys-supplementary.js?v=$version&build=$buildTimestamp`"")
+    $indexContent = [regex]::Replace($indexContent, '<script\s+src="my_textbooks/catalog\.js\?[^"]*"', "<script src=`"my_textbooks/catalog.js?v=$version&build=$buildTimestamp`"")
+    $indexContent = [regex]::Replace($indexContent, '<script\s+src="my-textbooks\.js\?[^"]*"', "<script src=`"my-textbooks.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="outstanding_worksheets/catalog\.js\?[^"]*"', "<script src=`"outstanding_worksheets/catalog.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="outstanding-worksheets\.js\?[^"]*"', "<script src=`"outstanding-worksheets.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="kh_ebooks/catalog\.js\?[^"]*"', "<script src=`"kh_ebooks/catalog.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<script\s+src="kh-ebooks\.js\?[^"]*"', "<script src=`"kh-ebooks.js?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<link\s+rel="stylesheet"\s+href="styles\.css\?[^"]*"', "<link rel=`"stylesheet`" href=`"styles.css?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, '<link\s+rel="stylesheet"\s+href="moeys-supplementary\.css\?[^"]*"', "<link rel=`"stylesheet`" href=`"moeys-supplementary.css?v=$version&build=$buildTimestamp`"")
+    $indexContent = [regex]::Replace($indexContent, '<link\s+rel="stylesheet"\s+href="my-textbooks\.css\?[^"]*"', "<link rel=`"stylesheet`" href=`"my-textbooks.css?v=$version&build=$buildTimestamp`"")
     $indexContent = [regex]::Replace($indexContent, 'id="auth-version-badge"[^>]*>[^<]*<', "id=`"auth-version-badge`" style=`"display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;`">v8.0 (Build $version)<")
     
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
@@ -293,7 +296,7 @@ if (Test-Path $khWorksheetsDir) {
 if (Get-Command node -ErrorAction SilentlyContinue) {
     try {
         Push-Location $scriptDir
-        $syncReport = node -e "const kh = require('./kh-phy-diploma-server').syncAll(process.cwd()); require('./moeys-supplementary-server').syncAll(process.cwd()); try { require('./outstanding-worksheets-server').syncAll(process.cwd()); } catch(e){} try { require('./kh-ebooks-server').syncAll(process.cwd()); } catch(e){} const names = (kh && kh.extraItems ? kh.extraItems.map(x => x.storedName) : []); console.log('KH-Phy Extras: ' + names.length + (names.length ? ' (' + names.join(', ') + ')' : ''));" 2>$null
+        $syncReport = node -e "const kh = require('./kh-phy-diploma-server').syncAll(process.cwd()); require('./moeys-supplementary-server').syncAll(process.cwd()); require('./my-textbooks-server').syncAll(process.cwd()); try { require('./outstanding-worksheets-server').syncAll(process.cwd()); } catch(e){} try { require('./kh-ebooks-server').syncAll(process.cwd()); } catch(e){} const names = (kh && kh.extraItems ? kh.extraItems.map(x => x.storedName) : []); console.log('KH-Phy Extras: ' + names.length + (names.length ? ' (' + names.join(', ') + ')' : ''));" 2>$null
         if ($syncReport) {
             Write-Host "  $syncReport" -ForegroundColor Green
         }

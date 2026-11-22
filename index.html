@@ -49,8 +49,8 @@
                     document.documentElement.classList.add('wis-pre-maintenance');
                 }
 
-                var currentVer = 58;
-                var LATEST_BUILD = '20261122114215';
+                var currentVer = 59;
+                var LATEST_BUILD = '20261122120302';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -101,12 +101,13 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=58&build=20261122114215">
+    <link rel="stylesheet" href="styles.css?v=59&build=20261122120302">
     <link rel="stylesheet" href="summary-slides.css?v=2&build=20261121070500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="kh-ebooks.css?v=1&build=20261122071500">
     <link rel="stylesheet" href="outstanding-worksheets.css?v=1&build=20261122090000">
-    <link rel="stylesheet" href="moeys-supplementary.css?v=58&build=20261122114215">
+    <link rel="stylesheet" href="moeys-supplementary.css?v=59&build=20261122120302">
+    <link rel="stylesheet" href="my-textbooks.css?v=59&build=20261122120302">
     <style>
         .view.active {
             display: block !important;
@@ -150,8 +151,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=58&build=20261122114215"></script>
-    <script src="physics-data.js?v=58&build=20261122114215"></script>
+    <script src="physics-figures.js?v=59&build=20261122120302"></script>
+    <script src="physics-data.js?v=59&build=20261122120302"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -2101,7 +2102,7 @@
         ];
         }
     </script>
-    <script src="physics-data.js?v=58&build=20261122114215"></script>
+    <script src="physics-data.js?v=59&build=20261122120302"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -6236,6 +6237,20 @@
                     }
                 }
             }
+            var hasMyTextbook = ['9', '10', '11', '12'].indexOf(String(window.currentGrade)) !== -1;
+            var tabMyTextbook = document.getElementById('tab-btn-my-textbook');
+            if (tabMyTextbook) {
+                if (hasMyTextbook) {
+                    tabMyTextbook.style.setProperty('display', 'inline-flex', 'important');
+                    tabMyTextbook.classList.remove('hidden');
+                } else {
+                    tabMyTextbook.style.setProperty('display', 'none', 'important');
+                    tabMyTextbook.classList.add('hidden');
+                    if (window.WISMyTextbooks && typeof window.WISMyTextbooks.onLeaveTab === 'function') {
+                        window.WISMyTextbooks.onLeaveTab();
+                    }
+                }
+            }
 
             try {
                 if (window.location.hash !== '#lesson/' + id) {
@@ -9859,6 +9874,11 @@
                     window.WISMoeysSupplementary.onLeaveTab();
                 }
             }
+            if (targetName !== 'my-textbook') {
+                if (window.WISMyTextbooks && typeof window.WISMyTextbooks.onLeaveTab === 'function') {
+                    window.WISMyTextbooks.onLeaveTab();
+                }
+            }
 
             if (targetName === 'ebook' && activeLesson) {
                 if (typeof initEbookUI === 'function') {
@@ -9874,6 +9894,15 @@
                         if (gm) khGrade = gm[1];
                     }
                     window.WISKhEbooks.renderTab(khGrade || '7');
+                }
+            } else if (targetName === 'my-textbook') {
+                if (window.WISMyTextbooks && typeof window.WISMyTextbooks.renderTab === 'function') {
+                    var mtGrade = window.currentGrade || (activeLesson && activeLesson.grade);
+                    if (!mtGrade && activeLesson && activeLesson.id) {
+                        var mtm = String(activeLesson.id).match(/^g(\d+)/i);
+                        if (mtm) mtGrade = mtm[1];
+                    }
+                    window.WISMyTextbooks.renderTab(mtGrade || '');
                 }
             } else if (targetName === 'worksheet' && activeLesson) {
                 if (typeof initWorksheetUI === 'function') {
@@ -10082,7 +10111,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 58)</span>
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 59)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -10671,6 +10700,7 @@
                 <button class="tab-btn tab-btn-special tab-btn-semester" id="tab-btn-semester" data-target="semester" onclick="switchTab('semester')"><i class="fa-solid fa-file-pen"></i> Semester Exam</button>
                 <button class="tab-btn" data-target="ebook" onclick="switchTab('ebook')">Ebook</button>
                 <button class="tab-btn tab-btn-special tab-btn-kh-ebook" id="tab-btn-kh-ebook" data-target="kh-ebook" onclick="switchTab('kh-ebook')"><i class="fa-solid fa-book-open-reader"></i> KH-Ebook</button>
+                <button class="tab-btn tab-btn-special tab-btn-my-textbook" id="tab-btn-my-textbook" data-target="my-textbook" onclick="switchTab('my-textbook')" style="display: none;"><i class="fa-solid fa-book"></i> My Textbook</button>
                 <button class="tab-btn" data-target="equations" onclick="switchTab('equations')">Equations</button>
                 <button class="tab-btn tab-btn-special tab-btn-summary-slides" id="tab-btn-summary-slides" data-target="summary-slides" onclick="switchTab('summary-slides')" style="display: none;"><i class="fa-solid fa-display"></i> Summary Slides</button>
                 <button class="tab-btn" data-target="flashcards" onclick="switchTab('flashcards')">Flashcards</button>
@@ -10727,6 +10757,13 @@
                 <div id="tab-kh-ebook" class="tab-pane hidden" aria-label="KH-Ebook Section">
                     <div id="tab-kh-ebook-content">
                         <!-- Populated by kh-ebooks.js -->
+                    </div>
+                </div>
+
+                <!-- My Textbook Tab (Grades 9-12 Only) -->
+                <div id="tab-my-textbook" class="tab-pane hidden" aria-label="My Textbook Section">
+                    <div id="tab-my-textbook-content">
+                        <!-- Populated dynamically by my-textbooks.js -->
                     </div>
                 </div>
 
@@ -10938,18 +10975,20 @@
         </div>
     </div>
 
-    <script src="auth.js?v=58&build=20261122114215"></script>
+    <script src="auth.js?v=59&build=20261122120302"></script>
     <script src="summary-slides.js?v=4&build=20261121075000"></script>
-    <script src="kh_ebooks/catalog.js?v=58&build=20261122114215"></script>
-    <script src="kh-ebooks.js?v=58&build=20261122114215"></script>
-    <script src="outstanding_worksheets/catalog.js?v=58&build=20261122114215"></script>
-    <script src="outstanding-worksheets.js?v=58&build=20261122114215"></script>
-    <script src="moeys_supplementary/catalog.js?v=58&build=20261122114215"></script>
-    <script src="moeys-supplementary.js?v=58&build=20261122114215"></script>
-    <script src="exams/kh-phy-catalog.js?v=58&build=20261122114215"></script>
+    <script src="kh_ebooks/catalog.js?v=59&build=20261122120302"></script>
+    <script src="kh-ebooks.js?v=59&build=20261122120302"></script>
+    <script src="outstanding_worksheets/catalog.js?v=59&build=20261122120302"></script>
+    <script src="outstanding-worksheets.js?v=59&build=20261122120302"></script>
+    <script src="moeys_supplementary/catalog.js?v=59&build=20261122120302"></script>
+    <script src="moeys-supplementary.js?v=59&build=20261122120302"></script>
+    <script src="my_textbooks/catalog.js?v=59&build=20261122120302"></script>
+    <script src="my-textbooks.js?v=59&build=20261122120302"></script>
+    <script src="exams/kh-phy-catalog.js?v=59&build=20261122120302"></script>
     <script src="ophysics-simulations.js?v=1&build=20261121112000"></script>
     <script src="javalab-simulations.js?v=1&build=20261121115500"></script>
     <script src="vascak-simulations.js?v=3&build=20261121115500"></script>
-    <script src="app.js?v=58&build=20261122114215" onerror="onAppJsError()"></script>
+    <script src="app.js?v=59&build=20261122120302" onerror="onAppJsError()"></script>
 </body>
 </html>

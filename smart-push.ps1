@@ -41,6 +41,7 @@ $batches = @(
             "outstanding-worksheets.js", "outstanding-worksheets.css", "outstanding-worksheets-server.js", "Sync-Outstanding-Worksheets.bat",
             "kh-phy-diploma-server.js",
             "moeys-supplementary.js", "moeys-supplementary.css", "moeys-supplementary-server.js", "Sync-MOEYS-Supplementary.bat",
+            "my-textbooks.js", "my-textbooks.css", "my-textbooks-server.js", "Sync-My-Textbooks.bat",
             "site-status.json", "Turn_OFF_Website.bat", "Turn_ON_Website.bat", "site-access-control.ps1",
             "sync-credentials.ps1", "smart-push.ps1", "Upload_To_GitHub.bat",
             ".gitignore", "audio/README.txt", "audiobooks/README.txt", "kh_worksheets/README.txt", "semester_exams/README.txt"
@@ -86,6 +87,16 @@ $batches = @(
         Title    = "MOEYS Supplementary (Grade 12 & Catalog)"
         Patterns = @("moeys_supplementary")
         Message  = "Deploy: MOEYS Supplementary materials for Grade 12"
+    },
+    @{
+        Title    = "My Textbooks (Grades 9-10 & Catalog)"
+        Patterns = @("my_textbooks/README.txt", "my_textbooks/catalog.js", "my_textbooks/grade9/*", "my_textbooks/grade10/*")
+        Message  = "Deploy: My Textbook library for Grades 9 and 10"
+    },
+    @{
+        Title    = "My Textbooks (Grades 11-12)"
+        Patterns = @("my_textbooks/grade11/*", "my_textbooks/grade12/*")
+        Message  = "Deploy: My Textbook library for Grades 11 and 12"
     },
     @{
         Title    = "Grade 9 Audiobooks (Chapters 1 - 5)"

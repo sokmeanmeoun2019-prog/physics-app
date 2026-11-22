@@ -1,0 +1,311 @@
+/* My Textbook Section (Grades 9-12 Only)
+   Reuses .ebook-container, .ebook-header, .ebook-topic-selector, .pdf-viewer-wrapper,
+   .pdf-toolbar, .pdf-scroll-container, and .ebook-notice directly from styles.css. */
+
+.tab-btn-special.tab-btn-my-textbook {
+    color: #6d28d9;
+    border-color: rgba(124, 58, 237, 0.28);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(79, 70, 229, 0.08));
+}
+
+.tab-btn-special.tab-btn-my-textbook:hover {
+    color: #5b21b6;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.16), rgba(79, 70, 229, 0.16));
+    border-color: rgba(124, 58, 237, 0.48);
+}
+
+.tab-btn-special.tab-btn-my-textbook.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    border-color: transparent;
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.28);
+}
+
+.mt-grade-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.mt-grade-pill.grade-9 {
+    background: rgba(14, 165, 233, 0.14);
+    color: #0369a1;
+    border: 1px solid rgba(14, 165, 233, 0.32);
+}
+
+.mt-grade-pill.grade-10 {
+    background: rgba(16, 185, 129, 0.14);
+    color: #047857;
+    border: 1px solid rgba(16, 185, 129, 0.32);
+}
+
+.mt-grade-pill.grade-11 {
+    background: rgba(245, 158, 11, 0.15);
+    color: #b45309;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.mt-grade-pill.grade-12 {
+    background: rgba(124, 58, 237, 0.14);
+    color: #6d28d9;
+    border: 1px solid rgba(124, 58, 237, 0.32);
+}
+
+.mt-filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.mt-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1 1 155px;
+    min-width: 140px;
+}
+
+.mt-filter-group label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.mt-filter-select,
+.mt-filter-input {
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #0f172a;
+    font-size: 0.86rem;
+    font-family: inherit;
+}
+
+.mt-filter-select:focus,
+.mt-filter-input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.14);
+}
+
+.mt-admin-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    margin-bottom: 0.9rem;
+    padding: 0.65rem 0.95rem;
+    background: #f5f3ff;
+    border: 1px solid #ddd6fe;
+    border-radius: 10px;
+}
+
+.mt-admin-bar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.mt-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.38rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.16s ease;
+}
+
+.mt-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.mt-btn-primary {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: #ffffff;
+}
+
+.mt-btn-primary:hover:not(:disabled) {
+    filter: brightness(1.06);
+}
+
+.mt-btn-secondary {
+    background: #ffffff;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+.mt-btn-secondary:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.mt-btn-danger {
+    background: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.mt-btn-danger:hover:not(:disabled) {
+    background: #fee2e2;
+}
+
+.mt-selected-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.45rem;
+    font-size: 0.84rem;
+    color: #475569;
+}
+
+.mt-meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.16rem 0.55rem;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.78rem;
+}
+
+/* Modal */
+.mt-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 10050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.mt-modal {
+    width: 100%;
+    max-width: 520px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.3);
+    overflow: hidden;
+}
+
+.mt-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.95rem 1.2rem;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: #ffffff;
+}
+
+.mt-modal-header h3 {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 700;
+}
+
+.mt-modal-close {
+    background: rgba(255, 255, 255, 0.16);
+    border: none;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.mt-modal-body {
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.mt-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.mt-field-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+}
+
+.mt-field label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.mt-field input,
+.mt-field textarea {
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.88rem;
+    font-family: inherit;
+    color: #0f172a;
+}
+
+.mt-dropzone {
+    border: 2px dashed #c4b5fd;
+    background: #f5f3ff;
+    border-radius: 10px;
+    padding: 0.95rem;
+    text-align: center;
+    cursor: pointer;
+    color: #6d28d9;
+}
+
+.mt-dropzone.dragover {
+    border-color: #7c3aed;
+    background: #ede9fe;
+}
+
+.mt-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.85rem 1.2rem;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+
+@media (max-width: 768px) {
+    .mt-field-row {
+        grid-template-columns: 1fr;
+    }
+}
