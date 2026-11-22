@@ -19,7 +19,7 @@
     const ADMIN_PW_SALT = 'WIS_ADMIN_SALT_v5_0';
     const ADMIN_PW_HASH = '530430efa7fcf92505aba093b5fed097f1d923408d2f455fd4474d480511473f';
     const SALT_PEPPER = SHARED_PW_SALT;
-    const STATIC_WEBSITE_ONLINE = false;
+    const STATIC_WEBSITE_ONLINE = true;
 
     // Application Auth State
     const authState = {
