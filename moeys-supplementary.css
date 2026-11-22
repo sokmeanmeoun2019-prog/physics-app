@@ -1,0 +1,290 @@
+/* MOEYS Supplementary Section (Grade 12 Only)
+   Reuses .ebook-container, .ebook-header, .ebook-topic-selector, .pdf-viewer-wrapper,
+   .pdf-toolbar, .pdf-scroll-container, and .ebook-notice directly from styles.css. */
+
+.tab-btn-special.tab-btn-moeys-supplementary {
+    color: #0f766e;
+    border-color: rgba(13, 148, 136, 0.28);
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.08), rgba(79, 70, 229, 0.08));
+}
+
+.tab-btn-special.tab-btn-moeys-supplementary:hover {
+    color: #115e59;
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.16), rgba(79, 70, 229, 0.16));
+    border-color: rgba(13, 148, 136, 0.48);
+}
+
+.tab-btn-special.tab-btn-moeys-supplementary.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, #0d9488, #4f46e5);
+    border-color: transparent;
+    box-shadow: 0 6px 16px rgba(13, 148, 136, 0.28);
+}
+
+.ms-grade-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    background: rgba(13, 148, 136, 0.14);
+    color: #0f766e;
+    border: 1px solid rgba(13, 148, 136, 0.32);
+}
+
+.ms-filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.ms-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1 1 155px;
+    min-width: 140px;
+}
+
+.ms-filter-group label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.ms-filter-select,
+.ms-filter-input {
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #0f172a;
+    font-size: 0.86rem;
+    font-family: inherit;
+}
+
+.ms-filter-select:focus,
+.ms-filter-input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: #0d9488;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.14);
+}
+
+.ms-admin-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    margin-bottom: 0.9rem;
+    padding: 0.65rem 0.95rem;
+    background: #f0fdfa;
+    border: 1px solid #99f6e4;
+    border-radius: 10px;
+}
+
+.ms-admin-bar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.ms-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.38rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.16s ease;
+}
+
+.ms-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.ms-btn-primary {
+    background: linear-gradient(135deg, #0d9488, #4f46e5);
+    color: #ffffff;
+}
+
+.ms-btn-primary:hover:not(:disabled) {
+    filter: brightness(1.06);
+}
+
+.ms-btn-secondary {
+    background: #ffffff;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+.ms-btn-secondary:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.ms-btn-danger {
+    background: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.ms-btn-danger:hover:not(:disabled) {
+    background: #fee2e2;
+}
+
+.ms-selected-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.45rem;
+    font-size: 0.84rem;
+    color: #475569;
+}
+
+.ms-meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.16rem 0.55rem;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.78rem;
+}
+
+/* Modal */
+.ms-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 10050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.ms-modal {
+    width: 100%;
+    max-width: 520px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.3);
+    overflow: hidden;
+}
+
+.ms-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.95rem 1.2rem;
+    background: linear-gradient(135deg, #0d9488, #4f46e5);
+    color: #ffffff;
+}
+
+.ms-modal-header h3 {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 700;
+}
+
+.ms-modal-close {
+    background: rgba(255, 255, 255, 0.16);
+    border: none;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.ms-modal-body {
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.ms-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ms-field-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+}
+
+.ms-field label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.ms-field input,
+.ms-field textarea {
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.88rem;
+    font-family: inherit;
+    color: #0f172a;
+}
+
+.ms-dropzone {
+    border: 2px dashed #5eead4;
+    background: #f0fdfa;
+    border-radius: 10px;
+    padding: 0.95rem;
+    text-align: center;
+    cursor: pointer;
+    color: #0f766e;
+}
+
+.ms-dropzone.dragover {
+    border-color: #0d9488;
+    background: #ccfbf1;
+}
+
+.ms-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.85rem 1.2rem;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+
+@media (max-width: 768px) {
+    .ms-field-row {
+        grid-template-columns: 1fr;
+    }
+}

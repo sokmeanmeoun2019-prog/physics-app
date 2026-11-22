@@ -281,11 +281,11 @@ if (Test-Path $khWorksheetsDir) {
     }
 }
 
-# 7.7 Sync Grade 9 KH-Phy Diploma folder catalog for static GitHub Pages deploy
+# 7.7 Sync Grade 9 KH-Phy Diploma & Grade 12 MOEYS Supplementary catalogs for static GitHub Pages deploy
 if (Get-Command node -ErrorAction SilentlyContinue) {
     try {
         Push-Location $scriptDir
-        node -e "require('./kh-phy-diploma-server').syncAll(process.cwd());" 2>$null
+        node -e "require('./kh-phy-diploma-server').syncAll(process.cwd()); require('./moeys-supplementary-server').syncAll(process.cwd());" 2>$null
         Pop-Location
     } catch {
         try { Pop-Location } catch {}
