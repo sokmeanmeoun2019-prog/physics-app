@@ -87,12 +87,12 @@
     }
 
     function deriveChapterFromName(name) {
-        const m = String(name || '').match(/(?:ch(?:apter)?[\s_-]*(\d+))/i);
+        const m = String(name || '').match(/(?:^|[^a-z])(?:ch(?:apter)?[\s_-]*(\d+))/i);
         return m ? `Chapter ${m[1]}` : 'General Chapter';
     }
 
     function deriveLessonFromName(name) {
-        const m = String(name || '').match(/(?:l(?:esson)?[\s_-]*(\d+))/i);
+        const m = String(name || '').match(/(?:^|[^a-z])(?:l(?:esson)?[\s_-]*(\d+))/i);
         return m ? `Lesson ${m[1]}` : 'All Lessons';
     }
 
@@ -1213,6 +1213,8 @@
             grade: g,
             item: itemOpt || null,
             file: null,
+            files: [],
+            progressText: '',
             submitting: false,
             error: ''
         };
@@ -1236,17 +1238,32 @@
 
         const isEdit = ms.mode === 'edit';
         const isReplace = ms.mode === 'replace';
+        const isUpload = ms.mode === 'upload';
+        const selectedFiles = (ms.files && ms.files.length) ? ms.files : (ms.file ? [ms.file] : []);
+        const isMulti = isUpload && selectedFiles.length > 1;
+
         const heading = isEdit
             ? `Edit Outstanding Worksheet (Grade ${ms.grade})`
             : isReplace
                 ? `Replace Worksheet PDF (Grade ${ms.grade})`
-                : `Upload Outstanding Worksheet PDF (Grade ${ms.grade})`;
+                : `Upload Outstanding Worksheet PDFs (Grade ${ms.grade})`;
 
-        const curTitle = ms.item ? ms.item.title : '';
-        const curChapter = ms.item ? (ms.item.chapter || 'Chapter 1') : 'Chapter 1';
+        const curTitle = ms.item ? ms.item.title : (selectedFiles.length === 1 ? deriveTitleFromName(selectedFiles[0].name) : '');
+        const curChapter = ms.item ? (ms.item.chapter || 'Chapter 1') : (selectedFiles.length === 1 ? deriveChapterFromName(selectedFiles[0].name) : '');
         const curTopic = ms.item ? (ms.item.topic || 'Core Physics') : 'Core Physics';
-        const curLesson = ms.item ? (ms.item.lesson || 'Lesson 1') : 'Lesson 1';
+        const curLesson = ms.item ? (ms.item.lesson || 'Lesson 1') : (selectedFiles.length === 1 ? deriveLessonFromName(selectedFiles[0].name) : '');
         const curDesc = ms.item ? (ms.item.description || '') : '';
+
+        const dropLabelHtml = selectedFiles.length === 0
+            ? (isUpload
+                ? 'Click or drop <strong>one or multiple PDF files</strong> here (e.g. Part 1, Part 2 — up to 150 MB each)'
+                : 'Click or drop a PDF file here (up to 150 MB)')
+            : selectedFiles.length === 1
+                ? `<strong>${escapeHtml(selectedFiles[0].name)}</strong> (${formatBytes(selectedFiles[0].size)})`
+                : `<strong>${selectedFiles.length} PDF files selected</strong>
+                   <div style="margin-top:0.4rem;font-size:0.78rem;text-align:left;max-height:110px;overflow:auto;background:#ffffff;border:1px solid #bfdbfe;border-radius:6px;padding:0.4rem 0.6rem;color:#1e293b;">
+                       ${selectedFiles.map((f, i) => `<div>${i + 1}. ${escapeHtml(f.name)} (${formatBytes(f.size)})</div>`).join('')}
+                   </div>`;
 
         root.innerHTML = `
             <div class="ow-modal-backdrop" id="ow-modal-backdrop">
@@ -1259,36 +1276,34 @@
                         <div class="ow-modal-body">
                             ${!isEdit ? `
                                 <div class="ow-field">
-                                    <label>Worksheet PDF File *</label>
+                                    <label>Worksheet PDF File${isUpload ? '(s) *' : ' *'}</label>
                                     <div class="ow-dropzone" id="ow-dropzone">
                                         <i class="fa-solid fa-file-pdf" style="font-size:1.6rem;margin-bottom:0.3rem;display:block;"></i>
-                                        <div id="ow-dropzone-label">
-                                            ${ms.file ? `<strong>${escapeHtml(ms.file.name)}</strong> (${formatBytes(ms.file.size)})` : 'Click or drop a PDF file here (up to 150 MB)'}
-                                        </div>
-                                        <input type="file" id="ow-file-input" accept="application/pdf,.pdf" style="display:none;">
+                                        <div id="ow-dropzone-label">${dropLabelHtml}</div>
+                                        <input type="file" id="ow-file-input" accept="application/pdf,.pdf" ${isUpload ? 'multiple' : ''} style="display:none;">
                                     </div>
                                 </div>
                             ` : ''}
 
                             <div class="ow-field">
-                                <label for="ow-input-title">Worksheet Title *</label>
-                                <input type="text" id="ow-input-title" value="${escapeHtml(curTitle)}" placeholder="e.g. Chapter 1: Turning Effect Challenging Problems" required>
+                                <label for="ow-input-title">${isMulti ? 'Title Prefix (optional — each file keeps its Part name)' : 'Worksheet Title *'}</label>
+                                <input type="text" id="ow-input-title" value="${escapeHtml(curTitle)}" placeholder="${isMulti ? 'Leave blank to use each PDF filename automatically' : 'e.g. File A Part 1'}" ${isMulti ? '' : 'required'}>
                             </div>
 
                             <div class="ow-field-row">
                                 <div class="ow-field">
                                     <label for="ow-input-chapter">Chapter</label>
-                                    <input type="text" id="ow-input-chapter" value="${escapeHtml(curChapter)}" placeholder="e.g. Chapter 1">
+                                    <input type="text" id="ow-input-chapter" value="${escapeHtml(curChapter)}" placeholder="${isMulti ? 'Auto per file or e.g. Chapter 1' : 'e.g. Chapter 1'}">
                                 </div>
                                 <div class="ow-field">
                                     <label for="ow-input-lesson">Lesson</label>
-                                    <input type="text" id="ow-input-lesson" value="${escapeHtml(curLesson)}" placeholder="e.g. Lesson 1">
+                                    <input type="text" id="ow-input-lesson" value="${escapeHtml(curLesson)}" placeholder="${isMulti ? 'Auto per file or e.g. Lesson 1' : 'e.g. Lesson 1'}">
                                 </div>
                             </div>
 
                             <div class="ow-field">
                                 <label for="ow-input-topic">Topic</label>
-                                <input type="text" id="ow-input-topic" value="${escapeHtml(curTopic)}" placeholder="e.g. Moment of a Force & Equilibrium">
+                                <input type="text" id="ow-input-topic" value="${escapeHtml(curTopic)}" placeholder="e.g. Turning Effect & Equilibrium">
                             </div>
 
                             <div class="ow-field">
@@ -1296,13 +1311,14 @@
                                 <textarea id="ow-input-desc" rows="2" placeholder="Additional notes or learning focus...">${escapeHtml(curDesc)}</textarea>
                             </div>
 
+                            ${ms.progressText ? `<div style="padding:0.5rem 0.75rem;border-radius:8px;background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;font-size:0.84rem;"><i class="fa-solid fa-spinner fa-spin"></i> ${escapeHtml(ms.progressText)}</div>` : ''}
                             ${ms.error ? `<div style="padding:0.55rem 0.75rem;border-radius:8px;background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;font-size:0.84rem;">${escapeHtml(ms.error)}</div>` : ''}
                         </div>
                         <div class="ow-modal-footer">
                             <button type="button" class="ow-btn ow-btn-secondary" id="ow-modal-cancel" ${ms.submitting ? 'disabled' : ''}>Cancel</button>
                             <button type="submit" class="ow-btn ow-btn-primary" id="ow-modal-submit" ${ms.submitting ? 'disabled' : ''}>
                                 <i class="fa-solid ${ms.submitting ? 'fa-spinner fa-spin' : 'fa-check'}"></i>
-                                ${ms.submitting ? 'Saving...' : isEdit ? 'Save Changes' : isReplace ? 'Replace PDF' : 'Upload PDF'}
+                                ${ms.submitting ? 'Uploading...' : isEdit ? 'Save Changes' : isReplace ? 'Replace PDF' : (selectedFiles.length > 1 ? `Upload ${selectedFiles.length} PDFs` : 'Upload PDF')}
                             </button>
                         </div>
                     </form>
@@ -1323,28 +1339,25 @@
 
         const dz = document.getElementById('ow-dropzone');
         const fileInput = document.getElementById('ow-file-input');
-        const titleInput = document.getElementById('ow-input-title');
+        function applyPickedFiles(fileListObj) {
+            const picked = Array.from(fileListObj || []).filter(Boolean);
+            if (!picked.length || !state.modalState) return;
+            const list = state.modalState.mode === 'upload' ? picked : [picked[0]];
+            state.modalState.files = list;
+            state.modalState.file = list[0];
+            state.modalState.error = '';
+            renderModal();
+        }
+
         if (dz && fileInput) {
             dz.onclick = () => fileInput.click();
-            fileInput.onchange = () => {
-                const chosen = fileInput.files && fileInput.files[0];
-                if (!chosen) return;
-                state.modalState.file = chosen;
-                const lbl = document.getElementById('ow-dropzone-label');
-                if (lbl) lbl.innerHTML = `<strong>${escapeHtml(chosen.name)}</strong> (${formatBytes(chosen.size)})`;
-                if (titleInput && !titleInput.value.trim()) titleInput.value = deriveTitleFromName(chosen.name);
-            };
+            fileInput.onchange = () => applyPickedFiles(fileInput.files);
             dz.ondragover = (e) => { e.preventDefault(); dz.classList.add('dragover'); };
             dz.ondragleave = () => dz.classList.remove('dragover');
             dz.ondrop = (e) => {
                 e.preventDefault();
                 dz.classList.remove('dragover');
-                const dropped = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
-                if (!dropped) return;
-                state.modalState.file = dropped;
-                const lbl = document.getElementById('ow-dropzone-label');
-                if (lbl) lbl.innerHTML = `<strong>${escapeHtml(dropped.name)}</strong> (${formatBytes(dropped.size)})`;
-                if (titleInput && !titleInput.value.trim()) titleInput.value = deriveTitleFromName(dropped.name);
+                applyPickedFiles(e.dataTransfer && e.dataTransfer.files);
             };
         }
 
@@ -1353,33 +1366,69 @@
             form.onsubmit = async (e) => {
                 e.preventDefault();
                 if (!state.modalState || state.modalState.submitting) return;
-                const meta = {
-                    title: (document.getElementById('ow-input-title') || {}).value || '',
-                    chapter: (document.getElementById('ow-input-chapter') || {}).value || '',
-                    topic: (document.getElementById('ow-input-topic') || {}).value || '',
-                    lesson: (document.getElementById('ow-input-lesson') || {}).value || '',
-                    description: (document.getElementById('ow-input-desc') || {}).value || ''
-                };
+                const titleInputVal = ((document.getElementById('ow-input-title') || {}).value || '').trim();
+                const chapterInputVal = ((document.getElementById('ow-input-chapter') || {}).value || '').trim();
+                const topicInputVal = ((document.getElementById('ow-input-topic') || {}).value || '').trim();
+                const lessonInputVal = ((document.getElementById('ow-input-lesson') || {}).value || '').trim();
+                const descInputVal = ((document.getElementById('ow-input-desc') || {}).value || '').trim();
+
                 state.modalState.submitting = true;
                 state.modalState.error = '';
                 renderModal();
 
                 try {
-                    let result = null;
+                    let lastResult = null;
                     if (state.modalState.mode === 'upload') {
-                        result = await uploadWorksheetFile(state.modalState.grade, state.modalState.file, meta);
+                        const queue = (state.modalState.files && state.modalState.files.length)
+                            ? state.modalState.files
+                            : (state.modalState.file ? [state.modalState.file] : []);
+                        if (!queue.length) throw new Error('Please choose at least one PDF file.');
+
+                        for (let i = 0; i < queue.length; i++) {
+                            const f = queue[i];
+                            if (state.modalState) {
+                                state.modalState.progressText = queue.length > 1
+                                    ? `Uploading ${i + 1} of ${queue.length}: ${f.name}...`
+                                    : `Uploading ${f.name}...`;
+                                renderModal();
+                            }
+                            const derivedTitle = deriveTitleFromName(f.name);
+                            const perTitle = queue.length === 1
+                                ? (titleInputVal || derivedTitle)
+                                : (titleInputVal ? `${titleInputVal} - ${derivedTitle}` : derivedTitle);
+                            lastResult = await uploadWorksheetFile(state.modalState.grade, f, {
+                                title: perTitle,
+                                chapter: chapterInputVal || deriveChapterFromName(f.name),
+                                topic: topicInputVal || 'Core Physics',
+                                lesson: lessonInputVal || deriveLessonFromName(f.name),
+                                description: descInputVal
+                            });
+                        }
                     } else if (state.modalState.mode === 'replace') {
-                        result = await replaceWorksheetFile(state.modalState.grade, state.modalState.item.id, state.modalState.file, meta);
+                        lastResult = await replaceWorksheetFile(state.modalState.grade, state.modalState.item.id, state.modalState.file, {
+                            title: titleInputVal,
+                            chapter: chapterInputVal,
+                            topic: topicInputVal,
+                            lesson: lessonInputVal,
+                            description: descInputVal
+                        });
                     } else {
-                        result = await updateWorksheetMetadata(state.modalState.grade, state.modalState.item.id, meta);
+                        lastResult = await updateWorksheetMetadata(state.modalState.grade, state.modalState.item.id, {
+                            title: titleInputVal,
+                            chapter: chapterInputVal,
+                            topic: topicInputVal,
+                            lesson: lessonInputVal,
+                            description: descInputVal
+                        });
                     }
                     const savedGrade = state.modalState.grade;
                     closeModal();
-                    if (result && result.id) state.selectedIdByGrade[savedGrade] = result.id;
+                    if (lastResult && lastResult.id) state.selectedIdByGrade[savedGrade] = lastResult.id;
                     renderView();
                 } catch (err) {
                     if (state.modalState) {
                         state.modalState.submitting = false;
+                        state.modalState.progressText = '';
                         state.modalState.error = (err && err.message) || 'Save failed.';
                         renderModal();
                     }

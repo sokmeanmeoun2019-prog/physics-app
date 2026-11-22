@@ -104,12 +104,12 @@ function deriveTitleFromFilename(filename) {
 }
 
 function deriveChapterFromFilename(filename) {
-    const m = String(filename || '').match(/(?:ch(?:apter)?[\s_-]*(\d+))/i);
+    const m = String(filename || '').match(/(?:^|[^a-z])(?:ch(?:apter)?[\s_-]*(\d+))/i);
     return m ? `Chapter ${m[1]}` : 'General Chapter';
 }
 
 function deriveLessonFromFilename(filename) {
-    const m = String(filename || '').match(/(?:l(?:esson)?[\s_-]*(\d+))/i);
+    const m = String(filename || '').match(/(?:^|[^a-z])(?:l(?:esson)?[\s_-]*(\d+))/i);
     return m ? `Lesson ${m[1]}` : 'All Lessons';
 }
 

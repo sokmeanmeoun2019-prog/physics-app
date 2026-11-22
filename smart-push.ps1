@@ -71,9 +71,14 @@ $batches = @(
         Message  = "Deploy: KH-Ebook textbooks for Grade 12"
     },
     @{
-        Title    = "Outstanding Worksheets (Grade 9 & Grade 12)"
-        Patterns = @("outstanding_worksheets/README.txt", "outstanding_worksheets/catalog.js", "outstanding_worksheets/grade9/*", "outstanding_worksheets/grade12/*")
-        Message  = "Deploy: Outstanding Worksheets for Grade 9 and Grade 12"
+        Title    = "Outstanding Worksheets (Grade 9 & Catalog)"
+        Patterns = @("outstanding_worksheets/README.txt", "outstanding_worksheets/catalog.js", "outstanding_worksheets/grade9/*")
+        Message  = "Deploy: Outstanding Worksheets for Grade 9"
+    },
+    @{
+        Title    = "Outstanding Worksheets (Grade 12)"
+        Patterns = @("outstanding_worksheets/grade12/*")
+        Message  = "Deploy: Outstanding Worksheets for Grade 12"
     },
     @{
         Title    = "Grade 9 Audiobooks (Chapters 1 - 5)"
