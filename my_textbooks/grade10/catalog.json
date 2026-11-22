@@ -1,0 +1,21 @@
+{
+  "grade": "10",
+  "updatedAt": "2026-11-22T05:02:45.773Z",
+  "textbooks": [
+    {
+      "id": "mt-g10-569d4c7cd0",
+      "grade": "10",
+      "title": "g10 physics full textbook",
+      "subject": "Physics",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "g10-physics-full-textbook.pdf.pdf",
+      "storedName": "g10-physics-full-textbook.pdf.pdf",
+      "url": "my_textbooks/grade10/g10-physics-full-textbook.pdf.pdf",
+      "ext": ".pdf",
+      "size": 9210255,
+      "createdAt": "2026-11-22T05:01:24.926Z",
+      "updatedAt": "2026-04-14T12:25:06.866Z"
+    }
+  ]
+}

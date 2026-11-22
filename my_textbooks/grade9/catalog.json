@@ -1,0 +1,21 @@
+{
+  "grade": "9",
+  "updatedAt": "2026-11-22T05:02:45.728Z",
+  "textbooks": [
+    {
+      "id": "mt-g9-22f6581efe",
+      "grade": "9",
+      "title": "g9 physics full textbook",
+      "subject": "Physics",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "g9-physics-full-textbook.pdf.pdf",
+      "storedName": "g9-physics-full-textbook.pdf.pdf",
+      "url": "my_textbooks/grade9/g9-physics-full-textbook.pdf.pdf",
+      "ext": ".pdf",
+      "size": 24647265,
+      "createdAt": "2026-11-22T05:00:29.291Z",
+      "updatedAt": "2026-05-11T23:41:20.241Z"
+    }
+  ]
+}
