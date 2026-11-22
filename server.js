@@ -17,6 +17,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const handleSummarySlidesRequest = require('./summary-slides-server');
 const handleKhEbooksRequest = require('./kh-ebooks-server');
+const handleOutstandingWorksheetsRequest = require('./outstanding-worksheets-server');
 
 // Optional: Load .env if present without requiring third-party dotenv
 try {
@@ -452,6 +453,7 @@ const protectedPrefixes = [
     '/worksheets/',
     '/ebooks/',
     '/kh_ebooks/',
+    '/outstanding_worksheets/',
     '/summary_slides/',
     '/Physics_Grade7,8,10,11/',
     '/physics-data.js',
@@ -1279,6 +1281,28 @@ const server = http.createServer(async (req, res) => {
     }
 
     // ==========================================
+    // Outstanding Worksheet Routes (Grade 9 & Grade 12 Only)
+    // ==========================================
+    if (pathname.startsWith('/api/outstanding-worksheets')) {
+        return handleOutstandingWorksheetsRequest(req, res, {
+            pathname,
+            method,
+            parsedUrl,
+            cookies,
+            baseDir: __dirname,
+            isHost: isHostRequest(req, null),
+            adminSession: getAdminSession(cookies, req.headers, {}),
+            studentSession: getStudentSession(cookies),
+            sendJson
+        });
+    }
+
+    if (pathname.startsWith('/outstanding_worksheets/') && pathname.endsWith('/.gitkeep')) {
+        res.writeHead(403, { 'Content-Type': 'text/plain' });
+        return res.end('403 Forbidden');
+    }
+
+    // ==========================================
     // Protected Resources Protection
     // ==========================================
     const isProtected = protectedPrefixes.some(prefix => pathname.startsWith(prefix) || pathname === prefix.slice(0, -1));
@@ -1389,7 +1413,7 @@ const server = http.createServer(async (req, res) => {
                 'Content-Length': stats.size,
                 'Accept-Ranges': 'bytes',
                 'Content-Type': contentType,
-                'Cache-Control': (ext === '.html' || pathname.startsWith('/summary_slides/') || pathname.startsWith('/kh_ebooks/')) ? 'no-cache' : 'public, max-age=86400'
+                'Cache-Control': (ext === '.html' || pathname.startsWith('/summary_slides/') || pathname.startsWith('/kh_ebooks/') || pathname.startsWith('/outstanding_worksheets/')) ? 'no-cache' : 'public, max-age=86400'
             });
             fs.createReadStream(safePath).pipe(res);
         }
@@ -1410,6 +1434,13 @@ server.listen(PORT, () => {
         }
     } catch (e) {
         console.warn('KH-Ebooks folder sync warning:', e.message);
+    }
+    try {
+        if (typeof handleOutstandingWorksheetsRequest.syncAll === 'function') {
+            handleOutstandingWorksheetsRequest.syncAll(__dirname);
+        }
+    } catch (e) {
+        console.warn('Outstanding Worksheets folder sync warning:', e.message);
     }
     console.log(`=======================================================`);
     console.log(`⚛️  WIS Physics Learning Hub`);
