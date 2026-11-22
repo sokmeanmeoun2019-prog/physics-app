@@ -1,0 +1,299 @@
+/* Outstanding Worksheet Section (Grade 9 & Grade 12 Only)
+   Reuses .ebook-container, .ebook-header, .ebook-topic-selector, .pdf-viewer-wrapper,
+   .pdf-toolbar, .pdf-scroll-container, and .ebook-notice directly from styles.css. */
+
+.tab-btn-special.tab-btn-outstanding-worksheet {
+    color: #1d4ed8;
+    border-color: rgba(37, 99, 235, 0.25);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.08));
+}
+
+.tab-btn-special.tab-btn-outstanding-worksheet:hover {
+    color: #1e40af;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(14, 165, 233, 0.16));
+    border-color: rgba(37, 99, 235, 0.45);
+}
+
+.tab-btn-special.tab-btn-outstanding-worksheet.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, #2563eb, #0284c7);
+    border-color: transparent;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.28);
+}
+
+.ow-grade-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.ow-grade-pill.grade-9 {
+    background: rgba(14, 165, 233, 0.14);
+    color: #0369a1;
+    border: 1px solid rgba(14, 165, 233, 0.32);
+}
+
+.ow-grade-pill.grade-12 {
+    background: rgba(79, 70, 229, 0.14);
+    color: #4338ca;
+    border: 1px solid rgba(79, 70, 229, 0.32);
+}
+
+.ow-filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.ow-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1 1 155px;
+    min-width: 140px;
+}
+
+.ow-filter-group label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.ow-filter-select,
+.ow-filter-input {
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #0f172a;
+    font-size: 0.86rem;
+    font-family: inherit;
+}
+
+.ow-filter-select:focus,
+.ow-filter-input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.ow-admin-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    margin-bottom: 0.9rem;
+    padding: 0.65rem 0.95rem;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+}
+
+.ow-admin-bar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.ow-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.38rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.16s ease;
+}
+
+.ow-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.ow-btn-primary {
+    background: linear-gradient(135deg, #2563eb, #0284c7);
+    color: #ffffff;
+}
+
+.ow-btn-primary:hover:not(:disabled) {
+    filter: brightness(1.06);
+}
+
+.ow-btn-secondary {
+    background: #ffffff;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+.ow-btn-secondary:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.ow-btn-danger {
+    background: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.ow-btn-danger:hover:not(:disabled) {
+    background: #fee2e2;
+}
+
+.ow-selected-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.45rem;
+    font-size: 0.84rem;
+    color: #475569;
+}
+
+.ow-meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.16rem 0.55rem;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.78rem;
+}
+
+/* Modal */
+.ow-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 10050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.ow-modal {
+    width: 100%;
+    max-width: 520px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.3);
+    overflow: hidden;
+}
+
+.ow-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.95rem 1.2rem;
+    background: linear-gradient(135deg, #2563eb, #0284c7);
+    color: #ffffff;
+}
+
+.ow-modal-header h3 {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 700;
+}
+
+.ow-modal-close {
+    background: rgba(255, 255, 255, 0.16);
+    border: none;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.ow-modal-body {
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.ow-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ow-field-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+}
+
+.ow-field label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.ow-field input,
+.ow-field textarea {
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.88rem;
+    font-family: inherit;
+    color: #0f172a;
+}
+
+.ow-dropzone {
+    border: 2px dashed #93c5fd;
+    background: #eff6ff;
+    border-radius: 10px;
+    padding: 0.95rem;
+    text-align: center;
+    cursor: pointer;
+    color: #1d4ed8;
+}
+
+.ow-dropzone.dragover {
+    border-color: #2563eb;
+    background: #dbeafe;
+}
+
+.ow-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.85rem 1.2rem;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+
+@media (max-width: 768px) {
+    .ow-field-row {
+        grid-template-columns: 1fr;
+    }
+}

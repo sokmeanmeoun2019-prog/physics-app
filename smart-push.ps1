@@ -38,6 +38,7 @@ $batches = @(
         Patterns = @(
             "index.html", "app.js", "physics-data.js", "physics-figures.js", "styles.css", "auth.js", "auth-config.json",
             "kh-ebooks.js", "kh-ebooks.css", "kh-ebooks-server.js", "Sync-KH-Ebooks.bat", "Preview_Website_Locally.bat",
+            "outstanding-worksheets.js", "outstanding-worksheets.css", "outstanding-worksheets-server.js", "Sync-Outstanding-Worksheets.bat",
             "site-status.json", "Turn_OFF_Website.bat", "Turn_ON_Website.bat", "site-access-control.ps1",
             "sync-credentials.ps1", "smart-push.ps1", "Upload_To_GitHub.bat",
             ".gitignore", "audio/README.txt", "audiobooks/README.txt", "kh_worksheets/README.txt", "semester_exams/README.txt"
@@ -68,6 +69,11 @@ $batches = @(
         Title    = "KH-Ebooks (Grade 12)"
         Patterns = @("kh_ebooks/grade12/*")
         Message  = "Deploy: KH-Ebook textbooks for Grade 12"
+    },
+    @{
+        Title    = "Outstanding Worksheets (Grade 9 & Grade 12)"
+        Patterns = @("outstanding_worksheets/README.txt", "outstanding_worksheets/catalog.js", "outstanding_worksheets/grade9/*", "outstanding_worksheets/grade12/*")
+        Message  = "Deploy: Outstanding Worksheets for Grade 9 and Grade 12"
     },
     @{
         Title    = "Grade 9 Audiobooks (Chapters 1 - 5)"
