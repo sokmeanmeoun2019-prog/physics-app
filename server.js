@@ -20,6 +20,7 @@ const handleKhEbooksRequest = require('./kh-ebooks-server');
 const handleOutstandingWorksheetsRequest = require('./outstanding-worksheets-server');
 const handleKhPhyDiplomaRequest = require('./kh-phy-diploma-server');
 const handleMoeysSupplementaryRequest = require('./moeys-supplementary-server');
+const handleMyTextbooksRequest = require('./my-textbooks-server');
 
 // Optional: Load .env if present without requiring third-party dotenv
 try {
@@ -457,6 +458,7 @@ const protectedPrefixes = [
     '/kh_ebooks/',
     '/outstanding_worksheets/',
     '/moeys_supplementary/',
+    '/my_textbooks/',
     '/summary_slides/',
     '/Physics_Grade7,8,10,11/',
     '/physics-data.js',
@@ -1350,6 +1352,28 @@ const server = http.createServer(async (req, res) => {
     }
 
     // ==========================================
+    // My Textbook Routes (Grades 9-12 Only)
+    // ==========================================
+    if (pathname.startsWith('/api/my-textbooks')) {
+        return handleMyTextbooksRequest(req, res, {
+            pathname,
+            method,
+            parsedUrl,
+            cookies,
+            baseDir: __dirname,
+            isHost: isHostRequest(req, null),
+            adminSession: getAdminSession(cookies, req.headers, {}),
+            studentSession: getStudentSession(cookies),
+            sendJson
+        });
+    }
+
+    if (pathname.startsWith('/my_textbooks/') && pathname.endsWith('/.gitkeep')) {
+        res.writeHead(403, { 'Content-Type': 'text/plain' });
+        return res.end('403 Forbidden');
+    }
+
+    // ==========================================
     // Protected Resources Protection
     // ==========================================
     const isProtected = protectedPrefixes.some(prefix => pathname.startsWith(prefix) || pathname === prefix.slice(0, -1));
@@ -1460,7 +1484,7 @@ const server = http.createServer(async (req, res) => {
                 'Content-Length': stats.size,
                 'Accept-Ranges': 'bytes',
                 'Content-Type': contentType,
-                'Cache-Control': (ext === '.html' || pathname.startsWith('/summary_slides/') || pathname.startsWith('/kh_ebooks/') || pathname.startsWith('/outstanding_worksheets/') || pathname.startsWith('/moeys_supplementary/')) ? 'no-cache' : 'public, max-age=86400'
+                'Cache-Control': (ext === '.html' || pathname.startsWith('/summary_slides/') || pathname.startsWith('/kh_ebooks/') || pathname.startsWith('/outstanding_worksheets/') || pathname.startsWith('/moeys_supplementary/') || pathname.startsWith('/my_textbooks/')) ? 'no-cache' : 'public, max-age=86400'
             });
             fs.createReadStream(safePath).pipe(res);
         }
@@ -1502,6 +1526,13 @@ server.listen(PORT, () => {
         }
     } catch (e) {
         console.warn('MOEYS Supplementary folder sync warning:', e.message);
+    }
+    try {
+        if (typeof handleMyTextbooksRequest.syncAll === 'function') {
+            handleMyTextbooksRequest.syncAll(__dirname);
+        }
+    } catch (e) {
+        console.warn('My Textbooks folder sync warning:', e.message);
     }
     console.log(`=======================================================`);
     console.log(`⚛️  WIS Physics Learning Hub`);
