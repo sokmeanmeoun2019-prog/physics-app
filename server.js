@@ -62,6 +62,24 @@ function verifyPassword(password, salt, storedHash, storedPlainText) {
     }
 }
 
+function verifyAgainstAuthJsHash(entered, saltVarName, hashVarName) {
+    if (!entered) return false;
+    try {
+        const authJsPath = path.join(__dirname, 'auth.js');
+        if (!fs.existsSync(authJsPath)) return false;
+        const src = fs.readFileSync(authJsPath, 'utf8');
+        const saltMatch = src.match(new RegExp(`const\\s+${saltVarName}\\s*=\\s*'([^']+)'`));
+        const hashMatch = src.match(new RegExp(`const\\s+${hashVarName}\\s*=\\s*'([0-9a-fA-F]{64})'`));
+        if (!saltMatch || !hashMatch) return false;
+        const computed = crypto.createHash('sha256').update(String(entered) + saltMatch[1], 'utf8').digest('hex');
+        const a = Buffer.from(computed, 'hex');
+        const b = Buffer.from(hashMatch[1].toLowerCase(), 'hex');
+        return a.length === b.length && crypto.timingSafeEqual(a, b);
+    } catch (e) {
+        return false;
+    }
+}
+
 // --- Load or Initialize Persistent Auth Configuration ---
 let authConfig = null;
 
@@ -735,30 +753,34 @@ const server = http.createServer(async (req, res) => {
         }
 
         const entered = password.trim();
+        const hasServerSecret = Boolean(
+            authConfig.sharedPassword &&
+            ((authConfig.sharedPassword.salt && authConfig.sharedPassword.hash) || authConfig.sharedPassword.plainText)
+        );
+        let isValid = false;
 
-        // All old/compromised passwords are strictly and permanently rejected
-        const enteredLower = entered.toLowerCase();
-        if (entered !== '@Physics2026*!') {
-            if (enteredLower.includes('physics2026') || enteredLower.includes('physics@2026') || entered.includes('@Physics2026')) {
-                recordFailedAttempt(`login_${ip}`, 10, 60000, 60000);
-                return sendJson(res, 401, { success: false, message: 'This previous password has been permanently revoked. Please enter the current password (@Physics2026*!).' });
+        if (hasServerSecret) {
+            const isCustom = Boolean(authConfig.sharedPassword && authConfig.sharedPassword.isCustom);
+            if (isCustom) {
+                isValid = verifyPassword(entered, authConfig.sharedPassword.salt, authConfig.sharedPassword.hash, authConfig.sharedPassword.plainText);
+            } else {
+                const defaultShared = process.env.SHARED_PASSWORD || '@Physics2026*!';
+                const isHashValid = verifyPassword(entered, authConfig.sharedPassword.salt, authConfig.sharedPassword.hash, authConfig.sharedPassword.plainText);
+                isValid = (isHashValid || entered === defaultShared);
             }
         }
 
-        const isCustom = Boolean(authConfig.sharedPassword && authConfig.sharedPassword.isCustom);
-        let isValid = false;
-
-        if (isCustom) {
-            // Once a custom password is set, ONLY the custom password matches!
-            isValid = verifyPassword(entered, authConfig.sharedPassword.salt, authConfig.sharedPassword.hash, authConfig.sharedPassword.plainText);
-        } else {
-            const defaultShared = process.env.SHARED_PASSWORD || '@Physics2026*!';
-            const isHashValid = verifyPassword(entered, authConfig.sharedPassword.salt, authConfig.sharedPassword.hash, authConfig.sharedPassword.plainText);
-            isValid = (isHashValid || entered === defaultShared);
+        // Sync fallback: when auth-config.json omits hash/salt/plainText (static sync), validate against auth.js SHA-256 hash
+        if (!isValid && !hasServerSecret) {
+            isValid = verifyAgainstAuthJsHash(entered, 'SHARED_PW_SALT', 'SHARED_PW_HASH');
         }
 
         if (!isValid) {
+            const enteredLower = entered.toLowerCase();
             recordFailedAttempt(`login_${ip}`, 10, 60000, 60000);
+            if (enteredLower.includes('physics2026') || enteredLower.includes('physics@2026')) {
+                return sendJson(res, 401, { success: false, message: 'This previous password has been permanently revoked. Please enter the current password.' });
+            }
             return sendJson(res, 401, { success: false, message: 'Incorrect password. Please try again.' });
         }
 
@@ -816,7 +838,8 @@ const server = http.createServer(async (req, res) => {
         const defaultAdmin = process.env.ADMIN_PASSWORD || 'Teacher#PhyAdmin2026!';
         const enteredPw = (password || '').trim();
         const isHashMatch = verifyPassword(enteredPw, authConfig.admin.salt, authConfig.admin.hash, authConfig.admin.plainText);
-        const isPwMatch = (enteredPw === 'Teacher#PhyAdmin2026!' || enteredPw === 'Admin@Physics2026!' || isHashMatch || enteredPw === defaultAdmin);
+        const isAuthJsAdminMatch = verifyAgainstAuthJsHash(enteredPw, 'ADMIN_PW_SALT', 'ADMIN_PW_HASH');
+        const isPwMatch = (enteredPw === 'Teacher#PhyAdmin2026!' || enteredPw === 'Admin@Physics2026!' || isHashMatch || isAuthJsAdminMatch || enteredPw === defaultAdmin);
 
         if (!isUserMatch || !isPwMatch) {
             console.warn(`[SECURITY] Failed administrator authentication attempt from IP: ${ip} for user: "${username.trim()}"`);
