@@ -49,8 +49,8 @@
                     document.documentElement.classList.add('wis-pre-maintenance');
                 }
 
-                var currentVer = 62;
-                var LATEST_BUILD = '20261122144619';
+                var currentVer = 63;
+                var LATEST_BUILD = '20261122192255';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -101,13 +101,13 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=62&build=20261122144619">
-    <link rel="stylesheet" href="summary-slides.css?v=2&build=20261121070500">
+    <link rel="stylesheet" href="styles.css?v=63&build=20261122192255">
+    <link rel="stylesheet" href="summary-slides.css?v=63&build=20261122192255">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="kh-ebooks.css?v=1&build=20261122071500">
+    <link rel="stylesheet" href="kh-ebooks.css?v=63&build=20261122192255">
     <link rel="stylesheet" href="outstanding-worksheets.css?v=1&build=20261122090000">
-    <link rel="stylesheet" href="moeys-supplementary.css?v=62&build=20261122144619">
-    <link rel="stylesheet" href="my-textbooks.css?v=62&build=20261122144619">
+    <link rel="stylesheet" href="moeys-supplementary.css?v=63&build=20261122192255">
+    <link rel="stylesheet" href="my-textbooks.css?v=63&build=20261122192255">
     <style>
         .view.active {
             display: block !important;
@@ -151,8 +151,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=62&build=20261122144619"></script>
-    <script src="physics-data.js?v=62&build=20261122144619"></script>
+    <script src="physics-figures.js?v=63&build=20261122192255"></script>
+    <script src="physics-data.js?v=63&build=20261122192255"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -2102,7 +2102,7 @@
         ];
         }
     </script>
-    <script src="physics-data.js?v=62&build=20261122144619"></script>
+    <script src="physics-data.js?v=63&build=20261122192255"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -5447,7 +5447,7 @@
                     card.style.height = Math.round(baseH * initScale) + 'px';
                     card.style.margin = '0 auto 1.5rem auto';
                     card.style.display = 'block';
-                    card.style.touchAction = 'pan-y pinch-zoom';
+                    card.style.touchAction = 'pan-x pan-y';
                     card.style.pointerEvents = 'auto';
                     card.style.userSelect = 'none';
                     card.style.webkitUserSelect = 'none';
@@ -5530,10 +5530,18 @@
                             delete activeTasks[pageNum];
                         }
 
-                        canvas.width = Math.max(1, Math.floor(viewport.width));
-                        canvas.height = Math.max(1, Math.floor(viewport.height));
+                        var isReRender = canvas.dataset.hasRender === '1' && canvas.width > 0 && canvas.style.display !== 'none';
+                        var targetCanvas = canvas;
+                        if (isReRender) {
+                            targetCanvas = document.createElement('canvas');
+                        } else {
+                            canvas.style.display = 'none';
+                        }
+
+                        targetCanvas.width = Math.max(1, Math.floor(viewport.width));
+                        targetCanvas.height = Math.max(1, Math.floor(viewport.height));
                         canvas.style.width = '100%';
-                        canvas.style.height = 'auto';
+                        canvas.style.height = '100%';
                         canvas.style.pointerEvents = 'none';
                         canvas.style.userSelect = 'none';
                         canvas.style.webkitUserSelect = 'none';
@@ -5541,16 +5549,19 @@
                         card.style.width = displayW + 'px';
                         card.style.height = displayH + 'px';
 
-                        var ctx = canvas.getContext('2d', { alpha: false });
+                        var ctx = targetCanvas.getContext('2d', { alpha: false });
                         var renderTask = page.render({ canvasContext: ctx, viewport: viewport });
                         activeTasks[pageNum] = renderTask;
                         await renderTask.promise;
                         delete activeTasks[pageNum];
 
                         if (sessionClosed || myEpoch !== renderEpoch) return;
+                        if (isReRender && window.WISPdfViewport) {
+                            window.WISPdfViewport.blitCanvas(canvas, targetCanvas);
+                        }
+                        canvas.dataset.hasRender = '1';
                         if (placeholder) placeholder.style.display = 'none';
                         canvas.style.display = 'block';
-                        card.style.height = 'auto';
                     } catch(err) {
                         if (err && err.name === 'RenderingCancelledException') return;
                         renderedPages.delete(pageNum);
@@ -5571,8 +5582,15 @@
                             hCard.dataset.baseH = hVp.height;
                             if (!renderedPages.has(hp)) {
                                 var hScale = getPageScale(hVp.width);
-                                hCard.style.width = Math.round(hVp.width * hScale) + 'px';
-                                hCard.style.height = Math.round(hVp.height * hScale) + 'px';
+                                var oldH = hCard.offsetHeight || 0;
+                                var newW = Math.round(hVp.width * hScale);
+                                var newH = Math.round(hVp.height * hScale);
+                                var isAboveViewport = scrollContainer && (hCard.getBoundingClientRect().top < scrollContainer.getBoundingClientRect().top);
+                                hCard.style.width = newW + 'px';
+                                hCard.style.height = newH + 'px';
+                                if (isAboveViewport && oldH && newH !== oldH) {
+                                    scrollContainer.scrollTop += (newH - oldH);
+                                }
                             }
                         } catch(e) {}
                     }
@@ -5656,8 +5674,26 @@
                     };
                 }
 
-                function applyZoom(newZoom) {
+                var viewportCtrl = null;
+                function flushVisibleExamPages() {
                     if (sessionClosed) return;
+                    var cur = parseInt(pageInput && pageInput.value, 10) || 1;
+                    if (window.WISPdfViewport) {
+                        window.WISPdfViewport.renderVisibleCards(scrollContainer, '.exam-page-card', renderPage, cur, numPages, 600);
+                    } else {
+                        renderPage(cur);
+                        if (cur < numPages) renderPage(cur + 1);
+                        if (cur > 1) renderPage(cur - 1);
+                    }
+                }
+
+                function applyZoom(newZoom, zoomMeta) {
+                    if (sessionClosed) return;
+                    var vpc = window.WISPdfViewport;
+                    var anchor = (zoomMeta && zoomMeta.anchor)
+                        || (vpc && vpc.captureAnchor(scrollContainer, '.exam-page-card', zoomMeta && zoomMeta.clientX, zoomMeta && zoomMeta.clientY))
+                        || null;
+
                     zoomMultiplier = Math.min(Math.max(newZoom, 0.5), 3.0);
                     renderEpoch++;
                     if (zoomLabel) zoomLabel.textContent = Math.round(zoomMultiplier * 100) + '%';
@@ -5675,26 +5711,22 @@
                         c.style.width = Math.round(cW * pScale) + 'px';
                         c.style.height = Math.round(cH * pScale) + 'px';
                         var cv = c.querySelector('canvas');
-                        if (cv) cv.style.display = 'none';
+                        var hasExistingCanvas = cv && cv.dataset.hasRender === '1' && cv.width > 0;
+                        if (cv) {
+                            cv.style.width = '100%';
+                            cv.style.height = '100%';
+                            cv.style.display = hasExistingCanvas ? 'block' : 'none';
+                        }
                         var ph = c.querySelector('.pdf-loading-card');
-                        if (ph) ph.style.display = 'flex';
+                        if (ph) ph.style.display = hasExistingCanvas ? 'none' : 'flex';
                     });
 
-                    var cur = parseInt(pageInput && pageInput.value, 10) || 1;
-                    renderPage(cur);
-                    if (cur < numPages) renderPage(cur + 1);
-                    if (cur > 1) renderPage(cur - 1);
+                    if (vpc && anchor) {
+                        vpc.restoreAnchor(scrollContainer, anchor);
+                    }
 
-                    // Render any cards currently near/within the scroll viewport
-                    if (scrollContainer) {
-                        var contRect = scrollContainer.getBoundingClientRect();
-                        mount.querySelectorAll('.exam-page-card').forEach(function(c) {
-                            var r = c.getBoundingClientRect();
-                            if (r.bottom >= contRect.top - 600 && r.top <= contRect.bottom + 600) {
-                                var pNum = parseInt(c.dataset.page, 10);
-                                if (pNum) renderPage(pNum);
-                            }
-                        });
+                    if (!zoomMeta || !zoomMeta.quickResize) {
+                        flushVisibleExamPages();
                     }
                 }
 
@@ -5702,65 +5734,27 @@
                 if (zoomOutBtn) zoomOutBtn.onclick = function() { applyZoom(zoomMultiplier - 0.15); };
                 if (fitWidthBtn) fitWidthBtn.onclick = function() { applyZoom(1.0); };
 
-                var touchStartDist = 0;
-                var isPinching = false;
-                var onTouchStart = function(e) {
-                    if (e.touches && e.touches.length === 2) {
-                        isPinching = true;
-                        touchStartDist = Math.hypot(
-                            e.touches[0].clientX - e.touches[1].clientX,
-                            e.touches[0].clientY - e.touches[1].clientY
-                        );
-                    } else {
-                        isPinching = false;
-                    }
-                };
-                var onTouchMove = function(e) {
-                    if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
-                        var curDist = Math.hypot(
-                            e.touches[0].clientX - e.touches[1].clientX,
-                            e.touches[0].clientY - e.touches[1].clientY
-                        );
-                        var ratio = curDist / touchStartDist;
-                        if (Math.abs(ratio - 1) > 0.08) {
-                            applyZoom(zoomMultiplier * ratio);
-                            touchStartDist = curDist;
-                        }
-                    }
-                };
-                var onTouchEnd = function() {
-                    isPinching = false;
-                };
-                scrollContainer.addEventListener('touchstart', onTouchStart, { passive: true });
-                scrollContainer.addEventListener('touchmove', onTouchMove, { passive: true });
-                scrollContainer.addEventListener('touchend', onTouchEnd, { passive: true });
-
-                var resizeDebounce = null;
-                var onViewportResize = function() {
-                    clearTimeout(resizeDebounce);
-                    resizeDebounce = setTimeout(function() {
-                        if (sessionClosed || !scrollContainer || !baseW) return;
-                        var newW = scrollContainer.clientWidth || 0;
-                        if (Math.abs(newW - lastContainerWidth) > 2) {
+                if (window.WISPdfViewport) {
+                    viewportCtrl = window.WISPdfViewport.attach({
+                        scrollContainer: scrollContainer,
+                        contentTarget: mount,
+                        cardSelector: '.exam-page-card',
+                        minScale: 0.5,
+                        maxScale: 3.0,
+                        getScale: function() { return zoomMultiplier; },
+                        onPreviewScale: function(cand) {
+                            if (zoomLabel) zoomLabel.textContent = Math.round(cand * 100) + '%';
+                        },
+                        onApplyZoom: function(nextScale, zoomMeta) {
+                            applyZoom(nextScale, zoomMeta);
+                        },
+                        onFlushRender: flushVisibleExamPages,
+                        onWidthChange: function(newW, prevW, anchor) {
+                            if (sessionClosed || !scrollContainer || !baseW) return;
                             lastContainerWidth = newW;
-                            applyZoom(zoomMultiplier);
-                        }
-                    }, 120);
-                };
-                window.addEventListener('resize', onViewportResize);
-                window.addEventListener('orientationchange', onViewportResize);
-
-                var containerResizeObserver = null;
-                if (isKhWorksheet && typeof ResizeObserver !== 'undefined' && scrollContainer) {
-                    containerResizeObserver = new ResizeObserver(function() {
-                        if (sessionClosed || !scrollContainer || !baseW) return;
-                        var newW = scrollContainer.clientWidth || 0;
-                        if (newW > 0 && Math.abs(newW - lastContainerWidth) > 2) {
-                            lastContainerWidth = newW;
-                            applyZoom(zoomMultiplier);
+                            applyZoom(zoomMultiplier, { anchor: anchor });
                         }
                     });
-                    containerResizeObserver.observe(scrollContainer);
                 }
 
                 var onNativeFsChange = function() {
@@ -5806,40 +5800,37 @@
                     activeTasks: activeTasks,
                     fitWidth: function() {
                         if (scrollContainer) lastContainerWidth = scrollContainer.clientWidth || 0;
-                        applyZoom(1.0);
+                        applyZoom(zoomMultiplier);
+                        if (viewportCtrl) viewportCtrl.resetWidthTracking();
                     },
                     fitWidthIfWidthChanged: function() {
                         if (sessionClosed || !scrollContainer) return;
                         var newW = scrollContainer.clientWidth || 0;
                         if (newW > 0 && Math.abs(newW - lastContainerWidth) > 2) {
                             lastContainerWidth = newW;
-                            applyZoom(1.0);
+                            applyZoom(zoomMultiplier);
+                            if (viewportCtrl) viewportCtrl.resetWidthTracking();
                         }
                     },
                     cleanup: function() {
                         sessionClosed = true;
                         renderEpoch++;
-                        clearTimeout(resizeDebounce);
                         clearTimeout(scrollDebounce);
+                        if (viewportCtrl) {
+                            try { viewportCtrl.destroy(); } catch(e) {}
+                            viewportCtrl = null;
+                        }
                         window.removeEventListener('keydown', keyHandler);
                         modal.removeEventListener('copy', preventCopy, true);
                         modal.removeEventListener('cut', preventCopy, true);
                         modal.removeEventListener('selectstart', preventCopy, true);
                         modal.removeEventListener('dragstart', preventCopy, true);
                         modal.removeEventListener('contextmenu', preventCopy, true);
-                        window.removeEventListener('resize', onViewportResize);
-                        window.removeEventListener('orientationchange', onViewportResize);
-                        if (containerResizeObserver) {
-                            try { containerResizeObserver.disconnect(); } catch(e) {}
-                        }
                         if (isKhWorksheet) {
                             document.removeEventListener('fullscreenchange', onNativeFsChange);
                             document.removeEventListener('webkitfullscreenchange', onNativeFsChange);
                         }
                         scrollContainer.removeEventListener('scroll', onScrollUpdate);
-                        scrollContainer.removeEventListener('touchstart', onTouchStart);
-                        scrollContainer.removeEventListener('touchmove', onTouchMove);
-                        scrollContainer.removeEventListener('touchend', onTouchEnd);
                         if (observer) {
                             try { observer.disconnect(); } catch(e) {}
                         }
@@ -10111,7 +10102,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 62)</span>
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 63)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -10954,20 +10945,21 @@
         </div>
     </div>
 
-    <script src="auth.js?v=62&build=20261122144619"></script>
-    <script src="summary-slides.js?v=4&build=20261121075000"></script>
-    <script src="kh_ebooks/catalog.js?v=62&build=20261122144619"></script>
-    <script src="kh-ebooks.js?v=62&build=20261122144619"></script>
-    <script src="outstanding_worksheets/catalog.js?v=62&build=20261122144619"></script>
-    <script src="outstanding-worksheets.js?v=62&build=20261122144619"></script>
-    <script src="moeys_supplementary/catalog.js?v=62&build=20261122144619"></script>
-    <script src="moeys-supplementary.js?v=62&build=20261122144619"></script>
-    <script src="my_textbooks/catalog.js?v=62&build=20261122144619"></script>
-    <script src="my-textbooks.js?v=62&build=20261122144619"></script>
-    <script src="exams/kh-phy-catalog.js?v=62&build=20261122144619"></script>
+    <script src="auth.js?v=63&build=20261122192255"></script>
+    <script src="pdf-viewport-controller.js?v=63&build=20261122192255"></script>
+    <script src="summary-slides.js?v=63&build=20261122192255"></script>
+    <script src="kh_ebooks/catalog.js?v=63&build=20261122192255"></script>
+    <script src="kh-ebooks.js?v=63&build=20261122192255"></script>
+    <script src="outstanding_worksheets/catalog.js?v=63&build=20261122192255"></script>
+    <script src="outstanding-worksheets.js?v=63&build=20261122192255"></script>
+    <script src="moeys_supplementary/catalog.js?v=63&build=20261122192255"></script>
+    <script src="moeys-supplementary.js?v=63&build=20261122192255"></script>
+    <script src="my_textbooks/catalog.js?v=63&build=20261122192255"></script>
+    <script src="my-textbooks.js?v=63&build=20261122192255"></script>
+    <script src="exams/kh-phy-catalog.js?v=63&build=20261122192255"></script>
     <script src="ophysics-simulations.js?v=1&build=20261121112000"></script>
     <script src="javalab-simulations.js?v=1&build=20261121115500"></script>
     <script src="vascak-simulations.js?v=3&build=20261121115500"></script>
-    <script src="app.js?v=62&build=20261122144619" onerror="onAppJsError()"></script>
+    <script src="app.js?v=63&build=20261122192255" onerror="onAppJsError()"></script>
 </body>
 </html>

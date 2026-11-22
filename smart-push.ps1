@@ -36,7 +36,7 @@ $batches = @(
     @{
         Title    = "Core Code & Password Security"
         Patterns = @(
-            "index.html", "app.js", "physics-data.js", "physics-figures.js", "styles.css", "auth.js", "auth-config.json",
+            "index.html", "app.js", "pdf-viewport-controller.js", "physics-data.js", "physics-figures.js", "styles.css", "auth.js", "auth-config.json",
             "kh-ebooks.js", "kh-ebooks.css", "kh-ebooks-server.js", "Sync-KH-Ebooks.bat", "Preview_Website_Locally.bat",
             "outstanding-worksheets.js", "outstanding-worksheets.css", "outstanding-worksheets-server.js", "Sync-Outstanding-Worksheets.bat",
             "kh-phy-diploma-server.js",

@@ -5487,7 +5487,7 @@ function renderEbook(lesson) {
                         <i class="fa-solid fa-circle-notch fa-spin"></i>
                         <span id="pdf-loading-status">Loading textbook pages...</span>
                     </div>
-                    <div id="pdf-pages-mount" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>
+                    <div id="pdf-pages-mount"></div>
                 </div>
             </div>
 
@@ -5954,7 +5954,7 @@ function renderEbook(lesson) {
                     card.style.height = Math.floor(baseH * currentScale) + 'px';
                     card.style.margin = '0 auto 1.25rem auto';
                     card.style.display = 'block';
-                    card.style.touchAction = 'pan-y pinch-zoom';
+                    card.style.touchAction = 'pan-x pan-y';
                     card.style.pointerEvents = 'auto';
 
                     const placeholder = document.createElement('div');
@@ -6006,16 +6006,18 @@ function renderEbook(lesson) {
 
                         const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
                         const viewport = page.getViewport({ scale: currentScale * dpr });
+                        const isReRender = canvas.dataset.hasRender === '1' && canvas.width > 0 && canvas.style.display !== 'none';
+                        const targetCanvas = isReRender ? document.createElement('canvas') : canvas;
 
-                        canvas.width = Math.floor(viewport.width);
-                        canvas.height = Math.floor(viewport.height);
-                        canvas.style.width = Math.floor(viewport.width / dpr) + 'px';
-                        canvas.style.height = Math.floor(viewport.height / dpr) + 'px';
+                        targetCanvas.width = Math.floor(viewport.width);
+                        targetCanvas.height = Math.floor(viewport.height);
+                        canvas.style.width = '100%';
+                        canvas.style.height = '100%';
 
                         card.style.width = Math.floor(viewport.width / dpr) + 'px';
                         card.style.height = Math.floor(viewport.height / dpr) + 'px';
 
-                        const ctx = canvas.getContext('2d', { alpha: false });
+                        const ctx = targetCanvas.getContext('2d', { alpha: false });
                         const renderContext = {
                             canvasContext: ctx,
                             viewport: viewport
@@ -6035,6 +6037,10 @@ function renderEbook(lesson) {
                         if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
                         if (card.dataset.sessionId !== String(thisSessionId)) return;
 
+                        if (isReRender && window.WISPdfViewport) {
+                            window.WISPdfViewport.blitCanvas(canvas, targetCanvas);
+                        }
+                        canvas.dataset.hasRender = '1';
                         if (ph) ph.style.display = 'none';
                         canvas.style.display = 'block';
                     } catch (renderErr) {
@@ -6146,8 +6152,28 @@ function renderEbook(lesson) {
                     });
                 }
 
-                function applyZoom(newScale) {
+                let lastFitScale = currentScale;
+                let viewportCtrl = null;
+
+                function flushVisibleEbookPages() {
                     if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
+                    const cur = parseInt(pageInput.value, 10) || 1;
+                    if (window.WISPdfViewport) {
+                        window.WISPdfViewport.renderVisibleCards(scrollContainer, '.pdf-page-card', renderPage, cur, numPages, 550);
+                    } else {
+                        renderPage(cur);
+                        if (cur < numPages) renderPage(cur + 1);
+                        if (cur > 1) renderPage(cur - 1);
+                    }
+                }
+
+                function applyZoom(newScale, zoomMeta) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
+                    const vpc = window.WISPdfViewport;
+                    const anchor = (zoomMeta && zoomMeta.anchor)
+                        || (vpc && vpc.captureAnchor(scrollContainer, '.pdf-page-card', zoomMeta && zoomMeta.clientX, zoomMeta && zoomMeta.clientY))
+                        || null;
+
                     currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
                     updateZoomDisplay();
 
@@ -6161,20 +6187,42 @@ function renderEbook(lesson) {
                         c.style.width = Math.floor(baseW * currentScale) + 'px';
                         c.style.height = Math.floor(baseH * currentScale) + 'px';
                         const cv = c.querySelector('.pdf-page-canvas');
-                        if (cv) cv.style.display = 'none';
+                        const hasCanvas = cv && cv.dataset.hasRender === '1' && cv.width > 0;
+                        if (cv) {
+                            cv.style.width = '100%';
+                            cv.style.height = '100%';
+                            cv.style.display = hasCanvas ? 'block' : 'none';
+                        }
                         const ph = c.querySelector('.pdf-loading-card');
-                        if (ph) ph.style.display = 'flex';
+                        if (ph) ph.style.display = hasCanvas ? 'none' : 'flex';
                     });
 
-                    const cur = parseInt(pageInput.value, 10) || 1;
-                    renderPage(cur);
-                    if (cur < numPages) renderPage(cur + 1);
-                    if (cur > 1) renderPage(cur - 1);
+                    if (vpc && anchor) {
+                        vpc.restoreAnchor(scrollContainer, anchor);
+                    }
+
+                    if (!zoomMeta || !zoomMeta.quickResize) {
+                        flushVisibleEbookPages();
+                    }
+                }
+
+                function applyWidthChangePreservingZoom(anchor) {
+                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
+                    if (!scrollContainer || !baseW) return;
+                    const newFit = getOptimalFitScale();
+                    const wasAtFit = Math.abs(currentScale - lastFitScale) < 0.08;
+                    const nextScale = wasAtFit
+                        ? newFit
+                        : currentScale * (newFit / Math.max(0.1, lastFitScale));
+                    lastFitScale = newFit;
+                    applyZoom(nextScale, { anchor: anchor });
                 }
 
                 currentPdfSession.fitWidth = () => {
                     if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) {
-                        applyZoom(getOptimalFitScale());
+                        const newFit = getOptimalFitScale();
+                        lastFitScale = newFit;
+                        applyZoom(newFit);
                     }
                 };
 
@@ -6182,71 +6230,34 @@ function renderEbook(lesson) {
                 if (zoomOutBtn) registerListener(zoomOutBtn, 'click', () => applyZoom(currentScale - 0.15));
                 if (fitWidthBtn) {
                     registerListener(fitWidthBtn, 'click', () => {
-                        applyZoom(getOptimalFitScale());
+                        const newFit = getOptimalFitScale();
+                        lastFitScale = newFit;
+                        applyZoom(newFit);
                     });
                 }
 
-                // Two-finger Real-time Pinch-to-Zoom gesture on mobile touch screens
-                let touchStartDist = 0;
-                let touchStartScale = currentScale;
-                let isPinching = false;
-                let lastPinchRatio = 1;
-
-                registerListener(scrollContainer, 'touchstart', (e) => {
-                    if (e.touches && e.touches.length === 2) {
-                        isPinching = true;
-                        touchStartDist = Math.hypot(
-                            e.touches[0].clientX - e.touches[1].clientX,
-                            e.touches[0].clientY - e.touches[1].clientY
-                        );
-                        touchStartScale = currentScale;
-                        lastPinchRatio = 1;
-                    } else {
-                        isPinching = false;
-                    }
-                }, { passive: true });
-
-                registerListener(scrollContainer, 'touchmove', (e) => {
-                    if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
-                        const curDist = Math.hypot(
-                            e.touches[0].clientX - e.touches[1].clientX,
-                            e.touches[0].clientY - e.touches[1].clientY
-                        );
-                        lastPinchRatio = curDist / touchStartDist;
-                        const candidateScale = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
-                        if (zoomLabel) zoomLabel.textContent = Math.round(candidateScale * 100) + '%';
-                        mount.style.transform = `scale(${lastPinchRatio})`;
-                        mount.style.transformOrigin = 'center top';
-                    }
-                }, { passive: true });
-
-                registerListener(scrollContainer, 'touchend', (e) => {
-                    if (isPinching) {
-                        isPinching = false;
-                        mount.style.transform = '';
-                        mount.style.transformOrigin = '';
-                        if (!e.touches || e.touches.length < 2) {
-                            const candidateScale = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
-                            if (Math.abs(candidateScale - currentScale) > 0.05) {
-                                applyZoom(candidateScale);
-                            }
+                if (window.WISPdfViewport) {
+                    viewportCtrl = window.WISPdfViewport.attach({
+                        scrollContainer: scrollContainer,
+                        contentTarget: mount,
+                        cardSelector: '.pdf-page-card',
+                        minScale: 0.35,
+                        maxScale: 3.0,
+                        getScale: () => currentScale,
+                        onPreviewScale: (cand) => {
+                            if (zoomLabel) zoomLabel.textContent = Math.round(cand * 100) + '%';
+                        },
+                        onApplyZoom: (nextScale, zoomMeta) => applyZoom(nextScale, zoomMeta),
+                        onFlushRender: flushVisibleEbookPages,
+                        onWidthChange: (newW, prevW, anchor) => applyWidthChangePreservingZoom(anchor)
+                    });
+                    boundCleanups.push(() => {
+                        if (viewportCtrl) {
+                            viewportCtrl.destroy();
+                            viewportCtrl = null;
                         }
-                    }
-                }, { passive: true });
-
-                // Responsive auto-fit on window resize or iPad/phone orientation change
-                let resizeDebounce = null;
-                const onViewportResize = () => {
-                    if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
-                    clearTimeout(resizeDebounce);
-                    resizeDebounce = setTimeout(() => {
-                        if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
-                        if (!scrollContainer || !baseW) return;
-                        applyZoom(getOptimalFitScale());
-                    }, 120);
-                };
-                registerListener(window, 'resize', onViewportResize);
-                registerListener(window, 'orientationchange', onViewportResize);
+                    });
+                }
 
                 // Fullscreen Reading View Management
                 const topFsBtn = document.getElementById('ebook-fullscreen-action-btn');
@@ -6257,6 +6268,7 @@ function renderEbook(lesson) {
                     const targetState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyActive;
 
                     if (targetState) {
+                        const fsAnchor = window.WISPdfViewport ? window.WISPdfViewport.captureAnchor(scrollContainer, '.pdf-page-card') : null;
                         // Enter Fullscreen
                         wrapper.classList.add('pdf-fullscreen-active');
                         document.body.classList.add('pdf-modal-open');
@@ -6286,10 +6298,12 @@ function renderEbook(lesson) {
 
                         setTimeout(() => {
                             if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) {
-                                applyZoom(getOptimalFitScale());
+                                applyWidthChangePreservingZoom(fsAnchor);
+                                if (viewportCtrl) viewportCtrl.resetWidthTracking();
                             }
                         }, 120);
                     } else {
+                        const exitFsAnchor = window.WISPdfViewport ? window.WISPdfViewport.captureAnchor(scrollContainer, '.pdf-page-card') : null;
                         // Exit Fullscreen
                         wrapper.classList.remove('pdf-fullscreen-active');
                         document.body.classList.remove('pdf-modal-open');
@@ -6319,7 +6333,8 @@ function renderEbook(lesson) {
 
                         setTimeout(() => {
                             if (!sessionToken.aborted && thisSessionId === currentEbookRenderSessionId) {
-                                applyZoom(getOptimalFitScale());
+                                applyWidthChangePreservingZoom(exitFsAnchor);
+                                if (viewportCtrl) viewportCtrl.resetWidthTracking();
                             }
                         }, 120);
                     }
@@ -6664,7 +6679,7 @@ function renderWorksheet(lesson) {
                         <i class="fa-solid fa-circle-notch fa-spin"></i>
                         <span id="ws-pdf-loading-status">Loading EN-Worksheet pages...</span>
                     </div>
-                    <div id="ws-pdf-pages-mount" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;" ondragstart="return false;" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>
+                    <div id="ws-pdf-pages-mount" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;" ondragstart="return false;"></div>
                 </div>
             </div>
 
@@ -7008,7 +7023,7 @@ function renderWorksheet(lesson) {
                     card.style.height = `${Math.floor(baseH * currentScale)}px`;
                     card.style.margin = '0 auto 1.25rem auto';
                     card.style.display = 'block';
-                    card.style.touchAction = 'pan-y pinch-zoom';
+                    card.style.touchAction = 'pan-x pan-y';
                     card.style.pointerEvents = 'auto';
                     card.style.userSelect = 'none';
                     card.style.webkitUserSelect = 'none';
@@ -7059,16 +7074,21 @@ function renderWorksheet(lesson) {
                         const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
                         const renderScale = currentScale * dpr;
                         const viewport = page.getViewport({ scale: renderScale });
+                        const isReRender = canvas.dataset.hasRender === '1' && canvas.width > 0 && canvas.style.display !== 'none';
+                        const targetCanvas = isReRender ? document.createElement('canvas') : canvas;
 
-                        canvas.width = Math.floor(viewport.width);
-                        canvas.height = Math.floor(viewport.height);
-                        canvas.style.width = `${Math.floor(baseW * currentScale)}px`;
-                        canvas.style.height = `${Math.floor(baseH * currentScale)}px`;
+                        targetCanvas.width = Math.floor(viewport.width);
+                        targetCanvas.height = Math.floor(viewport.height);
+                        canvas.style.width = '100%';
+                        canvas.style.height = '100%';
                         canvas.style.pointerEvents = 'none';
                         canvas.style.userSelect = 'none';
                         canvas.style.webkitUserSelect = 'none';
 
-                        const ctx = canvas.getContext('2d', { alpha: false });
+                        card.style.width = `${Math.floor(baseW * currentScale)}px`;
+                        card.style.height = `${Math.floor(baseH * currentScale)}px`;
+
+                        const ctx = targetCanvas.getContext('2d', { alpha: false });
                         if (activeTasks[pageNum]) {
                             try { activeTasks[pageNum].cancel(); } catch (e) {}
                         }
@@ -7078,6 +7098,10 @@ function renderWorksheet(lesson) {
                         await renderTask.promise;
                         delete activeTasks[pageNum];
 
+                        if (isReRender && window.WISPdfViewport) {
+                            window.WISPdfViewport.blitCanvas(canvas, targetCanvas);
+                        }
+                        canvas.dataset.hasRender = '1';
                         if (placeholder) placeholder.style.display = 'none';
                         canvas.style.display = 'block';
                     } catch (err) {
@@ -7163,7 +7187,26 @@ function renderWorksheet(lesson) {
                     });
                 }
 
-                function applyZoom(newScale) {
+                let lastFitScale = currentScale;
+                let viewportCtrl = null;
+
+                function flushVisibleWorksheetPages() {
+                    const cur = parseInt(pageInput.value, 10) || 1;
+                    if (window.WISPdfViewport) {
+                        window.WISPdfViewport.renderVisibleCards(scrollContainer, '.pdf-page-card', renderPage, cur, numPages, 550);
+                    } else {
+                        renderPage(cur);
+                        if (cur < numPages) renderPage(cur + 1);
+                        if (cur > 1) renderPage(cur - 1);
+                    }
+                }
+
+                function applyZoom(newScale, zoomMeta) {
+                    const vpc = window.WISPdfViewport;
+                    const anchor = (zoomMeta && zoomMeta.anchor)
+                        || (vpc && vpc.captureAnchor(scrollContainer, '.pdf-page-card', zoomMeta && zoomMeta.clientX, zoomMeta && zoomMeta.clientY))
+                        || null;
+
                     currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
                     if (zoomLabel) zoomLabel.textContent = `${Math.round(currentScale * 100)}%`;
 
@@ -7176,87 +7219,63 @@ function renderWorksheet(lesson) {
                         c.style.width = `${Math.floor(baseW * currentScale)}px`;
                         c.style.height = `${Math.floor(baseH * currentScale)}px`;
                         const cv = c.querySelector('canvas');
+                        const hasCanvas = cv && cv.dataset.hasRender === '1' && cv.width > 0;
                         if (cv) {
-                            cv.style.display = 'none';
+                            cv.style.width = '100%';
+                            cv.style.height = '100%';
+                            cv.style.display = hasCanvas ? 'block' : 'none';
                             cv.style.pointerEvents = 'none';
                         }
                         const ph = c.querySelector('.pdf-loading-card');
-                        if (ph) ph.style.display = 'flex';
+                        if (ph) ph.style.display = hasCanvas ? 'none' : 'flex';
                     });
 
-                    const cur = parseInt(pageInput.value, 10) || 1;
-                    renderPage(cur);
-                    if (cur < numPages) renderPage(cur + 1);
-                    if (cur > 1) renderPage(cur - 1);
+                    if (vpc && anchor) {
+                        vpc.restoreAnchor(scrollContainer, anchor);
+                    }
+
+                    if (!zoomMeta || !zoomMeta.quickResize) {
+                        flushVisibleWorksheetPages();
+                    }
+                }
+
+                function applyWidthChangePreservingZoom(anchor) {
+                    if (!scrollContainer || !baseW) return;
+                    const newFit = getOptimalFitScale();
+                    const wasAtFit = Math.abs(currentScale - lastFitScale) < 0.08;
+                    const nextScale = wasAtFit
+                        ? newFit
+                        : currentScale * (newFit / Math.max(0.1, lastFitScale));
+                    lastFitScale = newFit;
+                    applyZoom(nextScale, { anchor: anchor });
                 }
 
                 if (zoomInBtn) zoomInBtn.addEventListener('click', () => applyZoom(currentScale + 0.15));
                 if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => applyZoom(currentScale - 0.15));
                 if (fitWidthBtn) {
                     fitWidthBtn.addEventListener('click', () => {
-                        applyZoom(getOptimalFitScale());
+                        const newFit = getOptimalFitScale();
+                        lastFitScale = newFit;
+                        applyZoom(newFit);
                     });
                 }
 
-                // Two-finger Real-time Pinch-to-Zoom gesture on mobile touch screens
-                let touchStartDist = 0;
-                let touchStartScale = currentScale;
-                let isPinching = false;
-                let lastPinchRatio = 1;
-
-                scrollContainer.addEventListener('touchstart', (e) => {
-                    if (e.touches && e.touches.length === 2) {
-                        isPinching = true;
-                        touchStartDist = Math.hypot(
-                            e.touches[0].clientX - e.touches[1].clientX,
-                            e.touches[0].clientY - e.touches[1].clientY
-                        );
-                        touchStartScale = currentScale;
-                        lastPinchRatio = 1;
-                    } else {
-                        isPinching = false;
-                    }
-                }, { passive: true });
-
-                scrollContainer.addEventListener('touchmove', (e) => {
-                    if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
-                        const curDist = Math.hypot(
-                            e.touches[0].clientX - e.touches[1].clientX,
-                            e.touches[0].clientY - e.touches[1].clientY
-                        );
-                        lastPinchRatio = curDist / touchStartDist;
-                        const candidateScale = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
-                        if (zoomLabel) zoomLabel.textContent = Math.round(candidateScale * 100) + '%';
-                        mount.style.transform = `scale(${lastPinchRatio})`;
-                        mount.style.transformOrigin = 'center top';
-                    }
-                }, { passive: true });
-
-                scrollContainer.addEventListener('touchend', (e) => {
-                    if (isPinching) {
-                        isPinching = false;
-                        mount.style.transform = '';
-                        mount.style.transformOrigin = '';
-                        if (!e.touches || e.touches.length < 2) {
-                            const candidateScale = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
-                            if (Math.abs(candidateScale - currentScale) > 0.05) {
-                                applyZoom(candidateScale);
-                            }
-                        }
-                    }
-                }, { passive: true });
-
-                // Responsive auto-fit on window resize or iPad/phone orientation change
-                let resizeDebounce = null;
-                const onViewportResize = () => {
-                    clearTimeout(resizeDebounce);
-                    resizeDebounce = setTimeout(() => {
-                        if (!scrollContainer || !baseW) return;
-                        applyZoom(getOptimalFitScale());
-                    }, 120);
-                };
-                window.addEventListener('resize', onViewportResize);
-                window.addEventListener('orientationchange', onViewportResize);
+                if (window.WISPdfViewport) {
+                    viewportCtrl = window.WISPdfViewport.attach({
+                        scrollContainer: scrollContainer,
+                        contentTarget: mount,
+                        cardSelector: '.pdf-page-card',
+                        minScale: 0.35,
+                        maxScale: 3.0,
+                        getScale: () => currentScale,
+                        onPreviewScale: (cand) => {
+                            if (zoomLabel) zoomLabel.textContent = `${Math.round(cand * 100)}%`;
+                        },
+                        onApplyZoom: (nextScale, zoomMeta) => applyZoom(nextScale, zoomMeta),
+                        onFlushRender: flushVisibleWorksheetPages,
+                        onWidthChange: (newW, prevW, anchor) => applyWidthChangePreservingZoom(anchor)
+                    });
+                }
 
                 // Fullscreen Practice View Management
                 const topFsBtn = document.getElementById('worksheet-fullscreen-action-btn');
@@ -7266,6 +7285,7 @@ function renderWorksheet(lesson) {
                     const targetState = (typeof forceState === 'boolean') ? forceState : !isCurrentlyActive;
 
                     if (targetState) {
+                        const fsAnchor = window.WISPdfViewport ? window.WISPdfViewport.captureAnchor(scrollContainer, '.pdf-page-card') : null;
                         // Enter Fullscreen
                         wrapper.classList.add('pdf-fullscreen-active');
                         document.body.classList.add('pdf-modal-open');
@@ -7293,9 +7313,11 @@ function renderWorksheet(lesson) {
                         } catch (e) {}
 
                         setTimeout(() => {
-                            applyZoom(getOptimalFitScale());
+                            applyWidthChangePreservingZoom(fsAnchor);
+                            if (viewportCtrl) viewportCtrl.resetWidthTracking();
                         }, 120);
                     } else {
+                        const exitFsAnchor = window.WISPdfViewport ? window.WISPdfViewport.captureAnchor(scrollContainer, '.pdf-page-card') : null;
                         // Exit Fullscreen
                         wrapper.classList.remove('pdf-fullscreen-active');
                         document.body.classList.remove('pdf-modal-open');
@@ -7323,7 +7345,8 @@ function renderWorksheet(lesson) {
                         } catch (e) {}
 
                         setTimeout(() => {
-                            applyZoom(getOptimalFitScale());
+                            applyWidthChangePreservingZoom(exitFsAnchor);
+                            if (viewportCtrl) viewportCtrl.resetWidthTracking();
                         }, 120);
                     }
                 }
@@ -7381,8 +7404,16 @@ function renderWorksheet(lesson) {
                     pdfDoc: pdfDoc,
                     observer: observer,
                     activeTasks: activeTasks,
-                    fitWidth: () => applyZoom(getOptimalFitScale()),
+                    fitWidth: () => {
+                        const newFit = getOptimalFitScale();
+                        lastFitScale = newFit;
+                        applyZoom(newFit);
+                    },
                     cleanup: () => {
+                        if (viewportCtrl) {
+                            try { viewportCtrl.destroy(); } catch (e) {}
+                            viewportCtrl = null;
+                        }
                         window.removeEventListener('keydown', keyHandler);
                         wrapper.removeEventListener('copy', preventCopyAction);
                         wrapper.removeEventListener('cut', preventCopyAction);
@@ -7392,8 +7423,6 @@ function renderWorksheet(lesson) {
                         scrollContainer.removeEventListener('cut', preventCopyAction);
                         scrollContainer.removeEventListener('selectstart', preventCopyAction);
                         scrollContainer.removeEventListener('dragstart', preventCopyAction);
-                        window.removeEventListener('resize', onViewportResize);
-                        window.removeEventListener('orientationchange', onViewportResize);
                         document.removeEventListener('fullscreenchange', onNativeFsChange);
                         document.removeEventListener('webkitfullscreenchange', onNativeFsChange);
                         scrollContainer.removeEventListener('scroll', onScrollUpdate);

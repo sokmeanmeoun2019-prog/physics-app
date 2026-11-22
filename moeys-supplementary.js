@@ -917,23 +917,29 @@
                     const dpr = Math.min(global.devicePixelRatio || 1, 2.5);
                     const cssVp = page.getViewport({ scale: currentScale });
                     const hiVp = page.getViewport({ scale: currentScale * dpr });
+                    const isReRender = canvas.dataset.hasRender === '1' && canvas.width > 0 && canvas.style.display !== 'none';
+                    const targetCanvas = isReRender ? document.createElement('canvas') : canvas;
 
                     card.style.width = `${Math.floor(cssVp.width)}px`;
                     card.style.height = `${Math.floor(cssVp.height)}px`;
-                    canvas.width = Math.floor(hiVp.width);
-                    canvas.height = Math.floor(hiVp.height);
-                    canvas.style.width = `${Math.floor(cssVp.width)}px`;
-                    canvas.style.height = `${Math.floor(cssVp.height)}px`;
+                    targetCanvas.width = Math.floor(hiVp.width);
+                    targetCanvas.height = Math.floor(hiVp.height);
+                    canvas.style.width = '100%';
+                    canvas.style.height = '100%';
 
-                    const ctx = canvas.getContext('2d', { alpha: false });
+                    const ctx = targetCanvas.getContext('2d', { alpha: false });
                     ctx.fillStyle = '#ffffff';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillRect(0, 0, targetCanvas.width, targetCanvas.height);
 
                     const task = page.render({ canvasContext: ctx, viewport: hiVp });
                     state.reader.activeTasks[pNum] = task;
                     await task.promise;
 
                     if (gen !== state.reader.generation) return;
+                    if (isReRender && global.WISPdfViewport) {
+                        global.WISPdfViewport.blitCanvas(canvas, targetCanvas);
+                    }
+                    canvas.dataset.hasRender = '1';
                     canvas.style.display = 'block';
                     if (ph) ph.style.display = 'none';
                     state.reader.renderedPages.add(pNum);
@@ -1006,8 +1012,28 @@
                 scrollToPage(parseInt(pageInput.value, 10) || 1);
             });
 
-            function applyZoom(newScale) {
+            let lastFitScale = currentScale;
+            let viewportCtrl = null;
+
+            function flushVisiblePages() {
                 if (gen !== state.reader.generation) return;
+                const cur = parseInt(pageInput.value, 10) || 1;
+                if (global.WISPdfViewport) {
+                    global.WISPdfViewport.renderVisibleCards(scrollContainer, '.pdf-page-card', renderPage, cur, pdfDoc.numPages, 550);
+                } else {
+                    renderPage(cur);
+                    if (cur < pdfDoc.numPages) renderPage(cur + 1);
+                    if (cur > 1) renderPage(cur - 1);
+                }
+            }
+
+            function applyZoom(newScale, zoomMeta) {
+                if (gen !== state.reader.generation) return;
+                const vpc = global.WISPdfViewport;
+                const anchor = (zoomMeta && zoomMeta.anchor)
+                    || (vpc && vpc.captureAnchor(scrollContainer, '.pdf-page-card', zoomMeta && zoomMeta.clientX, zoomMeta && zoomMeta.clientY))
+                    || null;
+
                 currentScale = Math.min(Math.max(newScale, 0.35), 3.0);
                 state.reader.currentScale = currentScale;
                 if (zoomLabel) zoomLabel.textContent = `${Math.round(currentScale * 100)}%`;
@@ -1021,83 +1047,72 @@
                     c.style.width = `${Math.floor(baseW * currentScale)}px`;
                     c.style.height = `${Math.floor(baseH * currentScale)}px`;
                     const cv = c.querySelector('.pdf-page-canvas');
-                    if (cv) cv.style.display = 'none';
+                    const hasCanvas = cv && cv.dataset.hasRender === '1' && cv.width > 0;
+                    if (cv) {
+                        cv.style.width = '100%';
+                        cv.style.height = '100%';
+                        cv.style.display = hasCanvas ? 'block' : 'none';
+                    }
                     const ph = c.querySelector('.pdf-loading-card');
-                    if (ph) ph.style.display = 'flex';
+                    if (ph) ph.style.display = hasCanvas ? 'none' : 'flex';
                 });
 
-                const cur = parseInt(pageInput.value, 10) || 1;
-                renderPage(cur);
-                if (cur < pdfDoc.numPages) renderPage(cur + 1);
-                if (cur > 1) renderPage(cur - 1);
+                if (vpc && anchor) {
+                    vpc.restoreAnchor(scrollContainer, anchor);
+                }
+
+                if (!zoomMeta || !zoomMeta.quickResize) {
+                    flushVisiblePages();
+                }
+            }
+
+            function applyWidthChangePreservingZoom(anchor) {
+                if (gen !== state.reader.generation || !scrollContainer || !baseW) return;
+                const newFit = getOptimalFitScale();
+                const wasAtFit = Math.abs(currentScale - lastFitScale) < 0.08;
+                const nextScale = wasAtFit
+                    ? newFit
+                    : currentScale * (newFit / Math.max(0.1, lastFitScale));
+                lastFitScale = newFit;
+                applyZoom(nextScale, { anchor: anchor });
             }
 
             if (zoomInBtn) regListener(zoomInBtn, 'click', () => applyZoom(currentScale + 0.15));
             if (zoomOutBtn) regListener(zoomOutBtn, 'click', () => applyZoom(currentScale - 0.15));
-            if (fitWidthBtn) regListener(fitWidthBtn, 'click', () => applyZoom(getOptimalFitScale()));
+            if (fitWidthBtn) regListener(fitWidthBtn, 'click', () => {
+                const newFit = getOptimalFitScale();
+                lastFitScale = newFit;
+                applyZoom(newFit);
+            });
 
-            // Pinch-to-Zoom (matching existing Ebook reader)
-            let touchStartDist = 0;
-            let touchStartScale = currentScale;
-            let isPinching = false;
-            let lastPinchRatio = 1;
-
-            regListener(scrollContainer, 'touchstart', (e) => {
-                if (e.touches && e.touches.length === 2) {
-                    isPinching = true;
-                    touchStartDist = Math.hypot(
-                        e.touches[0].clientX - e.touches[1].clientX,
-                        e.touches[0].clientY - e.touches[1].clientY
-                    );
-                    touchStartScale = currentScale;
-                    lastPinchRatio = 1;
-                } else {
-                    isPinching = false;
-                }
-            }, { passive: true });
-
-            regListener(scrollContainer, 'touchmove', (e) => {
-                if (isPinching && e.touches && e.touches.length === 2 && touchStartDist > 0) {
-                    const curDist = Math.hypot(
-                        e.touches[0].clientX - e.touches[1].clientX,
-                        e.touches[0].clientY - e.touches[1].clientY
-                    );
-                    lastPinchRatio = curDist / touchStartDist;
-                    const candidateScale = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
-                    if (zoomLabel) zoomLabel.textContent = `${Math.round(candidateScale * 100)}%`;
-                    mount.style.transform = `scale(${lastPinchRatio})`;
-                    mount.style.transformOrigin = 'center top';
-                }
-            }, { passive: true });
-
-            regListener(scrollContainer, 'touchend', (e) => {
-                if (isPinching) {
-                    isPinching = false;
-                    mount.style.transform = '';
-                    mount.style.transformOrigin = '';
-                    if (!e.touches || e.touches.length < 2) {
-                        const candidateScale = Math.min(Math.max(touchStartScale * lastPinchRatio, 0.35), 3.0);
-                        if (Math.abs(candidateScale - currentScale) > 0.05) {
-                            applyZoom(candidateScale);
-                        }
+            if (global.WISPdfViewport) {
+                viewportCtrl = global.WISPdfViewport.attach({
+                    scrollContainer: scrollContainer,
+                    contentTarget: mount,
+                    cardSelector: '.pdf-page-card',
+                    minScale: 0.35,
+                    maxScale: 3.0,
+                    getScale: () => currentScale,
+                    onPreviewScale: (cand) => {
+                        if (zoomLabel) zoomLabel.textContent = `${Math.round(cand * 100)}%`;
+                    },
+                    onApplyZoom: (nextScale, zoomMeta) => applyZoom(nextScale, zoomMeta),
+                    onFlushRender: flushVisiblePages,
+                    onWidthChange: (newW, prevW, anchor) => applyWidthChangePreservingZoom(anchor)
+                });
+                state.reader.cleanups.push(() => {
+                    if (viewportCtrl) {
+                        viewportCtrl.destroy();
+                        viewportCtrl = null;
                     }
-                }
-            }, { passive: true });
-
-            let resizeTimer = null;
-            const onViewportResize = () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    if (gen === state.reader.generation) applyZoom(getOptimalFitScale());
-                }, 120);
-            };
-            regListener(global, 'resize', onViewportResize);
-            regListener(global, 'orientationchange', onViewportResize);
+                });
+            }
 
             // Fullscreen Management (matching Ebook section)
             function toggleFullscreen(forceState) {
                 const isActive = wrapper.classList.contains('pdf-fullscreen-active');
                 const target = typeof forceState === 'boolean' ? forceState : !isActive;
+                const fsAnchor = global.WISPdfViewport ? global.WISPdfViewport.captureAnchor(scrollContainer, '.pdf-page-card') : null;
                 if (target) {
                     wrapper.classList.add('pdf-fullscreen-active');
                     document.body.classList.add('pdf-modal-open');
@@ -1115,7 +1130,10 @@
                             if (p && p.catch) p.catch(() => {});
                         }
                     } catch (e) {}
-                    setTimeout(() => applyZoom(getOptimalFitScale()), 120);
+                    setTimeout(() => {
+                        applyWidthChangePreservingZoom(fsAnchor);
+                        if (viewportCtrl) viewportCtrl.resetWidthTracking();
+                    }, 120);
                 } else {
                     wrapper.classList.remove('pdf-fullscreen-active');
                     document.body.classList.remove('pdf-modal-open');
@@ -1133,7 +1151,10 @@
                             if (p2 && p2.catch) p2.catch(() => {});
                         }
                     } catch (e) {}
-                    setTimeout(() => applyZoom(getOptimalFitScale()), 120);
+                    setTimeout(() => {
+                        applyWidthChangePreservingZoom(fsAnchor);
+                        if (viewportCtrl) viewportCtrl.resetWidthTracking();
+                    }, 120);
                 }
             }
 
@@ -1632,7 +1653,7 @@
                         <i class="fa-solid fa-circle-notch fa-spin"></i>
                         <span id="ms-pdf-loading-status">Loading MOEYS Supplementary pages...</span>
                     </div>
-                    <div id="ms-pdf-pages-mount" style="width: 100%; display: block; text-align: center; transform-origin: top center; transition: transform 0.05s ease-out;"></div>
+                    <div id="ms-pdf-pages-mount"></div>
                 </div>
             </div>
 

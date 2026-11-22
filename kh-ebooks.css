@@ -565,10 +565,34 @@
     background: #1e293b;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.9rem;
-    touch-action: pan-x pan-y pinch-zoom;
+    touch-action: pan-x pan-y !important;
+    overscroll-behavior: contain !important;
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: contain !important;
     -webkit-overflow-scrolling: touch;
+}
+
+.kheb-pages-mount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    min-width: 100%;
+    width: max-content;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.kheb-viewer-stage.pdf-pannable {
+    cursor: grab;
+}
+
+.kheb-viewer-stage.pdf-panning,
+.kheb-viewer-stage.pdf-panning * {
+    cursor: grabbing !important;
+    user-select: none !important;
 }
 
 .kheb-viewer-wrapper:fullscreen .kheb-viewer-stage,
@@ -585,12 +609,15 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.42);
     overflow: hidden;
     flex-shrink: 0;
+    margin: 0 auto;
+    touch-action: pan-x pan-y !important;
 }
 
 .kheb-page-canvas {
     display: block;
-    max-width: 100%;
-    height: auto;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
     pointer-events: none;
 }
 

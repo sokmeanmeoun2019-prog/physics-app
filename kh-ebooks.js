@@ -684,11 +684,7 @@
         });
     }
 
-    function cancelActiveRenderTasks() {
-        if (state.reader.observer) {
-            try { state.reader.observer.disconnect(); } catch (e) {}
-            state.reader.observer = null;
-        }
+    function cancelRenderTasksOnly() {
         for (const task of state.reader.activeRenderTasks) {
             try {
                 if (task && typeof task.cancel === 'function') task.cancel();
@@ -697,9 +693,21 @@
         state.reader.activeRenderTasks = [];
     }
 
+    function cancelActiveRenderTasks() {
+        if (state.reader.observer) {
+            try { state.reader.observer.disconnect(); } catch (e) {}
+            state.reader.observer = null;
+        }
+        cancelRenderTasksOnly();
+    }
+
     function destroyActivePdfSession() {
         state.reader.renderGeneration += 1;
         cancelActiveRenderTasks();
+        if (state.reader.viewportCtrl) {
+            try { state.reader.viewportCtrl.destroy(); } catch (e) {}
+            state.reader.viewportCtrl = null;
+        }
         if (state.reader.pdfDoc) {
             try {
                 state.reader.pdfDoc.destroy();
@@ -897,12 +905,21 @@
         stage.innerHTML = `<div class="kheb-loading-overlay">${html}</div>`;
     }
 
-    function computeEffectiveScale(page, stageWidth) {
-        if (!state.reader.fitWidth) return state.reader.scale;
-        const baseViewport = page.getViewport({ scale: 1.0 });
-        const targetWidth = Math.max(260, stageWidth - 36);
-        const fit = targetWidth / baseViewport.width;
+    function getFitScaleForWidth(baseWidth, stageWidth) {
+        const targetWidth = Math.max(260, (stageWidth || 720) - 36);
+        const fit = targetWidth / Math.max(1, baseWidth || 595);
         return Math.max(0.45, Math.min(2.6, fit));
+    }
+
+    function computeEffectiveScale(page, stageWidth) {
+        const baseViewport = page.getViewport({ scale: 1.0 });
+        if (!state.reader.fitWidth) return state.reader.scale;
+        return getFitScaleForWidth(baseViewport.width, stageWidth);
+    }
+
+    function getCurrentEffectiveScale(stageWidth) {
+        if (!state.reader.fitWidth) return state.reader.scale;
+        return getFitScaleForWidth(state.reader.baseW || 595, stageWidth || 720);
     }
 
     async function renderCanvasIntoFrame(pageNum, frame, stageWidth, gen) {
@@ -927,15 +944,18 @@
                 canvas.className = 'kheb-page-canvas';
                 frame.insertBefore(canvas, frame.firstChild);
             }
-            canvas.width = Math.floor(viewport.width * dpr);
-            canvas.height = Math.floor(viewport.height * dpr);
-            canvas.style.width = `${Math.floor(viewport.width)}px`;
-            canvas.style.height = `${Math.floor(viewport.height)}px`;
+            const isReRender = canvas.dataset.hasRender === '1' && canvas.width > 0;
+            const targetCanvas = isReRender ? document.createElement('canvas') : canvas;
+
+            targetCanvas.width = Math.floor(viewport.width * dpr);
+            targetCanvas.height = Math.floor(viewport.height * dpr);
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
 
             const placeholder = frame.querySelector('.kheb-page-placeholder');
             if (placeholder) placeholder.remove();
 
-            const ctx = canvas.getContext('2d');
+            const ctx = targetCanvas.getContext('2d', { alpha: false });
             const renderCtx = {
                 canvasContext: ctx,
                 viewport,
@@ -944,6 +964,11 @@
             const task = page.render(renderCtx);
             state.reader.activeRenderTasks.push(task);
             await task.promise;
+            if (gen !== state.reader.renderGeneration) return;
+            if (isReRender && global.WISPdfViewport) {
+                global.WISPdfViewport.blitCanvas(canvas, targetCanvas);
+            }
+            canvas.dataset.hasRender = '1';
             frame.dataset.rendered = '1';
         } catch (err) {
             if (!err || err.name !== 'RenderingCancelledException') {
@@ -966,10 +991,20 @@
         const firstPage = await state.reader.pdfDoc.getPage(state.reader.viewMode === 'single' ? state.reader.pageNum : 1);
         if (gen !== state.reader.renderGeneration) return;
 
+        const baseVp1 = firstPage.getViewport({ scale: 1.0 });
+        state.reader.baseW = baseVp1.width;
+        state.reader.baseH = baseVp1.height;
+        state.reader.lastFitScale = getFitScaleForWidth(baseVp1.width, stageWidth);
+
         const baseScale = computeEffectiveScale(firstPage, stageWidth);
         const baseViewport = firstPage.getViewport({ scale: baseScale });
         const estW = Math.floor(baseViewport.width);
         const estH = Math.floor(baseViewport.height);
+
+        const mount = document.createElement('div');
+        mount.className = 'kheb-pages-mount';
+        mount.id = 'kheb-pages-mount';
+        stage.appendChild(mount);
 
         if (state.reader.viewMode === 'single') {
             const p = state.reader.pageNum;
@@ -982,10 +1017,12 @@
             badge.className = 'kheb-page-badge';
             badge.textContent = `${p} / ${state.reader.totalPages}`;
             frame.appendChild(badge);
-            stage.appendChild(frame);
+            mount.appendChild(frame);
             stage.scrollTop = 0;
+            stage.scrollLeft = 0;
             await renderCanvasIntoFrame(p, frame, stageWidth, gen);
             updateViewerHeaderAndControls();
+            if (state.reader.viewportCtrl) state.reader.viewportCtrl.resetWidthTracking();
             return;
         }
 
@@ -1007,7 +1044,7 @@
             frames.push(frame);
             frag.appendChild(frame);
         }
-        stage.appendChild(frag);
+        mount.appendChild(frag);
 
         // Render initial pages immediately
         const initialCount = Math.min(total, 3);
@@ -1016,6 +1053,7 @@
             await renderCanvasIntoFrame(i + 1, frames[i], stageWidth, gen);
         }
         updateViewerHeaderAndControls();
+        if (state.reader.viewportCtrl) state.reader.viewportCtrl.resetWidthTracking();
 
         // Lazy-render remaining pages as student scrolls
         if (typeof IntersectionObserver === 'function') {
@@ -1036,37 +1074,79 @@
         }
     }
 
-    function goToPage(targetPage) {
+    function flushVisibleReaderFrames() {
+        const stage = document.getElementById('kheb-viewer-stage');
+        if (!stage || !state.reader.pdfDoc) return;
+        const gen = state.reader.renderGeneration;
+        const stageWidth = stage.clientWidth || 720;
+        const renderByNum = (pNum) => {
+            const frame = stage.querySelector(`.kheb-page-frame[data-page="${pNum}"]`);
+            if (frame) renderCanvasIntoFrame(pNum, frame, stageWidth, gen);
+        };
+        if (global.WISPdfViewport) {
+            global.WISPdfViewport.renderVisibleCards(stage, '.kheb-page-frame', renderByNum, state.reader.pageNum, state.reader.totalPages, 650);
+        } else {
+            renderByNum(state.reader.pageNum);
+        }
+    }
+
+    function applyZoomPreservingPosition(newScale, zoomMeta) {
         if (!state.reader.pdfDoc) return;
-        const clamped = Math.max(1, Math.min(state.reader.totalPages, Number(targetPage) || 1));
-        state.reader.pageNum = clamped;
+        const stage = document.getElementById('kheb-viewer-stage');
+        const vpc = global.WISPdfViewport;
+
+        const isFit = Boolean(zoomMeta && zoomMeta.isFitWidth);
+        const stageWidth = stage ? (stage.clientWidth || 720) : 720;
+        const anchor = (zoomMeta && zoomMeta.anchor)
+            || (stage && vpc && vpc.captureAnchor(stage, '.kheb-page-frame', zoomMeta && zoomMeta.clientX, zoomMeta && zoomMeta.clientY))
+            || null;
+
+        if (isFit) {
+            state.reader.fitWidth = true;
+            state.reader.scale = getFitScaleForWidth(state.reader.baseW || 595, stageWidth);
+        } else {
+            state.reader.fitWidth = false;
+            state.reader.scale = Math.max(0.45, Math.min(3.0, Math.round(newScale * 100) / 100));
+        }
+
+        const effectiveScale = getCurrentEffectiveScale(stageWidth);
+        const estW = Math.floor((state.reader.baseW || 595) * effectiveScale);
+        const estH = Math.floor((state.reader.baseH || 842) * effectiveScale);
+
+        cancelRenderTasksOnly();
+
+        if (stage) {
+            stage.querySelectorAll('.kheb-page-frame').forEach(frame => {
+                frame.style.width = `${estW}px`;
+                frame.style.height = `${estH}px`;
+                frame.dataset.rendered = '0';
+                frame.dataset.rendering = '0';
+            });
+            if (vpc && anchor) {
+                vpc.restoreAnchor(stage, anchor);
+            }
+        }
+
         updateViewerHeaderAndControls();
 
-        if (state.reader.viewMode === 'single') {
-            renderReaderPages();
-        } else {
-            const stage = document.getElementById('kheb-viewer-stage');
-            const frame = stage && stage.querySelector(`.kheb-page-frame[data-page="${clamped}"]`);
-            if (frame) {
-                frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+        if (!zoomMeta || !zoomMeta.quickResize) {
+            flushVisibleReaderFrames();
         }
     }
 
     function setZoom(deltaOrExact, isFitWidth) {
         if (!state.reader.pdfDoc) return;
+        const stage = document.getElementById('kheb-viewer-stage');
+        const stageWidth = stage ? (stage.clientWidth || 720) : 720;
         if (isFitWidth) {
-            state.reader.fitWidth = true;
-            state.reader.scale = 1.0;
-        } else {
-            state.reader.fitWidth = false;
-            const next = typeof deltaOrExact === 'number'
-                ? Math.max(0.5, Math.min(2.6, state.reader.scale + deltaOrExact))
-                : 1.0;
-            state.reader.scale = Math.round(next * 100) / 100;
+            applyZoomPreservingPosition(1.0, { isFitWidth: true });
+            return;
         }
-        updateViewerHeaderAndControls();
-        renderReaderPages();
+        const curEffective = getCurrentEffectiveScale(stageWidth);
+        const next = typeof deltaOrExact === 'number'
+            ? (curEffective + deltaOrExact)
+            : 1.0;
+        applyZoomPreservingPosition(next, { isFitWidth: false });
     }
 
     function toggleViewMode() {
@@ -1080,6 +1160,10 @@
         const wrapper = document.getElementById('kheb-viewer-wrapper');
         if (!wrapper) return;
 
+        const stage = document.getElementById('kheb-viewer-stage');
+        const fsAnchor = (stage && global.WISPdfViewport)
+            ? global.WISPdfViewport.captureAnchor(stage, '.kheb-page-frame')
+            : null;
         const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
         try {
             if (fsEl === wrapper || state.reader.isFullscreen) {
@@ -1107,8 +1191,16 @@
             state.reader.isFullscreen = willEnable;
         }
         updateViewerHeaderAndControls();
-        if (state.reader.pdfDoc && state.reader.fitWidth) {
-            setTimeout(() => renderReaderPages(), 120);
+        if (state.reader.pdfDoc) {
+            setTimeout(() => {
+                if (!state.reader.pdfDoc) return;
+                if (state.reader.fitWidth) {
+                    applyZoomPreservingPosition(1.0, { isFitWidth: true, anchor: fsAnchor });
+                } else if (stage && global.WISPdfViewport && fsAnchor) {
+                    global.WISPdfViewport.restoreAnchor(stage, fsAnchor);
+                }
+                if (state.reader.viewportCtrl) state.reader.viewportCtrl.resetWidthTracking();
+            }, 120);
         }
     }
 
@@ -1187,25 +1279,64 @@
                     if (prevBtn) prevBtn.disabled = closestPage <= 1;
                     if (nextBtn) nextBtn.disabled = closestPage >= state.reader.totalPages;
                 }
+                flushVisibleReaderFrames();
             }, 90);
         });
 
-        // Touch swipe for single-page mode + pinch-zoom guard
+        if (state.reader.viewportCtrl) {
+            try { state.reader.viewportCtrl.destroy(); } catch (e) {}
+            state.reader.viewportCtrl = null;
+        }
+        if (global.WISPdfViewport) {
+            state.reader.viewportCtrl = global.WISPdfViewport.attach({
+                scrollContainer: stage,
+                getContentTarget: () => document.getElementById('kheb-pages-mount'),
+                cardSelector: '.kheb-page-frame',
+                minScale: 0.45,
+                maxScale: 3.0,
+                getScale: () => getCurrentEffectiveScale(stage.clientWidth || 720),
+                onPreviewScale: (cand) => {
+                    const zoomEl = document.getElementById('kheb-zoom-label');
+                    if (zoomEl) zoomEl.textContent = `${Math.round(cand * 100)}%`;
+                },
+                onApplyZoom: (nextScale, zoomMeta) => {
+                    applyZoomPreservingPosition(nextScale, zoomMeta);
+                },
+                onFlushRender: flushVisibleReaderFrames,
+                onWidthChange: (newW, prevW, anchor) => {
+                    if (!state.reader.pdfDoc) return;
+                    if (state.reader.fitWidth) {
+                        applyZoomPreservingPosition(1.0, { isFitWidth: true, anchor: anchor });
+                    } else if (anchor) {
+                        global.WISPdfViewport.restoreAnchor(stage, anchor);
+                    }
+                }
+            });
+        }
+
+        // Touch swipe for single-page mode (strictly disabled while zoomed horizontally or pinching)
         let touchStartX = 0;
         let touchStartY = 0;
+        let touchSingleValid = false;
         stage.addEventListener('touchstart', (e) => {
             if (e.touches && e.touches.length === 1) {
                 touchStartX = e.touches[0].clientX;
                 touchStartY = e.touches[0].clientY;
+                touchSingleValid = true;
+            } else {
+                touchSingleValid = false;
             }
         }, { passive: true });
 
         stage.addEventListener('touchend', (e) => {
-            if (state.reader.viewMode !== 'single' || !state.reader.pdfDoc) return;
+            if (!touchSingleValid || state.reader.viewMode !== 'single' || !state.reader.pdfDoc) return;
+            touchSingleValid = false;
+            if (state.reader.viewportCtrl && state.reader.viewportCtrl.wasRecentlyPinching(300)) return;
+            if (stage.scrollWidth > stage.clientWidth + 4) return;
             if (!e.changedTouches || e.changedTouches.length !== 1) return;
             const dx = e.changedTouches[0].clientX - touchStartX;
             const dy = e.changedTouches[0].clientY - touchStartY;
-            if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.6) {
                 if (dx < 0 && state.reader.pageNum < state.reader.totalPages) {
                     goToPage(state.reader.pageNum + 1);
                 } else if (dx > 0 && state.reader.pageNum > 1) {
@@ -1736,12 +1867,21 @@
     // Global fullscreen sync & keyboard navigation inside KH-Ebook reader
     document.addEventListener('fullscreenchange', () => {
         const wrapper = document.getElementById('kheb-viewer-wrapper');
+        const stage = document.getElementById('kheb-viewer-stage');
         if (!wrapper) return;
+        const fsAnchor = (stage && global.WISPdfViewport)
+            ? global.WISPdfViewport.captureAnchor(stage, '.kheb-page-frame')
+            : null;
         state.reader.isFullscreen = document.fullscreenElement === wrapper;
         wrapper.classList.toggle('kheb-is-fullscreen', state.reader.isFullscreen);
         updateViewerHeaderAndControls();
         if (state.reader.pdfDoc && state.reader.fitWidth) {
-            setTimeout(() => renderReaderPages(), 120);
+            setTimeout(() => {
+                if (state.reader.pdfDoc && state.reader.fitWidth) {
+                    applyZoomPreservingPosition(1.0, { isFitWidth: true, anchor: fsAnchor });
+                }
+                if (state.reader.viewportCtrl) state.reader.viewportCtrl.resetWidthTracking();
+            }, 120);
         }
     });
 

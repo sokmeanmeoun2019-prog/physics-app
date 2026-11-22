@@ -2755,7 +2755,7 @@ body.pdf-modal-open .worksheet-container {
     overflow-y: scroll !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y pinch-zoom !important;
+    touch-action: pan-x pan-y !important;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     height: 750px;
@@ -2765,7 +2765,33 @@ body.pdf-modal-open .worksheet-container {
     text-align: center;
     position: relative;
     box-sizing: border-box;
-    overscroll-behavior-y: contain;
+    overscroll-behavior: contain !important;
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: contain !important;
+}
+
+#pdf-pages-mount,
+#ws-pages-mount,
+#ow-pdf-pages-mount,
+#ms-pdf-pages-mount,
+#mt-pdf-pages-mount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 100%;
+    width: max-content;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.pdf-scroll-container.pdf-pannable {
+    cursor: grab;
+}
+
+.pdf-scroll-container.pdf-panning,
+.pdf-scroll-container.pdf-panning * {
+    cursor: grabbing !important;
+    user-select: none !important;
 }
 
 .pdf-scroll-container::-webkit-scrollbar {
@@ -2788,10 +2814,10 @@ body.pdf-modal-open .worksheet-container {
     margin: 0 auto 1.25rem auto !important;
     display: block !important;
     min-height: 180px;
-    transition: width 0.15s ease, height 0.15s ease;
+    transition: none;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: pan-y pinch-zoom !important;
+    touch-action: pan-x pan-y !important;
     pointer-events: auto;
 }
 
@@ -2814,8 +2840,9 @@ body.pdf-modal-open .worksheet-container {
 
 .pdf-page-canvas {
     display: block;
-    max-width: 100%;
-    height: auto;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
     border-radius: 6px;
     margin: 0 auto;
     pointer-events: none !important;
@@ -2934,7 +2961,10 @@ body.pdf-modal-open .worksheet-container {
     overflow-y: scroll !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y pinch-zoom !important;
+    touch-action: pan-x pan-y !important;
+    overscroll-behavior: contain !important;
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: contain !important;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     display: block !important;
@@ -5465,8 +5495,21 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
     display: block;
     text-align: center;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-y pinch-zoom;
+    touch-action: pan-x pan-y !important;
+    overscroll-behavior: contain !important;
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: contain !important;
     box-sizing: border-box;
+}
+
+.exam-viewer-body.pdf-pannable {
+    cursor: grab;
+}
+
+.exam-viewer-body.pdf-panning,
+.exam-viewer-body.pdf-panning * {
+    cursor: grabbing !important;
+    user-select: none !important;
 }
 
 .exam-viewer-loading {
@@ -5477,12 +5520,13 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
 }
 
 .exam-viewer-mount {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: max-content;
     min-width: 100%;
     margin: 0 auto;
     transform-origin: top center;
-    transition: transform 0.05s ease-out;
 }
 
 .exam-iframe-wrapper {
@@ -5500,15 +5544,15 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
     overflow: hidden;
     user-select: none !important;
     -webkit-user-select: none !important;
-    touch-action: pan-y pinch-zoom !important;
+    touch-action: pan-x pan-y !important;
     pointer-events: auto;
 }
 
 .exam-page-canvas {
     display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
     margin: 0 auto;
     pointer-events: none !important;
     user-select: none !important;
@@ -5625,7 +5669,10 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
     overflow-y: scroll !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y pinch-zoom !important;
+    touch-action: pan-x pan-y !important;
+    overscroll-behavior: contain !important;
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: contain !important;
     display: block !important;
     text-align: center !important;
     box-sizing: border-box !important;
