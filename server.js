@@ -1177,7 +1177,7 @@ const server = http.createServer(async (req, res) => {
             });
         }
 
-        // Also sync site-status.json for static / GitHub Pages parity
+        // Also sync site-status.json, auth.js, and index.html for static / GitHub Pages parity
         try {
             const siteStatusPath = path.join(__dirname, 'site-status.json');
             fs.writeFileSync(siteStatusPath, JSON.stringify({
@@ -1185,6 +1185,20 @@ const server = http.createServer(async (req, res) => {
                 updatedAt: authConfig.websiteAccess.updatedAt,
                 message: MAINTENANCE_MESSAGE
             }, null, 2), 'utf8');
+
+            const authJsPath = path.join(__dirname, 'auth.js');
+            if (fs.existsSync(authJsPath)) {
+                let authSrc = fs.readFileSync(authJsPath, 'utf8');
+                authSrc = authSrc.replace(/const\s+STATIC_WEBSITE_ONLINE\s*=\s*(?:true|false);/, `const STATIC_WEBSITE_ONLINE = ${body.online ? 'true' : 'false'};`);
+                fs.writeFileSync(authJsPath, authSrc, 'utf8');
+            }
+
+            const indexPath = path.join(__dirname, 'index.html');
+            if (fs.existsSync(indexPath)) {
+                let idxSrc = fs.readFileSync(indexPath, 'utf8');
+                idxSrc = idxSrc.replace(/var\s+SITE_OFFLINE\s*=\s*(?:true|false);/, `var SITE_OFFLINE = ${body.online ? 'false' : 'true'};`);
+                fs.writeFileSync(indexPath, idxSrc, 'utf8');
+            }
         } catch (syncStatusErr) {}
 
         console.log(`[ACCESS CONTROL] Website turned ${body.online ? 'ONLINE' : 'OFFLINE'} by administrator (${authConfig.websiteAccess.updatedBy}).`);
@@ -1484,7 +1498,7 @@ const server = http.createServer(async (req, res) => {
                 'Content-Length': stats.size,
                 'Accept-Ranges': 'bytes',
                 'Content-Type': contentType,
-                'Cache-Control': (ext === '.html' || pathname.startsWith('/summary_slides/') || pathname.startsWith('/kh_ebooks/') || pathname.startsWith('/outstanding_worksheets/') || pathname.startsWith('/moeys_supplementary/') || pathname.startsWith('/my_textbooks/')) ? 'no-cache' : 'public, max-age=86400'
+                'Cache-Control': (ext === '.html' || ext === '.css' || ext === '.js' || pathname.startsWith('/summary_slides/') || pathname.startsWith('/kh_ebooks/') || pathname.startsWith('/outstanding_worksheets/') || pathname.startsWith('/moeys_supplementary/') || pathname.startsWith('/my_textbooks/')) ? 'no-cache' : 'public, max-age=86400'
             });
             fs.createReadStream(safePath).pipe(res);
         }
