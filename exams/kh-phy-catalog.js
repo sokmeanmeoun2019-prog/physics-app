@@ -15,6 +15,22 @@ window.KH_PHY_DIPLOMA_EXTRA_RESOURCES = [
     "deletable": false,
     "isDiscovered": true,
     "updatedAt": "2026-11-22T02:34:31.144Z"
+  },
+  {
+    "id": "g9-kh-phy-extra-fca5074572",
+    "title": "g9 kh phy diploma prep part3",
+    "subtitle": "KH-Phy Preparation • 487.7 KB",
+    "type": "Preparation & Practice",
+    "category": "kh-phy",
+    "year": "KH-Phy Diploma",
+    "description": "Grade 9 Khmer Physics (KH-Phy) Diploma document (g9-kh-phy-diploma-prep-part3.pdf). Protected view-only PDF.",
+    "url": "exams/g9-kh-phy-diploma-prep-part3.pdf",
+    "altUrl": "exams/g9-kh-phy-diploma-prep-part3.pdf.pdf",
+    "size": 499412,
+    "storedName": "g9-kh-phy-diploma-prep-part3.pdf",
+    "deletable": false,
+    "isDiscovered": true,
+    "updatedAt": "2026-11-22T04:31:02.647Z"
   }
 ];
 window.KH_PHY_DIPLOMA_BUILTINS = {
