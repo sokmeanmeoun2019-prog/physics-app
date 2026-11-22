@@ -16,11 +16,12 @@ git config --global http.lowSpeedLimit 0
 git config --global http.lowSpeedTime 999999
 git config --global core.compression 0
 
-# 3. Check if previous monolithic 610MB commit failed to push
-# If the last commit is the unpushed "Auto-Deploy" commit, unwind it so we can push in safe batches
+# 3. Check if an unpushed oversized commit failed to push (e.g. >150MB batch or Auto-Deploy)
+# If the last unpushed commit matches, unwind it cleanly (mixed reset preserves all files on disk)
+$unpushedCount = [int](git rev-list origin/main..HEAD --count 2>$null)
 $lastLog = (git log -1 --pretty="%B" 2>$null)
-if ($lastLog -match "Auto-Deploy|Updated password") {
-    Write-Host "[2/4] Unwinding previous 610MB commit into safe batches (all files preserved)..." -ForegroundColor Yellow
+if ($unpushedCount -gt 0 -and ($lastLog -match "Auto-Deploy|Updated password|Deploy: Curriculum ebooks")) {
+    Write-Host "[2/4] Unwinding unpushed oversized commit into smaller batches (<60MB each, all files preserved)..." -ForegroundColor Yellow
     git reset HEAD~1
 } else {
     Write-Host "[2/4] Repository commit tree ready." -ForegroundColor Gray
@@ -30,13 +31,13 @@ if ($lastLog -match "Auto-Deploy|Updated password") {
 git rm --cached auth-config.json TEACHER_PASSWORD.txt password.txt PASSWORD.txt 2>$null
 git reset 2>$null
 
-# 5. Define batches (each under 150MB to guarantee no HTTP 408 timeout)
+# 5. Define batches (each under ~60MB to guarantee fast push and zero HTTP 408 timeout)
 $batches = @(
     @{
         Title    = "Core Code & Password Security"
         Patterns = @(
             "index.html", "app.js", "physics-data.js", "physics-figures.js", "styles.css", "auth.js", "auth-config.json",
-            "kh-ebooks.js", "kh-ebooks.css", "kh-ebooks-server.js", "Sync-KH-Ebooks.bat",
+            "kh-ebooks.js", "kh-ebooks.css", "kh-ebooks-server.js", "Sync-KH-Ebooks.bat", "Preview_Website_Locally.bat",
             "site-status.json", "Turn_OFF_Website.bat", "Turn_ON_Website.bat", "site-access-control.ps1",
             "sync-credentials.ps1", "smart-push.ps1", "Upload_To_GitHub.bat",
             ".gitignore", "audio/README.txt", "audiobooks/README.txt", "kh_worksheets/README.txt", "semester_exams/README.txt"
@@ -45,8 +46,28 @@ $batches = @(
     },
     @{
         Title    = "Curriculum E-Books, Worksheets & Semester Exams"
-        Patterns = @("ebooks/*", "kh_ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*", "kh_worksheets/*", "kh-worksheets/*", "semester_exams/*", "exams/*")
+        Patterns = @("ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*", "kh_worksheets/*", "kh-worksheets/*", "semester_exams/*", "exams/*")
         Message  = "Deploy: Curriculum ebooks, textbooks, worksheets, KH-worksheets, and semester exams"
+    },
+    @{
+        Title    = "KH-Ebooks (Grades 7 - 9 & Catalog)"
+        Patterns = @("kh_ebooks/README.txt", "kh_ebooks/catalog.js", "kh_ebooks/grade7/*", "kh_ebooks/grade8/*", "kh_ebooks/grade9/*")
+        Message  = "Deploy: KH-Ebook textbooks for Grades 7, 8, and 9"
+    },
+    @{
+        Title    = "KH-Ebooks (Grade 10)"
+        Patterns = @("kh_ebooks/grade10/*")
+        Message  = "Deploy: KH-Ebook textbooks for Grade 10"
+    },
+    @{
+        Title    = "KH-Ebooks (Grade 11)"
+        Patterns = @("kh_ebooks/grade11/*")
+        Message  = "Deploy: KH-Ebook textbooks for Grade 11"
+    },
+    @{
+        Title    = "KH-Ebooks (Grade 12)"
+        Patterns = @("kh_ebooks/grade12/*")
+        Message  = "Deploy: KH-Ebook textbooks for Grade 12"
     },
     @{
         Title    = "Grade 9 Audiobooks (Chapters 1 - 5)"
