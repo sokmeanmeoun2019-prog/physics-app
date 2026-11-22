@@ -36,6 +36,8 @@ $batches = @(
         Title    = "Core Code & Password Security"
         Patterns = @(
             "index.html", "app.js", "physics-data.js", "physics-figures.js", "styles.css", "auth.js", "auth-config.json",
+            "kh-ebooks.js", "kh-ebooks.css", "kh-ebooks-server.js", "Sync-KH-Ebooks.bat",
+            "site-status.json", "Turn_OFF_Website.bat", "Turn_ON_Website.bat", "site-access-control.ps1",
             "sync-credentials.ps1", "smart-push.ps1", "Upload_To_GitHub.bat",
             ".gitignore", "audio/README.txt", "audiobooks/README.txt", "kh_worksheets/README.txt", "semester_exams/README.txt"
         )
@@ -43,7 +45,7 @@ $batches = @(
     },
     @{
         Title    = "Curriculum E-Books, Worksheets & Semester Exams"
-        Patterns = @("ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*", "kh_worksheets/*", "kh-worksheets/*", "semester_exams/*", "exams/*")
+        Patterns = @("ebooks/*", "kh_ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*", "kh_worksheets/*", "kh-worksheets/*", "semester_exams/*", "exams/*")
         Message  = "Deploy: Curriculum ebooks, textbooks, worksheets, KH-worksheets, and semester exams"
     },
     @{
