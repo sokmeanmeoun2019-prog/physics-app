@@ -25,11 +25,12 @@
     const authState = {
         isAuthenticated: false,
         isAdmin: false,
+        hasRenderedInitialRoute: false,
         isHost: (['localhost', '127.0.0.1', '[::1]'].includes((window.location.hostname || '').toLowerCase()) || window.location.protocol === 'file:'),
         websiteOnline: STATIC_WEBSITE_ONLINE,
         maintenanceUpdatedAt: null,
         pendingWebsiteTargetState: null,
-        sharedPasswordVersion: 51,
+        sharedPasswordVersion: 52,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
@@ -311,29 +312,38 @@
         setMaintenanceState(false);
 
         if (locked) {
+            const wasLocked = document.body.classList.contains('is-locked');
             document.documentElement.classList.remove('wis-pre-auth');
             document.body.classList.add('is-locked');
             const pwInput = getEl('shared-password-input');
-            if (pwInput) {
-                pwInput.value = '';
-                setTimeout(() => {
-                    if (pwInput) {
-                        pwInput.value = '';
-                        pwInput.focus();
-                    }
-                }, 150);
+            if (pwInput && !wasLocked) {
+                if (document.activeElement !== pwInput && !pwInput.value) {
+                    pwInput.value = '';
+                    setTimeout(() => {
+                        if (pwInput && document.body.classList.contains('is-locked') && !pwInput.value) {
+                            pwInput.focus();
+                        }
+                    }, 150);
+                }
             }
         } else {
+            const wasLockedOrPreAuth =
+                document.body.classList.contains('is-locked') ||
+                document.documentElement.classList.contains('wis-pre-auth') ||
+                !authState.hasRenderedInitialRoute;
+            authState.hasRenderedInitialRoute = true;
             document.documentElement.classList.remove('wis-pre-auth');
             document.body.classList.remove('is-locked');
 
-            // Trigger router to properly render active view now that lock is removed
-            if (typeof window.handleRouteHash === 'function') {
-                try { window.handleRouteHash(); } catch (e) {}
-            } else if (typeof window.handleRoute === 'function') {
-                try { window.handleRoute(); } catch (e) {}
-            } else if (typeof window.showDashboard === 'function') {
-                try { window.showDashboard(); } catch (e) {}
+            // Trigger router ONLY when unlocking from lock/pre-auth/initial load (not on 8s background polls or focus)
+            if (wasLockedOrPreAuth) {
+                if (typeof window.handleRouteHash === 'function') {
+                    try { window.handleRouteHash(); } catch (e) {}
+                } else if (typeof window.handleRoute === 'function') {
+                    try { window.handleRoute(); } catch (e) {}
+                } else if (typeof window.showDashboard === 'function') {
+                    try { window.showDashboard(); } catch (e) {}
+                }
             }
         }
     }
@@ -648,7 +658,7 @@
             if (!isStaticHost) {
                 try {
                     const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 1000);
+                    const timeoutId = setTimeout(() => controller.abort(), 2500);
                     const res = await fetch('/api/login', {
                         method: 'POST',
                         credentials: 'include',

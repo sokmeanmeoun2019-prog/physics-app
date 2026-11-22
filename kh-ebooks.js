@@ -322,7 +322,16 @@
         if (autoItems.length === 0) {
             autoItems = await fetchLocalHttpDirEbooks(grade);
         }
-        if (autoItems.length === 0) return catalogItems;
+        if (autoItems.length === 0) {
+            if (catalogItems.length > 0) return catalogItems;
+            const bundled = global.KH_EBOOKS_CATALOG && global.KH_EBOOKS_CATALOG[String(grade)];
+            if (Array.isArray(bundled)) {
+                return bundled
+                    .filter(item => item && String(item.grade) === String(grade) && item.url)
+                    .map(item => ({ ...item, source: 'folder' }));
+            }
+            return [];
+        }
 
         const catalogByUrl = new Map(catalogItems.map(item => [decodeURIComponent(item.url), item]));
         const merged = [];
@@ -597,9 +606,89 @@
     }
 
     // --------------------------------------------------------------------------
-    // PDF.js Reader Lifecycle (Khmer Unicode cMap + Scroll/Single + Zoom + Fullscreen)
+    // PDF.js Reader Lifecycle (Blob Worker + XHR/disableWorker Fallbacks + Lazy Scroll)
     // --------------------------------------------------------------------------
+    let cachedWorkerBlobUrl = null;
+
+    function ensurePdfJsWorker(pdfjs) {
+        if (!pdfjs || !pdfjs.GlobalWorkerOptions) return;
+        const ver = pdfjs.version || '3.11.174';
+        const cdnWorker = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${ver}/pdf.worker.min.js`;
+        const existingSrc = pdfjs.GlobalWorkerOptions.workerSrc || '';
+        if (existingSrc.startsWith('blob:')) return;
+
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if (isIOS) {
+            pdfjs.GlobalWorkerOptions.workerSrc = cdnWorker;
+            return;
+        }
+        if (cachedWorkerBlobUrl) {
+            pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerBlobUrl;
+            return;
+        }
+        try {
+            const blob = new Blob([`importScripts("${cdnWorker}");`], { type: 'application/javascript' });
+            cachedWorkerBlobUrl = URL.createObjectURL(blob);
+            pdfjs.GlobalWorkerOptions.workerSrc = cachedWorkerBlobUrl;
+        } catch (e) {
+            pdfjs.GlobalWorkerOptions.workerSrc = cdnWorker;
+        }
+    }
+
+    function getPdfJsAssetBase(pdfjs) {
+        const ver = (pdfjs && pdfjs.version) || '3.11.174';
+        return {
+            cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${ver}/cmaps/`,
+            standardFontDataUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${ver}/standard_fonts/`
+        };
+    }
+
+    function fetchPdfArrayBuffer(url, useCredentials) {
+        return new Promise((resolve, reject) => {
+            function tryXhr() {
+                try {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, true);
+                    xhr.responseType = 'arraybuffer';
+                    if (useCredentials) xhr.withCredentials = true;
+                    xhr.onload = () => {
+                        if (((xhr.status >= 200 && xhr.status < 300) || xhr.status === 0) && xhr.response && xhr.response.byteLength > 100) {
+                            resolve(xhr.response);
+                        } else {
+                            reject(new Error(`HTTP/XHR ${xhr.status || 0}`));
+                        }
+                    };
+                    xhr.onerror = () => reject(new Error('Network/CORS error loading PDF'));
+                    xhr.send();
+                } catch (e) {
+                    reject(e);
+                }
+            }
+
+            if (typeof fetch === 'function' && !(global.location && global.location.protocol === 'file:')) {
+                fetch(url, {
+                    method: 'GET',
+                    credentials: useCredentials ? 'include' : 'same-origin',
+                    cache: 'no-store'
+                }).then(res => {
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    return res.arrayBuffer();
+                }).then(buf => {
+                    if (buf && buf.byteLength > 100) resolve(buf);
+                    else throw new Error('Empty PDF payload');
+                }).catch(() => tryXhr());
+            } else {
+                tryXhr();
+            }
+        });
+    }
+
     function cancelActiveRenderTasks() {
+        if (state.reader.observer) {
+            try { state.reader.observer.disconnect(); } catch (e) {}
+            state.reader.observer = null;
+        }
         for (const task of state.reader.activeRenderTasks) {
             try {
                 if (task && typeof task.cancel === 'function') task.cancel();
@@ -645,46 +734,141 @@
         updateViewerHeaderAndControls();
         renderStageMessage('<i class="fa-solid fa-spinner fa-spin"></i><p>កំពុងបើកសៀវភៅ (Loading Khmer Ebook PDF...)</p>');
 
-        try {
-            if (!global.pdfjsLib) {
-                throw new Error('PDF viewer engine (PDF.js) is still loading. Please try again in a moment.');
-            }
-            global.pdfjsLib.GlobalWorkerOptions.workerSrc =
-                'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        function renderDiagnosticFallback(errMsg, candidateUrl) {
+            const stage = document.getElementById('kheb-viewer-stage');
+            if (!stage) return;
+            const isFileMode = Boolean(global.location && global.location.protocol === 'file:');
+            const safeOpenUrl = candidateUrl ? escapeHtml(resolveUrl(candidateUrl)) : '';
+            stage.innerHTML = `
+                <div class="kheb-loading-overlay" style="max-width:520px;padding:1.5rem;text-align:center;">
+                    <i class="fa-solid fa-file-circle-exclamation" style="font-size:2.4rem;color:#fbbf24;"></i>
+                    <p style="font-weight:700;font-size:1.05rem;margin:0.25rem 0;">
+                        ${isFileMode ? 'Browser Blocked Direct file:// PDF Access' : 'Unable to Render PDF in Embedded Canvas'}
+                    </p>
+                    <p style="font-size:0.86rem;color:#cbd5e1;line-height:1.5;margin:0;">
+                        ${isFileMode
+                            ? 'Chrome/Edge blocks reading local PDF bytes when opening <code>index.html</code> directly via <code>file://</code>. Double-click <strong>Preview_Website_Locally.bat</strong> in your project folder (opens <code>http://localhost:3000</code>), or open this textbook directly below.'
+                            : escapeHtml(errMsg || 'Unable to load PDF bytes.')}
+                    </p>
+                    ${safeOpenUrl ? `
+                        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:0.5rem;">
+                            <a href="${safeOpenUrl}" target="_blank" rel="noopener noreferrer" class="kheb-btn kheb-btn-primary" style="text-decoration:none;">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Open PDF in New Tab
+                            </a>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
 
-            let pdfSource = null;
+        try {
+            const pdfjs = global.pdfjsLib || global['pdfjs-dist/build/pdf'] || global.PDFJS;
+            if (!pdfjs) {
+                throw new Error('PDF viewer engine (PDF.js) is still loading. Please check internet/CDN access or retry.');
+            }
+            ensurePdfJsWorker(pdfjs);
+            const { cMapUrl, standardFontDataUrl } = getPdfJsAssetBase(pdfjs);
+
+            let pdfDoc = null;
+            let lastErr = null;
 
             if (ebook.source === 'idb') {
                 const rec = await idbGetById(ebook.id);
                 if (!rec || !rec.fileData) {
                     throw new Error('Local ebook file data was not found.');
                 }
-                pdfSource = { data: new Uint8Array(rec.fileData.slice(0)) };
+                const bytes = new Uint8Array(rec.fileData.slice(0));
+                try {
+                    pdfDoc = await pdfjs.getDocument({
+                        data: bytes,
+                        cMapUrl,
+                        cMapPacked: true,
+                        standardFontDataUrl,
+                        useSystemFonts: true,
+                        disableWorker: false
+                    }).promise;
+                } catch (wErr) {
+                    pdfDoc = await pdfjs.getDocument({
+                        data: bytes.slice(0),
+                        cMapUrl,
+                        cMapPacked: true,
+                        standardFontDataUrl,
+                        useSystemFonts: true,
+                        disableWorker: true
+                    }).promise;
+                }
             } else {
-                const fileUrl = (state.backendAvailable && ebook.source === 'server-folder')
-                    ? resolveUrl(`api/kh-ebooks/file/${encodeURIComponent(g)}/${encodeURIComponent(ebook.id)}`)
-                    : resolveUrl(ebook.url);
-                pdfSource = {
-                    url: fileUrl,
-                    withCredentials: state.backendAvailable,
-                    cMapUrl: PDFJS_CMAP_URL,
-                    cMapPacked: true,
-                    standardFontDataUrl: PDFJS_STANDARD_FONTS_URL,
-                    useSystemFonts: true,
-                    rangeChunkSize: 65536 * 4,
-                    disableAutoFetch: false
-                };
-            }
+                const candidateUrls = [];
+                if (state.backendAvailable && ebook.source === 'server-folder') {
+                    candidateUrls.push(resolveUrl(`api/kh-ebooks/file/${encodeURIComponent(g)}/${encodeURIComponent(ebook.id)}`));
+                }
+                if (ebook.url) {
+                    const u = resolveUrl(ebook.url);
+                    if (!candidateUrls.includes(u)) candidateUrls.push(u);
+                }
 
-            if (typeof pdfSource === 'object' && !pdfSource.cMapUrl) {
-                pdfSource.cMapUrl = PDFJS_CMAP_URL;
-                pdfSource.cMapPacked = true;
-                pdfSource.standardFontDataUrl = PDFJS_STANDARD_FONTS_URL;
-                pdfSource.useSystemFonts = true;
-            }
+                // Tier 1: High-speed HTTP Range streaming (for http/https servers)
+                if (global.location && global.location.protocol.startsWith('http')) {
+                    for (const u of candidateUrls) {
+                        if (gen !== state.reader.renderGeneration) return;
+                        try {
+                            pdfDoc = await pdfjs.getDocument({
+                                url: u,
+                                withCredentials: state.backendAvailable,
+                                cMapUrl,
+                                cMapPacked: true,
+                                standardFontDataUrl,
+                                useSystemFonts: true,
+                                rangeChunkSize: 65536 * 4,
+                                disableAutoFetch: false,
+                                disableStream: false,
+                                disableWorker: false
+                            }).promise;
+                            if (pdfDoc) break;
+                        } catch (e1) {
+                            lastErr = e1;
+                        }
+                    }
+                }
 
-            const loadingTask = global.pdfjsLib.getDocument(pdfSource);
-            const pdfDoc = await loadingTask.promise;
+                // Tier 2 & 3: Direct ArrayBuffer download + Blob worker -> disableWorker: true fallback
+                if (!pdfDoc) {
+                    for (const u of candidateUrls) {
+                        if (gen !== state.reader.renderGeneration) return;
+                        try {
+                            const buf = await fetchPdfArrayBuffer(u, state.backendAvailable);
+                            if (gen !== state.reader.renderGeneration) return;
+                            const bytes = new Uint8Array(buf);
+                            try {
+                                pdfDoc = await pdfjs.getDocument({
+                                    data: bytes,
+                                    cMapUrl,
+                                    cMapPacked: true,
+                                    standardFontDataUrl,
+                                    useSystemFonts: true,
+                                    disableWorker: false
+                                }).promise;
+                            } catch (eWorker) {
+                                pdfDoc = await pdfjs.getDocument({
+                                    data: new Uint8Array(buf),
+                                    cMapUrl,
+                                    cMapPacked: true,
+                                    standardFontDataUrl,
+                                    useSystemFonts: true,
+                                    disableWorker: true
+                                }).promise;
+                            }
+                            if (pdfDoc) break;
+                        } catch (e2) {
+                            lastErr = e2;
+                        }
+                    }
+                }
+
+                if (!pdfDoc) {
+                    throw lastErr || new Error('Could not load PDF document.');
+                }
+            }
 
             if (gen !== state.reader.renderGeneration) {
                 try { pdfDoc.destroy(); } catch (e) {}
@@ -702,11 +886,7 @@
             if (gen !== state.reader.renderGeneration) return;
             state.reader.loading = false;
             state.reader.error = err && err.message ? err.message : 'Unable to render this PDF file.';
-            renderStageMessage(
-                `<i class="fa-solid fa-triangle-exclamation" style="color:#f87171;"></i>
-                 <p style="font-weight:700;">Unable to load PDF</p>
-                 <p style="font-size:0.85rem;opacity:0.85;">${escapeHtml(state.reader.error)}</p>`
-            );
+            renderDiagnosticFallback(state.reader.error, ebook.url);
             updateViewerHeaderAndControls();
         }
     }
@@ -725,49 +905,52 @@
         return Math.max(0.45, Math.min(2.6, fit));
     }
 
-    async function renderSingleCanvasPage(pageNum, stage, gen) {
+    async function renderCanvasIntoFrame(pageNum, frame, stageWidth, gen) {
         if (!state.reader.pdfDoc || gen !== state.reader.renderGeneration) return;
-        const page = await state.reader.pdfDoc.getPage(pageNum);
-        if (gen !== state.reader.renderGeneration) return;
+        if (!frame || frame.dataset.rendered === '1' || frame.dataset.rendering === '1') return;
+        frame.dataset.rendering = '1';
 
-        const scale = computeEffectiveScale(page, stage.clientWidth || 720);
-        const viewport = page.getViewport({ scale });
-        const dpr = Math.min(global.devicePixelRatio || 1, 2);
-
-        const frame = document.createElement('div');
-        frame.className = 'kheb-page-frame';
-        frame.dataset.page = String(pageNum);
-        frame.style.width = `${Math.floor(viewport.width)}px`;
-
-        const canvas = document.createElement('canvas');
-        canvas.className = 'kheb-page-canvas';
-        canvas.width = Math.floor(viewport.width * dpr);
-        canvas.height = Math.floor(viewport.height * dpr);
-        canvas.style.width = `${Math.floor(viewport.width)}px`;
-        canvas.style.height = `${Math.floor(viewport.height)}px`;
-
-        const badge = document.createElement('div');
-        badge.className = 'kheb-page-badge';
-        badge.textContent = `${pageNum} / ${state.reader.totalPages}`;
-
-        frame.appendChild(canvas);
-        frame.appendChild(badge);
-        stage.appendChild(frame);
-
-        const ctx = canvas.getContext('2d');
-        const renderCtx = {
-            canvasContext: ctx,
-            viewport,
-            transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null
-        };
-        const task = page.render(renderCtx);
-        state.reader.activeRenderTasks.push(task);
         try {
+            const page = await state.reader.pdfDoc.getPage(pageNum);
+            if (gen !== state.reader.renderGeneration) return;
+
+            const scale = computeEffectiveScale(page, stageWidth || 720);
+            const viewport = page.getViewport({ scale });
+            const dpr = Math.min(global.devicePixelRatio || 1, 2);
+
+            frame.style.width = `${Math.floor(viewport.width)}px`;
+            frame.style.height = `${Math.floor(viewport.height)}px`;
+
+            let canvas = frame.querySelector('canvas');
+            if (!canvas) {
+                canvas = document.createElement('canvas');
+                canvas.className = 'kheb-page-canvas';
+                frame.insertBefore(canvas, frame.firstChild);
+            }
+            canvas.width = Math.floor(viewport.width * dpr);
+            canvas.height = Math.floor(viewport.height * dpr);
+            canvas.style.width = `${Math.floor(viewport.width)}px`;
+            canvas.style.height = `${Math.floor(viewport.height)}px`;
+
+            const placeholder = frame.querySelector('.kheb-page-placeholder');
+            if (placeholder) placeholder.remove();
+
+            const ctx = canvas.getContext('2d');
+            const renderCtx = {
+                canvasContext: ctx,
+                viewport,
+                transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null
+            };
+            const task = page.render(renderCtx);
+            state.reader.activeRenderTasks.push(task);
             await task.promise;
+            frame.dataset.rendered = '1';
         } catch (err) {
             if (!err || err.name !== 'RenderingCancelledException') {
-                throw err;
+                console.warn(`KH-Ebook page ${pageNum} render notice:`, err);
             }
+        } finally {
+            frame.dataset.rendering = '0';
         }
     }
 
@@ -779,21 +962,78 @@
         const gen = state.reader.renderGeneration;
         stage.innerHTML = '';
 
+        const stageWidth = stage.clientWidth || 720;
+        const firstPage = await state.reader.pdfDoc.getPage(state.reader.viewMode === 'single' ? state.reader.pageNum : 1);
+        if (gen !== state.reader.renderGeneration) return;
+
+        const baseScale = computeEffectiveScale(firstPage, stageWidth);
+        const baseViewport = firstPage.getViewport({ scale: baseScale });
+        const estW = Math.floor(baseViewport.width);
+        const estH = Math.floor(baseViewport.height);
+
         if (state.reader.viewMode === 'single') {
-            await renderSingleCanvasPage(state.reader.pageNum, stage, gen);
+            const p = state.reader.pageNum;
+            const frame = document.createElement('div');
+            frame.className = 'kheb-page-frame';
+            frame.dataset.page = String(p);
+            frame.style.width = `${estW}px`;
+            frame.style.height = `${estH}px`;
+            const badge = document.createElement('div');
+            badge.className = 'kheb-page-badge';
+            badge.textContent = `${p} / ${state.reader.totalPages}`;
+            frame.appendChild(badge);
+            stage.appendChild(frame);
             stage.scrollTop = 0;
+            await renderCanvasIntoFrame(p, frame, stageWidth, gen);
             updateViewerHeaderAndControls();
             return;
         }
 
-        // Scroll mode: progressive rendering with batching so large textbooks stay fast & responsive
         const total = state.reader.totalPages;
+        const frag = document.createDocumentFragment();
+        const frames = [];
         for (let p = 1; p <= total; p++) {
+            const frame = document.createElement('div');
+            frame.className = 'kheb-page-frame';
+            frame.dataset.page = String(p);
+            frame.style.width = `${estW}px`;
+            frame.style.height = `${estH}px`;
+            frame.innerHTML = `
+                <div class="kheb-page-placeholder" style="display:flex;align-items:center;justify-content:center;height:100%;color:#64748b;font-size:0.9rem;">
+                    <span>Page ${p} / ${total}</span>
+                </div>
+                <div class="kheb-page-badge">${p} / ${total}</div>
+            `;
+            frames.push(frame);
+            frag.appendChild(frame);
+        }
+        stage.appendChild(frag);
+
+        // Render initial pages immediately
+        const initialCount = Math.min(total, 3);
+        for (let i = 0; i < initialCount; i++) {
             if (gen !== state.reader.renderGeneration) return;
-            await renderSingleCanvasPage(p, stage, gen);
-            if (p === 1) updateViewerHeaderAndControls();
+            await renderCanvasIntoFrame(i + 1, frames[i], stageWidth, gen);
         }
         updateViewerHeaderAndControls();
+
+        // Lazy-render remaining pages as student scrolls
+        if (typeof IntersectionObserver === 'function') {
+            const observer = new IntersectionObserver((entries) => {
+                for (const entry of entries) {
+                    if (!entry.isIntersecting || gen !== state.reader.renderGeneration) continue;
+                    const frame = entry.target;
+                    const pNum = Number(frame.dataset.page) || 1;
+                    renderCanvasIntoFrame(pNum, frame, stage.clientWidth || stageWidth, gen);
+                }
+            }, {
+                root: stage,
+                rootMargin: '700px 0px',
+                threshold: 0.01
+            });
+            state.reader.observer = observer;
+            for (const f of frames) observer.observe(f);
+        }
     }
 
     function goToPage(targetPage) {

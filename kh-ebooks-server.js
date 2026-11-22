@@ -58,6 +58,26 @@ function readRawCatalog(baseDir, grade) {
     return [];
 }
 
+function writeCombinedCatalogJs(baseDir) {
+    try {
+        const rootDir = path.join(baseDir, 'kh_ebooks');
+        if (!fs.existsSync(rootDir)) fs.mkdirSync(rootDir, { recursive: true });
+
+        const combined = {};
+        for (const g of ALLOWED_GRADES) {
+            combined[g] = readRawCatalog(baseDir, g);
+        }
+
+        const outPath = path.join(rootDir, 'catalog.js');
+        const tmpPath = `${outPath}.${crypto.randomBytes(4).toString('hex')}.tmp`;
+        const content =
+            `// Auto-generated KH-Ebook catalog index (supports offline file:// & GitHub Pages)\n` +
+            `window.KH_EBOOKS_CATALOG = ${JSON.stringify(combined, null, 2)};\n`;
+        fs.writeFileSync(tmpPath, content, 'utf8');
+        fs.renameSync(tmpPath, outPath);
+    } catch (e) {}
+}
+
 function writeCatalog(baseDir, grade, ebooks) {
     const { catalogPath } = ensureGradeStorage(baseDir, grade);
     const cleanList = (Array.isArray(ebooks) ? ebooks : []).filter(item => item && String(item.grade) === String(grade));
@@ -68,6 +88,7 @@ function writeCatalog(baseDir, grade, ebooks) {
         ebooks: cleanList
     }, null, 2), 'utf8');
     fs.renameSync(tmpPath, catalogPath);
+    writeCombinedCatalogJs(baseDir);
     return cleanList;
 }
 
@@ -174,6 +195,7 @@ function syncAllCatalogs(baseDir) {
     for (const g of ALLOWED_GRADES) {
         syncGradeCatalog(baseDir, g);
     }
+    writeCombinedCatalogJs(baseDir);
 }
 
 function sanitizeFileName(name) {
