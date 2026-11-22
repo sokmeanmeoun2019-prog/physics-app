@@ -89,14 +89,24 @@ $batches = @(
         Message  = "Deploy: MOEYS Supplementary materials for Grade 12"
     },
     @{
-        Title    = "My Textbooks (Grades 9-10 & Catalog)"
-        Patterns = @("my_textbooks/README.txt", "my_textbooks/catalog.js", "my_textbooks/grade9/*", "my_textbooks/grade10/*")
-        Message  = "Deploy: My Textbook library for Grades 9 and 10"
+        Title    = "My Textbooks (Grade 9 & Catalog)"
+        Patterns = @("my_textbooks/README.txt", "my_textbooks/catalog.js", "my_textbooks/grade9/*")
+        Message  = "Deploy: My Textbook library for Grade 9"
     },
     @{
-        Title    = "My Textbooks (Grades 11-12)"
-        Patterns = @("my_textbooks/grade11/*", "my_textbooks/grade12/*")
-        Message  = "Deploy: My Textbook library for Grades 11 and 12"
+        Title    = "My Textbooks (Grade 10)"
+        Patterns = @("my_textbooks/grade10/*")
+        Message  = "Deploy: My Textbook library for Grade 10"
+    },
+    @{
+        Title    = "My Textbooks (Grade 11)"
+        Patterns = @("my_textbooks/grade11/*")
+        Message  = "Deploy: My Textbook library for Grade 11"
+    },
+    @{
+        Title    = "My Textbooks (Grade 12)"
+        Patterns = @("my_textbooks/grade12/*")
+        Message  = "Deploy: My Textbook library for Grade 12"
     },
     @{
         Title    = "Grade 9 Audiobooks (Chapters 1 - 5)"

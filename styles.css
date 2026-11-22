@@ -1212,7 +1212,7 @@ button:active, .nav-btn:active, .btn-grade:active, .nav-back-pill:active, .works
     transform: scaleX(1);
 }
 
-/* Rounded Pill Highlight & Soft Shadow for Standard Navigation Tabs (Grades 7-12) */
+/* Colorful Rounded Pill Highlight & Soft Shadow for Standard Navigation Tabs (Grades 7-12) */
 .lesson-tabs .tab-btn[data-target="summary"],
 .lesson-tabs .tab-btn[data-target="ebook"],
 .lesson-tabs .tab-btn[data-target="equations"],
@@ -1220,12 +1220,15 @@ button:active, .nav-btn:active, .btn-grade:active, .nav-back-pill:active, .works
 .lesson-tabs .tab-btn[data-target="quiz"],
 .lesson-tabs .tab-btn[data-target="worksheet"],
 .lesson-tabs .tab-btn[data-target="game"] {
-    border-radius: 999px;
-    padding: 0.45rem 1rem;
-    border: 1.5px solid transparent;
-    background-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px !important;
+    padding: 0.45rem 1rem !important;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
     cursor: pointer;
-    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    transition: all 0.25s ease;
 }
 
 .lesson-tabs .tab-btn[data-target="summary"]::after,
@@ -1235,34 +1238,112 @@ button:active, .nav-btn:active, .btn-grade:active, .nav-back-pill:active, .works
 .lesson-tabs .tab-btn[data-target="quiz"]::after,
 .lesson-tabs .tab-btn[data-target="worksheet"]::after,
 .lesson-tabs .tab-btn[data-target="game"]::after {
-    display: none;
+    display: none !important;
 }
 
+/* Summary (Royal Blue) */
+.lesson-tabs .tab-btn[data-target="summary"] {
+    color: #1d4ed8;
+    background: #dbeafe;
+    border: 1.5px solid #bfdbfe;
+}
 .lesson-tabs .tab-btn[data-target="summary"]:hover,
-.lesson-tabs .tab-btn[data-target="ebook"]:hover,
-.lesson-tabs .tab-btn[data-target="equations"]:hover,
-.lesson-tabs .tab-btn[data-target="flashcards"]:hover,
-.lesson-tabs .tab-btn[data-target="quiz"]:hover,
-.lesson-tabs .tab-btn[data-target="worksheet"]:hover,
-.lesson-tabs .tab-btn[data-target="game"]:hover {
-    background-color: rgba(26, 115, 232, 0.1);
-    color: var(--primary-blue);
-    border-color: rgba(26, 115, 232, 0.28);
-    box-shadow: 0 3px 10px rgba(26, 115, 232, 0.16);
+.lesson-tabs .tab-btn[data-target="summary"].active {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    border-color: #1d4ed8;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.32);
 }
 
-.lesson-tabs .tab-btn[data-target="summary"].active,
-.lesson-tabs .tab-btn[data-target="ebook"].active,
-.lesson-tabs .tab-btn[data-target="equations"].active,
-.lesson-tabs .tab-btn[data-target="flashcards"].active,
-.lesson-tabs .tab-btn[data-target="quiz"].active,
-.lesson-tabs .tab-btn[data-target="worksheet"].active,
+/* Ebook (Cyan / Sky) */
+.lesson-tabs .tab-btn[data-target="ebook"] {
+    color: #0e7490;
+    background: #cffafe;
+    border: 1.5px solid #a5f3fc;
+}
+.lesson-tabs .tab-btn[data-target="ebook"]:hover,
+.lesson-tabs .tab-btn[data-target="ebook"].active {
+    background: linear-gradient(135deg, #06b6d4, #0284c7);
+    color: #ffffff;
+    border-color: #0891b2;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.32);
+}
+
+/* Equations (Violet / Purple) */
+.lesson-tabs .tab-btn[data-target="equations"] {
+    color: #6d28d9;
+    background: #ede9fe;
+    border: 1.5px solid #ddd6fe;
+}
+.lesson-tabs .tab-btn[data-target="equations"]:hover,
+.lesson-tabs .tab-btn[data-target="equations"].active {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: #ffffff;
+    border-color: #6d28d9;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.32);
+}
+
+/* Flashcards (Rose / Coral) */
+.lesson-tabs .tab-btn[data-target="flashcards"] {
+    color: #be123c;
+    background: #ffe4e6;
+    border: 1.5px solid #fecdd3;
+}
+.lesson-tabs .tab-btn[data-target="flashcards"]:hover,
+.lesson-tabs .tab-btn[data-target="flashcards"].active {
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    color: #ffffff;
+    border-color: #e11d48;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.32);
+}
+
+/* Quiz (Warm Orange) */
+.lesson-tabs .tab-btn[data-target="quiz"] {
+    color: #c2410c;
+    background: #ffedd5;
+    border: 1.5px solid #fed7aa;
+}
+.lesson-tabs .tab-btn[data-target="quiz"]:hover,
+.lesson-tabs .tab-btn[data-target="quiz"].active {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #ffffff;
+    border-color: #ea580c;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.32);
+}
+
+/* EN-Worksheet (Cerulean Blue) */
+.lesson-tabs .tab-btn[data-target="worksheet"] {
+    color: #0369a1;
+    background: #e0f2fe;
+    border: 1.5px solid #bae6fd;
+}
+.lesson-tabs .tab-btn[data-target="worksheet"]:hover,
+.lesson-tabs .tab-btn[data-target="worksheet"].active {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    color: #ffffff;
+    border-color: #0284c7;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.32);
+}
+
+/* Game (Magenta / Pink) */
+.lesson-tabs .tab-btn[data-target="game"] {
+    color: #be185d;
+    background: #fce7f3;
+    border: 1.5px solid #fbcfe8;
+}
+.lesson-tabs .tab-btn[data-target="game"]:hover,
 .lesson-tabs .tab-btn[data-target="game"].active {
-    background-color: rgba(26, 115, 232, 0.14);
-    color: var(--primary-blue);
-    border-color: rgba(26, 115, 232, 0.38);
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.22);
+    background: linear-gradient(135deg, #ec4899, #db2777);
+    color: #ffffff;
+    border-color: #db2777;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.32);
 }
 
 .tab-btn-special {
