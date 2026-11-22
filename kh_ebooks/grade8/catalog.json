@@ -1,5 +1,20 @@
 {
   "grade": "8",
-  "updatedAt": "2026-11-22T00:00:00.000Z",
-  "ebooks": []
+  "updatedAt": "2026-11-22T00:40:24.041Z",
+  "ebooks": [
+    {
+      "id": "kheb-g8-3f0caecd1a",
+      "grade": "8",
+      "title": "Grade8 Physics KH Full Textbook",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "Grade8_Physics_KH_Full_Textbook.pdf",
+      "storedName": "Grade8_Physics_KH_Full_Textbook.pdf",
+      "url": "kh_ebooks/grade8/Grade8_Physics_KH_Full_Textbook.pdf",
+      "ext": ".pdf",
+      "size": 18091420,
+      "createdAt": "2026-11-22T00:36:43.063Z",
+      "updatedAt": "2026-11-22T00:36:45.931Z"
+    }
+  ]
 }

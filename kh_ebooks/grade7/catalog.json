@@ -1,5 +1,20 @@
 {
   "grade": "7",
-  "updatedAt": "2026-11-22T00:00:00.000Z",
-  "ebooks": []
+  "updatedAt": "2026-11-22T00:40:24.034Z",
+  "ebooks": [
+    {
+      "id": "kheb-g7-04b595c0ae",
+      "grade": "7",
+      "title": "Grade7 Physics KH Full Textbook",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "Grade7_Physics_KH_Full_Textbook.pdf",
+      "storedName": "Grade7_Physics_KH_Full_Textbook.pdf",
+      "url": "kh_ebooks/grade7/Grade7_Physics_KH_Full_Textbook.pdf",
+      "ext": ".pdf",
+      "size": 16888677,
+      "createdAt": "2026-11-22T00:35:59.781Z",
+      "updatedAt": "2026-11-22T00:36:02.842Z"
+    }
+  ]
 }

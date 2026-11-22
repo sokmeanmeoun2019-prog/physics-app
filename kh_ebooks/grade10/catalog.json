@@ -1,5 +1,20 @@
 {
   "grade": "10",
-  "updatedAt": "2026-11-22T00:00:00.000Z",
-  "ebooks": []
+  "updatedAt": "2026-11-22T00:40:24.055Z",
+  "ebooks": [
+    {
+      "id": "kheb-g10-b329375979",
+      "grade": "10",
+      "title": "Grade10 Physics KH Full Textbook",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "Grade10_Physics_KH_Full_Textbook.pdf",
+      "storedName": "Grade10_Physics_KH_Full_Textbook.pdf",
+      "url": "kh_ebooks/grade10/Grade10_Physics_KH_Full_Textbook.pdf",
+      "ext": ".pdf",
+      "size": 39662695,
+      "createdAt": "2026-11-22T00:38:47.984Z",
+      "updatedAt": "2026-11-22T00:38:56.071Z"
+    }
+  ]
 }

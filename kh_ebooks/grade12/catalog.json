@@ -1,5 +1,20 @@
 {
   "grade": "12",
-  "updatedAt": "2026-11-22T00:00:00.000Z",
-  "ebooks": []
+  "updatedAt": "2026-11-22T00:40:24.070Z",
+  "ebooks": [
+    {
+      "id": "kheb-g12-97bc3766a3",
+      "grade": "12",
+      "title": "Grade12 Physics KH Full Textbook",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "Grade12_Physics_KH_Full_Textbook.pdf",
+      "storedName": "Grade12_Physics_KH_Full_Textbook.pdf",
+      "url": "kh_ebooks/grade12/Grade12_Physics_KH_Full_Textbook.pdf",
+      "ext": ".pdf",
+      "size": 52790204,
+      "createdAt": "2026-11-22T00:39:43.728Z",
+      "updatedAt": "2026-11-22T00:39:54.927Z"
+    }
+  ]
 }

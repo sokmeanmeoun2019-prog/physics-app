@@ -1,5 +1,20 @@
 {
   "grade": "9",
-  "updatedAt": "2026-11-22T00:00:00.000Z",
-  "ebooks": []
+  "updatedAt": "2026-11-22T00:40:24.047Z",
+  "ebooks": [
+    {
+      "id": "kheb-g9-c87bd0b2c1",
+      "grade": "9",
+      "title": "Grade9 Physics KH Full Textbook",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "Grade9_Physics_KH_Full_Textbook.pdf",
+      "storedName": "Grade9_Physics_KH_Full_Textbook.pdf",
+      "url": "kh_ebooks/grade9/Grade9_Physics_KH_Full_Textbook.pdf",
+      "ext": ".pdf",
+      "size": 18518363,
+      "createdAt": "2026-11-22T00:38:15.591Z",
+      "updatedAt": "2026-11-22T00:38:17.990Z"
+    }
+  ]
 }

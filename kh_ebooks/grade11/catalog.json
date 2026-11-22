@@ -1,5 +1,20 @@
 {
   "grade": "11",
-  "updatedAt": "2026-11-22T00:00:00.000Z",
-  "ebooks": []
+  "updatedAt": "2026-11-22T00:40:24.064Z",
+  "ebooks": [
+    {
+      "id": "kheb-g11-0146c7ffb5",
+      "grade": "11",
+      "title": "Grade11 Physics KH Full Textbook",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "Grade11_Physics_KH_Full_Textbook.pdf",
+      "storedName": "Grade11_Physics_KH_Full_Textbook.pdf",
+      "url": "kh_ebooks/grade11/Grade11_Physics_KH_Full_Textbook.pdf",
+      "ext": ".pdf",
+      "size": 50634477,
+      "createdAt": "2026-11-22T00:39:19.084Z",
+      "updatedAt": "2026-11-22T00:39:28.579Z"
+    }
+  ]
 }
