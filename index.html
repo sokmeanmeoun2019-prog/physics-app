@@ -49,8 +49,8 @@
                     document.documentElement.classList.add('wis-pre-maintenance');
                 }
 
-                var currentVer = 55;
-                var LATEST_BUILD = '20261122093453';
+                var currentVer = 56;
+                var LATEST_BUILD = '20261122095700';
                 var storedBuild = localStorage.getItem('wis_build_ts');
                 if (storedBuild !== LATEST_BUILD) {
                     localStorage.setItem('wis_build_ts', LATEST_BUILD);
@@ -101,7 +101,7 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=55&build=20261122093453">
+    <link rel="stylesheet" href="styles.css?v=56&build=20261122095700">
     <link rel="stylesheet" href="summary-slides.css?v=2&build=20261121070500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="kh-ebooks.css?v=1&build=20261122071500">
@@ -149,8 +149,8 @@
             } catch(e) {}
         })();
     </script>
-    <script src="physics-figures.js?v=55&build=20261122093453"></script>
-    <script src="physics-data.js?v=55&build=20261122093453"></script>
+    <script src="physics-figures.js?v=56&build=20261122095700"></script>
+    <script src="physics-data.js?v=56&build=20261122095700"></script>
     <script id="inline-physics-data">
         window.physicsData = window.physicsData || { "7": [], "8": [], "9": [], "10": [], "11": [], "12": [] };
         window.appData = window.physicsData;
@@ -2100,7 +2100,7 @@
         ];
         }
     </script>
-    <script src="physics-data.js?v=55&build=20261122093453"></script>
+    <script src="physics-data.js?v=56&build=20261122095700"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -3487,9 +3487,167 @@
             }
         }
 
-        function renderDiplomaContent() {
+        window.__khPhySyncState = { fetching: false, lastFetchAt: 0, lastSig: '', canManage: false };
+
+        function escapeDiplomaHtml(str) {
+            return String(str == null ? '' : str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function mergeKhPhyDiplomaResources(extraItems, builtinStatus) {
+            var list = Array.isArray(window.GRADE9_DIPLOMA_RESOURCES) ? window.GRADE9_DIPLOMA_RESOURCES : [];
+            var baseList = list.filter(function(item) { return item && !item.isDiscovered; });
+            var extras = Array.isArray(extraItems) ? extraItems : [];
+
+            if (builtinStatus && typeof builtinStatus === 'object') {
+                baseList.forEach(function(item) {
+                    if (item.id === 'g9-kh-phy-diploma-exam' && builtinStatus.examFile && builtinStatus.examFile.url) {
+                        item.url = builtinStatus.examFile.url;
+                        item.detectedSize = builtinStatus.examFile.size || 0;
+                    } else if (item.id === 'g9-kh-phy-diploma-prep' && builtinStatus.prepFile && builtinStatus.prepFile.url) {
+                        item.url = builtinStatus.prepFile.url;
+                        item.detectedSize = builtinStatus.prepFile.size || 0;
+                    }
+                });
+            }
+
+            var seenIds = {};
+            var seenUrls = {};
+            baseList.forEach(function(item) {
+                if (item.id) seenIds[item.id] = true;
+                if (item.url) seenUrls[String(item.url).toLowerCase()] = true;
+            });
+
+            var merged = baseList.slice();
+            extras.forEach(function(ex) {
+                if (!ex || !ex.id || !ex.url) return;
+                var uLow = String(ex.url).toLowerCase();
+                if (seenIds[ex.id] || seenUrls[uLow]) return;
+                seenIds[ex.id] = true;
+                seenUrls[uLow] = true;
+                merged.push(Object.assign({}, ex, { category: 'kh-phy', isDiscovered: true }));
+            });
+
+            window.GRADE9_DIPLOMA_RESOURCES = merged;
+            window.GRADE9_KH_PHY_DIPLOMA_RESOURCES = merged.filter(function(r) {
+                return r && r.category === 'kh-phy';
+            });
+            return merged;
+        }
+
+        function refreshKhPhyDiplomaFromServer() {
+            if (!/^https?:$/i.test(window.location.protocol)) return;
+            var st = window.__khPhySyncState;
+            var now = Date.now();
+            if (st.fetching || (now - st.lastFetchAt) < 1500) return;
+            st.fetching = true;
+            st.lastFetchAt = now;
+
+            fetch('/api/kh-phy-diploma', { credentials: 'same-origin', cache: 'no-store' })
+                .then(function(res) { return res.ok ? res.json() : null; })
+                .then(function(data) {
+                    if (!data || !data.success) return;
+                    var nextItems = Array.isArray(data.items) ? data.items : [];
+                    var nextCanManage = Boolean(data.canManage);
+                    var nextSig = JSON.stringify({ items: nextItems.map(function(i) { return i.id + ':' + i.size; }), builtins: data.builtins || null, canManage: nextCanManage });
+                    window.KH_PHY_DIPLOMA_EXTRA_RESOURCES = nextItems;
+                    window.KH_PHY_DIPLOMA_BUILTINS = data.builtins || null;
+                    if (nextSig !== st.lastSig || nextCanManage !== st.canManage) {
+                        st.lastSig = nextSig;
+                        st.canManage = nextCanManage;
+                        mergeKhPhyDiplomaResources(nextItems, data.builtins);
+                        if (window.currentGrade === '9' || (document.getElementById('tab-diploma') && !document.getElementById('tab-diploma').classList.contains('hidden'))) {
+                            renderDiplomaContent({ skipFetch: true });
+                        }
+                    }
+                })
+                .catch(function() {})
+                .finally(function() { st.fetching = false; });
+        }
+
+        window.triggerKhPhyDiplomaUpload = function(inputEl) {
+            if (!inputEl || !inputEl.files || !inputEl.files.length) return;
+            var files = Array.prototype.slice.call(inputEl.files);
+            var statusEl = document.getElementById('kh-phy-upload-status');
+            if (statusEl) {
+                statusEl.style.display = 'inline-flex';
+                statusEl.textContent = 'Uploading ' + files.length + ' PDF(s)...';
+            }
+
+            (async function() {
+                var uploadedCount = 0;
+                var lastErr = '';
+                for (var i = 0; i < files.length; i++) {
+                    var f = files[i];
+                    try {
+                        var res = await fetch('/api/kh-phy-diploma/upload?filename=' + encodeURIComponent(f.name), {
+                            method: 'POST',
+                            credentials: 'same-origin',
+                            headers: { 'Content-Type': 'application/pdf' },
+                            body: f
+                        });
+                        var data = await res.json();
+                        if (res.ok && data && data.success) {
+                            uploadedCount++;
+                            window.KH_PHY_DIPLOMA_EXTRA_RESOURCES = data.items || [];
+                        } else {
+                            lastErr = (data && data.message) || ('Upload failed (' + res.status + ')');
+                        }
+                    } catch (e) {
+                        lastErr = e.message || 'Network upload failed';
+                    }
+                }
+                inputEl.value = '';
+                window.__khPhySyncState.lastSig = '';
+                window.__khPhySyncState.lastFetchAt = 0;
+                mergeKhPhyDiplomaResources(window.KH_PHY_DIPLOMA_EXTRA_RESOURCES, window.KH_PHY_DIPLOMA_BUILTINS);
+                renderDiplomaContent({ skipFetch: true });
+                var st2 = document.getElementById('kh-phy-upload-status');
+                if (st2) {
+                    st2.style.display = 'inline-flex';
+                    st2.textContent = uploadedCount > 0
+                        ? ('Added ' + uploadedCount + ' file(s)!' + (lastErr ? ' (' + lastErr + ')' : ''))
+                        : (lastErr || 'Upload failed.');
+                }
+            })();
+        };
+
+        window.deleteKhPhyDiplomaExtra = function(itemId) {
+            if (!itemId) return;
+            var found = (window.GRADE9_DIPLOMA_RESOURCES || []).find(function(r) { return r && r.id === itemId; });
+            var titleText = (found && found.title) ? found.title : 'this KH-Phy PDF';
+            if (!window.confirm('Remove "' + titleText + '" from KH-Phy Diploma?')) return;
+            fetch('/api/kh-phy-diploma/' + encodeURIComponent(itemId), {
+                method: 'DELETE',
+                credentials: 'same-origin'
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data && data.success) {
+                    window.KH_PHY_DIPLOMA_EXTRA_RESOURCES = data.items || [];
+                    window.__khPhySyncState.lastSig = '';
+                    mergeKhPhyDiplomaResources(window.KH_PHY_DIPLOMA_EXTRA_RESOURCES, window.KH_PHY_DIPLOMA_BUILTINS);
+                    renderDiplomaContent({ skipFetch: true });
+                } else {
+                    alert((data && data.message) || 'Could not remove file.');
+                }
+            })
+            .catch(function() { alert('Could not contact local server.'); });
+        };
+
+        function renderDiplomaContent(opts) {
+            mergeKhPhyDiplomaResources(window.KH_PHY_DIPLOMA_EXTRA_RESOURCES, window.KH_PHY_DIPLOMA_BUILTINS);
+            if (!opts || !opts.skipFetch) {
+                refreshKhPhyDiplomaFromServer();
+            }
+
             var list = window.GRADE9_DIPLOMA_RESOURCES || [];
             var currentCat = window.activeDiplomaCategory || 'all';
+            var canManageKh = Boolean(window.__khPhySyncState && window.__khPhySyncState.canManage);
 
             var nationalItems = list.filter(function(item) { return item.category !== 'kh-phy'; });
             var khPhyItems = list.filter(function(item) { return item.category === 'kh-phy'; });
@@ -3505,19 +3663,29 @@
                 return '<div class="exam-resources-grid">' +
                     items.map(function(item) {
                         var isKh = (item.category === 'kh-phy');
+                        var safeId = escapeDiplomaHtml(item.id);
+                        var safeTitle = escapeDiplomaHtml(item.title || 'Diploma Resource');
+                        var safeSub = escapeDiplomaHtml(item.subtitle || '');
+                        var safeDesc = escapeDiplomaHtml(item.description || '');
+                        var safeType = escapeDiplomaHtml(item.type || (isKh ? 'KH-Phy Paper' : 'Exam Paper'));
+                        var safeYear = escapeDiplomaHtml(item.year || '');
                         var badgeText = isKh 
-                            ? '<i class="fa-solid fa-file-signature"></i> ' + (item.type || 'KH-Phy Paper') 
-                            : '<i class="fa-solid fa-file-pdf"></i> ' + (item.type || 'Exam Paper');
+                            ? '<i class="fa-solid fa-file-signature"></i> ' + safeType 
+                            : '<i class="fa-solid fa-file-pdf"></i> ' + safeType;
+                        var deleteBtn = (isKh && canManageKh && item.deletable)
+                            ? '<button type="button" onclick="deleteKhPhyDiplomaExtra(\'' + safeId + '\')" title="Remove uploaded PDF" style="display:inline-flex; align-items:center; justify-content:center; padding:0.65rem 0.85rem; border-radius:10px; font-size:0.88rem; cursor:pointer; border:1px solid #fecdd3; background:#fff1f2; color:#be123c;"><i class="fa-solid fa-trash"></i></button>'
+                            : '';
                         return '<div class="exam-resource-card' + (isKh ? ' kh-phy-card' : '') + '">' +
                             '<div class="exam-resource-top">' +
                                 '<span class="exam-resource-type" style="color:#0d9488;">' + badgeText + '</span>' +
-                                (item.year ? '<span class="exam-resource-year">' + item.year + '</span>' : '') +
+                                (safeYear ? '<span class="exam-resource-year">' + safeYear + '</span>' : '') +
                             '</div>' +
-                            '<h4 class="exam-resource-title">' + (item.title || 'Diploma Resource') + '</h4>' +
-                            (item.subtitle ? '<div style="font-size:0.83rem; font-weight:600; color:#0d9488; margin-bottom:0.4rem;"><i class="fa-solid fa-layer-group"></i> ' + item.subtitle + '</div>' : '') +
-                            '<p class="exam-resource-desc">' + (item.description || '') + '</p>' +
-                            '<div class="exam-resource-actions">' +
-                                '<button type="button" class="btn-primary" onclick="openExamViewer(\'' + item.id + '\')" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0.65rem 1.2rem; border-radius:10px; font-size:0.88rem; font-weight:600; cursor:pointer; border:none; width:100%;"><i class="fa-solid fa-eye"></i> View Examination (View-Only)</button>' +
+                            '<h4 class="exam-resource-title">' + safeTitle + '</h4>' +
+                            (safeSub ? '<div style="font-size:0.83rem; font-weight:600; color:#0d9488; margin-bottom:0.4rem;"><i class="fa-solid fa-layer-group"></i> ' + safeSub + '</div>' : '') +
+                            '<p class="exam-resource-desc">' + safeDesc + '</p>' +
+                            '<div class="exam-resource-actions" style="display:flex; gap:8px; align-items:center;">' +
+                                '<button type="button" class="btn-primary" onclick="openExamViewer(\'' + safeId + '\')" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0.65rem 1.2rem; border-radius:10px; font-size:0.88rem; font-weight:600; cursor:pointer; border:none; flex:1;"><i class="fa-solid fa-eye"></i> View Examination (View-Only)</button>' +
+                                deleteBtn +
                             '</div>' +
                         '</div>';
                     }).join('') +
@@ -3530,6 +3698,16 @@
                 '<button type="button" class="exam-cat-pill' + (currentCat === 'national' ? ' active' : '') + '" onclick="filterDiplomaCategory(\'national\')"><i class="fa-solid fa-award"></i> National Diploma (' + nationalItems.length + ')</button>' +
                 '<button type="button" class="exam-cat-pill' + (currentCat === 'kh-phy' ? ' active' : '') + '" onclick="filterDiplomaCategory(\'kh-phy\')"><i class="fa-solid fa-file-signature"></i> KH-Phy Diploma (' + khPhyItems.length + ')</button>' +
             '</div>';
+
+            var adminUploadHtml = canManageKh
+                ? '<div style="margin-top:0.75rem; display:flex; flex-wrap:wrap; align-items:center; gap:0.6rem;">' +
+                    '<label style="display:inline-flex; align-items:center; gap:7px; padding:0.45rem 0.9rem; border-radius:9px; background:#0f766e; color:#fff; font-size:0.82rem; font-weight:600; cursor:pointer;">' +
+                        '<i class="fa-solid fa-cloud-arrow-up"></i> Add / Upload KH-Phy PDF' +
+                        '<input type="file" accept=".pdf,application/pdf" multiple style="display:none;" onchange="triggerKhPhyDiplomaUpload(this)">' +
+                    '</label>' +
+                    '<span id="kh-phy-upload-status" style="display:none; align-items:center; font-size:0.8rem; font-weight:600; color:#0f766e; background:#ccfbf1; padding:0.35rem 0.7rem; border-radius:8px;"></span>' +
+                  '</div>'
+                : '';
 
             var contentHtml = '';
             if (currentCat === 'all' || currentCat === 'national') {
@@ -3547,6 +3725,7 @@
                         '<span class="exam-section-badge badge-kh-phy"><i class="fa-solid fa-star"></i> Dedicated Khmer Curriculum</span>' +
                         '<div class="exam-subsection-title"><i class="fa-solid fa-file-signature"></i> KH-Phy Diploma</div>' +
                         '<div class="exam-subsection-desc">Dedicated Grade 9 Khmer Physics (KH-Phy) National Diploma examination papers, problem sets, and scoring solutions. Protected view-only documents.</div>' +
+                        adminUploadHtml +
                     '</div>' +
                     renderCardsGrid(khPhyItems) +
                 '</div>';
@@ -9788,7 +9967,7 @@
     <div id="website-auth-gate" class="auth-gate-wrapper">
         <div class="auth-gate-card">
             <div class="auth-gate-badge">
-                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 55)</span>
+                <i class="fa-solid fa-atom"></i> Physics Learning Hub <span id="auth-version-badge" style="display:inline-block; margin-left:6px; padding:2px 8px; border-radius:12px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; font-weight:700;">v8.0 (Build 56)</span>
             </div>
             <div class="auth-gate-icon">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -10636,15 +10815,16 @@
         </div>
     </div>
 
-    <script src="auth.js?v=55&build=20261122093453"></script>
+    <script src="auth.js?v=56&build=20261122095700"></script>
     <script src="summary-slides.js?v=4&build=20261121075000"></script>
     <script src="kh_ebooks/catalog.js?v=1&build=20261122075500"></script>
     <script src="kh-ebooks.js?v=4&build=20261122080800"></script>
     <script src="outstanding_worksheets/catalog.js?v=1&build=20261122090000"></script>
     <script src="outstanding-worksheets.js?v=2&build=20261122092200"></script>
+    <script src="exams/kh-phy-catalog.js?v=1&build=20261122095200"></script>
     <script src="ophysics-simulations.js?v=1&build=20261121112000"></script>
     <script src="javalab-simulations.js?v=1&build=20261121115500"></script>
     <script src="vascak-simulations.js?v=3&build=20261121115500"></script>
-    <script src="app.js?v=55&build=20261122093453" onerror="onAppJsError()"></script>
+    <script src="app.js?v=56&build=20261122095700" onerror="onAppJsError()"></script>
 </body>
 </html>

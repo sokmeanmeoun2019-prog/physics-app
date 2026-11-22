@@ -30,7 +30,7 @@
         websiteOnline: STATIC_WEBSITE_ONLINE,
         maintenanceUpdatedAt: null,
         pendingWebsiteTargetState: null,
-        sharedPasswordVersion: 55,
+        sharedPasswordVersion: 56,
         lastUpdated: new Date().toISOString(),
         pendingTargetHash: window.location.hash || ''
     };
