@@ -1212,6 +1212,59 @@ button:active, .nav-btn:active, .btn-grade:active, .nav-back-pill:active, .works
     transform: scaleX(1);
 }
 
+/* Rounded Pill Highlight & Soft Shadow for Standard Navigation Tabs (Grades 7-12) */
+.lesson-tabs .tab-btn[data-target="summary"],
+.lesson-tabs .tab-btn[data-target="ebook"],
+.lesson-tabs .tab-btn[data-target="equations"],
+.lesson-tabs .tab-btn[data-target="flashcards"],
+.lesson-tabs .tab-btn[data-target="quiz"],
+.lesson-tabs .tab-btn[data-target="worksheet"],
+.lesson-tabs .tab-btn[data-target="game"] {
+    border-radius: 999px;
+    padding: 0.45rem 1rem;
+    border: 1.5px solid transparent;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lesson-tabs .tab-btn[data-target="summary"]::after,
+.lesson-tabs .tab-btn[data-target="ebook"]::after,
+.lesson-tabs .tab-btn[data-target="equations"]::after,
+.lesson-tabs .tab-btn[data-target="flashcards"]::after,
+.lesson-tabs .tab-btn[data-target="quiz"]::after,
+.lesson-tabs .tab-btn[data-target="worksheet"]::after,
+.lesson-tabs .tab-btn[data-target="game"]::after {
+    display: none;
+}
+
+.lesson-tabs .tab-btn[data-target="summary"]:hover,
+.lesson-tabs .tab-btn[data-target="ebook"]:hover,
+.lesson-tabs .tab-btn[data-target="equations"]:hover,
+.lesson-tabs .tab-btn[data-target="flashcards"]:hover,
+.lesson-tabs .tab-btn[data-target="quiz"]:hover,
+.lesson-tabs .tab-btn[data-target="worksheet"]:hover,
+.lesson-tabs .tab-btn[data-target="game"]:hover {
+    background-color: rgba(26, 115, 232, 0.1);
+    color: var(--primary-blue);
+    border-color: rgba(26, 115, 232, 0.28);
+    box-shadow: 0 3px 10px rgba(26, 115, 232, 0.16);
+}
+
+.lesson-tabs .tab-btn[data-target="summary"].active,
+.lesson-tabs .tab-btn[data-target="ebook"].active,
+.lesson-tabs .tab-btn[data-target="equations"].active,
+.lesson-tabs .tab-btn[data-target="flashcards"].active,
+.lesson-tabs .tab-btn[data-target="quiz"].active,
+.lesson-tabs .tab-btn[data-target="worksheet"].active,
+.lesson-tabs .tab-btn[data-target="game"].active {
+    background-color: rgba(26, 115, 232, 0.14);
+    color: var(--primary-blue);
+    border-color: rgba(26, 115, 232, 0.38);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.22);
+}
+
 .tab-btn-special {
     display: inline-flex;
     align-items: center;
