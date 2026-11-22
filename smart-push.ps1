@@ -49,7 +49,7 @@ $batches = @(
     },
     @{
         Title    = "Curriculum E-Books, Worksheets & Semester Exams"
-        Patterns = @("ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*", "kh_worksheets/*", "kh-worksheets/*", "semester_exams/*", "exams/*", "exams/kh-phy/*", "exams/kh_phy/*", "exams/kh-phy-catalog.js")
+        Patterns = @("ebooks/*", "Physics_Grade7,8,10,11/*", "worksheets/*", "kh_worksheets/*", "kh-worksheets/*", "semester_exams/*", "exams")
         Message  = "Deploy: Curriculum ebooks, textbooks, worksheets, KH-worksheets, and semester exams"
     },
     @{
@@ -84,7 +84,7 @@ $batches = @(
     },
     @{
         Title    = "MOEYS Supplementary (Grade 12 & Catalog)"
-        Patterns = @("moeys_supplementary/README.txt", "moeys_supplementary/catalog.js", "moeys_supplementary/grade12/*")
+        Patterns = @("moeys_supplementary")
         Message  = "Deploy: MOEYS Supplementary materials for Grade 12"
     },
     @{
