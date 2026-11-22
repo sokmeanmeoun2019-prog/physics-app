@@ -2217,6 +2217,21 @@ mjx-container[jax="CHTML"] mjx-mi {
     box-shadow: var(--shadow-hover);
 }
 
+.telegram-fab {
+    background: linear-gradient(135deg, #29b6f6 0%, #0088cc 100%);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 30px;
+    box-shadow: 0 6px 18px rgba(0, 136, 204, 0.38);
+}
+
+.telegram-fab:hover {
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    color: #ffffff;
+    transform: scale(1.06);
+    box-shadow: 0 10px 24px rgba(0, 136, 204, 0.48);
+}
+
 .ai-panel {
     width: 350px;
     height: 500px;
