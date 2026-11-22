@@ -1924,6 +1924,8 @@
         };
         viewerSession = session;
 
+        let viewportCtrl = null;
+
         function bindEv(target, ev, fn, opts) {
             if (!target) return;
             target.addEventListener(ev, fn, opts);
@@ -1958,7 +1960,12 @@
                     }
                 } catch (e) {}
             }
-            setTimeout(() => { if (!session.aborted) renderCurrentView(); }, 100);
+            setTimeout(() => {
+                if (!session.aborted) {
+                    applyZoomPreservingPosition(session.zoomMultiplier);
+                    if (viewportCtrl) viewportCtrl.resetWidthTracking();
+                }
+            }, 100);
         }
 
         function syncNativeFullscreenChange() {
@@ -1968,7 +1975,12 @@
                 modal.classList.remove('is-native-fs');
                 if (fsIcon) fsIcon.className = 'fa-solid fa-expand';
                 if (fsText) fsText.textContent = 'Fullscreen';
-                setTimeout(() => { if (!session.aborted) renderCurrentView(); }, 80);
+                setTimeout(() => {
+                    if (!session.aborted) {
+                        applyZoomPreservingPosition(session.zoomMultiplier);
+                        if (viewportCtrl) viewportCtrl.resetWidthTracking();
+                    }
+                }, 80);
             }
         }
         bindEv(document, 'fullscreenchange', syncNativeFullscreenChange);
@@ -2047,16 +2059,92 @@
             const page = await session.pdfDoc.getPage(pageNum);
             if (session.aborted) return;
             const vp1 = page.getViewport({ scale: 1 });
+            outerCard.dataset.baseW = String(vp1.width);
+            outerCard.dataset.baseH = String(vp1.height);
             const sized = computeStageSize(vp1.width, vp1.height);
             const dpr = Math.min(window.devicePixelRatio || 1, 2.25);
             const renderVp = page.getViewport({ scale: sized.scale * dpr });
 
             outerCard.style.width = `${sized.w}px`;
             outerCard.style.height = `${sized.h}px`;
-            canvas.width = Math.max(1, Math.floor(renderVp.width));
-            canvas.height = Math.max(1, Math.floor(renderVp.height));
-            const ctx = canvas.getContext('2d', { alpha: false });
+
+            const isReRender = canvas.dataset.hasRender === '1' && canvas.width > 0;
+            const targetCanvas = isReRender ? document.createElement('canvas') : canvas;
+            targetCanvas.width = Math.max(1, Math.floor(renderVp.width));
+            targetCanvas.height = Math.max(1, Math.floor(renderVp.height));
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+
+            const ctx = targetCanvas.getContext('2d', { alpha: false });
             await page.render({ canvasContext: ctx, viewport: renderVp }).promise;
+            if (session.aborted) return;
+            if (isReRender && window.WISPdfViewport) {
+                window.WISPdfViewport.blitCanvas(canvas, targetCanvas);
+            }
+            canvas.dataset.hasRender = '1';
+        }
+
+        function flushVisiblePdfSlides() {
+            if (session.aborted || session.kind !== 'pdf' || !session.pdfCards) return;
+            const cards = session.pdfCards;
+            const renderByIdx = (pNum) => {
+                const item = cards[pNum - 1];
+                if (!item || item.rendered || session.aborted) return;
+                item.rendered = true;
+                renderPdfPageIntoCanvas(item.p, item.canvas, item.card);
+            };
+            if (window.WISPdfViewport) {
+                window.WISPdfViewport.renderVisibleCards(stage, '.sv-slide-card', renderByIdx, session.currentPage, session.numPages, 500);
+            } else if (cards[session.currentPage - 1]) {
+                renderByIdx(session.currentPage);
+            }
+        }
+
+        function applyZoomPreservingPosition(newMultiplier, zoomMeta) {
+            if (session.aborted) return;
+            const mountEl = document.getElementById('sv-pages-mount');
+            if (!mountEl || !session.kind) {
+                session.zoomMultiplier = Math.min(Math.max(newMultiplier, 0.5), 3.0);
+                renderCurrentView();
+                return;
+            }
+
+            const vpc = window.WISPdfViewport;
+            const anchor = (zoomMeta && zoomMeta.anchor)
+                || (vpc && vpc.captureAnchor(stage, '.sv-slide-card, .pptx-slide-outer', zoomMeta && zoomMeta.clientX, zoomMeta && zoomMeta.clientY))
+                || null;
+
+            session.zoomMultiplier = Math.min(Math.max(newMultiplier, 0.5), 3.0);
+            updateNavButtons();
+
+            if (session.kind === 'pdf' && session.pdfCards) {
+                session.pdfCards.forEach(item => {
+                    const bW = parseFloat(item.card.dataset.baseW) || session.defaultBaseW || 960;
+                    const bH = parseFloat(item.card.dataset.baseH) || session.defaultBaseH || 540;
+                    const sized = computeStageSize(bW, bH);
+                    item.card.style.width = `${sized.w}px`;
+                    item.card.style.height = `${sized.h}px`;
+                    item.rendered = false;
+                });
+                if (vpc && anchor) {
+                    vpc.restoreAnchor(stage, anchor);
+                }
+                if (!zoomMeta || !zoomMeta.quickResize) {
+                    flushVisiblePdfSlides();
+                }
+            } else if (session.kind === 'pptx' && session.pptxDeck) {
+                const deck = session.pptxDeck;
+                const sized = computeStageSize(deck.logicalW, deck.logicalH);
+                mountEl.querySelectorAll('.pptx-slide-outer').forEach(outer => {
+                    outer.style.width = `${sized.w}px`;
+                    outer.style.height = `${sized.h}px`;
+                    const inner = outer.querySelector('.pptx-slide-inner');
+                    if (inner) inner.style.transform = `scale(${sized.scale})`;
+                });
+                if (vpc && anchor) {
+                    vpc.restoreAnchor(stage, anchor);
+                }
+            }
         }
 
         async function renderCurrentView() {
@@ -2066,33 +2154,54 @@
             if (session.kind === 'pdf' && session.pdfDoc) {
                 stage.classList.toggle('single-slide-center', session.mode === 'slide');
                 stage.innerHTML = '';
+                const mountEl = document.createElement('div');
+                mountEl.className = 'sv-pages-mount';
+                mountEl.id = 'sv-pages-mount';
+                stage.appendChild(mountEl);
+
+                const p1 = await session.pdfDoc.getPage(session.mode === 'slide' ? session.currentPage : 1);
+                if (session.aborted) return;
+                const vp1 = p1.getViewport({ scale: 1 });
+                session.defaultBaseW = vp1.width;
+                session.defaultBaseH = vp1.height;
 
                 if (session.mode === 'slide') {
+                    const est = computeStageSize(vp1.width, vp1.height);
                     const card = document.createElement('div');
                     card.className = 'sv-slide-card';
                     card.dataset.slideIdx = String(session.currentPage);
+                    card.dataset.baseW = String(vp1.width);
+                    card.dataset.baseH = String(vp1.height);
+                    card.style.width = `${est.w}px`;
+                    card.style.height = `${est.h}px`;
                     const canvas = document.createElement('canvas');
                     canvas.className = 'sv-slide-canvas';
                     card.appendChild(canvas);
-                    stage.appendChild(card);
+                    mountEl.appendChild(card);
+                    session.pdfCards = new Array(session.numPages);
+                    session.pdfCards[session.currentPage - 1] = { p: session.currentPage, card, canvas, rendered: false };
                     await renderPdfPageIntoCanvas(session.currentPage, canvas, card);
+                    if (session.pdfCards[session.currentPage - 1]) {
+                        session.pdfCards[session.currentPage - 1].rendered = true;
+                    }
                 } else {
-                    const p1 = await session.pdfDoc.getPage(1);
-                    const vp1 = p1.getViewport({ scale: 1 });
                     const est = computeStageSize(vp1.width, vp1.height);
                     const cards = [];
                     for (let p = 1; p <= session.numPages; p++) {
                         const card = document.createElement('div');
                         card.className = 'sv-slide-card';
                         card.dataset.slideIdx = String(p);
+                        card.dataset.baseW = String(vp1.width);
+                        card.dataset.baseH = String(vp1.height);
                         card.style.width = `${est.w}px`;
                         card.style.height = `${est.h}px`;
                         const canvas = document.createElement('canvas');
                         canvas.className = 'sv-slide-canvas';
                         card.appendChild(canvas);
-                        stage.appendChild(card);
+                        mountEl.appendChild(card);
                         cards.push({ p, card, canvas, rendered: false });
                     }
+                    session.pdfCards = cards;
                     const renderTarget = (item) => {
                         if (!item || item.rendered || session.aborted) return;
                         item.rendered = true;
@@ -2114,6 +2223,7 @@
                     }
                     renderTarget(cards[0]);
                 }
+                if (viewportCtrl) viewportCtrl.resetWidthTracking();
             } else if (session.kind === 'pptx' && session.pptxDeck) {
                 stage.classList.toggle('single-slide-center', session.mode === 'slide');
                 const deck = session.pptxDeck;
@@ -2134,7 +2244,10 @@
                         </div>
                     `;
                 }
-                stage.innerHTML = html || '<div class="sv-info-box">No slides found inside this presentation.</div>';
+                stage.innerHTML = html
+                    ? `<div class="sv-pages-mount" id="sv-pages-mount">${html}</div>`
+                    : '<div class="sv-info-box">No slides found inside this presentation.</div>';
+                if (viewportCtrl) viewportCtrl.resetWidthTracking();
             }
         }
 
@@ -2146,9 +2259,9 @@
         bindEv(nextBtn, 'click', () => goToSlide(session.currentPage + 1));
         bindEv(modeSlideBtn, 'click', () => { session.mode = 'slide'; renderCurrentView(); });
         bindEv(modeScrollBtn, 'click', () => { session.mode = 'scroll'; renderCurrentView(); });
-        bindEv(zoomOutBtn, 'click', () => { session.zoomMultiplier = Math.max(0.5, session.zoomMultiplier - 0.15); renderCurrentView(); });
-        bindEv(zoomInBtn, 'click', () => { session.zoomMultiplier = Math.min(3.0, session.zoomMultiplier + 0.15); renderCurrentView(); });
-        bindEv(zoomFitBtn, 'click', () => { session.zoomMultiplier = 1.0; renderCurrentView(); });
+        bindEv(zoomOutBtn, 'click', () => applyZoomPreservingPosition(session.zoomMultiplier - 0.15));
+        bindEv(zoomInBtn, 'click', () => applyZoomPreservingPosition(session.zoomMultiplier + 0.15));
+        bindEv(zoomFitBtn, 'click', () => applyZoomPreservingPosition(1.0));
 
         if (pageInput) {
             bindEv(pageInput, 'change', () => goToSlide(parseInt(pageInput.value, 10) || 1));
@@ -2157,32 +2270,59 @@
             });
         }
 
-        // Touch Swipe left/right on stage in Slide Mode (mobile & tablet)
-        let swipeStartX = 0, swipeStartY = 0;
+        if (window.WISPdfViewport) {
+            viewportCtrl = window.WISPdfViewport.attach({
+                scrollContainer: stage,
+                getContentTarget: () => document.getElementById('sv-pages-mount'),
+                cardSelector: '.sv-slide-card, .pptx-slide-outer',
+                minScale: 0.5,
+                maxScale: 3.0,
+                getScale: () => session.zoomMultiplier,
+                onPreviewScale: (cand) => {
+                    if (zoomLabel) zoomLabel.textContent = `${Math.round(cand * 100)}%`;
+                },
+                onApplyZoom: (nextScale, zoomMeta) => {
+                    applyZoomPreservingPosition(nextScale, zoomMeta);
+                },
+                onFlushRender: flushVisiblePdfSlides,
+                onWidthChange: (newW, prevW, anchor) => {
+                    if (!session.aborted) {
+                        applyZoomPreservingPosition(session.zoomMultiplier, { anchor: anchor });
+                    }
+                }
+            });
+            session.cleanups.push(() => {
+                if (viewportCtrl) {
+                    viewportCtrl.destroy();
+                    viewportCtrl = null;
+                }
+            });
+        }
+
+        // Touch Swipe left/right on stage in Slide Mode (disabled while zoomed or pinching)
+        let swipeStartX = 0, swipeStartY = 0, swipeSingleValid = false;
         bindEv(stage, 'touchstart', (e) => {
             if (e.touches && e.touches.length === 1) {
                 swipeStartX = e.touches[0].clientX;
                 swipeStartY = e.touches[0].clientY;
+                swipeSingleValid = true;
+            } else {
+                swipeSingleValid = false;
             }
         }, { passive: true });
         bindEv(stage, 'touchend', (e) => {
-            if (session.mode !== 'slide' || !swipeStartX || !e.changedTouches || e.changedTouches.length !== 1) return;
+            if (!swipeSingleValid || session.mode !== 'slide' || !swipeStartX || !e.changedTouches || e.changedTouches.length !== 1) return;
+            swipeSingleValid = false;
+            if (viewportCtrl && viewportCtrl.wasRecentlyPinching(300)) return;
+            if (stage.scrollWidth > stage.clientWidth + 4) return;
             const dx = e.changedTouches[0].clientX - swipeStartX;
             const dy = e.changedTouches[0].clientY - swipeStartY;
             swipeStartX = 0;
-            if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.6) {
                 if (dx < 0 && session.currentPage < session.numPages) goToSlide(session.currentPage + 1);
                 else if (dx > 0 && session.currentPage > 1) goToSlide(session.currentPage - 1);
             }
         }, { passive: true });
-
-        let resizeTimer = null;
-        const onResize = () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => { if (!session.aborted) renderCurrentView(); }, 120);
-        };
-        bindEv(window, 'resize', onResize);
-        bindEv(window, 'orientationchange', onResize);
 
         bindEv(window, 'keydown', (e) => {
             if (session.aborted) return;
