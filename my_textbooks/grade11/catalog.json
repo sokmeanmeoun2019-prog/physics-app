@@ -1,0 +1,21 @@
+{
+  "grade": "11",
+  "updatedAt": "2026-11-22T05:02:45.785Z",
+  "textbooks": [
+    {
+      "id": "mt-g11-7dc8da50c2",
+      "grade": "11",
+      "title": "g11 physics full textbook",
+      "subject": "Physics",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "g11-physics-full-textbook.pdf.pdf",
+      "storedName": "g11-physics-full-textbook.pdf.pdf",
+      "url": "my_textbooks/grade11/g11-physics-full-textbook.pdf.pdf",
+      "ext": ".pdf",
+      "size": 9210255,
+      "createdAt": "2026-11-22T05:01:52.710Z",
+      "updatedAt": "2026-04-14T12:25:06.866Z"
+    }
+  ]
+}

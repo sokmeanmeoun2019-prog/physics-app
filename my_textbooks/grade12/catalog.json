@@ -1,0 +1,21 @@
+{
+  "grade": "12",
+  "updatedAt": "2026-11-22T05:02:45.799Z",
+  "textbooks": [
+    {
+      "id": "mt-g12-d0f288243d",
+      "grade": "12",
+      "title": "g12 physics full textbook",
+      "subject": "Physics",
+      "chapter": "Full Textbook",
+      "description": "",
+      "originalName": "g12-physics-full-textbook.pdf.pdf",
+      "storedName": "g12-physics-full-textbook.pdf.pdf",
+      "url": "my_textbooks/grade12/g12-physics-full-textbook.pdf.pdf",
+      "ext": ".pdf",
+      "size": 9210255,
+      "createdAt": "2026-11-22T05:02:07.107Z",
+      "updatedAt": "2026-04-14T12:25:06.866Z"
+    }
+  ]
+}
