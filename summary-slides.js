@@ -2073,7 +2073,7 @@
             targetCanvas.width = Math.max(1, Math.floor(renderVp.width));
             targetCanvas.height = Math.max(1, Math.floor(renderVp.height));
             canvas.style.width = '100%';
-            canvas.style.height = '100%';
+            canvas.style.height = 'auto';
 
             const ctx = targetCanvas.getContext('2d', { alpha: false });
             await page.render({ canvasContext: ctx, viewport: renderVp }).promise;
