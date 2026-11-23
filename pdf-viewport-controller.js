@@ -146,6 +146,21 @@
     }
 
     /**
+     * Compute proportional CSS dimensions for a PDF page card using its own
+     * stored base aspect ratio (fallback to document page 1 dimensions).
+     */
+    function computeCardBox(card, fallbackBaseW, fallbackBaseH, scale) {
+        const bW = (card && card.dataset && parseFloat(card.dataset.baseW)) || fallbackBaseW || 595;
+        const bH = (card && card.dataset && parseFloat(card.dataset.baseH)) || fallbackBaseH || 842;
+        return {
+            baseW: bW,
+            baseH: bH,
+            width: Math.max(1, Math.floor(bW * scale)),
+            height: Math.max(1, Math.floor(bH * scale))
+        };
+    }
+
+    /**
      * Attach interactive viewport behaviors to a PDF scroll container:
      * - Two-finger pinch-to-zoom centered between fingers (touch devices / iPad)
      * - Desktop Ctrl+Wheel / Trackpad pinch zoom centered on mouse cursor
@@ -508,6 +523,7 @@
         restoreAnchor: restoreAnchor,
         renderVisibleCards: renderVisibleCards,
         blitCanvas: blitCanvas,
+        computeCardBox: computeCardBox,
         attach: attach
     };
 })(window);

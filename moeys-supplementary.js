@@ -915,6 +915,9 @@
                     if (gen !== state.reader.generation) return;
 
                     const dpr = Math.min(global.devicePixelRatio || 1, 2.5);
+                    const pVp1 = page.getViewport({ scale: 1.0 });
+                    card.dataset.baseW = String(pVp1.width);
+                    card.dataset.baseH = String(pVp1.height);
                     const cssVp = page.getViewport({ scale: currentScale });
                     const hiVp = page.getViewport({ scale: currentScale * dpr });
                     const isReRender = canvas.dataset.hasRender === '1' && canvas.width > 0 && canvas.style.display !== 'none';
@@ -925,7 +928,7 @@
                     targetCanvas.width = Math.floor(hiVp.width);
                     targetCanvas.height = Math.floor(hiVp.height);
                     canvas.style.width = '100%';
-                    canvas.style.height = '100%';
+                    canvas.style.height = 'auto';
 
                     const ctx = targetCanvas.getContext('2d', { alpha: false });
                     ctx.fillStyle = '#ffffff';
@@ -1044,13 +1047,16 @@
                 state.reader.renderedPages.clear();
 
                 mount.querySelectorAll('.pdf-page-card').forEach(c => {
-                    c.style.width = `${Math.floor(baseW * currentScale)}px`;
-                    c.style.height = `${Math.floor(baseH * currentScale)}px`;
+                    const box = vpc && vpc.computeCardBox
+                        ? vpc.computeCardBox(c, baseW, baseH, currentScale)
+                        : { width: Math.floor(baseW * currentScale), height: Math.floor(baseH * currentScale) };
+                    c.style.width = `${box.width}px`;
+                    c.style.height = `${box.height}px`;
                     const cv = c.querySelector('.pdf-page-canvas');
                     const hasCanvas = cv && cv.dataset.hasRender === '1' && cv.width > 0;
                     if (cv) {
                         cv.style.width = '100%';
-                        cv.style.height = '100%';
+                        cv.style.height = 'auto';
                         cv.style.display = hasCanvas ? 'block' : 'none';
                     }
                     const ph = c.querySelector('.pdf-loading-card');
@@ -1162,11 +1168,21 @@
             if (topFsBtn) regListener(topFsBtn, 'click', () => toggleFullscreen());
             if (floatingExitBtn) regListener(floatingExitBtn, 'click', () => toggleFullscreen(false));
 
-            regListener(document, 'fullscreenchange', () => {
-                if (!document.fullscreenElement && wrapper.classList.contains('pdf-fullscreen-active')) {
+            const onNativeFsChange = () => {
+                if (gen !== state.reader.generation) return;
+                const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+                if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
                     toggleFullscreen(false);
+                } else if (isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
+                    requestAnimationFrame(() => {
+                        if (gen !== state.reader.generation) return;
+                        applyWidthChangePreservingZoom(null);
+                        if (viewportCtrl) viewportCtrl.resetWidthTracking();
+                    });
                 }
-            });
+            };
+            regListener(document, 'fullscreenchange', onNativeFsChange);
+            regListener(document, 'webkitfullscreenchange', onNativeFsChange);
 
             regListener(global, 'keydown', (e) => {
                 const tabPane = document.getElementById('tab-moeys-supplementary');

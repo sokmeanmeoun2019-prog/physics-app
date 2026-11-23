@@ -6005,6 +6005,9 @@ function renderEbook(lesson) {
                         if (card.dataset.sessionId !== String(thisSessionId)) return;
 
                         const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+                        const pVp1 = page.getViewport({ scale: 1.0 });
+                        card.dataset.baseW = String(pVp1.width);
+                        card.dataset.baseH = String(pVp1.height);
                         const viewport = page.getViewport({ scale: currentScale * dpr });
                         const isReRender = canvas.dataset.hasRender === '1' && canvas.width > 0 && canvas.style.display !== 'none';
                         const targetCanvas = isReRender ? document.createElement('canvas') : canvas;
@@ -6012,10 +6015,10 @@ function renderEbook(lesson) {
                         targetCanvas.width = Math.floor(viewport.width);
                         targetCanvas.height = Math.floor(viewport.height);
                         canvas.style.width = '100%';
-                        canvas.style.height = '100%';
+                        canvas.style.height = 'auto';
 
-                        card.style.width = Math.floor(viewport.width / dpr) + 'px';
-                        card.style.height = Math.floor(viewport.height / dpr) + 'px';
+                        card.style.width = Math.floor(pVp1.width * currentScale) + 'px';
+                        card.style.height = Math.floor(pVp1.height * currentScale) + 'px';
 
                         const ctx = targetCanvas.getContext('2d', { alpha: false });
                         const renderContext = {
@@ -6184,13 +6187,16 @@ function renderEbook(lesson) {
 
                     mount.querySelectorAll('.pdf-page-card').forEach(c => {
                         if (c.dataset.sessionId !== String(thisSessionId)) return;
-                        c.style.width = Math.floor(baseW * currentScale) + 'px';
-                        c.style.height = Math.floor(baseH * currentScale) + 'px';
+                        const box = vpc && vpc.computeCardBox
+                            ? vpc.computeCardBox(c, baseW, baseH, currentScale)
+                            : { width: Math.floor(baseW * currentScale), height: Math.floor(baseH * currentScale) };
+                        c.style.width = box.width + 'px';
+                        c.style.height = box.height + 'px';
                         const cv = c.querySelector('.pdf-page-canvas');
                         const hasCanvas = cv && cv.dataset.hasRender === '1' && cv.width > 0;
                         if (cv) {
                             cv.style.width = '100%';
-                            cv.style.height = '100%';
+                            cv.style.height = 'auto';
                             cv.style.display = hasCanvas ? 'block' : 'none';
                         }
                         const ph = c.querySelector('.pdf-loading-card');
@@ -6355,6 +6361,12 @@ function renderEbook(lesson) {
                     const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
                     if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
                         toggleFullscreen(false);
+                    } else if (isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
+                        requestAnimationFrame(() => {
+                            if (sessionToken.aborted || thisSessionId !== currentEbookRenderSessionId) return;
+                            applyWidthChangePreservingZoom(null);
+                            if (viewportCtrl) viewportCtrl.resetWidthTracking();
+                        });
                     }
                 };
                 registerListener(document, 'fullscreenchange', onNativeFsChange);
@@ -6731,7 +6743,7 @@ function renderWorksheet(lesson) {
                     </div>
                 </div>
                 <div class="pdf-scroll-container pdf-frame-container" style="height:750px; max-height:80vh; padding:0; background:#0f172a; position:relative; overflow:hidden;">
-                    <iframe src="${encodedSrc}" class="pdf-protected-frame" style="width:100%; height:100%; min-height:750px; border:none; display:block;" title="${title || 'EN-Worksheet'}" allowfullscreen></iframe>
+                    <iframe src="${encodedSrc}" class="pdf-protected-frame" style="width:100%; height:100%; border:none; display:block;" title="${title || 'EN-Worksheet'}" allowfullscreen></iframe>
                     <button type="button" class="pdf-floating-exit-btn" id="ws-app-fallback-floating-exit" style="display:none;"><i class="fa-solid fa-xmark"></i> Exit Fullscreen</button>
                 </div>
             `;
@@ -6755,6 +6767,13 @@ function renderWorksheet(lesson) {
                         topFsBtn.classList.add('pdf-btn-exit-fullscreen');
                         topFsBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> <span id="worksheet-fs-btn-text">Exit Fullscreen</span>';
                     }
+                    try {
+                        const reqFs = wrapper.requestFullscreen || wrapper.webkitRequestFullscreen;
+                        if (reqFs && !document.fullscreenElement && !document.webkitFullscreenElement) {
+                            const p = reqFs.call(wrapper);
+                            if (p && p.catch) p.catch(() => {});
+                        }
+                    } catch (e) {}
                 } else {
                     wrapper.classList.remove('pdf-fullscreen-active');
                     document.body.classList.remove('pdf-modal-open');
@@ -6767,15 +6786,42 @@ function renderWorksheet(lesson) {
                         topFsBtn.classList.remove('pdf-btn-exit-fullscreen');
                         topFsBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span id="worksheet-fs-btn-text">Fullscreen Practice View</span>';
                     }
+                    try {
+                        const exitFs = document.exitFullscreen || document.webkitExitFullscreen;
+                        if ((document.fullscreenElement || document.webkitFullscreenElement) && exitFs) {
+                            const p2 = exitFs.call(document);
+                            if (p2 && p2.catch) p2.catch(() => {});
+                        }
+                    } catch (e) {}
                 }
             }
             if (fsBtn) fsBtn.onclick = () => toggleFallbackWsFs();
             if (flExit) flExit.onclick = () => toggleFallbackWsFs(false);
             if (topFsBtn) topFsBtn.onclick = () => toggleFallbackWsFs();
 
+            const onFallbackFsKey = (e) => {
+                if (e.key === 'Escape' && wrapper.classList.contains('pdf-fullscreen-active')) {
+                    toggleFallbackWsFs(false);
+                }
+            };
+            const onFallbackNativeFs = () => {
+                const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+                if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
+                    toggleFallbackWsFs(false);
+                }
+            };
+            window.addEventListener('keydown', onFallbackFsKey);
+            document.addEventListener('fullscreenchange', onFallbackNativeFs);
+            document.addEventListener('webkitfullscreenchange', onFallbackNativeFs);
+
             currentWorksheetSession = {
                 pdfDoc: null,
-                cleanup: () => toggleFallbackWsFs(false)
+                cleanup: () => {
+                    window.removeEventListener('keydown', onFallbackFsKey);
+                    document.removeEventListener('fullscreenchange', onFallbackNativeFs);
+                    document.removeEventListener('webkitfullscreenchange', onFallbackNativeFs);
+                    toggleFallbackWsFs(false);
+                }
             };
         }
 
@@ -6998,14 +7044,16 @@ function renderWorksheet(lesson) {
                 const baseH = defaultVp.height;
 
                 function getOptimalFitScale() {
-                    if (!scrollContainer) return 1.0;
-                    const contW = scrollContainer.clientWidth || 800;
-                    const pad = (contW <= 640) ? 14 : 32;
-                    const targetW = Math.max(contW - pad, 260);
-                    const scale = targetW / baseW;
-                    return Math.min(Math.max(scale, 0.4), 2.2);
+                    let w = scrollContainer ? scrollContainer.clientWidth : 0;
+                    if (!w || w <= 0) {
+                        w = window.innerWidth > 900 ? 820 : window.innerWidth;
+                    }
+                    const padding = w < 600 ? 16 : 28;
+                    const avail = Math.max(w - padding, 280);
+                    return Math.min(Math.max(avail / baseW, 0.35), 2.5);
                 }
 
+                let wsSessionClosed = false;
                 let currentScale = getOptimalFitScale();
                 if (zoomLabel) zoomLabel.textContent = `${Math.round(currentScale * 100)}%`;
 
@@ -7071,7 +7119,11 @@ function renderWorksheet(lesson) {
 
                     try {
                         const page = await pdfDoc.getPage(pageNum);
+                        if (wsSessionClosed) return;
                         const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+                        const pVp1 = page.getViewport({ scale: 1.0 });
+                        card.dataset.baseW = String(pVp1.width);
+                        card.dataset.baseH = String(pVp1.height);
                         const renderScale = currentScale * dpr;
                         const viewport = page.getViewport({ scale: renderScale });
                         const isReRender = canvas.dataset.hasRender === '1' && canvas.width > 0 && canvas.style.display !== 'none';
@@ -7080,13 +7132,13 @@ function renderWorksheet(lesson) {
                         targetCanvas.width = Math.floor(viewport.width);
                         targetCanvas.height = Math.floor(viewport.height);
                         canvas.style.width = '100%';
-                        canvas.style.height = '100%';
+                        canvas.style.height = 'auto';
                         canvas.style.pointerEvents = 'none';
                         canvas.style.userSelect = 'none';
                         canvas.style.webkitUserSelect = 'none';
 
-                        card.style.width = `${Math.floor(baseW * currentScale)}px`;
-                        card.style.height = `${Math.floor(baseH * currentScale)}px`;
+                        card.style.width = `${Math.floor(pVp1.width * currentScale)}px`;
+                        card.style.height = `${Math.floor(pVp1.height * currentScale)}px`;
 
                         const ctx = targetCanvas.getContext('2d', { alpha: false });
                         if (activeTasks[pageNum]) {
@@ -7216,13 +7268,16 @@ function renderWorksheet(lesson) {
                     renderedPages.clear();
 
                     mount.querySelectorAll('.pdf-page-card').forEach(c => {
-                        c.style.width = `${Math.floor(baseW * currentScale)}px`;
-                        c.style.height = `${Math.floor(baseH * currentScale)}px`;
+                        const box = vpc && vpc.computeCardBox
+                            ? vpc.computeCardBox(c, baseW, baseH, currentScale)
+                            : { width: Math.floor(baseW * currentScale), height: Math.floor(baseH * currentScale) };
+                        c.style.width = `${box.width}px`;
+                        c.style.height = `${box.height}px`;
                         const cv = c.querySelector('canvas');
                         const hasCanvas = cv && cv.dataset.hasRender === '1' && cv.width > 0;
                         if (cv) {
                             cv.style.width = '100%';
-                            cv.style.height = '100%';
+                            cv.style.height = 'auto';
                             cv.style.display = hasCanvas ? 'block' : 'none';
                             cv.style.pointerEvents = 'none';
                         }
@@ -7313,6 +7368,7 @@ function renderWorksheet(lesson) {
                         } catch (e) {}
 
                         setTimeout(() => {
+                            if (wsSessionClosed) return;
                             applyWidthChangePreservingZoom(fsAnchor);
                             if (viewportCtrl) viewportCtrl.resetWidthTracking();
                         }, 120);
@@ -7345,6 +7401,7 @@ function renderWorksheet(lesson) {
                         } catch (e) {}
 
                         setTimeout(() => {
+                            if (wsSessionClosed) return;
                             applyWidthChangePreservingZoom(exitFsAnchor);
                             if (viewportCtrl) viewportCtrl.resetWidthTracking();
                         }, 120);
@@ -7362,9 +7419,16 @@ function renderWorksheet(lesson) {
                 }
 
                 const onNativeFsChange = () => {
+                    if (wsSessionClosed) return;
                     const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
                     if (!isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
                         toggleFullscreen(false);
+                    } else if (isNativeFs && wrapper.classList.contains('pdf-fullscreen-active')) {
+                        requestAnimationFrame(() => {
+                            if (wsSessionClosed) return;
+                            applyWidthChangePreservingZoom(null);
+                            if (viewportCtrl) viewportCtrl.resetWidthTracking();
+                        });
                     }
                 };
                 document.addEventListener('fullscreenchange', onNativeFsChange);
@@ -7405,11 +7469,15 @@ function renderWorksheet(lesson) {
                     observer: observer,
                     activeTasks: activeTasks,
                     fitWidth: () => {
+                        if (wsSessionClosed) return;
                         const newFit = getOptimalFitScale();
+                        const wasAtFit = Math.abs(currentScale - lastFitScale) < 0.08;
                         lastFitScale = newFit;
-                        applyZoom(newFit);
+                        applyZoom(wasAtFit ? newFit : currentScale);
+                        if (viewportCtrl) viewportCtrl.resetWidthTracking();
                     },
                     cleanup: () => {
+                        wsSessionClosed = true;
                         if (viewportCtrl) {
                             try { viewportCtrl.destroy(); } catch (e) {}
                             viewportCtrl = null;

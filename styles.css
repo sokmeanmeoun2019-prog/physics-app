@@ -2565,7 +2565,7 @@ mjx-container[jax="CHTML"] mjx-mi {
     flex-direction: column;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
     border: 1px solid #334155;
-    transition: all 0.25s ease;
+    transition: none;
 }
 
 .pdf-toolbar {
@@ -2841,7 +2841,7 @@ body.pdf-modal-open .worksheet-container {
 .pdf-page-canvas {
     display: block;
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
     max-width: none !important;
     border-radius: 6px;
     margin: 0 auto;
@@ -2950,11 +2950,9 @@ body.pdf-modal-open .worksheet-container {
 :fullscreen .pdf-viewer-wrapper .pdf-scroll-container,
 :-webkit-full-screen .pdf-viewer-wrapper .pdf-scroll-container {
     flex: 1 1 0% !important;
-    height: calc(100vh - 52px) !important;
-    height: calc(100dvh - 52px) !important;
+    height: auto !important;
     min-height: 0 !important;
-    max-height: calc(100vh - 52px) !important;
-    max-height: calc(100dvh - 52px) !important;
+    max-height: none !important;
     border-radius: 0 !important;
     padding: 1.25rem 0.5rem !important;
     margin: 0 !important;
@@ -2982,12 +2980,10 @@ body.pdf-modal-open .worksheet-container {
 :-webkit-full-screen .pdf-viewer-wrapper iframe,
 :-webkit-full-screen .pdf-viewer-wrapper .ebook-preview {
     flex: 1 1 0% !important;
-    width: 100vw !important;
-    height: calc(100vh - 52px) !important;
-    height: calc(100dvh - 52px) !important;
+    width: 100% !important;
+    height: 100% !important;
     min-height: 0 !important;
-    max-height: calc(100vh - 52px) !important;
-    max-height: calc(100dvh - 52px) !important;
+    max-height: none !important;
     border: none !important;
     border-radius: 0 !important;
     margin: 0 !important;
@@ -3015,6 +3011,13 @@ body.pdf-modal-open .worksheet-container {
     border: none !important;
     display: block !important;
     background: #0f172a !important;
+}
+
+.pdf-viewer-wrapper.pdf-fullscreen-active .pdf-protected-frame,
+:fullscreen .pdf-viewer-wrapper .pdf-protected-frame,
+:-webkit-full-screen .pdf-viewer-wrapper .pdf-protected-frame {
+    min-height: 0 !important;
+    height: 100% !important;
 }
 
 @media (max-width: 768px) {
@@ -5552,7 +5555,7 @@ html.wis-pre-auth body.is-locked #website-auth-gate {
     display: block;
     width: 100% !important;
     max-width: none !important;
-    height: 100% !important;
+    height: auto !important;
     margin: 0 auto;
     pointer-events: none !important;
     user-select: none !important;

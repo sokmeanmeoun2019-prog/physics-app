@@ -708,6 +708,10 @@
             try { state.reader.viewportCtrl.destroy(); } catch (e) {}
             state.reader.viewportCtrl = null;
         }
+        if (state.reader.isFullscreen) {
+            state.reader.isFullscreen = false;
+            document.body.classList.remove('pdf-modal-open');
+        }
         if (state.reader.pdfDoc) {
             try {
                 state.reader.pdfDoc.destroy();
@@ -931,6 +935,9 @@
             const page = await state.reader.pdfDoc.getPage(pageNum);
             if (gen !== state.reader.renderGeneration) return;
 
+            const pVp1 = page.getViewport({ scale: 1.0 });
+            frame.dataset.baseW = String(pVp1.width);
+            frame.dataset.baseH = String(pVp1.height);
             const scale = computeEffectiveScale(page, stageWidth || 720);
             const viewport = page.getViewport({ scale });
             const dpr = Math.min(global.devicePixelRatio || 1, 2);
@@ -950,7 +957,7 @@
             targetCanvas.width = Math.floor(viewport.width * dpr);
             targetCanvas.height = Math.floor(viewport.height * dpr);
             canvas.style.width = '100%';
-            canvas.style.height = '100%';
+            canvas.style.height = 'auto';
 
             const placeholder = frame.querySelector('.kheb-page-placeholder');
             if (placeholder) placeholder.remove();
@@ -1117,8 +1124,11 @@
 
         if (stage) {
             stage.querySelectorAll('.kheb-page-frame').forEach(frame => {
-                frame.style.width = `${estW}px`;
-                frame.style.height = `${estH}px`;
+                const fW = parseFloat(frame.dataset.baseW) || state.reader.baseW || 595;
+                const fH = parseFloat(frame.dataset.baseH) || state.reader.baseH || 842;
+                const frameScale = isFit ? getFitScaleForWidth(fW, stageWidth) : effectiveScale;
+                frame.style.width = `${Math.floor(fW * frameScale)}px`;
+                frame.style.height = `${Math.floor(fH * frameScale)}px`;
                 frame.dataset.rendered = '0';
                 frame.dataset.rendering = '0';
             });
@@ -1156,7 +1166,7 @@
         renderReaderPages();
     }
 
-    async function toggleFullscreen() {
+    async function toggleFullscreen(forceState) {
         const wrapper = document.getElementById('kheb-viewer-wrapper');
         if (!wrapper) return;
 
@@ -1165,30 +1175,33 @@
             ? global.WISPdfViewport.captureAnchor(stage, '.kheb-page-frame')
             : null;
         const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+        const currentlyActive = Boolean(fsEl === wrapper || state.reader.isFullscreen || wrapper.classList.contains('kheb-is-fullscreen'));
+        const wantEnable = typeof forceState === 'boolean' ? forceState : !currentlyActive;
+
         try {
-            if (fsEl === wrapper || state.reader.isFullscreen) {
+            if (!wantEnable) {
                 if (fsEl && document.exitFullscreen) {
                     await document.exitFullscreen();
                 } else if (fsEl && document.webkitExitFullscreen) {
                     document.webkitExitFullscreen();
                 }
                 wrapper.classList.remove('kheb-is-fullscreen');
+                document.body.classList.remove('pdf-modal-open');
                 state.reader.isFullscreen = false;
             } else {
+                wrapper.classList.add('kheb-is-fullscreen');
+                document.body.classList.add('pdf-modal-open');
+                state.reader.isFullscreen = true;
                 if (wrapper.requestFullscreen) {
                     await wrapper.requestFullscreen();
                 } else if (wrapper.webkitRequestFullscreen) {
                     wrapper.webkitRequestFullscreen();
-                } else {
-                    wrapper.classList.add('kheb-is-fullscreen');
                 }
-                state.reader.isFullscreen = true;
             }
         } catch (e) {
-            // CSS fixed viewport fallback for mobile Safari / strict webviews
-            const willEnable = !wrapper.classList.contains('kheb-is-fullscreen');
-            wrapper.classList.toggle('kheb-is-fullscreen', willEnable);
-            state.reader.isFullscreen = willEnable;
+            wrapper.classList.toggle('kheb-is-fullscreen', wantEnable);
+            document.body.classList.toggle('pdf-modal-open', wantEnable);
+            state.reader.isFullscreen = wantEnable;
         }
         updateViewerHeaderAndControls();
         if (state.reader.pdfDoc) {
@@ -1240,9 +1253,15 @@
                 : '<i class="fa-solid fa-scroll"></i> Scroll';
         }
         if (fsBtn) {
+            fsBtn.classList.toggle('pdf-btn-exit-fullscreen', state.reader.isFullscreen);
             fsBtn.innerHTML = state.reader.isFullscreen
-                ? '<i class="fa-solid fa-compress"></i>'
+                ? '<i class="fa-solid fa-xmark"></i>'
                 : '<i class="fa-solid fa-expand"></i>';
+            fsBtn.title = state.reader.isFullscreen ? 'Exit Fullscreen (Esc)' : 'Fullscreen';
+        }
+        const floatingExitBtn = document.getElementById('kheb-floating-exit-btn');
+        if (floatingExitBtn) {
+            floatingExitBtn.style.display = state.reader.isFullscreen ? 'inline-flex' : 'none';
         }
     }
 
@@ -1740,6 +1759,9 @@
                                 </p>
                             </div>
                         </div>
+                        <button type="button" class="pdf-floating-exit-btn" id="kheb-floating-exit-btn" title="Exit Fullscreen Reading Mode">
+                            <i class="fa-solid fa-xmark"></i> <span>Exit Fullscreen</span>
+                        </button>
                     </section>
                 </div>
             </div>
@@ -1831,6 +1853,7 @@
         const fitBtn = document.getElementById('kheb-fit-btn');
         const modeBtn = document.getElementById('kheb-mode-btn');
         const fsBtn = document.getElementById('kheb-fs-btn');
+        const floatingExitBtn = document.getElementById('kheb-floating-exit-btn');
 
         if (prevBtn) prevBtn.onclick = () => goToPage(state.reader.pageNum - 1);
         if (nextBtn) nextBtn.onclick = () => goToPage(state.reader.pageNum + 1);
@@ -1848,6 +1871,7 @@
         if (fitBtn) fitBtn.onclick = () => setZoom(0, true);
         if (modeBtn) modeBtn.onclick = () => toggleViewMode();
         if (fsBtn) fsBtn.onclick = () => toggleFullscreen();
+        if (floatingExitBtn) floatingExitBtn.onclick = () => toggleFullscreen(false);
 
         bindStageInteractions();
 
@@ -1865,29 +1889,42 @@
     }
 
     // Global fullscreen sync & keyboard navigation inside KH-Ebook reader
-    document.addEventListener('fullscreenchange', () => {
+    function handleKhNativeFsChange() {
         const wrapper = document.getElementById('kheb-viewer-wrapper');
         const stage = document.getElementById('kheb-viewer-stage');
         if (!wrapper) return;
+        const nativeFsEl = document.fullscreenElement || document.webkitFullscreenElement;
+        if (!nativeFsEl && wrapper.classList.contains('kheb-is-fullscreen')) {
+            toggleFullscreen(false);
+            return;
+        }
         const fsAnchor = (stage && global.WISPdfViewport)
             ? global.WISPdfViewport.captureAnchor(stage, '.kheb-page-frame')
             : null;
-        state.reader.isFullscreen = document.fullscreenElement === wrapper;
+        state.reader.isFullscreen = nativeFsEl === wrapper;
         wrapper.classList.toggle('kheb-is-fullscreen', state.reader.isFullscreen);
+        document.body.classList.toggle('pdf-modal-open', state.reader.isFullscreen);
         updateViewerHeaderAndControls();
         if (state.reader.pdfDoc && state.reader.fitWidth) {
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                 if (state.reader.pdfDoc && state.reader.fitWidth) {
                     applyZoomPreservingPosition(1.0, { isFitWidth: true, anchor: fsAnchor });
                 }
                 if (state.reader.viewportCtrl) state.reader.viewportCtrl.resetWidthTracking();
-            }, 120);
+            });
         }
-    });
+    }
+    document.addEventListener('fullscreenchange', handleKhNativeFsChange);
+    document.addEventListener('webkitfullscreenchange', handleKhNativeFsChange);
 
     document.addEventListener('keydown', (e) => {
         if (state.modalState && e.key === 'Escape' && !state.modalState.submitting) {
             closeModal();
+            return;
+        }
+        const wrapper = document.getElementById('kheb-viewer-wrapper');
+        if (e.key === 'Escape' && wrapper && (wrapper.classList.contains('kheb-is-fullscreen') || state.reader.isFullscreen)) {
+            toggleFullscreen(false);
             return;
         }
         const tabPane = document.getElementById('tab-kh-ebook');
