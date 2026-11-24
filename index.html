@@ -43,7 +43,7 @@
                     sessionStorage.removeItem('wis_admin_auth_pw');
                 }
 
-                var SITE_OFFLINE = true;
+                var SITE_OFFLINE = false;
                 if (SITE_OFFLINE && !(isHost && sessionStorage.getItem('wis_admin_session'))) {
                     document.documentElement.classList.remove('wis-pre-auth');
                     document.documentElement.classList.add('wis-pre-maintenance');
@@ -10945,7 +10945,7 @@
         </div>
     </div>
 
-    <script src="auth.js?v=64&build=20261123081702"></script>
+    <script src="auth.js?v=64&build=20261124151046"></script>
     <script src="pdf-viewport-controller.js?v=64&build=20261123075946"></script>
     <script src="summary-slides.js?v=64&build=20261123075946"></script>
     <script src="kh_ebooks/catalog.js?v=64&build=20261123075946"></script>
